@@ -12,5 +12,6 @@ Before: git remote add dokku dokku@studieresan.se:studs2017
 
 API
 ===
-- permissions: ['admin', 'user_edit']
-note: admin permission gives all permissions.
+- permissions: ['admin', 'user_edit']  
+
+_note: admin permission gives all permissions._

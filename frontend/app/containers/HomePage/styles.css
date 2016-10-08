@@ -18,9 +18,11 @@
 }
 
 .headerContent > h1 {
+	font-family: 'DIN Condensed';
 	margin-top: 60px;
 	text-transform: uppercase;
 }
 
 .headerContent > p {
+	font-family: 'Neuzeit S LT';
 }

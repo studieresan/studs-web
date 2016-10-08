@@ -3,16 +3,21 @@
  *
  * App container styles
  */
-body.pFontLoaded {
+body {
 	font-family: 'Neuzeit S LT';
 }
-body.hFontLoaded h1,
-body.hFontLoaded h2,
-body.hFontLoaded h3,
-body.hFontLoaded h4,
-body.hFontLoaded h5,
-body.hFontLoaded h6 {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	font-family: 'DIN Condensed';
+}
+
+p {
+	font-size: 14px;
 }
 
 .container {

@@ -23,28 +23,6 @@ import LanguageProvider from 'containers/LanguageProvider';
 import configureStore from './store';
 
 
-// Observe  font load
-import FontFaceObserver from 'fontfaceobserver';
-import styles from 'containers/App/styles.css';
-const dinCondendsedObserver = new FontFaceObserver('DIN Condensed', {
-	weight: 'bold'
-});
-const neuzeitObserver = new FontFaceObserver('Neuzeit S LT', {});
-
-dinCondendsedObserver.load().then(() => {
-	console.log("header font loaded");
-	document.body.classList.add(styles.hFontLoaded);
-  }, () => {
-    document.body.classList.remove(styles.hFontLoaded);
-});
-
-neuzeitObserver.load().then(() => {
-	console.log("p font loaded");
-	document.body.classList.add(styles.pFontLoaded);
-  }, () => {
-    document.body.classList.remove(styles.pFontLoaded);
-});
-
 // Import i18n messages
 import { translationMessages } from './i18n';
 

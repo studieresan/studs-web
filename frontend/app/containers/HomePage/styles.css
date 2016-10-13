@@ -1,0 +1,24 @@
+.header {
+	position: relative;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+}
+
+.headerContent {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	color: #fff;
+	text-align: center;
+	margin: 20px;
+	max-width: 600px;
+}
+
+.headerContent > h1 {
+	margin-top: 60px;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+}

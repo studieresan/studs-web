@@ -12,14 +12,35 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+import styles from './styles.css';
+import Background from './background.jpg';
+import Logo from './logo-inverse.png';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   render() {
+	const backgroundImage = {
+		background: `
+		  linear-gradient(
+			  rgba(133,133,133,0.5),
+			  rgba(133,133,133,0.5)
+		  ),
+		  url(${ Background })`,
+		backgroundSize: 'cover',
+		backgroundPosition: 'center center',
+	};
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
+	  <div style={backgroundImage} className={styles.header}>
+		  <div className={styles.headerContent} >
+			  <img src={Logo} width={300} />
+			  <h1>
+				<FormattedMessage {...messages.header} />
+			  </h1>
+			  <p>
+				<FormattedMessage {...messages.content} />
+			  </p>
+		  </div>
+	  </div>
     );
   }
 }

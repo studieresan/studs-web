@@ -22,6 +22,7 @@ import { useScroll } from 'react-router-scroll';
 import LanguageProvider from 'containers/LanguageProvider';
 import configureStore from './store';
 
+
 // Import i18n messages
 import { translationMessages } from './i18n';
 

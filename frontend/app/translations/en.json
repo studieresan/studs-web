@@ -1,1 +1,19 @@
-[]
+[{
+	"id": "app.components.HomePage.intro.header",
+	"message": "We dig challenges and adventures"
+}, {
+	"id": "app.components.HomePage.intro.content",
+	"message": "Studs, or the Study trip, is a yearly project at the Computer Science education at the Royal Institute of Technology (KTH) in Stockholm. The project aims to create a platform for interaction between students in the end of their education and handpicked companies. The project ends with a study trip to give the students a chance to meet companies abroad."
+}, {
+	"id": "app.components.HomePage.description.header",
+	"message": "The annual project"
+}, {
+	"id": "app.components.HomePage.description.content",
+	"message": "The study trip is a non-profit project at KTH. The project consists of 28 engineering students in the end of their education doing a master in the field of computer science. Through creating events together with companies we create a platform to give students and companies focused time together. The project ends with a study trip to USA to give the project members both a cultural and a professional exchange. USA has an unique position in the IT-world with cities such as San Francisco, New York and Seattle creating perpetual innovation among both startups and already established players."
+}, {
+	"id": "app.components.HomePage.students.header",
+	"message": "Be part of a great experience"
+}, {
+	"id": "app.components.HomePage.students.content",
+	"message": "The digitalization hits more and more industries and the need for a highly educated workforce is ever growing. It can be hard for students to orient themselves among all the posibilities, in the same way it is hard for companies to find the perfect fit in employees. The mission of the study trip project is to pair students and companies in a way that most benefits both. During the academic year 2016/2017 the project group will visit companies at events arranged jointly with the company and the project to create a highly qualitative meeting. The events are tailored to meet each individual companies needs, usually the project group is invited to the office of the company during a night where the students gets a deeper insight into the operations of the company."
+}]

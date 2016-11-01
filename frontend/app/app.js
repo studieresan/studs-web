@@ -8,6 +8,7 @@ import 'babel-polyfill';
 
 /* eslint-disable import/no-unresolved */
 // Load the manifest.json file and the .htaccess file
+import '!file?name=[name].[ext]!./favicon.ico';
 import '!file?name=[name].[ext]!./manifest.json';
 import 'file?name=[name].[ext]!./.htaccess';
 /* eslint-enable import/no-unresolved */
@@ -88,7 +89,8 @@ if (!window.Intl) {
     resolve(System.import('intl'));
   }))
     .then(() => Promise.all([
-      System.import('intl/locale-data/jsonp/de.js'),
+      System.import('intl/locale-data/jsonp/se.js'),
+      System.import('intl/locale-data/jsonp/en.js'),
     ]))
     .then(() => render(translationMessages))
     .catch((err) => {

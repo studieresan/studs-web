@@ -36,12 +36,13 @@
 	flex-direction: row-reverse;
 }
 
-.section > img {
+.section > * {
 	flex: 50%;
 	margin: 30px;
 }
 
-.section > div {
-	flex: 50%;
-	margin: 30px;
+.headerContentLogo svg {
+	width: 350px;
+	fill: white;
+	color: white;
 }

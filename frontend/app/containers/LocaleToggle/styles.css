@@ -2,16 +2,22 @@
   position: fixed;
   top: 1rem;
   right: 1rem;
-  padding: 2px;
+  z-index: 1;
 }
 
 .localeToggleLink {
   text-transform: uppercase;
   color: white;
-  padding-right: 1rem;
-  border: 1px solid blue;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-right: 1px solid white;
+}
+
+.localeToggleLink:first-child{
+  padding-left: 0rem;
 }
 
 .localeToggleLink:last-child{
-    border: 0;
+  border: 0;
+  padding-right: 0rem;
 }

@@ -22,3 +22,9 @@
 	text-transform: uppercase;
 	letter-spacing: 5px;
 }
+
+.headerContentLogo svg {
+	width: 350px;
+	fill: white;
+	color: white;
+}

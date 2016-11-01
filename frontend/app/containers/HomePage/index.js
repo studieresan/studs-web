@@ -11,10 +11,11 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import Isvg from 'react-inlinesvg';
 import messages from './messages';
 import styles from './styles.css';
 import Background from './background.jpg';
-import Logo from './logo-inverse.png';
+import Logo from '../../static/img/studs-logo.svg';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -32,7 +33,9 @@ export default class HomePage extends React.Component { // eslint-disable-line r
     return (
 	  <div style={backgroundImage} className={styles.header}>
 		  <div className={styles.headerContent} >
-			  <img src={Logo} width={300} />
+        <div className={styles.headerContentLogo}>
+          <Isvg src={Logo}></Isvg>
+        </div>
 			  <h1>
 				<FormattedMessage {...messages.header} />
 			  </h1>

@@ -23,6 +23,24 @@
 	letter-spacing: 5px;
 }
 
+.content {
+	margin: 30px;
+}
+
+.section {
+	display: flex;
+	align-items: center;
+}
+
+.reverse {
+	flex-direction: row-reverse;
+}
+
+.section > * {
+	flex: 50%;
+	margin: 30px;
+}
+
 .headerContentLogo svg {
 	width: 350px;
 	fill: white;

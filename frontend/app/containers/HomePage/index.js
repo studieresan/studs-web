@@ -15,6 +15,7 @@ import Isvg from 'react-inlinesvg';
 import messages from './messages';
 import styles from './styles.css';
 import Background from './background.jpg';
+import Section from '../../components/Section';
 import Logo from '../../static/img/studs-logo.svg';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -30,18 +31,31 @@ export default class HomePage extends React.Component { // eslint-disable-line r
 		backgroundSize: 'cover',
 		backgroundPosition: 'center center',
 	};
+	const sectionReversed = styles.section + ' ' + styles.reverse;
     return (
-	  <div style={backgroundImage} className={styles.header}>
-		  <div className={styles.headerContent} >
-        <div className={styles.headerContentLogo}>
-          <Isvg src={Logo}></Isvg>
-        </div>
-			  <h1>
-				<FormattedMessage {...messages.header} />
-			  </h1>
-			  <p>
-				<FormattedMessage {...messages.content} />
-			  </p>
+	  <div>
+		  <div style={backgroundImage} className={styles.header}>
+			  <div className={styles.headerContent} >
+				  <div className={styles.headerContentLogo}>
+					  <Isvg src={Logo}></Isvg>
+				  </div>
+				  <h1>
+					  <FormattedMessage {...messages.intro.header} />
+				  </h1>
+				  <p>
+					  <FormattedMessage {...messages.intro.content} />
+				  </p>
+			  </div>
+		  </div>
+		  <div className={styles.content}>
+			  <div className={styles.section}>
+				  <img src={Background} height={400} />
+				  <Section {...messages.description} />
+			  </div>
+			  <div className={sectionReversed}>
+				  <img src={Background} height={400} />
+				  <Section {...messages.students} />
+			  </div>
 		  </div>
 	  </div>
     );

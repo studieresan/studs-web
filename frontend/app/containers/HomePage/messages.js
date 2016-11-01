@@ -35,5 +35,19 @@ export default defineMessages({
 		id: 'app.components.HomePage.students.content',
 		defaultMessage: '',
 	}
+  },
+  contact: {
+	header: {
+		id: 'app.components.HomePage.contact.header',
+		defaultMessage: '',
+	},
+	content: {
+		id: 'app.components.HomePage.contact.content',
+		defaultMessage: '',
+	},
+	phone: {
+		id: 'app.components.HomePage.contact.phone',
+		defaultMessage: '',
+	},
   }
 });

@@ -1,0 +1,19 @@
+[{
+	"id": "app.components.HomePage.intro.header",
+	"message": "Vi älskar utmaningar och äventyr"
+}, {
+	"id": "app.components.HomePage.intro.content",
+	"message": "Studs är ett årligt projekt på Datateknikutbildningen på KTH för att skapa en mötesplattform mellan studenter i slutet av sin utbildning och utvalda företag. Projektet avslutas med en studieresa för att även ge studenterna en möjlighet att träffa företag i utlandet."
+}, {
+	"id": "app.components.HomePage.description.header",
+	"message": "The annual project"
+}, {
+	"id": "app.components.HomePage.description.content",
+	"message": "Studs, eller Studieresan, är ett icke-vinstdrivande projekt på KTH. Projektet består av 28 civilingenjörsstudenter i slutet av sin utbildning som studerar en master kopplat till datateknik. Genom att ordna evenemang tillsammans med företag, skapar vi en plattform för att ge både studenter och företag fokuserad tid tillsammans. Projektet avslutas med en studieresa till USA för att skapa ett kulturellt och professionellt utbyte. Med städer som San Francisco, New York och Seattle har USA en unik position i IT-världen med ständig innovation bland både startups och etablerade spelare."
+}, {
+	"id": "app.components.HomePage.students.header",
+	"message": "Be part of a great experience"
+}, {
+	"id": "app.components.HomePage.students.content",
+	"message": "Digitaliseringen breder ut sig till allt fler branscher och efterfrågan växer på välutbildad arbetskraft. Det kan därför vara svårt för studenter att orientera sig bland alla möjligheter, på samma sätt som det är svårt för företag att hitta rätt person. Studs mission är att koppla ihop rätt människa med rätt företag. Under läsåret 2016/2017 går projektgruppen på företagsevenemang arrangerade tillsammans med Studs för att skapa ett högkvalitativt möte. Evenemangen är skräddarsydda för att passa varje företags egna behov, vanligtvis bjuds projektgruppen in till företagets kontor en kväll där studenterna får en djupare inblick i företagets verksamhet."
+}]

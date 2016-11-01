@@ -22,3 +22,26 @@
 	text-transform: uppercase;
 	letter-spacing: 5px;
 }
+
+.content {
+	margin: 30px;
+}
+
+.section {
+	display: flex;
+	align-items: center;
+}
+
+.reverse {
+	flex-direction: row-reverse;
+}
+
+.section > img {
+	flex: 50%;
+	margin: 30px;
+}
+
+.section > div {
+	flex: 50%;
+	margin: 30px;
+}

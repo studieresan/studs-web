@@ -14,7 +14,7 @@
 import React from 'react';
 
 import styles from './styles.css';
-import LocaleToggle from '../LocaleToggle'
+import Navbar from '../Navbar'
 
 export default class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -25,7 +25,7 @@ export default class App extends React.Component { // eslint-disable-line react/
   render() {
     return (
       <div className={styles.container}>
-        <LocaleToggle />
+        <Navbar />
         {React.Children.toArray(this.props.children)}
       </div>
     );

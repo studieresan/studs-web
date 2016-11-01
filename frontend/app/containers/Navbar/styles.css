@@ -1,0 +1,16 @@
+.navbar {
+  position: fixed;
+  background-color: white;
+  top: 0;
+  width: 100%;
+  padding: 10px;
+  z-index: 1;
+}
+
+.navbarLogo {
+  display: inline-block;
+  color: black;
+  fill: black;
+  height: 20px;
+  width: 60px;
+}

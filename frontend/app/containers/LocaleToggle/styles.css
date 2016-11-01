@@ -1,16 +1,15 @@
 .localeToggle {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1;
+  float: right;
+  padding-right: 1rem;
 }
 
 .localeToggleLink {
   text-transform: uppercase;
-  color: white;
+  color: #90CE9C;
+
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  border-right: 1px solid white;
+  border-right: 1px solid #90CE9C;
 }
 
 .localeToggleLink:first-child{

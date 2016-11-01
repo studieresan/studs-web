@@ -1,0 +1,17 @@
+.localeToggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 2px;
+}
+
+.localeToggleLink {
+  text-transform: uppercase;
+  color: white;
+  padding-right: 1rem;
+  border: 1px solid blue;
+}
+
+.localeToggleLink:last-child{
+    border: 0;
+}

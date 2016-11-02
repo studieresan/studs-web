@@ -70,7 +70,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
 			  <div className={styles.contactInfo}>
 				  <img src={ImgDonia} />
 				  <div>
-					  <FormattedMessage {...messages.contact.phone} />{": 072-525 08 94"}
+					  <FormattedMessage {...messages.contact.phone} />{": 073-525 08 94"}
 					  <br/>
 					  <span>{"Email: "}</span><a href="mailto:studs-salj@d.kth.se">{"studs-salj@d.kth.se"}</a>
 				  </div>

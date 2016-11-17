@@ -1,3 +1,4 @@
 class Company < ApplicationRecord
-	has_many :events
+	has_one :events
+	has_many :users
 end

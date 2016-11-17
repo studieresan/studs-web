@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
+import { login } from '../../auth';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
+import styles from './styles.css';
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       user: '',
-      pass: ''
+      pass: '',
+      error: false
     };
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handlePassChange = this.handlePassChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderError = this.renderError.bind(this);
   }
   
   handleUserChange(event) {
@@ -16,21 +24,41 @@ class Login extends Component {
   }
 
   handlePassChange(event) {
-    this.setState({pass: event.target.valeu});
+    this.setState({pass: event.target.value});
   }
 
-  handleLogin() {
+  handleSubmit() {
     // TODO auth
+    login(this.state.user, this.state.pass, ok => {
+      if(ok) {
+        this.setState({error: false});
+        browserHistory.push('/');
+      } else {
+        this.setState({error: true});
+      }
+    })
+    
+  }
+
+  renderError() {
+    if(this.state.error) {
+      return (
+        <div className={styles.error}>
+          <FormattedMessage {...messages.error} />
+        </div>
+      );
+    }
   }
 
 	render() {
-    const {user, pass} = this.state;
+    const {user, pass, error} = this.state;
 		return (
 		  <div>
 		    <h1>Login</h1>
-        <input placeholder='Username' type='text' value={user} onChange={this.handleUserChange} />
+        <input placeholder='Email' type='email' value={user} onChange={this.handleUserChange} />
         <input placeholder='Password' type='password' value={pass} onChange={this.handlePassChange} />
-        <button onClick={this.handleLogin}>Login</button>
+        <button onClick={this.handleSubmit}>Login</button>
+        {this.renderError()}
 		  </div>
 		);
 	}

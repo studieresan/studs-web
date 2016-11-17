@@ -232,7 +232,7 @@
     "reselect": "2.5.4",
     "sanitize.css": "4.1.0",
     "warning": "3.0.0",
-    "whatwg-fetch": "1.0.0"
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "6.14.0",

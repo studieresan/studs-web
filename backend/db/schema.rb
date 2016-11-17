@@ -10,11 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008154031) do
+ActiveRecord::Schema.define(version: 20161117120141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "companies", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "address"
+    t.string   "postal"
+    t.string   "city"
+    t.string   "coutry"
+    t.string   "language"
+    t.string   "information"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "schedule"
+    t.string   "information"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "email"
@@ -26,6 +47,9 @@ ActiveRecord::Schema.define(version: 20161008154031) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.text     "permissions",     default: [],              array: true
+    t.string   "phone"
+    t.string   "position"
+    t.string   "master"
   end
 
 end

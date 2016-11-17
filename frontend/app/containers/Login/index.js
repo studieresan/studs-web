@@ -53,12 +53,18 @@ class Login extends Component {
 	render() {
     const {user, pass, error} = this.state;
 		return (
-		  <div>
-		    <h1>Login</h1>
-        <input placeholder='Email' type='email' value={user} onChange={this.handleUserChange} />
-        <input placeholder='Password' type='password' value={pass} onChange={this.handlePassChange} />
-        <button onClick={this.handleSubmit}>Login</button>
-        {this.renderError()}
+		  <div className='center'>
+        <div>
+          <h1 className={styles.header}>Welcome</h1>
+          <div className='input-label'>Email</div>
+          <input placeholder='Email' type='email' value={user} onChange={this.handleUserChange} />
+          <div className='input-label'>Password</div>
+          <input placeholder='Password' type='password' value={pass} onChange={this.handlePassChange} />
+          <div className='button-wrapper'>
+            <button className='btn-bright' onClick={this.handleSubmit}>Login</button>
+          </div>
+          {this.renderError()}
+        </div>
 		  </div>
 		);
 	}

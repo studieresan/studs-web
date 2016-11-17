@@ -9,12 +9,13 @@ import React from 'react';
 import Isvg from 'react-inlinesvg';
 import styles from './styles.css';
 import LocaleToggle from '../LocaleToggle'
-import Logo from '../../static/img/studs-logo-small.svg';
+import Logo from '../../static/img/studs-text.png';
 
 export default class Navbar extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
 	  <div className={styles.navbar}>
+      <img src={Logo} height={24} />
       <LocaleToggle />
 	  </div>
     );

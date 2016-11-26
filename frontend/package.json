@@ -228,7 +228,7 @@
     "react-router-scroll": "0.3.2",
     "redux": "3.6.0",
     "redux-immutable": "3.0.8",
-    "redux-saga": "0.11.1",
+    "redux-thunk": "^2.1.0",
     "reselect": "2.5.4",
     "sanitize.css": "4.1.0",
     "warning": "3.0.0",

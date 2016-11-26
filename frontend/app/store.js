@@ -5,18 +5,17 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
-import createSagaMiddleware from 'redux-saga';
+import thunkMiddleware from 'redux-thunk';
 import createReducer from './reducers';
 
-const sagaMiddleware = createSagaMiddleware();
 const devtools = window.devToolsExtension || (() => (noop) => noop);
 
 export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares
-  // 1. sagaMiddleware: Makes redux-sagas work
+  // 1. thunkMiddleware: Allows for async dispatch calls 
   // 2. routerMiddleware: Syncs the location/URL path to the state
   const middlewares = [
-    sagaMiddleware,
+    thunkMiddleware,
     routerMiddleware(history),
   ];
 
@@ -30,9 +29,6 @@ export default function configureStore(initialState = {}, history) {
     fromJS(initialState),
     compose(...enhancers)
   );
-
-  // Create hook for async sagas
-  store.runSaga = sagaMiddleware.run;
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */

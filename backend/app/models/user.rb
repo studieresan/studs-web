@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
   def send_password_reset email
   	prettymail = '<h2>Hi!</h2><p>To reset your password for studieresan.se, please click<a href="https://studieresan.se/password_reset?token=#{token}">this link</a>.</p><p>Best regards,<br>Studs IT </p>'
+  	magicalkey = '6ie37ahdaynbqktk6xmw'
   	generate_token(:password_reset_token)
   	self.password_reset_sent_at = Time.zone.now
   	save!

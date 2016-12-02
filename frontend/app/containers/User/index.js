@@ -36,43 +36,43 @@ export class User extends React.Component { // eslint-disable-line react/prefer-
     return (
       <div className={styles.user}>
         <div className={styles.content}>
-          <h1 className={styles.header}>Edit Profile</h1>
-          <div className='input-label'>First name</div>
+          <h1 className={styles.header}><FormattedMessage {...messages.title} /></h1>
+          <div className='input-label'><FormattedMessage {...messages.firstName} /></div>
           <input
             type='text'
             name='firstName'
             value={user.firstName}
             onChange={this.handleChange}
             placeholder='First name'/>
-          <div className='input-label'>Last name</div>
+          <div className='input-label'><FormattedMessage {...messages.lastName} /></div>
           <input
             type='text'
             name='lastName'
             value={user.lastName}
             onChange={this.handleChange}
             placeholder='Last name'/>
-          <div className='input-label'>Phone</div>
+          <div className='input-label'><FormattedMessage {...messages.phone} /></div>
           <input
             type='text'
             name='phone'
             value={user.phone}
             onChange={this.handleChange}
             placeholder='Phone number'/>
-          <div className='input-label'>Position</div>
+          <div className='input-label'><FormattedMessage {...messages.position} /></div>
           <input
             type='text'
             name='position'
             value={user.position}
             onChange={this.handleChange}
             placeholder='Position'/>
-          <div className='input-label'>Master</div>
+          <div className='input-label'><FormattedMessage {...messages.master} /></div>
           <input
             type='text'
             name='master'
             value={user.master}
             onChange={this.handleChange}
             placeholder='Master'/>
-          <div className='input-label'>Allergies</div>
+          <div className='input-label'><FormattedMessage {...messages.allergies} /></div>
           <input
             type='text'
             name='allergies'

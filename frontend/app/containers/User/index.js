@@ -6,35 +6,33 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import selectUser from './selectors';
+import { bindActionCreators } from 'redux';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+import * as actions from './actions';
 import styles from './styles.css';
 
 export class User extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
-    const user = {};
-    this.state = {
-      firstName: '',
-      lastName: '',
-      phone: '',
-      position: '',
-      master: '',
-      allergies: ''
-    };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  componentDidMount() {
+    if(this.props.user.firstName === '') {
+      this.props.getUser();
+    }
   }
   handleChange(event) {
-    const user = this.state;
+    const user = {};
     user[event.target.name] = event.target.value;
-    this.setState(user);
+    this.props.update(user);
   }
   handleSubmit() {
-    console.log("Submit");
+    this.props.save();
   }
   render() {
-    const user = {};
+    const user = this.props.user;
     return (
       <div className={styles.user}>
         <div className={styles.content}>
@@ -43,14 +41,14 @@ export class User extends React.Component { // eslint-disable-line react/prefer-
           <input
             type='text'
             name='firstName'
-            value={this.state.firstName}
+            value={user.firstName}
             onChange={this.handleChange}
             placeholder='First name'/>
           <div className='input-label'>Last name</div>
           <input
             type='text'
             name='lastName'
-            value={this.state.lastName}
+            value={user.lastName}
             onChange={this.handleChange}
             placeholder='Last name'/>
           <div className='input-label'>Phone</div>
@@ -90,12 +88,12 @@ export class User extends React.Component { // eslint-disable-line react/prefer-
   }
 }
 
-const mapStateToProps = selectUser();
+function mapStateToProps(state) {
+  return state.get('user').toJS();
+};
 
 function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
+  return bindActionCreators(actions, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);

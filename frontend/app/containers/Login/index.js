@@ -28,7 +28,6 @@ class Login extends Component {
   }
 
   handleSubmit() {
-    // TODO auth
     login(this.state.user, this.state.pass, ok => {
       if(ok) {
         this.setState({error: false});

@@ -5,6 +5,16 @@ class UsersController < ApplicationController
     render json: User.where(type_of_user: 'studs_member', enabled: true)
   end
 
+  def show
+    user = User.find(params[:id])
+
+    render json: user
+  end
+
+  def me
+    render json: current_user
+  end
+
   def create
     if current_user.has_permission?('user_create')
       user = User.new(user_params)

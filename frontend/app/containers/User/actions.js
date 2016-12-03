@@ -82,11 +82,19 @@ export const save = () => (dispatch, getState) => {
     last_name: user.lastName,
     phone: user.phone,
     position: user.position,
-    master: user.master
+    master: user.master,
+    picture: user.picture
   };
-  console.log(data);
+
+  const formData = new FormData();
+  Object.keys(data).forEach(function (key) {
+    if (data[key]) {
+      formData.append('user[' + key + ']', data[key]);
+    }
+  });
+
   dispatch(saveRequest());
-  updateUser(user.id, data)
+  updateUser(user.id, formData)
     .then(data => dispatch(saveSuccess()))
     .catch(error => dispatch(saveError()))
 }

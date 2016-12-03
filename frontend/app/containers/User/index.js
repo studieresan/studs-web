@@ -25,10 +25,15 @@ export class User extends React.Component { // eslint-disable-line react/prefer-
   }
   handleChange(event) {
     const user = {};
-    user[event.target.name] = event.target.value;
+    if (event.target.type == 'file') {
+      user[event.target.name] = event.target.files[0];
+    } else {
+      user[event.target.name] = event.target.value;
+    }
+
     this.props.update(user);
   }
-  handleSubmit() {
+  handleSubmit(event) {
     this.props.save();
   }
   render() {
@@ -79,6 +84,11 @@ export class User extends React.Component { // eslint-disable-line react/prefer-
             value={user.allergies}
             onChange={this.handleChange}
             placeholder='Allergies'/>
+          <div className='input-label'><FormattedMessage {...messages.picture} /></div>
+          <input
+            type='file'
+            name='picture'
+            onChange={this.handleChange}/>
           <div className='button-wrapper'>
             <button className='btn-bright' onClick={this.handleSubmit}>Save</button>
           </div>

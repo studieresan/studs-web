@@ -1,4 +1,4 @@
-const baseUrl = 'https://api.studieresan.se/';
+const baseUrl = 'http://localhost:3333/';
 const usersUrl = 'users/';
 const userUrl = usersUrl + 'me';
 const STATUS_OK = 200;
@@ -17,13 +17,12 @@ function parseJSON(response) {
   return response.json()
 }
 
-function authHeader() {
+function authHeader(contentType = 'multipart/form-data') {
   const token = localStorage.token;
   console.log(token);
   return {
     headers: {
-      'Authorization': 'Basic ' + token,
-      'Content-Type': 'application/json'
+      'Authorization': 'Basic ' + token
     }
   };
 }
@@ -38,7 +37,7 @@ export function updateUser(id, user) {
   return fetch(baseUrl+usersUrl+id, {
     ...authHeader(),
     method: 'PATCH',
-    body: JSON.stringify({user})
+    body: user,
   }).then(checkStatus)
     .then(parseJSON)
 }

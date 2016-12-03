@@ -33,5 +33,10 @@ export default defineMessages({
   allergies: {
     id: 'app.containers.User.allergies',
     defaultMessage: 'Allergies'
+  },
+  picture: {
+    id: 'app.containers.User.picture',
+    defaultMessage: 'Picture'
   }
+
 });

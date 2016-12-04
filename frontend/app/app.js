@@ -6,6 +6,9 @@
  */
 import 'babel-polyfill';
 
+// fetch polyfill
+import 'whatwg-fetch';
+
 /* eslint-disable import/no-unresolved */
 // Load the manifest.json file and the .htaccess file
 import '!file?name=[name].[ext]!./favicon.ico';

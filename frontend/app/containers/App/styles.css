@@ -14,11 +14,67 @@ h4,
 h5,
 h6 {
 	font-family: 'DIN Condensed';
+	text-transform: uppercase;
+	letter-spacing: 5px;
 }
 
 p {
 	font-size: 14px;
 }
+
+input {
+	font-family: 'Neuzeit S LT';
+  display: block;
+  border: solid #000 1px;
+  padding: 6px;
+}
+
+input:focus {
+  outline: none;
+}
+
+:global .input-label {
+  font-size: 12px;
+  padding-top: 10px;
+  padding-bottom: 3px;
+}
+
+:global .btn-default {
+	font-family: 'DIN Condensed';
+	letter-spacing: 3px;
+  text-transform: uppercase;
+  background-color: #38383f;
+  color: #fff;
+  line-height: 40px;
+  height: 35px;
+  padding: 0 24px;
+  transition: background-color 0.2s;
+}
+:global .btn-bright {
+	font-family: 'DIN Condensed';
+	letter-spacing: 3px;
+  text-transform: uppercase;
+  background-color: #90ce9c;
+  color: #fff;
+  line-height: 40px;
+  height: 35px;
+  padding: 0 24px;
+  transition: background-color 0.2s;
+}
+
+:global .button-wrapper {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+:global .center {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 .container {
   display: block;

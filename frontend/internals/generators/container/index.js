@@ -35,11 +35,6 @@ module.exports = {
     message: 'Do you want an actions/constants/selectors/reducer tupel for this container?',
   }, {
     type: 'confirm',
-    name: 'wantSagas',
-    default: true,
-    message: 'Do you want sagas for asynchronous flows? (e.g. fetching data)',
-  }, {
-    type: 'confirm',
     name: 'wantMessages',
     default: true,
     message: 'Do you want i18n messages (i.e. will this component use text)?',
@@ -128,22 +123,6 @@ module.exports = {
         type: 'add',
         path: '../../app/containers/{{properCase name}}/tests/reducer.test.js',
         templateFile: './container/reducer.test.js.hbs',
-        abortOnFail: true,
-      });
-    }
-
-    // Sagas
-    if (data.wantSagas) {
-      actions.push({
-        type: 'add',
-        path: '../../app/containers/{{properCase name}}/sagas.js',
-        templateFile: './container/sagas.js.hbs',
-        abortOnFail: true,
-      });
-      actions.push({
-        type: 'add',
-        path: '../../app/containers/{{properCase name}}/tests/sagas.test.js',
-        templateFile: './container/sagas.test.js.hbs',
         abortOnFail: true,
       });
     }

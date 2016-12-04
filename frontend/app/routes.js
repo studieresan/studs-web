@@ -14,7 +14,7 @@ const loadModule = (cb) => (componentModule) => {
 
 export default function createRoutes(store) {
   // Create reusable async injectors using getAsyncInjectors factory
-  const { injectReducer, injectSagas } = getAsyncInjectors(store); // eslint-disable-line no-unused-vars
+  const { injectReducer } = getAsyncInjectors(store); // eslint-disable-line no-unused-vars
 
   return [
     {
@@ -28,6 +28,32 @@ export default function createRoutes(store) {
         const renderRoute = loadModule(cb);
 
         importModules.then(([component]) => {
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
+      path: '/login',
+      name: 'login',
+      getComponent(location, cb) {
+        System.import('containers/Login')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+    }, {
+      path: '/user',
+      name: 'user',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/User/reducer'),
+          System.import('containers/User'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, component]) => {
+          injectReducer('user', reducer.default);
           renderRoute(component);
         });
 

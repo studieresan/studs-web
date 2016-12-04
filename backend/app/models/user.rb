@@ -15,14 +15,18 @@ class User < ApplicationRecord
     end
   end
 
-  def send_password_reset email
-  	prettymail = '<h2>Hi!</h2><p>To reset your password for studieresan.se, please click<a href="https://studieresan.se/password_reset?token=#{token}">this link</a>.</p><p>Best regards,<br>Studs IT </p>'
-  	magicalkey = '6ie37ahdaynbqktk6xmw'
+  def send_password_reset
+    # mail_body = render_to_string(action: 'users/_email_reset', :layout => false)
+
   	generate_token(:password_reset_token)
   	self.password_reset_sent_at = Time.zone.now
   	save!
-  	uri = URI('http://spam.datasektionen.se')
-		res = Net::HTTP.post_form(uri, from: 'norepy@studs-it.datasektionen.se', to: email, subject: 'Reset password', html: prettymail, key: magicalkey)
+
+    mail_body = "<h2>Hi!</h2><p>To reset your password for studieresan.se, please click <a href=\"https://studieresan.se/password_reset?token=#{password_reset_token}\">this link</a>.</p><p>Best regards,<br>Studs IT </p>"
+
+    mail_api_key = ENV['SPAM_API_KEY']
+  	uri = URI('https://spam.datasektionen.se/api/sendmail')
+		res = Net::HTTP.post_form(uri, from: 'noreply@studs-it.datasektionen.se', to: email, subject: 'Reset password', html: mail_body, key: mail_api_key)
   end
 
   def generate_token(column)

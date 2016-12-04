@@ -11,7 +11,7 @@ class ResumesController < ApplicationController
   end
 
   def create
-    resume = Resume.new(resume_params)
+    resume = current_user.build_resume(resume_params)
     if resume.save
       return render json: resume
     end
@@ -32,6 +32,6 @@ class ResumesController < ApplicationController
 
   private
   def resume_params
-    params.require(:resume).permit()
+    params.require(:resume).permit(:content)
   end
 end

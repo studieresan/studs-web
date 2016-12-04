@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3333/';
+const baseUrl = 'https://api.studieresan.se/';
 const usersUrl = 'users/';
 const userUrl = usersUrl + 'me';
 const STATUS_OK = 200;

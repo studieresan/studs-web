@@ -16,13 +16,6 @@ ActiveRecord::Schema.define(version: 20161203142333) do
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "events", force: :cascade do |t|
-    t.string   "schedule"
-    t.string   "information"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "companies", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -32,6 +25,14 @@ ActiveRecord::Schema.define(version: 20161203142333) do
     t.string   "city"
     t.string   "coutry"
     t.string   "language"
+    t.string   "information"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "schedule"
+    t.string   "information"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -43,13 +44,6 @@ ActiveRecord::Schema.define(version: 20161203142333) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "events", force: :cascade do |t|
-    t.string   "schedule"
-    t.string   "information"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "email"
     t.string   "password_digest"
@@ -57,9 +51,9 @@ ActiveRecord::Schema.define(version: 20161203142333) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "type_of_user"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.text     "permissions",          default: [],              array: true
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.text     "permissions",            default: [],              array: true
     t.string   "phone"
     t.string   "position"
     t.string   "master"
@@ -70,4 +64,5 @@ ActiveRecord::Schema.define(version: 20161203142333) do
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
   end
+
 end

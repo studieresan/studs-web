@@ -3,7 +3,7 @@ class ResumesController < ApplicationController
 
   def show
     if current_user.has_permission?('resume_get')
-      resume = Resume.find(params[:resume_id])
+      resume = User.find(params[:user_id]).resume || User.find(params[:user_id]).build_resume
       return render json: resume
     end
 
@@ -20,7 +20,7 @@ class ResumesController < ApplicationController
   end
 
   def update
-    resume = Resume.find(params[:resume_id])
+    resume = User.find(params[:user_id]).resume || User.find(params[:user_id]).build_resume
     if (current_user == resume.user || current_user.has_permission?('user_edit'))
       if resume.update(resume_params)
         return render json: resume

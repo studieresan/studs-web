@@ -50,8 +50,12 @@ class UsersController < ApplicationController
 
   def reset_password
     user = User.find_by_email(params[:email])
-    user.send_password_reset(:email) if user
-    render status: 200
+    if user.present?
+      user.send_password_reset(:email)
+      render status: 200
+    else
+      render status: 400
+    end
   end
 
   private

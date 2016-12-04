@@ -1,0 +1,22 @@
+.memberListItem { /* stylelint-disable */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  height: 40px;
+  width: 100%;
+}
+
+.container a {
+  text-decoration: none;
+}
+
+.memberListItem:hover {
+  background-color: #6D6B6E;
+  color: white;
+}

@@ -1,6 +1,6 @@
-const baseUrl = 'https://api.studieresan.se/';
-const usersUrl = 'users/';
-const userUrl = usersUrl + 'me';
+const baseUrl = 'https://api.studieresan.se';
+const usersUrl = '/users';
+const userUrl = usersUrl + '/me';
 const STATUS_OK = 200;
 
 function checkStatus(response) {
@@ -35,10 +35,16 @@ export function fetchUser() {
 }
 
 export function updateUser(id, user) {
-  return fetch(baseUrl+usersUrl+id, {
+  return fetch(baseUrl+usersUrl+'/'+id, {
     ...authHeader(),
     method: 'PATCH',
     body: JSON.stringify({user})
   }).then(checkStatus)
+    .then(parseJSON)
+}
+
+export function fetchUsers() {
+  return fetch(baseUrl+usersUrl, authHeader())
+    .then(checkStatus)
     .then(parseJSON)
 }

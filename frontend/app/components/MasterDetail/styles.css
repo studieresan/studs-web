@@ -1,0 +1,15 @@
+.masterDetail { /* stylelint-disable */
+  display: flex;
+  height: 100%;
+}
+
+.master {
+  background-color: #fcfcfc;
+  width: 250px;
+  height: 100%;
+}
+
+.detail {
+  flex: 2;
+  height: 100%;
+}

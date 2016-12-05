@@ -83,3 +83,9 @@ export function updateCv(id, cv) {
   }).then(checkStatus)
     .then(parseJSON)
 }
+
+export function requestPasswordReset(email) {
+  return fetch(`${baseUrl}${passwordResetUrl}?email=${email}`)
+    .then(checkStatus)
+    .then(parseJSON)
+}

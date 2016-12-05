@@ -50,7 +50,7 @@ export default function createRoutes(store) {
           .catch(errorLoading);
       },
     }, {
-      path: '/user/password_reset',
+      path: '/user/password-reset',
       name: 'password_reset',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
@@ -138,6 +138,14 @@ export default function createRoutes(store) {
         });
 
         importModules.catch(errorLoading);
+      },
+    }, {
+      path: '/user/forgot-password',
+      name: 'forgotPassword',
+      getComponent(location, cb) {
+        System.import('containers/ForgotPassword')
+          .then(loadModule(cb))
+          .catch(errorLoading);
       },
     }, {
       path: '*',

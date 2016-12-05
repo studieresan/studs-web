@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import { login } from '../../auth';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -20,7 +20,7 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderError = this.renderError.bind(this);
   }
-  
+
   handleUserChange(event) {
     this.setState({user: event.target.value});
   }
@@ -61,6 +61,7 @@ class Login extends Component {
           <input placeholder='Email' type='email' value={user} onChange={this.handleUserChange} />
           <div className='input-label'>Password</div>
           <input placeholder='Password' type='password' value={pass} onChange={this.handlePassChange} />
+          <Link to="/user/forgot-password">Forgot password?</Link>
           <div className='button-wrapper'>
             <button className='btn-bright' onClick={this.handleSubmit}>Login</button>
           </div>

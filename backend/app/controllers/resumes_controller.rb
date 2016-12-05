@@ -2,12 +2,8 @@ class ResumesController < ApplicationController
   before_filter :authenticate
 
   def show
-    if current_user.has_permission?('resume_get')
-      resume = User.find(params[:user_id]).resume || User.find(params[:user_id]).build_resume
-      return render json: resume
-    end
-
-    render json: { error: 'Not allowed'}, status: 403
+    resume = User.find(params[:user_id]).resume || User.find(params[:user_id]).build_resume
+    return render json: resume
   end
 
   def update

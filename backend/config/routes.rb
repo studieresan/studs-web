@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resources :users do
     get '/resume', to: 'resume#show'
     patch '/resume', to: 'resume#update'
-    resources :resume
   end
   resources :users
 

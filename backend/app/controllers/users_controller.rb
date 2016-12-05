@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
   def update_by_token
     user = User.find_by_password_reset_token(params[:token])
-    if (user.password_reset_sent_at > 1.hours.ago)
+    if (user.present? && user.password_reset_sent_at > 1.hours.ago)
       if user.update(user_params)
         return render json: user
       end

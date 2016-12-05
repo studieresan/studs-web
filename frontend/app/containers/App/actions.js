@@ -20,6 +20,7 @@ export function getUserSuccess(user) {
       id: user.id,
       firstName: user.first_name,
       lastName: user.last_name,
+      picture: user.picture,
       phone: user.phone || '',
       position: user.position || '',
       master: user.master || '',

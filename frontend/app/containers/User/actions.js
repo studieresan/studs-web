@@ -14,6 +14,7 @@ import {
   UPDATE
 } from './constants';
 import { fetchUser, updateUser } from '../../api';
+import { setToken } from '../../auth';
 
 export function getRequest() {
   return {
@@ -26,12 +27,15 @@ export function getSuccess(user) {
     type: GET_SUCCESS,
     user: {
       id: user.id,
+      email: user.email,
       firstName: user.first_name,
       lastName: user.last_name,
       phone: user.phone || '',
       position: user.position || '',
       master: user.master || '',
       allergies: user.allergies || '',
+      password: '',
+      passwordConfirm: '',
       type: user.type_of_user
     }
   };
@@ -77,6 +81,7 @@ export function saveError() {
 
 export const save = () => (dispatch, getState) => {
   const { user } = getState().get('user').toJS();
+  console.log(user);
   const data = {
     first_name: user.firstName,
     last_name: user.lastName,
@@ -85,6 +90,11 @@ export const save = () => (dispatch, getState) => {
     master: user.master,
     picture: user.picture
   };
+
+  if(user.password) {
+    data.password = user.password;
+    data.password_confirmation = user.passwordConfirmation;
+  }
 
   const formData = new FormData();
   Object.keys(data).forEach(function (key) {
@@ -95,6 +105,9 @@ export const save = () => (dispatch, getState) => {
 
   dispatch(saveRequest());
   updateUser(user.id, formData)
-    .then(data => dispatch(saveSuccess()))
+    .then(data => {
+      dispatch(saveSuccess());
+      setToken(user.email, user.password);
+    })
     .catch(error => dispatch(saveError()))
 }

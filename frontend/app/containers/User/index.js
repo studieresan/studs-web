@@ -8,6 +8,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router';
 import messages from './messages';
 import * as actions from './actions';
 import styles from './styles.css';
@@ -42,6 +43,7 @@ export class User extends React.Component { // eslint-disable-line react/prefer-
       <div className={styles.user}>
         <div className={styles.content}>
           <h1 className={styles.header}><FormattedMessage {...messages.title} /></h1>
+            <Link to={'members/' + user.id + '/resume/edit'} ><button className='btn-bright'>Edit Resume</button></Link>
           <div className='input-label'><FormattedMessage {...messages.firstName} /></div>
           <input
             type='text'
@@ -89,8 +91,18 @@ export class User extends React.Component { // eslint-disable-line react/prefer-
             type='file'
             name='picture'
             onChange={this.handleChange}/>
+          <div className='input-label'><FormattedMessage {...messages.password} /></div>
+          <input
+            type='password'
+            name='password'
+            onChange={this.handleChange}/>
+          <div className='input-label'><FormattedMessage {...messages.passwordConfirm} /></div>
+          <input
+            type='password'
+            name='passwordConfirm'
+            onChange={this.handleChange}/>
           <div className='button-wrapper'>
-            <button className='btn-bright' onClick={this.handleSubmit}>Save</button>
+            { this.props.saved ? <div>Saved</div> : <button className='btn-bright' onClick={this.handleSubmit}>Save</button> }
           </div>
         </div>
       </div>

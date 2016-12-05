@@ -37,6 +37,14 @@ export default defineMessages({
   picture: {
     id: 'app.containers.User.picture',
     defaultMessage: 'Picture'
+  },
+  password: {
+    id: 'app.containers.User.password',
+    defaultMessage: 'New Password'
+  },
+  passwordConfirm: {
+    id: 'app.containers.User.passwordConfirm',
+    defaultMessage: 'Confirm Password'
   }
 
 });

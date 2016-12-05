@@ -32,8 +32,8 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if(prevProps.loggedIn != this.props.loggedIn && !this.props.user) {
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.loggedIn != this.props.loggedIn && !this.props.user) {
       this.props.getUser();
     }
   }

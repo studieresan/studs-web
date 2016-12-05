@@ -23,7 +23,9 @@ const initialState = fromJS({
     phone: '',
     position: '',
     master: '',
-    allergies: ''
+    allergies: '',
+    password: '',
+    passwordConfirm: '',
   },
   fetching: false,
   error: false,

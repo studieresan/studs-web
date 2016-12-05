@@ -2,6 +2,11 @@ const baseUrl = 'https://api.studieresan.se/';
 const meUrl = 'users/me';
 const STATUS_OK = 200;
 
+export function setToken(email, pass) {
+  const token = btoa(`${email}:${pass}`);
+  localStorage.token = token;
+}
+
 export function login(email, pass, cb) {
   const token = btoa(`${email}:${pass}`);
   fetch(baseUrl+meUrl, {

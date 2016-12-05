@@ -21,5 +21,6 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap-reverse;
+  padding-bottom: 20px;
 }
 

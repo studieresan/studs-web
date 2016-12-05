@@ -99,7 +99,6 @@ export class CvEdit extends React.Component { // eslint-disable-line react/prefe
   render() {
     const sections = this.props.content.get('sections').toJS();
     let header = null;
-    console.log(this.props);
     if(this.props.user) {
       header = <CvHeader user={this.props.user.toJS()} />;
     }

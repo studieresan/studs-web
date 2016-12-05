@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { login } from '../../auth';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import styles from './styles.css';
+import { login as appLogin } from '../App/actions';
 
 class Login extends Component {
   constructor(props) {
@@ -31,12 +33,12 @@ class Login extends Component {
     login(this.state.user, this.state.pass, ok => {
       if(ok) {
         this.setState({error: false});
+        this.props.appLogin();
         browserHistory.push('/');
       } else {
         this.setState({error: true});
       }
     })
-    
   }
 
   renderError() {
@@ -69,4 +71,10 @@ class Login extends Component {
 	}
 }
 
-export default Login;
+function mapDispatchToProps(dispatch) {
+  return {
+    appLogin: () => dispatch(appLogin())
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Login);

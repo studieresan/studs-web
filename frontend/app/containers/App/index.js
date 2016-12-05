@@ -18,6 +18,7 @@ import { bindActionCreators } from 'redux';
 import styles from './styles.css';
 import Navbar from '../Navbar'
 import * as actions from './actions';
+import { loggedIn } from '../../auth';
 
 class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -26,7 +27,15 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
   };
 
   componentDidMount() {
-    this.props.getUser();
+    if(this.props.loggedIn && !this.props.user) {
+      this.props.getUser();
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevProps.loggedIn != this.props.loggedIn && !this.props.user) {
+      this.props.getUser();
+    }
   }
 
   render() {
@@ -42,6 +51,8 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
 function mapStateToProps(state) {
   return {
     user: state.getIn(['global', 'user']),
+    fetchingUser: state.getIn(['global', 'fetchingUser']),
+    loggedIn: state.getIn(['global', 'loggedIn']),
   };
 }
 

@@ -13,11 +13,13 @@
 	text-transform: uppercase;
   font-weight: 700;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .sectionActions {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap-reverse;
 }
 

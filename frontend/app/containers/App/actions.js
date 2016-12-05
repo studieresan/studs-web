@@ -2,6 +2,8 @@ import {
   GET_USER_REQUEST,
   GET_USER_SUCCESS,
   GET_USER_ERROR,
+  LOGIN,
+  LOGOUT,
 } from './constants'
 import { fetchUser } from '../../api';
 
@@ -38,4 +40,16 @@ export const getUser = () => dispatch => {
   fetchUser()
     .then(data => dispatch(getUserSuccess(data.user)))
     .catch(error => dispatch(getUserError()));
+}
+
+export function login() {
+  return {
+    type: LOGIN
+  };
+}
+
+export function logout() {
+  return {
+    type: LOGOUT
+  };
 }

@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   get '/users/password_reset', to: 'users#reset_password'
   patch '/users/password_reset', to: 'users#update_by_token'
   resources :users do
-    get '/resume', to: 'resume#show'
-    patch '/resume', to: 'resume#update'
+    get '/resume', to: 'resumes#show'
+    patch '/resume', to: 'resumes#update'
   end
   resources :users
 

@@ -8,7 +8,7 @@ class ResumesController < ApplicationController
 
   def update
     resume = User.find(params[:user_id]).resume || User.find(params[:user_id]).build_resume
-    if (current_user == resume.user || current_user.has_permission?('user_edit'))
+    if (current_user == resume.user || current_user.has_permission?('user_edit'))
       if resume.update(resume_params)
         return render json: resume
       end
@@ -19,6 +19,6 @@ class ResumesController < ApplicationController
 
   private
   def resume_params
-    params.require(:resume).permit(:content)
+    params.require(:resume).permit!.except(:id, :user_id)
   end
 end

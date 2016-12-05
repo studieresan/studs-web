@@ -16,10 +16,47 @@
   display: inline-block;
 }
 
+.section > input {
+  display: inline-block;
+	font-family: 'DIN Condensed';
+	text-transform: uppercase;
+	letter-spacing: 5px;
+  border: none;
+  font-size: 1.5em;
+  padding: 0;
+  width: 300px;
+  margin-left: 250px;
+  border-bottom: 3px solid;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  resize: none;
+}
+
+.section > button {
+  align-self: flex-end;
+}
+
+.section textarea:focus {
+  outline: none;
+  background-color: #fafafa;
+}
+
 .item {
   display: flex;
   font-size: 12px;
   flex-wrap: wrap;
+}
+
+.item textarea {
+  height: 100%;
+  width: 100%;
+  resize: none;
+  font: inherit;
+}
+
+.item textarea:focus {
+  outline: none;
+  background-color: #fafafa;
 }
 
 .when {
@@ -79,6 +116,10 @@
 
 @media (max-width: 899px) {
   .section > h2 {
+    margin-left: 0;
+  }
+
+  .section input {
     margin-left: 0;
   }
 

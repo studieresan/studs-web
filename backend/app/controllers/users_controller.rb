@@ -52,9 +52,9 @@ class UsersController < ApplicationController
     user = User.find_by_email(params[:email])
     if user.present?
       user.send_password_reset
-      render status: 200
+      head 200
     else
-      render status: 400
+      head 400
     end
   end
 

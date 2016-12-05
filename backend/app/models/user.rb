@@ -22,7 +22,7 @@ class User < ApplicationRecord
   	self.password_reset_sent_at = Time.zone.now
   	save!
 
-    mail_body = "<h2>Hi!</h2><p>To reset your password for studieresan.se, please click <a href=\"https://studieresan.se/user/password_reset?token=#{password_reset_token}\">this link</a>.</p><p>Best regards,<br>Studs IT </p>"
+    mail_body = "<h2>Hi!</h2><p>To reset your password for studieresan.se, please click <a href=\"https://studieresan.se/user/password-reset?token=#{password_reset_token}\">this link</a>.</p><p>Best regards,<br>Studs IT </p>"
 
     mail_api_key = ENV['SPAM_API_KEY']
   	uri = URI('https://spam.datasektionen.se/api/sendmail')

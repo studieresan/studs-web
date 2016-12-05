@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   get '/users/me', to: 'users#me', as: 'me'
-  get '/users/password_reset', to: 'users#reset_password'
-  patch '/users/password_reset', to: 'users#update_by_token'
+  get '/users/password-reset', to: 'users#reset_password'
+  patch '/users/password-reset', to: 'users#update_by_token'
   resources :users do
     get '/resume', to: 'resumes#show'
     patch '/resume', to: 'resumes#update'

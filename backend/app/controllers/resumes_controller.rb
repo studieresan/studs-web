@@ -1,5 +1,5 @@
 class ResumesController < ApplicationController
-  before_filter :authenticate
+  before_action :authenticate
 
   def show
     resume = User.find(params[:user_id]).resume || User.find(params[:user_id]).build_resume

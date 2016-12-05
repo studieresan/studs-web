@@ -28,6 +28,6 @@ class ApplicationController < ActionController::API
   end
 
   def authenticate
-    current_user.present?
+    return head 403 if current_user.blank?
   end
 end

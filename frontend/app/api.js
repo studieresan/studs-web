@@ -24,7 +24,18 @@ function authHeader(contentType = 'multipart/form-data') {
   console.log(token);
   return {
     headers: {
-      'Authorization': 'Basic ' + token
+      'Authorization': 'Basic ' + token,
+    }
+  };
+}
+
+function headersJSON() {
+  const token = localStorage.token;
+  console.log(token);
+  return {
+    headers: {
+      'Authorization': 'Basic ' + token,
+      'Content-Type': 'application/json'
     }
   };
 }
@@ -66,7 +77,7 @@ export function fetchCv(id) {
 
 export function updateCv(id, cv) {
   return fetch(`${baseUrl}${usersUrl}/${id}${cvUrl}`, {
-    ...authHeader(),
+    ...headersJSON(),
     method: 'PATCH',
     body: JSON.stringify(cv)
   }).then(checkStatus)

@@ -16,6 +16,6 @@ export default defineMessages({
   },
   studsmembers: {
     id: 'app.containers.Navbar.studsmembers',
-    defaultMessage: 'Studs members',
+    defaultMessage: 'Members',
   },
 });

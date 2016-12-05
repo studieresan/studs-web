@@ -32,7 +32,7 @@ export class Members extends React.Component { // eslint-disable-line react/pref
   }
   renderMembersList(users) {
     return (
-      <div>
+      <div className={styles.memberList}>
         { users.map(user => <MemberListItem key={user.id} user={user}/>) }
       </div>
     );

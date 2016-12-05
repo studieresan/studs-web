@@ -4,6 +4,8 @@
 }
 
 .memberList {
+  height: 100%;
+  overflow: auto;
 }
 
 .memberProfile {

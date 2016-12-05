@@ -22,7 +22,7 @@ p {
 	font-size: 14px;
 }
 
-input {
+.container input {
 	font-family: 'Neuzeit S LT';
   display: block;
   border: solid #000 1px;

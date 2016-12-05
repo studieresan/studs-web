@@ -1,5 +1,6 @@
 const baseUrl = 'https://api.studieresan.se';
 const usersUrl = '/users';
+const passwordResetUrl = '/users/password_reset'
 const userUrl = usersUrl + '/me';
 const STATUS_OK = 200;
 
@@ -36,6 +37,14 @@ export function fetchUser() {
 export function updateUser(id, user) {
   return fetch(baseUrl+usersUrl+'/'+id, {
     ...authHeader(),
+    method: 'PATCH',
+    body: user,
+  }).then(checkStatus)
+    .then(parseJSON)
+}
+
+export function updateUserPassword(user) {
+  return fetch(baseUrl+passwordResetUrl, {
     method: 'PATCH',
     body: user,
   }).then(checkStatus)

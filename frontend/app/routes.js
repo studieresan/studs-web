@@ -42,6 +42,24 @@ export default function createRoutes(store) {
           .catch(errorLoading);
       },
     }, {
+      path: '/user/password_reset',
+      name: 'password_reset',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/User/reducer'),
+          System.import('containers/PasswordReset'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, component]) => {
+          injectReducer('user', reducer.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '/user',
       name: 'user',
       getComponent(nextState, cb) {

@@ -1,0 +1,16 @@
+.user { /* stylelint-disable */
+  display: flex;
+  justify-content: center;
+  max-width: 100vw;
+  padding: 20px;
+  margin-top: 45px;
+}
+
+.content > input {
+  width: 300px;
+}
+
+.header {
+  margin: 0;
+}
+

@@ -1,6 +1,6 @@
 const baseUrl = 'https://api.studieresan.se';
 const usersUrl = '/users';
-const passwordResetUrl = '/users/password_reset'
+const passwordResetUrl = '/users/password-reset'
 const userUrl = usersUrl + '/me';
 const cvUrl = '/resume';
 const STATUS_OK = 200;

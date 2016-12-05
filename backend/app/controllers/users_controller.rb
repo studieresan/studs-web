@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate #, :except => [:index]
+  before_filter :authenticate, except: [:update_by_token]
 
   def index
     render json: User.where(type_of_user: 'studs_member', enabled: true)

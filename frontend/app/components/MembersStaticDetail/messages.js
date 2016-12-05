@@ -8,6 +8,6 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   header: {
     id: 'app.components.MembersStaticDetail.header',
-    defaultMessage: 'This is the MembersStaticDetail component !',
+    defaultMessage: 'Welcome to the resume database!',
   },
 });

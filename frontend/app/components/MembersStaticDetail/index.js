@@ -14,7 +14,9 @@ import styles from './styles.css';
 function MembersStaticDetail() {
   return (
     <div className={styles.membersStaticDetail}>
-      <FormattedMessage {...messages.header} />
+      <div>
+        <FormattedMessage {...messages.header} />
+      </div>
     </div>
   );
 }

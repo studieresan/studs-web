@@ -23,20 +23,19 @@ import * as actions from '../User/actions';
 export class Navbar extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
-    if(this.props.user.firstName === '') {
-      this.props.getUser();
-    }
+    this.menu = this.menu.bind(this);
   }
 
   menu() {
-    if(this.props.user.firstName) {
+    if(this.props.user) {
+      const user = this.props.user.toJS();
       return (
         <ul className={styles.navbarMenu}>
           <li>
             <Link to="/logout"><FormattedMessage {...messages.logout} /></Link>
           </li>
           <li>
-            <Link to="/user">{ this.props.user.firstName }</Link>
+            <Link to="/user">{ user.firstName }</Link>
           </li>
           <li>
             <Link to="/members"><FormattedMessage {...messages.studsmembers} /></Link>
@@ -45,7 +44,7 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
       );
     } else {
       return (
-        <ul className={styles.navbarMenu} key={this.props.user}>
+        <ul className={styles.navbarMenu}>
           <li>
             <Link to="/login"><FormattedMessage {...messages.login} /></Link>
           </li>
@@ -55,7 +54,6 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
   }
 
   render() {
-    const user = this.props.user;
     return (
 	  <div className={styles.navbar}>
       <Link to="/"><img src={Logo} height={24} /></Link>
@@ -67,7 +65,9 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
 }
 
 function mapStateToProps(state) {
-  return state.get('user').toJS()
+  return {
+    user: state.getIn(['global', 'user'])
+  };
 };
 
 function mapDispatchToProps(dispatch) {

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate, except: [:update_by_token]
+  before_action :authenticate, except: [:update_by_token, :reset_password]
 
   def index
     render json: User.where(type_of_user: 'studs_member', enabled: true).order(first_name: :asc).order(last_name: :asc)

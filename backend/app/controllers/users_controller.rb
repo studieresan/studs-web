@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate, except: [:update_by_token]
 
   def index
-    render json: User.where(type_of_user: 'studs_member', enabled: true)
+    render json: User.where(type_of_user: 'studs_member', enabled: true).order(first_name: :asc).order(last_name: :asc)
   end
 
   def show

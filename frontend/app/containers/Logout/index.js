@@ -6,7 +6,7 @@ import { logout } from '../App/actions';
 
 class Logout extends Component {
   componentWillMount() {
-    localStorage.token = null
+    localStorage.removeItem('token')
     this.props.logout();
     browserHistory.replace('/')
   }
@@ -17,13 +17,11 @@ class Logout extends Component {
 }
 
 Logout.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   router: PropTypes.object.isRequired
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch: dispatch,
     logout: () => dispatch(logout())
   };
 }

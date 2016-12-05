@@ -26,6 +26,10 @@ export function login(email, pass, cb) {
   });
 }
 
+export function loggedIn() {
+  return !!localStorage.token;
+}
+
 export function requireAuth(nextState, replace) {
   if(!loggedIn()) {
     replace({
@@ -35,6 +39,3 @@ export function requireAuth(nextState, replace) {
   }
 }
 
-export function loggedIn() {
-  return !!localStorage.token;
-}

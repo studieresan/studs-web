@@ -18,7 +18,6 @@ import { bindActionCreators } from 'redux';
 import styles from './styles.css';
 import Navbar from '../Navbar'
 import * as actions from './actions';
-import { loggedIn } from '../../auth';
 
 class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -27,13 +26,13 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
   };
 
   componentDidMount() {
-    if(this.props.loggedIn && !this.props.user) {
+    if(this.props.loggedIn) {
       this.props.getUser();
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.loggedIn != this.props.loggedIn && !this.props.user) {
+    if(nextProps.loggedIn && !this.props.loggedIn) {
       this.props.getUser();
     }
   }

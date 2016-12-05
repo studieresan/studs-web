@@ -3,6 +3,7 @@
 // See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
 // about the code splitting business
 import { getAsyncInjectors } from 'utils/asyncInjectors';
+import { requireAuth } from './auth';
 
 const errorLoading = (err) => {
   console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
@@ -70,6 +71,7 @@ export default function createRoutes(store) {
     }, {
       path: '/user',
       name: 'user',
+      onEnter: requireAuth,
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           System.import('containers/User/reducer'),
@@ -88,6 +90,7 @@ export default function createRoutes(store) {
     }, {
       path: '/members',
       name: 'members',
+      onEnter: requireAuth,
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           System.import('containers/Members/reducer'),
@@ -106,6 +109,7 @@ export default function createRoutes(store) {
     }, {
       path: '/members/:id',
       name: 'members',
+      onEnter: requireAuth,
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           System.import('containers/Members/reducer'),
@@ -124,6 +128,7 @@ export default function createRoutes(store) {
     }, {
       path: '/members/:id/resume/edit',
       name: 'cvEdit',
+      onEnter: requireAuth,
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           System.import('containers/CvEdit/reducer'),

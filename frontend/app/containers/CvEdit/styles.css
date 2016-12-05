@@ -1,0 +1,23 @@
+.cvEdit { /* stylelint-disable */
+  padding-top: 46px;
+
+}
+
+.addSection {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.remove {
+	text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sectionActions {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+

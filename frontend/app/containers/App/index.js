@@ -12,15 +12,22 @@
  */
 
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import styles from './styles.css';
 import Navbar from '../Navbar'
+import * as actions from './actions';
 
-export default class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
     children: React.PropTypes.node,
   };
+
+  componentDidMount() {
+    this.props.getUser();
+  }
 
   render() {
     return (
@@ -31,3 +38,15 @@ export default class App extends React.Component { // eslint-disable-line react/
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    user: state.getIn(['global', 'user']),
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

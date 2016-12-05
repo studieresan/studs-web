@@ -41,8 +41,9 @@ export const getUsers = () => dispatch => {
           lastName: u.last_name,
           email: u.email,
           phone: u.phone || '',
+          picture: u.picture
         };
-      }).sort((a, b) => a.firstName - b.firstName);
+      });
       dispatch(getSuccess(users));
     })
     .catch(error => dispatch(getError()));

@@ -81,6 +81,33 @@
   padding-bottom: 10px;
 }
 
+<<<<<<< HEAD
+.header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+}
+
+.contactWrapper {
+  display: flex;
+}
+
+.contact {
+  align-self: center;
+  font-size: 12px;
+  padding: 0 20px;
+  flex: 2;
+}
+
+.logo {
+  margin-bottom: 20px;
+  align-self: top;
+}
+
+.logo > img {
+  height: 50px;
+}
+
 @media (max-width: 899px) {
   .section > h2 {
     margin-left: 0;

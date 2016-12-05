@@ -14,7 +14,9 @@ function CvHeader(props) {
   return (
     <div className={styles.header}>
       <div className={styles.contactWrapper}>
-        <div className={styles.image} />
+        <div className={styles.image}>
+          <img src={user.picture} />
+        </div>
         <div className={styles.contact}>
           <div>{user.firstName} {user.lastName}</div>
           <div>Studying Computer Science @ KTH</div>

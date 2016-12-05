@@ -12,6 +12,7 @@ import messages from './messages';
 import * as actions from './actions';
 import { getUser } from '../User/actions';
 import TextArea from 'react-textarea-autosize';
+import CvHeader from '../../components/CvHeader';
 
 let styles = {};
 import cvStyles from '../../components/Cv/styles.css';
@@ -97,9 +98,15 @@ export class CvEdit extends React.Component { // eslint-disable-line react/prefe
   }
   render() {
     const sections = this.props.content.get('sections').toJS();
+    let header = null;
+    console.log(this.props);
+    if(this.props.user) {
+      header = <CvHeader user={this.props.user.toJS()} />;
+    }
     return (
       <div className={styles.cvEdit + ' ' + styles.cv}>
         <div>
+          { header }
           { sections.map((s,i) => this.renderSection(s, i)) }
           <div className={styles.addSection}>
             <button className='btn-gold' onClick={this.props.addSection}>Add Section</button>

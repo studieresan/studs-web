@@ -42,6 +42,14 @@ export default function createRoutes(store) {
           .catch(errorLoading);
       },
     }, {
+      path: '/logout',
+      name: 'logout',
+      getComponent(location, cb) {
+        System.import('containers/Logout')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+    }, {
       path: '/user/password_reset',
       name: 'password_reset',
       getComponent(nextState, cb) {

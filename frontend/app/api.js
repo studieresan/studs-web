@@ -2,6 +2,7 @@ const baseUrl = 'https://api.studieresan.se';
 const usersUrl = '/users';
 const passwordResetUrl = '/users/password_reset'
 const userUrl = usersUrl + '/me';
+const cvUrl = '/resume';
 const STATUS_OK = 200;
 
 function checkStatus(response) {
@@ -54,5 +55,20 @@ export function updateUserPassword(user) {
 export function fetchUsers() {
   return fetch(baseUrl+usersUrl, authHeader())
     .then(checkStatus)
+    .then(parseJSON)
+}
+
+export function fetchCv(id) {
+  return fetch(`${baseUrl}${usersUrl}/${id}${cvUrl}`, authHeader())
+    .then(checkStatus)
+    .then(parseJSON)
+}
+
+export function updateCv(id, cv) {
+  return fetch(`${baseUrl}${usersUrl}/${id}${cvUrl}`, {
+    ...authHeader(),
+    method: 'PATCH',
+    body: JSON.stringify(cv)
+  }).then(checkStatus)
     .then(parseJSON)
 }

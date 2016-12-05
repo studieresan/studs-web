@@ -9,7 +9,7 @@ import React, { PropTypes } from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import styles from './styles.css';
-import Logo from '../../static/img/stencil-black-rgb.png';
+import CvHeader from '../CvHeader';
 
 const cv = {
   sections: [{
@@ -60,31 +60,12 @@ function renderSection(section) {
   )
 }
 
-function renderHeader(user) {
-  return (
-    <div className={styles.header}>
-      <div className={styles.contactWrapper}>
-        <div className={styles.image} />
-        <div className={styles.contact}>
-          <div>{user.firstName} {user.lastName}</div>
-          <div>Studying Computer Science @ KTH</div>
-          <div>{user.email}</div>
-          <div>{user.phone}</div>
-        </div>
-      </div>
-      <div className={styles.logo}>
-        <img src={Logo} />
-      </div>
-    </div>
-  );
-}
-
 function Cv(props) {
   const sections = cv.sections.map(section => renderSection(section));
   return (
     <div className={styles.cv}>
       <div>
-      {renderHeader(props.user)}
+      <CvHeader user={props.user} />
       {sections}
       </div>
     </div>

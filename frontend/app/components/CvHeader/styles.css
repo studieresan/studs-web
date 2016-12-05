@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+}
+
+.contactWrapper {
+  display: flex;
+}
+
+.image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #FFF5EA;
+}
+
+.contact {
+  align-self: center;
+  font-size: 12px;
+  padding: 0 20px;
+  flex: 2;
+}
+
+.logo {
+  margin-bottom: 20px;
+  align-self: top;
+}
+
+.logo > img {
+  height: 50px;
+}

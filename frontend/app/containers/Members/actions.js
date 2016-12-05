@@ -5,33 +5,55 @@
  */
 
 import {
-  GET_REQUEST,
-  GET_SUCCESS,
-  GET_ERROR,
+  GET_MEMBERS_REQUEST,
+  GET_MEMBERS_SUCCESS,
+  GET_MEMBERS_ERROR,
+  GET_CV_REQUEST,
+  GET_CV_SUCCESS,
+  GET_CV_ERROR,
 } from './constants';
-import { fetchUsers } from '../../api';
+import { fetchUsers, fetchCv } from '../../api';
 
-export function getRequest() {
+export function getMembersRequest() {
   return {
-    type: GET_REQUEST,
+    type: GET_MEMBERS_REQUEST,
   };
 }
 
-export function getSuccess(users) {
+export function getMembersSuccess(users) {
   return {
-    type: GET_SUCCESS,
+    type: GET_MEMBERS_SUCCESS,
     users
   };
 }
 
-export function getError() {
+export function getMembersError() {
   return {
-    type: GET_ERROR
+    type: GET_MEMBERS_ERROR
+  };
+}
+
+export function getCvRequest() {
+  return {
+    type: GET_CV_REQUEST,
+  };
+}
+
+export function getCvSuccess(cv) {
+  return {
+    type: GET_CV_SUCCESS,
+    cv
+  };
+}
+
+export function getCvError() {
+  return {
+    type: GET_CV_ERROR
   };
 }
 
 export const getUsers = () => dispatch => {
-  dispatch(getRequest());
+  dispatch(getMembersRequest());
   fetchUsers()
     .then(data => {
       const users = data.users.map(u => {
@@ -44,7 +66,14 @@ export const getUsers = () => dispatch => {
           picture: u.picture
         };
       });
-      dispatch(getSuccess(users));
+      dispatch(getMembersSuccess(users));
     })
-    .catch(error => dispatch(getError()));
+    .catch(error => dispatch(getMembersError()));
 };
+
+export const getCv = id => dispatch => {
+  dispatch(getCvRequest());
+  fetchCv(id)
+    .then(cv => dispatch(getCvSuccess(cv)))
+    .catch(error => dispatch(getCvError()))
+}

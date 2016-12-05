@@ -11,35 +11,6 @@ import messages from './messages';
 import styles from './styles.css';
 import CvHeader from '../CvHeader';
 
-const cv = {
-  sections: [{
-    title: 'Education',
-    items: [{
-      when: '2013 - 2018',
-      where: 'KTH Royal Institute of Technology',
-      description: 'Master of Science, Computer Sience\nBachelor of Science, Computer Science'
-    }]
-  }, {
-    title: 'Work Experience',
-    items: [{
-      when: '2016',
-      where: 'Studieresan',
-      description: 'Atem quaeper ehentis explabo rrovide sequamus eosa quas quis ipsus, consequam as rem num quiatum volore nost, eation nihilitiis quame quiatat iaspelenet fugitat'
-    }, {
-      when: '2015',
-      where: 'Asdf',
-      description: 'Short description'
-    }]
-  }, {
-    title: 'Projects',
-    items: [{
-      when: '2016',
-      where: 'KTH Computer Science',
-      description: 'Atem quaeper ehentis explabo rrovide sequamus eosa quas quis ipsus, consequam as rem num quiatum volore nost, eation nihilitiis quame quiatat iaspelenet fugitat'
-    }]
-  }]
-}
-
 function renderItem(item, i) {
   return (
     <div key={i} className={styles.item}>
@@ -61,7 +32,11 @@ function renderSection(section) {
 }
 
 function Cv(props) {
-  const sections = cv.sections.map(section => renderSection(section));
+  let sections = null;
+  if(props.cv) {
+    sections = props.cv.sections.map(section => renderSection(section));
+  }
+
   return (
     <div className={styles.cv}>
       <div>
@@ -74,7 +49,7 @@ function Cv(props) {
 
 Cv.propTypes = {
   user: PropTypes.object.isRequired,
-  cv: PropTypes.object.isRequired
+  cv: PropTypes.object
 };
 
 export default Cv;

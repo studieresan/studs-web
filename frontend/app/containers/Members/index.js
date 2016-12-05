@@ -20,6 +20,15 @@ import * as actions from './actions';
 export class Members extends React.Component { // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
     this.props.getUsers();
+    const id = this.props.params.id;
+    if(id) {
+      this.props.getCv(id);
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.params.id && this.props.params.id != nextProps.params.id) {
+      this.props.getCv(nextProps.params.id);
+    }
   }
   renderMembersList(users) {
     return (
@@ -35,7 +44,11 @@ export class Members extends React.Component { // eslint-disable-line react/pref
     const id = this.props.params.id;
     const user = users.find(u => u.id === id);
     if(user) {
-      detail = <CV user={user} />;
+      let cv = null;
+      if(this.props.cv) {
+        cv = this.props.cv.toJS();
+      }
+      detail = <CV user={user} cv={cv} />;
       detailSelected = true;
     } else {
       detail = <MembersStaticDetail />;
@@ -53,7 +66,8 @@ export class Members extends React.Component { // eslint-disable-line react/pref
 
 function mapStateToProps(state) {
   return {
-    users: state.getIn(['members', 'users'])
+    users: state.getIn(['members', 'users']),
+    cv: state.getIn(['members', 'cv'])
   };
 }
 

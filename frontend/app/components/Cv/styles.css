@@ -61,6 +61,12 @@
   background-color: #FFF5EA;
 }
 
+.image > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
 .contact {
   align-self: center;
   font-size: 12px;

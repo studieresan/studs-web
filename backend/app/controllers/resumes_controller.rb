@@ -10,15 +10,6 @@ class ResumesController < ApplicationController
     render json: { error: 'Not allowed'}, status: 403
   end
 
-  def create
-    resume = current_user.build_resume(resume_params)
-    if resume.save
-      return render json: resume
-    end
-
-    render json: { error: '' }, status: 400
-  end
-
   def update
     resume = User.find(params[:user_id]).resume || User.find(params[:user_id]).build_resume
     if (current_user == resume.user || current_user.has_permission?('user_edit'))

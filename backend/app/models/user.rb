@@ -5,6 +5,7 @@ class User < ApplicationRecord
   validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
 
   has_one :resume
+  has_many :events
   has_secure_password
 
   def has_permission? permission

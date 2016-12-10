@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
-import { login } from '../../auth';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import styles from './styles.css';
-import { login as appLogin } from '../App/actions';
+import { login } from '../App/actions';
 
 class Login extends Component {
   constructor(props) {
@@ -13,12 +13,17 @@ class Login extends Component {
     this.state = {
       user: '',
       pass: '',
-      error: false
     };
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handlePassChange = this.handlePassChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderError = this.renderError.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.loggedIn && !this.props.loggedIn) {
+      browserHistory.push('/');
+    }
   }
 
   handleUserChange(event) {
@@ -30,19 +35,11 @@ class Login extends Component {
   }
 
   handleSubmit() {
-    login(this.state.user, this.state.pass, ok => {
-      if(ok) {
-        this.setState({error: false});
-        this.props.appLogin();
-        browserHistory.push('/');
-      } else {
-        this.setState({error: true});
-      }
-    })
+    this.props.login(this.state.user, this.state.pass);
   }
 
   renderError() {
-    if(this.state.error) {
+    if(this.props.loginError) {
       return (
         <div className={styles.error}>
           <FormattedMessage {...messages.error} />
@@ -72,10 +69,15 @@ class Login extends Component {
 	}
 }
 
-function mapDispatchToProps(dispatch) {
+function mapStateToProps(state) {
   return {
-    appLogin: () => dispatch(appLogin())
+    loggedIn: state.getIn(['global', 'loggedIn']),
+    loginError: state.getIn(['global', 'loginError']),
   };
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({login}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

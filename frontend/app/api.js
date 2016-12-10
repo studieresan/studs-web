@@ -1,3 +1,5 @@
+import { getToken } from './auth';
+
 const baseUrl = 'https://api.studieresan.se';
 const usersUrl = '/users';
 const passwordResetUrl = '/users/password-reset'
@@ -19,36 +21,35 @@ function parseJSON(response) {
   return response.json()
 }
 
-function authHeader(contentType = 'multipart/form-data') {
-  const token = localStorage.token;
-  console.log(token);
+function authHeader(token) {
+  token = token || getToken();
   return {
-    headers: {
-      'Authorization': 'Basic ' + token,
-    }
+    'Authorization': 'Basic ' + token,
   };
 }
 
-function headersJSON() {
-  const token = localStorage.token;
-  console.log(token);
+function jsonHeader() {
   return {
-    headers: {
-      'Authorization': 'Basic ' + token,
-      'Content-Type': 'application/json'
-    }
+    'Content-Type': 'application/json'
   };
 }
 
-export function fetchUser() {
-  return fetch(baseUrl+userUrl, authHeader())
-    .then(checkStatus)
+function header() {
+  return {
+    headers: authHeader()
+  };
+}
+
+export function fetchUser(token) {
+  return fetch(baseUrl+userUrl, {
+    headers: authHeader(token)
+  }).then(checkStatus)
     .then(parseJSON)
 }
 
 export function updateUser(id, user) {
   return fetch(baseUrl+usersUrl+'/'+id, {
-    ...authHeader(),
+    ...header(),
     method: 'PATCH',
     body: user,
   }).then(checkStatus)
@@ -64,20 +65,23 @@ export function updateUserPassword(user) {
 }
 
 export function fetchUsers() {
-  return fetch(baseUrl+usersUrl, authHeader())
+  return fetch(baseUrl+usersUrl, header())
     .then(checkStatus)
     .then(parseJSON)
 }
 
 export function fetchCv(id) {
-  return fetch(`${baseUrl}${usersUrl}/${id}${cvUrl}`, authHeader())
+  return fetch(`${baseUrl}${usersUrl}/${id}${cvUrl}`, header())
     .then(checkStatus)
     .then(parseJSON)
 }
 
 export function updateCv(id, cv) {
   return fetch(`${baseUrl}${usersUrl}/${id}${cvUrl}`, {
-    ...headersJSON(),
+    headers: {
+      ...authHeader(),
+      ...jsonHeader(),
+    },
     method: 'PATCH',
     body: JSON.stringify(cv)
   }).then(checkStatus)

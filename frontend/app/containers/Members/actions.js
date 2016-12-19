@@ -63,6 +63,7 @@ export const getUsers = () => dispatch => {
           lastName: u.last_name,
           email: u.email,
           phone: u.phone || '',
+          master: u.master,
           picture: u.picture
         };
       });

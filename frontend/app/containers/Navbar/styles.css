@@ -1,4 +1,8 @@
 .navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   position: fixed;
   background-color: white;
   top: 0;
@@ -8,7 +12,6 @@
 }
 
 .navbarLogo {
-  display: inline-block;
   color: black;
   fill: black;
   height: 20px;
@@ -16,13 +19,14 @@
 }
 
 .navbarMenu {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   list-style-type: none;
   margin: 0;
+  padding-left: 20px;
 }
 
 .navbarMenu > li {
-  display: inline-block;
   padding-right: 1em;
 }
 
@@ -35,3 +39,45 @@
 .navbarMenu a:hover {
   color: #90CE9C;
 }
+
+.control > img {
+  display: none;
+  cursor: pointer;
+}
+
+.control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.collapse {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 599px) {
+  .navbar {
+    flex-direction: column;
+  }
+  .collapsed {
+    display: none;
+  }
+  .collapse {
+    flex-direction: column;
+    padding: 10px 0;
+  }
+  .navbarMenu {
+    flex-direction: column;
+  }
+  .navbarMenu > * {
+    padding-bottom: 10px;
+  }
+  .control {
+    width: 100%;
+  }
+  .control > img {
+    display: block;
+  }
+}
+

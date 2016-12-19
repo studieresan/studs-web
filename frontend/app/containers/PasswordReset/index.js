@@ -24,6 +24,7 @@ export class PasswordReset extends React.Component { // eslint-disable-line reac
   }
 
   handleSubmit(event) {
+    event.preventDefault();
     this.props.reset(this.props.location.query.token);
   }
 
@@ -31,7 +32,7 @@ export class PasswordReset extends React.Component { // eslint-disable-line reac
     const { password, error, success } = this.props;
     return (
       <div className={styles.user}>
-        <div className={styles.content}>
+        <form onSubmit={this.handleSubmit} className={styles.content}>
           <h1 className={styles.header}><FormattedMessage {...messages.title} /></h1>
           <div className='input-label'><FormattedMessage {...messages.password} /></div>
           <input
@@ -41,10 +42,10 @@ export class PasswordReset extends React.Component { // eslint-disable-line reac
             onChange={this.handleChange}
             placeholder='Password'/>
           <div className='button-wrapper'>
-            <button className='btn-bright' onClick={this.handleSubmit}>Save</button>
+            <button type='submit' className='btn-bright'>Save</button>
           </div>
           {error ? <div>Error</div> : null}
-        </div>
+        </form>
       </div>
     );
   }

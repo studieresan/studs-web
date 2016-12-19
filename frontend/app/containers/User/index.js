@@ -37,6 +37,13 @@ export class User extends React.Component { // eslint-disable-line react/prefer-
   handleSubmit(event) {
     this.props.save();
   }
+  renderPicture(currentPicture) {
+    if(currentPicture) {
+      return (
+        <img src={currentPicture} width={300} />
+      );
+    }
+  }
   render() {
     const user = this.props.user;
     return (
@@ -87,6 +94,7 @@ export class User extends React.Component { // eslint-disable-line react/prefer-
             onChange={this.handleChange}
             placeholder='Allergies'/>
           <div className='input-label'><FormattedMessage {...messages.picture} /></div>
+          {this.renderPicture(user.currentPicture)}
           <input
             type='file'
             name='picture'

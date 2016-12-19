@@ -21,7 +21,7 @@ class Login extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.loggedIn && !this.props.loggedIn) {
+    if(nextProps.loggedIn) {
       browserHistory.push('/');
     }
   }
@@ -34,7 +34,8 @@ class Login extends Component {
     this.setState({pass: event.target.value});
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
     this.props.login(this.state.user, this.state.pass);
   }
 
@@ -52,7 +53,7 @@ class Login extends Component {
     const {user, pass, error} = this.state;
 		return (
 		  <div className='center'>
-        <div>
+        <form onSubmit={this.handleSubmit}>
           <h1 className={styles.header}>Welcome</h1>
           <div className='input-label'>Email</div>
           <input placeholder='Email' type='email' value={user} onChange={this.handleUserChange} />
@@ -60,10 +61,10 @@ class Login extends Component {
           <input placeholder='Password' type='password' value={pass} onChange={this.handlePassChange} />
           <Link to="/user/forgot-password">Forgot password?</Link>
           <div className='button-wrapper'>
-            <button className='btn-bright' onClick={this.handleSubmit}>Login</button>
+            <button type='submit' className='btn-bright'>Login</button>
           </div>
           {this.renderError()}
-        </div>
+        </form>
 		  </div>
 		);
 	}

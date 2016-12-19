@@ -55,14 +55,14 @@ export default function createRoutes(store) {
       name: 'password_reset',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          System.import('containers/User/reducer'),
+          System.import('containers/PasswordReset/reducer'),
           System.import('containers/PasswordReset'),
         ]);
 
         const renderRoute = loadModule(cb);
 
         importModules.then(([reducer, component]) => {
-          injectReducer('user', reducer.default);
+          injectReducer('passwordReset', reducer.default);
           renderRoute(component);
         });
 

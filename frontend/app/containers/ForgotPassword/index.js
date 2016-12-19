@@ -9,6 +9,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import styles from './styles.css';
 import { requestPasswordReset } from '../../api'
+import { browserHistory } from 'react-router';
 
 export default class ForgotPassword extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -24,11 +25,11 @@ export default class ForgotPassword extends React.Component { // eslint-disable-
 
   handleSubmit(event) {
     requestPasswordReset(this.state.email)
-      .then(data => {
-        this.setState({email: ''})
+      .then(() => {
+        browserHistory.push('/');
       })
       .catch(error => {
-        console.log('???');
+        this.setState({error: true});
       });
 
   }
@@ -49,6 +50,7 @@ export default class ForgotPassword extends React.Component { // eslint-disable-
           <div className='button-wrapper'>
             <button className='btn-bright' onClick={this.handleSubmit}>Reset</button>
           </div>
+          {this.state.error ? <div>Error</div> : null}
         </div>
       </div>
     );

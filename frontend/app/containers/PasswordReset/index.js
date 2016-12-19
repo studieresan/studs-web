@@ -19,23 +19,16 @@ export class PasswordReset extends React.Component { // eslint-disable-line reac
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    this.props.getUser(this.props.location.query.token);
-  }
-
   handleChange(event) {
-    const user = {};
-    user[event.target.name] = event.target.value;
-    this.props.update(user);
+    this.props.updatePassword(event.target.value);
   }
 
   handleSubmit(event) {
-    this.props.save();
+    this.props.reset(this.props.location.query.token);
   }
 
   render() {
-    const user = this.props.user;
-    console.log(user);
+    const { password, error, success } = this.props;
     return (
       <div className={styles.user}>
         <div className={styles.content}>
@@ -44,17 +37,13 @@ export class PasswordReset extends React.Component { // eslint-disable-line reac
           <input
             type='password'
             name='password'
-            value={ user.password }
+            value={password}
             onChange={this.handleChange}
             placeholder='Password'/>
-          <input
-            type='hidden'
-            name='token'
-            value={this.props.location.query.token}
-            onChange={this.handleChange}/>
           <div className='button-wrapper'>
             <button className='btn-bright' onClick={this.handleSubmit}>Save</button>
           </div>
+          {error ? <div>Error</div> : null}
         </div>
       </div>
     );
@@ -62,7 +51,7 @@ export class PasswordReset extends React.Component { // eslint-disable-line reac
 }
 
 function mapStateToProps(state) {
-  return state.get('user').toJS();
+  return state.get('passwordReset').toJS();
 };
 
 function mapDispatchToProps(dispatch) {

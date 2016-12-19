@@ -1,15 +1,11 @@
 /*
  *
- * User constants
+ * Password reset constants
  *
  */
 
-export const GET_REQUEST = 'app/User/GET_REQUEST';
-export const GET_SUCCESS = 'app/User/GET_SUCCESS';
-export const GET_ERROR = 'app/User/GET_ERROR';
+export const UPDATE_PASSWORD = 'app/PasswordReset/UPDATE_PASSWORD';
 
-export const SAVE_REQUEST = 'app/User/SAVE_REQUEST';
-export const SAVE_SUCCESS = 'app/User/SAVE_SUCCESS';
-export const SAVE_ERROR = 'app/User/SAVE_ERROR';
-
-export const UPDATE = 'app/User/UPDATE';
+export const RESET_REQUEST = 'app/PasswordReset/RESET_REQUEST';
+export const RESET_SUCCESS = 'app/PasswordReset/RESET_SUCCESS';
+export const RESET_ERROR = 'app/PasswordReset/RESET_ERROR';

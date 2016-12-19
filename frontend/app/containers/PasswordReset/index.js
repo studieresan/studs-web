@@ -42,7 +42,7 @@ export class PasswordReset extends React.Component { // eslint-disable-line reac
           <h1 className={styles.header}><FormattedMessage {...messages.title} /></h1>
           <div className='input-label'><FormattedMessage {...messages.password} /></div>
           <input
-            type='text'
+            type='password'
             name='password'
             value={ user.password }
             onChange={this.handleChange}

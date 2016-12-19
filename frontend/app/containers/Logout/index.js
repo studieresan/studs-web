@@ -6,7 +6,6 @@ import { logout } from '../App/actions';
 
 class Logout extends Component {
   componentWillMount() {
-    localStorage.removeItem('token')
     this.props.logout();
     browserHistory.replace('/')
   }

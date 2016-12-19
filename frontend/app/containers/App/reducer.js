@@ -3,7 +3,8 @@ import {
   GET_USER_REQUEST,
   GET_USER_SUCCESS,
   GET_USER_ERROR,
-  LOGIN,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR,
   LOGOUT,
 } from './constants'
 import { loggedIn } from '../../auth';
@@ -11,6 +12,7 @@ import { loggedIn } from '../../auth';
 const initialState = fromJS({
   user: null,
   loggedIn: loggedIn(),
+  loginError: false,
   fetchingUser: false,
 });
 
@@ -27,8 +29,13 @@ function reducer(state = initialState, action) {
       return state.merge(Map({
         fetchingUser: false,
       }));
-    case LOGIN:
-      return state.set('loggedIn', true);
+    case LOGIN_SUCCESS:
+      return state.merge(Map({
+        loggedIn: true,
+        loginError: false,
+      }));
+    case LOGIN_ERROR:
+      return state.set('loginError', true);
     case LOGOUT:
       return state.merge(Map({
         loggedIn: false,

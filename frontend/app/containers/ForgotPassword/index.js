@@ -9,6 +9,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import styles from './styles.css';
 import { requestPasswordReset } from '../../api'
+import { browserHistory } from 'react-router';
 
 export default class ForgotPassword extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -23,12 +24,13 @@ export default class ForgotPassword extends React.Component { // eslint-disable-
   }
 
   handleSubmit(event) {
+    event.preventDefault();
     requestPasswordReset(this.state.email)
-      .then(data => {
-        this.setState({email: ''})
+      .then(() => {
+        browserHistory.push('/');
       })
       .catch(error => {
-        console.log('???');
+        this.setState({error: true});
       });
 
   }
@@ -37,7 +39,7 @@ export default class ForgotPassword extends React.Component { // eslint-disable-
     const email = this.state.email;
     return (
       <div className={styles.user}>
-        <div className={styles.content}>
+        <form onSubmit={this.handleSubmit} className={styles.content}>
           <h1 className={styles.header}><FormattedMessage {...messages.title} /></h1>
           <div className='input-label'><FormattedMessage {...messages.email} /></div>
           <input
@@ -47,9 +49,10 @@ export default class ForgotPassword extends React.Component { // eslint-disable-
             onChange={this.handleChange}
             placeholder='Email'/>
           <div className='button-wrapper'>
-            <button className='btn-bright' onClick={this.handleSubmit}>Reset</button>
+            <button type='submit' className='btn-bright'>Reset</button>
           </div>
-        </div>
+          {this.state.error ? <div>Error</div> : null}
+        </form>
       </div>
     );
   }

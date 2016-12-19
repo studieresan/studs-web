@@ -32,6 +32,7 @@ export function getSuccess(user) {
       lastName: user.last_name,
       phone: user.phone || '',
       position: user.position || '',
+      currentPicture: user.picture || null,
       master: user.master || '',
       allergies: user.allergies || '',
       password: '',
@@ -107,7 +108,10 @@ export const save = () => (dispatch, getState) => {
   updateUser(user.id, formData)
     .then(data => {
       dispatch(saveSuccess());
-      setToken(user.email, user.password);
+      dispatch(getSuccess(data.user));
+      if(user.password) {
+        setToken(user.email, user.password);
+      }
     })
     .catch(error => dispatch(saveError()))
 }

@@ -19,50 +19,40 @@ export class PasswordReset extends React.Component { // eslint-disable-line reac
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    this.props.getUser(this.props.location.query.token);
-  }
-
   handleChange(event) {
-    const user = {};
-    user[event.target.name] = event.target.value;
-    this.props.update(user);
+    this.props.updatePassword(event.target.value);
   }
 
   handleSubmit(event) {
-    this.props.save();
+    event.preventDefault();
+    this.props.reset(this.props.location.query.token);
   }
 
   render() {
-    const user = this.props.user;
-    console.log(user);
+    const { password, error, success } = this.props;
     return (
       <div className={styles.user}>
-        <div className={styles.content}>
+        <form onSubmit={this.handleSubmit} className={styles.content}>
           <h1 className={styles.header}><FormattedMessage {...messages.title} /></h1>
           <div className='input-label'><FormattedMessage {...messages.password} /></div>
           <input
             type='password'
             name='password'
-            value={ user.password }
+            value={password}
             onChange={this.handleChange}
             placeholder='Password'/>
-          <input
-            type='hidden'
-            name='token'
-            value={this.props.location.query.token}
-            onChange={this.handleChange}/>
           <div className='button-wrapper'>
-            <button className='btn-bright' onClick={this.handleSubmit}>Save</button>
+            <button type='submit' className='btn-bright'>Save</button>
           </div>
-        </div>
+          {error ? <div>Error</div> : null}
+        </form>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return state.get('user').toJS();
+  return state.get('passwordReset').toJS();
 };
 
 function mapDispatchToProps(dispatch) {

@@ -22,27 +22,35 @@ import {
 
 const initialState = fromJS({
   fetchedCv: false,
-  saved: false,
+  saved: true,
+  saving: false,
+  saveError: false,
   content: {
     sections: [{
       title: 'Education',
       items: [{
         when: '',
-        where: '',
+        title: '',
+        organization: '',
+        city: '',
         description: ''
       }]
     }, {
       title: 'Work Experience',
       items: [{
         when: '',
-        where: '',
+        title: '',
+        organization: '',
+        city: '',
         description: ''
       }]
     }, {
       title: 'Extracurricular activities',
       items: [{
         when: '',
-        where: '',
+        title: '',
+        organization: '',
+        city: '',
         description: ''
       }]
     }]
@@ -54,7 +62,9 @@ function sectionReducer(state, action) {
     case ADD_ITEM:
       const item = Map({
         when: '',
-        where: '',
+        title: '',
+        organization: '',
+        city: '',
         description: ''
       });
       return state.update('items', items => items.push(item));
@@ -74,24 +84,45 @@ function cvEditReducer(state = initialState, action) {
         title: '',
         items: [{
           when: '',
-          where: '',
+          title: '',
+          organization: '',
+          city: '',
           description: '',
         }]
       });
       return state.updateIn(['content', 'sections'], sections => sections.push(section));
     case UPDATE_SECTION:
+      state = state.set('saved', false);
       return state.updateIn(['content', 'sections', action.index], section => section.merge(Map(action.section)));
     case REMOVE_SECTION:
+      state = state.set('saved', false);
       return state.removeIn(['content', 'sections', action.index]);
     case ADD_ITEM:
     case UPDATE_ITEM:
     case REMOVE_ITEM:
+      state = state.set('saved', false);
       return state.updateIn(['content', 'sections', action.section], s => sectionReducer(s, action));
     case GET_SUCCESS:
       if(!action.cv.content) {
         return state;
       }
       return state.set('content', fromJS(action.cv.content));
+    case SAVE_REQUEST:
+      return state.merge(Map({
+        saving: true,
+        saveError: false,
+      }));
+    case SAVE_SUCCESS:
+      return state.merge(Map({
+        saving: false,
+        saved: true,
+        saveError: false
+      }));
+    case SAVE_ERROR:
+      return state.merge(Map({
+        saving: false,
+        saveError: true
+      }));
     default:
       return state;
   }

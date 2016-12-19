@@ -19,7 +19,7 @@ function CvHeader(props) {
         </div>
         <div className={styles.contact}>
           <div>{user.firstName} {user.lastName}</div>
-          <div>Studying Computer Science @ KTH</div>
+          <div>Studying {user.master} @ KTH</div>
           <div>{user.email}</div>
           <div>{user.phone}</div>
         </div>

@@ -116,9 +116,9 @@ let timeout = false;
 export const saveCv = id => (dispatch, getState) => {
   if(!timeout) {
     timeout = true;
+    dispatch(saveRequest());
     setTimeout(() => {
       timeout = false;
-      dispatch(saveRequest());
       const content = getState().getIn(['cv', 'content']).toJS();
       updateCv(id, {content})
         .then(() => dispatch(saveSuccess()))

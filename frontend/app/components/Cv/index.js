@@ -15,7 +15,10 @@ function renderItem(item, i) {
   return (
     <div key={i} className={styles.item}>
       <div className={styles.when}>{item.when}</div>
-      <div className={styles.where}>{item.where}</div>
+      <div className={styles.where}>
+        <div className={styles.title}>{item.title}</div>
+        <div className={styles.organization}>{item.organization} - {item.city}</div>
+      </div>
       <div className={styles.description}>{item.description}</div>
     </div>
   )

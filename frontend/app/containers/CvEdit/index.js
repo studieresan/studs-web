@@ -67,9 +67,19 @@ export class CvEdit extends React.Component { // eslint-disable-line react/prefe
         </div>
         <div className={styles.where}>
           <TextArea
-            name='where'
-            placeholder='Where'
-            value={item.where}
+            name='title'
+            placeholder='Title'
+            value={item.title}
+            onChange={this.onItemChange.bind(null, sectionIndex, index)} />
+          <TextArea
+            name='organization'
+            placeholder='Organization'
+            value={item.organization}
+            onChange={this.onItemChange.bind(null, sectionIndex, index)} />
+          <TextArea
+            name='city'
+            placeholder='City'
+            value={item.city}
             onChange={this.onItemChange.bind(null, sectionIndex, index)} />
         </div>
         <div className={styles.description}>
@@ -102,6 +112,14 @@ export class CvEdit extends React.Component { // eslint-disable-line react/prefe
     if(this.props.user) {
       header = <CvHeader user={this.props.user.toJS()} />;
     }
+    let saveStatus = null;
+    if(this.props.saved) {
+      saveStatus = "Saved";
+    } else if(this.props.saving) {
+      saveStatus = "Saving";
+    } else if(this.props.saveErr) {
+      saveStatus = "Error";
+    }
     return (
       <div className={styles.cvEdit + ' ' + styles.cv}>
         <div>
@@ -110,6 +128,9 @@ export class CvEdit extends React.Component { // eslint-disable-line react/prefe
           <div className={styles.addSection}>
             <button className='btn-gold' onClick={this.props.addSection}>Add Section</button>
           </div>
+        </div>
+        <div className={styles.saveStatus}>
+          { saveStatus }
         </div>
       </div>
     );
@@ -121,6 +142,9 @@ function mapStateToProps(state) {
     content: state.getIn(['cv', 'content']),
     fetchedCv: state.getIn(['cv', 'cv', 'fetchedCv']),
     user: state.getIn(['global', 'user']),
+    saved: state.getIn(['cv', 'saved']),
+    saving: state.getIn(['cv', 'saving']),
+    saveErr: state.getIn(['cv', 'saveError']),
   };
 }
 

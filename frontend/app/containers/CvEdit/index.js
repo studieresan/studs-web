@@ -58,29 +58,31 @@ export class CvEdit extends React.Component { // eslint-disable-line react/prefe
   renderItem(item, sectionIndex, index) {
     return (
       <div key={index} className={`${styles.item} ${cvStyles.item}`}>
-        <div className={styles.when}>
-          <TextArea
-            name='when'
-            placeholder='When'
-            value={item.when}
-            onChange={this.onItemChange.bind(null, sectionIndex, index)} />
-        </div>
-        <div className={styles.where}>
-          <TextArea
-            name='title'
-            placeholder='Title'
-            value={item.title}
-            onChange={this.onItemChange.bind(null, sectionIndex, index)} />
-          <TextArea
-            name='organization'
-            placeholder='Organization'
-            value={item.organization}
-            onChange={this.onItemChange.bind(null, sectionIndex, index)} />
-          <TextArea
-            name='city'
-            placeholder='City'
-            value={item.city}
-            onChange={this.onItemChange.bind(null, sectionIndex, index)} />
+        <div className={styles.meta}>
+          <div className={styles.when}>
+            <TextArea
+              name='when'
+              placeholder='When'
+              value={item.when}
+              onChange={this.onItemChange.bind(null, sectionIndex, index)} />
+          </div>
+          <div className={styles.where}>
+            <TextArea
+              name='title'
+              placeholder='Title'
+              value={item.title}
+              onChange={this.onItemChange.bind(null, sectionIndex, index)} />
+            <TextArea
+              name='organization'
+              placeholder='Organization'
+              value={item.organization}
+              onChange={this.onItemChange.bind(null, sectionIndex, index)} />
+            <TextArea
+              name='city'
+              placeholder='City'
+              value={item.city}
+              onChange={this.onItemChange.bind(null, sectionIndex, index)} />
+          </div>
         </div>
         <div className={styles.description}>
           <TextArea

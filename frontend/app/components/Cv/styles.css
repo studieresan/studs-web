@@ -7,11 +7,16 @@
 }
 
 .cv > div {
-  max-width: 750px;
+  width: 100%;
+  max-width: 960px;
+}
+
+.section {
+  position:relative;
 }
 
 .section > h2 {
-  margin-left: 250px;
+  margin-left: 33.33%;
   border-bottom: 3px solid;
   display: inline-block;
 }
@@ -25,7 +30,7 @@
   font-size: 1.5em;
   padding: 0;
   width: 300px;
-  margin-left: 250px;
+  margin-left: 33.33%;
   border-bottom: 3px solid;
   margin-bottom: 20px;
   margin-top: 20px;
@@ -45,6 +50,7 @@
   display: flex;
   font-size: 12px;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .item textarea {
@@ -60,19 +66,53 @@
   background-color: #fafafa;
 }
 
+.item::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.item::before {
+  margin-left: -1px;
+  content: " ";
+  width: 3px;
+  background-image: url(../../static/img/gold-dot.svg);
+  background-position: center;
+  background-repeat: repeat-y;
+  height: 100%;
+  position: absolute;
+  left: 11.10%;
+  top: 0;
+  bottom: 0;
+}
+
+.meta {
+  width: 33.33%;
+  position: relative;
+}
+
 .when {
-  width: 100px;
+  float:left;
+  width: 33.33%;
   font-size: 14px;
   font-weight: 700;
+  text-align: right;
+  padding-right: 15px;
+
+}
+
+.when textarea {
   text-align: right;
 }
 
 .where {
-  min-width: 100px;
-  width: 150px;
-  padding-left: 10px;
+
+  float:right;
+  width: 66.66%;
+  padding-left: 15px;
   padding-right: 10px;
   padding-bottom: 10px;
+
 }
 
 .where > *:first-child {
@@ -81,7 +121,7 @@
 
 .description {
   flex: 2;
-  min-width: 300px;
+  width: 66.66%;
   white-space: pre-line;
   padding-bottom: 10px;
 }

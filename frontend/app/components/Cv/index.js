@@ -1,23 +1,22 @@
 /**
-*
-* Cv
-*
-*/
-
-import React, { PropTypes } from 'react';
-
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
-import styles from './styles.css';
-import CvHeader from '../CvHeader';
+ *
+ * Cv
+ *
+ */
+import React, {PropTypes} from "react";
+import styles from "./styles.css";
+import CvHeader from "../CvHeader";
 
 function renderItem(item, i) {
   return (
     <div key={i} className={styles.item}>
-      <div className={styles.when}>{item.when}</div>
-      <div className={styles.where}>
-        <div className={styles.title}>{item.title}</div>
-        { item.organization ? <div className={styles.organization}>{item.organization} - {item.city}</div> : null }
+
+      <div className={styles.meta}>
+        <div className={styles.when}>{item.when}</div>
+        <div className={styles.where}>
+          <div className={styles.title}>{item.title}</div>
+          { item.organization ? <div className={styles.organization}>{item.organization} - {item.city}</div> : null }
+        </div>
       </div>
       <div className={styles.description}>{item.description}</div>
     </div>

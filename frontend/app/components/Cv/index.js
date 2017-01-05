@@ -15,7 +15,7 @@ function renderItem(item, i) {
         <div className={styles.when}>{item.when}</div>
         <div className={styles.where}>
           <div className={styles.title}>{item.title}</div>
-          { item.organization ? <div className={styles.organization}>{item.organization} - {item.city}</div> : null }
+          { item.organization ? <div className={styles.organization}>{item.organization} { item.city ? <span>- {item.city}</span> : null }</div> : null }
         </div>
       </div>
       <div className={styles.description}>{item.description}</div>

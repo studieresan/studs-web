@@ -65,40 +65,45 @@ export class User extends React.Component { // eslint-disable-line react/prefer-
             value={user.lastName}
             onChange={this.handleChange}
             placeholder='Last name'/>
-          <div className='input-label'><FormattedMessage {...messages.phone} /></div>
-          <input
-            type='text'
-            name='phone'
-            value={user.phone}
-            onChange={this.handleChange}
-            placeholder='Phone number'/>
-          <div className='input-label'><FormattedMessage {...messages.position} /></div>
-          <input
-            type='text'
-            name='position'
-            value={user.position}
-            onChange={this.handleChange}
-            placeholder='Position'/>
-          <div className='input-label'><FormattedMessage {...messages.master} /></div>
-          <input
-            type='text'
-            name='master'
-            value={user.master}
-            onChange={this.handleChange}
-            placeholder='Master'/>
-          <div className='input-label'><FormattedMessage {...messages.allergies} /></div>
-          <input
-            type='text'
-            name='allergies'
-            value={user.allergies}
-            onChange={this.handleChange}
-            placeholder='Allergies'/>
-          <div className='input-label'><FormattedMessage {...messages.picture} /></div>
-          {this.renderPicture(user.currentPicture)}
-          <input
-            type='file'
-            name='picture'
-            onChange={this.handleChange}/>
+         { user.type === 'studs_member' ?
+            <div>
+              <div className='input-label'><FormattedMessage {...messages.phone} /></div>
+              <input
+                type='text'
+                name='phone'
+                value={user.phone}
+                onChange={this.handleChange}
+                placeholder='Phone number'/>
+              <div className='input-label'><FormattedMessage {...messages.position} /></div>
+              <input
+                type='text'
+                name='position'
+                value={user.position}
+                onChange={this.handleChange}
+                placeholder='Position'/>
+              <div className='input-label'><FormattedMessage {...messages.master} /></div>
+              <input
+                type='text'
+                name='master'
+                value={user.master}
+                onChange={this.handleChange}
+                placeholder='Master'/>
+              <div className='input-label'><FormattedMessage {...messages.allergies} /></div>
+              <input
+                type='text'
+                name='allergies'
+                value={user.allergies}
+                onChange={this.handleChange}
+                placeholder='Allergies'/>
+              <div className='input-label'><FormattedMessage {...messages.picture} /></div>
+              {this.renderPicture(user.currentPicture)}
+              <input
+                type='file'
+                name='picture'
+                onChange={this.handleChange}/>
+            </div>
+            : null
+          }
           <div className='input-label'><FormattedMessage {...messages.password} /></div>
           <input
             type='password'

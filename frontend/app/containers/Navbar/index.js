@@ -50,12 +50,9 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
           <li>
             <Link to="/logout"><FormattedMessage {...messages.logout} /></Link>
           </li>
-          { user.type === 'studs_member' ?
-            <li>
-              <Link to="/user">{ user.firstName }</Link>
-            </li>
-            : null
-          }
+          <li>
+            <Link to="/user">{ user.firstName }</Link>
+          </li>
           <li>
             <Link to="/members"><FormattedMessage {...messages.studsmembers} /></Link>
           </li>
@@ -79,7 +76,7 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
 	  <div className={styles.navbar}>
       <div className={styles.control}>
         <Link to="/"><img src={Logo} height={24} /></Link>
-        <img 
+        <img
           src={this.state.collapsed ? MenuIcon : CloseIcon }
           height={26}
           onClick={this.handleMenuClick} />

@@ -50,7 +50,10 @@ export class User extends React.Component { // eslint-disable-line react/prefer-
       <div className={styles.user}>
         <div className={styles.content}>
           <h1 className={styles.header}><FormattedMessage {...messages.title} /></h1>
-            <Link to={'members/' + user.id + '/resume/edit'} ><button className='btn-bright'>Edit Resume</button></Link>
+          { user.type === 'studs_member' ?
+              <Link to={'members/' + user.id + '/resume/edit'} ><button className='btn-bright'>Edit Resume</button></Link>
+              : null
+          }
           <div className='input-label'><FormattedMessage {...messages.firstName} /></div>
           <input
             type='text'

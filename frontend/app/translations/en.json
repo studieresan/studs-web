@@ -25,4 +25,7 @@
 }, {
 	"id": "app.components.HomePage.contact.phone",
 	"message": "Phone"
+}, {
+	"id": "app.components.HomePage.members.header",
+	"message": "This is us"
 }]

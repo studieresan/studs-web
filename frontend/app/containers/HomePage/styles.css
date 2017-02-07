@@ -142,3 +142,16 @@
 	border-radius: 100%;
 	margin-right: 60px;
 }
+
+.members {
+	position: relative;
+	display: flex;
+	min-width: 0;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.members > .membersTitle {
+	width: 100%;
+}

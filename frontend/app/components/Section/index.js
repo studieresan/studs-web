@@ -7,8 +7,6 @@ function Section(props) {
 	  <div>
 		<h2 className={styles.header}>
 		  <FormattedMessage {...props.header} />
-		  <br/>
-		  {'-'}
 		</h2>
 		<p>
 		  <FormattedMessage {...props.content} />

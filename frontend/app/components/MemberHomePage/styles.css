@@ -1,0 +1,15 @@
+.memberHomePage { /* stylelint-disable */
+  width: 150px;
+  margin-bottom: 1em;
+}
+
+.memberHomePage > div {
+  width: 100px;
+  text-align: center;
+}
+
+.memberHomePage > div > img {
+  width: 100px;
+  height: auto;
+  border-radius: 50%;
+}

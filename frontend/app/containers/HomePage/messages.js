@@ -36,6 +36,12 @@ export default defineMessages({
 		defaultMessage: '',
 	}
   },
+  members: {
+	header: {
+		id: 'app.components.HomePage.members.header',
+		defaultMessage: '',
+	}
+	},
   contact: {
 	header: {
 		id: 'app.components.HomePage.contact.header',

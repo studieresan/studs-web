@@ -10,19 +10,26 @@
  */
 
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { FormattedMessage } from 'react-intl';
+import MemberHomePage from '../../components/MemberHomePage';
 import Isvg from 'react-inlinesvg';
 import messages from './messages';
 import styles from './styles.css';
 import Background from './background.jpg';
 import Section from '../../components/Section';
 import Logo from '../../static/img/studs-logo.svg';
-import Front6 from '../../static/img/front-6.jpg';
-import Front7 from '../../static/img/front-7.jpg';
 import Front8 from '../../static/img/front-8.jpg';
+import Front9 from '../../static/img/front-9.jpg';
+import Front10 from '../../static/img/front-10.jpg';
 import ImgDonia from '../../static/img/donia.jpg';
+import * as actions from '../Members/actions';
 
-export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  componentDidMount() {
+    this.props.getUsers();
+	}
 
   render() {
 	const backgroundImage = {
@@ -36,6 +43,8 @@ export default class HomePage extends React.Component { // eslint-disable-line r
 		backgroundPosition: 'center center',
 	};
 	const sectionReversed = styles.section + ' ' + styles.reverse;
+  const users = this.props.users.toJS();
+
     return (
 	  <div>
 		  <div style={backgroundImage} className={styles.header}>
@@ -55,14 +64,22 @@ export default class HomePage extends React.Component { // eslint-disable-line r
 			  <div className={sectionReversed}>
 				  <Section {...messages.description} />
 				  <div className={styles.overlay} >
-					  <img src={Front7}  />
+					  <img src={Front9}  />
 				  </div>
 			  </div>
 			  <div className={styles.section}>
 				  <Section {...messages.students} />
 				  <div className={styles.overlay} >
-					  <img src={Front6} />
+					  <img src={Front10} />
 				  </div>
+			  </div>
+			  <div className={styles.members}>
+			  	<div className={styles.membersTitle}>
+						<h2 className={styles.members}>
+						  <FormattedMessage {...messages.members.header} />
+						</h2>
+					</div>
+	        { users.map(user => <MemberHomePage key={user.id} user={user}/>) }
 			  </div>
 		  </div>
 		  <div className={styles.contact}>
@@ -80,3 +97,15 @@ export default class HomePage extends React.Component { // eslint-disable-line r
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    users: state.getIn(['members', 'users'])
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

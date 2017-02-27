@@ -15,6 +15,16 @@ import {
   UPDATE,
 } from './constants';
 
+const newEvent = {
+  company: '',
+  contact: '',
+  date: '',
+  location: '',
+  description: '',
+  beforeServey: '',
+  afterServey: '',
+};
+
 const initialState = fromJS({
   items: [{
     id: 3,
@@ -26,6 +36,7 @@ const initialState = fromJS({
     beforeServey: 'hello',
     afterServey: 'asdf',
   }],
+  newEvent: newEvent,
   saved: true,
 });
 

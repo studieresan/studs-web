@@ -5,6 +5,7 @@ const usersUrl = '/users';
 const passwordResetUrl = '/users/password-reset'
 const userUrl = usersUrl + '/me';
 const cvUrl = '/resume';
+const eventsUrl = '/events';
 const STATUS_OK = 200;
 
 function checkStatus(response) {
@@ -91,4 +92,10 @@ export function updateCv(id, cv) {
 export function requestPasswordReset(email) {
   return fetch(`${baseUrl}${passwordResetUrl}?email=${email}`)
     .then(checkStatus)
+}
+
+export function fetchEvents() {
+  return fetch(baseUrl+eventsUrl, header())
+    .then(checkStatus)
+    .then(parseJSON)
 }

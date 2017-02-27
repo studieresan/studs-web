@@ -24,6 +24,11 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
     super(props);
   }
 
+  componentDidMount() {
+    const { get } = this.props;
+    get();
+  }
+
   renderActions(user) {
     if(!user || !user.permissions.includes('admin')) {
       return null;

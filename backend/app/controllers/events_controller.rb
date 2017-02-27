@@ -14,7 +14,7 @@ class EventsController < ApplicationController
     event = Event.find(params[:id])
     if (current_user.type_of_user == 'studs_member' || event.users.exist?(current_user))
       render json: event
-    else 
+    else
       render json: { error: '' }, status: 403
     end
   end
@@ -48,13 +48,13 @@ class EventsController < ApplicationController
   end
 
   def users_missing_before_forms
-    lazy = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.before_forms.exists?(user_id: user.id }.to_a
+    lazy = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.before_forms.exists?(user_id: user.id) }.to_a
 
     render json: lazy
   end
 
   def users_missing_after_forms
-    lazy = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.after_forms.exists?(user_id: user.id }.to_a
+    lazy = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.after_forms.exists?(user_id: user.id) }.to_a
 
     render json: lazy
   end

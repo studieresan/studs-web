@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213181344) do
+ActiveRecord::Schema.define(version: 20170227195538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20170213181344) do
     t.string   "address"
     t.string   "postal"
     t.string   "city"
-    t.string   "coutry"
+    t.string   "country"
     t.string   "language"
     t.string   "information"
     t.datetime "created_at",  null: false
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20170213181344) do
     t.datetime "updated_at",     null: false
     t.string   "before_form_id"
     t.string   "after_form_id"
+    t.uuid     "company_id"
   end
 
   create_table "resumes", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -68,12 +69,12 @@ ActiveRecord::Schema.define(version: 20170213181344) do
     t.string   "phone"
     t.string   "position"
     t.string   "master"
-    t.string   "password_reset_token"
-    t.datetime "password_reset_sent_at"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
 end

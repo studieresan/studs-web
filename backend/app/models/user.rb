@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_one :resume
   has_many :events
+  has_many :before_form, -> { where type_of_form: 'before' }, class_name: 'UserEventForm'
+  has_many :after_form, -> { where type_of_form: 'after' }, class_name: 'UserEventForm'
   has_secure_password
 
   def has_permission? permission

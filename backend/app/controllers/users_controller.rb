@@ -58,6 +58,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def missing_before_forms
+    lazy = Event.reject { |event| current_user.before_form.exists?(event_id: event.id) }.to_a
+
+    render json: lazy
+  end
+
+  def missing_after_forms
+    lazy = Event.reject { |event| current_user.after_form.exists?(event_id: event.id) }.to_a
+
+    render json: lazy
+  end
+
   private
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :enabled, :type_of_user, :phone, :position, :master, :picture, :password_reset_token, :password_reset_sent_at)

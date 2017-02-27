@@ -12,7 +12,18 @@ class UserEventFormsController < ApplicationController
   end
 
   def create
-    form = UserEventForm.new(user_event_form_params)
+    # {formId=1eRzmhpWKPUVHO0o_8khCW0l_eALEuvmtM8JDl0i5rSI, values=[Mon Feb 27 20:15:55 GMT+01:00 2017, Jesper Bränn, 1. No, Not interested], sheetId=2_ABaOnueE_N9o2fC-kUKqmF_B0HrCbtc39FVD_2IyCxpFhSZxGpH4Y4_5V8DIww}
+
+    content = params[:values]
+    user = User.where(first_name: content[1].split(' ', 2)[0], last_name: content[1].split(' ', 2)[1]).first
+    if params[:type_of_form] == 'before'
+      event_id = Event.where(before_form_id: params[:formId]).first.id
+    else
+      event_id = Event.where(after_form_id: params[:formId]).first.id
+    end
+
+    form = UserEventForm.new(user_id: user.id, event_id: event_id, type_of_form: params[:type_of_form], content: content.to_json)
+
     if form.save
       return render json: form
     end

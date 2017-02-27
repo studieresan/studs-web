@@ -1,0 +1,46 @@
+.eventDetail { /* stylelint-disable */
+  padding: 30px;
+  height: 100%;
+  overflow: auto;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.head > h2 {
+  margin-top: 0;
+  letter-spacing: 2px;
+}
+
+.eventDetail > hr {
+  margin-top: 30px;
+  border-color: #eee;
+  border-style: solid;
+  border-width: 1px 0 0 0;
+}
+
+.info h4 {
+  margin-top: 0;
+  letter-spacing: 2px;
+  color: #ffdaab;
+}
+
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #a4a2a6;
+  color: white;
+}
+
+.info > div {
+  font-size: 14px;
+  flex: 1;
+  padding: 30px;
+  min-width: 140px;
+}
+
+.eventDetail a {
+  text-decoration: underline;
+}

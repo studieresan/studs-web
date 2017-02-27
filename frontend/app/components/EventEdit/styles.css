@@ -1,0 +1,24 @@
+.eventEdit { /* stylelint-disable */
+  padding: 30px;
+
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.head > h2 {
+  margin-top: 0;
+  letter-spacing: 2px;
+}
+
+.eventEdit textarea {
+  border: 1px solid black;
+  padding: 6px;
+  width: 300px;
+}
+
+.eventEdit textarea:focus {
+  outline: none;
+}

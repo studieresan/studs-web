@@ -37,7 +37,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     if @event.update(event_params)
-      render json: event
+      render json: @event
     else
       render json: { error: '' }, status: 403
     end

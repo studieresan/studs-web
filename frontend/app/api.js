@@ -6,6 +6,8 @@ const passwordResetUrl = '/users/password-reset'
 const userUrl = usersUrl + '/me';
 const cvUrl = '/resume';
 const eventsUrl = '/events';
+const companiesUrl = '/companies';
+const userEventFormsUrl = '/user_event_forms/mine';
 const STATUS_OK = 200;
 
 function checkStatus(response) {
@@ -97,5 +99,35 @@ export function requestPasswordReset(email) {
 export function fetchEvents() {
   return fetch(baseUrl+eventsUrl, header())
     .then(checkStatus)
+    .then(parseJSON)
+}
+
+export function updateEvent(id, event) {
+  return fetch(`${baseUrl}${eventsUrl}/${id}`, {
+    headers: {
+      ...authHeader(),
+      ...jsonHeader(),
+    },
+    method: 'PATCH',
+    body: JSON.stringify(event)
+  }).then(checkStatus)
+    .then(parseJSON)
+}
+
+export function fetchCompanies() {
+  return fetch(baseUrl+companiesUrl, header())
+    .then(checkStatus)
+    .then(parseJSON)
+}
+
+export function createEvent(event) {
+  return fetch(`${baseUrl}${eventsUrl}`, {
+    headers: {
+      ...authHeader(),
+      ...jsonHeader(),
+    },
+    method: 'POST',
+    body: JSON.stringify(event)
+  }).then(checkStatus)
     .then(parseJSON)
 }

@@ -16,8 +16,8 @@ function EventListItem(props) {
     <Link to={`/events/${event.id}`}>
       <div className={styles.eventListItem}>
         <div>
-          <IndicatorIcon ok={false} /><IndicatorIcon ok={false} />
-          {event.company}
+          <IndicatorIcon ok={event.beforeSurveyReplied} /><IndicatorIcon ok={event.afterSurveyReplied} />
+          {event.companyName}
         </div>
         <div>{event.date}</div>
       </div>

@@ -5,8 +5,7 @@
  */
 
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'; import { connect } from 'react-redux';
 import selectEvents from './selectors';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router';
@@ -25,8 +24,9 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
   }
 
   componentDidMount() {
-    const { get } = this.props;
+    const { get, getCompanies } = this.props;
     get();
+    getCompanies();
   }
 
   renderActions(user) {
@@ -57,17 +57,20 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
   }
 
   render() {
-    const { events, user, route, params, update } = this.props;
+    const { events, user, route, params, update, save, create } = this.props;
 
     let detail;
     let detailSelected = false;
     if(params.id) {
       const event = events.items.find(e => e.id == params.id);
       if(route.name === 'events/edit') {
-        detail = <EventEdit event={event} update={update} />;
+        detail = <EventEdit event={event} companies={events.companies} update={update} save={save} />;
       } else {
-        detail = <EventDetail event={event} user={user} />;
+        detail = <EventDetail event={event} userEventForms={events.userEventForms} user={user} />;
       }
+      detailSelected = true;
+    } else if(route.name === 'events/new') {
+      detail = <EventEdit event={events.newEvent} companies={events.companies} create={create} update={update} save={save} />
       detailSelected = true;
     } else {
       detail = <EventStaticDetail />

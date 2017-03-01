@@ -2,9 +2,7 @@
  *
  * Events reducer
  *
- */
-
-import { fromJS, Map } from 'immutable';
+ */ import { fromJS, Map } from 'immutable';
 import {
   GET_REQUEST,
   GET_SUCCESS,
@@ -13,6 +11,8 @@ import {
   SAVE_SUCCESS,
   SAVE_ERROR,
   UPDATE,
+  GET_COMPANIES,
+  CREATE_SUCCESS,
 } from './constants';
 
 const newEvent = {
@@ -21,21 +21,15 @@ const newEvent = {
   date: '',
   location: '',
   description: '',
-  beforeServey: '',
-  afterServey: '',
+  beforeSurvey: '',
+  afterSurvey: '',
+  beforeSurveyId: '',
+  afterSurveyId: '',
 };
 
 const initialState = fromJS({
-  items: [{
-    id: 3,
-    company: 'Asdf',
-    contact: 'Asdf',
-    date: '17/03/20',
-    location: 'Hello street',
-    description: 'Lorem ipsum',
-    beforeServey: 'hello',
-    afterServey: 'asdf',
-  }],
+  items: [],
+  companies: [],
   newEvent: newEvent,
   saved: true,
 });
@@ -44,13 +38,23 @@ function eventsReducer(state = initialState, action) {
   switch (action.type) {
     case GET_SUCCESS:
       return state.merge(Map({
-        event: Map(action.data),
+        items: fromJS(action.data),
         saved: true,
       }));
     case UPDATE:
-      const index = state.get('items').findIndex(event => event.get('id') === action.id);
-      const s = state.mergeIn(['items', index], Map(action.data));
+      let s;
+      if(action.id) {
+        const index = state.get('items').findIndex(event => event.get('id') === action.id);
+        s = state.mergeIn(['items', index], Map(action.data));
+      } else {
+        s = state.mergeIn(['newEvent'], Map(action.data));
+      }
       return s.merge(Map({saved: false}));
+    case GET_COMPANIES:
+      return state.set('companies', fromJS(action.data));
+    case CREATE_SUCCESS:
+      const st = state.update('items', items => items.push(fromJS(action.data)));
+      return st.set('newEvent', fromJS(newEvent));
     default:
       return state;
   }

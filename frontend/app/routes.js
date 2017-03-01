@@ -172,6 +172,24 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
+      path: '/events/new',
+      name: 'events/new',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/Events/reducer'),
+          System.import('containers/Events'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, component]) => {
+          injectReducer('events', reducer.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '/events/:id',
       name: 'events',
       onEnter: requireAuth,

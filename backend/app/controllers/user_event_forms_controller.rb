@@ -5,8 +5,12 @@ class UserEventFormsController < ApplicationController
     render json: UserEventForm.all
   end
 
+  def mine
+   render json: UserEventForm.where(user_id: current_user.id)
+  end
+
   def show
-    form = UserEventForm.find(event_id: params[:id])
+    form = UserEventForm.where(event_id: params[:id])
 
     render json: form
   end

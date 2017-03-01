@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  attr_accessor :before_form_replied, :after_form_replied
+
   belongs_to :company
   has_many :users
   has_many :before_forms, -> { where type_of_form: 'before' }, class_name: 'UserEventForm'

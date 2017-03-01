@@ -5,7 +5,13 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    render json: Event.all
+    events = Event.all
+    events.map do |e|
+      e.before_form_replied = current_user.before_form.exists?(event_id: e.id)
+      e.after_form_replied = current_user.after_form.exists?(event_id: e.id)
+    end
+
+    render json: events
   end
 
   # GET /events/1

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :events
   resources :companies
-  resources :user_event_form
+  resources :user_event_forms
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

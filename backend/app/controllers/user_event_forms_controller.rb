@@ -1,12 +1,12 @@
 class UserEventFormsController < ApplicationController
-  before_action :authenticate
+  #before_action :authenticate
 
   def index
     render json: UserEventForm.all
   end
 
   def show
-    form = UserEventForm.find(params[:id])
+    form = UserEventForm.find(event_id: params[:id])
 
     render json: form
   end

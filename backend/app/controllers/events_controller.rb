@@ -1,8 +1,6 @@
 require "google_drive"
 class EventsController < ApplicationController
   before_action :authenticate
-  before_action :set_event
-
 
   # GET /events
   # GET /events.json
@@ -36,8 +34,9 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    if @event.update(event_params)
-      render json: @event
+    event = Event.find(params[:id])
+    if event.update(event_params)
+      render json: event
     else
       render json: { error: '' }, status: 403
     end
@@ -62,11 +61,6 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       params.require(:event).permit(:schedule, :information, :before_form_id, :after_form_id)

@@ -1,8 +1,8 @@
 class CompaniesController < ApplicationController
-  before_filter :authenticate #, :except => [:index]
+  before_action :authenticate, :except => [:index]
 
   def index
-    @companies = Company.all
+    return render json: Company.all
   end
 
   def create

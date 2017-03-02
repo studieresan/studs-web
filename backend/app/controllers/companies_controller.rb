@@ -2,7 +2,11 @@ class CompaniesController < ApplicationController
   before_action :authenticate, :except => [:index]
 
   def index
-    return render json: Company.all
+    if current_user.type_of_user == 'studs_member'
+      return render json: []
+    else
+      return render json: Company.all
+    end
   end
 
   def create
@@ -33,6 +37,6 @@ class CompaniesController < ApplicationController
     end
 
     def company_params
-      params.require(:company).permit(:schedule, :information, :company, :before_form_id, :after_form_id, :company_id, :before_form_url, :after_form_url, :responsible_user_id, :date)
+      params.require(:company).permit(:schedule, :information, :company_id, :before_form_id, :after_form_id, :company_id, :before_form_url, :after_form_url, :responsible_user_id, :date)
     end
 end

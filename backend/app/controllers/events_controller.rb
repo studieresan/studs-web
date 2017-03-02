@@ -5,13 +5,17 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    events = Event.all
-    events.map do |e|
-      e.before_form_replied = current_user.before_form.exists?(event_id: e.id)
-      e.after_form_replied = current_user.after_form.exists?(event_id: e.id)
-    end
+    if current_user.type_of_user == 'studs_member'
+      events = Event.all
+      events.map do |e|
+        e.before_form_replied = current_user.before_form.exists?(event_id: e.id)
+        e.after_form_replied = current_user.after_form.exists?(event_id: e.id)
+      end
 
-    render json: events
+      render json: events
+    else
+      return render json: []
+    end
   end
 
   # GET /events/1
@@ -31,7 +35,7 @@ class EventsController < ApplicationController
     event = Event.new(event_params)
 
     if event.save
-      render json: event
+      render json: events
     else
       render json: { error: '' }, status: 403
     end

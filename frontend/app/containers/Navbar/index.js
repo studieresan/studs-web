@@ -11,7 +11,7 @@ import { bindActionCreators } from 'redux';
 import Isvg from 'react-inlinesvg';
 import styles from './styles.css';
 import LocaleToggle from '../LocaleToggle'
-import Logo from '../../static/img/studs-text.png';
+import Logo from '../../static/img/text-white-rgb.png';
 import MenuIcon from './icon_menu.svg';
 import CloseIcon from './icon_close.svg';
 
@@ -55,6 +55,9 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
           </li>
           <li>
             <Link to="/members"><FormattedMessage {...messages.studsmembers} /></Link>
+          </li>
+          <li>
+            <Link to="/events"><FormattedMessage {...messages.events} /></Link>
           </li>
         </ul>
       );

@@ -18,4 +18,8 @@ export default defineMessages({
     id: 'app.containers.Navbar.studsmembers',
     defaultMessage: 'Members',
   },
+  events: {
+    id: 'app.containers.Navbar.events',
+    defaultMessage: 'Events',
+  },
 });

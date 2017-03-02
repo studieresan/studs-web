@@ -16,18 +16,21 @@ export function getUserRequest() {
 }
 
 export function getUserSuccess(user) {
+  console.log(user);
   return {
     type: GET_USER_SUCCESS,
     user: {
       id: user.id,
+      email: user.email,
       firstName: user.first_name,
       lastName: user.last_name,
+      permissions: user.permissions,
       picture: user.picture,
       phone: user.phone || '',
       position: user.position || '',
       master: user.master || '',
       allergies: user.allergies || '',
-      type: user.type_of_user
+      type: user.type_of_user,
     }
   };
 }

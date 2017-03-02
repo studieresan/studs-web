@@ -1,0 +1,14 @@
+.eventListItem { /* stylelint-disable */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  color: black;
+  font-size: 12px;
+}
+
+.eventListItem:hover {
+  background-color: #6D6B6E;
+  color: white;
+}

@@ -1,5 +1,5 @@
+require 'net/http'
 class User < ApplicationRecord
-	require 'net/http'
   # type_of_user: [:studs_member, :studs_substitute, :company]
   has_attached_file :picture
   validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :events
   has_many :before_form, -> { where type_of_form: 'before' }, class_name: 'UserEventForm'
   has_many :after_form, -> { where type_of_form: 'after' }, class_name: 'UserEventForm'
+
+  belongs_to :company, optional: true
+
   has_secure_password
 
   def has_permission? permission

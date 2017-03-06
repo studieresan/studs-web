@@ -59,17 +59,21 @@ class EventsController < ApplicationController
   end
 
   def users_missing_before_forms
-    event = Event.find(params[:id])
-    lazy = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.before_forms.exists?(user_id: user.id) }.to_a
+    if current_user.type_of_user == 'studs_member'
+      event = Event.find(params[:id])
+      lazy = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.before_forms.exists?(user_id: user.id) }.to_a
 
-    render json: lazy
+      render json: lazy
+    end
   end
 
   def users_missing_after_forms
-    event = Event.find(params[:id])
-    lazy = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.after_forms.exists?(user_id: user.id) }.to_a
+    if current_user.type_of_user == 'studs_member'
+      event = Event.find(params[:id])
+      lazy = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.after_forms.exists?(user_id: user.id) }.to_a
 
-    render json: lazy
+      render json: lazy
+    end
   end
 
   private

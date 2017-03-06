@@ -9,6 +9,8 @@ import {
   fetchCompanies,
   fetchUserEventForms,
   fetchMissingForms,
+  notifyBefore,
+  notifyAfter,
 } from '../../api';
 import { browserHistory } from 'react-router';
 import {
@@ -24,6 +26,8 @@ import {
   CREATE_ERROR,
   GET_COMPANIES,
   GET_MISSING_FORMS,
+  REMINDED_BEFORE,
+  REMINDED_AFTER,
 } from './constants';
 
 function fromBackend(e) {
@@ -173,4 +177,24 @@ export const getMissingForms = eventId => dispatch => {
       data: data,
     }))
     .catch(err => console.log(err));
+}
+
+export const remindBefore = eventId => dispatch => {
+  dispatch({
+    type: REMINDED_BEFORE,
+    id: eventId,
+  })
+  return notifyBefore(eventId)
+    .then(() => console.log('reminded before'))
+    .catch(err => console.log(err))
+}
+
+export const remindAfter = eventId => dispatch => {
+  dispatch({
+    type: REMINDED_AFTER,
+    id: eventId,
+  })
+  return notifyAfter(eventId)
+    .then(() => console.log('reminded after'))
+    .catch(err => console.log(err))
 }

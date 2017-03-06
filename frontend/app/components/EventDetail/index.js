@@ -14,11 +14,22 @@ class EventDetail extends Component {
   constructor(props) {
     super(props);
     this.getMissingForms = this.getMissingForms.bind(this);
+    this.handleRemindClick = this.handleRemindClick.bind(this);
   }
 
   getMissingForms() {
     const { id, getMissingForms } = this.props;
     getMissingForms(id);
+  }
+
+  handleRemindClick(e) {
+    const { event, id, remindBefore, remindAfter } = this.props;
+    const name = e.target.name;
+    if(name === 'before') {
+      remindBefore(id);
+    } else if(name === 'after') {
+      remindAfter(id);
+    }
   }
 
   componentDidMount() {
@@ -76,7 +87,7 @@ class EventDetail extends Component {
         <hr />
         <h2><FormattedMessage {...messages.description} /></h2>
         <div>{event.description}</div>
-        { user && user.permissions.includes('event') && (before && before.length || after && after.length) ?
+        { user && user.permissions.includes('event_missing') && (before && before.length || after && after.length) ?
           <div>
             <hr />
             <h2><FormattedMessage {...messages.missing} /></h2>
@@ -85,6 +96,9 @@ class EventDetail extends Component {
                 { before && before.length ?
                   <div>
                     <div className={styles.missingHead}>Before</div>
+                    { !event.remindedBefore &&
+                      <button name='before' onClick={this.handleRemindClick} className='btn-default'>Remind on slack</button>
+                    }
                     <ul>{before}</ul>
                   </div>
                 : null
@@ -94,6 +108,9 @@ class EventDetail extends Component {
                 { after && after.length ?
                   <div>
                     <div className={styles.missingHead}>After</div>
+                    { !event.remindedAfter &&
+                      <button name='after' onClick={this.handleRemindClick} className='btn-default'>Remind on slack</button>
+                    }
                     <ul>{after}</ul>
                   </div>
                 : null

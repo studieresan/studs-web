@@ -12,7 +12,7 @@ class EventsController < ApplicationController
         e.after_form_replied = current_user.after_form.exists?(event_id: e.id)
       end
 
-      render json: events
+      render json: events.order(date: :asc)
     else
       return render json: []
     end

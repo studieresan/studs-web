@@ -12,7 +12,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
 import MemberHomePage from '../../components/MemberHomePage';
 import Isvg from 'react-inlinesvg';
 import messages from './messages';
@@ -24,6 +24,8 @@ import Front8 from '../../static/img/front-8.jpg';
 import Front9 from '../../static/img/front-9.jpg';
 import Front10 from '../../static/img/front-10.jpg';
 import ImgDonia from '../../static/img/donia.jpg';
+import Report2016 from '../../static/img/top-transparent.png';
+import Report2016pdf from 'file-loader!../../static/Studs_16_report.pdf';
 import * as actions from '../Members/actions';
 
 export class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -81,6 +83,12 @@ export class HomePage extends React.Component { // eslint-disable-line react/pre
 					</div>
 	        { users.map(user => <MemberHomePage key={user.id} user={user}/>) }
 			  </div>
+		  </div>
+		  <div className={styles.report}>
+		  		<h1><FormattedHTMLMessage {...messages.report.last_year} /></h1>
+		  		<a href={Report2016pdf}>
+					  <img src={Report2016} />
+				  </a>
 		  </div>
 		  <div className={styles.contact}>
 			  <Section {...messages.contact} />

@@ -55,5 +55,11 @@ export default defineMessages({
 		id: 'app.components.HomePage.contact.phone',
 		defaultMessage: '',
 	},
+  },
+  report: {
+	last_year: {
+		id: 'app.components.HomePage.report.last_year',
+		defaultMessage: '',
+	}
   }
 });

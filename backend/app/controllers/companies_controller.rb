@@ -3,9 +3,9 @@ class CompaniesController < ApplicationController
 
   def index
     if current_user.type_of_user == 'studs_member'
-      return render json: []
-    else
       return render json: Company.all
+    else
+      return render json: []
     end
   end
 

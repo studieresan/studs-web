@@ -7,6 +7,7 @@
 .head {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .head > h2 {
@@ -14,7 +15,11 @@
   letter-spacing: 2px;
 }
 
-.eventDetail > hr {
+.head button {
+  margin-bottom: 12px;
+}
+
+.eventDetail hr {
   margin-top: 30px;
   border-color: #eee;
   border-style: solid;
@@ -43,4 +48,25 @@
 
 .eventDetail a {
   text-decoration: underline;
+}
+
+.missing {
+  display: flex;
+  font-size: 12px;
+}
+
+.missing > div {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.missingHead {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.missing ul {
+  margin: 12px 0;
+  padding: 0;
+  list-style-type: none;
 }

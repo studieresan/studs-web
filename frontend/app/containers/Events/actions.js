@@ -2,7 +2,14 @@
  *
  * Events actions
  */
-import { createEvent, updateEvent, fetchEvents, fetchCompanies, fetchUserEventForms } from '../../api';
+import {
+  createEvent,
+  updateEvent,
+  fetchEvents,
+  fetchCompanies,
+  fetchUserEventForms,
+  fetchMissingForms,
+} from '../../api';
 import { browserHistory } from 'react-router';
 import {
   UPDATE,
@@ -16,7 +23,7 @@ import {
   CREATE_SUCCESS,
   CREATE_ERROR,
   GET_COMPANIES,
-  GET_USER_EVENT_FORMS,
+  GET_MISSING_FORMS,
 } from './constants';
 
 function fromBackend(e) {
@@ -49,10 +56,7 @@ function toBackend(e) {
     company_id: e.company,
     date: new Date(e.date),
     information: e.description,
-    before_form_url: e.beforeSurvey,
-    after_form_url: e.afterSurvey,
-    before_form_id: e.beforeSurveyId,
-    after_form_id: e.afterSurveyId,
+    before_form_url: e.beforeSurvey, after_form_url: e.afterSurvey, before_form_id: e.beforeSurveyId, after_form_id: e.afterSurveyId,
   };
 }
 
@@ -159,4 +163,14 @@ export const getCompanies = () => dispatch => {
       data: data.companies,
     }))
     .catch(err => console.log(err))
+}
+
+export const getMissingForms = eventId => dispatch => {
+  return fetchMissingForms(eventId)
+    .then(data => dispatch({
+      type: GET_MISSING_FORMS,
+      id: eventId,
+      data: data,
+    }))
+    .catch(err => console.log(err));
 }

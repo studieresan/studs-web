@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   patch '/users/password-reset', to: 'users#update_by_token'
   get '/users/missing_before_forms', to: 'users#missing_before_forms'
   get '/users/missing_after_forms', to: 'users#missing_after_forms'
+  get '/events/:id/missing_forms', to: 'events#missing_forms'
   resources :users do
     get '/resume', to: 'resumes#show'
     patch '/resume', to: 'resumes#update'

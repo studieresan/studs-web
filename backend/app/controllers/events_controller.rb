@@ -6,13 +6,13 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     if current_user.type_of_user == 'studs_member'
-      events = Event.all
+      events = Event.all.order(date: :asc)
       events.map do |e|
         e.before_form_replied = current_user.before_form.exists?(event_id: e.id)
         e.after_form_replied = current_user.after_form.exists?(event_id: e.id)
       end
 
-      render json: events.order(date: :asc)
+      render json: events
     else
       return render json: []
     end

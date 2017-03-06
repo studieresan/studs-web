@@ -1,6 +1,6 @@
 require "google_drive"
 class EventsController < ApplicationController
-  before_action :authenticate
+  # before_action :authenticate
 
   # GET /events
   # GET /events.json
@@ -61,9 +61,9 @@ class EventsController < ApplicationController
   def missing_forms
     if current_user.type_of_user == 'studs_member'
       event = Event.find(params[:id])
-      lazy_before = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.before_forms.exists?(user_id: user.id) }.to_a
+      lazy_before = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.before_forms.exists?(user_id: user.id) }.map { |user| UserSerializer.new(user) }.to_a
 
-      lazy_after = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.after_forms.exists?(user_id: user.id) }.to_a
+      lazy_after = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.after_forms.exists?(user_id: user.id) }.map { |user| UserSerializer.new(user) }.to_a
 
       render json: {before: lazy_before, after: lazy_after}
     end

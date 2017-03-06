@@ -57,7 +57,18 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
   }
 
   render() {
-    const { events, user, route, params, update, save, create, getMissingForms } = this.props;
+    const {
+      events,
+      user,
+      route,
+      params,
+      update,
+      save,
+      create,
+      getMissingForms,
+      remindBefore,
+      remindAfter,
+    } = this.props;
 
     let detail;
     let detailSelected = false;
@@ -66,7 +77,13 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
       if(route.name === 'events/edit') {
         detail = <EventEdit event={event} companies={events.companies} update={update} save={save} />;
       } else {
-        detail = <EventDetail event={event} user={user} id={params.id} getMissingForms={getMissingForms} />;
+        detail = <EventDetail
+          event={event}
+          user={user}
+          id={params.id}
+          getMissingForms={getMissingForms}
+          remindAfter={remindAfter}
+          remindBefore={remindBefore} />;
       }
       detailSelected = true;
     } else if(route.name === 'events/new') {

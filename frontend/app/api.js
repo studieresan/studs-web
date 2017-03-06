@@ -127,3 +127,10 @@ export function fetchMissingForms(eventId) {
   return ftch(`${baseUrl}${eventsUrl}/${eventId}/missing_forms`, header());
 }
 
+export function notifyBefore(eventId) {
+  return ftch(`${baseUrl}${eventsUrl}/${eventId}/notify_before`, header());
+}
+
+export function notifyAfter(eventId) {
+  return ftch(`${baseUrl}${eventsUrl}/${eventId}/notify_after`, header());
+}

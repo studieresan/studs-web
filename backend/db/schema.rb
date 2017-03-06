@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301163823) do
+ActiveRecord::Schema.define(version: 20170306191443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,12 +73,13 @@ ActiveRecord::Schema.define(version: 20170301163823) do
     t.string   "phone"
     t.string   "position"
     t.string   "master"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
-    t.string   "password_reset_token"
-    t.datetime "password_reset_sent_at"
+    t.string   "slack_id"
   end
 
 end

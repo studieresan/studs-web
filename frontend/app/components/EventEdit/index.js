@@ -52,7 +52,7 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
           value={event.company}
           onChange={this.handleChange}>
           <option key='none' value={null} disabled>Select company</option>
-          {companies.map(c => 
+          {companies && companies.map(c =>
             <option key={c.id} value={c.id}>{c.name}</option>
           )}
         </select>

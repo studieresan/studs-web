@@ -30,7 +30,7 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
   }
 
   renderActions(user) {
-    if(!user || !user.permissions.includes('admin')) {
+    if(!user || !user.permissions.includes('event')) {
       return null;
     }
     return (
@@ -41,7 +41,7 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
   }
 
   renderEventsList(events, user) {
-    const items = events.map(e => <EventListItem key={e.id} event={e} />);
+    const items = events.map(e => <EventListItem key={e.id} event={e} user={user} />);
     return (
       <div className={styles.listContainer}>
         <div className={styles.list}>
@@ -57,7 +57,7 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
   }
 
   render() {
-    const { events, user, route, params, update, save, create } = this.props;
+    const { events, user, route, params, update, save, create, getMissingForms } = this.props;
 
     let detail;
     let detailSelected = false;
@@ -66,7 +66,7 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
       if(route.name === 'events/edit') {
         detail = <EventEdit event={event} companies={events.companies} update={update} save={save} />;
       } else {
-        detail = <EventDetail event={event} userEventForms={events.userEventForms} user={user} />;
+        detail = <EventDetail event={event} user={user} id={params.id} getMissingForms={getMissingForms} />;
       }
       detailSelected = true;
     } else if(route.name === 'events/new') {

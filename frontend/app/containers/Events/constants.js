@@ -19,6 +19,6 @@ export const CREATE_ERROR = 'app/Events/CREATE_ERROR';
 
 export const GET_COMPANIES = 'app/Events/GET_COMPANIES';
 
-export const GET_USER_EVENT_FORMS = 'app/Events/GET_USER_EVENT_FORMS';
-
 export const UPDATE = 'app/Events/UPDATE';
+
+export const GET_MISSING_FORMS = 'app/Events/GET_MISSING_FORMS';

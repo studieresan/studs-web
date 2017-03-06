@@ -43,91 +43,87 @@ function header() {
   };
 }
 
+function ftch(...args) {
+  return fetch(...args)
+    .then(checkStatus)
+    .then(parseJSON);
+}
+
 export function fetchUser(token) {
-  return fetch(baseUrl+userUrl, {
+  return ftch(baseUrl+userUrl, {
     headers: authHeader(token)
-  }).then(checkStatus)
-    .then(parseJSON)
+  })
 }
 
 export function updateUser(id, user) {
-  return fetch(baseUrl+usersUrl+'/'+id, {
+  return ftch(baseUrl+usersUrl+'/'+id, {
     ...header(),
     method: 'PATCH',
     body: user,
-  }).then(checkStatus)
-    .then(parseJSON)
+  });
 }
 
 export function updateUserPassword(user) {
-  return fetch(baseUrl+passwordResetUrl, {
+  return ftch(baseUrl+passwordResetUrl, {
     method: 'PATCH',
     body: user,
-  }).then(checkStatus)
-    .then(parseJSON)
+  });
 }
 
 export function fetchUsers() {
-  return fetch(baseUrl+usersUrl, header())
-    .then(checkStatus)
-    .then(parseJSON)
+  return ftch(baseUrl+usersUrl, header());
 }
 
 export function fetchCv(id) {
-  return fetch(`${baseUrl}${usersUrl}/${id}${cvUrl}`, header())
-    .then(checkStatus)
-    .then(parseJSON)
+  return ftch(`${baseUrl}${usersUrl}/${id}${cvUrl}`, header());
 }
 
 export function updateCv(id, cv) {
-  return fetch(`${baseUrl}${usersUrl}/${id}${cvUrl}`, {
+  return ftch(`${baseUrl}${usersUrl}/${id}${cvUrl}`, {
     headers: {
       ...authHeader(),
       ...jsonHeader(),
     },
     method: 'PATCH',
     body: JSON.stringify(cv)
-  }).then(checkStatus)
-    .then(parseJSON)
+  });
 }
 
 export function requestPasswordReset(email) {
-  return fetch(`${baseUrl}${passwordResetUrl}?email=${email}`)
-    .then(checkStatus)
+  return ftch(`${baseUrl}${passwordResetUrl}?email=${email}`);
 }
 
 export function fetchEvents() {
-  return fetch(baseUrl+eventsUrl, header())
-    .then(checkStatus)
-    .then(parseJSON)
+  return ftch(baseUrl+eventsUrl, header());
 }
 
 export function updateEvent(id, event) {
-  return fetch(`${baseUrl}${eventsUrl}/${id}`, {
+  return ftch(`${baseUrl}${eventsUrl}/${id}`, {
     headers: {
       ...authHeader(),
       ...jsonHeader(),
     },
     method: 'PATCH',
     body: JSON.stringify(event)
-  }).then(checkStatus)
-    .then(parseJSON)
+  });
 }
 
 export function fetchCompanies() {
-  return fetch(baseUrl+companiesUrl, header())
-    .then(checkStatus)
-    .then(parseJSON)
+  return ftch(baseUrl+companiesUrl, header());
 }
 
 export function createEvent(event) {
-  return fetch(`${baseUrl}${eventsUrl}`, {
+  return ftch(`${baseUrl}${eventsUrl}`, {
     headers: {
       ...authHeader(),
       ...jsonHeader(),
     },
     method: 'POST',
     body: JSON.stringify(event)
-  }).then(checkStatus)
-    .then(parseJSON)
+  });
 }
+
+export function fetchMissingForms(eventId) {
+  return ftch(`${baseUrl}${eventsUrl}/${eventId}/missing_forms`, header());
+}
+

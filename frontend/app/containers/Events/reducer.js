@@ -2,8 +2,7 @@
  *
  * Events reducer
  *
- */ import { fromJS, Map } from 'immutable';
-import {
+ */ import { fromJS, Map } from 'immutable'; import {
   GET_REQUEST,
   GET_SUCCESS,
   GET_ERROR,
@@ -13,6 +12,7 @@ import {
   UPDATE,
   GET_COMPANIES,
   CREATE_SUCCESS,
+  GET_MISSING_FORMS,
 } from './constants';
 
 const newEvent = {
@@ -55,6 +55,9 @@ function eventsReducer(state = initialState, action) {
     case CREATE_SUCCESS:
       const st = state.update('items', items => items.push(fromJS(action.data)));
       return st.set('newEvent', fromJS(newEvent));
+    case GET_MISSING_FORMS:
+      const index = state.get('items').findIndex(event => event.get('id') === action.id);
+      return state.updateIn(['items', index], event => event.merge(fromJS(action.data)));
     default:
       return state;
   }

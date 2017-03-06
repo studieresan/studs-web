@@ -30,7 +30,7 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
   }
 
   renderActions(user) {
-    if(!user || !user.permissions.includes('admin')) {
+    if(!user || !user.permissions.includes('event')) {
       return null;
     }
     return (
@@ -41,7 +41,7 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
   }
 
   renderEventsList(events, user) {
-    const items = events.map(e => <EventListItem key={e.id} event={e} />);
+    const items = events.map(e => <EventListItem key={e.id} event={e} user={user} />);
     return (
       <div className={styles.listContainer}>
         <div className={styles.list}>

@@ -11,12 +11,17 @@ import IndicatorIcon from '../IndicatorIcon';
 import styles from './styles.css';
 
 function EventListItem(props) {
-  const { event } = props;
+  const { event, user } = props;
   return (
     <Link to={`/events/${event.id}`}>
       <div className={styles.eventListItem}>
         <div>
-          <IndicatorIcon ok={event.beforeSurveyReplied} /><IndicatorIcon ok={event.afterSurveyReplied} />
+          { user && user.type === 'studs_member' ?
+            <span>
+              <IndicatorIcon ok={event.beforeSurveyReplied} /><IndicatorIcon ok={event.afterSurveyReplied} />
+            </span>
+          : null
+          }
           {event.companyName}
         </div>
         <div>{event.date}</div>

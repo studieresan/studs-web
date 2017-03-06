@@ -17,11 +17,11 @@ import IndicatorIcon from '../IndicatorIcon'; function EventDetail(props) {
     <div className={styles.eventDetail}>
       <div className={styles.head}>
         <h2><FormattedMessage {...messages.event} />: {event.companyName} - {event.date}</h2>
-        { user && user.permissions.includes('admin') ? 
+        { user && user.permissions.includes('event') ?
           <Link to={`/events/${event.id}/edit`} >
             <button className='btn-bright'>Edit</button>
           </Link>
-        : null 
+        : null
         }
       </div>
       <div className={styles.info}>
@@ -29,17 +29,20 @@ import IndicatorIcon from '../IndicatorIcon'; function EventDetail(props) {
           <h4>Company</h4>
           <div>{event.companyName}</div>
         </div>
-        <div>
-          <h4>Surveys</h4>
+        { user && user.type === 'studs_member' ?
           <div>
-            <IndicatorIcon ok={event.beforeSurveyReplied} />
-            <A target='_blank' href={event.beforeSurvey}><FormattedMessage {...messages.before} /></A>
+            <h4>Surveys</h4>
+            <div>
+              <IndicatorIcon ok={event.beforeSurveyReplied} />
+              <A target='_blank' href={event.beforeSurvey}><FormattedMessage {...messages.before} /></A>
+            </div>
+            <div>
+              <IndicatorIcon ok={event.afterSurveyReplied} />
+              <A target='_blank' href={event.afterSurvey}><FormattedMessage {...messages.after} /></A>
+            </div>
           </div>
-          <div>
-            <IndicatorIcon ok={event.afterSurveyReplied} />
-            <A target='_blank' href={event.afterSurvey}><FormattedMessage {...messages.after} /></A>
-          </div>
-        </div>
+        : null
+        }
       </div>
       <hr />
       <h2><FormattedMessage {...messages.description} /></h2>

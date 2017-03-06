@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301163823) do
+ActiveRecord::Schema.define(version: 20170306200425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20170301163823) do
     t.string   "after_form_url"
     t.uuid     "responsible_user_id"
     t.datetime "date"
+    t.string   "public_text"
+    t.string   "feedback_text"
   end
 
   create_table "resumes", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

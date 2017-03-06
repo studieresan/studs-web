@@ -58,7 +58,7 @@ class EventsController < ApplicationController
     event.destroy
   end
 
-  def users_missing_forms
+  def missing_forms
     if current_user.type_of_user == 'studs_member'
       event = Event.find(params[:id])
       lazy_before = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.before_forms.exists?(user_id: user.id) }.to_a

@@ -18,6 +18,14 @@ export default defineMessages({
     id: 'app.components.EventEdit.description',
     defaultMessage: 'Description',
   },
+  feedbackText: {
+    id: 'app.components.EventEdit.feedbackText',
+    defaultMessage: 'Feedback text',
+  },
+  publicText: {
+    id: 'app.components.EventEdit.publicText',
+    defaultMessage: 'Public text',
+  },
   location: {
     id: 'app.components.EventEdit.location',
     defaultMessage: 'Location',

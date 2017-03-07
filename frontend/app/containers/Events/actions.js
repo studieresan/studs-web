@@ -46,6 +46,8 @@ function fromBackend(e) {
     date: dateString || '',
     location: '',
     description: e.information || '',
+    publicText: e.public_text || '',
+    feedbackText: e.feedback_text || '',
     beforeSurvey: e.before_form_url || '',
     beforeSurveyId: e.before_form_id || '',
     beforeSurveyReplied: e.before_form_replied || false,
@@ -60,6 +62,7 @@ function toBackend(e) {
     company_id: e.company,
     date: new Date(e.date),
     information: e.description,
+    feedback_text: e.feedbackText, public_text: e.publicText,
     before_form_url: e.beforeSurvey, after_form_url: e.afterSurvey, before_form_id: e.beforeSurveyId, after_form_id: e.afterSurveyId,
   };
 }

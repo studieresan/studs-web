@@ -69,6 +69,18 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
           placeholder='Description'
           onChange={this.handleChange}
           value={event.description} />
+        <div className='input-label'><FormattedMessage {...messages.publicText} /></div>
+        <textarea
+          name='publicText'
+          placeholder='Public text'
+          onChange={this.handleChange}
+          value={event.publicText} />
+        <div className='input-label'><FormattedMessage {...messages.feedbackText} /></div>
+        <textarea
+          name='feedbackText'
+          placeholder='Feedback text'
+          onChange={this.handleChange}
+          value={event.feedbackText} />
         <div className='input-label'><FormattedMessage {...messages.beforeSurvey} /></div>
         <input
           name='beforeSurvey'

@@ -25,8 +25,21 @@ p {
 .container input {
 	font-family: 'Neuzeit S LT';
   display: block;
-  border: solid #000 1px;
+  border: 1px solid #000;
   padding: 6px;
+}
+
+.container select {
+	font-family: 'Neuzeit S LT';
+  display: block;
+}
+
+select:focus {
+  outline: none;
+}
+
+select:hover {
+  cursor: pointer;
 }
 
 input:focus {

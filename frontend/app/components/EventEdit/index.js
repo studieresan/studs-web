@@ -46,16 +46,18 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
           <button onClick={this.handleSave} className='btn-bright'>Save</button>
         </div>
         <div className='input-label'><FormattedMessage {...messages.company} /></div>
-        <select
-          name='company'
-          placeholder='Company'
-          value={event.company}
-          onChange={this.handleChange}>
-          <option key='none' value={null} disabled>Select company</option>
-          {companies && companies.map(c =>
-            <option key={c.id} value={c.id}>{c.name}</option>
-          )}
-        </select>
+        <div className={styles.selectContainer}>
+          <select
+            name='company'
+            placeholder='Company'
+            value={event.company}
+            onChange={this.handleChange}>
+            <option key='none' value={null} disabled>Select company</option>
+            {companies && companies.map(c =>
+              <option key={c.id} value={c.id}>{c.name}</option>
+            )}
+          </select>
+        </div>
         <div className='input-label'><FormattedMessage {...messages.date} /></div>
         <Cleave
           name='date'

@@ -75,19 +75,23 @@ class EventsController < ApplicationController
       event = Event.find(params[:id])
       lazy_before = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.before_forms.exists?(user_id: user.id) }.to_a
       recipients = lazy_before.map(&:slack_id)
-      recipients.push(current_user.slack_id)
-      users = recipients.join(',')
+      groups = (recipients.length / 7.0).ceil
+      groups.times do
+        recipients.push(current_user.slack_id)
+        users = recipients.join(',')
+        uri = URI.parse("https://slack.com/api/mpim.open")
+        params = {"token" => File.open(Rails.root + '/drive/slack_token').read, "users" => users}
+        response = Net::HTTP.post_form(uri, params)
+        response = JSON.parse(response.body)
+        channel = response["group"]["id"]
 
-      uri = URI.parse("https://slack.com/api/mpim.open")
-      params = {"token" => File.open(Rails.root + '/drive/slack_token').read, "users" => users}
-      response = Net::HTTP.post_form(uri, params)
-      response = JSON.parse(response.body)
-      channel = response["group"]["id"]
+        text = "Du har inte fyllt i före-formuläret för eventet hos " + event.company.name + ". Här hittar du enkäten: " + event.before_form_url
+        uri = URI.parse("https://slack.com/api/chat.postMessage")
+        params = {"token" => File.open(Rails.root + 'slack_token').read, "channel" => channel, "text" => text}
+        response = Net::HTTP.post_form(uri, params)
 
-      text = "Du har inte fyllt i före-formuläret för eventet hos " + event.company.name + ". Här hittar du enkäten: " + event.before_form_url
-      uri = URI.parse("https://slack.com/api/chat.postMessage")
-      params = {"token" => File.open(Rails.root + 'slack_token').read, "channel" => channel, "text" => text}
-      response = Net::HTTP.post_form(uri, params)
+        recipients.drop(7)
+      end
     end
   end
 
@@ -96,19 +100,24 @@ class EventsController < ApplicationController
       event = Event.find(params[:id])
       lazy_after = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.after_forms.exists?(user_id: user.id) }.to_a
       recipients = lazy_after.map(&:slack_id)
-      recipients.push(current_user.slack_id)
-      users = recipients.join(',')
+      groups = (recipients.length / 7.0).ceil
+      groups.times do
+        recipients.push(current_user.slack_id)
+        users = recipients.join(',')
 
-      uri = URI.parse("https://slack.com/api/mpim.open")
-      params = {"token" => File.open(Rails.root + '/drive/slack_token').read, "users" => users}
-      response = Net::HTTP.post_form(uri, params)
-      response = JSON.parse(response.body)
-      channel = response["group"]["id"]
+        uri = URI.parse("https://slack.com/api/mpim.open")
+        params = {"token" => File.open(Rails.root + '/drive/slack_token').read, "users" => users}
+        response = Net::HTTP.post_form(uri, params)
+        response = JSON.parse(response.body)
+        channel = response["group"]["id"]
 
-      text = "Du har inte fyllt i efter-formuläret för eventet hos " + event.company.name + ". Här hittar du enkäten: " + event.after_form_url
-      uri = URI.parse("https://slack.com/api/chat.postMessage")
-      params = {"token" => File.open(Rails.root + 'slack_token').read, "channel" => channel, "text" => text}
-      response = Net::HTTP.post_form(uri, params)
+        text = "Du har inte fyllt i efter-formuläret för eventet hos " + event.company.name + ". Här hittar du enkäten: " + event.after_form_url
+        uri = URI.parse("https://slack.com/api/chat.postMessage")
+        params = {"token" => File.open(Rails.root + 'slack_token').read, "channel" => channel, "text" => text}
+        response = Net::HTTP.post_form(uri, params)
+
+        recipients.drop(7)
+      end
     end
   end
 

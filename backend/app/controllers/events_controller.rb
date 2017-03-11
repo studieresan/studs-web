@@ -80,9 +80,9 @@ class EventsController < ApplicationController
         slice = recipients[0 .. 6]
         slice.push(current_user.slack_id)
         users = slice.join(',')
-        
+
         uri = URI.parse("https://slack.com/api/mpim.open")
-        path = File.join Rails.root, 'drive', 'slack_token'
+        path = File.join 'drive', 'slack_token'
         params = {"token" => File.open(path).read, "users" => users}
         response = Net::HTTP.post_form(uri, params)
         response = JSON.parse(response.body)
@@ -110,7 +110,7 @@ class EventsController < ApplicationController
         users = slice.join(',')
 
         uri = URI.parse("https://slack.com/api/mpim.open")
-        path = File.join Rails.root, 'drive', 'slack_token'
+        path = File.join 'drive', 'slack_token'
         params = {"token" => File.open(path).read, "users" => users}
         response = Net::HTTP.post_form(uri, params)
         response = JSON.parse(response.body)

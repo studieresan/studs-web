@@ -22,4 +22,8 @@ export default defineMessages({
     id: 'app.components.EventDetail.after',
     defaultMessage: 'After',
   },
+  missing: {
+    id: 'app.components.EventDetail.missing',
+    defaultMessage: 'Missing Surveys',
+  },
 });

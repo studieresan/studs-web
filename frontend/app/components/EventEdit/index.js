@@ -52,7 +52,7 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
           value={event.company}
           onChange={this.handleChange}>
           <option key='none' value={null} disabled>Select company</option>
-          {companies.map(c => 
+          {companies && companies.map(c =>
             <option key={c.id} value={c.id}>{c.name}</option>
           )}
         </select>
@@ -69,6 +69,18 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
           placeholder='Description'
           onChange={this.handleChange}
           value={event.description} />
+        <div className='input-label'><FormattedMessage {...messages.publicText} /></div>
+        <textarea
+          name='publicText'
+          placeholder='Public text'
+          onChange={this.handleChange}
+          value={event.publicText} />
+        <div className='input-label'><FormattedMessage {...messages.feedbackText} /></div>
+        <textarea
+          name='feedbackText'
+          placeholder='Feedback text'
+          onChange={this.handleChange}
+          value={event.feedbackText} />
         <div className='input-label'><FormattedMessage {...messages.beforeSurvey} /></div>
         <input
           name='beforeSurvey'

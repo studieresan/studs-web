@@ -7,7 +7,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     if current_user.type_of_user == 'studs_member'
-      events = Event.all
+      events = Event.all.order(date: :asc)
       events.map do |e|
         e.before_form_replied = current_user.before_form.exists?(event_id: e.id)
         e.after_form_replied = current_user.after_form.exists?(event_id: e.id)
@@ -62,9 +62,9 @@ class EventsController < ApplicationController
   def missing_forms
     if current_user.type_of_user == 'studs_member'
       event = Event.find(params[:id])
-      lazy_before = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.before_forms.exists?(user_id: user.id) }.to_a
+      lazy_before = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.before_forms.exists?(user_id: user.id) }.map { |user| UserSerializer.new(user) }.to_a
 
-      lazy_after = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.after_forms.exists?(user_id: user.id) }.to_a
+      lazy_after = User.where(type_of_user: 'studs_member', enabled: true).reject { |user| event.after_forms.exists?(user_id: user.id) }.map { |user| UserSerializer.new(user) }.to_a
 
       render json: {before: lazy_before, after: lazy_after}
     end
@@ -115,6 +115,6 @@ class EventsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:schedule, :information, :company, :before_form_id, :after_form_id, :company_id, :before_form_url, :after_form_url, :responsible_user_id, :date)
+      params.require(:event).permit(:schedule, :information, :company, :before_form_id, :after_form_id, :company_id, :before_form_url, :after_form_url, :responsible_user_id, :date, :feedback_text, :public_text)
     end
 end

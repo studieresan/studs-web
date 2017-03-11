@@ -2,7 +2,16 @@
  *
  * Events actions
  */
-import { createEvent, updateEvent, fetchEvents, fetchCompanies, fetchUserEventForms } from '../../api';
+import {
+  createEvent,
+  updateEvent,
+  fetchEvents,
+  fetchCompanies,
+  fetchUserEventForms,
+  fetchMissingForms,
+  notifyBefore,
+  notifyAfter,
+} from '../../api';
 import { browserHistory } from 'react-router';
 import {
   UPDATE,
@@ -16,8 +25,47 @@ import {
   CREATE_SUCCESS,
   CREATE_ERROR,
   GET_COMPANIES,
-  GET_USER_EVENT_FORMS,
+  GET_MISSING_FORMS,
+  REMINDED_BEFORE,
+  REMINDED_AFTER,
 } from './constants';
+
+function fromBackend(e) {
+  let dateString;
+  if(e.date) {
+    const date = new Date(e.date);
+    const month = date.getMonth()+1;
+    const day = date.getDate();
+    dateString = `${date.getFullYear()}/${month < 10 ? '0' + month : month}/${day < 10 ? '0' + day : day}`;
+  }
+  return {
+    id: e.id,
+    companyName: e.company.name || '',
+    company: e.company.id,
+    contact: '',
+    date: dateString || '',
+    location: '',
+    description: e.information || '',
+    publicText: e.public_text || '',
+    feedbackText: e.feedback_text || '',
+    beforeSurvey: e.before_form_url || '',
+    beforeSurveyId: e.before_form_id || '',
+    beforeSurveyReplied: e.before_form_replied || false,
+    afterSurvey: e.after_form_url || '',
+    afterSurveyId: e.after_form_id || '',
+    afterSurveyReplied: e.after_form_replied || false,
+  };
+}
+
+function toBackend(e) {
+  return {
+    company_id: e.company,
+    date: new Date(e.date),
+    information: e.description,
+    feedback_text: e.feedbackText, public_text: e.publicText,
+    before_form_url: e.beforeSurvey, after_form_url: e.afterSurvey, before_form_id: e.beforeSurveyId, after_form_id: e.afterSurveyId,
+  };
+}
 
 export function update(event, id) {
   return {
@@ -37,28 +85,8 @@ export function getSuccess(data) {
   return {
     type: GET_SUCCESS,
     data: data.events.map(e => {
-      let dateString;
-      if(e.date) {
-        const date = new Date(e.date);
-        const month = date.getMonth()+1;
-        const day = date.getDate();
-        dateString = `${date.getFullYear()}/${month < 10 ? '0' + month : month}/${day < 10 ? '0' + day : day}`;
-      }
-      return {
-        id: e.id,
-        companyName: e.company.name || '',
-        company: e.company.id,
-        contact: '',
-        date: dateString || '',
-        location: '',
-        description: e.information || '',
-        beforeSurvey: e.before_form_url || '',
-        beforeSurveyId: e.before_form_id || '',
-        beforeSurveyReplied: e.before_form_replied || false,
-        afterSurvey: e.after_form_url || '',
-        afterSurveyId: e.after_form_id || '',
-        afterSurveyReplied: e.after_form_replied || false,
-    }}),
+      return fromBackend(e);
+    }),
   };
 }
 
@@ -98,15 +126,7 @@ export function saveError(err) {
 }
 
 export const save = e => dispatch => {
-  const data = {
-    company_id: e.company,
-    date: new Date(e.date),
-    information: e.description,
-    before_form_url: e.beforeSurvey,
-    after_form_url: e.afterSurvey,
-    before_form_id: e.beforeSurveyId,
-    after_form_id: e.afterSurveyId,
-  };
+  const data = toBackend(e);
   dispatch(saveRequest());
   updateEvent(e.id, data)
     .then(() => dispatch(saveSuccess(e.id)))
@@ -120,29 +140,7 @@ export function createRequest() {
 }
 
 export function createSuccess(event) {
-  const e = event.event;
-  let dateString;
-  if(e.date) {
-    const date = new Date(e.date);
-    const month = date.getMonth()+1;
-    const day = date.getDate();
-    dateString = `${date.getFullYear()}/${month < 10 ? '0' + month : month}/${day < 10 ? '0' + day : day}`;
-  }
-  const data = {
-    id: e.id,
-    companyName: e.company.name || '',
-    company: e.company.id,
-    contact: '',
-    date: dateString || '',
-    location: '',
-    description: e.information || '',
-    beforeSurvey: e.before_form_url || '',
-    beforeSurveyId: e.before_form_id || '',
-    beforeSurveyReplied: e.before_form_replied || false,
-    afterSurvey: e.after_form_url || '',
-    afterSurveyId: e.after_form_id || '',
-    afterSurveyReplied: e.after_form_replied || false,
-  };
+  const data = fromBackend(e);
   browserHistory.push('/events/' + e.id);
   return {
     type: CREATE_SUCCESS,
@@ -158,15 +156,7 @@ export function createError(err) {
 }
 
 export const create = e => dispatch => {
-  const data = {
-    company_id: e.company,
-    date: new Date(e.date),
-    information: e.description,
-    before_form_url: e.beforeSurvey,
-    after_form_url: e.afterSurvey,
-    before_form_id: e.beforeSurveyId,
-    after_form_id: e.afterSurveyId,
-  };
+  const data = toBackend(e);
   dispatch(createRequest());
   createEvent(data)
     .then(data => dispatch(createSuccess(data)))
@@ -179,5 +169,35 @@ export const getCompanies = () => dispatch => {
       type: GET_COMPANIES,
       data: data.companies,
     }))
+    .catch(err => console.log(err))
+}
+
+export const getMissingForms = eventId => dispatch => {
+  return fetchMissingForms(eventId)
+    .then(data => dispatch({
+      type: GET_MISSING_FORMS,
+      id: eventId,
+      data: data,
+    }))
+    .catch(err => console.log(err));
+}
+
+export const remindBefore = eventId => dispatch => {
+  dispatch({
+    type: REMINDED_BEFORE,
+    id: eventId,
+  })
+  return notifyBefore(eventId)
+    .then(() => console.log('reminded before'))
+    .catch(err => console.log(err))
+}
+
+export const remindAfter = eventId => dispatch => {
+  dispatch({
+    type: REMINDED_AFTER,
+    id: eventId,
+  })
+  return notifyAfter(eventId)
+    .then(() => console.log('reminded after'))
     .catch(err => console.log(err))
 }

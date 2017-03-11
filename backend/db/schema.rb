@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20170306191443) do
     t.string   "after_form_url"
     t.uuid     "responsible_user_id"
     t.datetime "date"
+    t.string   "public_text"
+    t.string   "feedback_text"
   end
 
   create_table "resumes", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -80,6 +82,7 @@ ActiveRecord::Schema.define(version: 20170306191443) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.string   "slack_id"
+
   end
 
 end

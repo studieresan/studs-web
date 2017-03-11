@@ -22,6 +22,20 @@
 	margin-top: 60px;
 }
 
+.report {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-bottom: -100px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.report > h1 > span {
+	display: block;
+	text-align: right;
+	margin-right: 1rem;
+}
 
 @media (max-width: 768px) {
 	.section {
@@ -51,6 +65,10 @@
 		height: 100%;
 		background: #ccc;
 		opacity: 0.3;
+	}
+
+	.report > a > img {
+		width: 400px;
 	}
 }
 
@@ -88,6 +106,10 @@
 	.overlay {
 		position:relative;
 	}
+
+	.report > a > img {
+		width: 600px;
+	}
 }
 
 
@@ -102,12 +124,14 @@
 	color: white;
 }
 
+
+
 .contact {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 	background: #6d6b6e;
-	padding: 60px;
+	padding: 120px;
 }
 
 .contact > div {

@@ -1,11 +1,13 @@
 .eventEdit { /* stylelint-disable */
   padding: 30px;
-
+  height: 100%;
+  overflow: auto;
 }
 
 .head {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .head > h2 {
@@ -13,6 +15,9 @@
   letter-spacing: 2px;
 }
 
+.eventEdit input {
+  width: 300px;
+}
 .eventEdit textarea {
   border: 1px solid black;
   padding: 6px;
@@ -21,4 +26,10 @@
 
 .eventEdit textarea:focus {
   outline: none;
+}
+
+.selectContainer {
+  border: 1px solid black;
+  padding: 5px;
+  width: fit-content;
 }

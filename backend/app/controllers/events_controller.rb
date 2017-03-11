@@ -77,8 +77,10 @@ class EventsController < ApplicationController
       recipients = lazy_before.map(&:slack_id)
       groups = (recipients.length / 7.0).ceil
       groups.times do
-        recipients.push(current_user.slack_id)
-        users = recipients.join(',')
+        slice = recipients[0 .. 6]
+        slice.push(current_user.slack_id)
+        users = slice.join(',')
+        
         uri = URI.parse("https://slack.com/api/mpim.open")
         path = File.join Rails.root, 'drive', 'slack_token'
         params = {"token" => File.open(path).read, "users" => users}
@@ -103,8 +105,9 @@ class EventsController < ApplicationController
       recipients = lazy_after.map(&:slack_id)
       groups = (recipients.length / 7.0).ceil
       groups.times do
-        recipients.push(current_user.slack_id)
-        users = recipients.join(',')
+        slice = recipients[0 .. 6]
+        slice.push(current_user.slack_id)
+        users = slice.join(',')
 
         uri = URI.parse("https://slack.com/api/mpim.open")
         path = File.join Rails.root, 'drive', 'slack_token'

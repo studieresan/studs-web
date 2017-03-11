@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   get '/users/missing_before_forms', to: 'users#missing_before_forms'
   get '/users/missing_after_forms', to: 'users#missing_after_forms'
   get '/events/:id/missing_forms', to: 'events#missing_forms'
-  get '/events/:id/remind_before', to: 'events#remind_before'
-  get '/events/:id/remind_after', to: 'events#remind_after'
+  get '/events/:id/notify_before', to: 'events#remind_before'
+  get '/events/:id/notify_after', to: 'events#remind_after'
 
   resources :users do
     get '/resume', to: 'resumes#show'

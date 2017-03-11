@@ -80,17 +80,18 @@ class EventsController < ApplicationController
         recipients.push(current_user.slack_id)
         users = recipients.join(',')
         uri = URI.parse("https://slack.com/api/mpim.open")
-        params = {"token" => File.open(Rails.root + '/drive/slack_token').read, "users" => users}
+        path = File.join Rails.root, 'drive', 'slack_token'
+        params = {"token" => File.open(path).read, "users" => users}
         response = Net::HTTP.post_form(uri, params)
         response = JSON.parse(response.body)
         channel = response["group"]["id"]
 
         text = "Du har inte fyllt i före-formuläret för eventet hos " + event.company.name + ". Här hittar du enkäten: " + event.before_form_url
         uri = URI.parse("https://slack.com/api/chat.postMessage")
-        params = {"token" => File.open(Rails.root + 'slack_token').read, "channel" => channel, "text" => text}
+        params = {"token" => File.open(path).read, "channel" => channel, "text" => text}
         response = Net::HTTP.post_form(uri, params)
 
-        recipients.drop(7)
+        recipients = recipients.drop(7)
       end
     end
   end
@@ -106,17 +107,18 @@ class EventsController < ApplicationController
         users = recipients.join(',')
 
         uri = URI.parse("https://slack.com/api/mpim.open")
-        params = {"token" => File.open(Rails.root + '/drive/slack_token').read, "users" => users}
+        path = File.join Rails.root, 'drive', 'slack_token'
+        params = {"token" => File.open(path).read, "users" => users}
         response = Net::HTTP.post_form(uri, params)
         response = JSON.parse(response.body)
         channel = response["group"]["id"]
 
         text = "Du har inte fyllt i efter-formuläret för eventet hos " + event.company.name + ". Här hittar du enkäten: " + event.after_form_url
         uri = URI.parse("https://slack.com/api/chat.postMessage")
-        params = {"token" => File.open(Rails.root + 'slack_token').read, "channel" => channel, "text" => text}
+        params = {"token" => File.open(path).read, "channel" => channel, "text" => text}
         response = Net::HTTP.post_form(uri, params)
 
-        recipients.drop(7)
+        recipients = recipients.drop(7)
       end
     end
   end

@@ -139,7 +139,7 @@ export function createRequest() {
   };
 }
 
-export function createSuccess(event) {
+export function createSuccess(e) {
   const data = fromBackend(e);
   browserHistory.push('/events/' + e.id);
   return {

@@ -40,8 +40,8 @@ function fromBackend(e) {
   }
   return {
     id: e.id,
-    companyName: e.company.name || '',
-    company: e.company.id,
+    companyName: e.company ? e.company.name : '',
+    company: e.company ? e.company.id : '',
     contact: '',
     date: dateString || '',
     location: '',
@@ -140,8 +140,8 @@ export function createRequest() {
 }
 
 export function createSuccess(e) {
-  const data = fromBackend(e);
-  browserHistory.push('/events/' + e.id);
+  const data = fromBackend(e.event);
+  browserHistory.push('/events/' + data.id);
   return {
     type: CREATE_SUCCESS,
     data: data,

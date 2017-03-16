@@ -1,4 +1,11 @@
 class UserEventFormsController < ApplicationController
+  has_attached_file :picture_1
+  has_attached_file :picture_2
+  has_attached_file :picture_3
+  validates_attachment_content_type :picture_1, content_type: /\Aimage\/.*\z/
+  validates_attachment_content_type :picture_2, content_type: /\Aimage\/.*\z/
+  validates_attachment_content_type :picture_3, content_type: /\Aimage\/.*\z/
+
   before_action :authenticate
 
   def index

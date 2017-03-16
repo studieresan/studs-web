@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170306191443) do
+ActiveRecord::Schema.define(version: 20170316181553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20170306191443) do
   create_table "events", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "schedule"
     t.string   "information"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "before_form_id"
     t.string   "after_form_id"
     t.uuid     "company_id"
@@ -44,6 +44,18 @@ ActiveRecord::Schema.define(version: 20170306191443) do
     t.datetime "date"
     t.string   "public_text"
     t.string   "feedback_text"
+    t.string   "picture_1_file_name"
+    t.string   "picture_1_content_type"
+    t.integer  "picture_1_file_size"
+    t.datetime "picture_1_updated_at"
+    t.string   "picture_2_file_name"
+    t.string   "picture_2_content_type"
+    t.integer  "picture_2_file_size"
+    t.datetime "picture_2_updated_at"
+    t.string   "picture_3_file_name"
+    t.string   "picture_3_content_type"
+    t.integer  "picture_3_file_size"
+    t.datetime "picture_3_updated_at"
   end
 
   create_table "resumes", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -82,7 +94,7 @@ ActiveRecord::Schema.define(version: 20170306191443) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.string   "slack_id"
-
+    t.uuid     "company_id"
   end
 
 end

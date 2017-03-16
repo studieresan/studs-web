@@ -86,7 +86,7 @@ class EventDetail extends Component {
         </div>
         <hr />
         <h2><FormattedMessage {...messages.description} /></h2>
-        <div>{event.description}</div>
+        <div className={styles.text}>{event.description}</div>
         { user && user.permissions.includes('event_missing') && (before && before.length || after && after.length) ?
           <div>
             <hr />

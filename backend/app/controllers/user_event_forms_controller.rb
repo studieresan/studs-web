@@ -6,7 +6,7 @@ class UserEventFormsController < ApplicationController
   validates_attachment_content_type :picture_2, content_type: /\Aimage\/.*\z/
   validates_attachment_content_type :picture_3, content_type: /\Aimage\/.*\z/
 
-  before_action :authenticate
+  before_action :authenticate, except: [:create]
 
   def index
     render json: UserEventForm.all

@@ -1,12 +1,12 @@
 require 'google_drive'
 
 class UserEventForm < ApplicationRecord
-  has_attached_file :picture_1
-  has_attached_file :picture_2
-  has_attached_file :picture_3
-  validates_attachment_content_type :picture_1, content_type: /\Aimage\/.*\z/
-  validates_attachment_content_type :picture_2, content_type: /\Aimage\/.*\z/
-  validates_attachment_content_type :picture_3, content_type: /\Aimage\/.*\z/
+  # has_attached_file :picture_1
+  # has_attached_file :picture_2
+  # has_attached_file :picture_3
+  # validates_attachment_content_type :picture_1, content_type: /\Aimage\/.*\z/
+  # validates_attachment_content_type :picture_2, content_type: /\Aimage\/.*\z/
+  # validates_attachment_content_type :picture_3, content_type: /\Aimage\/.*\z/
 
   belongs_to :user
   belongs_to :event

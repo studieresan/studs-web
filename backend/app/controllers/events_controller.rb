@@ -82,7 +82,7 @@ class EventsController < ApplicationController
         users = slice.join(',')
 
         uri = URI.parse("https://slack.com/api/mpim.open")
-        path = File.join 'drive', 'slack_token'
+        path = File.join '/drive', 'slack_token'
         params = {"token" => File.open(path).read, "users" => users}
         response = Net::HTTP.post_form(uri, params)
         response = JSON.parse(response.body)

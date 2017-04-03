@@ -75,7 +75,7 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
     if(params.id) {
       const event = events.items.find(e => e.id == params.id);
       if(route.name === 'events/edit') {
-        detail = <EventEdit event={event} companies={events.companies} update={update} save={save} />;
+        detail = <EventEdit event={event} companies={events.companies} update={update} save={save} saving={events.saving} />;
       } else {
         detail = <EventDetail
           event={event}
@@ -87,7 +87,7 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
       }
       detailSelected = true;
     } else if(route.name === 'events/new') {
-      detail = <EventEdit event={events.newEvent} companies={events.companies} create={create} update={update} save={save} />
+      detail = <EventEdit event={events.newEvent} companies={events.companies} create={create} update={update} save={save} saving={events.saving} />
       detailSelected = true;
     } else {
       detail = <EventStaticDetail />

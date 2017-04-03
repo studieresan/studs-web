@@ -35,7 +35,7 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
   }
 
   render() {
-    const { event, companies } = this.props;
+    const { event, companies, saving } = this.props;
     if(!event) {
       return null;
     }
@@ -43,7 +43,9 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
       <div className={styles.eventEdit}>
         <div className={styles.head}>
           <h2>Event: {event.companyName} - {event.date}</h2>
-          <button onClick={this.handleSave} className='btn-bright'>Save</button>
+          { !saving &&
+            <button onClick={this.handleSave} className='btn-bright'>Save</button>
+          }
         </div>
         <div className='input-label'><FormattedMessage {...messages.company} /></div>
         <div className={styles.selectContainer}>

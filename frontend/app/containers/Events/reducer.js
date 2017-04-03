@@ -11,6 +11,7 @@
   SAVE_ERROR,
   UPDATE,
   GET_COMPANIES,
+  CREATE_REQUEST,
   CREATE_SUCCESS,
   GET_MISSING_FORMS,
   REMINDED_BEFORE,
@@ -34,6 +35,7 @@ const initialState = fromJS({
   companies: [],
   newEvent: newEvent,
   saved: true,
+  saving: false,
 });
 
 function eventsReducer(state = initialState, action) {
@@ -55,9 +57,17 @@ function eventsReducer(state = initialState, action) {
       return s.merge(Map({saved: false}));
     case GET_COMPANIES:
       return state.set('companies', fromJS(action.data));
+    case SAVE_REQUEST:
+    case CREATE_REQUEST:
+      return state.set('saving', true);
     case CREATE_SUCCESS:
       const st = state.update('items', items => items.push(fromJS(action.data)));
-      return st.set('newEvent', fromJS(newEvent));
+      return st.merge(fromJS({
+        newEvent: newEvent,
+        saving: false,
+      }));
+    case SAVE_SUCCESS:
+      return state.set('saving', false);
     case GET_MISSING_FORMS:
       index = state.get('items').findIndex(event => event.get('id') === action.id);
       return state.updateIn(['items', index], event => event.merge(fromJS(action.data)));

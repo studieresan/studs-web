@@ -20,26 +20,21 @@ class UserEventForm < ApplicationRecord
     spreadsheets = session.spreadsheets(q: query)
 
     spreadsheets.each do |file|
-      event_id = Event.where(after_form_id: file.key).first
+      event_id = Event.where(after_form_id: file.key).first.id
+      type = "after"
       if event_id.blank?
-        event_id = Event.where(before_form_id: file.key).first
+        event_id = Event.where(before_form_id: file.key).first.id
+        type = "before"
       end
 
       if event_id.present?
-        event_id = event_id.id
         rows = file.worksheets.first.rows
-        if (rows[0].length > 6)
-          type = "after"
-        elsif (rows[0].length == 4)
-          type = "before"
-        end
         rows.each_with_index do |row, i|
           next if i == 0 || row[0].nil?
           next if row[1].blank?
           first_name = row[1].split(/\s+/).first
-          user_id = User.where(type_of_user: 'studs_member').where(first_name: first_name).first
+          user_id = User.where(type_of_user: 'studs_member').where(first_name: first_name).first.id
           if user_id.present?
-            user_id = user_id.id
             content = row.to_json
             next if UserEventForm.exists?(user_id: user_id, event_id: event_id, type_of_form: type)
             UserEventForm.create(user_id: user_id, event_id: event_id, type_of_form: type, content: content)

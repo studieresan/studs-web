@@ -14,6 +14,10 @@ export default defineMessages({
     id: 'app.components.EventDetail.description',
     defaultMessage: 'Description',
   },
+  feedback: {
+    id: 'app.components.EventDetail.feedback',
+    defaultMessage: 'Feedback',
+  },
   before: {
     id: 'app.components.EventDetail.before',
     defaultMessage: 'Before',

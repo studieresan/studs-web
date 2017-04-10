@@ -36,7 +36,7 @@ class EventsController < ApplicationController
     event = Event.new(event_params)
 
     if event.save
-      render json: events
+      render json: event
     else
       render json: { error: '' }, status: 403
     end
@@ -110,7 +110,7 @@ class EventsController < ApplicationController
         users = slice.join(',')
 
         uri = URI.parse("https://slack.com/api/mpim.open")
-        path = File.join 'drive', 'slack_token'
+        path = File.join '/drive', 'slack_token'
         params = {"token" => File.open(path).read, "users" => users}
         response = Net::HTTP.post_form(uri, params)
         response = JSON.parse(response.body)
@@ -129,6 +129,6 @@ class EventsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:schedule, :information, :company, :before_form_id, :after_form_id, :company_id, :before_form_url, :after_form_url, :responsible_user_id, :date, :feedback_text, :public_text)
+      params.require(:event).permit(:schedule, :information, :company, :before_form_id, :after_form_id, :company_id, :before_form_url, :after_form_url, :responsible_user_id, :date, :feedback_text, :public_text, :picture_1, :picture_2, :picture_3)
     end
 end

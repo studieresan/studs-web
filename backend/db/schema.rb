@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20170410185132) do
   create_table "events", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "schedule"
     t.string   "information"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "before_form_id"
     t.string   "after_form_id"
     t.uuid     "company_id"
@@ -44,6 +44,18 @@ ActiveRecord::Schema.define(version: 20170410185132) do
     t.datetime "date"
     t.string   "public_text"
     t.string   "feedback_text"
+    t.string   "picture_1_file_name"
+    t.string   "picture_1_content_type"
+    t.integer  "picture_1_file_size"
+    t.datetime "picture_1_updated_at"
+    t.string   "picture_2_file_name"
+    t.string   "picture_2_content_type"
+    t.integer  "picture_2_file_size"
+    t.datetime "picture_2_updated_at"
+    t.string   "picture_3_file_name"
+    t.string   "picture_3_content_type"
+    t.integer  "picture_3_file_size"
+    t.datetime "picture_3_updated_at"
   end
 
   create_table "formdata", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

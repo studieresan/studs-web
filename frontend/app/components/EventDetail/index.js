@@ -6,6 +6,8 @@
 
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl'; import { Link } from 'react-router'; import messages from './messages';
+import Markdown from 'react-markdown';
+
 import styles from './styles.css';
 import A from '../A';
 import IndicatorIcon from '../IndicatorIcon';
@@ -84,9 +86,20 @@ class EventDetail extends Component {
           : null
           }
         </div>
-        <hr />
-        <h2><FormattedMessage {...messages.description} /></h2>
-        <div>{event.description}</div>
+        { event.description &&
+          <div>
+            <hr />
+            <h2><FormattedMessage {...messages.description} /></h2>
+            <Markdown source={event.description}/>
+          </div>
+        }
+        { event.feedbackText &&
+          <div>
+            <hr />
+            <h2><FormattedMessage {...messages.feedback} /></h2>
+            <Markdown source={event.feedbackText}/>
+          </div>
+        }
         { user && user.permissions.includes('event_missing') && (before && before.length || after && after.length) ?
           <div>
             <hr />

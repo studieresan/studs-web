@@ -10,6 +10,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import styles from './styles.css';
 import Cleave from 'cleave.js/dist/cleave-react';
+import Textarea from 'react-textarea-autosize';
 
 class EventEdit extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -35,7 +36,7 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
   }
 
   render() {
-    const { event, companies } = this.props;
+    const { event, companies, saving } = this.props;
     if(!event) {
       return null;
     }
@@ -43,7 +44,9 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
       <div className={styles.eventEdit}>
         <div className={styles.head}>
           <h2>Event: {event.companyName} - {event.date}</h2>
-          <button onClick={this.handleSave} className='btn-bright'>Save</button>
+          { !saving &&
+            <button onClick={this.handleSave} className='btn-bright'>Save</button>
+          }
         </div>
         <div className='input-label'><FormattedMessage {...messages.company} /></div>
         <div className={styles.selectContainer}>
@@ -66,19 +69,19 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
           onChange={this.handleChange}
           options={{ date: true, datePattern: ['Y', 'm', 'd']}} />
         <div className='input-label'><FormattedMessage {...messages.description} /></div>
-        <textarea
+        <Textarea
           name='description'
           placeholder='Description'
           onChange={this.handleChange}
           value={event.description} />
         <div className='input-label'><FormattedMessage {...messages.publicText} /></div>
-        <textarea
+        <Textarea
           name='publicText'
           placeholder='Public text'
           onChange={this.handleChange}
           value={event.publicText} />
         <div className='input-label'><FormattedMessage {...messages.feedbackText} /></div>
-        <textarea
+        <Textarea
           name='feedbackText'
           placeholder='Feedback text'
           onChange={this.handleChange}

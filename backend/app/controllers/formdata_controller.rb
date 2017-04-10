@@ -9,7 +9,7 @@ class FormdataController < ApplicationController
     before_interest = Array.new
     after_interest = Array.new
     qualified = Array.new
-    session = GoogleDrive::Session.from_service_account_key("drive/Studs2017-2dfe95d93af7.json")
+    session = GoogleDrive::Session.from_service_account_key("/drive/Studs2017-2dfe95d93af7.json")
     spreadsheet = session.file_by_id(event.before_form_id)
     rows = spreadsheet.worksheets.first.rows
     rows.each_with_index do |row, i|

@@ -10,6 +10,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import styles from './styles.css';
 import Cleave from 'cleave.js/dist/cleave-react';
+import Textarea from 'react-textarea-autosize';
 
 class EventEdit extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -68,19 +69,19 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
           onChange={this.handleChange}
           options={{ date: true, datePattern: ['Y', 'm', 'd']}} />
         <div className='input-label'><FormattedMessage {...messages.description} /></div>
-        <textarea
+        <Textarea
           name='description'
           placeholder='Description'
           onChange={this.handleChange}
           value={event.description} />
         <div className='input-label'><FormattedMessage {...messages.publicText} /></div>
-        <textarea
+        <Textarea
           name='publicText'
           placeholder='Public text'
           onChange={this.handleChange}
           value={event.publicText} />
         <div className='input-label'><FormattedMessage {...messages.feedbackText} /></div>
-        <textarea
+        <Textarea
           name='feedbackText'
           placeholder='Feedback text'
           onChange={this.handleChange}

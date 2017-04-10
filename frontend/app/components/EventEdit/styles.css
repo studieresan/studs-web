@@ -16,12 +16,15 @@
 }
 
 .eventEdit input {
-  width: 300px;
+  width: 100%;
+  max-width: 500px;
 }
+
 .eventEdit textarea {
   border: 1px solid black;
   padding: 6px;
-  width: 300px;
+  width: 100%;
+  max-width: 500px;
 }
 
 .eventEdit textarea:focus {

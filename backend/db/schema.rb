@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170306191443) do
+ActiveRecord::Schema.define(version: 20170410185132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,14 @@ ActiveRecord::Schema.define(version: 20170306191443) do
     t.datetime "date"
     t.string   "public_text"
     t.string   "feedback_text"
+  end
+
+  create_table "formdata", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid   "event_id"
+    t.string "knowdoes",        default: [], array: true
+    t.string "before_interest", default: [], array: true
+    t.string "after_interest",  default: [], array: true
+    t.string "qualified",       default: [], array: true
   end
 
   create_table "resumes", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -82,7 +90,7 @@ ActiveRecord::Schema.define(version: 20170306191443) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.string   "slack_id"
-
+    t.uuid     "company_id"
   end
 
 end

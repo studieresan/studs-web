@@ -8,14 +8,15 @@ Rails.application.routes.draw do
   get '/events/:id/missing_forms', to: 'events#missing_forms'
   get '/events/:id/notify_before', to: 'events#remind_before'
   get '/events/:id/notify_after', to: 'events#remind_after'
+  get '/events/:id/import_formdata', to:'formdata#import_data'
 
   resources :users do
     get '/resume', to: 'resumes#show'
     patch '/resume', to: 'resumes#update'
   end
 
+  
   resources :users
-
   resources :events
   resources :companies
   resources :user_event_forms

@@ -57,7 +57,10 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
             <Link to="/members"><FormattedMessage {...messages.studsmembers} /></Link>
           </li>
           <li>
-            <Link to="/events"><FormattedMessage {...messages.events} /></Link>
+            <Link to="/events"><FormattedMessage {...messages.internalevents} /></Link>
+          </li>
+          <li>
+            <Link to="/events/public"><FormattedMessage {...messages.events} /></Link>
           </li>
         </ul>
       );
@@ -66,6 +69,9 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
         <ul className={styles.navbarMenu}>
           <li>
             <Link to="/login"><FormattedMessage {...messages.login} /></Link>
+          </li>
+          <li>
+            <Link to="/events/public"><FormattedMessage {...messages.events} /></Link>
           </li>
         </ul>
      );
@@ -104,5 +110,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
-
-

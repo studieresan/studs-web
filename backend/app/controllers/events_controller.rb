@@ -17,6 +17,9 @@ class EventsController < ApplicationController
     elsif current_user.type_of_user == 'company'
       event = current_user.company.event
       return render json: [event]
+    else
+      events = Event.all.order(date: :asc)
+      return render json: events, fields: [:company, :date, :public_text, :picture_1, :picture_2, :picture_3]
     end
   end
 
@@ -48,7 +51,7 @@ class EventsController < ApplicationController
   def update
     event = Event.find(params[:id])
     if event.update(event_params)
-      render json: event
+      render json: event,
     else
       render json: { error: '' }, status: 403
     end

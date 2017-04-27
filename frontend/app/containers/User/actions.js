@@ -82,7 +82,6 @@ export function saveError() {
 
 export const save = () => (dispatch, getState) => {
   const { user } = getState().get('user').toJS();
-  console.log(user);
   const data = {
     first_name: user.firstName,
     last_name: user.lastName,

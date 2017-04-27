@@ -1,6 +1,7 @@
 import { getToken } from './auth';
 
-const baseUrl = 'https://api.studieresan.se';
+// const baseUrl = 'https://api.studieresan.se';
+const baseUrl = 'http://localhost:3333';
 const usersUrl = '/users';
 const passwordResetUrl = '/users/password-reset'
 const userUrl = usersUrl + '/me';
@@ -99,12 +100,9 @@ export function fetchEvents() {
 
 export function updateEvent(id, event) {
   return ftch(`${baseUrl}${eventsUrl}/${id}`, {
-    headers: {
-      ...authHeader(),
-      ...jsonHeader(),
-    },
+    ...header(),
     method: 'PATCH',
-    body: JSON.stringify(event)
+    body: event
   });
 }
 

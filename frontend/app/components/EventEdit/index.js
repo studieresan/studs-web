@@ -23,7 +23,12 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
   handleChange(e) {
     const { update, event: { id } } = this.props;
     const data = {};
-    data[e.target.name] = e.target.value;
+    if (e.target.type == 'file') {
+      data[e.target.name] = e.target.files[0];
+    } else {
+      data[e.target.name] = e.target.value;
+    }
+
     update(data, id);
   }
 
@@ -120,6 +125,21 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
           <button onClick={this.handleImportClick} className='btn-default'>Import form data</button>
           { event.importedData && 'Imported' }
         </div>
+        <div className='input-label'><FormattedMessage {...messages.picture1} /></div>
+        <input
+          type='file'
+          name='picture1'
+          onChange={this.handleChange}/>
+        <div className='input-label'><FormattedMessage {...messages.picture2} /></div>
+        <input
+          type='file'
+          name='picture2'
+          onChange={this.handleChange}/>
+        <div className='input-label'><FormattedMessage {...messages.picture3} /></div>
+        <input
+          type='file'
+          name='picture3'
+          onChange={this.handleChange}/>
       </div>
     );
   }

@@ -66,6 +66,9 @@ function fromBackend(e) {
     afterSurveyId: e.after_form_id || '',
     afterSurveyReplied: e.after_form_replied || false,
     formData,
+    picture1: e.picture_1 || '',
+    picture2: e.picture_2 || '',
+    picture3: e.picture_3 || '',
   };
 }
 
@@ -90,13 +93,23 @@ function parseData(data) {
 }
 
 function toBackend(e) {
-  return {
+  const data = {
     company_id: e.company,
     date: new Date(e.date),
     information: e.description,
     feedback_text: e.feedbackText, public_text: e.publicText,
     before_form_url: e.beforeSurvey, after_form_url: e.afterSurvey, before_form_id: e.beforeSurveyId, after_form_id: e.afterSurveyId,
+    picture_1: e.picture1, picture_2: e.picture2, picture_3: e.picture3,
   };
+
+  const formData = new FormData();
+  Object.keys(data).forEach(function (key) {
+    if (data[key]) {
+      formData.append('event[' + key + ']', data[key]);
+    }
+  });
+
+  return formData;
 }
 
 export function update(event, id) {
@@ -143,7 +156,6 @@ export function saveRequest() {
 }
 
 export function saveSuccess(id) {
-  console.log('save was successful');
   browserHistory.push('/events/' + id);
   return {
     type: SAVE_SUCCESS,
@@ -157,10 +169,10 @@ export function saveError(err) {
   };
 }
 
-export const save = e => dispatch => {
-  const data = toBackend(e);
+export const save = e => (dispatch, getState) => {
+  const formData = toBackend(e);
   dispatch(saveRequest());
-  updateEvent(e.id, data)
+  updateEvent(e.id, formData)
     .then(() => dispatch(saveSuccess(e.id)))
     .catch(err => dispatch(saveError(err)))
 }

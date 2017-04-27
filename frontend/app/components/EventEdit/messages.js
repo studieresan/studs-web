@@ -46,4 +46,16 @@ export default defineMessages({
     id: 'app.components.EventEdit.afterSurveyId',
     defaultMessage: 'After survey id',
   },
+  picture1: {
+    id: 'app.components.EventEdit.picture1',
+    defaultMessage: 'Picture 1',
+  },
+  picture2: {
+    id: 'app.components.EventEdit.picture2',
+    defaultMessage: 'Picture 2',
+  },
+  picture3: {
+    id: 'app.components.EventEdit.picture3',
+    defaultMessage: 'Picture 3',
+  },
 });

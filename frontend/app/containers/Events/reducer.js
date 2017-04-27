@@ -29,6 +29,9 @@ const newEvent = {
   afterSurvey: '',
   beforeSurveyId: '',
   afterSurveyId: '',
+  picture1: '',
+  picture2: '',
+  picture3: '',
 };
 
 const initialState = fromJS({

@@ -25,3 +25,5 @@ export const GET_MISSING_FORMS = 'app/Events/GET_MISSING_FORMS';
 
 export const REMINDED_BEFORE = 'app/Events/REMINDED_BEFORE';
 export const REMINDED_AFTER = 'app/Events/REMINDED_AFTER';
+
+export const IMPORTED_DATA = 'app/Events/IMPORTED_DATA';

@@ -134,3 +134,8 @@ export function notifyBefore(eventId) {
 export function notifyAfter(eventId) {
   return ftch(`${baseUrl}${eventsUrl}/${eventId}/notify_after`, header());
 }
+
+export function importData(eventId) {
+  return fetch(`${baseUrl}${eventsUrl}/${eventId}/import_formdata`, header()).then(checkStatus);
+}
+

@@ -12,7 +12,6 @@ class EventsController < ApplicationController
         e.before_form_replied = current_user.before_form.exists?(event_id: e.id)
         e.after_form_replied = current_user.after_form.exists?(event_id: e.id)
       end
-
       render json: events
     elsif current_user.type_of_user == 'company'
       event = current_user.company.event
@@ -51,7 +50,7 @@ class EventsController < ApplicationController
   def update
     event = Event.find(params[:id])
     if event.update(event_params)
-      render json: event,
+      render json: event
     else
       render json: { error: '' }, status: 403
     end

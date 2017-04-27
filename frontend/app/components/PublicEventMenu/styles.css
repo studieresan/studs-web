@@ -1,0 +1,36 @@
+.publicEventMenu { /* stylelint-disable */
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: 10;
+  left: 92px;
+}
+
+h2 {
+  font-size: 16px;
+  letter-spacing: 4px;
+}
+
+.publicEventMenu a {
+  text-align: right;
+  cursor: pointer;
+  color: #A4A2A6;
+}
+
+.active {
+  color: #ffdaab !important;
+  font-weight: 600;
+  /*color: #90CE9C !important;*/
+}
+
+
+@media (max-width: 1310px) {
+  .publicEventMenu {
+    position: inherit;
+    text-align: center;
+    padding-bottom: 46px;
+  }
+  .publicEventMenu a {
+    text-align: center;
+  }
+}

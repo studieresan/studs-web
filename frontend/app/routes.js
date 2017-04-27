@@ -174,6 +174,14 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
+      path: '/events/public',
+      name: 'publicEvents',
+      getComponent(location, cb) {
+        System.import('containers/PublicEvents')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+    }, {
       path: '/events/new',
       name: 'events/new',
       getComponent(nextState, cb) {

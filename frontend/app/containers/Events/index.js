@@ -65,6 +65,7 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
       update,
       save,
       create,
+      importFormData,
       getMissingForms,
       remindBefore,
       remindAfter,
@@ -75,7 +76,7 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
     if(params.id) {
       const event = events.items.find(e => e.id == params.id);
       if(route.name === 'events/edit') {
-        detail = <EventEdit event={event} companies={events.companies} update={update} save={save} saving={events.saving} />;
+        detail = <EventEdit event={event} companies={events.companies} update={update} save={save} saving={events.saving} importFormData={importFormData}/>;
       } else {
         detail = <EventDetail
           event={event}

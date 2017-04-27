@@ -16,6 +16,7 @@
   GET_MISSING_FORMS,
   REMINDED_BEFORE,
   REMINDED_AFTER,
+  IMPORTED_DATA,
 } from './constants';
 
 const newEvent = {
@@ -77,6 +78,9 @@ function eventsReducer(state = initialState, action) {
     case REMINDED_AFTER:
       index = state.get('items').findIndex(event => event.get('id') === action.id);
       return state.setIn(['items', index, 'remindedAfter'], true);
+    case IMPORTED_DATA:
+      index = state.get('items').findIndex(event => event.get('id') === action.id);
+      return state.setIn(['items', index, 'importedData'], true);
     default:
       return state;
   }

@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    if current_user.type_of_user == 'studs_member'
+    if current_user.type_of_user == 'studs_member' || current_user.has_permission?('read_events')
       events = Event.all.order(date: :asc)
       events.map do |e|
         e.before_form_replied = current_user.before_form.exists?(event_id: e.id)
@@ -14,8 +14,9 @@ class EventsController < ApplicationController
       end
 
       render json: events
-    else
-      return render json: []
+    elsif current_user.type_of_user == 'company'
+      event = current_user.company.event
+      return render json: [event]
     end
   end
 

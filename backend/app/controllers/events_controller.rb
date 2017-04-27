@@ -1,19 +1,19 @@
 require "google_drive"
 
 class EventsController < ApplicationController
-  before_action :authenticate
+  before_action :authenticate, except: [:index]
 
   # GET /events
   # GET /events.json
   def index
-    if current_user.type_of_user == 'studs_member' || current_user.has_permission?('read_events')
+    if (current_user && current_user.type_of_user == 'studs_member') || (current_user && current_user.has_permission?('read_events'))
       events = Event.all.order(date: :asc)
       events.map do |e|
         e.before_form_replied = current_user.before_form.exists?(event_id: e.id)
         e.after_form_replied = current_user.after_form.exists?(event_id: e.id)
       end
       render json: events
-    elsif current_user.type_of_user == 'company'
+    elsif current_user && current_user.type_of_user == 'company'
       event = current_user.company.event
       return render json: [event]
     else

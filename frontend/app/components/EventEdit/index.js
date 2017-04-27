@@ -17,6 +17,7 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleImportClick = this.handleImportClick.bind(this);
   }
 
   handleChange(e) {
@@ -33,6 +34,11 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
     } else {
       create(event);
     }
+  }
+
+  handleImportClick() {
+    const { importFormData, event } = this.props;
+    importFormData(event.id);
   }
 
   render() {
@@ -110,6 +116,10 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
           placeholder='ID'
           value={event.afterSurveyId}
           onChange={this.handleChange} />
+        <div className={styles.import}>
+          <button onClick={this.handleImportClick} className='btn-default'>Import form data</button>
+          { event.importedData && 'Imported' }
+        </div>
       </div>
     );
   }

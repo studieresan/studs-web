@@ -36,3 +36,8 @@
   padding: 5px;
   width: fit-content;
 }
+
+.import {
+  margin-top: 10px;
+  display: flex;
+}

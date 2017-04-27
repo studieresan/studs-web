@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl'; import { Link } from 'react-router'; import messages from './messages';
 import Markdown from 'react-markdown';
+import { Chart } from 'react-google-charts';
 
 import styles from './styles.css';
 import A from '../A';
@@ -93,11 +94,47 @@ class EventDetail extends Component {
             <Markdown source={event.description}/>
           </div>
         }
-        { event.feedbackText &&
+        { event.formData && event.feedbackText &&
           <div>
             <hr />
             <h2><FormattedMessage {...messages.feedback} /></h2>
             <Markdown source={event.feedbackText}/>
+          </div>
+        }
+        { event.formData &&
+          <div className={styles.charts}>
+            <Chart
+              chartType='PieChart'
+              data={event.formData.beforeInterest}
+              options={{
+                title: 'Interest in the company before the event',
+              }}
+              graph_id='beforeInterest'
+              width='100%' />
+            <Chart
+              chartType='PieChart'
+              data={event.formData.afterInterest}
+              options={{
+                title: 'Interest in the company after the event',
+              }}
+              graph_id='afterInterest'
+              width='100%' />
+            <Chart
+              chartType='PieChart'
+              data={event.formData.knowDoes}
+              options={{
+                title: 'Do you know what the company does (before the event)?',
+              }}
+              graph_id='knowDoes'
+              width='100%' />
+            <Chart
+              chartType='PieChart'
+              data={event.formData.qualified}
+              options={{
+                title: 'Do you feel like you are qualified to work at this company?',
+              }}
+              graph_id='qualified'
+              width='100%' />
           </div>
         }
         { user && user.permissions.includes('event_missing') && (before && before.length || after && after.length) ?

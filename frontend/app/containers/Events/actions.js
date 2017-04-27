@@ -11,6 +11,7 @@ import {
   fetchMissingForms,
   notifyBefore,
   notifyAfter,
+  importData,
 } from '../../api';
 import { browserHistory } from 'react-router';
 import {
@@ -28,6 +29,7 @@ import {
   GET_MISSING_FORMS,
   REMINDED_BEFORE,
   REMINDED_AFTER,
+  IMPORTED_DATA,
 } from './constants';
 
 function fromBackend(e) {
@@ -37,6 +39,15 @@ function fromBackend(e) {
     const month = date.getMonth()+1;
     const day = date.getDate();
     dateString = `${date.getFullYear()}/${month < 10 ? '0' + month : month}/${day < 10 ? '0' + day : day}`;
+  }
+  let formData;
+  if (e.formdata) {
+    formData = {
+      beforeInterest: parseData(e.formdata.before_interest),
+      afterInterest: parseData(e.formdata.after_interest),
+      knowDoes: parseData(e.formdata.knowdoes),
+      qualified: parseData(e.formdata.qualified),
+    };
   }
   return {
     id: e.id,
@@ -54,7 +65,28 @@ function fromBackend(e) {
     afterSurvey: e.after_form_url || '',
     afterSurveyId: e.after_form_id || '',
     afterSurveyReplied: e.after_form_replied || false,
+    formData,
   };
+}
+
+function parseData(data) {
+  const count = Object.entries(data.reduce((acc, d) => {
+    if (acc[d] !== undefined) {
+      acc[d] += 1;
+    } else {
+      acc[d] = 0;
+    }
+    return acc;
+  }, {})).sort((a, b) => {
+    if (a[0] < b[0]) {
+      return -1;
+    } else if (a[0] > b[0]) {
+      return 1;
+    }
+    return 0;
+  });
+  count.unshift(['key', 'count'])
+  return count;
 }
 
 function toBackend(e) {
@@ -199,5 +231,11 @@ export const remindAfter = eventId => dispatch => {
   })
   return notifyAfter(eventId)
     .then(() => console.log('reminded after'))
+    .catch(err => console.log(err))
+}
+
+export const importFormData = eventId => dispatch => {
+  importData(eventId)
+    .then(() => dispatch({type: IMPORTED_DATA, id: eventId}))
     .catch(err => console.log(err))
 }

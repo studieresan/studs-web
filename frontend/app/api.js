@@ -1,7 +1,6 @@
 import { getToken } from './auth';
 
-// const baseUrl = 'https://api.studieresan.se';
-const baseUrl = 'http://localhost:3333';
+ const baseUrl = 'https://api.studieresan.se';
 const usersUrl = '/users';
 const passwordResetUrl = '/users/password-reset'
 const userUrl = usersUrl + '/me';
@@ -136,4 +135,3 @@ export function notifyAfter(eventId) {
 export function importData(eventId) {
   return fetch(`${baseUrl}${eventsUrl}/${eventId}/import_formdata`, header()).then(checkStatus);
 }
-

@@ -6,7 +6,7 @@
   width: 200px;
 }
 
-h2 {
+.publicEventMenu > h2 {
   font-size: 16px;
   letter-spacing: 4px;
   text-align: right;

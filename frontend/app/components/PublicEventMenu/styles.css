@@ -3,12 +3,13 @@
   flex-direction: column;
   position: fixed;
   z-index: 10;
-  left: 92px;
+  width: 200px;
 }
 
 h2 {
   font-size: 16px;
   letter-spacing: 4px;
+  text-align: right;
 }
 
 .publicEventMenu a {
@@ -29,6 +30,11 @@ h2 {
     position: inherit;
     text-align: center;
     padding-bottom: 46px;
+    width: auto;
+  }
+  .publicEventMenu > h2 {
+    font-size: 28px;
+    text-align: center;
   }
   .publicEventMenu a {
     text-align: center;

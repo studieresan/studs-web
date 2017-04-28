@@ -20,7 +20,7 @@ const PublicEvent = ({event}) => {
     <Element name={event.id} className={styles.publicEvent}>
       <div className={styles.information}>
         <h1>{ event.company.name }</h1>
-        <h2>{ moment(event.date).format('MMMM Do') } @ { event.company.country }</h2>
+        <h2>{ moment(event.date).format('MMMM Do') } @ { event.company.address }</h2>
         <Markdown source={event.public_text}/>
       </div>
       <div className={styles.pictures}>

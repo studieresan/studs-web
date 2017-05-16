@@ -77,7 +77,7 @@ function parseData(data) {
     if (acc[d] !== undefined) {
       acc[d] += 1;
     } else {
-      acc[d] = 0;
+      acc[d] = 1;
     }
     return acc;
   }, {})).sort((a, b) => {

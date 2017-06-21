@@ -43,10 +43,10 @@ function fromBackend(e) {
   let formData;
   if (e.formdata) {
     formData = {
-      beforeInterest: parseData(e.formdata.before_interest),
-      afterInterest: parseData(e.formdata.after_interest),
-      knowDoes: parseData(e.formdata.knowdoes),
-      qualified: parseData(e.formdata.qualified),
+      beforeInterest: parseData(e.formdata.before_interest, ["Not Interested", "Somewhat", "Very interested"]),
+      afterInterest: parseData(e.formdata.after_interest, ["Not Interested", "Somewhat", "Very interested"]),
+      knowDoes: parseData(e.formdata.knowdoes, ["1. No", "2. Somewhat", "3. Yes"]),
+      qualified: parseData(e.formdata.qualified, ["No", "Yes"]),
     };
   }
   return {
@@ -72,12 +72,16 @@ function fromBackend(e) {
   };
 }
 
-function parseData(data) {
+function parseData(data, default_values) {
+  console.log(data)
+  console.log(default_values)
+  data = Array.concat(data, default_values)
+  console.log(data)
   const count = Object.entries(data.reduce((acc, d) => {
     if (acc[d] !== undefined) {
       acc[d] += 1;
     } else {
-      acc[d] = 1;
+      acc[d] = 0;
     }
     return acc;
   }, {})).sort((a, b) => {

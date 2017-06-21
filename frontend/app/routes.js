@@ -238,6 +238,14 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
+      path: '/trip',
+      name: 'trip',
+      getComponent(location, cb) {
+        System.import('containers/Trip')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {

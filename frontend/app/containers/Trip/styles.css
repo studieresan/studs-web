@@ -1,3 +1,19 @@
 .trip { /* stylelint-disable */
+  height: 100vh;
+  padding: 66px 20px 0 20px;
+  display: flex;
+  flex-direction: column;
+}
 
+.trip > h1 {
+  margin-top: 0px;
+}
+
+.trip > iframe {
+  width: 100%;
+  flex:1;
+}
+
+.trip .referral {
+  display: none;
 }

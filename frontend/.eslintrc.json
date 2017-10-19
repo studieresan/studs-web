@@ -1,0 +1,23 @@
+{
+  "extends": "eslint:recommended",
+  "no-duplicate-imports": ["error", { "includeExports": true }],
+  "semi": "never",
+  "experimentalObjectRestSpread": true,
+  "rules": {
+    "no-console": "off",
+    "no-var": "error",
+    "prefer-const": "error"
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "no-console": "off",
+    "no-var": "error",
+    "prefer-const": "error",
+    "comma-dangle": [
+      "error",
+      "always"
+    ],
+    "indent": [
+      "error",
+      2
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "camelcase": "error",
+    "no-duplicate-imports": [
+      "error",
+      { "includeExports": true }
+    ],
+    "comma-spacing": [
+      "error",
+      { "before": false, "after": true }
+    ],
+    "keyword-spacing": [
+      "error",
+      { "before": true  }
+    ],
+    "max-len": [
+      "warn",
+      { "code": 80  }
+    ]
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  }
+}

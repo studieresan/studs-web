@@ -2,12 +2,13 @@
  * A link to a certain page, an anchor tag
  */
 
-import React, { PropTypes } from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import styles from './styles.css';
+import styles from './styles.css'
 
 function A({ ...props }) {
-  const { className, children, href, target, ...rest } = props;
+  const { className, children, href, target, ...rest } = props
   return (
     <a
       href={href}
@@ -17,7 +18,7 @@ function A({ ...props }) {
     >
       { children }
     </a>
-  );
+  )
 }
 
 A.propTypes = {
@@ -25,6 +26,6 @@ A.propTypes = {
   href: PropTypes.string.isRequired,
   target: PropTypes.string,
   children: PropTypes.node.isRequired,
-};
+}
 
-export default A;
+export default A

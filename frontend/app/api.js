@@ -1,58 +1,79 @@
-import { getToken } from './auth';
+import { getToken, } from './auth'
 
- const baseUrl = 'https://api.studieresan.se';
-const usersUrl = '/users';
+const baseUrl = 'http://localhost:5040'
+const usersUrl = '/users'
+const loginUrl = '/login'
 const passwordResetUrl = '/users/password-reset'
-const userUrl = usersUrl + '/me';
-const cvUrl = '/resume';
-const eventsUrl = '/events';
-const companiesUrl = '/companies';
-const userEventFormsUrl = '/user_event_forms/mine';
-const STATUS_OK = 200;
+const cvUrl = '/resume'
+const eventsUrl = '/events'
+const companiesUrl = '/companies'
+const STATUS_OK = 200
 
 function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
+  if (response.status >= STATUS_OK && response.status < 300) {
     return response
   } else {
-    var error = new Error(response.statusText)
+    const error = new Error(response.statusText)
     error.response = response
     throw error
   }
 }
-
 function parseJSON(response) {
   return response.json()
 }
 
 function authHeader(token) {
-  token = token || getToken();
+  token = token || getToken()
   return {
     'Authorization': 'Basic ' + token,
-  };
+  }
+}
+
+function credentials() {
+  return {
+    credentials: 'include',
+  }
 }
 
 function jsonHeader() {
   return {
-    'Content-Type': 'application/json'
-  };
+    'Content-Type': 'application/json',
+  }
 }
 
 function header() {
   return {
-    headers: authHeader()
-  };
+    headers: authHeader(),
+  }
 }
 
 function ftch(...args) {
   return fetch(...args)
     .then(checkStatus)
-    .then(parseJSON);
+    .then(parseJSON)
 }
 
-export function fetchUser(token) {
-  return ftch(baseUrl+userUrl, {
-    headers: authHeader(token)
-  })
+export function fetchUser() {
+  // TODO extract constant
+  const url = 'http://localhost:5040/graphql?query={user{email}}'
+  return ftch(url, { ...credentials(), })
+    .then(res => res.data.user)
+}
+
+export function loginUser(email, password) {
+  const data = {
+    email,
+    password,
+  }
+  const post = {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      ...jsonHeader(),
+    },
+    body: JSON.stringify(data),
+  }
+  return ftch(baseUrl+loginUrl, post)
 }
 
 export function updateUser(id, user) {
@@ -60,22 +81,22 @@ export function updateUser(id, user) {
     ...header(),
     method: 'PATCH',
     body: user,
-  });
+  })
 }
 
 export function updateUserPassword(user) {
   return ftch(baseUrl+passwordResetUrl, {
     method: 'PATCH',
     body: user,
-  });
+  })
 }
 
 export function fetchUsers() {
-  return ftch(baseUrl+usersUrl, header());
+  return ftch(baseUrl+usersUrl, header())
 }
 
 export function fetchCv(id) {
-  return ftch(`${baseUrl}${usersUrl}/${id}${cvUrl}`, header());
+  return ftch(`${baseUrl}${usersUrl}/${id}${cvUrl}`, header())
 }
 
 export function updateCv(id, cv) {
@@ -85,28 +106,28 @@ export function updateCv(id, cv) {
       ...jsonHeader(),
     },
     method: 'PATCH',
-    body: JSON.stringify(cv)
-  });
+    body: JSON.stringify(cv),
+  })
 }
 
 export function requestPasswordReset(email) {
-  return ftch(`${baseUrl}${passwordResetUrl}?email=${email}`);
+  return ftch(`${baseUrl}${passwordResetUrl}?email=${email}`)
 }
 
 export function fetchEvents() {
-  return ftch(baseUrl+eventsUrl, header());
+  return ftch(baseUrl+eventsUrl, header())
 }
 
 export function updateEvent(id, event) {
   return ftch(`${baseUrl}${eventsUrl}/${id}`, {
     ...header(),
     method: 'PATCH',
-    body: event
-  });
+    body: event,
+  })
 }
 
 export function fetchCompanies() {
-  return ftch(baseUrl+companiesUrl, header());
+  return ftch(baseUrl+companiesUrl, header())
 }
 
 export function createEvent(event) {
@@ -116,22 +137,23 @@ export function createEvent(event) {
       ...jsonHeader(),
     },
     method: 'POST',
-    body: JSON.stringify(event)
-  });
+    body: JSON.stringify(event),
+  })
 }
 
 export function fetchMissingForms(eventId) {
-  return ftch(`${baseUrl}${eventsUrl}/${eventId}/missing_forms`, header());
+  return ftch(`${baseUrl}${eventsUrl}/${eventId}/missing_forms`, header())
 }
 
 export function notifyBefore(eventId) {
-  return ftch(`${baseUrl}${eventsUrl}/${eventId}/notify_before`, header());
+  return ftch(`${baseUrl}${eventsUrl}/${eventId}/notify_before`, header())
 }
 
 export function notifyAfter(eventId) {
-  return ftch(`${baseUrl}${eventsUrl}/${eventId}/notify_after`, header());
+  return ftch(`${baseUrl}${eventsUrl}/${eventId}/notify_after`, header())
 }
 
 export function importData(eventId) {
-  return fetch(`${baseUrl}${eventsUrl}/${eventId}/import_formdata`, header()).then(checkStatus);
+  return fetch(`${baseUrl}${eventsUrl}/${eventId}/import_formdata`, header())
+    .then(checkStatus)
 }

@@ -52,7 +52,7 @@ export const getUser = () => dispatch => {
   dispatch(getRequest());
   fetchUser()
     .then(data => dispatch(getSuccess(data.user)))
-    .catch(error => dispatch(getError()));
+    .catch(() => dispatch(getError()));
 }
 
 export function update(user) {

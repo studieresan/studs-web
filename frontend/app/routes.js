@@ -1,21 +1,23 @@
 // These are the pages you can go to.
-// They are all wrapped in the App component, which should contain the navbar etc
-// See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
-// about the code splitting business
-import { getAsyncInjectors } from 'utils/asyncInjectors';
-import { requireAuth } from './auth';
+// They are all wrapped in the App component, which should contain the navbar
+// etc See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more
+// information about the code splitting business
+import { getAsyncInjectors, } from 'utils/asyncInjectors'
+import { requireAuth, } from './auth'
 
 const errorLoading = (err) => {
-  console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
-};
+  console.error('Dynamic page loading failed', err)
+}
 
 const loadModule = (cb) => (componentModule) => {
-  cb(null, componentModule.default);
-};
+  cb(null, componentModule.default)
+}
 
 export default function createRoutes(store) {
   // Create reusable async injectors using getAsyncInjectors factory
-  const { injectReducer } = getAsyncInjectors(store); // eslint-disable-line no-unused-vars
+  const {
+    injectReducer,
+  } = getAsyncInjectors(store) // eslint-disable-line no-unused-vars
 
   return [
     {
@@ -25,16 +27,16 @@ export default function createRoutes(store) {
         const importModules = Promise.all([
           System.import('containers/Members/reducer'),
           System.import('containers/HomePage'),
-        ]);
+        ])
 
-        const renderRoute = loadModule(cb);
+        const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component]) => {
-          injectReducer('members', reducer.default);
-          renderRoute(component);
-        });
+        importModules.then(([reducer, component, ]) => {
+          injectReducer('members', reducer.default)
+          renderRoute(component)
+        })
 
-        importModules.catch(errorLoading);
+        importModules.catch(errorLoading)
       },
     }, {
       path: '/login',
@@ -42,7 +44,7 @@ export default function createRoutes(store) {
       getComponent(location, cb) {
         System.import('containers/Login')
           .then(loadModule(cb))
-          .catch(errorLoading);
+          .catch(errorLoading)
       },
     }, {
       path: '/logout',
@@ -50,7 +52,7 @@ export default function createRoutes(store) {
       getComponent(location, cb) {
         System.import('containers/Logout')
           .then(loadModule(cb))
-          .catch(errorLoading);
+          .catch(errorLoading)
       },
     }, {
       path: '/user/password-reset',
@@ -59,16 +61,16 @@ export default function createRoutes(store) {
         const importModules = Promise.all([
           System.import('containers/PasswordReset/reducer'),
           System.import('containers/PasswordReset'),
-        ]);
+        ])
 
-        const renderRoute = loadModule(cb);
+        const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component]) => {
-          injectReducer('passwordReset', reducer.default);
-          renderRoute(component);
-        });
+        importModules.then(([reducer, component, ]) => {
+          injectReducer('passwordReset', reducer.default)
+          renderRoute(component)
+        })
 
-        importModules.catch(errorLoading);
+        importModules.catch(errorLoading)
       },
     }, {
       path: '/user',
@@ -78,16 +80,16 @@ export default function createRoutes(store) {
         const importModules = Promise.all([
           System.import('containers/User/reducer'),
           System.import('containers/User'),
-        ]);
+        ])
 
-        const renderRoute = loadModule(cb);
+        const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component]) => {
-          injectReducer('user', reducer.default);
-          renderRoute(component);
-        });
+        importModules.then(([reducer, component, ]) => {
+          injectReducer('user', reducer.default)
+          renderRoute(component)
+        })
 
-        importModules.catch(errorLoading);
+        importModules.catch(errorLoading)
       },
     }, {
       path: '/members',
@@ -97,16 +99,16 @@ export default function createRoutes(store) {
         const importModules = Promise.all([
           System.import('containers/Members/reducer'),
           System.import('containers/Members'),
-        ]);
+        ])
 
-        const renderRoute = loadModule(cb);
+        const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component]) => {
-          injectReducer('members', reducer.default);
-          renderRoute(component);
-        });
+        importModules.then(([reducer, component, ]) => {
+          injectReducer('members', reducer.default)
+          renderRoute(component)
+        })
 
-        importModules.catch(errorLoading);
+        importModules.catch(errorLoading)
       },
     }, {
       path: '/members/:id',
@@ -116,16 +118,16 @@ export default function createRoutes(store) {
         const importModules = Promise.all([
           System.import('containers/Members/reducer'),
           System.import('containers/Members'),
-        ]);
+        ])
 
-        const renderRoute = loadModule(cb);
+        const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component]) => {
-          injectReducer('members', reducer.default);
-          renderRoute(component);
-        });
+        importModules.then(([reducer, component, ]) => {
+          injectReducer('members', reducer.default)
+          renderRoute(component)
+        })
 
-        importModules.catch(errorLoading);
+        importModules.catch(errorLoading)
       },
     }, {
       path: '/members/:id/resume/edit',
@@ -135,16 +137,16 @@ export default function createRoutes(store) {
         const importModules = Promise.all([
           System.import('containers/CvEdit/reducer'),
           System.import('containers/CvEdit'),
-        ]);
+        ])
 
-        const renderRoute = loadModule(cb);
+        const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component]) => {
-          injectReducer('cv', reducer.default);
-          renderRoute(component);
-        });
+        importModules.then(([reducer, component, ]) => {
+          injectReducer('cv', reducer.default)
+          renderRoute(component)
+        })
 
-        importModules.catch(errorLoading);
+        importModules.catch(errorLoading)
       },
     }, {
       path: '/user/forgot-password',
@@ -152,7 +154,7 @@ export default function createRoutes(store) {
       getComponent(location, cb) {
         System.import('containers/ForgotPassword')
           .then(loadModule(cb))
-          .catch(errorLoading);
+          .catch(errorLoading)
       },
     }, {
       path: '/events',
@@ -162,16 +164,16 @@ export default function createRoutes(store) {
         const importModules = Promise.all([
           System.import('containers/Events/reducer'),
           System.import('containers/Events'),
-        ]);
+        ])
 
-        const renderRoute = loadModule(cb);
+        const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component]) => {
-          injectReducer('events', reducer.default);
-          renderRoute(component);
-        });
+        importModules.then(([reducer, component, ]) => {
+          injectReducer('events', reducer.default)
+          renderRoute(component)
+        })
 
-        importModules.catch(errorLoading);
+        importModules.catch(errorLoading)
       },
     }, {
       path: '/events/public',
@@ -179,7 +181,7 @@ export default function createRoutes(store) {
       getComponent(location, cb) {
         System.import('containers/PublicEvents')
           .then(loadModule(cb))
-          .catch(errorLoading);
+          .catch(errorLoading)
       },
     }, {
       path: '/events/new',
@@ -188,16 +190,16 @@ export default function createRoutes(store) {
         const importModules = Promise.all([
           System.import('containers/Events/reducer'),
           System.import('containers/Events'),
-        ]);
+        ])
 
-        const renderRoute = loadModule(cb);
+        const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component]) => {
-          injectReducer('events', reducer.default);
-          renderRoute(component);
-        });
+        importModules.then(([reducer, component, ]) => {
+          injectReducer('events', reducer.default)
+          renderRoute(component)
+        })
 
-        importModules.catch(errorLoading);
+        importModules.catch(errorLoading)
       },
     }, {
       path: '/events/:id',
@@ -207,16 +209,16 @@ export default function createRoutes(store) {
         const importModules = Promise.all([
           System.import('containers/Events/reducer'),
           System.import('containers/Events'),
-        ]);
+        ])
 
-        const renderRoute = loadModule(cb);
+        const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component]) => {
-          injectReducer('events', reducer.default);
-          renderRoute(component);
-        });
+        importModules.then(([reducer, component, ]) => {
+          injectReducer('events', reducer.default)
+          renderRoute(component)
+        })
 
-        importModules.catch(errorLoading);
+        importModules.catch(errorLoading)
       },
     }, {
       path: '/events/:id/edit',
@@ -226,16 +228,16 @@ export default function createRoutes(store) {
         const importModules = Promise.all([
           System.import('containers/Events/reducer'),
           System.import('containers/Events'),
-        ]);
+        ])
 
-        const renderRoute = loadModule(cb);
+        const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component]) => {
-          injectReducer('events', reducer.default);
-          renderRoute(component);
-        });
+        importModules.then(([reducer, component, ]) => {
+          injectReducer('events', reducer.default)
+          renderRoute(component)
+        })
 
-        importModules.catch(errorLoading);
+        importModules.catch(errorLoading)
       },
     }, {
       path: '/trip',
@@ -243,7 +245,7 @@ export default function createRoutes(store) {
       getComponent(location, cb) {
         System.import('containers/Trip')
           .then(loadModule(cb))
-          .catch(errorLoading);
+          .catch(errorLoading)
       },
     }, {
       path: '*',
@@ -251,8 +253,8 @@ export default function createRoutes(store) {
       getComponent(nextState, cb) {
         System.import('containers/NotFoundPage')
           .then(loadModule(cb))
-          .catch(errorLoading);
+          .catch(errorLoading)
       },
     },
-  ];
+  ]
 }

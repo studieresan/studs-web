@@ -43,7 +43,7 @@ export class Navbar extends React.Component { // eslint-disable-line react/prefe
   }
 
   menu() {
-    if(this.props.user) {
+    if (loggedIn()) {
       const user = this.props.user.toJS();
       return (
         <ul className={styles.navbarMenu}>

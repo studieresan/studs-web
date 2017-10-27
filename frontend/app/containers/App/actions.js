@@ -6,75 +6,76 @@ import {
   LOGIN_ERROR,
   LOGOUT,
 } from './constants'
-import { fetchUser } from '../../api';
-import { generateToken, setToken, removeToken } from '../../auth';
+import {
+  fetchUser,
+  loginUser,
+} from '../../api'
+import { setLoggedOut, setLoggedIn, } from '../../auth'
 
 export function getUserRequest() {
   return {
-    type: GET_USER_REQUEST
-  };
+    type: GET_USER_REQUEST,
+  }
 }
 
 export function getUserSuccess(user) {
-  console.log(user);
   return {
     type: GET_USER_SUCCESS,
     user: {
       id: user.id,
       email: user.email,
-      firstName: user.first_name,
-      lastName: user.last_name,
+      // TODO name should not be missing, add fields to backend
+      firstName: user.firstName,
+      lastName: user.lastName,
       permissions: user.permissions,
       picture: user.picture,
       phone: user.phone || '',
       position: user.position || '',
       master: user.master || '',
       allergies: user.allergies || '',
-      type: user.type_of_user,
-    }
-  };
+      type: user.memberType,
+    },
+  }
 }
 
 export function getUserError() {
   return {
-    type: GET_USER_ERROR
-  };
+    type: GET_USER_ERROR,
+  }
 }
 
 export const getUser = () => dispatch => {
-  dispatch(getUserRequest());
+  dispatch(getUserRequest())
   fetchUser()
-    .then(data => dispatch(getUserSuccess(data.user)))
-    .catch(error => dispatch(getUserError()));
+    .then(user => dispatch(getUserSuccess(user)))
+    .catch(() => dispatch(getUserError()))
 }
 
 export function loginSuccess() {
   return {
-    type: LOGIN_SUCCESS
-  };
+    type: LOGIN_SUCCESS,
+  }
 }
 
 export function loginError() {
   return {
-    type: LOGIN_ERROR
+    type: LOGIN_ERROR,
   }
 }
 
 export function logout() {
-  removeToken();
+  setLoggedOut()
   return {
-    type: LOGOUT
-  };
+    type: LOGOUT,
+  }
 }
 
 export const login = (email, pass) => dispatch => {
-  const token = generateToken(email, pass);
-  fetchUser(token)
-    .then(data => {
-      setToken(token);
-      dispatch(getUserSuccess(data.user));
-      dispatch(loginSuccess());
-    }).catch(error => {
-      dispatch(loginError());
-    });
+  loginUser(email, pass)
+    .then(user => {
+      dispatch(getUserSuccess(user))
+      dispatch(loginSuccess())
+      setLoggedIn()
+    })
+    .catch(dispatch(loginError()))
 }

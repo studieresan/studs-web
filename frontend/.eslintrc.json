@@ -9,7 +9,7 @@
     "prefer-const": "error",
     "comma-dangle": [
       "error",
-      "always"
+      "always-multiline"
     ],
     "indent": [
       "error",

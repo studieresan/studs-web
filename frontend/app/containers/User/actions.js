@@ -13,8 +13,8 @@ import {
   SAVE_ERROR,
   UPDATE,
 } from './constants'
-import { fetchUser, updateUser, } from '../../api'
-import { setLoggedIn, } from '../../auth'
+import { fetchUser, updateUser } from '../../api'
+import { setLoggedIn } from '../../auth'
 
 export function getRequest() {
   return {
@@ -84,7 +84,7 @@ export function saveError() {
 }
 
 export const save = () => (dispatch, getState) => {
-  const { user, } = getState().get('user').toJS()
+  const { user } = getState().get('user').toJS()
   const data = {
     first_name: user.firstName,
     last_name: user.lastName,

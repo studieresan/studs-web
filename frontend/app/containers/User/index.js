@@ -5,10 +5,10 @@
  */
 
 import React from 'react'
-import { connect, } from 'react-redux'
-import { bindActionCreators, } from 'redux'
-import { FormattedMessage, } from 'react-intl'
-import { Link, } from 'react-router'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { FormattedMessage } from 'react-intl'
+import { Link } from 'react-router'
 import messages from './messages'
 import * as actions from './actions'
 import styles from './styles.css'
@@ -160,7 +160,7 @@ export class User extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.getIn(['global', 'user', ]).toJS()
+    user: state.getIn(['global', 'user' ]).toJS(),
   }
 }
 

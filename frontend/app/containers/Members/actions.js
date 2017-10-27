@@ -11,45 +11,45 @@ import {
   GET_CV_REQUEST,
   GET_CV_SUCCESS,
   GET_CV_ERROR,
-} from './constants';
-import { fetchUsers, fetchCv } from '../../api';
+} from './constants'
+import { fetchUsers, fetchCv } from '../../api'
 
 export function getMembersRequest() {
   return {
     type: GET_MEMBERS_REQUEST,
-  };
+  }
 }
 
 export function getMembersSuccess(users) {
   return {
     type: GET_MEMBERS_SUCCESS,
-    users
-  };
+    users,
+  }
 }
 
 export function getMembersError() {
   return {
-    type: GET_MEMBERS_ERROR
-  };
+    type: GET_MEMBERS_ERROR,
+  }
 }
 
 export function getCvRequest() {
   return {
     type: GET_CV_REQUEST,
-  };
+  }
 }
 
 export function getCvSuccess(cv) {
   return {
     type: GET_CV_SUCCESS,
-    cv
-  };
+    cv,
+  }
 }
 
 export function getCvError() {
   return {
-    type: GET_CV_ERROR
-  };
+    type: GET_CV_ERROR,
+  }
 }
 
 export const getUsers = () => dispatch => {
@@ -71,11 +71,11 @@ export const getUsers = () => dispatch => {
   //     dispatch(getMembersSuccess(users));
   //   })
   //   .catch(error => dispatch(getMembersError()));
-};
+}
 
 export const getCv = id => dispatch => {
-  dispatch(getCvRequest());
+  dispatch(getCvRequest())
   fetchCv(id)
     .then(cv => dispatch(getCvSuccess(cv)))
-    .catch(error => dispatch(getCvError()))
+    .catch(() => dispatch(getCvError()))
 }

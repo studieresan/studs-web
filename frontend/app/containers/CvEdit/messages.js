@@ -3,7 +3,7 @@
  *
  * This contains all the text for the CvEdit component.
  */
-import { defineMessages } from 'react-intl';
+import { defineMessages } from 'react-intl'
 
 export default defineMessages({
   header: {
@@ -12,10 +12,10 @@ export default defineMessages({
   },
   title: {
     id: 'app.containers.CvEdit.title',
-    defaultMessage: 'Title'
+    defaultMessage: 'Title',
   },
   section: {
     id: 'app.containers.CvEdit.section',
-    defaultMessage: 'Section'
+    defaultMessage: 'Section',
   },
-});
+})

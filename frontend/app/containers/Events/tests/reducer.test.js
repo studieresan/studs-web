@@ -1,9 +1,9 @@
-import expect from 'expect';
-import eventsReducer from '../reducer';
-import { fromJS } from 'immutable';
+import expect from 'expect'
+import eventsReducer from '../reducer'
+import { fromJS } from 'immutable'
 
 describe('eventsReducer', () => {
   it('returns the initial state', () => {
-    expect(eventsReducer(undefined, {})).toEqual(fromJS({}));
-  });
-});
+    expect(eventsReducer(undefined, {})).toEqual(fromJS({}))
+  })
+})

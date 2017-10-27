@@ -3,7 +3,7 @@
  *
  * This contains all the text for the User component.
  */
-import { defineMessages } from 'react-intl';
+import { defineMessages } from 'react-intl'
 
 export default defineMessages({
   title: {
@@ -12,6 +12,6 @@ export default defineMessages({
   },
   email: {
     id: 'app.containers.User.email',
-    defaultMessage: 'Email'
-  }
-});
+    defaultMessage: 'Email',
+  },
+})

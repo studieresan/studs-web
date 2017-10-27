@@ -2,11 +2,11 @@ import { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory, withRouter } from 'react-router'
 
-import { logout } from '../App/actions';
+import { logout } from '../App/actions'
 
 class Logout extends Component {
   componentWillMount() {
-    this.props.logout();
+    this.props.logout()
     browserHistory.replace('/')
   }
 
@@ -16,13 +16,13 @@ class Logout extends Component {
 }
 
 Logout.propTypes = {
-  router: PropTypes.object.isRequired
+  router: PropTypes.object.isRequired,
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    logout: () => dispatch(logout())
-  };
+    logout: () => dispatch(logout()),
+  }
 }
 
 export default connect(null, mapDispatchToProps)(withRouter(Logout))

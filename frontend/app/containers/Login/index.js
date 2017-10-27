@@ -1,10 +1,10 @@
-import React, { Component, } from 'react'
-import { browserHistory, Link, } from 'react-router'
-import { FormattedMessage, } from 'react-intl'
+import React, { Component } from 'react'
+import { browserHistory, Link } from 'react-router'
+import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
-import { bindActionCreators, } from 'redux'
-import { connect, } from 'react-redux'
-import { login, } from '../App/actions'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { login } from '../App/actions'
 import messages from './messages'
 import styles from './styles.css'
 
@@ -28,11 +28,11 @@ class Login extends Component {
   }
 
   handleUserChange(event) {
-    this.setState({ user: event.target.value, })
+    this.setState({ user: event.target.value })
   }
 
   handlePassChange(event) {
-    this.setState({ pass: event.target.value, })
+    this.setState({ pass: event.target.value })
   }
 
   handleSubmit(e) {
@@ -98,13 +98,13 @@ Login.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    loggedIn: state.getIn(['global', 'loggedIn', ]),
-    loginError: state.getIn(['global', 'loginError', ]),
+    loggedIn: state.getIn(['global', 'loggedIn' ]),
+    loginError: state.getIn(['global', 'loginError' ]),
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ login, }, dispatch)
+  return bindActionCreators({ login }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

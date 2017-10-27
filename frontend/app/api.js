@@ -59,7 +59,7 @@ export function fetchUser() {
   }
   `
   const url = `http://localhost:5040/graphql?query=${query}`
-  return ftch(url, { ...credentials(), })
+  return ftch(url, { ...credentials() })
     .then(res => Promise.resolve(res.data.user))
 }
 

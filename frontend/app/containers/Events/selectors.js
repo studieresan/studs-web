@@ -1,11 +1,11 @@
-import { createSelector } from 'reselect';
+import { createSelector } from 'reselect'
 
 /**
  * Direct selector to the events state domain
  */
-const selectEventsDomain = () => (state) => state.get('events');
+const selectEventsDomain = () => (state) => state.get('events')
 
-const selectUser = () => (state) => state.getIn(['global', 'user']);
+const selectUser = () => (state) => state.getIn(['global', 'user'])
 
 /**
  * Other specific selectors
@@ -22,9 +22,9 @@ const selectEvents = () => createSelector(
     events: events.toJS(),
     user: user ? user.toJS() : null,
   })
-);
+)
 
-export default selectEvents;
+export default selectEvents
 export {
   selectEventsDomain,
-};
+}

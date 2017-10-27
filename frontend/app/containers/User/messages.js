@@ -3,7 +3,7 @@
  *
  * This contains all the text for the User component.
  */
-import { defineMessages } from 'react-intl';
+import { defineMessages } from 'react-intl'
 
 export default defineMessages({
   title: {
@@ -12,39 +12,38 @@ export default defineMessages({
   },
   firstName: {
     id: 'app.containers.User.firstName',
-    defaultMessage: 'First Name'
+    defaultMessage: 'First Name',
   },
   lastName: {
     id: 'app.containers.User.lastName',
-    defaultMessage: 'Last Name'
+    defaultMessage: 'Last Name',
   },
   phone: {
     id: 'app.containers.User.phone',
-    defaultMessage: 'Phone'
+    defaultMessage: 'Phone',
   },
   position: {
     id: 'app.containers.User.position',
-    defaultMessage: 'Position'
+    defaultMessage: 'Position',
   },
   master: {
     id: 'app.containers.User.master',
-    defaultMessage: 'Master'
+    defaultMessage: 'Master',
   },
   allergies: {
     id: 'app.containers.User.allergies',
-    defaultMessage: 'Allergies'
+    defaultMessage: 'Allergies',
   },
   picture: {
     id: 'app.containers.User.picture',
-    defaultMessage: 'Picture'
+    defaultMessage: 'Picture',
   },
   password: {
     id: 'app.containers.User.password',
-    defaultMessage: 'New Password'
+    defaultMessage: 'New Password',
   },
   passwordConfirm: {
     id: 'app.containers.User.passwordConfirm',
-    defaultMessage: 'Confirm Password'
-  }
-
-});
+    defaultMessage: 'Confirm Password',
+  },
+})

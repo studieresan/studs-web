@@ -1,11 +1,11 @@
 // import { selectMembersDomain } from '../selectors';
 // import { fromJS } from 'immutable';
-import expect from 'expect';
+import expect from 'expect'
 
 // const selector = selectMembersDomain();
 
 describe('selectMembersDomain', () => {
   it('Expect to have unit tests specified', () => {
-    expect('Test case').toEqual(false);
-  });
-});
+    expect('Test case').toEqual(false)
+  })
+})

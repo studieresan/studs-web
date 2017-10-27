@@ -2,8 +2,8 @@
 // They are all wrapped in the App component, which should contain the navbar
 // etc See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more
 // information about the code splitting business
-import { getAsyncInjectors, } from 'utils/asyncInjectors'
-import { requireAuth, } from './auth'
+import { getAsyncInjectors } from 'utils/asyncInjectors'
+import { requireAuth } from './auth'
 
 const errorLoading = (err) => {
   console.error('Dynamic page loading failed', err)
@@ -31,7 +31,7 @@ export default function createRoutes(store) {
 
         const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component, ]) => {
+        importModules.then(([reducer, component ]) => {
           injectReducer('members', reducer.default)
           renderRoute(component)
         })
@@ -65,7 +65,7 @@ export default function createRoutes(store) {
 
         const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component, ]) => {
+        importModules.then(([reducer, component ]) => {
           injectReducer('passwordReset', reducer.default)
           renderRoute(component)
         })
@@ -84,7 +84,7 @@ export default function createRoutes(store) {
 
         const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component, ]) => {
+        importModules.then(([reducer, component ]) => {
           injectReducer('user', reducer.default)
           renderRoute(component)
         })
@@ -103,7 +103,7 @@ export default function createRoutes(store) {
 
         const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component, ]) => {
+        importModules.then(([reducer, component ]) => {
           injectReducer('members', reducer.default)
           renderRoute(component)
         })
@@ -122,7 +122,7 @@ export default function createRoutes(store) {
 
         const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component, ]) => {
+        importModules.then(([reducer, component ]) => {
           injectReducer('members', reducer.default)
           renderRoute(component)
         })
@@ -141,7 +141,7 @@ export default function createRoutes(store) {
 
         const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component, ]) => {
+        importModules.then(([reducer, component ]) => {
           injectReducer('cv', reducer.default)
           renderRoute(component)
         })
@@ -168,7 +168,7 @@ export default function createRoutes(store) {
 
         const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component, ]) => {
+        importModules.then(([reducer, component ]) => {
           injectReducer('events', reducer.default)
           renderRoute(component)
         })
@@ -194,7 +194,7 @@ export default function createRoutes(store) {
 
         const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component, ]) => {
+        importModules.then(([reducer, component ]) => {
           injectReducer('events', reducer.default)
           renderRoute(component)
         })
@@ -213,7 +213,7 @@ export default function createRoutes(store) {
 
         const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component, ]) => {
+        importModules.then(([reducer, component ]) => {
           injectReducer('events', reducer.default)
           renderRoute(component)
         })
@@ -232,7 +232,7 @@ export default function createRoutes(store) {
 
         const renderRoute = loadModule(cb)
 
-        importModules.then(([reducer, component, ]) => {
+        importModules.then(([reducer, component ]) => {
           injectReducer('events', reducer.default)
           renderRoute(component)
         })

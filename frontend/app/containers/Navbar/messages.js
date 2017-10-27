@@ -3,7 +3,7 @@
  *
  * This contains all the text for the Navbar component.
  */
-import { defineMessages } from 'react-intl';
+import { defineMessages } from 'react-intl'
 
 export default defineMessages({
   login: {
@@ -30,4 +30,4 @@ export default defineMessages({
     id: 'app.containers.Navbar.trip',
     defaultMessage: 'Trip',
   },
-});
+})

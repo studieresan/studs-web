@@ -7,13 +7,12 @@ import {
   updateEvent,
   fetchEvents,
   fetchCompanies,
-  fetchUserEventForms,
   fetchMissingForms,
   notifyBefore,
   notifyAfter,
   importData,
-} from '../../api';
-import { browserHistory } from 'react-router';
+} from '../../api'
+import { browserHistory } from 'react-router'
 import {
   UPDATE,
   GET_REQUEST,
@@ -30,24 +29,24 @@ import {
   REMINDED_BEFORE,
   REMINDED_AFTER,
   IMPORTED_DATA,
-} from './constants';
+} from './constants'
 
 function fromBackend(e) {
-  let dateString;
-  if(e.date) {
-    const date = new Date(e.date);
-    const month = date.getMonth()+1;
-    const day = date.getDate();
-    dateString = `${date.getFullYear()}/${month < 10 ? '0' + month : month}/${day < 10 ? '0' + day : day}`;
+  let dateString
+  if (e.date) {
+    const date = new Date(e.date)
+    const month = date.getMonth()+1
+    const day = date.getDate()
+    dateString = `${date.getFullYear()}/${month < 10 ? '0' + month : month}/${day < 10 ? '0' + day : day}`
   }
-  let formData;
+  let formData
   if (e.formdata) {
     formData = {
-      beforeInterest: parseData(e.formdata.before_interest, ["Not Interested", "Somewhat", "Very interested"]),
-      afterInterest: parseData(e.formdata.after_interest, ["Not Interested", "Somewhat", "Very interested"]),
-      knowDoes: parseData(e.formdata.knowdoes, ["1. No", "2. Somewhat", "3. Yes"]),
-      qualified: parseData(e.formdata.qualified, ["No", "Yes"]),
-    };
+      beforeInterest: parseData(e.formdata.before_interest, ['Not Interested', 'Somewhat', 'Very interested']),
+      afterInterest: parseData(e.formdata.after_interest, ['Not Interested', 'Somewhat', 'Very interested']),
+      knowDoes: parseData(e.formdata.knowdoes, ['1. No', '2. Somewhat', '3. Yes']),
+      qualified: parseData(e.formdata.qualified, ['No', 'Yes']),
+    }
   }
   return {
     id: e.id,
@@ -69,7 +68,7 @@ function fromBackend(e) {
     picture1: e.picture_1 || '',
     picture2: e.picture_2 || '',
     picture3: e.picture_3 || '',
-  };
+  }
 }
 
 function parseData(data, default_values) {
@@ -79,21 +78,21 @@ function parseData(data, default_values) {
   console.log(data)
   const count = Object.entries(data.reduce((acc, d) => {
     if (acc[d] !== undefined) {
-      acc[d] += 1;
+      acc[d] += 1
     } else {
-      acc[d] = 0;
+      acc[d] = 0
     }
-    return acc;
+    return acc
   }, {})).sort((a, b) => {
     if (a[0] < b[0]) {
-      return -1;
+      return -1
     } else if (a[0] > b[0]) {
-      return 1;
+      return 1
     }
-    return 0;
-  });
+    return 0
+  })
   count.unshift(['key', 'count'])
-  return count;
+  return count
 }
 
 function toBackend(e) {
@@ -104,50 +103,50 @@ function toBackend(e) {
     feedback_text: e.feedbackText, public_text: e.publicText,
     before_form_url: e.beforeSurvey, after_form_url: e.afterSurvey, before_form_id: e.beforeSurveyId, after_form_id: e.afterSurveyId,
     picture_1: e.picture1, picture_2: e.picture2, picture_3: e.picture3,
-  };
+  }
 
-  const formData = new FormData();
+  const formData = new FormData()
   Object.keys(data).forEach(function (key) {
     if (data[key]) {
-      formData.append('event[' + key + ']', data[key]);
+      formData.append('event[' + key + ']', data[key])
     }
-  });
+  })
 
-  return formData;
+  return formData
 }
 
 export function update(event, id) {
   return {
     type: UPDATE,
     data: event,
-    id: id
-  };
+    id: id,
+  }
 }
 
 export function getRequest() {
   return {
     type: GET_REQUEST,
-  };
+  }
 }
 
 export function getSuccess(data) {
   return {
     type: GET_SUCCESS,
     data: data.events.map(e => {
-      return fromBackend(e);
+      return fromBackend(e)
     }),
-  };
+  }
 }
 
 export function getError(err) {
-  console.log(err);
+  console.log(err)
   return {
     type: GET_ERROR,
-  };
+  }
 }
 
 export const get = () => dispatch => {
-  dispatch(getRequest());
+  dispatch(getRequest())
   fetchEvents()
     .then(events => dispatch(getSuccess(events)))
     .catch(err => dispatch(getError(err)))
@@ -156,26 +155,26 @@ export const get = () => dispatch => {
 export function saveRequest() {
   return {
     type: SAVE_REQUEST,
-  };
+  }
 }
 
 export function saveSuccess(id) {
-  browserHistory.push('/events/' + id);
+  browserHistory.push('/events/' + id)
   return {
     type: SAVE_SUCCESS,
-  };
+  }
 }
 
 export function saveError(err) {
-  console.log(err);
+  console.log(err)
   return {
     type: SAVE_ERROR,
-  };
+  }
 }
 
 export const save = e => (dispatch, getState) => {
-  const formData = toBackend(e);
-  dispatch(saveRequest());
+  const formData = toBackend(e)
+  dispatch(saveRequest())
   updateEvent(e.id, formData)
     .then(() => dispatch(saveSuccess(e.id)))
     .catch(err => dispatch(saveError(err)))
@@ -184,28 +183,28 @@ export const save = e => (dispatch, getState) => {
 export function createRequest() {
   return {
     type: CREATE_REQUEST,
-  };
+  }
 }
 
 export function createSuccess(e) {
-  const data = fromBackend(e.event);
-  browserHistory.push('/events/' + data.id);
+  const data = fromBackend(e.event)
+  browserHistory.push('/events/' + data.id)
   return {
     type: CREATE_SUCCESS,
     data: data,
-  };
+  }
 }
 
 export function createError(err) {
-  console.log(err);
+  console.log(err)
   return {
     type: CREATE_ERROR,
-  };
+  }
 }
 
 export const create = e => dispatch => {
-  const data = toBackend(e);
-  dispatch(createRequest());
+  const data = toBackend(e)
+  dispatch(createRequest())
   createEvent(data)
     .then(data => dispatch(createSuccess(data)))
     .catch(err => dispatch(createError(err)))
@@ -227,7 +226,7 @@ export const getMissingForms = eventId => dispatch => {
       id: eventId,
       data: data,
     }))
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
 }
 
 export const remindBefore = eventId => dispatch => {

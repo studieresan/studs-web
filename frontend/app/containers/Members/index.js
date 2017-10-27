@@ -4,30 +4,27 @@
  *
  */
 
-import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import selectMembers from './selectors';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
-import styles from './styles.css';
-import MemberListItem from '../../components/MemberListItem';
-import MembersStaticDetail from '../../components/MembersStaticDetail';
-import CV from '../../components/Cv';
-import MasterDetail from '../../components/MasterDetail';
-import * as actions from './actions';
+import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import styles from './styles.css'
+import MemberListItem from '../../components/MemberListItem'
+import MembersStaticDetail from '../../components/MembersStaticDetail'
+import CV from '../../components/Cv'
+import MasterDetail from '../../components/MasterDetail'
+import * as actions from './actions'
 
-export class Members extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class Members extends React.Component {
   componentDidMount() {
-    this.props.getUsers();
-    const id = this.props.params.id;
-    if(id) {
-      this.props.getCv(id);
+    this.props.getUsers()
+    const id = this.props.params.id
+    if (id) {
+      this.props.getCv(id)
     }
   }
   componentWillReceiveProps(nextProps) {
-    if(nextProps.params.id && this.props.params.id != nextProps.params.id) {
-      this.props.getCv(nextProps.params.id);
+    if (nextProps.params.id && this.props.params.id != nextProps.params.id) {
+      this.props.getCv(nextProps.params.id)
     }
   }
   renderMembersList(users) {
@@ -35,23 +32,23 @@ export class Members extends React.Component { // eslint-disable-line react/pref
       <div className={styles.memberList}>
         { users.map(user => <MemberListItem key={user.id} user={user}/>) }
       </div>
-    );
+    )
   }
   render() {
-    const users = this.props.users.toJS();
-    let detail;
-    let detailSelected = false;
-    const id = this.props.params.id;
-    const user = users.find(u => u.id === id);
-    if(user) {
-      let cv = null;
-      if(this.props.cv) {
-        cv = this.props.cv.toJS();
+    const users = this.props.users.toJS()
+    let detail
+    let detailSelected = false
+    const id = this.props.params.id
+    const user = users.find(u => u.id === id)
+    if (user) {
+      let cv = null
+      if (this.props.cv) {
+        cv = this.props.cv.toJS()
       }
-      detail = <CV user={user} cv={cv} />;
-      detailSelected = true;
+      detail = <CV user={user} cv={cv} />
+      detailSelected = true
     } else {
-      detail = <MembersStaticDetail />;
+      detail = <MembersStaticDetail />
     }
     return (
       <div className={styles.members}>
@@ -60,19 +57,19 @@ export class Members extends React.Component { // eslint-disable-line react/pref
           detail={detail}
           detailSelected={detailSelected} />
       </div>
-    );
+    )
   }
 }
 
 function mapStateToProps(state) {
   return {
     users: state.getIn(['members', 'users']),
-    cv: state.getIn(['members', 'cv'])
-  };
+    cv: state.getIn(['members', 'cv']),
+  }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch);
+  return bindActionCreators(actions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Members);
+export default connect(mapStateToProps, mapDispatchToProps)(Members)

@@ -1,4 +1,4 @@
-import { fromJS, Map, } from 'immutable'
+import { fromJS, Map } from 'immutable'
 import {
   GET_USER_REQUEST,
   GET_USER_SUCCESS,
@@ -7,8 +7,8 @@ import {
   LOGIN_ERROR,
   LOGOUT,
 } from './constants'
-import { loggedIn, } from '../../auth'
-import { defaultUser, } from '../User/reducer'
+import { loggedIn } from '../../auth'
+import { defaultUser } from '../User/reducer'
 
 const initialState = fromJS({
   user: defaultUser,

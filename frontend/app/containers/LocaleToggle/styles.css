@@ -5,17 +5,16 @@
 .localeToggleLink {
   text-transform: uppercase;
   color: #90CE9C;
-
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   border-right: 1px solid #90CE9C;
 }
 
-.localeToggleLink:first-child{
-  padding-left: 0rem;
+.localeToggleLink:first-child {
+  padding-left: 0;
 }
 
-.localeToggleLink:last-child{
+.localeToggleLink:last-child {
   border: 0;
-  padding-right: 0rem;
+  padding-right: 0;
 }

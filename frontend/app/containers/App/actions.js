@@ -10,7 +10,7 @@ import {
   fetchUser,
   loginUser,
 } from '../../api'
-import { setLoggedOut, setLoggedIn, } from '../../auth'
+import { setLoggedOut, setLoggedIn } from '../../auth'
 
 export function getUserRequest() {
   return {

@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  background-color: #38383f;
+  background-color: #38383F;
   top: 0;
   width: 100%;
   padding: 10px;
@@ -60,22 +60,28 @@
   .navbar {
     flex-direction: column;
   }
+
   .collapsed {
     display: none;
   }
+
   .collapse {
     flex-direction: column;
     padding: 10px 0;
   }
+
   .navbarMenu {
     flex-direction: column;
   }
+
   .navbarMenu > * {
     padding-bottom: 10px;
   }
+
   .control {
     width: 100%;
   }
+
   .control > img {
     display: block;
   }

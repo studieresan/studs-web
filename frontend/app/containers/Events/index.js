@@ -4,44 +4,45 @@
  *
  */
 
-import React from 'react';
-import { bindActionCreators } from 'redux'; import { connect } from 'react-redux';
-import selectEvents from './selectors';
-import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router';
-import messages from './messages';
-import styles from './styles.css';
-import MasterDetail from '../../components/MasterDetail';
-import EventListItem from '../../components/EventListItem';
-import EventDetail from '../../components/EventDetail';
-import EventStaticDetail from '../../components/EventStaticDetail';
-import EventEdit from '../../components/EventEdit';
-import * as actions from './actions';
+import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import selectEvents from './selectors'
+import { FormattedMessage } from 'react-intl'
+import { Link } from 'react-router'
+import messages from './messages'
+import styles from './styles.css'
+import MasterDetail from '../../components/MasterDetail'
+import EventListItem from '../../components/EventListItem'
+import EventDetail from '../../components/EventDetail'
+import EventStaticDetail from '../../components/EventStaticDetail'
+import EventEdit from '../../components/EventEdit'
+import * as actions from './actions'
 
-export class Events extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class Events extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   componentDidMount() {
-    const { get, getCompanies } = this.props;
-    get();
-    getCompanies();
+    this.props.get()
+    this.props.getCompanies()
   }
 
   renderActions(user) {
-    if(!user || !user.permissions.includes('event')) {
-      return null;
+    if (!user || !user.permissions.includes('event')) {
+      return null
     }
     return (
       <div className={styles.actions}>
         <Link to="/events/new"><FormattedMessage {...messages.create} /></Link>
       </div>
-    );
+    )
   }
 
   renderEventsList(events, user) {
-    const items = events.map(e => <EventListItem key={e.id} event={e} user={user} />);
+    const items =
+      events.map(e => <EventListItem key={e.id} event={e} user={user} />)
     return (
       <div className={styles.listContainer}>
         <div className={styles.list}>
@@ -53,7 +54,7 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
         </div>
         { this.renderActions(user) }
       </div>
-    );
+    )
   }
 
   render() {
@@ -69,14 +70,21 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
       getMissingForms,
       remindBefore,
       remindAfter,
-    } = this.props;
+    } = this.props
 
-    let detail;
-    let detailSelected = false;
-    if(params.id) {
-      const event = events.items.find(e => e.id == params.id);
-      if(route.name === 'events/edit') {
-        detail = <EventEdit event={event} companies={events.companies} update={update} save={save} saving={events.saving} importFormData={importFormData}/>;
+    let detail
+    let detailSelected = false
+    if (params.id) {
+      const event = events.items.find(e => e.id == params.id)
+      if (route.name === 'events/edit') {
+        detail = <EventEdit 
+          event={event}
+          companies={events.companies}
+          update={update}
+          save={save}
+          saving={events.saving}
+          importFormData={importFormData}
+        />
       } else {
         detail = <EventDetail
           event={event}
@@ -84,12 +92,19 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
           id={params.id}
           getMissingForms={getMissingForms}
           remindAfter={remindAfter}
-          remindBefore={remindBefore} />;
+          remindBefore={remindBefore} />
       }
-      detailSelected = true;
-    } else if(route.name === 'events/new') {
-      detail = <EventEdit event={events.newEvent} companies={events.companies} create={create} update={update} save={save} saving={events.saving} />
-      detailSelected = true;
+      detailSelected = true
+    } else if (route.name === 'events/new') {
+      detail = <EventEdit
+        event={events.newEvent}
+        companies={events.companies}
+        create={create}
+        update={update}
+        save={save}
+        saving={events.saving}
+      />
+      detailSelected = true
     } else {
       detail = <EventStaticDetail />
     }
@@ -101,14 +116,14 @@ export class Events extends React.Component { // eslint-disable-line react/prefe
           detail={detail}
           detailSelected={detailSelected} />
       </div>
-    );
+    )
   }
 }
 
-const mapStateToProps = selectEvents();
+const mapStateToProps = selectEvents()
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch);
+  return bindActionCreators(actions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Events);
+export default connect(mapStateToProps, mapDispatchToProps)(Events)

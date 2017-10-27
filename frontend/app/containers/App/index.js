@@ -11,29 +11,26 @@
  * the linting exception.
  */
 
-import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import PropTypes from 'prop-types'
 
-import styles from './styles.css';
+import styles from './styles.css'
 import Navbar from '../Navbar'
-import * as actions from './actions';
+import * as actions from './actions'
 
-class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
-
-  static propTypes = {
-    children: React.PropTypes.node,
-  };
+class App extends React.Component {
 
   componentDidMount() {
-    if(this.props.loggedIn) {
-      this.props.getUser();
+    if (this.props.loggedIn) {
+      this.props.getUser()
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.loggedIn && !this.props.loggedIn) {
-      this.props.getUser();
+    if (nextProps.loggedIn && !this.props.loggedIn) {
+      this.props.getUser()
     }
   }
 
@@ -43,8 +40,14 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
         <Navbar />
         {React.Children.toArray(this.props.children)}
       </div>
-    );
+    )
   }
+}
+
+App.propTypes = {
+  children: PropTypes.node,
+  loggedIn: PropTypes.bool.isRequired,
+  getUser: PropTypes.func.isRequired,
 }
 
 function mapStateToProps(state) {
@@ -52,11 +55,11 @@ function mapStateToProps(state) {
     user: state.getIn(['global', 'user']),
     fetchingUser: state.getIn(['global', 'fetchingUser']),
     loggedIn: state.getIn(['global', 'loggedIn']),
-  };
+  }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch);
+  return bindActionCreators(actions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

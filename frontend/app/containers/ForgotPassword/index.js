@@ -4,19 +4,19 @@
  *
  */
 
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
-import styles from './styles.css';
+import React from 'react'
+import { FormattedMessage } from 'react-intl'
+import messages from './messages'
+import styles from './styles.css'
 import { requestPasswordReset } from '../../api'
-import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router'
 
-export default class ForgotPassword extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export default class ForgotPassword extends React.Component {
   constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {email: ''};
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.state = {email: ''}
   }
 
   handleChange(event) {
@@ -24,24 +24,28 @@ export default class ForgotPassword extends React.Component { // eslint-disable-
   }
 
   handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
     requestPasswordReset(this.state.email)
       .then(() => {
-        browserHistory.push('/');
+        browserHistory.push('/')
       })
       .catch(error => {
-        this.setState({error: true});
-      });
+        this.setState({error: true})
+      })
 
   }
 
   render() {
-    const email = this.state.email;
+    const email = this.state.email
     return (
       <div className={styles.user}>
         <form onSubmit={this.handleSubmit} className={styles.content}>
-          <h1 className={styles.header}><FormattedMessage {...messages.title} /></h1>
-          <div className='input-label'><FormattedMessage {...messages.email} /></div>
+          <h1 className={styles.header}>
+            <FormattedMessage {...messages.title} />
+          </h1>
+          <div className='input-label'>
+            <FormattedMessage {...messages.email} />
+          </div>
           <input
             type='text'
             name='email'
@@ -54,6 +58,6 @@ export default class ForgotPassword extends React.Component { // eslint-disable-
           {this.state.error ? <div>Error</div> : null}
         </form>
       </div>
-    );
+    )
   }
 }

@@ -6,13 +6,13 @@
 
 import {
   CHANGE_LOCALE,
-} from './constants';
+} from './constants'
 
 export function changeLocale(languageLocale) {
-  localStorage.setItem('language', languageLocale);
+  localStorage.setItem('language', languageLocale)
 
   return {
     type: CHANGE_LOCALE,
     locale: languageLocale,
-  };
+  }
 }

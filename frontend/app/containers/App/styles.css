@@ -4,7 +4,7 @@
  * App container styles
  */
 body {
-	font-family: 'Neuzeit S LT';
+  font-family: 'Neuzeit S LT';
 }
 
 h1,
@@ -13,24 +13,25 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'DIN Condensed';
-	text-transform: uppercase;
-	letter-spacing: 5px;
+  font-family: 'DIN Condensed';
+  text-transform: uppercase;
+  letter-spacing: 5px;
 }
 
-p, li {
-	font-size: 14px;
+p,
+li {
+  font-size: 14px;
 }
 
 .container input {
-	font-family: 'Neuzeit S LT';
+  font-family: 'Neuzeit S LT';
   display: block;
   border: 1px solid #000;
   padding: 6px;
 }
 
 .container select {
-	font-family: 'Neuzeit S LT';
+  font-family: 'Neuzeit S LT';
   display: block;
 }
 
@@ -53,32 +54,34 @@ input:focus {
 }
 
 :global .btn-default {
-	font-family: 'DIN Condensed';
-	letter-spacing: 3px;
+  font-family: 'DIN Condensed';
+  letter-spacing: 3px;
   text-transform: uppercase;
-  background-color: #38383f;
-  color: #fff;
+  background-color: #38383F;
+  color: white;
   line-height: 40px;
   height: 35px;
   padding: 0 24px;
   transition: background-color 0.2s;
   cursor: pointer;
 }
+
 :global .btn-bright {
-	font-family: 'DIN Condensed';
-	letter-spacing: 3px;
+  font-family: 'DIN Condensed';
+  letter-spacing: 3px;
   text-transform: uppercase;
-  background-color: #90ce9c;
-  color: #fff;
+  background-color: #90CE9C;
+  color: white;
   line-height: 40px;
   height: 35px;
   padding: 0 24px;
   transition: background-color 0.2s;
   cursor: pointer;
 }
+
 :global .btn-gold {
-	font-family: 'DIN Condensed';
-	letter-spacing: 3px;
+  font-family: 'DIN Condensed';
+  letter-spacing: 3px;
   text-transform: uppercase;
   background-color: #FFDAAB;
   color: #A4A2A6;
@@ -102,7 +105,6 @@ input:focus {
   align-items: center;
 }
 
-
 .container {
   display: block;
 }
@@ -111,24 +113,54 @@ input:focus {
 
 @font-face {
   font-family: 'DIN Condensed';
-  src: url("../../static/fonts/DINCondensed-Bold.eot");
-  src: url("../../static/fonts/DINCondensed-Bold.eot?#iefix") format("embedded-opentype"), url("../../static/fonts/DINCondensed-Bold.woff2") format("woff2"), url("../../static/fonts/DINCondensed-Bold.woff") format("woff"), url("../../static/fonts/DINCondensed-Bold.ttf") format("truetype"), url("../../static/fonts/DINCondensed-Bold.svg#DINCondensed-Bold") format("svg");
+  src: url('../../static/fonts/DINCondensed-Bold.eot');
+  src:
+    url('../../static/fonts/DINCondensed-Bold.eot?#iefix')
+    format('embedded-opentype'),
+    url('../../static/fonts/DINCondensed-Bold.woff2')
+    format('woff2'),
+    url('../../static/fonts/DINCondensed-Bold.woff')
+    format('woff'),
+    url('../../static/fonts/DINCondensed-Bold.ttf')
+    format('truetype'),
+    url('../../static/fonts/DINCondensed-Bold.svg#DINCondensed-Bold')
+    format('svg');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Neuzeit S LT';
-  src: url("../../static/fonts/NeuzeitSLT-BookHeavy.eot");
-  src: url("../../static/fonts/NeuzeitSLT-BookHeavy.eot?#iefix") format("embedded-opentype"), url("../../static/fonts/NeuzeitSLT-BookHeavy.woff2") format("woff2"), url("../../static/fonts/NeuzeitSLT-BookHeavy.woff") format("woff"), url("../../static/fonts/NeuzeitSLT-BookHeavy.ttf") format("truetype"), url("../../static/fonts/NeuzeitSLT-BookHeavy.svg#NeuzeitSLT-BookHeavy") format("svg");
+  src: url('../../static/fonts/NeuzeitSLT-BookHeavy.eot');
+  src:
+    url('../../static/fonts/NeuzeitSLT-BookHeavy.eot?#iefix')
+    format('embedded-opentype'),
+    url('../../static/fonts/NeuzeitSLT-BookHeavy.woff2')
+    format('woff2'),
+    url('../../static/fonts/NeuzeitSLT-BookHeavy.woff')
+    format('woff'),
+    url('../../static/fonts/NeuzeitSLT-BookHeavy.ttf')
+    format('truetype'),
+    url('../../static/fonts/NeuzeitSLT-BookHeavy.svg#NeuzeitSLT-BookHeavy')
+    format('svg');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Neuzeit S LT';
-  src: url("../../static/fonts/NeuzeitSLT-Book.eot");
-  src: url("../../static/fonts/NeuzeitSLT-Book.eot?#iefix") format("embedded-opentype"), url("../../static/fonts/NeuzeitSLT-Book.woff2") format("woff2"), url("../../static/fonts/NeuzeitSLT-Book.woff") format("woff"), url("../../static/fonts/NeuzeitSLT-Book.ttf") format("truetype"), url("../../static/fonts/NeuzeitSLT-Book.svg#NeuzeitSLT-Book") format("svg");
+  src: url('../../static/fonts/NeuzeitSLT-Book.eot');
+  src:
+    url('../../static/fonts/NeuzeitSLT-Book.eot?#iefix')
+    format('embedded-opentype'),
+    url('../../static/fonts/NeuzeitSLT-Book.woff2')
+    format('woff2'),
+    url('../../static/fonts/NeuzeitSLT-Book.woff')
+    format('woff'),
+    url('../../static/fonts/NeuzeitSLT-Book.ttf')
+    format('truetype'),
+    url('../../static/fonts/NeuzeitSLT-Book.svg#NeuzeitSLT-Book')
+    format('svg');
   font-weight: normal;
   font-style: normal;
 }

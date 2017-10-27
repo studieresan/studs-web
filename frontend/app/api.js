@@ -1,5 +1,3 @@
-import { getToken, } from './auth'
-
 const baseUrl = 'http://localhost:5040'
 const usersUrl = '/users'
 const loginUrl = '/login'
@@ -22,13 +20,6 @@ function parseJSON(response) {
   return response.json()
 }
 
-function authHeader(token) {
-  token = token || getToken()
-  return {
-    'Authorization': 'Basic ' + token,
-  }
-}
-
 function credentials() {
   return {
     credentials: 'include',
@@ -43,7 +34,7 @@ function jsonHeader() {
 
 function header() {
   return {
-    headers: authHeader(),
+    // headers: authHeader(), TODO
   }
 }
 
@@ -55,9 +46,21 @@ function ftch(...args) {
 
 export function fetchUser() {
   // TODO extract constant
-  const url = 'http://localhost:5040/graphql?query={user{email}}'
+  const query = `{
+    user {
+      email
+      firstName
+      lastName
+      phone
+      picture
+      alergies
+      master
+    }
+  }
+  `
+  const url = `http://localhost:5040/graphql?query=${query}`
   return ftch(url, { ...credentials(), })
-    .then(res => res.data.user)
+    .then(res => Promise.resolve(res.data.user))
 }
 
 export function loginUser(email, password) {
@@ -102,7 +105,7 @@ export function fetchCv(id) {
 export function updateCv(id, cv) {
   return ftch(`${baseUrl}${usersUrl}/${id}${cvUrl}`, {
     headers: {
-      ...authHeader(),
+      // ...authHeader(), TODO
       ...jsonHeader(),
     },
     method: 'PATCH',
@@ -133,7 +136,7 @@ export function fetchCompanies() {
 export function createEvent(event) {
   return ftch(`${baseUrl}${eventsUrl}`, {
     headers: {
-      ...authHeader(),
+      // ...authHeader(), TODO
       ...jsonHeader(),
     },
     method: 'POST',

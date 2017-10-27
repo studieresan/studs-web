@@ -10,7 +10,7 @@ import {
   fetchUser,
   loginUser,
 } from '../../api'
-import { removeToken, } from '../../auth'
+import { setLoggedOut, setLoggedIn, } from '../../auth'
 
 export function getUserRequest() {
   return {
@@ -25,15 +25,15 @@ export function getUserSuccess(user) {
       id: user.id,
       email: user.email,
       // TODO name should not be missing, add fields to backend
-      firstName: user.first_name || 'NAME_MISSING',
-      lastName: user.last_name,
+      firstName: user.firstName,
+      lastName: user.lastName,
       permissions: user.permissions,
       picture: user.picture,
       phone: user.phone || '',
       position: user.position || '',
       master: user.master || '',
       allergies: user.allergies || '',
-      type: user.type_of_user,
+      type: user.memberType,
     },
   }
 }
@@ -64,8 +64,7 @@ export function loginError() {
 }
 
 export function logout() {
-  // TODO this will not work anymore
-  removeToken()
+  setLoggedOut()
   return {
     type: LOGOUT,
   }
@@ -76,6 +75,7 @@ export const login = (email, pass) => dispatch => {
     .then(user => {
       dispatch(getUserSuccess(user))
       dispatch(loginSuccess())
+      setLoggedIn()
     })
     .catch(dispatch(loginError()))
 }

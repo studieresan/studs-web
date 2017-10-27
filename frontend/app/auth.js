@@ -1,21 +1,13 @@
-export function generateToken(email, pass) {
-  return btoa(`${email}:${pass}`)
+export function setLoggedIn() {
+  localStorage.loggedIn = 'true'
 }
 
-export function setToken(token) {
-  localStorage.token = token
-}
-
-export function removeToken() {
-  localStorage.removeItem('token')
-}
-
-export function getToken() {
-  return localStorage.token
+export function setLoggedOut() {
+  localStorage.loggedIn = null
 }
 
 export function loggedIn() {
-  return !!localStorage.token
+  return localStorage.loggedIn === 'true'
 }
 
 export function requireAuth(nextState, replace) {

@@ -11,15 +11,15 @@ import {
   SAVE_REQUEST,
   SAVE_SUCCESS,
   SAVE_ERROR,
-  UPDATE
-} from './constants';
-import { fetchUser, updateUser } from '../../api';
-import { setToken } from '../../auth';
+  UPDATE,
+} from './constants'
+import { fetchUser, updateUser, } from '../../api'
+import { setLoggedIn, } from '../../auth'
 
 export function getRequest() {
   return {
-    type: GET_REQUEST
-  };
+    type: GET_REQUEST,
+  }
 }
 
 export function getSuccess(user) {
@@ -37,80 +37,81 @@ export function getSuccess(user) {
       allergies: user.allergies || '',
       password: '',
       passwordConfirm: '',
-      type: user.type_of_user
-    }
-  };
+      type: user.type_of_user,
+    },
+  }
 }
 
 export function getError() {
   return {
-    type: GET_ERROR
-  };
+    type: GET_ERROR,
+  }
 }
 
 export const getUser = () => dispatch => {
-  dispatch(getRequest());
+  dispatch(getRequest())
   fetchUser()
-    .then(data => dispatch(getSuccess(data.user)))
-    .catch(() => dispatch(getError()));
+    .then(user => {
+      console.log('got user')
+      dispatch(getSuccess(user))
+    })
+    .catch(() => dispatch(getError()))
 }
 
 export function update(user) {
   return {
     type: UPDATE,
-    user
-  };
+    user,
+  }
 }
 
 export function saveRequest() {
   return {
-    type: SAVE_REQUEST
-  };
+    type: SAVE_REQUEST,
+  }
 }
 
 export function saveSuccess() {
   return {
-    type: SAVE_SUCCESS
-  };
+    type: SAVE_SUCCESS,
+  }
 }
 
 export function saveError() {
   return {
-    type: SAVE_ERROR
-  };
+    type: SAVE_ERROR,
+  }
 }
 
 export const save = () => (dispatch, getState) => {
-  const { user } = getState().get('user').toJS();
+  const { user, } = getState().get('user').toJS()
   const data = {
     first_name: user.firstName,
     last_name: user.lastName,
     phone: user.phone,
     position: user.position,
     master: user.master,
-    picture: user.picture
-  };
-
-  if(user.password) {
-    data.password = user.password;
-    data.password_confirmation = user.passwordConfirmation;
+    picture: user.picture,
   }
 
-  const formData = new FormData();
+  if (user.password) {
+    data.password = user.password
+    data.password_confirmation = user.passwordConfirmation
+  }
+
+  const formData = new FormData()
   Object.keys(data).forEach(function (key) {
     if (data[key]) {
-      formData.append('user[' + key + ']', data[key]);
+      formData.append('user[' + key + ']', data[key])
     }
-  });
+  })
 
-  dispatch(saveRequest());
+  dispatch(saveRequest())
   updateUser(user.id, formData)
-    .then(data => {
-      dispatch(saveSuccess());
-      dispatch(getSuccess(data.user));
-      if(user.password) {
-        setToken(user.email, user.password);
-      }
+    .then(user => {
+      dispatch(saveSuccess())
+      dispatch(getSuccess(user))
+      setLoggedIn()
     })
-    .catch(error => dispatch(saveError()))
+    .catch(() => dispatch(saveError()))
 }

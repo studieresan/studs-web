@@ -115,10 +115,7 @@ function cvEditReducer(state = initialState, action) {
       s => sectionReducer(s, action)
     )
   case GET_SUCCESS:
-    if (!action.cv.content) {
-      return state
-    }
-    return state.set('content', fromJS(action.cv.content))
+    return state.set('content', fromJS(action.cv))
   case SAVE_REQUEST:
     return state.merge(Map({
       saving: true,

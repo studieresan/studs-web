@@ -3,9 +3,9 @@
  * Cv
  *
  */
-import React, {PropTypes} from "react";
-import styles from "./styles.css";
-import CvHeader from "../CvHeader";
+import React, {PropTypes} from 'react'
+import styles from './styles.css'
+import CvHeader from '../CvHeader'
 
 function renderItem(item, i) {
   return (
@@ -24,7 +24,7 @@ function renderItem(item, i) {
 }
 
 function renderSection(section) {
-  const items = section.items.map((item, i) => renderItem(item, i));
+  const items = section.items.map((item, i) => renderItem(item, i))
   return (
     <div key={section.title} className={styles.section} >
       <h2>{section.title}</h2>
@@ -34,9 +34,9 @@ function renderSection(section) {
 }
 
 function Cv(props) {
-  let sections = null;
-  if(props.cv) {
-    sections = props.cv.sections.map(section => renderSection(section));
+  let sections = null
+  if (props.cv) {
+    sections = props.cv.sections.map(section => renderSection(section))
   }
 
   return (
@@ -46,12 +46,12 @@ function Cv(props) {
       {sections}
       </div>
     </div>
-  );
+  )
 }
 
 Cv.propTypes = {
   user: PropTypes.object.isRequired,
-  cv: PropTypes.object
-};
+  cv: PropTypes.object,
+}
 
-export default Cv;
+export default Cv

@@ -114,9 +114,15 @@ export function fetchUsers() {
 
 const CV_FIELDS = `
   userId
-  text
   sections {
     title
+    items {
+      title
+      description
+      when
+      organization
+      city
+    }
   }
 `
 
@@ -131,14 +137,17 @@ export function fetchCv() {
 }
 
 export function updateCv(id, cv) {
-  return ftch(`${baseUrl}${usersUrl}/${id}${cvUrl}`, {
-    headers: {
-      // ...authHeader(), TODO
-      ...jsonHeader(),
-    },
-    method: 'PATCH',
-    body: JSON.stringify(cv),
-  })
+  const mutation = `mutation {
+  setCv(fields: ${toGraphQLFields(cv)}) {
+      ${CV_FIELDS}
+    }
+  }
+  `
+  const url = `${baseUrl}${graphqlUrl}?query=${mutation}`
+  return ftch(url, {
+    method: 'POST',
+    ...credentials(),
+  }).then(res => Promise.resolve(res.data.cv))
 }
 
 export function requestPasswordReset(email) {

@@ -19,6 +19,7 @@ import {
   SAVE_ERROR,
 } from './constants'
 import { fetchCv, updateCv } from '../../api'
+import omit from 'lodash/omit'
 
 export function addSection() {
   return {
@@ -121,7 +122,7 @@ export const saveCv = id => (dispatch, getState) => {
     setTimeout(() => {
       timeout = false
       const content = getState().getIn(['cv', 'content']).toJS()
-      updateCv(id, {content})
+      updateCv(id, omit(content, 'userId'))
         .then(() => dispatch(saveSuccess()))
         .catch(() => dispatch(saveError()))
     }, 1000)

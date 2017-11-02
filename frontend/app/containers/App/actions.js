@@ -24,7 +24,6 @@ export function getUserSuccess(user) {
     user: {
       id: user.id,
       email: user.email,
-      // TODO name should not be missing, add fields to backend
       firstName: user.firstName,
       lastName: user.lastName,
       permissions: user.permissions,

@@ -5,6 +5,7 @@
  */
 
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { FormattedMessage } from 'react-intl'
@@ -22,13 +23,12 @@ export class User extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.user.firstName === '') {
+    if (this.props.user) {
       this.props.getUser()
     }
   }
 
   handleChange(event) {
-    console.log('user')
     const user = {}
     if (event.target.type == 'file') {
       user[event.target.name] = event.target.files[0]
@@ -36,11 +36,11 @@ export class User extends React.Component {
       user[event.target.name] = event.target.value
     }
 
-    // this.props.update(user)
+    this.props.update(user)
   }
 
   handleSubmit() {
-    // this.props.save()
+    this.props.save(this.props.user)
   }
 
   renderPicture(currentPicture) {
@@ -51,6 +51,7 @@ export class User extends React.Component {
 
   render() {
     const user = this.props.user
+
     return (
       <div className={styles.user}>
         <div className={styles.content}>
@@ -71,6 +72,7 @@ export class User extends React.Component {
             name='firstName'
             value={user.firstName}
             onChange={this.handleChange}
+            onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
             placeholder='First name'/>
           <div className='input-label'>
             <FormattedMessage {...messages.lastName} />
@@ -80,6 +82,7 @@ export class User extends React.Component {
             name='lastName'
             value={user.lastName}
             onChange={this.handleChange}
+            onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
             placeholder='Last name'/>
          { user.type === 'studs_member' ?
             <div>
@@ -91,6 +94,7 @@ export class User extends React.Component {
                 name='phone'
                 value={user.phone}
                 onChange={this.handleChange}
+                onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
                 placeholder='Phone number'/>
               <div className='input-label'>
                 <FormattedMessage {...messages.position} />
@@ -100,6 +104,7 @@ export class User extends React.Component {
                 name='position'
                 value={user.position}
                 onChange={this.handleChange}
+                onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
                 placeholder='Position'/>
               <div className='input-label'>
                 <FormattedMessage {...messages.master} />
@@ -109,6 +114,7 @@ export class User extends React.Component {
                 name='master'
                 value={user.master}
                 onChange={this.handleChange}
+                onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
                 placeholder='Master'/>
               <div className='input-label'>
                 <FormattedMessage {...messages.allergies} />
@@ -118,6 +124,7 @@ export class User extends React.Component {
                 name='allergies'
                 value={user.allergies}
                 onChange={this.handleChange}
+                onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
                 placeholder='Allergies'/>
               <div className='input-label'>
                 <FormattedMessage {...messages.picture} />
@@ -145,22 +152,45 @@ export class User extends React.Component {
             name='passwordConfirm'
             onChange={this.handleChange}/>
           <div className='button-wrapper'>
-            { this.props.saved
-                ? <div>Saved</div>
-                : <button className='btn-bright' onClick={this.handleSubmit}>
-                  Save
-                  </button>
-            }
+            <button className='btn-bright' onClick={this.handleSubmit}>
+              Save
+            </button>
           </div>
+          { this.props.saved && // TODO translate
+            <div className={styles.status}>
+              Saved
+            </div>
+          }
+          { this.props.saveError && // TODO translate
+            <div className={styles.status}>
+              Error, please try again later
+            </div>
+          }
         </div>
       </div>
     )
   }
 }
 
+User.propTypes = {
+  saved: PropTypes.bool.isRequired,
+  saveError: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired,
+  getUser: PropTypes.func.isRequired,
+  save: PropTypes.func.isRequired,
+  update: PropTypes.func.isRequired,
+}
+
 function mapStateToProps(state) {
+  const {
+    user,
+    saved,
+    saveError,
+  } = state.getIn(['user']).toJS()
   return {
-    user: state.getIn(['global', 'user' ]).toJS(),
+    user,
+    saved,
+    saveError,
   }
 }
 

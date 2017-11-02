@@ -1,5 +1,4 @@
 /*
- *
  * User reducer
  *
  */
@@ -19,7 +18,6 @@ import {
 } from './constants'
 
 export const defaultUser = {
-  id: '',
   firstName: '',
   lastName: '',
   phone: '',

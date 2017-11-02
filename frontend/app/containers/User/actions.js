@@ -6,15 +6,19 @@
 
 import {
   GET_REQUEST,
-  GET_SUCCESS,
-  GET_ERROR,
-  SAVE_REQUEST,
+  GET_SUCCESS, GET_ERROR, SAVE_REQUEST,
   SAVE_SUCCESS,
   SAVE_ERROR,
   UPDATE,
 } from './constants'
 import { fetchUser, updateUser } from '../../api'
 import { setLoggedIn } from '../../auth'
+import { getUserSuccess } from '../App/actions'
+import differenceWith from 'lodash/differenceWith'
+import toPairs from 'lodash/toPairs'
+import isEqual from 'lodash/isEqual'
+import fromPairs from 'lodash/fromPairs'
+import isEmpty from 'lodash/isEmpty'
 
 export function getRequest() {
   return {
@@ -26,36 +30,42 @@ export function getSuccess(user) {
   return {
     type: GET_SUCCESS,
     user: {
-      id: user.id,
       email: user.email,
-      firstName: user.first_name,
-      lastName: user.last_name,
+      firstName: user.firstName,
+      lastName: user.lastName,
       phone: user.phone || '',
       position: user.position || '',
-      currentPicture: user.picture || null,
       master: user.master || '',
       allergies: user.allergies || '',
-      password: '',
-      passwordConfirm: '',
-      type: user.type_of_user,
     },
-  }
-}
-
-export function getError() {
-  return {
-    type: GET_ERROR,
   }
 }
 
 export const getUser = () => dispatch => {
   dispatch(getRequest())
   fetchUser()
-    .then(user => {
-      console.log('got user')
-      dispatch(getSuccess(user))
-    })
+    .then(user => dispatch(getSuccess(user)))
     .catch(() => dispatch(getError()))
+}
+
+export const save = (user) => (dispatch, getState) => {
+  // Calculate changes made to the user and only send those
+  const savedUser = getState().getIn(['global', 'user']).toJS()
+  const diff = fromPairs(
+    differenceWith(toPairs(user), toPairs(savedUser), isEqual)
+  )
+  if (isEmpty(diff)) return
+
+  dispatch(saveRequest())
+  updateUser(diff)
+    .then(user => {
+      dispatch(saveSuccess())
+      dispatch(getSuccess(user))
+      setLoggedIn()
+      // Update the user globally
+      dispatch(getUserSuccess(user))
+    })
+    .catch(() => dispatch(saveError()))
 }
 
 export function update(user) {
@@ -65,53 +75,27 @@ export function update(user) {
   }
 }
 
-export function saveRequest() {
+function getError() {
+  return {
+    type: GET_ERROR,
+  }
+}
+
+
+function saveRequest() {
   return {
     type: SAVE_REQUEST,
   }
 }
 
-export function saveSuccess() {
+function saveSuccess() {
   return {
     type: SAVE_SUCCESS,
   }
 }
 
-export function saveError() {
+function saveError() {
   return {
     type: SAVE_ERROR,
   }
-}
-
-export const save = () => (dispatch, getState) => {
-  const { user } = getState().get('user').toJS()
-  const data = {
-    first_name: user.firstName,
-    last_name: user.lastName,
-    phone: user.phone,
-    position: user.position,
-    master: user.master,
-    picture: user.picture,
-  }
-
-  if (user.password) {
-    data.password = user.password
-    data.password_confirmation = user.passwordConfirmation
-  }
-
-  const formData = new FormData()
-  Object.keys(data).forEach(function (key) {
-    if (data[key]) {
-      formData.append('user[' + key + ']', data[key])
-    }
-  })
-
-  dispatch(saveRequest())
-  updateUser(user.id, formData)
-    .then(user => {
-      dispatch(saveSuccess())
-      dispatch(getSuccess(user))
-      setLoggedIn()
-    })
-    .catch(() => dispatch(saveError()))
 }

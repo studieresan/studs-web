@@ -44,23 +44,43 @@ function ftch(...args) {
     .then(parseJSON)
 }
 
+const USER_FIELDS = `
+  email
+  firstName
+  lastName
+  phone
+  picture
+  allergies
+  master
+`
+
 export function fetchUser() {
-  // TODO extract constant
+  // TODO extract constants
   const query = `{
-    user {
-      email
-      firstName
-      lastName
-      phone
-      picture
-      alergies
-      master
-    }
+    user { ${USER_FIELDS} }
   }
   `
   const url = `http://localhost:5040/graphql?query=${query}`
   return ftch(url, { ...credentials() })
     .then(res => Promise.resolve(res.data.user))
+}
+
+function toGraphQLFields(str) {
+  return JSON.stringify(str).replace(/"([^"]*)":/g, '$1:')
+}
+
+export function updateUser(newFields) {
+  const mutation = `mutation {
+    setUser(fields: ${toGraphQLFields(newFields)}) {
+      ${USER_FIELDS}
+    }
+  }
+  `
+  const url = `http://localhost:5040/graphql?query=${mutation}`
+  return ftch(url, {
+    method: 'POST',
+    ...credentials(),
+  }).then(res => Promise.resolve(res.data.setUser))
 }
 
 export function loginUser(email, password) {
@@ -77,14 +97,6 @@ export function loginUser(email, password) {
     body: JSON.stringify(data),
   }
   return ftch(baseUrl+loginUrl, post)
-}
-
-export function updateUser(id, user) {
-  return ftch(baseUrl+usersUrl+'/'+id, {
-    ...header(),
-    method: 'PATCH',
-    body: user,
-  })
 }
 
 export function updateUserPassword(user) {

@@ -1,9 +1,9 @@
-const baseUrl = 'http://localhost:5040'
+const baseUrl = process.env.API_BASE_URL || 'http://localhost:5040'
 const graphqlUrl = '/graphql'
 const usersUrl = '/users'
 const loginUrl = '/login'
 const passwordResetUrl = '/users/password-reset'
-const cvUrl = '/resume'
+// const cvUrl = '/resume'
 const eventsUrl = '/events'
 const companiesUrl = '/companies'
 const STATUS_OK = 200

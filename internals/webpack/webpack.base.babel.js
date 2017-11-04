@@ -2,13 +2,13 @@
  * COMMON WEBPACK CONFIGURATION
  */
 
-const path = require('path');
-const webpack = require('webpack');
+const path = require('path')
+const webpack = require('webpack')
 
 // PostCSS plugins
-const cssnext = require('postcss-cssnext');
-const postcssFocus = require('postcss-focus');
-const postcssReporter = require('postcss-reporter');
+const cssnext = require('postcss-cssnext')
+const postcssFocus = require('postcss-focus')
+const postcssReporter = require('postcss-reporter')
 
 module.exports = (options) => ({
   entry: options.entry,
@@ -63,11 +63,12 @@ module.exports = (options) => ({
     }),
 
     // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
-    // inside your code for any environment checks; UglifyJS will automatically
+    // inside your code for any environment checks UglifyJS will automatically
     // drop any unreachable code.
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        API_BASE_URL: JSON.stringify(process.env.API_BASE_URL),
       },
     }),
   ]),
@@ -98,4 +99,4 @@ module.exports = (options) => ({
   target: 'web', // Make web variables accessible to webpack, e.g. window
   stats: false, // Don't show stats in the console
   progress: true,
-});
+})

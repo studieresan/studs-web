@@ -30,6 +30,8 @@ export function getSuccess(user) {
   return {
     type: GET_SUCCESS,
     user: {
+      id: user.id,
+      type: user.memberType,
       email: user.email,
       firstName: user.firstName,
       lastName: user.lastName,

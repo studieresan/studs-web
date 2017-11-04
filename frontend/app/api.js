@@ -1,4 +1,5 @@
 const baseUrl = 'http://localhost:5040'
+const graphqlUrl = '/graphql'
 const usersUrl = '/users'
 const loginUrl = '/login'
 const passwordResetUrl = '/users/password-reset'
@@ -45,6 +46,7 @@ function ftch(...args) {
 }
 
 const USER_FIELDS = `
+  memberType
   email
   firstName
   lastName
@@ -60,7 +62,7 @@ export function fetchUser() {
     user { ${USER_FIELDS} }
   }
   `
-  const url = `http://localhost:5040/graphql?query=${query}`
+  const url = `${baseUrl}${graphqlUrl}?query=${query}`
   return ftch(url, { ...credentials() })
     .then(res => Promise.resolve(res.data.user))
 }
@@ -76,7 +78,7 @@ export function updateUser(newFields) {
     }
   }
   `
-  const url = `http://localhost:5040/graphql?query=${mutation}`
+  const url = `${baseUrl}${graphqlUrl}?query=${mutation}`
   return ftch(url, {
     method: 'POST',
     ...credentials(),
@@ -110,19 +112,42 @@ export function fetchUsers() {
   return ftch(baseUrl+usersUrl, header())
 }
 
-export function fetchCv(id) {
-  return ftch(`${baseUrl}${usersUrl}/${id}${cvUrl}`, header())
+const CV_FIELDS = `
+  userId
+  sections {
+    title
+    items {
+      title
+      description
+      when
+      organization
+      city
+    }
+  }
+`
+
+export function fetchCv() {
+  const query = `{
+    cv { ${CV_FIELDS} }
+  }
+  `
+  const url = `${baseUrl}${graphqlUrl}?query=${query}`
+  return ftch(url, { ...credentials() })
+    .then(res => Promise.resolve(res.data.cv))
 }
 
 export function updateCv(id, cv) {
-  return ftch(`${baseUrl}${usersUrl}/${id}${cvUrl}`, {
-    headers: {
-      // ...authHeader(), TODO
-      ...jsonHeader(),
-    },
-    method: 'PATCH',
-    body: JSON.stringify(cv),
-  })
+  const mutation = `mutation {
+  setCv(fields: ${toGraphQLFields(cv)}) {
+      ${CV_FIELDS}
+    }
+  }
+  `
+  const url = `${baseUrl}${graphqlUrl}?query=${mutation}`
+  return ftch(url, {
+    method: 'POST',
+    ...credentials(),
+  }).then(res => Promise.resolve(res.data.cv))
 }
 
 export function requestPasswordReset(email) {

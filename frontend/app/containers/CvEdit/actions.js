@@ -73,7 +73,6 @@ export function getRequest() {
 }
 
 export function getSuccess(cv) {
-  console.log(cv)
   return {
     type: GET_SUCCESS,
     cv,

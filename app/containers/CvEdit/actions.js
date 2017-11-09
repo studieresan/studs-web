@@ -86,7 +86,7 @@ export function getError() {
   }
 }
 
-export const getCv = id => dispatch => {  
+export const getCv = id => dispatch => {
   dispatch(getRequest())
   fetchCv(id)
     .then(cv => dispatch(getSuccess(cv)))

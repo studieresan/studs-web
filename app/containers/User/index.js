@@ -129,11 +129,6 @@ export class User extends React.Component {
               <div className='input-label'>
                 <FormattedMessage {...messages.picture} />
               </div>
-              {this.renderPicture(user.currentPicture)}
-              <input
-                type='file'
-                name='picture'
-                onChange={this.handleChange}/>
             </div>
             : null
           }

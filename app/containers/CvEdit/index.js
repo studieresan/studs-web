@@ -5,6 +5,7 @@
  */
 
 import React from 'react'
+import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as actions from './actions'
@@ -132,6 +133,10 @@ export class CvEdit extends React.Component {
     )
   }
   render() {
+    if (!this.props.content.get('sections')) {
+      // TODO Show better loading indicator
+      return <p className='center'>Loading</p>
+    }
     const sections = this.props.content.get('sections').toJS()
     let header = null
     if (this.props.user) {
@@ -164,6 +169,23 @@ export class CvEdit extends React.Component {
       </div>
     )
   }
+}
+
+CvEdit.propTypes = {
+  saved: PropTypes.bool.isRequired,
+  saveErr: PropTypes.bool.isRequired,
+  saving: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired,
+  params: PropTypes.object.isRequired,
+  content: PropTypes.object.isRequired,
+  addSection: PropTypes.func.isRequired,
+  getCv: PropTypes.func.isRequired,
+  saveCv: PropTypes.func.isRequired,
+  addItem: PropTypes.func.isRequired,
+  removeItem: PropTypes.func.isRequired,
+  updateSection: PropTypes.func.isRequired,
+  removeSection: PropTypes.func.isRequired,
+  updateItem: PropTypes.func.isRequired,
 }
 
 function mapStateToProps(state) {

@@ -130,7 +130,7 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading)
       },
     }, {
-      path: '/members/:id/resume/edit',
+      path: '/resume/edit',
       name: 'cvEdit',
       onEnter: requireAuth,
       getComponent(nextState, cb) {

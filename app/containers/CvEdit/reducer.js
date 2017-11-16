@@ -1,9 +1,3 @@
-/*
- *
- * CvEdit reducer
-j*
- */
-
 import { fromJS, Map } from 'immutable'
 import {
   ADD_SECTION,
@@ -23,36 +17,7 @@ const initialState = fromJS({
   saved: true,
   saving: false,
   saveError: false,
-  content: {
-    sections: [{
-      title: 'Education',
-      items: [{
-        when: '',
-        title: '',
-        organization: '',
-        city: '',
-        description: '',
-      }],
-    }, {
-      title: 'Work Experience',
-      items: [{
-        when: '',
-        title: '',
-        organization: '',
-        city: '',
-        description: '',
-      }],
-    }, {
-      title: 'Extracurricular activities',
-      items: [{
-        when: '',
-        title: '',
-        organization: '',
-        city: '',
-        description: '',
-      }],
-    }],
-  },
+  content: {},
 })
 
 function sectionReducer(state, action) {
@@ -69,9 +34,9 @@ function sectionReducer(state, action) {
   }
   case UPDATE_ITEM:
     return state.updateIn(
-      ['items', action.index],
-      item => item.merge(Map(action.item))
-    )
+          ['items', action.index],
+          item => item.merge(Map(action.item))
+        )
   case REMOVE_ITEM:
     return state.removeIn(['items', action.index])
   default:
@@ -95,14 +60,14 @@ function cvEditReducer(state = initialState, action) {
     return state.updateIn(
         ['content', 'sections'],
         sections => sections.push(section)
-    )
+      )
   }
   case UPDATE_SECTION:
     state = state.set('saved', false)
     return state.updateIn(
-      ['content', 'sections', action.index],
-      section => section.merge(Map(action.section))
-    )
+        ['content', 'sections', action.index],
+        section => section.merge(Map(action.section))
+      )
   case REMOVE_SECTION:
     state = state.set('saved', false)
     return state.removeIn(['content', 'sections', action.index])
@@ -111,9 +76,9 @@ function cvEditReducer(state = initialState, action) {
   case REMOVE_ITEM:
     state = state.set('saved', false)
     return state.updateIn(
-      ['content', 'sections', action.section],
-      s => sectionReducer(s, action)
-    )
+        ['content', 'sections', action.section],
+        s => sectionReducer(s, action)
+      )
   case GET_SUCCESS:
     return state.set('content', fromJS(action.cv))
   case SAVE_REQUEST:

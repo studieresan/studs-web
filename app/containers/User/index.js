@@ -59,7 +59,7 @@ export class User extends React.Component {
             <FormattedMessage {...messages.title} />
           </h1>
           { user.type === 'studs_member' ?
-              <Link to={'members/' + user.id + '/resume/edit'} >
+              <Link to={'/resume/edit'} >
                 <button className='btn-bright'>Edit Resume</button>
               </Link>
               : null

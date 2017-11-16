@@ -6,9 +6,9 @@
  */
 
 import React from 'react'
+import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import { bindActionCreators } from 'redux'
-import Isvg from 'react-inlinesvg'
 import styles from './styles.css'
 import LocaleToggle from '../LocaleToggle'
 import Logo from '../../static/img/text-white-rgb.png'
@@ -19,7 +19,6 @@ import { loggedIn } from '../../auth'
 import { Link, withRouter } from 'react-router'
 import messages from './messages'
 import { connect } from 'react-redux'
-import User from '../User'
 import * as actions from '../User/actions'
 
 export class Navbar extends React.Component {
@@ -44,7 +43,7 @@ export class Navbar extends React.Component {
 
   menu() {
     if (loggedIn()) {
-      const user = this.props.user.toJS()
+      const user = this.props.user
       return (
         <ul className={styles.navbarMenu}>
           <li>
@@ -115,9 +114,15 @@ export class Navbar extends React.Component {
   }
 }
 
+Navbar.propTypes = {
+  user: PropTypes.object,
+  router: PropTypes.object.isRequired,
+}
+
 function mapStateToProps(state) {
+  const immutableUser = state.getIn(['global', 'user'])
   return {
-    user: state.getIn(['global', 'user']),
+    user: immutableUser ? immutableUser.toJS() : {},
   }
 }
 

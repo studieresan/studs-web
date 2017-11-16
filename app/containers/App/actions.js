@@ -76,5 +76,5 @@ export const login = (email, pass) => dispatch => {
       dispatch(loginSuccess())
       setLoggedIn()
     })
-    .catch(dispatch(loginError()))
+    .catch(() => dispatch(loginError()))
 }

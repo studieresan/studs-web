@@ -42,8 +42,8 @@ export default defineMessages({
     id: 'app.containers.User.password',
     defaultMessage: 'New Password',
   },
-  passwordConfirm: {
-    id: 'app.containers.User.passwordConfirm',
+  confirmPassword: {
+    id: 'app.containers.User.confirmPassword',
     defaultMessage: 'Confirm Password',
   },
 })

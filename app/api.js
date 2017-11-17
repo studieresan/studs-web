@@ -1,8 +1,8 @@
-const baseUrl = process.env.API_BASE_URL || 'http://localhost:5040'
+const BASE_URL = process.env.API_BASE_URL || 'http://localhost:5040'
 const graphqlUrl = '/graphql'
 const usersUrl = '/users'
 const loginUrl = '/login'
-const passwordResetUrl = '/users/password-reset'
+const PASSWORD_RESET = '/account/password'
 // const cvUrl = '/resume'
 const eventsUrl = '/events'
 const companiesUrl = '/companies'
@@ -63,7 +63,7 @@ export function fetchUser() {
     user { ${USER_FIELDS} }
   }
   `
-  const url = `${baseUrl}${graphqlUrl}?query=${query}`
+  const url = `${BASE_URL}${graphqlUrl}?query=${query}`
   return ftch(url, { ...credentials() })
     .then(res => Promise.resolve(res.data.user))
 }
@@ -79,7 +79,7 @@ export function updateUser(newFields) {
     }
   }
   `
-  const url = `${baseUrl}${graphqlUrl}?query=${mutation}`
+  const url = `${BASE_URL}${graphqlUrl}?query=${mutation}`
   return ftch(url, {
     method: 'POST',
     ...credentials(),
@@ -93,24 +93,32 @@ export function loginUser(email, password) {
   }
   const post = {
     method: 'POST',
-    credentials: 'include',
+    ...credentials(),
     headers: {
       ...jsonHeader(),
     },
     body: JSON.stringify(data),
   }
-  return ftch(baseUrl+loginUrl, post)
+  return ftch(BASE_URL+loginUrl, post)
 }
 
-export function updateUserPassword(user) {
-  return ftch(baseUrl+passwordResetUrl, {
-    method: 'PATCH',
-    body: user,
-  })
+export function updateUserPassword({ password, confirmPassword }) {
+  const post = {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      ...jsonHeader(),
+    },
+    body: JSON.stringify({
+      password,
+      confirmPassword,
+    }),
+  }
+  return ftch(BASE_URL+PASSWORD_RESET, post)
 }
 
 export function fetchUsers() {
-  return ftch(baseUrl+usersUrl, header())
+  return ftch(BASE_URL+usersUrl, header())
 }
 
 const CV_FIELDS = `
@@ -132,7 +140,7 @@ export function fetchCv() {
     cv { ${CV_FIELDS} }
   }
   `
-  const url = `${baseUrl}${graphqlUrl}?query=${query}`
+  const url = `${BASE_URL}${graphqlUrl}?query=${query}`
   return ftch(url, { ...credentials() })
     .then(res => Promise.resolve(res.data.cv))
 }
@@ -144,23 +152,24 @@ export function updateCv(id, cv) {
     }
   }
   `
-  const url = `${baseUrl}${graphqlUrl}?query=${mutation}`
+  const url = `${BASE_URL}${graphqlUrl}?query=${mutation}`
   return ftch(url, {
     method: 'POST',
     ...credentials(),
   }).then(res => Promise.resolve(res.data.cv))
 }
 
+// TODO
 export function requestPasswordReset(email) {
-  return ftch(`${baseUrl}${passwordResetUrl}?email=${email}`)
+  return ftch(`${BASE_URL}${PASSWORD_RESET}?email=${email}`)
 }
 
 export function fetchEvents() {
-  return ftch(baseUrl+eventsUrl, header())
+  return ftch(BASE_URL+eventsUrl, header())
 }
 
 export function updateEvent(id, event) {
-  return ftch(`${baseUrl}${eventsUrl}/${id}`, {
+  return ftch(`${BASE_URL}${eventsUrl}/${id}`, {
     ...header(),
     method: 'PATCH',
     body: event,
@@ -168,11 +177,11 @@ export function updateEvent(id, event) {
 }
 
 export function fetchCompanies() {
-  return ftch(baseUrl+companiesUrl, header())
+  return ftch(BASE_URL+companiesUrl, header())
 }
 
 export function createEvent(event) {
-  return ftch(`${baseUrl}${eventsUrl}`, {
+  return ftch(`${BASE_URL}${eventsUrl}`, {
     headers: {
       // ...authHeader(), TODO
       ...jsonHeader(),
@@ -183,18 +192,18 @@ export function createEvent(event) {
 }
 
 export function fetchMissingForms(eventId) {
-  return ftch(`${baseUrl}${eventsUrl}/${eventId}/missing_forms`, header())
+  return ftch(`${BASE_URL}${eventsUrl}/${eventId}/missing_forms`, header())
 }
 
 export function notifyBefore(eventId) {
-  return ftch(`${baseUrl}${eventsUrl}/${eventId}/notify_before`, header())
+  return ftch(`${BASE_URL}${eventsUrl}/${eventId}/notify_before`, header())
 }
 
 export function notifyAfter(eventId) {
-  return ftch(`${baseUrl}${eventsUrl}/${eventId}/notify_after`, header())
+  return ftch(`${BASE_URL}${eventsUrl}/${eventId}/notify_after`, header())
 }
 
 export function importData(eventId) {
-  return fetch(`${baseUrl}${eventsUrl}/${eventId}/import_formdata`, header())
+  return fetch(`${BASE_URL}${eventsUrl}/${eventId}/import_formdata`, header())
     .then(checkStatus)
 }

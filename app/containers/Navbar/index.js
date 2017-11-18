@@ -50,7 +50,7 @@ export class Navbar extends React.Component {
             <Link to="/logout"><FormattedMessage {...messages.logout} /></Link>
           </li>
           <li>
-            <Link to="/user">{ user.firstName }</Link>
+            <Link to="/user">{ user.firstName || 'Profile' }</Link>
           </li>
           <li>
             <Link to="/members">

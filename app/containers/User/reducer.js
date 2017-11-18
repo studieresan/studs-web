@@ -1,8 +1,3 @@
-/*
- * User reducer
- *
- */
-
 import {
   fromJS,
   Map,
@@ -14,7 +9,9 @@ import {
   UPDATE,
   SAVE_REQUEST,
   SAVE_SUCCESS,
+  PASSWORD_SAVE_SUCCESS,
   SAVE_ERROR,
+  PASSWORD_SAVE_ERROR,
 } from './constants'
 
 export const defaultUser = {
@@ -25,7 +22,7 @@ export const defaultUser = {
   master: '',
   allergies: '',
   password: '',
-  passwordConfirm: '',
+  confirmPassword: '',
 }
 
 const initialState = fromJS({
@@ -35,6 +32,7 @@ const initialState = fromJS({
   saved: false,
   saving: false,
   saveError: false,
+  passwordSaveErrors: [],
 })
 
 function userReducer(state = initialState, action) {
@@ -58,17 +56,39 @@ function userReducer(state = initialState, action) {
       saved: false,
     }))
   case SAVE_REQUEST:
-    return state.set('saving', true)
+    return state.merge(Map({
+      saving: true,
+      error: false,
+      passwordSaveErrors: [],
+    }))
   case SAVE_SUCCESS:
     return state.merge(Map({
       saved: true,
       saving: false,
+      error: false,
+      saveError: false,
     }))
   case SAVE_ERROR:
     return state.merge(Map({
       saved: false,
       saving: false,
       saveError: true,
+    }))
+  case PASSWORD_SAVE_SUCCESS:
+    return state.merge(Map({
+      saved: true,
+      saving: false,
+      saveError: false,
+      passwordSaveErrors: [],
+    }))
+  case PASSWORD_SAVE_ERROR:
+    return state.merge(Map({
+      saved: false,
+      saving: false,
+      saveError: true,
+      passwordSaveErrors: [
+        'Passwords must match and be longer than 4 characters',
+      ],
     }))
   default:
     return state

@@ -1,9 +1,3 @@
-/*
- *
- * User
- *
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -47,6 +41,16 @@ export class User extends React.Component {
     if (currentPicture) {
       return <img src={currentPicture} width={300} />
     }
+  }
+
+  renderError(err, key) {
+    return (
+      <div
+        key={key}
+        className={styles.status}>
+        {err}
+      </div>
+    )
   }
 
   render() {
@@ -138,13 +142,17 @@ export class User extends React.Component {
           <input
             type='password'
             name='password'
+            value={user.password || ''}
+            onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
             onChange={this.handleChange}/>
           <div className='input-label'>
-            <FormattedMessage {...messages.passwordConfirm} />
+            <FormattedMessage {...messages.confirmPassword} />
           </div>
           <input
             type='password'
-            name='passwordConfirm'
+            name='confirmPassword'
+            value={user.confirmPassword || ''}
+            onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
             onChange={this.handleChange}/>
           <div className='button-wrapper'>
             <button className='btn-bright' onClick={this.handleSubmit}>
@@ -161,6 +169,9 @@ export class User extends React.Component {
               Error, please try again later
             </div>
           }
+          { this.props.passwordSaveErrors && // TODO translate
+            this.props.passwordSaveErrors.map(this.renderError)
+          }
         </div>
       </div>
     )
@@ -171,6 +182,7 @@ User.propTypes = {
   saved: PropTypes.bool.isRequired,
   saveError: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
+  passwordSaveErrors: PropTypes.array.isRequired,
   getUser: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
   update: PropTypes.func.isRequired,
@@ -181,11 +193,13 @@ function mapStateToProps(state) {
     user,
     saved,
     saveError,
+    passwordSaveErrors,
   } = state.getIn(['user']).toJS()
   return {
     user,
     saved,
     saveError,
+    passwordSaveErrors,
   }
 }
 

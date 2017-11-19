@@ -53,24 +53,24 @@ export function getCvError() {
 }
 
 export const getUsers = () => dispatch => {
-  // TODO fetch the users
-  // dispatch(getMembersRequest());
-  // fetchUsers()
-  //   .then(data => {
-  //     const users = data.users.map(u => {
-  //       return {
-  //         id: u.id,
-  //         firstName: u.first_name,
-  //         lastName: u.last_name,
-  //         email: u.email,
-  //         phone: u.phone || '',
-  //         master: u.master,
-  //         picture: u.picture
-  //       };
-  //     });
-  //     dispatch(getMembersSuccess(users));
-  //   })
-  //   .catch(error => dispatch(getMembersError()));
+  dispatch(getMembersRequest())
+  fetchUsers()
+    .then(data => {
+      const users = data.map(u => {
+        return {
+          firstName: u.firstName,
+          lastName: u.lastName,
+          id: `${u.firstName}${u.lastName}`.toLowerCase(),
+          email: u.email,
+          phone: u.phone || '',
+          master: u.master,
+          picture: u.picture,
+          cv: u.cv || null,
+        }
+      })
+      dispatch(getMembersSuccess(users))
+    })
+    .catch(() => dispatch(getMembersError()))
 }
 
 export const getCv = id => dispatch => {

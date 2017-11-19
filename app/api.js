@@ -1,6 +1,5 @@
 const BASE_URL = process.env.API_BASE_URL || 'http://localhost:5040'
 const graphqlUrl = '/graphql'
-const usersUrl = '/users'
 const loginUrl = '/login'
 const PASSWORD_RESET = '/account/password'
 // const cvUrl = '/resume'
@@ -118,7 +117,13 @@ export function updateUserPassword({ password, confirmPassword }) {
 }
 
 export function fetchUsers() {
-  return ftch(BASE_URL+usersUrl, header())
+  const query = `{
+    users(memberType: studs_member) { ${USER_FIELDS} }
+  }
+  `
+  const url = `${BASE_URL}${graphqlUrl}?query=${query}`
+  return ftch(url, { ...credentials() })
+    .then(res => Promise.resolve(res.data.users))
 }
 
 const CV_FIELDS = `

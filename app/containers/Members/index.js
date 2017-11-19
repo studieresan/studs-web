@@ -13,19 +13,11 @@ import MembersStaticDetail from '../../components/MembersStaticDetail'
 import CV from '../../components/Cv'
 import MasterDetail from '../../components/MasterDetail'
 import * as actions from './actions'
+import PropTypes from 'prop-types'
 
 export class Members extends React.Component {
   componentDidMount() {
     this.props.getUsers()
-    const id = this.props.params.id
-    if (id) {
-      this.props.getCv(id)
-    }
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.params.id && this.props.params.id != nextProps.params.id) {
-      this.props.getCv(nextProps.params.id)
-    }
   }
   renderMembersList(users) {
     return (
@@ -35,17 +27,13 @@ export class Members extends React.Component {
     )
   }
   render() {
-    const users = this.props.users.toJS()
+    const users = this.props.users
     let detail
     let detailSelected = false
     const id = this.props.params.id
     const user = users.find(u => u.id === id)
     if (user) {
-      let cv = null
-      if (this.props.cv) {
-        cv = this.props.cv.toJS()
-      }
-      detail = <CV user={user} cv={cv} />
+      detail = <CV user={user} cv={user.cv} />
       detailSelected = true
     } else {
       detail = <MembersStaticDetail />
@@ -63,13 +51,28 @@ export class Members extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    users: state.getIn(['members', 'users']),
-    cv: state.getIn(['members', 'cv']),
+    users: state.getIn(['members', 'users']).toJS(),
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(actions, dispatch)
+}
+
+Members.propTypes = {
+  getUsers: PropTypes.func.isRequired,
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      id: PropTypes.string.isRequired,
+      email: PropTypes.string,
+      phone: PropTypes.string,
+      master: PropTypes.string,
+      picture: PropTypes.string,
+      cv: PropTypes.object,
+    })),
+  params: PropTypes.object,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Members)

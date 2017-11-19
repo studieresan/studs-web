@@ -17,6 +17,11 @@ import cvStyles from '../../components/Cv/styles.css'
 import ownStyles from './styles.css'
 Object.assign(styles, cvStyles, ownStyles)
 
+const SMALL_FIELD_MAX_LENGTH = 100
+const LARGE_FIELD_MAX_LENGTH = 1000
+const MAX_SECTIONS = 5
+const MAX_ITEMS = 15
+
 export class CvEdit extends React.Component {
 
   constructor(props) {
@@ -70,24 +75,32 @@ export class CvEdit extends React.Component {
               name='when'
               placeholder='When'
               value={item.when}
-              onChange={this.onItemChange.bind(null, sectionIndex, index)} />
+              onChange={this.onItemChange.bind(null, sectionIndex, index)}
+              maxLength={SMALL_FIELD_MAX_LENGTH}
+            />
           </div>
           <div className={styles.where}>
             <TextArea
               name='title'
               placeholder='Title'
               value={item.title}
-              onChange={this.onItemChange.bind(null, sectionIndex, index)} />
+              onChange={this.onItemChange.bind(null, sectionIndex, index)}
+              maxLength={SMALL_FIELD_MAX_LENGTH}
+            />
             <TextArea
               name='organization'
               placeholder='Organization'
               value={item.organization}
-              onChange={this.onItemChange.bind(null, sectionIndex, index)} />
+              onChange={this.onItemChange.bind(null, sectionIndex, index)}
+              maxLength={SMALL_FIELD_MAX_LENGTH}
+            />
             <TextArea
               name='city'
               placeholder='City'
               value={item.city}
-              onChange={this.onItemChange.bind(null, sectionIndex, index)} />
+              onChange={this.onItemChange.bind(null, sectionIndex, index)}
+              maxLength={SMALL_FIELD_MAX_LENGTH}
+            />
           </div>
         </div>
         <div className={styles.description}>
@@ -95,7 +108,9 @@ export class CvEdit extends React.Component {
             name='description'
             placeholder='Description'
             value={item.description}
-            onChange={this.onItemChange.bind(null, sectionIndex, index)} />
+            onChange={this.onItemChange.bind(null, sectionIndex, index)}
+            maxLength={LARGE_FIELD_MAX_LENGTH}
+          />
         </div>
         <div
           className={styles.remove}
@@ -108,6 +123,10 @@ export class CvEdit extends React.Component {
   renderSection(section, index) {
     const items =
       section.items.map((item, i) => this.renderItem(item, index, i))
+    const addItemEnabled = section.items.length < MAX_ITEMS
+    const addItemClasses = addItemEnabled
+      ? 'btn-bright'
+      : 'btn-disabled'
     return (
       <div key={index} className={styles.section}>
         <input
@@ -115,7 +134,8 @@ export class CvEdit extends React.Component {
           name='title'
           placeholder='Title'
           value={section.title}
-          onChange={this.onSectionChange.bind(null, index)} />
+          onChange={this.onSectionChange.bind(null, index)}
+          maxLength={SMALL_FIELD_MAX_LENGTH}/>
         {items}
         <div className={styles.sectionActions}>
           <button
@@ -124,8 +144,9 @@ export class CvEdit extends React.Component {
              Remove Section
           </button>
           <button
-            className='btn-bright'
-            onClick={this.onAddItemClick.bind(null, index)}>
+            className={addItemClasses}
+            onClick={this.onAddItemClick.bind(null, index)}
+            disabled={!addItemEnabled}>
               Add Item
           </button>
         </div>
@@ -150,6 +171,10 @@ export class CvEdit extends React.Component {
     } else if (this.props.saveErr) {
       saveStatus = 'Error'
     }
+    const addSectionsEnabled = sections.length <= MAX_SECTIONS
+    const addSectionClasses = addSectionsEnabled
+      ? 'btn-gold'
+      : 'btn-disabled'
     return (
       <div className={styles.cvEdit + ' ' + styles.cv}>
         <div>
@@ -157,8 +182,9 @@ export class CvEdit extends React.Component {
           { sections.map((s, i) => this.renderSection(s, i)) }
           <div className={styles.addSection}>
             <button
-              className='btn-gold'
-              onClick={this.props.addSection}>
+              className={addSectionClasses}
+              onClick={this.props.addSection}
+              disabled={!addSectionsEnabled} >
               Add Section
             </button>
           </div>

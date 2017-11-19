@@ -84,7 +84,20 @@ input:focus {
   letter-spacing: 3px;
   text-transform: uppercase;
   background-color: #FFDAAB;
-  color: #A4A2A6;
+  color: black;
+  line-height: 40px;
+  height: 35px;
+  padding: 0 24px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+:global .btn-disabled {
+  font-family: 'DIN Condensed';
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background-color: #AAA;
+  color: #222;
   line-height: 40px;
   height: 35px;
   padding: 0 24px;

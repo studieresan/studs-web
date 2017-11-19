@@ -1,10 +1,10 @@
 const BASE_URL = process.env.API_BASE_URL || 'http://localhost:5040'
-const graphqlUrl = '/graphql'
-const loginUrl = '/login'
+const GRAPHQL = '/graphql'
+const LOGIN = '/login'
 const PASSWORD_RESET = '/account/password'
 // const cvUrl = '/resume'
-const eventsUrl = '/events'
-const companiesUrl = '/companies'
+const EVENTS = '/events'
+const COMPANIES = '/companies'
 const STATUS_OK = 200
 
 function checkStatus(response) {
@@ -62,7 +62,7 @@ export function fetchUser() {
     user { ${USER_FIELDS} }
   }
   `
-  const url = `${BASE_URL}${graphqlUrl}?query=${query}`
+  const url = `${BASE_URL}${GRAPHQL}?query=${query}`
   return ftch(url, { ...credentials() })
     .then(res => Promise.resolve(res.data.user))
 }
@@ -78,7 +78,7 @@ export function updateUser(newFields) {
     }
   }
   `
-  const url = `${BASE_URL}${graphqlUrl}?query=${mutation}`
+  const url = `${BASE_URL}${GRAPHQL}?query=${mutation}`
   return ftch(url, {
     method: 'POST',
     ...credentials(),
@@ -98,7 +98,7 @@ export function loginUser(email, password) {
     },
     body: JSON.stringify(data),
   }
-  return ftch(BASE_URL+loginUrl, post)
+  return ftch(BASE_URL+LOGIN, post)
 }
 
 export function updateUserPassword({ password, confirmPassword }) {
@@ -118,10 +118,15 @@ export function updateUserPassword({ password, confirmPassword }) {
 
 export function fetchUsers() {
   const query = `{
-    users(memberType: studs_member) { ${USER_FIELDS} }
+    users(memberType: studs_member) {
+      ${USER_FIELDS}
+      cv {
+        ${CV_FIELDS}
+      }
+    }
   }
   `
-  const url = `${BASE_URL}${graphqlUrl}?query=${query}`
+  const url = `${BASE_URL}${GRAPHQL}?query=${query}`
   return ftch(url, { ...credentials() })
     .then(res => Promise.resolve(res.data.users))
 }
@@ -145,7 +150,7 @@ export function fetchCv() {
     cv { ${CV_FIELDS} }
   }
   `
-  const url = `${BASE_URL}${graphqlUrl}?query=${query}`
+  const url = `${BASE_URL}${GRAPHQL}?query=${query}`
   return ftch(url, { ...credentials() })
     .then(res => Promise.resolve(res.data.cv))
 }
@@ -157,7 +162,7 @@ export function updateCv(id, cv) {
     }
   }
   `
-  const url = `${BASE_URL}${graphqlUrl}?query=${mutation}`
+  const url = `${BASE_URL}${GRAPHQL}?query=${mutation}`
   return ftch(url, {
     method: 'POST',
     ...credentials(),
@@ -170,11 +175,11 @@ export function requestPasswordReset(email) {
 }
 
 export function fetchEvents() {
-  return ftch(BASE_URL+eventsUrl, header())
+  return ftch(BASE_URL+EVENTS, header())
 }
 
 export function updateEvent(id, event) {
-  return ftch(`${BASE_URL}${eventsUrl}/${id}`, {
+  return ftch(`${BASE_URL}${EVENTS}/${id}`, {
     ...header(),
     method: 'PATCH',
     body: event,
@@ -182,11 +187,11 @@ export function updateEvent(id, event) {
 }
 
 export function fetchCompanies() {
-  return ftch(BASE_URL+companiesUrl, header())
+  return ftch(BASE_URL+COMPANIES, header())
 }
 
 export function createEvent(event) {
-  return ftch(`${BASE_URL}${eventsUrl}`, {
+  return ftch(`${BASE_URL}${EVENTS}`, {
     headers: {
       // ...authHeader(), TODO
       ...jsonHeader(),
@@ -197,18 +202,18 @@ export function createEvent(event) {
 }
 
 export function fetchMissingForms(eventId) {
-  return ftch(`${BASE_URL}${eventsUrl}/${eventId}/missing_forms`, header())
+  return ftch(`${BASE_URL}${EVENTS}/${eventId}/missing_forms`, header())
 }
 
 export function notifyBefore(eventId) {
-  return ftch(`${BASE_URL}${eventsUrl}/${eventId}/notify_before`, header())
+  return ftch(`${BASE_URL}${EVENTS}/${eventId}/notify_before`, header())
 }
 
 export function notifyAfter(eventId) {
-  return ftch(`${BASE_URL}${eventsUrl}/${eventId}/notify_after`, header())
+  return ftch(`${BASE_URL}${EVENTS}/${eventId}/notify_after`, header())
 }
 
 export function importData(eventId) {
-  return fetch(`${BASE_URL}${eventsUrl}/${eventId}/import_formdata`, header())
+  return fetch(`${BASE_URL}${EVENTS}/${eventId}/import_formdata`, header())
     .then(checkStatus)
 }

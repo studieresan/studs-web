@@ -77,7 +77,9 @@ export class User extends React.Component {
             value={user.firstName}
             onChange={this.handleChange}
             onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
-            placeholder='First name'/>
+            placeholder='First name'
+            maxLength='30'
+          />
           <div className='input-label'>
             <FormattedMessage {...messages.lastName} />
           </div>
@@ -87,7 +89,9 @@ export class User extends React.Component {
             value={user.lastName}
             onChange={this.handleChange}
             onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
-            placeholder='Last name'/>
+            placeholder='Last name'
+            maxLength='30'
+          />
          { user.type === 'studs_member' ?
             <div>
               <div className='input-label'>
@@ -99,7 +103,9 @@ export class User extends React.Component {
                 value={user.phone}
                 onChange={this.handleChange}
                 onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
-                placeholder='Phone number'/>
+                placeholder='Phone number'
+                maxLength='30'
+              />
               <div className='input-label'>
                 <FormattedMessage {...messages.position} />
               </div>
@@ -109,7 +115,9 @@ export class User extends React.Component {
                 value={user.position}
                 onChange={this.handleChange}
                 onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
-                placeholder='Position'/>
+                placeholder='Position'
+                maxLength='30'
+              />
               <div className='input-label'>
                 <FormattedMessage {...messages.master} />
               </div>
@@ -119,7 +127,9 @@ export class User extends React.Component {
                 value={user.master}
                 onChange={this.handleChange}
                 onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
-                placeholder='Master'/>
+                placeholder='Master'
+                maxLength='30'
+               />
               <div className='input-label'>
                 <FormattedMessage {...messages.allergies} />
               </div>
@@ -129,7 +139,9 @@ export class User extends React.Component {
                 value={user.allergies}
                 onChange={this.handleChange}
                 onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
-                placeholder='Allergies'/>
+                placeholder='Allergies'
+                maxLength='30'
+              />
               <div className='input-label'>
                 <FormattedMessage {...messages.picture} />
               </div>

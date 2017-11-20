@@ -19,7 +19,7 @@ Object.assign(styles, cvStyles, ownStyles)
 
 const SMALL_FIELD_MAX_LENGTH = 100
 const LARGE_FIELD_MAX_LENGTH = 1000
-const MAX_SECTIONS = 5
+const MAX_SECTIONS = 8
 const MAX_ITEMS = 15
 
 export class CvEdit extends React.Component {

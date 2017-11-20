@@ -6,6 +6,7 @@ import {
   ADD_ITEM,
   UPDATE_ITEM,
   REMOVE_ITEM,
+  MOVE_ITEM,
   GET_SUCCESS,
   SAVE_REQUEST,
   SAVE_SUCCESS,
@@ -39,6 +40,13 @@ function sectionReducer(state, action) {
         )
   case REMOVE_ITEM:
     return state.removeIn(['items', action.index])
+  case MOVE_ITEM: {
+    const oldItem = state.getIn(['items', action.fromIndex])
+    return state.update('items', items =>
+      items.splice(action.fromIndex, 1)
+        .splice(action.toIndex, 0, oldItem)
+    )
+  }
   default:
     return state
   }
@@ -74,6 +82,7 @@ function cvEditReducer(state = initialState, action) {
   case ADD_ITEM:
   case UPDATE_ITEM:
   case REMOVE_ITEM:
+  case MOVE_ITEM:
     state = state.set('saved', false)
     return state.updateIn(
         ['content', 'sections', action.section],

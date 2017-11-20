@@ -1,9 +1,3 @@
-/*
- *
- * CvEdit
- *
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
@@ -29,6 +23,7 @@ export class CvEdit extends React.Component {
     this.onSectionChange = this.onSectionChange.bind(this)
     this.onItemChange = this.onItemChange.bind(this)
     this.onAddItemClick = this.onAddItemClick.bind(this)
+    this.onMoveItemClick = this.onMoveItemClick.bind(this)
     this.onRemoveItemClick = this.onRemoveItemClick.bind(this)
     this.onRemoveSectionClick = this.onRemoveSectionClick.bind(this)
   }
@@ -66,10 +61,33 @@ export class CvEdit extends React.Component {
     this.props.saveCv(this.props.params.id)
   }
 
-  renderItem(item, sectionIndex, index) {
+  onMoveItemClick(item, sectionIndex, fromIndex, toIndex) {
+    this.props.moveItem(item, sectionIndex, fromIndex, toIndex)
+    this.props.saveCv(this.props.params.id)
+  }
+
+  renderItem(item, sectionIndex, index, section) {
+    const moveDownDisabled = index === section.items.length - 1
+    const moveUpDisabled = index === 0
     return (
       <div key={index} className={`${styles.item} ${cvStyles.item}`}>
         <div className={styles.meta}>
+          <div className={styles.arrows}>
+            <button
+              className={moveUpDisabled ? styles.arrowDisabled : ''}
+              disabled={moveUpDisabled}
+              onClick={() =>
+                this.onMoveItemClick(item, sectionIndex, index, index - 1)}>
+              ⬆
+            </button>
+            <button
+              className={moveDownDisabled ? styles.arrowDisabled : ''}
+              disabled={moveDownDisabled}
+              onClick={() =>
+                this.onMoveItemClick(item, sectionIndex, index, index + 1)}>
+              ⬇
+            </button>
+          </div>
           <div className={styles.when}>
             <TextArea
               name='when'
@@ -79,6 +97,7 @@ export class CvEdit extends React.Component {
               maxLength={SMALL_FIELD_MAX_LENGTH}
             />
           </div>
+          <div className={styles.divider}/>
           <div className={styles.where}>
             <TextArea
               name='title'
@@ -122,7 +141,7 @@ export class CvEdit extends React.Component {
   }
   renderSection(section, index) {
     const items =
-      section.items.map((item, i) => this.renderItem(item, index, i))
+      section.items.map((item, i) => this.renderItem(item, index, i, section))
     const addItemEnabled = section.items.length < MAX_ITEMS
     const addItemClasses = addItemEnabled
       ? 'btn-bright'
@@ -212,6 +231,7 @@ CvEdit.propTypes = {
   updateSection: PropTypes.func.isRequired,
   removeSection: PropTypes.func.isRequired,
   updateItem: PropTypes.func.isRequired,
+  moveItem: PropTypes.func.isRequired,
 }
 
 function mapStateToProps(state) {

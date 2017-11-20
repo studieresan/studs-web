@@ -29,20 +29,25 @@ export default class ForgotPassword extends React.Component {
       .then(() => {
         browserHistory.push('/')
       })
-      .catch(error => {
+      .catch(() => {
         this.setState({error: true})
       })
 
   }
 
   render() {
-    const email = this.state.email
+    // const email = this.state.email
     return (
       <div className={styles.user}>
         <form onSubmit={this.handleSubmit} className={styles.content}>
           <h1 className={styles.header}>
             <FormattedMessage {...messages.title} />
           </h1>
+          <div>
+            Password reset coming very soon! Ping @jesper on Slack if you need
+            help now.
+          </div>
+          {/*
           <div className='input-label'>
             <FormattedMessage {...messages.email} />
           </div>
@@ -55,6 +60,7 @@ export default class ForgotPassword extends React.Component {
           <div className='button-wrapper'>
             <button type='submit' className='btn-bright'>Reset</button>
           </div>
+          */}
           {this.state.error ? <div>Error</div> : null}
         </form>
       </div>

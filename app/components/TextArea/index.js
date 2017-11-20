@@ -1,44 +1,32 @@
-/**
-*
-* TextArea
-*
-*/
-
-import React, { PropTypes } from 'react';
-
-
+import React from 'react'
+import PropTypes from 'prop-types'
 
 class TextArea extends React.Component {
   constructor(props) {
-    super(props);
-    this.onChange = this.onChange.bind(this);
-    this.state = {
-      height: 0
-    };
+    super(props)
+    this.onChange = this.onChange.bind(this)
   }
+
   onChange(...args) {
-    this.props.onChange(...args);
+    this.props.onChange(...args)
   }
-  componentDidUpdate() {
-    console.log("update");
-    console.log(this.textarea.getBoundingClientRect());
-  }
+
   render() {
-    const { name, value } = this.props;
+    const { name, value } = this.props
     return (
       <textarea
         name={name}
         value={value}
         onChange={this.onChange}
         ref={textarea => this.textarea = textarea} />
-    );
+    )
   }
 }
 
 TextArea.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
-  onChange: PropTypes.func
-};
+  onChange: PropTypes.func,
+}
 
-export default TextArea;
+export default TextArea

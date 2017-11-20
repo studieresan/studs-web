@@ -14,15 +14,17 @@ import CV from '../../components/Cv'
 import MasterDetail from '../../components/MasterDetail'
 import * as actions from './actions'
 import PropTypes from 'prop-types'
+import sortBy from 'lodash/sortBy'
 
 export class Members extends React.Component {
   componentDidMount() {
     this.props.getUsers()
   }
   renderMembersList(users) {
+    const sortedUsers = sortBy(users, ['firstName'])
     return (
       <div className={styles.memberList}>
-        { users.map(user => <MemberListItem key={user.id} user={user}/>) }
+        { sortedUsers.map(user => <MemberListItem key={user.id} user={user}/>) }
       </div>
     )
   }

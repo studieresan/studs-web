@@ -78,7 +78,8 @@ export function updateUser(newFields) {
     }
   }
   `
-  const url = `${BASE_URL}${GRAPHQL}?query=${mutation}`
+  const url = `${BASE_URL}${GRAPHQL}?query=${encodeURIComponent(mutation)}`
+  console.log(url)
   return ftch(url, {
     method: 'POST',
     ...credentials(),
@@ -162,7 +163,7 @@ export function updateCv(id, cv) {
     }
   }
   `
-  const url = `${BASE_URL}${GRAPHQL}?query=${mutation}`
+  const url = `${BASE_URL}${GRAPHQL}?query=${encodeURIComponent(mutation)}`
   return ftch(url, {
     method: 'POST',
     ...credentials(),

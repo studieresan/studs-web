@@ -145,6 +145,7 @@
     "prop-types": "15.6.0",
     "react": "15.3.1",
     "react-dom": "15.3.1",
+    "react-feather": "^1.0.7",
     "react-google-charts": "^1.5.3",
     "react-helmet": "3.1.0",
     "react-inlinesvg": "^0.5.4",
@@ -160,10 +161,10 @@
     "redux-immutable": "3.0.8",
     "redux-thunk": "^2.1.0",
     "reselect": "2.5.4",
+    "rimraf": "2.5.4",
     "sanitize.css": "4.1.0",
     "warning": "3.0.0",
-    "whatwg-fetch": "^1.0.0",
-    "rimraf": "2.5.4"
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "6.14.0",

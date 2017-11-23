@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import * as actions from './actions'
 import TextArea from 'react-textarea-autosize'
 import CvHeader from '../../components/CvHeader'
+import { ChevronDown, ChevronUp } from 'react-feather'
 
 const styles = {}
 import cvStyles from '../../components/Cv/styles.css'
@@ -78,14 +79,14 @@ export class CvEdit extends React.Component {
               disabled={moveUpDisabled}
               onClick={() =>
                 this.onMoveItemClick(item, sectionIndex, index, index - 1)}>
-              ⬆
+              <ChevronUp/>
             </button>
             <button
               className={moveDownDisabled ? styles.arrowDisabled : ''}
               disabled={moveDownDisabled}
               onClick={() =>
                 this.onMoveItemClick(item, sectionIndex, index, index + 1)}>
-              ⬇
+              <ChevronDown/>
             </button>
           </div>
           <div className={styles.when}>

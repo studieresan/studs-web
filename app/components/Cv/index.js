@@ -1,9 +1,5 @@
-/**
- *
- * Cv
- *
- */
-import React, {PropTypes} from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import styles from './styles.css'
 import CvHeader from '../CvHeader'
 
@@ -13,9 +9,16 @@ function renderItem(item, i) {
 
       <div className={styles.meta}>
         <div className={styles.when}>{item.when}</div>
+        <div className={styles.divider}/>
         <div className={styles.where}>
           <div className={styles.title}>{item.title}</div>
-          { item.organization ? <div className={styles.organization}>{item.organization} { item.city ? <span>- {item.city}</span> : null }</div> : null }
+          { item.organization
+              ? <div className={styles.organization}>
+                  {item.organization}
+                  { item.city ? <span>- {item.city}</span> : null }
+                </div>
+              : null
+          }
         </div>
       </div>
       <div className={styles.description}>{item.description}</div>

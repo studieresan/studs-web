@@ -3041,16 +3041,6 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-config-airbnb-base@7.1.0, eslint-config-airbnb-base@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-airbnb-base/-/eslint-config-airbnb-base-7.1.0.tgz#6d3d82d11a057bec2c08098a0723109ad3bbf3f4"
-
-eslint-config-airbnb@11.1.0:
-  version "11.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-airbnb/-/eslint-config-airbnb-11.1.0.tgz#df412049e85197eba1f28ffa08043989afb49c9c"
-  dependencies:
-    eslint-config-airbnb-base "^7.1.0"
-
 eslint-import-resolver-node@^0.2.0:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/eslint-import-resolver-node/-/eslint-import-resolver-node-0.2.3.tgz#5add8106e8c928db2cba232bcd9efa846e3da16c"
@@ -7446,6 +7436,10 @@ react-element-to-jsx-string@^3.0.0:
     sortobject "^1.0.0"
     stringify-object "^2.3.1"
     traverse "^0.6.6"
+
+react-feather@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-feather/-/react-feather-1.0.7.tgz#f2118f1d2402b0c1e6f23c732f9e7f9fd4ca61e2"
 
 react-google-charts@^1.5.3:
   version "1.5.5"

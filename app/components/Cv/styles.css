@@ -51,6 +51,7 @@
   font-size: 12px;
   flex-wrap: wrap;
   position: relative;
+  padding: 15px 0;
 }
 
 .item textarea {
@@ -59,6 +60,8 @@
   padding: 0;
   resize: none;
   font: inherit;
+  display: flex;
+  flex-direction: row;
 }
 
 .item textarea:focus {
@@ -72,41 +75,53 @@
   display: table;
 }
 
-.item::before {
-  margin-left: -1px;
-  content: " ";
-  width: 3px;
+.divider {
+  width: 5px;
   background-image: url(../../static/img/gold-dot.svg);
   background-position: center;
   background-repeat: repeat-y;
+  background-clip: content-box;
   height: 100%;
-  position: absolute;
-  left: 11.10%;
-  top: 0;
-  bottom: 0;
+}
+
+.arrows {
+  display: flex;
+  flex-direction: column;
+}
+
+.arrows button {
+  cursor: pointer;
+  outline: 0;
+}
+
+.arrows .arrowDisabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .meta {
   width: 33.33%;
   position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .when {
-  float:left;
   width: 33.33%;
   font-size: 14px;
   font-weight: 700;
   text-align: right;
   padding-right: 15px;
-
+  height: 100%;
 }
 
 .when textarea {
   text-align: right;
+  height: 100%;
 }
 
 .where {
-
   float:right;
   width: 66.66%;
   padding-left: 15px;

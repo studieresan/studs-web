@@ -9,6 +9,7 @@ import {
   UPDATE_SECTION,
   REMOVE_SECTION,
   ADD_ITEM,
+  MOVE_ITEM,
   UPDATE_ITEM,
   REMOVE_ITEM,
   GET_REQUEST,
@@ -46,6 +47,16 @@ export function addItem(section) {
   return {
     type: ADD_ITEM,
     section,
+  }
+}
+
+export function moveItem(item, section, fromIndex, toIndex) {
+  return {
+    type: MOVE_ITEM,
+    item,
+    section,
+    fromIndex,
+    toIndex,
   }
 }
 

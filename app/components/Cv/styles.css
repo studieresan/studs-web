@@ -94,6 +94,11 @@
   outline: 0;
 }
 
+/* A bad solution for compensating for "fill: currentColor" in sanitize.css */
+.arrows svg {
+  fill: transparent;
+}
+
 .arrows .arrowDisabled {
   opacity: 0.4;
   cursor: not-allowed;

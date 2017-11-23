@@ -1,6 +1,7 @@
 const BASE_URL = process.env.API_BASE_URL || 'http://localhost:5040'
 const GRAPHQL = '/graphql'
 const LOGIN = '/login'
+const LOGOUT = '/logout'
 const PASSWORD_RESET = '/account/password'
 // const cvUrl = '/resume'
 const EVENTS = '/events'
@@ -100,6 +101,10 @@ export function loginUser(email, password) {
     body: JSON.stringify(data),
   }
   return ftch(BASE_URL+LOGIN, post)
+}
+
+export function logoutUser() {
+  return ftch(`${BASE_URL}${LOGOUT}`, { ...credentials() })
 }
 
 export function updateUserPassword({ password, confirmPassword }) {

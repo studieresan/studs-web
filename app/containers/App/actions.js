@@ -9,6 +9,7 @@ import {
 import {
   fetchUser,
   loginUser,
+  logoutUser,
 } from '../../api'
 import { setLoggedOut, setLoggedIn } from '../../auth'
 
@@ -63,7 +64,9 @@ export function loginError() {
 }
 
 export function logout() {
-  setLoggedOut()
+  logoutUser().then(() =>
+    setLoggedOut()
+  )
   return {
     type: LOGOUT,
   }

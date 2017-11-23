@@ -177,3 +177,8 @@ input:focus {
   font-weight: normal;
   font-style: normal;
 }
+
+/* A bad solution for compensating for "fill: currentColor" in sanitize.css */
+:global svg {
+  fill: transparent;
+}

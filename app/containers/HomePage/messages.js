@@ -42,20 +42,6 @@ export default defineMessages({
       defaultMessage: '',
     },
   },
-  contact: {
-    header: {
-      id: 'app.components.HomePage.contact.header',
-      defaultMessage: '',
-    },
-    content: {
-      id: 'app.components.HomePage.contact.content',
-      defaultMessage: '',
-    },
-    phone: {
-      id: 'app.components.HomePage.contact.phone',
-      defaultMessage: '',
-    },
-  },
   report: {
     lastYear: {
       id: 'app.components.HomePage.report.lastYear',

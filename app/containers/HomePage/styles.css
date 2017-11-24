@@ -103,7 +103,7 @@
     padding: 30px;
   }
 
-  .overlay:after {
+  .overlay::after {
     content: '\A';
     position: absolute;
     left: 30px;
@@ -131,47 +131,6 @@
   max-width: 100%;
   fill: white;
   color: white;
-}
-
-.contact {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  background: #6D6B6E;
-  padding: 120px;
-}
-
-.contact > div {
-  max-width: 600px;
-  color: white;
-}
-
-.contact > div:first-child {
-  text-align: center;
-}
-
-.contactInfo {
-  display: flex;
-  margin-top: 30px;
-  align-items: center;
-  text-align: left;
-}
-
-.contact a {
-  text-decoration: none;
-  color: white;
-}
-
-.contact a:hover {
-  text-decoration: underline;
-}
-
-.contact > div > img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 100%;
-  margin-right: 60px;
 }
 
 .members {

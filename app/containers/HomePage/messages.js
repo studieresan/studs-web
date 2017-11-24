@@ -57,8 +57,8 @@ export default defineMessages({
     },
   },
   report: {
-    last_year: {
-      id: 'app.components.HomePage.report.last_year',
+    lastYear: {
+      id: 'app.components.HomePage.report.lastYear',
       defaultMessage: '',
     },
   },

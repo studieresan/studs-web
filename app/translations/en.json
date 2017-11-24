@@ -29,6 +29,6 @@
 	"id": "app.components.HomePage.members.header",
 	"message": "This is us"
 }, {
-	"id": "app.components.HomePage.report.last_year",
+	"id": "app.components.HomePage.report.lastYear",
 	"message": "Last year's<br/>report"
 }]

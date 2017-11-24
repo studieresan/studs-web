@@ -38,7 +38,7 @@
 	"id": "app.components.HomePage.members.header",
 	"message": "Det här är vi"
 }, {
-	"id": "app.components.HomePage.report.last_year",
+	"id": "app.components.HomePage.report.lastYear",
 	"message": "Förra årets<br/>rapport"
 }
 ]

@@ -11,7 +11,7 @@ import { FormattedMessage } from 'react-intl'
 import { bindActionCreators } from 'redux'
 import styles from './styles.css'
 import LocaleToggle from '../LocaleToggle'
-import Logo from '../../static/img/text-white-rgb.png'
+import Logo from 'static/img/logo/black.svg'
 import MenuIcon from './icon_menu.svg'
 import CloseIcon from './icon_close.svg'
 
@@ -99,7 +99,9 @@ export class Navbar extends React.Component {
     return (
     <div className={styles.navbar}>
       <div className={styles.control}>
-        <Link to="/"><img src={Logo} height={24} /></Link>
+        <Link to="/">
+          <img src={Logo} height={24} />
+        </Link>
         <img
           src={this.state.collapsed ? MenuIcon : CloseIcon }
           height={26}

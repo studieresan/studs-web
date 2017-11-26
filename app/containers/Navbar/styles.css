@@ -4,10 +4,11 @@
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  background-color: #38383F;
+  background-color: white;
+  color: black;
   top: 0;
   width: 100%;
-  padding: 10px;
+  padding: 2em;
   z-index: 1;
 }
 
@@ -31,7 +32,7 @@
 }
 
 .navbarMenu a {
-  color: white;
+  color: black;
   text-decoration: none;
   text-transform: uppercase;
 }

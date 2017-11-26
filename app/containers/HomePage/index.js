@@ -15,19 +15,19 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { FormattedMessage, FormattedHTMLMessage } from 'react-intl'
 import MemberHomePage from '../../components/MemberHomePage'
-import Isvg from 'react-inlinesvg'
 import messages from './messages'
 import styles from './styles.css'
 import Section from '../../components/Section'
-import Logo from '../../static/img/studs-logo.svg'
-import Front8 from '../../static/img/front-8.jpg'
 import Front9 from '../../static/img/front-9.jpg'
 import Front10 from '../../static/img/front-10.jpg'
 import Report2016 from '../../static/img/top-transparent.png'
 import Report2016pdf from 'file-loader!../../static/Studs_16_report.pdf'
 import * as actions from '../Members/actions'
 
-import { HomePageSalesContact } from 'components/HomePage'
+import {
+  HomePageHeader,
+  HomePageSalesContact,
+} from 'components/HomePage'
 
 export class HomePage extends React.Component {
   componentDidMount() {
@@ -35,34 +35,12 @@ export class HomePage extends React.Component {
   }
 
   render() {
-    const backgroundImage = {
-      background: `
-      linear-gradient(
-        rgba(90,90,90,0.3),
-        rgba(90,90,90,0.7)
-      ),
-      url(${ Front8 })`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center center',
-    }
     const sectionReversed = styles.section + ' ' + styles.reverse
     const users = this.props.users.toJS()
 
     return (
     <div>
-      <div style={backgroundImage} className={styles.header}>
-        <div className={styles.headerContent} >
-          <div className={styles.headerContentLogo}>
-            <Isvg src={Logo}></Isvg>
-          </div>
-          <h1>
-            <FormattedMessage {...messages.intro.header} />
-          </h1>
-          <p>
-            <FormattedMessage {...messages.intro.content} />
-          </p>
-        </div>
-      </div>
+      <HomePageHeader />
       <div className={styles.content}>
         <div className={sectionReversed}>
           <Section {...messages.description} />
@@ -99,7 +77,7 @@ export class HomePage extends React.Component {
 
 HomePage.propTypes = {
   getUsers: PropTypes.func.isRequired,
-  users: PropTypes.array,
+  users: PropTypes.object,
 }
 
 function mapStateToProps(state) {

@@ -9,31 +9,34 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { selectLocale } from '../LanguageProvider/selectors'
 import { changeLocale } from '../LanguageProvider/actions'
-import { appLocales } from '../../i18n'
+import { appLocaleNames } from '../../i18n'
 import { createSelector } from 'reselect'
 import styles from './styles.css'
 
-export class LocaleToggle extends React.Component { // eslint-disable-line
-  render() {
-    return (
-      <div className={styles.localeToggle}>
-        { appLocales.map(locale =>
+function LocaleToggle(props) {
+  return (
+    <div className={styles.localeToggle}>
+      {
+        appLocaleNames
+          .filter(({ key }) => key !== props.locale)
+          .map(({ key, value }) => (
           <span
-            key={locale}
+            key={key}
             className={styles.localeToggleLink}
-            onClick={this.props.onLocaleSwitch}
-            data-language={locale}>
-              {locale}
+            onClick={props.onLocaleSwitch}
+            data-language={key}>
+              {value}
           </span>
-        )}
-      </div>
-    )
-  }
+        ))
+      }
+    </div>
+  )
 }
 
 LocaleToggle.propTypes = {
   onLocaleSwitch: PropTypes.func,
   onLocaleToggle: PropTypes.func,
+  locale: PropTypes.string,
 }
 
 const mapStateToProps = createSelector(

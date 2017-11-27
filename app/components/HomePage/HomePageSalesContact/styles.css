@@ -4,14 +4,11 @@
   flex-direction: column;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('static/img/flower-pattern-1.svg');
   padding: 120px;
-}
-
-.contact > div {
-  max-width: 600px;
   color: #F7DDC9;
 }
 
 .contact > div:first-child {
+  max-width: 600px;
   text-align: center;
 }
 

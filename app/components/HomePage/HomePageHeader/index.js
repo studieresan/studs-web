@@ -1,7 +1,7 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import Isvg from 'react-inlinesvg'
-import Logo from 'static/img/studs-logo.svg'
+import Logo from 'static/img/logo/White + Frame (16x10).svg'
 import styles from './styles.css'
 import messages from './messages'
 
@@ -10,11 +10,8 @@ function HomePageHeader() {
     <div className={styles.header}>
       <div className={styles.headerContent} >
         <div className={styles.headerContentLogo}>
-          <Isvg src={Logo}></Isvg>
+          <Isvg src={Logo} />
         </div>
-        <h1>
-          <FormattedMessage {...messages.intro.header} />
-        </h1>
         <p>
           <FormattedMessage {...messages.intro.content} />
         </p>

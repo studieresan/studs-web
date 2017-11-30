@@ -17,6 +17,10 @@ const SMALL_FIELD_MAX_LENGTH = 100
 const LARGE_FIELD_MAX_LENGTH = 1000
 const MAX_SECTIONS = 8
 const MAX_ITEMS = 15
+const CONFIRM_DELETE_SECTION_MESSAGE =
+  'Are you sure you want to delete this entire section?'
+const CONFIRM_DELETE_ITEM_MESSAGE =
+  'Are you sure you want to delete this item?'
 
 export class CvEdit extends React.Component {
 
@@ -41,6 +45,7 @@ export class CvEdit extends React.Component {
   }
 
   onRemoveSectionClick(index) {
+    if (!confirm(CONFIRM_DELETE_SECTION_MESSAGE)) return
     this.props.removeSection(index)
     this.props.saveCv(this.props.params.id)
   }
@@ -59,6 +64,7 @@ export class CvEdit extends React.Component {
   }
 
   onRemoveItemClick(section, index) {
+    if (!confirm(CONFIRM_DELETE_ITEM_MESSAGE)) return
     this.props.removeItem(section, index)
     this.props.saveCv(this.props.params.id)
   }

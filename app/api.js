@@ -3,6 +3,7 @@ const GRAPHQL = '/graphql'
 const LOGIN = '/login'
 const LOGOUT = '/logout'
 const PASSWORD_RESET = '/account/password'
+const PASSWORD_FORGOT = '/forgot'
 // const cvUrl = '/resume'
 const EVENTS = '/events'
 const COMPANIES = '/companies'
@@ -175,9 +176,17 @@ export function updateCv(id, cv) {
   }).then(res => Promise.resolve(res.data.cv))
 }
 
-// TODO
 export function requestPasswordReset(email) {
-  return ftch(`${BASE_URL}${PASSWORD_RESET}?email=${email}`)
+  const url = `${BASE_URL}${PASSWORD_FORGOT}`
+  return ftch(url, {
+    method: 'POST',
+    headers: {
+      ...jsonHeader(),
+    },
+    body: JSON.stringify({
+      email,
+    }),
+  })
 }
 
 export function fetchEvents() {

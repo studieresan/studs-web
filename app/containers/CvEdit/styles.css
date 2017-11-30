@@ -2,25 +2,30 @@
   padding-top: 46px;
 }
 
+.cvAction {
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 14px;
+}
+
 .addSection {
   margin-top: 20px;
   display: flex;
   justify-content: center;
 }
 
-.remove {
-	text-transform: uppercase;
-  font-weight: 700;
-  cursor: pointer;
-  margin-bottom: 10px;
+.removeSection {
+  margin-top: 20px;
+  float: right;
 }
 
-.sectionActions {
+.addItem {
   width: 100%;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap-reverse;
   padding-bottom: 20px;
+  justify-content: flex-end;
 }
 
 .saveStatus {

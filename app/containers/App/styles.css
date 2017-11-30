@@ -57,8 +57,21 @@ input:focus {
   font-family: 'DIN Condensed';
   letter-spacing: 3px;
   text-transform: uppercase;
-  background-color: #38383F;
+  background: #072C2E;
   color: white;
+  line-height: 40px;
+  height: 35px;
+  padding: 0 24px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+:global .btn-danger {
+  font-family: 'DIN Condensed';
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: #DD696D;
+  color: black;
   line-height: 40px;
   height: 35px;
   padding: 0 24px;
@@ -70,8 +83,8 @@ input:focus {
   font-family: 'DIN Condensed';
   letter-spacing: 3px;
   text-transform: uppercase;
-  background-color: #90CE9C;
-  color: white;
+  background: #C2FEBE;
+  color: black;
   line-height: 40px;
   height: 35px;
   padding: 0 24px;
@@ -83,7 +96,7 @@ input:focus {
   font-family: 'DIN Condensed';
   letter-spacing: 3px;
   text-transform: uppercase;
-  background-color: #FFDAAB;
+  background: #F7DDC9;
   color: black;
   line-height: 40px;
   height: 35px;
@@ -96,12 +109,13 @@ input:focus {
   font-family: 'DIN Condensed';
   letter-spacing: 3px;
   text-transform: uppercase;
-  background-color: #AAA;
-  color: #222;
+  background-color: #CCC;
+  color: #666;
   line-height: 40px;
   height: 35px;
   padding: 0 24px;
   transition: background-color 0.2s;
+  pointer-events: none;
   cursor: pointer;
 }
 

@@ -42,23 +42,9 @@ export default defineMessages({
       defaultMessage: '',
     },
   },
-  contact: {
-    header: {
-      id: 'app.components.HomePage.contact.header',
-      defaultMessage: '',
-    },
-    content: {
-      id: 'app.components.HomePage.contact.content',
-      defaultMessage: '',
-    },
-    phone: {
-      id: 'app.components.HomePage.contact.phone',
-      defaultMessage: '',
-    },
-  },
   report: {
-    last_year: {
-      id: 'app.components.HomePage.report.last_year',
+    lastYear: {
+      id: 'app.components.HomePage.report.lastYear',
       defaultMessage: '',
     },
   },

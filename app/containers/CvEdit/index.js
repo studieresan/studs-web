@@ -147,7 +147,7 @@ export class CvEdit extends React.Component {
       section.items.map((item, i) => this.renderItem(item, index, i, section))
     const addItemEnabled = section.items.length < MAX_ITEMS
     const addItemClasses = classNames(addItemEnabled
-      ? 'btn-bright'
+      ? 'btn-default'
       : 'btn-disabled', styles.cvAction)
     const removeSectionClasses = classNames('btn-danger', styles.cvAction)
     return (
@@ -196,9 +196,9 @@ export class CvEdit extends React.Component {
     } else if (this.props.saveErr) {
       saveStatus = 'Error'
     }
-    const addSectionsEnabled = sections.length <= MAX_SECTIONS
+    const addSectionsEnabled = !(sections.length <= MAX_SECTIONS)
     const addSectionClasses = classNames(addSectionsEnabled
-      ? 'btn-bright'
+      ? 'btn-gold'
       : 'btn-disabled', styles.cvAction)
     return (
       <div className={styles.cvEdit + ' ' + styles.cv}>

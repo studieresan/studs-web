@@ -196,7 +196,7 @@ export class CvEdit extends React.Component {
     } else if (this.props.saveErr) {
       saveStatus = 'Error'
     }
-    const addSectionsEnabled = !(sections.length <= MAX_SECTIONS)
+    const addSectionsEnabled = sections.length <= MAX_SECTIONS
     const addSectionClasses = classNames(addSectionsEnabled
       ? 'btn-gold'
       : 'btn-disabled', styles.cvAction)

@@ -1,18 +1,24 @@
-import { FormattedMessage } from 'react-intl';
-import React, { PropTypes } from 'react';
-import styles from './styles.css';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { FormattedMessage } from 'react-intl'
+import styles from './styles.css'
 
-function Section(props) {
-	return (
-	  <div>
-		<h2 className={styles.header}>
-		  <FormattedMessage {...props.header} />
-		</h2>
-		<p>
-		  <FormattedMessage {...props.content} />
-		</p>
-	  </div>
-	);
+function Section({ header, content }) {
+  return (
+    <div>
+    <h2 className={styles.header}>
+      <FormattedMessage {...header} />
+    </h2>
+    <p>
+      <FormattedMessage {...content} />
+    </p>
+    </div>
+  )
 }
 
-export default Section;
+Section.propTypes = {
+  header: PropTypes.string,
+  content: PropTypes.string,
+}
+
+export default Section

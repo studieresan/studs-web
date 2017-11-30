@@ -66,11 +66,24 @@ input:focus {
   cursor: pointer;
 }
 
+:global .btn-danger {
+  font-family: 'DIN Condensed';
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background-color: #F00;
+  color: white;
+  line-height: 40px;
+  height: 35px;
+  padding: 0 24px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
 :global .btn-bright {
   font-family: 'DIN Condensed';
   letter-spacing: 3px;
   text-transform: uppercase;
-  background-color: #90CE9C;
+  background-color: #40C040;
   color: white;
   line-height: 40px;
   height: 35px;

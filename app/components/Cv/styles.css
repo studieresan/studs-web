@@ -124,6 +124,7 @@
 .when textarea {
   text-align: right;
   height: 100%;
+  overflow: hidden;
 }
 
 .where {

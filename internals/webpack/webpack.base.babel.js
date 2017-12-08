@@ -4,6 +4,7 @@
 
 const path = require('path')
 const webpack = require('webpack')
+const InterpolateHtmlPlugin = require('interpolate-html-plugin')
 
 // PostCSS plugins
 const cssnext = require('postcss-cssnext')
@@ -69,7 +70,11 @@ module.exports = (options) => ({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         API_BASE_URL: JSON.stringify(process.env.API_BASE_URL),
+        AMAZON_S3_BUCKET_URL: JSON.stringify(process.env.AMAZON_S3_BUCKET_URL),
       },
+    }),
+    new InterpolateHtmlPlugin({
+      'AMAZON_S3_BUCKET_URL': process.env.AMAZON_S3_BUCKET_URL,
     }),
   ]),
   postcss: () => [

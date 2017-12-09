@@ -12,19 +12,19 @@
   "message": "Projektet"
 }, {
   "id": "app.components.HomePage.project.content",
-  "message": "Studs är ett årligt icke-vinstdrivande projekt som drivs av studenter på KTH. Projetket består av 32 utvalda civilingenjörsstudenter som läser ett masterprogram kring datalogi. Genom att arrangera event tillsammans med företag skapar vi en plattform för att ge studenterna och potentiella framtida arbetsgivare värdefull tid tillsammans."
+  "message": "Studs är ett årligt ideellt projekt vid KTH, bedrivet av studenter. Projektet utgörs av 32 utvalda ingenjörsstudenter inom mastersprogram relevanta till datavetenskap. Genom att organisera evenemang tillsammans med företag skapar vi en plattform för att ge studenter och deras potentiella framtida arbetsgivare koncentrerad tid tillsammans."
 }, {
   "id": "app.components.HomePage.events.header",
-  "message": "Eventen"
+  "message": "Evenemangen"
 }, {
   "id": "app.components.HomePage.events.content",
-  "message": "Under året besöker Studs medlemmar företagen genom event som arrangeras på företagens kontor. Studenterna får ett tillfälle att få en djupare inblick i företagens verksamhet. Studs hjälper företagen att skräddarsy varje event till deras specifika behov för att garantera att varje event är precis lika unikt som företaget."
+  "message": "Genom året kommer medlemmarna av Studs besöka företag genom evenemang, vanligtvis arrangerade på företagens kontor. För studenterna är det här en möjlighet att få djupare insikter om hur livet på företaget ser ut och om företagets verksamhet. Studs hjälper företagen att skräddarsy evenemangen till deras behov, vilket garanterar att varje evenemang är lika unikt som företaget som arrangerat det."
 }, {
   "id": "app.components.HomePage.trip.header",
   "message": "Resan"
 }, {
   "id": "app.components.HomePage.trip.content",
-  "message": "Projektet avslutas med en resa till USA, för att skapa kulturellt och professionellt utbyte. Med städer som San Francicsco, New York och Seatttle har USA en unik position i IT-världen med ständig innovation från både startups och etablerade spelare."
+  "message": "Projektet avslutas med en resa till USA, i syfte att ge projektmedlemmarna möjligheter för både kulturellt och professionellt utbyte. USA har en unik position inom teknologin med städer som San Francisco, New York och Seattle som ger upphov till ständig innovation och tillväxt för såväl startups som etablerade aktörer."
 }, {
   "id": "app.components.HomePage.contact.header",
   "message": "Kontakta oss"

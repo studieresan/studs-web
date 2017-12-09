@@ -70,11 +70,11 @@ module.exports = (options) => ({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         API_BASE_URL: JSON.stringify(process.env.API_BASE_URL),
-        AMAZON_S3_BUCKET_URL: JSON.stringify(process.env.AMAZON_S3_BUCKET_URL),
+        CDN_URL: JSON.stringify(process.env.CDN_URL),
       },
     }),
     new InterpolateHtmlPlugin({
-      'AMAZON_S3_BUCKET_URL': process.env.AMAZON_S3_BUCKET_URL,
+      'CDN_URL': process.env.CDN_URL,
     }),
   ]),
   postcss: () => [

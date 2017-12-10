@@ -3,7 +3,7 @@
   "message": "Vi älskar utmaningar och äventyr"
 }, {
   "id": "app.components.HomePage.intro.content",
-  "message": "Studs är ett årligt projekt på Datateknikutbildningen på KTH som jobbar för att skapa en mötesplattform mellan studenter i slutet av sin utbildning och utvalda företag. Projektet avslutas med en studieresa för att även ge studenterna en möjlighet att träffa företag i utlandet."
+  "message": "Studs, eller Studieresan, är ett årligt projekt vid Skolan för datavetenskap och kommunikation på Kungliga Tekniska Högskolan (KTH). Projektet har som mål att skapa en plattform för interaktion mellan snart examinerade studenter och relevanta företag. Projektet avslutas med en studieresa för att ge studenterna möjlighet att träffa företag utomlands."
 }, {
   "id": "app.components.HomePage.headline",
   "message": "Om Studs"

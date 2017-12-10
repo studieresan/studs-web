@@ -13,7 +13,7 @@ import classNames from 'classnames'
 import styles from './styles.css'
 import LocaleToggle from '../LocaleToggle'
 import Black from 'static/img/logo/Black.svg'
-import White from 'static/img/logo/White.svg'
+import White from 'static/img/logo/white.svg'
 import MenuIcon from './icon_menu.svg'
 import CloseIcon from './icon_close.svg'
 

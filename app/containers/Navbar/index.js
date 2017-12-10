@@ -9,9 +9,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import { bindActionCreators } from 'redux'
+import classNames from 'classnames'
 import styles from './styles.css'
 import LocaleToggle from '../LocaleToggle'
-import Logo from 'static/img/logo/Black.svg'
+import Black from 'static/img/logo/black.svg'
+import White from 'static/img/logo/white.svg'
 import MenuIcon from './icon_menu.svg'
 import CloseIcon from './icon_close.svg'
 
@@ -96,22 +98,28 @@ export class Navbar extends React.Component {
   render() {
     let collapsed = styles.collapse
     collapsed += this.state.collapsed ? ' ' + styles.collapsed : ''
+
+    const bg = this.props.displayNavbarBackground
+    const navbarClasses = classNames(styles.navbar, {
+      [styles.background]: bg,
+    })
+    const Logo = bg ? Black : White
     return (
-    <div className={styles.navbar}>
-      <div className={styles.control}>
-        <Link to="/">
-          <img src={Logo} height={24} />
-        </Link>
-        <img
-          src={this.state.collapsed ? MenuIcon : CloseIcon }
-          height={26}
-          onClick={this.handleMenuClick} />
+      <div className={navbarClasses}>
+        <div className={styles.control}>
+          <Link to="/">
+            <img src={Logo} height={24} />
+          </Link>
+          <img
+            src={this.state.collapsed ? MenuIcon : CloseIcon }
+            height={26}
+            onClick={this.handleMenuClick} />
+        </div>
+        <div className={ collapsed }>
+          { this.menu() }
+          <LocaleToggle />
+        </div>
       </div>
-      <div className={ collapsed }>
-        { this.menu() }
-        <LocaleToggle />
-      </div>
-    </div>
     )
   }
 }
@@ -119,12 +127,14 @@ export class Navbar extends React.Component {
 Navbar.propTypes = {
   user: PropTypes.object,
   router: PropTypes.object.isRequired,
+  displayNavbarBackground: PropTypes.bool,
 }
 
 function mapStateToProps(state) {
   const immutableUser = state.getIn(['global', 'user'])
   return {
     user: immutableUser ? immutableUser.toJS() : {},
+    displayNavbarBackground: state.getIn(['global', 'displayNavbarBackground']),
   }
 }
 

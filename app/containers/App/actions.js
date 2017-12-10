@@ -5,6 +5,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_ERROR,
   LOGOUT,
+  SET_NAVBAR_BACKGROUND,
 } from './constants'
 import {
   fetchUser,
@@ -80,4 +81,11 @@ export const login = (email, pass) => dispatch => {
       setLoggedIn()
     })
     .catch(() => dispatch(loginError()))
+}
+
+export function setNavbarBackground(value) {
+  return {
+    type: SET_NAVBAR_BACKGROUND,
+    payload: value,
+  }
 }

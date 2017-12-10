@@ -11,7 +11,7 @@ import { FormattedMessage } from 'react-intl'
 import { bindActionCreators } from 'redux'
 import styles from './styles.css'
 import LocaleToggle from '../LocaleToggle'
-import Logo from 'static/img/logo/black.svg'
+import Logo from 'static/img/logo/Black.svg'
 import MenuIcon from './icon_menu.svg'
 import CloseIcon from './icon_close.svg'
 

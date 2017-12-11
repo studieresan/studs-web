@@ -24,10 +24,10 @@ export function resetSuccess() {
   }
 }
 
-export function updatePassword(password) {
+export function updatePassword(passwordChange) {
   return {
     type: UPDATE_PASSWORD,
-    password,
+    passwordChange,
   }
 }
 
@@ -38,10 +38,10 @@ export function resetError() {
 }
 
 export const reset = token => (dispatch, getState) => {
-  const { password } = getState().get('passwordReset').toJS()
+  const { password, confirmPassword } = getState().get('passwordReset').toJS()
 
   dispatch(resetRequest())
-  resetPassword(password, password, token)
+  resetPassword(password, confirmPassword, token)
     .then(() => {
       dispatch(resetSuccess())
       browserHistory.push('/login')

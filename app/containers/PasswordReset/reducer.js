@@ -8,6 +8,7 @@ import {
 
 const initialState = fromJS({
   password: '',
+  confirmPassword: '',
   success: false,
   resetting: false,
   error: false,
@@ -16,7 +17,7 @@ const initialState = fromJS({
 export default function(state = initialState, action) {
   switch (action.type) {
   case UPDATE_PASSWORD:
-    return state.set('password', action.password)
+    return state.merge(action.passwordChange)
   case RESET_REQUEST:
     return state.set('resetting', true)
   case RESET_SUCCESS:

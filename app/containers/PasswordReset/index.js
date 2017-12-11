@@ -5,6 +5,7 @@
  */
 
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { FormattedMessage } from 'react-intl'
@@ -20,16 +21,18 @@ export class PasswordReset extends React.Component {
   }
 
   handleChange(event) {
-    this.props.updatePassword(event.target.value)
+    const inputChange = {}
+    inputChange[event.target.name] = event.target.value
+    this.props.updatePassword(inputChange)
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.reset(this.props.location.query.token)
+    this.props.reset(this.props.params.token)
   }
 
   render() {
-    const { password, error, success } = this.props
+    const { password, confirmPassword, error } = this.props
     return (
       <div className={styles.user}>
         <form onSubmit={this.handleSubmit} className={styles.content}>
@@ -45,6 +48,15 @@ export class PasswordReset extends React.Component {
             value={password}
             onChange={this.handleChange}
             placeholder='Password'/>
+          <div className='input-label'>
+            <FormattedMessage {...messages.confirmPassword} />
+          </div>
+          <input
+            type='password'
+            name='confirmPassword'
+            value={confirmPassword}
+            onChange={this.handleChange}
+            placeholder='Confirm Password'/>
           <div className='button-wrapper'>
             <button type='submit' className='btn-bright'>Save</button>
           </div>
@@ -53,6 +65,15 @@ export class PasswordReset extends React.Component {
       </div>
     )
   }
+}
+
+PasswordReset.propTypes = {
+  password: PropTypes.string.isRequired,
+  confirmPassword: PropTypes.string.isRequired,
+  error: PropTypes.bool.isRequired,
+  updatePassword: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired,
+  params: PropTypes.object.isRequired,
 }
 
 function mapStateToProps(state) {

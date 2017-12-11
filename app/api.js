@@ -2,8 +2,9 @@ const BASE_URL = process.env.API_BASE_URL || 'http://localhost:5040'
 const GRAPHQL = '/graphql'
 const LOGIN = '/login'
 const LOGOUT = '/logout'
-const PASSWORD_RESET = '/account/password'
+const PASSWORD_UPDATE = '/account/password'
 const PASSWORD_FORGOT = '/forgot'
+const PASSWORD_RESET = '/reset'
 // const cvUrl = '/resume'
 const EVENTS = '/events'
 const COMPANIES = '/companies'
@@ -120,7 +121,7 @@ export function updateUserPassword({ password, confirmPassword }) {
       confirmPassword,
     }),
   }
-  return ftch(BASE_URL+PASSWORD_RESET, post)
+  return ftch(BASE_URL+PASSWORD_UPDATE, post)
 }
 
 export function fetchUsers() {
@@ -185,6 +186,20 @@ export function requestPasswordReset(email) {
     },
     body: JSON.stringify({
       email,
+    }),
+  })
+}
+
+export function resetPassword(password, confirmPassword, token) {
+  const url = `${BASE_URL}${PASSWORD_RESET}/${token}`
+  return ftch(url, {
+    method: 'POST',
+    headers: {
+      ...jsonHeader(),
+    },
+    body: JSON.stringify({
+      password,
+      confirmPassword,
     }),
   })
 }

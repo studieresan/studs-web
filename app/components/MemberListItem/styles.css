@@ -1,10 +1,18 @@
-.memberListItem { /* stylelint-disable */
+.memberListItem {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   color: black;
   height: 100%;
   width: 100%;
+  padding-left: 10px;
+}
+
+/* iPhone-X landscape insets */
+@supports (padding: max(0%)) {
+  .memberListItem {
+    padding-left: max(10px, env(safe-area-inset-left));
+  }
 }
 
 .container {

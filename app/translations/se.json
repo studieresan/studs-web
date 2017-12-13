@@ -1,47 +1,52 @@
 [{
-	"id": "app.components.HomePage.intro.header",
-	"message": "Vi älskar utmaningar och äventyr"
+  "id": "app.components.HomePage.intro.header",
+  "message": "Vi älskar utmaningar och äventyr"
 }, {
-	"id": "app.components.HomePage.intro.content",
-	"message": "Studs är ett årligt projekt på Datateknikutbildningen på KTH som jobbar för att skapa en mötesplattform mellan studenter i slutet av sin utbildning och utvalda företag. Projektet avslutas med en studieresa för att även ge studenterna en möjlighet att träffa företag i utlandet."
+  "id": "app.components.HomePage.intro.content",
+  "message": "Studs, eller Studieresan, är ett årligt projekt vid Skolan för datavetenskap och kommunikation på Kungliga Tekniska Högskolan (KTH). Projektet har som mål att skapa en plattform för interaktion mellan snart examinerade studenter och relevanta företag. Projektet avslutas med en studieresa för att ge studenterna möjlighet att träffa företag utomlands."
 }, {
-	"id": "app.components.HomePage.description.header",
-	"message": "Det årliga projektet"
+  "id": "app.components.HomePage.headline",
+  "message": "Om Studs"
 }, {
-	"id": "app.components.HomePage.description.content",
-	"message": "Studs, eller Studieresan, är ett icke-vinstdrivande projekt på KTH. Projektet består av 28 civilingenjörsstudenter i slutet av sin utbildning som studerar en master kopplad till datateknik. Genom att ordna evenemang tillsammans med företag, skapar vi en plattform för att ge både studenter och företag fokuserad tid tillsammans. Projektet avslutas med en studieresa till USA för att skapa ett kulturellt och professionellt utbyte. Med städer som San Francisco, New York och Seattle har USA en unik position i IT-världen med ständig innovation bland såväl startups som etablerade spelare."
+  "id": "app.components.HomePage.project.header",
+  "message": "Projektet"
 }, {
-	"id": "app.components.HomePage.students.header",
-	"message": "Ta del av en häftig upplevelse"
+  "id": "app.components.HomePage.project.content",
+  "message": "Studs är ett årligt ideellt projekt vid KTH, bedrivet av studenter. Projektet utgörs av 32 utvalda ingenjörsstudenter inom mastersprogram relevanta till datavetenskap. Genom att organisera evenemang tillsammans med företag skapar vi en plattform för att ge studenter och deras potentiella framtida arbetsgivare koncentrerad tid tillsammans."
 }, {
-	"id": "app.components.HomePage.students.content",
-	"message": "Digitaliseringen breder ut sig till allt fler branscher och efterfrågan på välutbildad arbetskraft växer. Det kan därför vara svårt för studenter att orientera sig bland alla möjligheter, på samma sätt som det är svårt för företag att hitta rätt person. Studs mission är att koppla ihop rätt människa med rätt företag. Under läsåret 2016/2017 går projektgruppen på företagsevenemang arrangerade tillsammans med Studs för att skapa ett högkvalitativt möte. Evenemangen är skräddarsydda för att passa varje företags egna behov, vanligtvis bjuds projektgruppen in till företagets kontor en kväll där studenterna får en djupare inblick i företagets verksamhet."
+  "id": "app.components.HomePage.events.header",
+  "message": "Evenemangen"
 }, {
-	"id": "app.components.HomePage.contact.header",
-	"message": "Hur kan vårt företag bli en del av det här?"
+  "id": "app.components.HomePage.events.content",
+  "message": "Genom året kommer medlemmarna av Studs besöka företag genom evenemang, vanligtvis arrangerade på företagens kontor. För studenterna är det här en möjlighet att få djupare insikter om hur livet på företaget ser ut och om företagets verksamhet. Studs hjälper företagen att skräddarsy evenemangen till deras behov, vilket garanterar att varje evenemang är lika unikt som företaget som arrangerat det."
 }, {
-	"id": "app.components.HomePage.contact.content",
-	"message": "Är ni intresserade av att ha ett event med oss eller bara är nyfikna och vill veta mer, kontakta vår säljansvarig Donia Alipoor."
+  "id": "app.components.HomePage.trip.header",
+  "message": "Resan"
 }, {
-	"id": "app.components.HomePage.contact.phone",
-	"message": "Telefon"
+  "id": "app.components.HomePage.trip.content",
+  "message": "Projektet avslutas med en resa till USA, i syfte att ge projektmedlemmarna möjligheter för både kulturellt och professionellt utbyte. USA har en unik position inom teknologin med städer som San Francisco, New York och Seattle som ger upphov till ständig innovation och tillväxt för såväl startups som etablerade aktörer."
 }, {
-	"id": "app.containers.Navbar.login",
-	"message": "Logga in"
+  "id": "app.components.HomePage.contact.header",
+  "message": "Kontakta oss"
 }, {
-	"id": "app.containers.Navbar.logout",
-	"message": "Logga ut"
+  "id": "app.components.HomePage.contact.content",
+  "message": "Om ni är intresserade av att ha ett event med oss, eller om ni är nyfikna och vill veta mer, kontakta vår säljansvarig Elin. "
 }, {
-	"id": "app.containers.Navbar.studsmembers",
-	"message": "Medlemmar"
+  "id": "app.components.HomePage.contact.phone",
+  "message": "Telefon"
 }, {
-	"id": "app.components.HomePage.members.header",
-	"message": "Det här är vi"
+  "id": "app.containers.Navbar.login",
+  "message": "Logga in"
 }, {
-	"id": "app.components.HomePage.report.last_year",
-	"message": "Förra årets<br/>rapport"
-}
-]
-
-
-
+  "id": "app.containers.Navbar.logout",
+  "message": "Logga ut"
+}, {
+  "id": "app.containers.Navbar.studsmembers",
+  "message": "Medlemmar"
+}, {
+  "id": "app.components.HomePage.members.header",
+  "message": "Det här är vi"
+}, {
+  "id": "app.components.HomePage.report.lastYear",
+  "message": "Förra årets<br/>rapport"
+}]

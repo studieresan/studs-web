@@ -5,23 +5,32 @@
 	"id": "app.components.HomePage.intro.content",
 	"message": "Studs, or the Study Trip, is an annual project at the Department of Computer Science at the Royal Institute of Technology (KTH) in Stockholm. The project aims to create a platform for interaction between students close to graduation and relevant companies. The project ends with a study trip to give the students an opportunity to meet companies abroad."
 }, {
-	"id": "app.components.HomePage.description.header",
-	"message": "The annual project"
+  "id": "app.components.HomePage.headline",
+  "message": "About Studs"
 }, {
-	"id": "app.components.HomePage.description.content",
-	"message": "Studs is a student driven, non-profit, project at KTH. The project consists of 28 selected engineering students enrolled in a master’s program related to computer science. By organizing events together with companies, we create a platform to give students and companies focused time together. The project ends with a trip to the US to give the project members an opportunity for cultural and professional exchange. The US has a unique position in the world of technology with cities such as San Francisco, New York, and Seattle that generate continuous innovation and growth for start-ups and established players alike."
+  "id": "app.components.HomePage.project.header",
+  "message": "The Project"
 }, {
-	"id": "app.components.HomePage.students.header",
-	"message": "Be part of a great experience"
+  "id": "app.components.HomePage.project.content",
+  "message": "Studs is an annual non-profit project at KTH, driven by students. The project consists of 32 selected engineering students enrolled in a master’s program related to computer science. By organizing events together with companies, we create a platform to give students and their potential future employers focused time together. "
 }, {
-	"id": "app.components.HomePage.students.content",
-	"message": "With increasing digitalization, the demand for highly-educated individuals is growing rapidly, making it challenging for both students and companies to identify perfect professional fits. Stud’s mission is to pair students and select companies to enable qualitative meetings that provide the opportunity for personal contact. During the academic year of 2016-2017 the project group will attend events arranged together with the companies. Each event is tailored to meet each individual company’s needs, usually the project group is invited to spend an evening at the respective company’s office, where the students can gain deeper insight into life at the company and its operations. "
+  "id": "app.components.HomePage.events.header",
+  "message": "The Events"
+}, {
+  "id": "app.components.HomePage.events.content",
+  "message": "Throughout the year, the Studs members will visit various companies through events, usually arranged at their offices. The students take this opportunity to gain deeper insight into life at the company and its operations. Studs helps these companies tailor the events to their specific needs, guaranteeing that each event is as unique as the company hosting it."
+}, {
+  "id": "app.components.HomePage.trip.header",
+  "message": "The Trip"
+}, {
+  "id": "app.components.HomePage.trip.content",
+  "message": "The project ends with a trip to the United States, in order to give the project members an opportunity for cultural and professional exchange. The US has a unique position in the world of technology with cities such as San Francisco, New York, and Seattle that generate continuous innovation and growth for startups and established players alike."
 }, {
 	"id": "app.components.HomePage.contact.header",
-	"message": "How do I get my company involved?"
+	"message": "Get in touch"
 }, {
 	"id": "app.components.HomePage.contact.content",
-	"message": "Are you interested in having an event with us or are you just curious and want to know more, contact our chief of sales Donia Alipoor."
+	"message": "If you're interested in having an event with us, or you're curious and want to know more – contact Elin, our Head of Sales."
 }, {
 	"id": "app.components.HomePage.contact.phone",
 	"message": "Phone"
@@ -29,6 +38,6 @@
 	"id": "app.components.HomePage.members.header",
 	"message": "This is us"
 }, {
-	"id": "app.components.HomePage.report.last_year",
+	"id": "app.components.HomePage.report.lastYear",
 	"message": "Last year's<br/>report"
 }]

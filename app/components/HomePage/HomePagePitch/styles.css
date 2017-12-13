@@ -1,0 +1,81 @@
+.pitch {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto 5rem;
+}
+
+.headline {
+  text-align: center;
+  margin: 3rem auto;
+}
+
+.section {
+  display: flex;
+  justify-content: center;
+}
+
+.section + .section {
+  margin-top: 5rem;
+}
+
+.images {
+  flex: 0 0 50%;
+}
+
+.section:nth-of-type(2n) .images {
+  order: 2;
+}
+
+.images .image {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+}
+
+.text {
+  flex: 0 1 auto;
+  max-width: 400px;
+  padding: 0 2rem;
+}
+
+.header {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 16px;
+  margin: 0;
+}
+
+.body {
+  margin: 0;
+  margin-top: 2rem;
+  font-size: 14px;
+}
+
+@media (orientation: portrait) {
+  .section {
+    flex-direction: column;
+  }
+
+  .section + .section {
+    margin-top: 2rem;
+  }
+
+  .section div {
+    padding: 1rem 2rem;
+  }
+
+  .images {
+    flex: 0 1 200px;
+    order: 1;
+  }
+
+  .text {
+    order: 2;
+    flex: 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+}

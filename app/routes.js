@@ -55,7 +55,7 @@ export default function createRoutes(store) {
           .catch(errorLoading)
       },
     }, {
-      path: '/user/password-reset',
+      path: '/password-reset/:token',
       name: 'password_reset',
       getComponent(nextState, cb) {
         const importModules = Promise.all([

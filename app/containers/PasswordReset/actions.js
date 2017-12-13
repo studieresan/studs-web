@@ -10,7 +10,7 @@ import {
   RESET_ERROR,
   UPDATE_PASSWORD,
 } from './constants'
-import { updateUserPassword } from '../../api'
+import { resetPassword } from '../../api'
 import { browserHistory } from 'react-router'
 
 export function resetRequest() {
@@ -24,10 +24,10 @@ export function resetSuccess() {
   }
 }
 
-export function updatePassword(password) {
+export function updatePassword(passwordChange) {
   return {
     type: UPDATE_PASSWORD,
-    password,
+    passwordChange,
   }
 }
 
@@ -38,14 +38,10 @@ export function resetError() {
 }
 
 export const reset = token => (dispatch, getState) => {
-  const { password } = getState().get('passwordReset').toJS()
-
-  const formData = new FormData()
-  formData.append('token', token)
-  formData.append('user[password]', password)
+  const { password, confirmPassword } = getState().get('passwordReset').toJS()
 
   dispatch(resetRequest())
-  updateUserPassword(formData)
+  resetPassword(password, confirmPassword, token)
     .then(() => {
       dispatch(resetSuccess())
       browserHistory.push('/login')

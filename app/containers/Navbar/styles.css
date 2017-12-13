@@ -11,6 +11,14 @@
   z-index: 1;
 }
 
+/* iPhone-X landscape insets */
+@supports (padding: max(0%)) {
+  .navbar {
+    padding-left: max(2em, env(safe-area-inset-left));
+    padding-right: max(2em, env(safe-area-inset-right));
+  }
+}
+
 .navbarLogo {
   color: white;
   fill: white;

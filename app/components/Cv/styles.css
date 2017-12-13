@@ -1,9 +1,19 @@
-.cv { /* stylelint-disable */
-  padding: 25px 25px;
+.cv {
+  padding: 25px;
   display: flex;
   justify-content: center;
   height: 100%;
   overflow: auto;
+
+  /* iPhone-X bottom insets */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* iPhone-X landscape insets */
+@supports (padding: max(0%)) {
+  .cv {
+    padding-right: max(25px, env(safe-area-inset-right));
+  }
 }
 
 .cv > div {
@@ -12,7 +22,7 @@
 }
 
 .section {
-  position:relative;
+  position: relative;
 }
 
 .section > h2 {
@@ -23,9 +33,9 @@
 
 .section > input {
   display: inline-block;
-	font-family: 'DIN Condensed';
-	text-transform: uppercase;
-	letter-spacing: 5px;
+  font-family: 'DIN Condensed';
+  text-transform: uppercase;
+  letter-spacing: 5px;
   border: none;
   font-size: 1.5em;
   padding: 0;
@@ -43,7 +53,7 @@
 
 .section textarea:focus {
   outline: none;
-  background-color: #fafafa;
+  background-color: #FAFAFA;
 }
 
 .item {
@@ -66,11 +76,11 @@
 
 .item textarea:focus {
   outline: none;
-  background-color: #fafafa;
+  background-color: #FAFAFA;
 }
 
 .item::after {
-  content: "";
+  content: '';
   clear: both;
   display: table;
 }
@@ -128,12 +138,11 @@
 }
 
 .where {
-  float:right;
+  float: right;
   width: 66.66%;
   padding-left: 15px;
   padding-right: 10px;
   padding-bottom: 10px;
-
 }
 
 .where > *:first-child {

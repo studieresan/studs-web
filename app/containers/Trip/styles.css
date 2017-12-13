@@ -5,6 +5,14 @@
   flex-direction: column;
 }
 
+/* iPhone-X landscape insets */
+@supports (padding: max(0%)) {
+  .trip {
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+}
+
 .trip > h1 {
   margin-top: 0px;
 }

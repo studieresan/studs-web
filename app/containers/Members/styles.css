@@ -1,4 +1,4 @@
-.members { /* stylelint-disable */
+.members {
   padding-top: 46px;
   height: 100vh;
 }
@@ -8,5 +8,3 @@
   overflow: auto;
 }
 
-.memberProfile {
-}

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { FormattedMessage } from 'react-intl'
 import Isvg from 'react-inlinesvg'
-import Waypoint from 'react-waypoint'
+import NavbarWaypoint from 'containers/NavbarWaypoint'
 import Logo from 'static/img/logo/White + Frame (16x10).svg'
 import styles from './styles.css'
 import messages from './messages'
@@ -12,23 +12,9 @@ import * as actions from 'containers/App/actions'
 
 
 class HomePageHeader extends Component {
-  constructor(props) {
-    super(props)
-    this.handleEnter = this.handleEnter.bind(this)
-    this.handleLeave = this.handleLeave.bind(this)
-  }
-
-  handleEnter() {
-    this.props.setNavbarBackground(false)
-  }
-
-  handleLeave() {
-    this.props.setNavbarBackground(true)
-  }
-
   render() {
     return (
-      <Waypoint onEnter={this.handleEnter} onLeave={this.handleLeave}>
+      <NavbarWaypoint>
         <div className={styles.header}>
           <div className={styles.headerContent} >
             <div className={styles.headerContentLogo}>
@@ -39,7 +25,7 @@ class HomePageHeader extends Component {
             </p>
           </div>
         </div>
-      </Waypoint>
+      </NavbarWaypoint>
     )
   }
 }

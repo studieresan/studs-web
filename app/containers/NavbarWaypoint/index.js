@@ -12,12 +12,17 @@ class NavbarWaypoint extends Component {
     this.handleLeave = this.handleLeave.bind(this)
   }
 
-  handleEnter() {
+  componentWillUnmount() {
     this.props.setNavbarBackground(true)
   }
 
-  handleLeave() {
+
+  handleEnter() {
     this.props.setNavbarBackground(false)
+  }
+
+  handleLeave() {
+    this.props.setNavbarBackground(true)
   }
 
   render() {

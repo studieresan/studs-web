@@ -38,7 +38,7 @@ class App extends React.Component {
     return (
       <div className={styles.container}>
         <Navbar />
-        {React.Children.toArray(this.props.children)}
+        { this.props.children }
       </div>
     )
   }

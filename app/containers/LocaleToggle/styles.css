@@ -3,13 +3,15 @@
 }
 
 .localeToggleLink {
-  text-transform: uppercase;
-  color: #90CE9C;
+  color: #DD696D;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  border-right: 1px solid #90CE9C;
   font-size: 14px;
   cursor: pointer;
+}
+
+.localeToggleLink:hover {
+  border-bottom: 1px solid #DD696D;
 }
 
 .localeToggleLink:first-child {
@@ -17,6 +19,5 @@
 }
 
 .localeToggleLink:last-child {
-  border: 0;
   padding-right: 0;
 }

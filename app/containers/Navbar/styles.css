@@ -4,11 +4,19 @@
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  background-color: #38383F;
+  color: white;
   top: 0;
   width: 100%;
-  padding: 10px;
+  padding: 1em 2em;
   z-index: 1;
+}
+
+/* iPhone-X landscape insets */
+@supports (padding: max(0%)) {
+  .navbar {
+    padding-left: max(2em, env(safe-area-inset-left));
+    padding-right: max(2em, env(safe-area-inset-right));
+  }
 }
 
 .navbarLogo {
@@ -33,11 +41,20 @@
 .navbarMenu a {
   color: white;
   text-decoration: none;
-  text-transform: uppercase;
 }
 
 .navbarMenu a:hover {
-  color: #90CE9C;
+  color: #F7DDC9;
+  border-bottom: 1px solid #F7DDC9;
+}
+
+.background {
+  background: white;
+  color: black;
+}
+
+.background a {
+  color: black;
 }
 
 .control > img {

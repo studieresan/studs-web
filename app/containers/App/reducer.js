@@ -6,6 +6,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_ERROR,
   LOGOUT,
+  SET_NAVBAR_BACKGROUND,
 } from './constants'
 import { loggedIn } from '../../auth'
 import { defaultUser } from '../User/reducer'
@@ -15,6 +16,7 @@ const initialState = fromJS({
   loggedIn: loggedIn(),
   loginError: false,
   fetchingUser: false,
+  displayNavbarBackground: false,
 })
 
 function reducer(state = initialState, action) {
@@ -41,6 +43,10 @@ function reducer(state = initialState, action) {
     return state.merge(Map({
       loggedIn: false,
       user: null,
+    }))
+  case SET_NAVBAR_BACKGROUND:
+    return state.merge(Map({
+      displayNavbarBackground: action.payload,
     }))
   default:
     return state

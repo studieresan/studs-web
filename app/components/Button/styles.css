@@ -1,0 +1,31 @@
+.button {
+  background: #303B4B;
+  color: white;
+  width: 100%;
+  font-size: 12px;
+  padding: 1em 2em;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.danger {
+  background: #DD696D;
+  color: black;
+}
+
+.bright {
+  background: #F7DDC9;
+  color: black;
+}
+
+.disabled {
+  background-color: #CCC;
+  color: #666;
+  pointer-events: none;
+}
+
+.wrapper {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+}

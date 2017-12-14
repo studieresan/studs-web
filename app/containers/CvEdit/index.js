@@ -6,7 +6,7 @@ import * as actions from './actions'
 import TextArea from 'react-textarea-autosize'
 import CvHeader from '../../components/CvHeader'
 import { ChevronDown, ChevronUp } from 'react-feather'
-import classNames from 'classnames'
+import Button from 'components/Button'
 
 const styles = {}
 import cvStyles from '../../components/Cv/styles.css'
@@ -77,25 +77,24 @@ export class CvEdit extends React.Component {
   renderItem(item, sectionIndex, index, section) {
     const moveDownDisabled = index === section.items.length - 1
     const moveUpDisabled = index === 0
-    const removeItemClasses = classNames('btn-danger', styles.cvAction)
     return (
       <div key={index} className={`${styles.item} ${cvStyles.item}`}>
         <div className={styles.meta}>
           <div className={styles.arrows}>
-            <button
-              className={moveUpDisabled ? styles.arrowDisabled : ''}
+            <Button
+              className={moveUpDisabled && styles.arrowDisabled}
               disabled={moveUpDisabled}
               onClick={() =>
                 this.onMoveItemClick(item, sectionIndex, index, index - 1)}>
               <ChevronUp/>
-            </button>
-            <button
-              className={moveDownDisabled ? styles.arrowDisabled : ''}
+            </Button>
+            <Button
+              className={moveDownDisabled && styles.arrowDisabled}
               disabled={moveDownDisabled}
               onClick={() =>
                 this.onMoveItemClick(item, sectionIndex, index, index + 1)}>
               <ChevronDown/>
-            </button>
+            </Button>
           </div>
           <div className={styles.when}>
             <TextArea
@@ -140,10 +139,13 @@ export class CvEdit extends React.Component {
             maxLength={LARGE_FIELD_MAX_LENGTH}
           />
         </div>
-        <div
-          className={removeItemClasses}
-          onClick={this.onRemoveItemClick.bind(null, sectionIndex, index)}>
-            Remove Item
+        <div className={styles.addItem}>
+          <Button
+            type='danger'
+            className={styles.cvAction}
+            onClick={this.onRemoveItemClick.bind(null, sectionIndex, index)}>
+              Remove Item
+          </Button>
         </div>
       </div>
     )
@@ -152,10 +154,6 @@ export class CvEdit extends React.Component {
     const items =
       section.items.map((item, i) => this.renderItem(item, index, i, section))
     const addItemEnabled = section.items.length < MAX_ITEMS
-    const addItemClasses = classNames(addItemEnabled
-      ? 'btn-default'
-      : 'btn-disabled', styles.cvAction)
-    const removeSectionClasses = classNames('btn-danger', styles.cvAction)
     return (
       <div key={index} className={styles.section}>
         <input
@@ -166,20 +164,21 @@ export class CvEdit extends React.Component {
           onChange={this.onSectionChange.bind(null, index)}
           maxLength={SMALL_FIELD_MAX_LENGTH}/>
         <span className={styles.removeSection}>
-          <button
-            className={removeSectionClasses}
+          <Button
+            type='danger'
+            className={styles.cvAction}
             onClick={this.onRemoveSectionClick.bind(null, index)}>
              Remove Section
-          </button>
+          </Button>
         </span>
         {items}
         <div className={styles.addItem}>
-          <button
-            className={addItemClasses}
+          <Button
+            className={styles.cvAction}
             onClick={this.onAddItemClick.bind(null, index)}
             disabled={!addItemEnabled}>
               Add Item
-          </button>
+          </Button>
         </div>
       </div>
     )
@@ -203,21 +202,19 @@ export class CvEdit extends React.Component {
       saveStatus = 'Error'
     }
     const addSectionsEnabled = sections.length <= MAX_SECTIONS
-    const addSectionClasses = classNames(addSectionsEnabled
-      ? 'btn-gold'
-      : 'btn-disabled', styles.cvAction)
     return (
       <div className={styles.cvEdit + ' ' + styles.cv}>
         <div>
           { header }
           { sections.map((s, i) => this.renderSection(s, i)) }
           <div className={styles.addSection}>
-            <button
-              className={addSectionClasses}
+            <Button
+              type='bright'
+              className={styles.cvAction}
               onClick={this.props.addSection}
               disabled={!addSectionsEnabled} >
               Add Section
-            </button>
+            </Button>
           </div>
         </div>
         <div className={styles.saveStatus}>

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import styles from './styles.css'
 
-function Button({ type, disabled, onClick, children }) {
+function Button({ className, type, disabled, onClick, children }) {
   const classes = classNames({
     [styles[`${type}`]]: type && !disabled,
     [styles.disabled]: disabled,
-  }, styles.button)
+  }, styles.button, className)
   return (
     <div className={styles.wrapper}>
       <button className={classes} onClick={onClick}>
@@ -18,6 +18,7 @@ function Button({ type, disabled, onClick, children }) {
 }
 
 Button.propTypes = {
+  className: PropTypes.string,
   type: PropTypes.oneOf([
     'bright',
     'danger',

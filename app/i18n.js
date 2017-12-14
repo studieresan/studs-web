@@ -14,6 +14,11 @@ export const appLocales = [
   'en',
 ]
 
+export const appLocaleNames = [
+  { key: 'se', value: 'Swedish' },
+  { key: 'en', value: 'English' },
+]
+
 import enTranslationMessages from './translations/en.json'
 import seTranslationMessages from './translations/se.json'
 

@@ -142,9 +142,6 @@ export class User extends React.Component {
                 placeholder='Allergies'
                 maxLength='30'
               />
-              <div className='input-label'>
-                <FormattedMessage {...messages.picture} />
-              </div>
             </div>
             : null
           }

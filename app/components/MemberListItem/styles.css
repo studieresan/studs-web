@@ -9,9 +9,16 @@
 }
 
 /* iPhone-X landscape insets */
-@supports (padding: max(0%)) {
+@media only screen
+  and (device-width: 375px)
+  and (device-height: 812px)
+  and (-webkit-device-pixel-ratio: 3)
+  and (orientation: landscape) {
   .memberListItem {
-    padding-left: max(10px, env(safe-area-inset-left));
+    /* stylelint-disable */
+    padding-left: constant(safe-area-inset-left);
+    padding-left: env(safe-area-inset-left);
+    /* stylelint-enable */
   }
 }
 

@@ -12,10 +12,18 @@
 }
 
 /* iPhone-X landscape insets */
-@supports (padding: max(0%)) {
+@media only screen
+  and (device-width: 375px)
+  and (device-height: 812px)
+  and (-webkit-device-pixel-ratio: 3)
+  and (orientation: landscape) {
   .navbar {
-    padding-left: max(2em, env(safe-area-inset-left));
-    padding-right: max(2em, env(safe-area-inset-right));
+    /* stylelint-disable */
+    padding-left: constant(safe-area-inset-left);
+    padding-right: constant(safe-area-inset-right);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    /* stylelint-enable */
   }
 }
 

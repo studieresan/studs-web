@@ -41,8 +41,14 @@ function Section({ image, header, content }) {
 
 Section.propTypes = {
   image: PropTypes.string.isRequired,
-  header: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
+  header: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    defaultMessage: PropTypes.string,
+  }).isRequired,
+  content: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    defaultMessage: PropTypes.string,
+  }).isRequired,
 }
 
 export default HomePagePitch

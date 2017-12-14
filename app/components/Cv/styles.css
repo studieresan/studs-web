@@ -9,10 +9,17 @@
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* iPhone-X landscape insets */
-@supports (padding: max(0%)) {
+/* iPhone X landscape insets */
+@media only screen
+  and (device-width: 375px)
+  and (device-height: 812px)
+  and (-webkit-device-pixel-ratio: 3)
+  and (orientation: landscape) {
   .cv {
-    padding-right: max(25px, env(safe-area-inset-right));
+    /* stylelint-disable */
+    padding-right: constant(safe-area-inset-right);
+    padding-right: env(safe-area-inset-right);
+    /* stylelint-enable */
   }
 }
 

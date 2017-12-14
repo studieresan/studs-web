@@ -17,8 +17,14 @@ function Section({ header, content }) {
 }
 
 Section.propTypes = {
-  header: PropTypes.string,
-  content: PropTypes.string,
+  header: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    defaultMessage: PropTypes.string,
+  }).isRequired,
+  content: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    defaultMessage: PropTypes.string,
+  }).isRequired,
 }
 
 export default Section

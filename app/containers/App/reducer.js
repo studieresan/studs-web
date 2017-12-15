@@ -16,7 +16,7 @@ const initialState = fromJS({
   loggedIn: loggedIn(),
   loginError: false,
   fetchingUser: false,
-  displayNavbarBackground: false,
+  displayNavbarBackground: true,
 })
 
 function reducer(state = initialState, action) {

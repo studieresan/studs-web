@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import styles from './styles.css'
 
-function Button({ className, type, disabled, onClick, children }) {
+function Button({ className, type, color, disabled, onClick, children }) {
   const classes = classNames({
-    [styles[`${type}`]]: type && !disabled,
+    [styles[`${color}`]]: color && !disabled,
     [styles.disabled]: disabled,
   }, styles.button, className)
   return (
     <div className={styles.wrapper}>
-      <button className={classes} onClick={onClick}>
+      <button type={type} className={classes} onClick={onClick}>
         { children }
       </button>
     </div>
@@ -20,6 +20,11 @@ function Button({ className, type, disabled, onClick, children }) {
 Button.propTypes = {
   className: PropTypes.string,
   type: PropTypes.oneOf([
+    'button',
+    'submit',
+    'reset',
+  ]),
+  color: PropTypes.oneOf([
     'bright',
     'danger',
   ]),

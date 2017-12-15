@@ -65,7 +65,7 @@ export class User extends React.Component {
           </h1>
           { user.type === 'studs_member' ?
               <Link to={'/resume/edit'} >
-                <Button type='bright'>
+                <Button color='bright'>
                   Edit Resume
                 </Button>
               </Link>
@@ -166,7 +166,7 @@ export class User extends React.Component {
             value={user.confirmPassword || ''}
             onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
             onChange={this.handleChange}/>
-          <Button type='bright' onClick={this.handleSubmit}>
+          <Button color='bright' onClick={this.handleSubmit}>
             Save
           </Button>
           { this.props.saved && // TODO translate

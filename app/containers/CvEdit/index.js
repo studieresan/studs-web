@@ -141,7 +141,7 @@ export class CvEdit extends React.Component {
         </div>
         <div className={styles.addItem}>
           <Button
-            type='danger'
+            color='danger'
             className={styles.cvAction}
             onClick={this.onRemoveItemClick.bind(null, sectionIndex, index)}>
               Remove Item
@@ -165,7 +165,7 @@ export class CvEdit extends React.Component {
           maxLength={SMALL_FIELD_MAX_LENGTH}/>
         <span className={styles.removeSection}>
           <Button
-            type='danger'
+            color='danger'
             className={styles.cvAction}
             onClick={this.onRemoveSectionClick.bind(null, index)}>
              Remove Section
@@ -209,7 +209,7 @@ export class CvEdit extends React.Component {
           { sections.map((s, i) => this.renderSection(s, i)) }
           <div className={styles.addSection}>
             <Button
-              type='bright'
+              color='bright'
               className={styles.cvAction}
               onClick={this.props.addSection}
               disabled={!addSectionsEnabled} >

@@ -1,5 +1,6 @@
 .cvEdit {
-  padding-top: 46px;
+  padding: 6rem 0;
+  background: #F7DDC9;
 }
 
 /* iPhone X landscape insets */
@@ -22,24 +23,29 @@
 
 .cvAction {
   cursor: pointer;
+  align-self: flex-start;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
 }
 
 .addSection {
-  margin-top: 20px;
   display: flex;
   justify-content: center;
 }
 
 .removeSection {
-  margin-top: 20px;
-  float: right;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.addItem {
-  width: 100%;
+.removeItem {
+  flex: 3;
   display: flex;
-  flex-wrap: wrap-reverse;
-  padding-bottom: 20px;
   justify-content: flex-end;
 }
 

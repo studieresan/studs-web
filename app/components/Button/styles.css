@@ -1,16 +1,35 @@
 .button {
-  background: #303B4B;
-  color: white;
-  width: 100%;
   font-size: 12px;
   padding: 1em 2em;
-  transition: background-color 0.2s;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.default {
+  background: #303B4B;
+  color: white;
+}
+
+.default:hover {
+  color: #F7DDC9;
+}
+
+.full {
+  width: 100%;
+  margin: 1rem 0;
 }
 
 .danger {
+  background: #FCF0E8;
+  color: #DD696D;
+}
+
+.danger:hover {
   background: #DD696D;
-  color: black;
+  color: #FCF0E8;
 }
 
 .bright {
@@ -18,10 +37,26 @@
   color: black;
 }
 
+.bright:hover {
+  background: black;
+  color: #F7DDC9;
+}
+
+.dark {
+  background: black;
+  color: #F7DDC9;
+}
+
 .disabled {
-  background-color: #CCC;
+  background: #CCC;
   color: #666;
   pointer-events: none;
+}
+
+.icon {
+  background: none;
+  color: #303B4B;
+  padding: 0;
 }
 
 .wrapper {

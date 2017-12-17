@@ -80,13 +80,14 @@ class Login extends Component {
           />
 
           <Link to="/user/forgot-password">
-            <Button color='bright'>
+            <Button full>
               Forgot password?
             </Button>
           </Link>
-          <Button type='submit'>
+          <Button full type='submit' color='bright'>
             Login
           </Button>
+
           { this.renderError() }
         </form>
       </div>

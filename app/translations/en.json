@@ -43,4 +43,11 @@
 }, {
   "id": "app.containers.Members.listHeader",
   "message": "Members"
-}]
+}, {
+  "id": "app.containers.About.header",
+  "message": "About Us"
+}, {
+  "id": "app.containers.About.subtitle",
+  "message": "The people behind Studs 2018"
+}
+]

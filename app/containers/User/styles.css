@@ -1,19 +1,22 @@
 .user {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  max-width: 100vw;
-  padding: 20px;
-  margin-top: 45px;
+  align-items: center;
+  flex: 1;
+  padding: 5rem 0;
+  background: #F7DDC9;
 }
 
-.content > input {
-  width: 300px;
+.content {
+  background: #FFF;
+  width: 90%;
+  max-width: 30rem;
+  padding: 1rem 3rem 2rem;
 }
 
 .header {
   text-align: center;
-  letter-spacing: 0;
-  text-transform: none;
 }
 
 .status {

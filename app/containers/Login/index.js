@@ -57,8 +57,8 @@ class Login extends Component {
       pass,
     } = this.state
     return (
-      <div className='center'>
-        <form onSubmit={this.handleSubmit}>
+      <div className={styles.login}>
+        <form className={styles.form} onSubmit={this.handleSubmit}>
           <h1 className={styles.header}>
             Welcome
           </h1>

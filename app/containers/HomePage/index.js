@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import * as actions from '../Members/actions'
 
 import {
+  HomePageFooter,
   HomePageHeader,
   HomePagePitch,
   HomePageSalesContact,
@@ -17,11 +18,12 @@ export class HomePage extends Component {
 
   render() {
     return (
-      <div>
-        <HomePageHeader />
-        <HomePagePitch />
-        <HomePageSalesContact />
-      </div>
+    <div>
+      <HomePageHeader />
+      <HomePagePitch />
+      <HomePageSalesContact />
+      <HomePageFooter />
+    </div>
     )
   }
 }

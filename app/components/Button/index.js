@@ -63,6 +63,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   color: 'default',
+  type: 'button',
   full: false,
   wrapper: false,
 }

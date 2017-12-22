@@ -34,16 +34,13 @@ export const getUsers = () => dispatch => {
   dispatch(getMembersRequest())
   fetchUsers()
     .then(data => {
-      const users = data.map(u => {
+      const users = data.map(user => {
+        if (!user.profile || !user.cv)
+          return {}
         return {
-          firstName: u.firstName,
-          lastName: u.lastName,
-          id: `${u.firstName}${u.lastName}`.toLowerCase(),
-          email: u.email,
-          phone: u.phone || '',
-          master: u.master,
-          picture: u.picture,
-          cv: u.cv || null,
+          ...user.profile,
+          cv: user.cv,
+          id: `${user.profile.firstName}${user.profile.lastName}`.toLowerCase(),
         }
       })
       dispatch(getMembersSuccess(users))

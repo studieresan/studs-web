@@ -47,7 +47,7 @@ function ftch(...args) {
     .then(parseJSON)
 }
 
-const USER_FIELDS = `
+const USER_PROFILE_FIELDS = `
   memberType
   email
   firstName
@@ -60,14 +60,17 @@ const USER_FIELDS = `
 `
 
 export function fetchUser() {
-  // TODO extract constants
   const query = `{
-    user { ${USER_FIELDS} }
+    user {
+      profile {
+        ${USER_PROFILE_FIELDS}
+      }
+    }
   }
   `
   const url = `${BASE_URL}${GRAPHQL}?query=${query}`
   return ftch(url, { ...credentials() })
-    .then(res => Promise.resolve(res.data.user))
+    .then(res => Promise.resolve(res.data.user.profile))
 }
 
 function toGraphQLFields(str) {
@@ -76,17 +79,16 @@ function toGraphQLFields(str) {
 
 export function updateUser(newFields) {
   const mutation = `mutation {
-    setUser(fields: ${toGraphQLFields(newFields)}) {
-      ${USER_FIELDS}
+    updateProfile(fields: ${toGraphQLFields(newFields)}) {
+      ${USER_PROFILE_FIELDS}
     }
   }
   `
   const url = `${BASE_URL}${GRAPHQL}?query=${encodeURIComponent(mutation)}`
-  console.log(url)
   return ftch(url, {
     method: 'POST',
     ...credentials(),
-  }).then(res => Promise.resolve(res.data.setUser))
+  }).then(res => Promise.resolve(res.data.updateProfile))
 }
 
 export function loginUser(email, password) {
@@ -127,10 +129,8 @@ export function updateUserPassword({ password, confirmPassword }) {
 export function fetchUsers() {
   const query = `{
     users(memberType: studs_member) {
-      ${USER_FIELDS}
-      cv {
-        ${CV_FIELDS}
-      }
+      profile { ${USER_PROFILE_FIELDS} }
+      cv { ${CV_FIELDS} }
     }
   }
   `
@@ -140,7 +140,6 @@ export function fetchUsers() {
 }
 
 const CV_FIELDS = `
-  userId
   sections {
     title
     items {
@@ -155,17 +154,19 @@ const CV_FIELDS = `
 
 export function fetchCv() {
   const query = `{
-    cv { ${CV_FIELDS} }
+    user {
+      cv { ${CV_FIELDS} }
+    }
   }
   `
   const url = `${BASE_URL}${GRAPHQL}?query=${query}`
   return ftch(url, { ...credentials() })
-    .then(res => Promise.resolve(res.data.cv))
+    .then(res => Promise.resolve(res.data.user.cv))
 }
 
 export function updateCv(id, cv) {
   const mutation = `mutation {
-  setCv(fields: ${toGraphQLFields(cv)}) {
+  updateCV(fields: ${toGraphQLFields(cv)}) {
       ${CV_FIELDS}
     }
   }
@@ -174,7 +175,7 @@ export function updateCv(id, cv) {
   return ftch(url, {
     method: 'POST',
     ...credentials(),
-  }).then(res => Promise.resolve(res.data.cv))
+  }).then(res => Promise.resolve(res.data.updateCV))
 }
 
 export function requestPasswordReset(email) {

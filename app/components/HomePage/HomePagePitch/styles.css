@@ -8,6 +8,8 @@
 .headline {
   text-align: center;
   margin: 5rem auto;
+  letter-spacing: 5px;
+  text-transform: uppercase;
 }
 
 .section {

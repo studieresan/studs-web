@@ -35,6 +35,12 @@ function jsonHeader() {
   }
 }
 
+function graphQLHeader() {
+  return {
+    'Content-Type': 'application/graphql',
+  }
+}
+
 function header() {
   return {
     // headers: authHeader(), TODO
@@ -84,10 +90,14 @@ export function updateUser(newFields) {
     }
   }
   `
-  const url = `${BASE_URL}${GRAPHQL}?query=${encodeURIComponent(mutation)}`
+  const url = `${BASE_URL}${GRAPHQL}`
   return ftch(url, {
     method: 'POST',
     ...credentials(),
+    headers: {
+      ...graphQLHeader(),
+    },
+    body: mutation,
   }).then(res => Promise.resolve(res.data.updateProfile))
 }
 
@@ -171,10 +181,14 @@ export function updateCv(id, cv) {
     }
   }
   `
-  const url = `${BASE_URL}${GRAPHQL}?query=${encodeURIComponent(mutation)}`
+  const url = `${BASE_URL}${GRAPHQL}`
   return ftch(url, {
     method: 'POST',
     ...credentials(),
+    headers: {
+      ...graphQLHeader(),
+    },
+    body: mutation,
   }).then(res => Promise.resolve(res.data.updateCV))
 }
 

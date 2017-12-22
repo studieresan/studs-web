@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import Button from 'components/Button'
 import { login } from '../App/actions'
 import messages from './messages'
 import styles from './styles.css'
@@ -78,11 +79,14 @@ class Login extends Component {
             onChange={this.handlePassChange}
           />
 
-          <Link to="/user/forgot-password">Forgot password?</Link>
-
-          <div className='button-wrapper'>
-            <button type='submit' className='btn-bright'>Login</button>
-          </div>
+          <Link to="/user/forgot-password">
+            <Button color='bright'>
+              Forgot password?
+            </Button>
+          </Link>
+          <Button type='submit'>
+            Login
+          </Button>
           { this.renderError() }
         </form>
       </div>

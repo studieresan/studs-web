@@ -1,0 +1,66 @@
+.button {
+  font-size: 12px;
+  padding: 1em 2em;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.default {
+  background: #303B4B;
+  color: white;
+}
+
+.default:hover {
+  color: #F7DDC9;
+}
+
+.full {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.danger {
+  background: #FCF0E8;
+  color: #DD696D;
+}
+
+.danger:hover {
+  background: #DD696D;
+  color: #FCF0E8;
+}
+
+.bright {
+  background: #F7DDC9;
+  color: black;
+}
+
+.bright:hover {
+  background: black;
+  color: #F7DDC9;
+}
+
+.dark {
+  background: black;
+  color: #F7DDC9;
+}
+
+.disabled {
+  background: #CCC;
+  color: #666;
+  pointer-events: none;
+}
+
+.icon {
+  background: none;
+  color: #303B4B;
+  padding: 0;
+}
+
+.wrapper {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+}

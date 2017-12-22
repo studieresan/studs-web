@@ -7,6 +7,7 @@ import { Link } from 'react-router'
 import messages from './messages'
 import * as actions from './actions'
 import styles from './styles.css'
+import Button from 'components/Button'
 
 export class User extends React.Component {
 
@@ -64,7 +65,9 @@ export class User extends React.Component {
           </h1>
           { user.type === 'studs_member' ?
               <Link to={'/resume/edit'} >
-                <button className='btn-bright'>Edit Resume</button>
+                <Button color='bright'>
+                  Edit Resume
+                </Button>
               </Link>
               : null
           }
@@ -163,11 +166,9 @@ export class User extends React.Component {
             value={user.confirmPassword || ''}
             onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
             onChange={this.handleChange}/>
-          <div className='button-wrapper'>
-            <button className='btn-bright' onClick={this.handleSubmit}>
-              Save
-            </button>
-          </div>
+          <Button onClick={this.handleSubmit}>
+            Save
+          </Button>
           { this.props.saved && // TODO translate
             <div className={styles.status}>
               Saved

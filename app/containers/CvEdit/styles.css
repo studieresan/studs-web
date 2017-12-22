@@ -21,10 +21,7 @@
 }
 
 .cvAction {
-  text-transform: uppercase;
-  font-weight: 700;
   cursor: pointer;
-  font-size: 14px;
 }
 
 .addSection {

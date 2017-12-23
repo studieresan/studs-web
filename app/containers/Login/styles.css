@@ -1,13 +1,19 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background: #F7DDC9;
+}
+
+.form {
+  background: #FFF;
+  width: 90%;
+  max-width: 30rem;
+  padding: 1rem 3rem 2rem;
+}
+
 .header {
-  margin: 0;
   text-align: center;
-}
-
-a {
-  color: black;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #90CE9C;
 }

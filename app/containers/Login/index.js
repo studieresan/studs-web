@@ -57,8 +57,8 @@ class Login extends Component {
       pass,
     } = this.state
     return (
-      <div className='center'>
-        <form onSubmit={this.handleSubmit}>
+      <div className={styles.login}>
+        <form className={styles.form} onSubmit={this.handleSubmit}>
           <h1 className={styles.header}>
             Welcome
           </h1>
@@ -80,13 +80,14 @@ class Login extends Component {
           />
 
           <Link to="/user/forgot-password">
-            <Button color='bright'>
+            <Button full>
               Forgot password?
             </Button>
           </Link>
-          <Button type='submit'>
+          <Button full type='submit' color='bright'>
             Login
           </Button>
+
           { this.renderError() }
         </form>
       </div>

@@ -60,16 +60,15 @@ export class User extends React.Component {
     return (
       <div className={styles.user}>
         <div className={styles.content}>
-          <h1 className={styles.header}>
+          <h2 className={styles.header}>
             <FormattedMessage {...messages.title} />
-          </h1>
-          { user.type === 'studs_member' ?
-              <Link to={'/resume/edit'} >
-                <Button color='bright'>
-                  Edit Resume
-                </Button>
-              </Link>
-              : null
+          </h2>
+          { user.type === 'studs_member' &&
+            <Link to={'/resume/edit'}>
+              <Button full>
+                Edit Resume
+              </Button>
+            </Link>
           }
           <div className='input-label'>
             <FormattedMessage {...messages.firstName} />
@@ -95,7 +94,7 @@ export class User extends React.Component {
             placeholder='Last name'
             maxLength='30'
           />
-         { user.type === 'studs_member' ?
+         { user.type === 'studs_member' &&
             <div>
               <div className='input-label'>
                 <FormattedMessage {...messages.phone} />
@@ -146,7 +145,6 @@ export class User extends React.Component {
                 maxLength='30'
               />
             </div>
-            : null
           }
           <div className='input-label'>
             <FormattedMessage {...messages.password} />
@@ -166,7 +164,7 @@ export class User extends React.Component {
             value={user.confirmPassword || ''}
             onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
             onChange={this.handleChange}/>
-          <Button onClick={this.handleSubmit}>
+          <Button full color='bright' onClick={this.handleSubmit}>
             Save
           </Button>
           { this.props.saved && // TODO translate

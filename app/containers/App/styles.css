@@ -1,8 +1,3 @@
-/**
- * styles.css
- *
- * App container styles
- */
 body {
   font-family: 'Neuzeit S LT';
 }
@@ -88,11 +83,14 @@ input:focus {
   font-family: 'DIN Condensed';
   letter-spacing: 3px;
   text-transform: uppercase;
-  background: #C2FEBE;
+  background: #F7DDC9;
   color: black;
+  width: 100%;
   line-height: 40px;
+  font-size: 12px;
+  border-radius: 4px;
   height: 35px;
-  padding: 0 24px;
+  padding: 1em 2em;
   transition: background-color 0.2s;
   cursor: pointer;
 }
@@ -135,4 +133,8 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+:global a {
+  text-decoration: none;
 }

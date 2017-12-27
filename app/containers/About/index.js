@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl'
 import sortBy from 'lodash/sortBy'
 import * as actions from 'containers/Members/actions'
 import MemberHomePage from 'components/MemberHomePage'
+import Logo from 'static/img/logo/black-frame.svg'
 import styles from './styles.css'
 import messages from './messages'
 
@@ -28,6 +29,10 @@ class About extends Component {
 
           <div className={styles.members}>
             { users.map(user => <MemberHomePage key={user.id} user={user}/>) }
+          </div>
+
+          <div className={styles.logo}>
+            <img src={Logo} />
           </div>
         </div>
       </div>

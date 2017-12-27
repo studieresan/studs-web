@@ -1,0 +1,40 @@
+.contact {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #072C2E;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../../static/img/flower-pattern-1.svg');
+  background-size: 50%;
+  background-repeat: repeat;
+  padding: 120px;
+  color: #F7DDC9;
+}
+
+.contact > div:first-child {
+  max-width: 600px;
+  text-align: center;
+}
+
+.contactInfo {
+  display: flex;
+  margin-top: 30px;
+  align-items: center;
+  text-align: left;
+}
+
+.contact a {
+  text-decoration: none;
+  color: white;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+}
+
+.contact > div > img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 100%;
+  margin-right: 60px;
+}

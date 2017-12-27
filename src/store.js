@@ -12,7 +12,7 @@ const devtools = window.devToolsExtension || (() => (noop) => noop)
 
 export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares
-  // 1. thunkMiddleware: Allows for async dispatch calls 
+  // 1. thunkMiddleware: Allows for async dispatch calls
   // 2. routerMiddleware: Syncs the location/URL path to the state
   const middlewares = [
     thunkMiddleware,

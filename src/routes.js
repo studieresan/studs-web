@@ -4,9 +4,10 @@
 // information about the code splitting business
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+import HomePage from 'containers/HomePage'
+/* TODO
 import { getAsyncInjectors } from 'utils/asyncInjectors'
 import { requireAuth } from './auth'
-import HomePage from 'containers/HomePage'
 
 const errorLoading = (err) => {
   console.error('Dynamic page loading failed', err)
@@ -15,8 +16,9 @@ const errorLoading = (err) => {
 const loadModule = (cb) => (componentModule) => {
   cb(null, componentModule.default)
 }
+ */
 
-export default function createRoutes(store) {
+export default function createRoutes(/*store TODO */) {
   return (
     <Switch>
       <Route exact path='/' component={HomePage}/>
@@ -39,7 +41,8 @@ export default function createRoutes(store) {
 
   //       const renderRoute = loadModule(cb)
 
-  //       importModules.then(([reducer, component ]) => { injectReducer('members', reducer.default)
+  //       importModules.then(([reducer, component ]) =>
+  //       { injectReducer('members', reducer.default)
   //         renderRoute(component)
   //       })
 

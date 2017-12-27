@@ -4,52 +4,52 @@
 *
 */
 
-import React from 'react';
+import React from 'react'
 
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
-import styles from './styles.css';
-import Cleave from 'cleave.js/dist/cleave-react';
-import Textarea from 'react-textarea-autosize';
+import { FormattedMessage } from 'react-intl'
+import messages from './messages'
+import styles from './styles.css'
+import Cleave from 'cleave.js/dist/cleave-react'
+import Textarea from 'react-textarea-autosize'
 
 class EventEdit extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSave = this.handleSave.bind(this);
-    this.handleImportClick = this.handleImportClick.bind(this);
+    super(props)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSave = this.handleSave.bind(this)
+    this.handleImportClick = this.handleImportClick.bind(this)
   }
 
   handleChange(e) {
-    const { update, event: { id } } = this.props;
-    const data = {};
+    const { update, event: { id } } = this.props
+    const data = {}
     if (e.target.type == 'file') {
-      data[e.target.name] = e.target.files[0];
+      data[e.target.name] = e.target.files[0]
     } else {
-      data[e.target.name] = e.target.value;
+      data[e.target.name] = e.target.value
     }
 
-    update(data, id);
+    update(data, id)
   }
 
   handleSave() {
-    const { save, create, event } = this.props;
-    if(event.id) {
-      save(event);
+    const { save, create, event } = this.props
+    if (event.id) {
+      save(event)
     } else {
-      create(event);
+      create(event)
     }
   }
 
   handleImportClick() {
-    const { importFormData, event } = this.props;
-    importFormData(event.id);
+    const { importFormData, event } = this.props
+    importFormData(event.id)
   }
 
   render() {
-    const { event, companies, saving } = this.props;
-    if(!event) {
-      return null;
+    const { event, companies, saving } = this.props
+    if (!event) {
+      return null
     }
     return (
       <div className={styles.eventEdit}>
@@ -141,8 +141,8 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
           name='picture3'
           onChange={this.handleChange}/>
       </div>
-    );
+    )
   }
 }
 
-export default EventEdit;
+export default EventEdit

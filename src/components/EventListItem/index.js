@@ -5,14 +5,14 @@
 *
 */
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-import IndicatorIcon from '../IndicatorIcon';
-import styles from './styles.css';
+import IndicatorIcon from '../IndicatorIcon'
+import styles from './styles.css'
 
 function EventListItem(props) {
-  const { event, user } = props;
+  const { event, user } = props
   return (
     <Link to={`/events/${event.id}`}>
       <div className={styles.eventListItem}>
@@ -21,14 +21,14 @@ function EventListItem(props) {
             <span>
               <IndicatorIcon ok={event.beforeSurveyReplied} /><IndicatorIcon ok={event.afterSurveyReplied} />
             </span>
-          : null
+            : null
           }
           {event.companyName}
         </div>
         <div>{event.date}</div>
       </div>
     </Link>
-  );
+  )
 }
 
-export default EventListItem;
+export default EventListItem

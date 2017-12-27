@@ -8,7 +8,11 @@ function CvHeader({ user }) {
   return (
     <div className={styles.header}>
       <div className={styles.contactWrapper}>
-        <MemberImage picture={user.picture} size={100} square round />
+        <MemberImage
+          picture={user.picture}
+          size={100}
+          square
+          round />
         <div className={styles.contact}>
           <div>{user.firstName} {user.lastName}</div>
           <div>Studying {user.master} @ KTH</div>

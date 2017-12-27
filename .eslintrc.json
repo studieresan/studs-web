@@ -4,6 +4,7 @@
     "plugin:react/recommended"
   ],
   "rules": {
+    "no-trailing-spaces": "error",
     "no-console": "off",
     "no-var": "error",
     "prefer-const": "error",

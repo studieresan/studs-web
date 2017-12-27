@@ -23,19 +23,19 @@ function HomePagePitch() {
 
 function Section({ image, header, content }) {
   return (
-  <div className={styles.section}>
-    <div className={styles.images}>
-      <img className={styles.image} src={image} />
+    <div className={styles.section}>
+      <div className={styles.images}>
+        <img className={styles.image} src={image} />
+      </div>
+      <div className={styles.text}>
+        <h2 className={styles.header}>
+          <FormattedMessage {...header} />
+        </h2>
+        <p className={styles.body}>
+          <FormattedMessage {...content} />
+        </p>
+      </div>
     </div>
-    <div className={styles.text}>
-      <h2 className={styles.header}>
-        <FormattedMessage {...header} />
-      </h2>
-      <p className={styles.body}>
-        <FormattedMessage {...content} />
-      </p>
-    </div>
-  </div>
   )
 }
 

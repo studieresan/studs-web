@@ -35,9 +35,9 @@ function sectionReducer(state, action) {
   }
   case UPDATE_ITEM:
     return state.updateIn(
-          ['items', action.index],
-          item => item.merge(Map(action.item))
-        )
+      ['items', action.index],
+      item => item.merge(Map(action.item))
+    )
   case REMOVE_ITEM:
     return state.removeIn(['items', action.index])
   case MOVE_ITEM: {
@@ -66,16 +66,16 @@ function cvEditReducer(state = initialState, action) {
       }],
     })
     return state.updateIn(
-        ['content', 'sections'],
-        sections => sections.push(section)
-      )
+      ['content', 'sections'],
+      sections => sections.push(section)
+    )
   }
   case UPDATE_SECTION:
     state = state.set('saved', false)
     return state.updateIn(
-        ['content', 'sections', action.index],
-        section => section.merge(Map(action.section))
-      )
+      ['content', 'sections', action.index],
+      section => section.merge(Map(action.section))
+    )
   case REMOVE_SECTION:
     state = state.set('saved', false)
     return state.removeIn(['content', 'sections', action.index])
@@ -85,9 +85,9 @@ function cvEditReducer(state = initialState, action) {
   case MOVE_ITEM:
     state = state.set('saved', false)
     return state.updateIn(
-        ['content', 'sections', action.section],
-        s => sectionReducer(s, action)
-      )
+      ['content', 'sections', action.section],
+      s => sectionReducer(s, action)
+    )
   case GET_SUCCESS:
     return state.set('content', fromJS(action.cv))
   case SAVE_REQUEST:

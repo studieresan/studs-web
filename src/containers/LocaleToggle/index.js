@@ -20,14 +20,14 @@ function LocaleToggle(props) {
         appLocaleNames
           .filter(({ key }) => key !== props.locale)
           .map(({ key, value }) => (
-          <span
-            key={key}
-            className={styles.localeToggleLink}
-            onClick={props.onLocaleSwitch}
-            data-language={key}>
+            <span
+              key={key}
+              className={styles.localeToggleLink}
+              onClick={props.onLocaleSwitch}
+              data-language={key}>
               {value}
-          </span>
-        ))
+            </span>
+          ))
       }
     </div>
   )

@@ -4,59 +4,59 @@
 *
 */
 
-import React, { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router-dom';
-import messages from './messages';
-import Markdown from 'react-markdown';
-import { Chart } from 'react-google-charts';
+import React, { Component } from 'react'
+import { FormattedMessage } from 'react-intl'
+import { Link } from 'react-router-dom'
+import messages from './messages'
+import Markdown from 'react-markdown'
+import { Chart } from 'react-google-charts'
 
-import styles from './styles.css';
-import A from '../A';
-import IndicatorIcon from '../IndicatorIcon';
+import styles from './styles.css'
+import A from '../A'
+import IndicatorIcon from '../IndicatorIcon'
 
 class EventDetail extends Component {
   constructor(props) {
-    super(props);
-    this.getMissingForms = this.getMissingForms.bind(this);
-    this.handleRemindClick = this.handleRemindClick.bind(this);
+    super(props)
+    this.getMissingForms = this.getMissingForms.bind(this)
+    this.handleRemindClick = this.handleRemindClick.bind(this)
   }
 
   getMissingForms() {
-    const { id, getMissingForms } = this.props;
-    getMissingForms(id);
+    const { id, getMissingForms } = this.props
+    getMissingForms(id)
   }
 
   handleRemindClick(e) {
-    const { event, id, remindBefore, remindAfter } = this.props;
-    const name = e.target.name;
-    if(name === 'before') {
-      remindBefore(id);
-    } else if(name === 'after') {
-      remindAfter(id);
+    const { event, id, remindBefore, remindAfter } = this.props
+    const name = e.target.name
+    if (name === 'before') {
+      remindBefore(id)
+    } else if (name === 'after') {
+      remindAfter(id)
     }
   }
 
   componentDidMount() {
-    this.getMissingForms();
+    this.getMissingForms()
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps.id !== this.props.id) {
-      this.getMissingForms();
+    if (prevProps.id !== this.props.id) {
+      this.getMissingForms()
     }
   }
 
   render() {
-    const { event, user } = this.props;
-    if(!event) {
-      return null;
+    const { event, user } = this.props
+    if (!event) {
+      return null
     }
-    let after, before;
-    if(event.after && event.before) {
-      const userList = person => <li key={person.id}>{person.first_name} {person.last_name}</li>;
-      before = event.before.map(userList);
-      after = event.after.map(userList);
+    let after, before
+    if (event.after && event.before) {
+      const userList = person => <li key={person.id}>{person.first_name} {person.last_name}</li>
+      before = event.before.map(userList)
+      after = event.after.map(userList)
     }
     return (
       <div className={styles.eventDetail}>
@@ -66,7 +66,7 @@ class EventDetail extends Component {
             <Link to={`/events/${event.id}/edit`} >
               <button className='btn-bright'>Edit</button>
             </Link>
-          : null
+            : null
           }
         </div>
         <div className={styles.info}>
@@ -86,7 +86,7 @@ class EventDetail extends Component {
                 <A target='_blank' href={event.afterSurvey}><FormattedMessage {...messages.after} /></A>
               </div>
             </div>
-          : null
+            : null
           }
         </div>
         { event.description &&
@@ -153,7 +153,7 @@ class EventDetail extends Component {
                     }
                     <ul>{before}</ul>
                   </div>
-                : null
+                  : null
                 }
               </div>
               <div>
@@ -165,16 +165,16 @@ class EventDetail extends Component {
                     }
                     <ul>{after}</ul>
                   </div>
-                : null
+                  : null
                 }
               </div>
             </div>
           </div>
-        : null
+          : null
         }
       </div>
-    );
+    )
   }
 }
 
-export default EventDetail;
+export default EventDetail

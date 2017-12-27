@@ -4,12 +4,12 @@
 *
 */
 
-import React from 'react';
+import React from 'react'
 
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import { FormattedMessage } from 'react-intl'
+import messages from './messages'
 
-import styles from './styles.css';
+import styles from './styles.css'
 
 function MembersStaticDetail() {
   return (
@@ -18,7 +18,7 @@ function MembersStaticDetail() {
         <FormattedMessage {...messages.header} />
       </div>
     </div>
-  );
+  )
 }
 
-export default MembersStaticDetail;
+export default MembersStaticDetail

@@ -40,9 +40,9 @@ const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: selectLocationState(),
 })
 
-const render = (translatedMessages) => () => (
+const AppComponent = () => (
   <Provider store={store}>
-    <LanguageProvider messages={translatedMessages}>
+    <LanguageProvider messages={translationMessages}>
       <Router
         history={history}>
         <App>
@@ -85,4 +85,4 @@ const render = (translatedMessages) => () => (
 // import { install } from 'offline-plugin/runtime' TODO?
 // install()
 
-export default render(translationMessages)
+export default AppComponent

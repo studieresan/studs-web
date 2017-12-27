@@ -45,7 +45,7 @@ class Login extends Component {
     if (this.props.loginError) {
       return (
         <div className={styles.error}>
-        <FormattedMessage {...messages.error} />
+          <FormattedMessage {...messages.error} />
         </div>
       )
     }

@@ -4,14 +4,14 @@
 *
 */
 
-import React, { PropTypes } from 'react';
-import { Link } from 'react-router-dom';
+import React, { PropTypes } from 'react'
+import { Link } from 'react-router-dom'
 
 
-import styles from './styles.css';
+import styles from './styles.css'
 
 function MemberListItem(props) {
-  const { user } = props;
+  const { user } = props
   return (
     <div className={styles.container}>
       <Link to={'/members/' + user.id}>
@@ -22,15 +22,15 @@ function MemberListItem(props) {
         </div>
       </Link>
     </div>
-  );
+  )
 }
 
 MemberListItem.propTypes = {
   user: PropTypes.shape({
     id: PropTypes.string.isRequired,
     firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired
-  }).isRequired
-};
+    lastName: PropTypes.string.isRequired,
+  }).isRequired,
+}
 
-export default MemberListItem;
+export default MemberListItem

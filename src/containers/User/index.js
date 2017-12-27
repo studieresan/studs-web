@@ -54,7 +54,10 @@ export class User extends React.Component {
 
     return (
       <div className={styles.user}>
-        <MemberImage className={styles.picture} picture={user.picture} size={150} square round />
+        <MemberImage className={styles.picture}
+          picture={user.picture}
+          size={150}
+          square round />
         <div className={styles.content}>
           <h2 className={styles.header}>
             <FormattedMessage {...messages.title} />
@@ -90,7 +93,7 @@ export class User extends React.Component {
             placeholder='Last name'
             maxLength='30'
           />
-         { user.memberType === 'studs_member' &&
+          { user.memberType === 'studs_member' &&
             <div>
               <div className='input-label'>
                 <FormattedMessage {...messages.phone} />
@@ -127,7 +130,7 @@ export class User extends React.Component {
                 onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
                 placeholder='Master'
                 maxLength='30'
-               />
+              />
               <div className='input-label'>
                 <FormattedMessage {...messages.allergies} />
               </div>

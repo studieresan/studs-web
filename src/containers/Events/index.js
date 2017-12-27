@@ -77,7 +77,7 @@ export class Events extends React.Component {
     if (params.id) {
       const event = events.items.find(e => e.id == params.id)
       if (route.name === 'events/edit') {
-        detail = <EventEdit 
+        detail = <EventEdit
           event={event}
           companies={events.companies}
           update={update}

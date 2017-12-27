@@ -12,11 +12,11 @@ function renderItem(item, i) {
         <div className={styles.where}>
           <div className={styles.title}>{item.title}</div>
           { item.organization
-              ? <div className={styles.organization}>
-                  {item.organization}
-                  { item.city ? <span>- {item.city}</span> : null }
-                </div>
-              : null
+            ? <div className={styles.organization}>
+              {item.organization}
+              { item.city ? <span>- {item.city}</span> : null }
+            </div>
+            : null
           }
         </div>
       </div>
@@ -44,8 +44,8 @@ function Cv(props) {
   return (
     <div className={styles.cv}>
       <div>
-      <CvHeader user={props.user} />
-      {sections}
+        <CvHeader user={props.user} />
+        {sections}
       </div>
     </div>
   )

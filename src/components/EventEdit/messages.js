@@ -3,7 +3,7 @@
  *
  * This contains all the text for the EventEdit component.
  */
-import { defineMessages } from 'react-intl';
+import { defineMessages } from 'react-intl'
 
 export default defineMessages({
   date: {
@@ -58,4 +58,4 @@ export default defineMessages({
     id: 'app.components.EventEdit.picture3',
     defaultMessage: 'Picture 3',
   },
-});
+})

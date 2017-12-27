@@ -147,7 +147,7 @@ export class CvEdit extends React.Component {
             color='danger'
             className={styles.cvAction}
             onClick={this.onRemoveItemClick.bind(null, sectionIndex, index)}>
-              <X />
+            <X />
           </Button>
         </div>
       </div>

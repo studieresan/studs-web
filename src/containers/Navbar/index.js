@@ -33,7 +33,7 @@ export class Navbar extends React.Component {
 
   componentWillMount() {
     // this.props.router.listenBefore(() => { TODO
-      this.setState({collapsed: true})
+    this.setState({collapsed: true})
     // })
   }
 

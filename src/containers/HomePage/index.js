@@ -17,11 +17,11 @@ export class HomePage extends Component {
 
   render() {
     return (
-    <div>
-      <HomePageHeader />
-      <HomePagePitch />
-      <HomePageSalesContact />
-    </div>
+      <div>
+        <HomePageHeader />
+        <HomePagePitch />
+        <HomePageSalesContact />
+      </div>
     )
   }
 }

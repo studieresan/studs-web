@@ -4,20 +4,20 @@
 *
 */
 
-import React from 'react';
+import React from 'react'
 
-import styles from './styles.css';
+import styles from './styles.css'
 
 function MemberHomePage(props) {
-  const { user } = props;
+  const { user } = props
   return (
-      <div className={styles.memberHomePage}>
-        <div>
-          <img src={user.picture} />
-          { user.firstName}
-        </div>
+    <div className={styles.memberHomePage}>
+      <div>
+        <img src={user.picture} />
+        { user.firstName}
       </div>
-  );
+    </div>
+  )
 }
 
-export default MemberHomePage;
+export default MemberHomePage

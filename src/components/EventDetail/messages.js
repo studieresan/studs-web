@@ -3,7 +3,7 @@
  *
  * This contains all the text for the EventDetail component.
  */
-import { defineMessages } from 'react-intl';
+import { defineMessages } from 'react-intl'
 
 export default defineMessages({
   event: {
@@ -30,4 +30,4 @@ export default defineMessages({
     id: 'app.components.EventDetail.missing',
     defaultMessage: 'Missing Surveys',
   },
-});
+})

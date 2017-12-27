@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-import styles from './styles.css';
-import moment from 'moment';
-import Markdown from 'react-markdown';
+import styles from './styles.css'
+import moment from 'moment'
+import Markdown from 'react-markdown'
 
 const PublicEvent = ({event}) => {
-  if(!event) {
-    return null;
+  if (!event) {
+    return null
   }
 
   return (
@@ -22,7 +22,7 @@ const PublicEvent = ({event}) => {
         <img src={event.picture_3}/>
       </div>
     </div>
-  );
+  )
 }
 
-export default PublicEvent;
+export default PublicEvent

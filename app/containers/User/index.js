@@ -63,7 +63,7 @@ export class User extends React.Component {
           <h2 className={styles.header}>
             <FormattedMessage {...messages.title} />
           </h2>
-          { user.type === 'studs_member' &&
+          { user.memberType === 'studs_member' &&
             <Link to={'/resume/edit'}>
               <Button full>
                 Edit Resume
@@ -94,7 +94,7 @@ export class User extends React.Component {
             placeholder='Last name'
             maxLength='30'
           />
-         { user.type === 'studs_member' &&
+         { user.memberType === 'studs_member' &&
             <div>
               <div className='input-label'>
                 <FormattedMessage {...messages.phone} />

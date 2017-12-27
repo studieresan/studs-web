@@ -36,7 +36,7 @@ export const getUsers = () => dispatch => {
     .then(data => {
       const users = data.map(user => {
         if (!user.profile || !user.cv)
-          return {}
+          return undefined
         return {
           ...user.profile,
           cv: user.cv,

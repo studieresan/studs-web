@@ -35,6 +35,12 @@ function jsonHeader() {
   }
 }
 
+function graphQLHeader() {
+  return {
+    'Content-Type': 'application/graphql',
+  }
+}
+
 function header() {
   return {
     // headers: authHeader(), TODO
@@ -70,7 +76,7 @@ export function fetchUser() {
   `
   const url = `${BASE_URL}${GRAPHQL}?query=${query}`
   return ftch(url, { ...credentials() })
-    .then(res => Promise.resolve(res.data.user.profile))
+    .then(res => res.data.user.profile)
 }
 
 function toGraphQLFields(str) {
@@ -84,11 +90,15 @@ export function updateUser(newFields) {
     }
   }
   `
-  const url = `${BASE_URL}${GRAPHQL}?query=${encodeURIComponent(mutation)}`
+  const url = `${BASE_URL}${GRAPHQL}`
   return ftch(url, {
     method: 'POST',
     ...credentials(),
-  }).then(res => Promise.resolve(res.data.updateProfile))
+    headers: {
+      ...graphQLHeader(),
+    },
+    body: mutation,
+  }).then(res => res.data.updateProfile)
 }
 
 export function loginUser(email, password) {
@@ -136,7 +146,7 @@ export function fetchUsers() {
   `
   const url = `${BASE_URL}${GRAPHQL}?query=${query}`
   return ftch(url, { ...credentials() })
-    .then(res => Promise.resolve(res.data.users))
+    .then(res => res.data.users)
 }
 
 const CV_FIELDS = `
@@ -161,7 +171,7 @@ export function fetchCv() {
   `
   const url = `${BASE_URL}${GRAPHQL}?query=${query}`
   return ftch(url, { ...credentials() })
-    .then(res => Promise.resolve(res.data.user.cv))
+    .then(res => res.data.user.cv)
 }
 
 export function updateCv(id, cv) {
@@ -171,11 +181,15 @@ export function updateCv(id, cv) {
     }
   }
   `
-  const url = `${BASE_URL}${GRAPHQL}?query=${encodeURIComponent(mutation)}`
+  const url = `${BASE_URL}${GRAPHQL}`
   return ftch(url, {
     method: 'POST',
     ...credentials(),
-  }).then(res => Promise.resolve(res.data.updateCV))
+    headers: {
+      ...graphQLHeader(),
+    },
+    body: mutation,
+  }).then(res => res.data.updateCV)
 }
 
 export function requestPasswordReset(email) {

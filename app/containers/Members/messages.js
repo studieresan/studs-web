@@ -5,4 +5,8 @@ export default defineMessages({
     id: 'app.containers.Members.header',
     defaultMessage: 'This is Members container !',
   },
+  listHeader: {
+    id: 'app.containers.Members.listHeader',
+    defaultMessage: '',
+  },
 })

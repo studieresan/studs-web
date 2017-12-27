@@ -49,4 +49,7 @@
 }, {
   "id": "app.components.HomePage.report.lastYear",
   "message": "Förra årets<br/>rapport"
+}, {
+  "id": "app.containers.Members.listHeader",
+  "message": "Medlemmar"
 }]

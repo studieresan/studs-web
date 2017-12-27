@@ -1,10 +1,22 @@
 .members {
-  padding-top: 46px;
+  padding-top: 18px;
   height: 100vh;
+}
+
+.listHeader {
+  background: #F7DDC9;
+  color: black;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 250px;
+  text-align: center;
 }
 
 .memberList {
   height: 100%;
   overflow: auto;
+  margin-top: 40px;
 }
-

@@ -6,7 +6,6 @@ import CvHeader from '../CvHeader'
 function renderItem(item, i) {
   return (
     <div key={i} className={styles.item}>
-
       <div className={styles.meta}>
         <div className={styles.when}>{item.when}</div>
         <div className={styles.divider}/>

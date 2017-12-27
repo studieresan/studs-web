@@ -91,7 +91,6 @@ export function getSuccess(cv) {
 }
 
 export function getError() {
-  console.log('get error')
   return {
     type: GET_ERROR,
   }
@@ -111,14 +110,12 @@ export function saveRequest() {
 }
 
 export function saveSuccess() {
-  console.log('save success')
   return {
     type: SAVE_SUCCESS,
   }
 }
 
 export function saveError() {
-  console.log('save error')
   return {
     type: SAVE_ERROR,
   }

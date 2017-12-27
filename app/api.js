@@ -53,6 +53,18 @@ function ftch(...args) {
     .then(parseJSON)
 }
 
+function executeGraphQL(query) {
+  const url = `${BASE_URL}${GRAPHQL}`
+  return ftch(url, {
+    method: 'POST',
+    ...credentials(),
+    headers: {
+      ...graphQLHeader(),
+    },
+    body: query,
+  })
+}
+
 const USER_PROFILE_FIELDS = `
   memberType
   email
@@ -75,9 +87,7 @@ export function fetchUser() {
     }
   }
   `
-  const url = `${BASE_URL}${GRAPHQL}?query=${query}`
-  return ftch(url, { ...credentials() })
-    .then(res => res.data.user.profile)
+  return executeGraphQL(query).then(res => res.data.user.profile)
 }
 
 function toGraphQLFields(str) {
@@ -91,15 +101,7 @@ export function updateUser(newFields) {
     }
   }
   `
-  const url = `${BASE_URL}${GRAPHQL}`
-  return ftch(url, {
-    method: 'POST',
-    ...credentials(),
-    headers: {
-      ...graphQLHeader(),
-    },
-    body: mutation,
-  }).then(res => res.data.updateProfile)
+  return executeGraphQL(mutation).then(res => res.data.updateProfile)
 }
 
 export function loginUser(email, password) {
@@ -145,9 +147,7 @@ export function fetchUsers() {
     }
   }
   `
-  const url = `${BASE_URL}${GRAPHQL}?query=${query}`
-  return ftch(url, { ...credentials() })
-    .then(res => res.data.users)
+  return executeGraphQL(query).then(res => res.data.users)
 }
 
 const CV_FIELDS = `
@@ -170,27 +170,17 @@ export function fetchCv() {
     }
   }
   `
-  const url = `${BASE_URL}${GRAPHQL}?query=${query}`
-  return ftch(url, { ...credentials() })
-    .then(res => res.data.user.cv)
+  return executeGraphQL(query).then(res => res.data.user.cv)
 }
 
 export function updateCv(id, cv) {
   const mutation = `mutation {
-  updateCV(fields: ${toGraphQLFields(cv)}) {
+    updateCV(fields: ${toGraphQLFields(cv)}) {
       ${CV_FIELDS}
     }
   }
   `
-  const url = `${BASE_URL}${GRAPHQL}`
-  return ftch(url, {
-    method: 'POST',
-    ...credentials(),
-    headers: {
-      ...graphQLHeader(),
-    },
-    body: mutation,
-  }).then(res => res.data.updateCV)
+  return executeGraphQL(mutation).then(res => res.data.updateCV)
 }
 
 export function requestPasswordReset(email) {

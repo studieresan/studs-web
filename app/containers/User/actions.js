@@ -53,7 +53,11 @@ export const save = (user) => (dispatch, getState) => {
 
   // Calculate changes made to the user and only send those
   const savedUser = getState().getIn(['global', 'user']).toJS()
-  const localChanges = toPairs(omit(user, ['password', 'confirmPassword']))
+  const localChanges = toPairs(omit(user, [
+    'password',
+    'confirmPassword',
+    'memberType',
+  ]))
   const diff = fromPairs(
     differenceWith(localChanges, toPairs(savedUser), isEqual)
   )

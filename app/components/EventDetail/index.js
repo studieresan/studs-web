@@ -72,7 +72,7 @@ class EventDetail extends Component {
             <h4>Company</h4>
             <div>{event.companyName}</div>
           </div>
-          { user && user.type === 'studs_member' ?
+          { user && user.memberType === 'studs_member' ?
             <div>
               <h4>Surveys</h4>
               <div>

@@ -16,7 +16,7 @@ function EventListItem(props) {
     <Link to={`/events/${event.id}`}>
       <div className={styles.eventListItem}>
         <div>
-          { user && user.type === 'studs_member' ?
+          { user && user.memberType === 'studs_member' ?
             <span>
               <IndicatorIcon ok={event.beforeSurveyReplied} /><IndicatorIcon ok={event.afterSurveyReplied} />
             </span>

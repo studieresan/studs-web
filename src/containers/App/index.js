@@ -17,7 +17,7 @@ import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 
 import styles from './styles.css'
-import Navbar from '../Navbar'
+import Navbar from 'containers/Navbar'
 import * as actions from './actions'
 
 class App extends React.Component {

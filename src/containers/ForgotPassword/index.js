@@ -9,7 +9,7 @@ import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import styles from './styles.css'
 import { requestPasswordReset } from '../../api'
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router-dom'
 
 export default class ForgotPassword extends React.Component {
   constructor(props) {

@@ -5,6 +5,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import HomePage from 'containers/HomePage'
+import Members from 'containers/Members'
 /* TODO
 import { requireAuth } from './auth'
  */
@@ -13,6 +14,7 @@ export default function createRoutes(/*store TODO */) {
   return (
     <Switch>
       <Route exact path='/' component={HomePage}/>
+      <Route exact path='/members' component={Members}/>
     </Switch>
   )
   // Create reusable async injectors using getAsyncInjectors factory

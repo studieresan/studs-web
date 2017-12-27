@@ -1,12 +1,11 @@
-/**
- * Create the store with asynchronously loaded reducers
- */
-
 import { createStore, applyMiddleware, compose } from 'redux'
 import { fromJS } from 'immutable'
-import { routerMiddleware } from 'react-router-redux'
+import { routerMiddleware, routerReducer } from 'react-router-redux'
+import { combineReducers } from 'redux-immutable'
 import thunkMiddleware from 'redux-thunk'
-import createReducer from './reducers'
+import reducers from 'reducers'
+import languageProviderReducer from 'containers/LanguageProvider/reducer'
+import globalReducer from 'containers/App/reducer'
 
 const devtools = window.devToolsExtension || (() => (noop) => noop)
 
@@ -25,23 +24,15 @@ export default function configureStore(initialState = {}, history) {
   ]
 
   const store = createStore(
-    createReducer(),
+    combineReducers({
+      router: routerReducer,
+      language: languageProviderReducer,
+      global: globalReducer,
+      ...reducers,
+    }),
     fromJS(initialState),
     compose(...enhancers)
   )
 
-  // Make reducers hot reloadable, see http://mxs.is/googmo
-  /* istanbul ignore next */
-  // if (module.hot) { TODO?
-  //   System.import('./reducers').then((reducerModule) => {
-  //     const createReducers = reducerModule.default
-  //     const nextReducers = createReducers(store.asyncReducers)
-
-  //     store.replaceReducer(nextReducers)
-  //   })
-  // }
-
-  // Initialize it with no other reducers
-  store.asyncReducers = {}
   return store
 }

@@ -11,8 +11,7 @@ import MenuIcon from './icon_menu.svg'
 import CloseIcon from './icon_close.svg'
 
 import { loggedIn } from '../../auth'
-import { withRouter } from 'react-router'
-import { Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import messages from './messages'
 import { connect } from 'react-redux'
 import * as actions from '../User/actions'
@@ -120,7 +119,6 @@ export class Navbar extends React.Component {
 
 Navbar.propTypes = {
   user: PropTypes.object,
-  router: PropTypes.object.isRequired,
   displayNavbarBackground: PropTypes.bool,
 }
 

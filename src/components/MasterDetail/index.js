@@ -1,53 +1,43 @@
-/**
-*
-* MasterDetail
-*
-*/
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import React, { PropTypes } from 'react';
+import styles from './styles.css'
 
-import styles from './styles.css';
 
-class MasterDetail extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class MasterDetail extends React.Component {
   constructor(props) {
-    super(props);
-    this.updateDimensions = this.updateDimensions.bind(this);
+    super(props)
+    this.updateDimensions = this.updateDimensions.bind(this)
   }
 
   updateDimensions() {
-    const width = window.innerWidth;
-    this.setState({width});
+    const width = window.innerWidth
+    this.setState({width})
   }
 
   componentWillMount() {
-    this.updateDimensions();
+    this.updateDimensions()
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.updateDimensions);
+    window.addEventListener('resize', this.updateDimensions)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDimensions);
+    window.removeEventListener('resize', this.updateDimensions)
   }
 
-  static propTypes = {
-    master: PropTypes.object.isRequired,
-    detail: PropTypes.object.isRequired,
-    detailSelected: PropTypes.bool.isRequired
-  }
-
-  renderMobile(props) {
-    const { master, detail, detailSelected } = this.props;
-    if(detailSelected) { 
-      return detail;
+  renderMobile() {
+    const { master, detail, detailSelected } = this.props
+    if (detailSelected) {
+      return detail
     } else {
-      return master;
+      return master
     }
   }
 
-  renderDesktop(props) {
-    const { master, detail } = this.props;
+  renderDesktop() {
+    const { master, detail } = this.props
     return (
       <div className={styles.masterDetail}>
         <div className={styles.master}>
@@ -57,16 +47,22 @@ class MasterDetail extends React.Component { // eslint-disable-line react/prefer
           {detail}
         </div>
       </div>
-    );
+    )
   }
 
   render() {
-    if(this.state.width < 600) {
-      return this.renderMobile(this.props);
+    if (this.state.width < 600) {
+      return this.renderMobile()
     } else {
-      return this.renderDesktop(this.props);
+      return this.renderDesktop()
     }
   }
 }
 
-export default MasterDetail;
+MasterDetail.propTypes = {
+  master: PropTypes.object.isRequired,
+  detail: PropTypes.object.isRequired,
+  detailSelected: PropTypes.bool.isRequired,
+}
+
+export default MasterDetail

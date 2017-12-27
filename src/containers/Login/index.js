@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { browserHistory, Link } from 'react-router'
+import { browserHistory, Link } from 'react-router-dom'
 import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'

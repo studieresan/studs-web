@@ -1,6 +1,6 @@
 import { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { browserHistory, withRouter } from 'react-router'
+import { browserHistory, withRouter } from 'react-router-dom'
 
 import { logout } from '../App/actions'
 

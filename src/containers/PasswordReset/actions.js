@@ -11,7 +11,7 @@ import {
   UPDATE_PASSWORD,
 } from './constants'
 import { resetPassword } from '../../api'
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router-dom'
 
 export function resetRequest() {
   return {

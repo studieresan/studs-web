@@ -54,7 +54,7 @@ export class User extends React.Component {
 
     return (
       <div className={styles.user}>
-        <MemberImage className={styles.picture} picture={user.picture} size={150} square />
+        <MemberImage className={styles.picture} picture={user.picture} size={150} square round />
         <div className={styles.content}>
           <h2 className={styles.header}>
             <FormattedMessage {...messages.title} />

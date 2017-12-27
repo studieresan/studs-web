@@ -57,6 +57,7 @@ const USER_PROFILE_FIELDS = `
   allergies
   master
   position
+  picture
 `
 
 export function fetchUser() {

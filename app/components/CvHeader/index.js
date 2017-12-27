@@ -1,16 +1,9 @@
-/**
-*
-* CvHeader
-*
-*/
+import React from 'react'
+import PropTypes from 'prop-types'
+import Logo from 'static/img/logo/black-frame.svg'
+import styles from './styles.css'
 
-import React, { PropTypes } from 'react';
-import Logo from '../../static/img/stencil-black-rgb.png';
-
-import styles from './styles.css';
-
-function CvHeader(props) {
-  const { user } = props;
+function CvHeader({ user }) {
   return (
     <div className={styles.header}>
       <div className={styles.contactWrapper}>
@@ -28,11 +21,11 @@ function CvHeader(props) {
         <img src={Logo} />
       </div>
     </div>
-  );
+  )
 }
 
 CvHeader.propTypes = {
-  user: PropTypes.object.isRequired
-};
+  user: PropTypes.object.isRequired,
+}
 
-export default CvHeader;
+export default CvHeader

@@ -1,15 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Logo from 'static/img/logo/black-frame.svg'
+import MemberImage from 'components/MemberImage'
 import styles from './styles.css'
 
 function CvHeader({ user }) {
   return (
     <div className={styles.header}>
       <div className={styles.contactWrapper}>
-        <div className={styles.image}>
-          <img src={user.picture} />
-        </div>
+        <MemberImage picture={user.picture} size={100} square round />
         <div className={styles.contact}>
           <div>{user.firstName} {user.lastName}</div>
           <div>Studying {user.master} @ KTH</div>

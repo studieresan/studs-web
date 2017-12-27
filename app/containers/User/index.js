@@ -8,6 +8,7 @@ import messages from './messages'
 import * as actions from './actions'
 import styles from './styles.css'
 import Button from 'components/Button'
+import MemberImage from 'components/MemberImage'
 
 export class User extends React.Component {
 
@@ -38,12 +39,6 @@ export class User extends React.Component {
     this.props.save(this.props.user)
   }
 
-  renderPicture(currentPicture) {
-    if (currentPicture) {
-      return <img src={currentPicture} width={300} />
-    }
-  }
-
   renderError(err, key) {
     return (
       <div
@@ -59,6 +54,7 @@ export class User extends React.Component {
 
     return (
       <div className={styles.user}>
+        <MemberImage className={styles.picture} picture={user.picture} size={150} square round />
         <div className={styles.content}>
           <h2 className={styles.header}>
             <FormattedMessage {...messages.title} />

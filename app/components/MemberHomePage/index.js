@@ -3,13 +3,12 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 
 function MemberHomePage({ user }) {
-  const { firstName, lastName } = user
-  const pic = `${process.env.CDN_URL}/members/${firstName.toLowerCase()}-${lastName.toLowerCase()}.jpg`
+  const { firstName, picture } = user
   return (
     <div className={styles.member}>
-      <img width='20rem' height='auto' src={pic} />
+      <img width='20rem' height='auto' src={picture} />
       <h5 className={styles.name}>
-        { user.firstName }
+        { firstName }
       </h5>
     </div>
   )

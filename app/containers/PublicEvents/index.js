@@ -18,7 +18,7 @@ export class PublicEvents extends React.Component {
       this.setState({
         events: data.events.filter(e => (!!e.public_text && !!e.picture_1)),
       })
-    })
+    }).catch(console.log)
 
     Events.scrollEvent.register('begin')
     Events.scrollEvent.register('end')

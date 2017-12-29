@@ -142,5 +142,6 @@ input:focus {
 }
 
 :global a {
+  color: black;
   text-decoration: none;
 }

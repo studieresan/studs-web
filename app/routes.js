@@ -38,7 +38,7 @@ class StudsRouter extends Component {
         <AuthenticatedRoute exact path='/events/:id' component={Events}/>
         <AuthenticatedRoute exact path='/events/:id/edit' component={Events}/>
 
-        <Route exact path='/events/trip' component={Trip}/>
+        <Route exact path='/trip' component={Trip}/>
 
         <Route exact path='*' component={NotFoundPage}/>
       </Switch>

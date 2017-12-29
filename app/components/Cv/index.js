@@ -11,12 +11,11 @@ function renderItem(item, i) {
         <div className={styles.divider}/>
         <div className={styles.where}>
           <div className={styles.title}>{item.title}</div>
-          { item.organization
-            ? <div className={styles.organization}>
+          { item.organization &&
+            <div className={styles.organization}>
               {item.organization}
-              { item.city ? <span>- {item.city}</span> : null }
+              { item.city && <span>- {item.city}</span> }
             </div>
-            : null
           }
         </div>
       </div>

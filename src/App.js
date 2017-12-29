@@ -1,13 +1,6 @@
 import 'whatwg-fetch'
 import 'sanitize.css/sanitize.css'
 
-/* eslint-disable import/no-unresolved */
-// Load the manifest.json file and the .htaccess file
-// import '!file?name=[name].[ext]!./favicon.ico'
-// import '!file?name=[name].[ext]!./manifest.json'
-// import 'file?name=[name].[ext]!./.htaccess'
-/* eslint-enable import/no-unresolved */
-
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import App from 'containers/App'
@@ -21,9 +14,6 @@ import LanguageProvider from 'containers/LanguageProvider'
 import { translationMessages } from './i18n'
 
 // Create redux store with history
-// this uses the singleton browserHistory provided by react-router
-// Optionally, this could be changed to leverage a created history
-// e.g. `const browserHistory = useRouterHistory(createBrowserHistory)();`
 const initialState = {}
 const browserHistory = createBrowserHistory()
 const store = configureStore(initialState, browserHistory)

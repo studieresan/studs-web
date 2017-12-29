@@ -1,11 +1,5 @@
-
-/**
-*
-* EventListItem
-*
-*/
-
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import IndicatorIcon from '../IndicatorIcon'
@@ -19,7 +13,9 @@ function EventListItem(props) {
         <div>
           { user && user.memberType === 'studs_member' ?
             <span>
-              <IndicatorIcon ok={event.beforeSurveyReplied} /><IndicatorIcon ok={event.afterSurveyReplied} />
+              <IndicatorIcon
+                ok={event.beforeSurveyReplied} />
+              <IndicatorIcon ok={event.afterSurveyReplied} />
             </span>
             : null
           }
@@ -29,6 +25,11 @@ function EventListItem(props) {
       </div>
     </Link>
   )
+}
+
+EventListItem.propTypes = {
+  event: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 }
 
 export default EventListItem

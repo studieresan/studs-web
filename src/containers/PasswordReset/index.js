@@ -1,9 +1,3 @@
-/*
- *
- * User password reset
- *
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -28,7 +22,7 @@ export class PasswordReset extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.reset(this.props.params.token)
+    this.props.reset(this.props.match.params.token)
   }
 
   render() {
@@ -73,7 +67,7 @@ PasswordReset.propTypes = {
   error: PropTypes.bool.isRequired,
   updatePassword: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
-  params: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
 }
 
 function mapStateToProps(state) {

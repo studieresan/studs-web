@@ -1,10 +1,5 @@
-/*
- *
- * Events
- *
- */
-
 import React from 'react'
+import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import selectEvents from './selectors'
@@ -62,7 +57,7 @@ export class Events extends React.Component {
       events,
       user,
       route,
-      params,
+      match: { params },
       update,
       save,
       create,
@@ -118,6 +113,22 @@ export class Events extends React.Component {
       </div>
     )
   }
+}
+
+Events.propTypes = {
+  get: PropTypes.func.isRequired,
+  getCompanies: PropTypes.func.isRequired,
+  events: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  update: PropTypes.func.isRequired,
+  save: PropTypes.func.isRequired,
+  create: PropTypes.func.isRequired,
+  importFormData: PropTypes.func.isRequired,
+  getMissingForms: PropTypes.func.isRequired,
+  remindBefore: PropTypes.func.isRequired,
+  remindAfter: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = selectEvents()

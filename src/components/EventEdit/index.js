@@ -1,18 +1,12 @@
-/**
-*
-* EventEdit
-*
-*/
-
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import styles from './styles.css'
-import Cleave from 'cleave.js/dist/cleave-react'
 import Textarea from 'react-textarea-autosize'
 
-class EventEdit extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class EventEdit extends React.Component {
   constructor(props) {
     super(props)
     this.handleChange = this.handleChange.bind(this)
@@ -21,8 +15,11 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
   }
 
   handleChange(e) {
-    const { update, event: { id } } = this.props
-    const data = {}
+    const {
+      update,
+      event: { id },
+    } = this.props
+    const data ={}
     if (e.target.type == 'file') {
       data[e.target.name] = e.target.files[0]
     } else {
@@ -56,10 +53,15 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
         <div className={styles.head}>
           <h2>Event: {event.companyName} - {event.date}</h2>
           { !saving &&
-            <button onClick={this.handleSave} className='btn-bright'>Save</button>
+            <button onClick={this.handleSave}
+              className='btn-bright'>
+              Save
+            </button>
           }
         </div>
-        <div className='input-label'><FormattedMessage {...messages.company} /></div>
+        <div className='input-label'>
+          <FormattedMessage {...messages.company} />
+        </div>
         <div className={styles.selectContainer}>
           <select
             name='company'
@@ -72,70 +74,97 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
             )}
           </select>
         </div>
-        <div className='input-label'><FormattedMessage {...messages.date} /></div>
+        <div className='input-label'>
+          <FormattedMessage {...messages.date} />
+        </div>
+        {/* TODO
         <Cleave
           name='date'
           placeholder='YYYY/MM/DD'
           value={event.date}
           onChange={this.handleChange}
           options={{ date: true, datePattern: ['Y', 'm', 'd']}} />
-        <div className='input-label'><FormattedMessage {...messages.description} /></div>
+          */}
+        <div className='input-label'>
+          <FormattedMessage {...messages.description} />
+        </div>
         <Textarea
           name='description'
           placeholder='Description'
           onChange={this.handleChange}
           value={event.description} />
-        <div className='input-label'><FormattedMessage {...messages.publicText} /></div>
+        <div className='input-label'>
+          <FormattedMessage {...messages.publicText} />
+        </div>
         <Textarea
           name='publicText'
           placeholder='Public text'
           onChange={this.handleChange}
           value={event.publicText} />
-        <div className='input-label'><FormattedMessage {...messages.feedbackText} /></div>
+        <div className='input-label'>
+          <FormattedMessage {...messages.feedbackText} />
+        </div>
         <Textarea
           name='feedbackText'
           placeholder='Feedback text'
           onChange={this.handleChange}
           value={event.feedbackText} />
-        <div className='input-label'><FormattedMessage {...messages.beforeSurvey} /></div>
+        <div className='input-label'>
+          <FormattedMessage {...messages.beforeSurvey} />
+        </div>
         <input
           name='beforeSurvey'
           placeholder='URL'
           value={event.beforeSurvey}
           onChange={this.handleChange} />
-        <div className='input-label'><FormattedMessage {...messages.beforeSurveyId} /></div>
+        <div className='input-label'>
+          <FormattedMessage {...messages.beforeSurveyId} />
+        </div>
         <input
           name='beforeSurveyId'
           placeholder='ID'
           value={event.beforeSurveyId}
           onChange={this.handleChange} />
-        <div className='input-label'><FormattedMessage {...messages.afterSurvey} /></div>
+        <div className='input-label'>
+          <FormattedMessage {...messages.afterSurvey} />
+        </div>
         <input
           name='afterSurvey'
           placeholder='URL'
           value={event.afterSurvey}
           onChange={this.handleChange} />
-        <div className='input-label'><FormattedMessage {...messages.afterSurveyId} /></div>
+        <div className='input-label'>
+          <FormattedMessage {...messages.afterSurveyId} />
+        </div>
         <input
           name='afterSurveyId'
           placeholder='ID'
           value={event.afterSurveyId}
           onChange={this.handleChange} />
         <div className={styles.import}>
-          <button onClick={this.handleImportClick} className='btn-default'>Import form data</button>
+          <button onClick={this.handleImportClick}
+            className='btn-default'>
+            Import form data
+          </button>
           { event.importedData && 'Imported' }
         </div>
-        <div className='input-label'><FormattedMessage {...messages.picture1} /></div>
+        <div className='input-label'>
+          <FormattedMessage {...messages.picture1} />
+        </div>
         <input
           type='file'
           name='picture1'
           onChange={this.handleChange}/>
-        <div className='input-label'><FormattedMessage {...messages.picture2} /></div>
+        <div className='input-label'>
+          <FormattedMessage {...messages.picture2} />
+        </div>
         <input
           type='file'
           name='picture2'
           onChange={this.handleChange}/>
-        <div className='input-label'><FormattedMessage {...messages.picture3} /></div>
+        <div className='input-label'>
+          <FormattedMessage {...messages.picture3} />
+        </div>
         <input
           type='file'
           name='picture3'
@@ -143,6 +172,16 @@ class EventEdit extends React.Component { // eslint-disable-line react/prefer-st
       </div>
     )
   }
+}
+
+EventEdit.propTypes = {
+  event: PropTypes.object.isRequired,
+  update: PropTypes.func.isRequired,
+  save: PropTypes.func.isRequired,
+  create: PropTypes.func.isRequired,
+  importFormData: PropTypes.func.isRequired,
+  saving: PropTypes.bool.isRequired,
+  companies: PropTypes.array.isRequired,
 }
 
 export default EventEdit

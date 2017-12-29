@@ -1,15 +1,10 @@
-/**
-*
-* EventDetail
-*
-*/
-
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'react-router-dom'
 import messages from './messages'
 import Markdown from 'react-markdown'
-import { Chart } from 'react-google-charts'
+import { Chart } from 'react-google-charts' // TODO replace with chart.js
 
 import styles from './styles.css'
 import A from '../A'
@@ -28,7 +23,7 @@ class EventDetail extends Component {
   }
 
   handleRemindClick(e) {
-    const { event, id, remindBefore, remindAfter } = this.props
+    const { id, remindBefore, remindAfter } = this.props
     const name = e.target.name
     if (name === 'before') {
       remindBefore(id)
@@ -54,14 +49,18 @@ class EventDetail extends Component {
     }
     let after, before
     if (event.after && event.before) {
-      const userList = person => <li key={person.id}>{person.first_name} {person.last_name}</li>
+      const userList = person =>
+        <li key={person.id}>{person.first_name} {person.last_name}</li>
       before = event.before.map(userList)
       after = event.after.map(userList)
     }
     return (
       <div className={styles.eventDetail}>
         <div className={styles.head}>
-          <h2><FormattedMessage {...messages.event} />: {event.companyName} - {event.date}</h2>
+          <h2>
+            <FormattedMessage {...messages.event} />
+              : {event.companyName} - {event.date}
+          </h2>
           { user && user.permissions.includes('event') ?
             <Link to={`/events/${event.id}/edit`} >
               <button className='btn-bright'>Edit</button>
@@ -79,11 +78,15 @@ class EventDetail extends Component {
               <h4>Surveys</h4>
               <div>
                 <IndicatorIcon ok={event.beforeSurveyReplied} />
-                <A target='_blank' href={event.beforeSurvey}><FormattedMessage {...messages.before} /></A>
+                <A target='_blank' href={event.beforeSurvey}>
+                  <FormattedMessage {...messages.before} />
+                </A>
               </div>
               <div>
                 <IndicatorIcon ok={event.afterSurveyReplied} />
-                <A target='_blank' href={event.afterSurvey}><FormattedMessage {...messages.after} /></A>
+                <A target='_blank' href={event.afterSurvey}>
+                  <FormattedMessage {...messages.after} />
+                </A>
               </div>
             </div>
             : null
@@ -133,13 +136,15 @@ class EventDetail extends Component {
               chartType='PieChart'
               data={event.formData.qualified}
               options={{
-                title: 'Do you feel like you are qualified to work at this company?',
+                title: 'Do you feel like you are qualified to work at' +
+                       'this company?',
               }}
               graph_id='qualified'
               width='100%' />
           </div>
         }
-        { user && user.permissions.includes('event_missing') && (before && before.length || after && after.length) ?
+        { user && user.permissions.includes('event_missing')
+            && (before && before.length || after && after.length) ?
           <div>
             <hr />
             <h2><FormattedMessage {...messages.missing} /></h2>
@@ -149,7 +154,11 @@ class EventDetail extends Component {
                   <div>
                     <div className={styles.missingHead}>Before</div>
                     { !event.remindedBefore &&
-                      <button name='before' onClick={this.handleRemindClick} className='btn-default'>Remind on slack</button>
+                      <button name='before'
+                        onClick={this.handleRemindClick}
+                        className='btn-default'>
+                        Remind on slack
+                      </button>
                     }
                     <ul>{before}</ul>
                   </div>
@@ -161,7 +170,11 @@ class EventDetail extends Component {
                   <div>
                     <div className={styles.missingHead}>After</div>
                     { !event.remindedAfter &&
-                      <button name='after' onClick={this.handleRemindClick} className='btn-default'>Remind on slack</button>
+                      <button name='after'
+                        onClick={this.handleRemindClick}
+                        className='btn-default'>
+                        Remind on slack
+                      </button>
                     }
                     <ul>{after}</ul>
                   </div>
@@ -175,6 +188,15 @@ class EventDetail extends Component {
       </div>
     )
   }
+}
+
+EventDetail.propTypes = {
+  id: PropTypes.string.isRequired,
+  getMissingForms: PropTypes.func.isRequired,
+  event: PropTypes.object.isRequired,
+  remindBefore: PropTypes.func.isRequired,
+  remindAfter: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
 }
 
 export default EventDetail

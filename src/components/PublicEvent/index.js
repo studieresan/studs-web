@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import styles from './styles.css'
-import moment from 'moment'
+// import moment from 'moment' TODO do this without adding a dependecy
 import Markdown from 'react-markdown'
 
 const PublicEvent = ({event}) => {
@@ -13,7 +14,11 @@ const PublicEvent = ({event}) => {
     <div name={event.id} className={styles.publicEvent}>
       <div className={styles.information}>
         <h1>{ event.company.name }</h1>
-        <h2>{ moment(event.date).format('MMMM Do') } @ { event.company.address }</h2>
+        <h2>
+          {/* TODO
+            moment(event.date).format('MMMM Do') } @ { event.company.address
+          */}
+        </h2>
         <Markdown source={event.public_text}/>
       </div>
       <div className={styles.pictures}>
@@ -23,6 +28,10 @@ const PublicEvent = ({event}) => {
       </div>
     </div>
   )
+}
+
+PublicEvent.propTypes = {
+  event: PropTypes.object.isRequired,
 }
 
 export default PublicEvent

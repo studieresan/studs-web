@@ -1,9 +1,3 @@
-/*
- *
- * User actions
- *
- */
-
 import {
   RESET_REQUEST,
   RESET_SUCCESS,
@@ -11,7 +5,7 @@ import {
   UPDATE_PASSWORD,
 } from './constants'
 import { resetPassword } from '../../api'
-import { browserHistory } from 'react-router-dom'
+import { push } from 'react-router-redux'
 
 export function resetRequest() {
   return {
@@ -44,7 +38,7 @@ export const reset = token => (dispatch, getState) => {
   resetPassword(password, confirmPassword, token)
     .then(() => {
       dispatch(resetSuccess())
-      browserHistory.push('/login')
+      dispatch(push('/login'))
     })
     .catch(() => dispatch(resetError()))
 }

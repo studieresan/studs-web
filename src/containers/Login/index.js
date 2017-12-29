@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { browserHistory, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { push } from 'react-router-redux'
 import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
@@ -24,7 +25,7 @@ class Login extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.loggedIn) {
-      browserHistory.push('/')
+      this.props.push('/')
     }
   }
 
@@ -99,6 +100,7 @@ Login.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   loginError: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
+  push: PropTypes.func.isRequired,
 }
 
 function mapStateToProps(state) {
@@ -109,7 +111,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ login }, dispatch)
+  return bindActionCreators({
+    login,
+    push,
+  }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

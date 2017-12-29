@@ -32,22 +32,27 @@ export class CvEdit extends React.Component {
     this.onMoveItemClick = this.onMoveItemClick.bind(this)
     this.onRemoveItemClick = this.onRemoveItemClick.bind(this)
     this.onRemoveSectionClick = this.onRemoveSectionClick.bind(this)
+    this.getId = this.getId.bind(this)
+  }
+
+  getId() {
+    return this.props.match.params.id
   }
 
   componentDidMount() {
-    this.props.getCv(this.props.params.id)
+    this.props.getCv(this.getId())
   }
 
   onSectionChange(index, event) {
     const { updateSection } = this.props
     updateSection(index, {title: event.target.value})
-    this.props.saveCv(this.props.params.id)
+    this.props.saveCv(this.getId())
   }
 
   onRemoveSectionClick(index) {
     if (!confirm(CONFIRM_DELETE_SECTION_MESSAGE)) return
     this.props.removeSection(index)
-    this.props.saveCv(this.props.params.id)
+    this.props.saveCv(this.getId())
   }
 
   onItemChange(section, index, event) {
@@ -55,23 +60,23 @@ export class CvEdit extends React.Component {
     const item = {}
     item[event.target.name] = event.target.value
     updateItem(section, index, item)
-    this.props.saveCv(this.props.params.id)
+    this.props.saveCv(this.getId())
   }
 
   onAddItemClick(section) {
     this.props.addItem(section)
-    this.props.saveCv(this.props.params.id)
+    this.props.saveCv(this.getId())
   }
 
   onRemoveItemClick(section, index) {
     if (!confirm(CONFIRM_DELETE_ITEM_MESSAGE)) return
     this.props.removeItem(section, index)
-    this.props.saveCv(this.props.params.id)
+    this.props.saveCv(this.getId())
   }
 
   onMoveItemClick(item, sectionIndex, fromIndex, toIndex) {
     this.props.moveItem(item, sectionIndex, fromIndex, toIndex)
-    this.props.saveCv(this.props.params.id)
+    this.props.saveCv(this.getId())
   }
 
   renderItem(item, sectionIndex, index, section) {
@@ -236,7 +241,7 @@ CvEdit.propTypes = {
   saveErr: PropTypes.bool.isRequired,
   saving: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
-  params: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
   content: PropTypes.object.isRequired,
   addSection: PropTypes.func.isRequired,
   getCv: PropTypes.func.isRequired,

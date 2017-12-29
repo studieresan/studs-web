@@ -1,17 +1,14 @@
-/*
- *
- * User password reset
- *
- */
-
 import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import styles from './styles.css'
 import { requestPasswordReset } from '../../api'
-import { browserHistory } from 'react-router-dom'
+import { push } from 'react-router-redux'
 
-export default class ForgotPassword extends React.Component {
+class ForgotPassword extends React.Component {
   constructor(props) {
     super(props)
     this.handleChange = this.handleChange.bind(this)
@@ -27,12 +24,11 @@ export default class ForgotPassword extends React.Component {
     event.preventDefault()
     requestPasswordReset(this.state.email)
       .then(() => {
-        browserHistory.push('/')
+        this.props.push('/')
       })
       .catch(() => {
         this.setState({error: true})
       })
-
   }
 
   render() {
@@ -63,3 +59,12 @@ export default class ForgotPassword extends React.Component {
     )
   }
 }
+
+ForgotPassword.propTypes = {
+  push: PropTypes.func.isRequired,
+}
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ push }, dispatch)
+
+export default connect(null, mapDispatchToProps)(ForgotPassword)

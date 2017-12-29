@@ -1,7 +1,3 @@
-/*
- *
- * Events actions
- */
 import {
   createEvent,
   updateEvent,
@@ -12,7 +8,7 @@ import {
   notifyAfter,
   importData,
 } from '../../api'
-import { browserHistory } from 'react-router-dom'
+import { push } from 'react-router-redux'
 import {
   UPDATE,
   GET_REQUEST,
@@ -37,14 +33,18 @@ function fromBackend(e) {
     const date = new Date(e.date)
     const month = date.getMonth()+1
     const day = date.getDate()
-    dateString = `${date.getFullYear()}/${month < 10 ? '0' + month : month}/${day < 10 ? '0' + day : day}`
+    dateString = `${date.getFullYear()}/${month < 10 ? '0' + month : month}
+                 /${day < 10 ? '0' + day : day}`
   }
   let formData
   if (e.formdata) {
     formData = {
-      beforeInterest: parseData(e.formdata.before_interest, ['Not Interested', 'Somewhat', 'Very interested']),
-      afterInterest: parseData(e.formdata.after_interest, ['Not Interested', 'Somewhat', 'Very interested']),
-      knowDoes: parseData(e.formdata.knowdoes, ['1. No', '2. Somewhat', '3. Yes']),
+      beforeInterest: parseData(e.formdata.before_interest,
+        ['Not Interested', 'Somewhat', 'Very interested']),
+      afterInterest: parseData(e.formdata.after_interest,
+        ['Not Interested', 'Somewhat', 'Very interested']),
+      knowDoes: parseData(e.formdata.knowdoes,
+        ['1. No', '2. Somewhat', '3. Yes']),
       qualified: parseData(e.formdata.qualified, ['No', 'Yes']),
     }
   }
@@ -71,10 +71,10 @@ function fromBackend(e) {
   }
 }
 
-function parseData(data, default_values) {
+function parseData(data, defaultValues) {
   console.log(data)
-  console.log(default_values)
-  data = Array.concat(data, default_values)
+  console.log(defaultValues)
+  data = Array.concat(data, defaultValues)
   console.log(data)
   const count = Object.entries(data.reduce((acc, d) => {
     if (acc[d] !== undefined) {
@@ -95,14 +95,20 @@ function parseData(data, default_values) {
   return count
 }
 
-function toBackend(e) {
-  const data = {
-    company_id: e.company,
-    date: new Date(e.date),
-    information: e.description,
-    feedback_text: e.feedbackText, public_text: e.publicText,
-    before_form_url: e.beforeSurvey, after_form_url: e.afterSurvey, before_form_id: e.beforeSurveyId, after_form_id: e.afterSurveyId,
-    picture_1: e.picture1, picture_2: e.picture2, picture_3: e.picture3,
+function toBackend(/*e*/) {
+  const data = { // TODO?
+    // company_id: e.company,
+    // date: new Date(e.date),
+    // information: e.description,
+    // feedback_text: e.feedbackText,
+    // public_text: e.publicText,
+    // before_form_url: e.beforeSurvey,
+    // after_form_url: e.afterSurvey,
+    // before_form_id: e.beforeSurveyId,
+    // after_form_id: e.afterSurveyId,
+    // picture_1: e.picture1,
+    // picture_2: e.picture2,
+    // picture_3: e.picture3,
   }
 
   const formData = new FormData()
@@ -158,11 +164,11 @@ export function saveRequest() {
   }
 }
 
-export function saveSuccess(id) {
-  browserHistory.push('/events/' + id)
-  return {
+export const saveSuccess = (id) => (dispatch) => {
+  dispatch(push('/events/' + id))
+  dispatch({
     type: SAVE_SUCCESS,
-  }
+  })
 }
 
 export function saveError(err) {
@@ -172,7 +178,7 @@ export function saveError(err) {
   }
 }
 
-export const save = e => (dispatch, getState) => {
+export const save = e => (dispatch) => {
   const formData = toBackend(e)
   dispatch(saveRequest())
   updateEvent(e.id, formData)
@@ -186,13 +192,13 @@ export function createRequest() {
   }
 }
 
-export function createSuccess(e) {
+export const createSuccess = (e) => (dispatch) => {
   const data = fromBackend(e.event)
-  browserHistory.push('/events/' + data.id)
-  return {
+  dispatch(push('/events/' + data.id))
+  dispatch({
     type: CREATE_SUCCESS,
     data: data,
-  }
+  })
 }
 
 export function createError(err) {

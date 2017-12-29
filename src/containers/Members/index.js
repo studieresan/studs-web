@@ -1,9 +1,3 @@
-/*
- *
- * Members
- *
- */
-
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -32,7 +26,7 @@ export class Members extends React.Component {
     const users = this.props.users
     let detail
     let detailSelected = false
-    const id = this.props.params.id
+    const id = this.props.match.params.id
     const user = users.find(u => u.id === id)
     if (user) {
       detail = <CV user={user} cv={user.cv} />
@@ -74,7 +68,7 @@ Members.propTypes = {
       picture: PropTypes.string,
       cv: PropTypes.object,
     })),
-  params: PropTypes.object,
+  match: PropTypes.object,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Members)

@@ -1,24 +1,23 @@
-/**
-*
-* IndicatorIcon
-*
-*/
-
 import React from 'react'
+import PropTypes from 'prop-types'
 import classNames from 'classnames/bind'
 
 import styles from './styles.css'
 
 const cx = classNames.bind(styles)
 
-function IndicatorIcon(props) {
+const IndicatorIcon = ({ ok }) => {
   const className = cx({
     indicatorIcon: true,
-    ok: props.ok,
+    ok: ok,
   })
   return (
     <span className={className}>&#9679;</span>
   )
+}
+
+IndicatorIcon.propTypes = {
+  ok: PropTypes.bool.isRequired,
 }
 
 export default IndicatorIcon

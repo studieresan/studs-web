@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import { fromJS } from 'immutable'
-import { routerMiddleware, routerReducer } from 'react-router-redux'
+import { routerMiddleware } from 'react-router-redux'
 import { combineReducers } from 'redux-immutable'
 import thunkMiddleware from 'redux-thunk'
 import reducers from 'reducers'
@@ -35,4 +35,19 @@ export default function configureStore(initialState = {}, history) {
   )
 
   return store
+}
+
+const LOCATION_CHANGE = '@@router/LOCATION_CHANGE'
+
+const initialState = fromJS({
+  location: null,
+})
+
+// required for Immutable.js compatibility
+function routerReducer(state = initialState, { type, payload } = {}) {
+  if (type === LOCATION_CHANGE) {
+    return state.set('location', fromJS(payload))
+  }
+
+  return state
 }

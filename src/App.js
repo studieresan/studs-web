@@ -7,11 +7,11 @@ import 'whatwg-fetch'
 // import 'file?name=[name].[ext]!./.htaccess'
 /* eslint-enable import/no-unresolved */
 
-import React from 'react'
+import React, { Component } from 'react'
+import { Provider } from 'react-redux'
 import App from 'containers/App'
 import StudsRouter from './routes'
 import configureStore from './store'
-import { Provider } from 'react-redux'
 
 import { createBrowserHistory  } from 'history'
 import { ConnectedRouter } from 'react-router-redux'
@@ -30,18 +30,20 @@ const initialState = {}
 const browserHistory = createBrowserHistory()
 const store = configureStore(initialState, browserHistory)
 
-const AppComponent = () => (
-  <Provider store={store}>
-    <LanguageProvider messages={translationMessages}>
-      <ConnectedRouter
-        history={browserHistory}>
-        <App>
-          <StudsRouter/>
-        </App>
-      </ConnectedRouter>
-    </LanguageProvider>
-  </Provider>
-)
+class AppComponent extends Component {
+  render() {
+    return <Provider store={store}>
+      <LanguageProvider messages={translationMessages}>
+        <ConnectedRouter
+          history={browserHistory}>
+          <App>
+            <StudsRouter/>
+          </App>
+        </ConnectedRouter>
+      </LanguageProvider>
+    </Provider>
+  }
+}
 
 // Chunked polyfill for browsers without Intl support
 // if (!window.Intl) { TODO

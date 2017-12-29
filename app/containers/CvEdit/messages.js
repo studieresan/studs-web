@@ -1,8 +1,3 @@
-/*
- * CvEdit Messages
- *
- * This contains all the text for the CvEdit component.
- */
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({

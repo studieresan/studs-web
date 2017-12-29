@@ -1,9 +1,3 @@
-/*
- *
- * LanguageProvider reducer
- *
- */
-
 import { fromJS } from 'immutable'
 import {
   CHANGE_LOCALE,

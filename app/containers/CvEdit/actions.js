@@ -1,9 +1,3 @@
-/*
- *
- * CvEdit actions
- *
- */
-
 import {
   ADD_SECTION,
   UPDATE_SECTION,

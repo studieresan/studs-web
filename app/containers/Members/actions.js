@@ -1,9 +1,3 @@
-/*
- *
- * Members actions
- *
- */
-
 import {
   GET_MEMBERS_REQUEST,
   GET_MEMBERS_SUCCESS,

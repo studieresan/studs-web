@@ -1,7 +1,3 @@
-/**
- * A link to a certain page, an anchor tag
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 

@@ -1,8 +1,5 @@
-/*
- *
- * Events reducer
- *
- */ import { fromJS, Map } from 'immutable'; import {
+import { fromJS, Map } from 'immutable'
+import {
   GET_SUCCESS,
   SAVE_REQUEST,
   SAVE_SUCCESS,

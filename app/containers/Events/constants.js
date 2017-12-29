@@ -1,9 +1,3 @@
-/*
- *
- * Events constants
- *
- */
-
 export const DEFAULT_ACTION = 'app/Events/DEFAULT_ACTION'
 export const GET_REQUEST = 'app/Events/GET_REQUEST'
 export const GET_SUCCESS = 'app/Events/GET_SUCCESS'

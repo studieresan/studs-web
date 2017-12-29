@@ -1,9 +1,3 @@
-/*
- *
- * Members reducer
- *
- */
-
 import { fromJS, Map } from 'immutable'
 import {
   GET_MEMBERS_REQUEST,

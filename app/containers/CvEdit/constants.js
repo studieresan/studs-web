@@ -1,9 +1,3 @@
-/*
- *
- * CvEdit constants
- *
- */
-
 export const ADD_SECTION = 'app/CvEdit/ADD_SECTION'
 export const UPDATE_SECTION = 'app/CvEdit/UPDATE_SECTION'
 export const REMOVE_SECTION = 'app/CvEdit/REMOVE_SECTION'

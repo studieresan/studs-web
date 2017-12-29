@@ -18,7 +18,6 @@ class Logout extends Component {
 }
 
 Logout.propTypes = {
-  router: PropTypes.object.isRequired,
   logout: PropTypes.func.isRequired,
   goHome: PropTypes.func.isRequired,
 }

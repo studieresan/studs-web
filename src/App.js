@@ -1,4 +1,5 @@
 import 'whatwg-fetch'
+import 'sanitize.css/sanitize.css'
 
 /* eslint-disable import/no-unresolved */
 // Load the manifest.json file and the .htaccess file
@@ -18,9 +19,6 @@ import { ConnectedRouter } from 'react-router-redux'
 import LanguageProvider from 'containers/LanguageProvider'
 
 import { translationMessages } from './i18n'
-
-// Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
-import 'sanitize.css/sanitize.css'
 
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router

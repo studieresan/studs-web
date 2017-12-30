@@ -69,9 +69,8 @@ function executeGraphQL(query) {
     .then(res => {
       if (res.status === STATUS_UNAUTHORIZED) {
         setLoggedOut()
-      } else {
-        return res
       }
+      return Promise.reject(res)
     })
 }
 

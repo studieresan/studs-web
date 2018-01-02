@@ -65,13 +65,12 @@ function executeGraphQL(query) {
       ...graphQLHeader(),
     },
     body: query,
-  }).catch(err => err.json())
-    .then(res => {
-      if (res.status === STATUS_UNAUTHORIZED) {
-        setLoggedOut()
-      }
-      return Promise.reject(res)
-    })
+  }).catch(res => {
+    if (res.status === STATUS_UNAUTHORIZED) {
+      setLoggedOut()
+    }
+    return Promise.reject(res)
+  })
 }
 
 const USER_PROFILE_FIELDS = `
@@ -162,12 +161,14 @@ export function fetchUsers() {
 const CV_FIELDS = `
   sections {
     title
-    description
-    when
-    organization
-    city
+    items {
+      title
+      description
+      when
+      organization
+      city
+    }
   }
-}
 `
 
 export function fetchCv() {

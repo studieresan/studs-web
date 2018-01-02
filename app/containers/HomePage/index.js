@@ -8,7 +8,7 @@ import {
   HomePageHeader,
   HomePagePitch,
   HomePageSalesContact,
-} from '../../components/HomePage'
+} from 'components/HomePage'
 
 export class HomePage extends Component {
   componentDidMount() {

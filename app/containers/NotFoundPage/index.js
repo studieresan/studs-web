@@ -2,7 +2,7 @@ import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'react-router-dom'
 import messages from './messages'
-import styles from './style.css'
+import styles from './styles.css'
 
 export default class NotFound extends React.Component {
   render() {

@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-content: center;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../../static/img/flower-pattern-1.svg');
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('static/img/flower-pattern-1.svg');
   background-size: cover;
   background-position: center center;
   padding-left: 10px;

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { FormattedMessage } from 'react-intl'
+import Button from 'components/Button'
 import messages from './messages'
 import * as actions from './actions'
 import styles from './styles.css'
@@ -51,9 +52,9 @@ export class PasswordReset extends React.Component {
             value={confirmPassword}
             onChange={this.handleChange}
             placeholder='Confirm Password'/>
-          <div className='button-wrapper'>
-            <button type='submit' className='btn-bright'>Save</button>
-          </div>
+          <Button full wrapper color='bright' type='submit'>
+            Save
+          </Button>
           {error ? <div>Error</div> : null}
         </form>
       </div>

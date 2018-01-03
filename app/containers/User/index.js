@@ -163,7 +163,7 @@ export class User extends React.Component {
             value={user.confirmPassword || ''}
             onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
             onChange={this.handleChange}/>
-          <Button full color='bright' onClick={this.handleSubmit}>
+          <Button full wrapper color='bright' onClick={this.handleSubmit}>
             Save
           </Button>
           { this.props.saved && // TODO translate

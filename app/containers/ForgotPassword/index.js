@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { FormattedMessage } from 'react-intl'
+import Button from 'components/Button'
 import messages from './messages'
 import styles from './styles.css'
-import { requestPasswordReset } from '../../api'
+import { requestPasswordReset } from 'api'
 import { push } from 'react-router-redux'
 
 class ForgotPassword extends React.Component {
@@ -36,9 +37,9 @@ class ForgotPassword extends React.Component {
     return (
       <div className={styles.user}>
         <form onSubmit={this.handleSubmit} className={styles.content}>
-          <h1 className={styles.header}>
+          <h2 className={styles.header}>
             <FormattedMessage {...messages.title} />
-          </h1>
+          </h2>
           <div>
             <div className='input-label'>
               <FormattedMessage {...messages.email} />
@@ -49,9 +50,9 @@ class ForgotPassword extends React.Component {
               value={email}
               onChange={this.handleChange}
               placeholder='Email'/>
-            <div className='button-wrapper'>
-              <button type='submit' className='btn-bright'>Reset</button>
-            </div>
+            <Button full wrapper type='submit' color='bright'>
+              Reset
+            </Button>
           </div>
           {this.state.error ? <div>Error</div> : null}
         </form>

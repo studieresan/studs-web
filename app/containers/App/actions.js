@@ -49,7 +49,12 @@ export const getUser = () => dispatch => {
   dispatch(getUserRequest())
   fetchUser()
     .then(user => dispatch(getUserSuccess(user)))
-    .catch(() => dispatch(getUserError()))
+    .catch(err => {
+      if (err.status === 403) {
+        dispatch(logout())
+      }
+      dispatch(getUserError())
+    })
 }
 
 export function loginSuccess() {

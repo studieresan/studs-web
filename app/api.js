@@ -1,5 +1,3 @@
-import { setLoggedOut } from './auth'
-
 const BASE_URL = process.env.API_BASE_URL || 'http://localhost:5040'
 const GRAPHQL = '/graphql'
 const LOGIN = '/login'
@@ -10,16 +8,13 @@ const PASSWORD_RESET = '/reset'
 const EVENTS = '/events'
 const COMPANIES = '/companies'
 const STATUS_OK = 200
-const STATUS_UNAUTHORIZED = 403
 
 function checkStatus(response) {
-  return new Promise((resolve, reject) => {
-    if (response.status >= STATUS_OK && response.status < 300) {
-      resolve(response)
-    } else {
-      reject(response)
-    }
-  })
+  if (response.status >= STATUS_OK && response.status < 300) {
+    return Promise.resolve(response)
+  } else {
+    return Promise.reject(response)
+  }
 }
 
 function parseJSON(response) {
@@ -65,11 +60,6 @@ function executeGraphQL(query) {
       ...graphQLHeader(),
     },
     body: query,
-  }).catch(res => {
-    if (res.status === STATUS_UNAUTHORIZED) {
-      setLoggedOut()
-    }
-    return Promise.reject(res)
   })
 }
 
@@ -95,7 +85,8 @@ export function fetchUser() {
     }
   }
   `
-  return executeGraphQL(query).then(res => res.data.user.profile)
+  return executeGraphQL(query)
+    .then(res => Promise.resolve(res.data.user.profile))
 }
 
 function toGraphQLFields(str) {

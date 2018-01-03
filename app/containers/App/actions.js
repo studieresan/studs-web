@@ -11,8 +11,9 @@ import {
   fetchUser,
   loginUser,
   logoutUser,
-} from '../../api'
-import { setLoggedOut, setLoggedIn } from '../../auth'
+} from 'api'
+import { setLoggedOut, setLoggedIn } from 'auth'
+import { push } from 'react-router-redux'
 
 export function getUserRequest() {
   return {
@@ -52,6 +53,7 @@ export const getUser = () => dispatch => {
     .catch(err => {
       if (err.status === 403) {
         dispatch(logout())
+        dispatch(push('/login'))
       }
       dispatch(getUserError())
     })

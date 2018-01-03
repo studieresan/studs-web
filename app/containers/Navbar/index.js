@@ -10,7 +10,6 @@ import White from 'static/img/logo/white.svg'
 import MenuIcon from './icon_menu.svg'
 import CloseIcon from './icon_close.svg'
 
-import { loggedIn } from '../../auth'
 import { withRouter, Link } from 'react-router-dom'
 import messages from './messages'
 import { connect } from 'react-redux'
@@ -37,7 +36,7 @@ export class Navbar extends React.Component {
   }
 
   menu() {
-    if (loggedIn()) {
+    if (this.props.loggedIn) {
       const user = this.props.user
       return (
         <ul className={styles.navbarMenu}>
@@ -120,12 +119,14 @@ export class Navbar extends React.Component {
 Navbar.propTypes = {
   user: PropTypes.object,
   displayNavbarBackground: PropTypes.bool,
+  loggedIn: PropTypes.bool.isRequired,
 }
 
 function mapStateToProps(state) {
   const immutableUser = state.getIn(['global', 'user'])
   return {
     user: immutableUser ? immutableUser.toJS() : {},
+    loggedIn: state.getIn(['global', 'loggedIn']),
     displayNavbarBackground: state.getIn(['global', 'displayNavbarBackground']),
   }
 }

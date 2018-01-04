@@ -40,4 +40,7 @@
 }, {
 	"id": "app.components.HomePage.report.lastYear",
 	"message": "Last year's<br/>report"
+}, {
+  "id": "app.containers.Members.listHeader",
+  "message": "Members"
 }]

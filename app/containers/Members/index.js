@@ -1,12 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { FormattedMessage } from 'react-intl'
 import styles from './styles.css'
 import MemberListItem from '../../components/MemberListItem'
 import MembersStaticDetail from '../../components/MembersStaticDetail'
 import CV from '../../components/Cv'
 import MasterDetail from '../../components/MasterDetail'
 import * as actions from './actions'
+import messages from './messages'
 import PropTypes from 'prop-types'
 import sortBy from 'lodash/sortBy'
 
@@ -17,8 +19,17 @@ export class Members extends React.Component {
   renderMembersList(users) {
     const sortedUsers = sortBy(users, ['firstName'])
     return (
-      <div className={styles.memberList}>
-        { sortedUsers.map(user => <MemberListItem key={user.id} user={user}/>) }
+      <div>
+        <div className={styles.listHeader}>
+          <h5>
+            <FormattedMessage {...messages.listHeader} />
+          </h5>
+        </div>
+        <div className={styles.memberList}>
+          {
+            sortedUsers.map(user => <MemberListItem key={user.id} user={user}/>)
+          }
+        </div>
       </div>
     )
   }

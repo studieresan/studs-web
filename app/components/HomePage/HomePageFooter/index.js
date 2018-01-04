@@ -36,7 +36,6 @@ const Menu = () => (
       <MenuItem to="about">About us</MenuItem>
       <MenuItem to="events">Events</MenuItem>
       <MenuItem to="trip">The Trip</MenuItem>
-      <MenuItem to="tjosan">Tjosan</MenuItem>
       <MenuItem to="login">Log in</MenuItem>
     </nav>
 

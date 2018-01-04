@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  padding: 0 1rem;
 }
 
 .content {
@@ -38,8 +39,11 @@
 @media (max-width: 700px) {
   .contact {
     width: 100%;
-    /*flex-direction: column;*/
     justify-content: center;
+  }
+
+  .subfooter {
+    flex-direction: column-reverse;
   }
 }
 
@@ -60,7 +64,6 @@
   align-self: center;
   padding: 1rem 0;
   margin-top: 3rem;
-  flex-wrap: wrap;
 }
 
 .logo {

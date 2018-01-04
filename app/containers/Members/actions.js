@@ -28,15 +28,13 @@ export const getUsers = () => dispatch => {
   dispatch(getMembersRequest())
   fetchUsers()
     .then(data => {
-      const users = data.map(user => {
-        if (!user.profile || !user.cv)
-          return undefined
-        return {
+      const users = data
+        .filter(user => user.profile)
+        .map(user => ({
           ...user.profile,
           cv: user.cv,
           id: `${user.profile.firstName}${user.profile.lastName}`.toLowerCase(),
-        }
-      })
+        }))
       dispatch(getMembersSuccess(users))
     })
     .catch(() => dispatch(getMembersError()))

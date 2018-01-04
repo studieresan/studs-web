@@ -18,12 +18,12 @@ export class HomePage extends Component {
 
   render() {
     return (
-    <div>
-      <HomePageHeader />
-      <HomePagePitch />
-      <HomePageSalesContact />
-      <HomePageFooter />
-    </div>
+      <div>
+        <HomePageHeader />
+        <HomePagePitch />
+        <HomePageSalesContact />
+        <HomePageFooter />
+      </div>
     )
   }
 }

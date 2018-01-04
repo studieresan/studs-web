@@ -9,6 +9,10 @@
   letter-spacing: 5px;
 }
 
+.position {
+  margin: 0;
+}
+
 .member > img {
   width: 100%;
   height: auto;

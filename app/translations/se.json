@@ -52,4 +52,11 @@
 }, {
   "id": "app.containers.Members.listHeader",
   "message": "Medlemmar"
-}]
+}, {
+  "id": "app.containers.About.header",
+  "message": "Det här är vi"
+}, {
+  "id": "app.containers.About.subtitle",
+  "message": "Människorna bakom Studs 2018"
+}
+]

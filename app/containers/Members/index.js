@@ -26,7 +26,9 @@ export class Members extends React.Component {
           </h5>
         </div>
         <div className={styles.memberList}>
-          { sortedUsers.map(user => <MemberListItem key={user.id} user={user}/>) }
+          {
+            sortedUsers.map(user => <MemberListItem key={user.id} user={user}/>)
+          }
         </div>
       </div>
     )

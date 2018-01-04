@@ -51,13 +51,13 @@ export class Navbar extends React.Component {
               <FormattedMessage {...messages.studsmembers} />
             </Link>
           </li>
+          <li>
+            <Link to="/events">
+              <FormattedMessage {...messages.internalevents} />
+            </Link>
+          </li>
           {
             /* TODO <li>
-              <Link to="/events">
-                <FormattedMessage {...messages.internalevents} />
-              </Link>
-            </li>
-            <li>
               <Link to="/events/public">
                 <FormattedMessage {...messages.events} />
               </Link>

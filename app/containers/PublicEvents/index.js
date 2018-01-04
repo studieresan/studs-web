@@ -6,7 +6,6 @@ import styles from './styles.css'
 import PublicEvent from '../../components/PublicEvent'
 import PublicEventMenu from '../../components/PublicEventMenu'
 import * as api from '../../api'
-
 export class PublicEvents extends React.Component {
   constructor(props) {
     super(props)

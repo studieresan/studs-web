@@ -1,26 +1,18 @@
 import { createSelector } from 'reselect'
 
-/**
- * Direct selector to the events state domain
- */
 const selectEventsDomain = () => (state) => state.get('events')
 
 const selectUser = () => (state) => state.getIn(['global', 'user'])
 
-/**
- * Other specific selectors
- */
-
-
-/**
- * Default selector used by Events
- */
+const selectCompanyUsers = () => (state) =>
+  state.getIn(['members', 'companyUsers'])
 
 const selectEvents = () => createSelector(
-  [selectEventsDomain(), selectUser()],
-  (events, user) => ({
+  [selectCompanyUsers(), selectEventsDomain(), selectUser()],
+  (companyUsers, events, user) => ({
     events: events.toJS(),
     user: user ? user.toJS() : null,
+    companyUsers: companyUsers.toJS(),
   })
 )
 

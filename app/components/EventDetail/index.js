@@ -7,39 +7,24 @@ import Markdown from 'react-markdown'
 import { Chart } from 'react-google-charts' // TODO replace with chart.js
 
 import styles from './styles.css'
-import A from '../A'
-import IndicatorIcon from '../IndicatorIcon'
+import A from 'components/A'
+import IndicatorIcon from 'components/IndicatorIcon'
 
 class EventDetail extends Component {
   constructor(props) {
     super(props)
-    this.getMissingForms = this.getMissingForms.bind(this)
-    this.handleRemindClick = this.handleRemindClick.bind(this)
-  }
-
-  getMissingForms() {
-    const { id, getMissingForms } = this.props
-    getMissingForms(id)
-  }
-
-  handleRemindClick(e) {
-    const { id, remindBefore, remindAfter } = this.props
-    const name = e.target.name
-    if (name === 'before') {
-      remindBefore(id)
-    } else if (name === 'after') {
-      remindAfter(id)
-    }
   }
 
   componentDidMount() {
-    this.getMissingForms()
+    // TODO
+    // this.getMissingForms()
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.id !== this.props.id) {
-      this.getMissingForms()
-    }
+  componentDidUpdate() {
+    // TODO
+    // if (prevProps.id !== this.props.id) {
+    //   this.getMissingForms()
+    // }
   }
 
   render() {
@@ -47,6 +32,8 @@ class EventDetail extends Component {
     if (!event) {
       return null
     }
+    const userHasPermission = (user) => (user && true) // TODO
+
     let after, before
     if (event.after && event.before) {
       const userList = person =>
@@ -61,11 +48,10 @@ class EventDetail extends Component {
             <FormattedMessage {...messages.event} />
               : {event.companyName} - {event.date}
           </h2>
-          { user && user.permissions.includes('event') ?
+          { userHasPermission(user) &&
             <Link to={`/events/${event.id}/edit`} >
               <button className='btn-bright'>Edit</button>
             </Link>
-            : null
           }
         </div>
         <div className={styles.info}>
@@ -73,7 +59,7 @@ class EventDetail extends Component {
             <h4>Company</h4>
             <div>{event.companyName}</div>
           </div>
-          { user && user.memberType === 'studs_member' ?
+          { user && user.memberType === 'studs_member' &&
             <div>
               <h4>Surveys</h4>
               <div>
@@ -89,7 +75,6 @@ class EventDetail extends Component {
                 </A>
               </div>
             </div>
-            : null
           }
         </div>
         { event.description &&
@@ -143,7 +128,7 @@ class EventDetail extends Component {
               width='100%' />
           </div>
         }
-        { user && user.permissions.includes('event_missing')
+        { userHasPermission(user)
             && (before && before.length || after && after.length) ?
           <div>
             <hr />
@@ -192,10 +177,7 @@ class EventDetail extends Component {
 
 EventDetail.propTypes = {
   id: PropTypes.string.isRequired,
-  getMissingForms: PropTypes.func.isRequired,
   event: PropTypes.object.isRequired,
-  remindBefore: PropTypes.func.isRequired,
-  remindAfter: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
 }
 

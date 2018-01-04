@@ -4,33 +4,25 @@ import {
   SAVE_REQUEST,
   SAVE_SUCCESS,
   UPDATE,
-  GET_COMPANIES,
-  CREATE_REQUEST,
   CREATE_SUCCESS,
-  GET_MISSING_FORMS,
-  REMINDED_BEFORE,
-  REMINDED_AFTER,
-  IMPORTED_DATA,
+  NEW_EVENT,
 } from './constants'
 
 const newEvent = {
-  company: '',
-  contact: '',
+  id: '',
+  companyName: '',
+  schedule: '',
+  privateDescription: '',
+  publicDescription: '',
   date: '',
+  beforeSurveys: '',
+  afterSurveys: '',
   location: '',
-  description: '',
-  beforeSurvey: '',
-  afterSurvey: '',
-  beforeSurveyId: '',
-  afterSurveyId: '',
-  picture1: '',
-  picture2: '',
-  picture3: '',
+  pictures: '',
 }
 
 const initialState = fromJS({
   items: [],
-  companies: [],
   newEvent: newEvent,
   saved: true,
   saving: false,
@@ -55,39 +47,17 @@ function eventsReducer(state = initialState, action) {
     }
     return s.merge(Map({saved: false}))
   }
-  case GET_COMPANIES:
-    return state.set('companies', fromJS(action.data))
+  case NEW_EVENT:
+    return state.set('newEvent', fromJS(newEvent))
   case SAVE_REQUEST:
-  case CREATE_REQUEST:
-    return state.set('saving', true)
-  case CREATE_SUCCESS: {
-    const st = state.update('items', items => items.push(fromJS(action.data)))
-    return st.merge(fromJS({
-      newEvent: newEvent,
-      saving: false,
-    }))
-  }
   case SAVE_SUCCESS:
     return state.set('saving', false)
-  case GET_MISSING_FORMS:
-    index = state.get('items')
-      .findIndex(event => event.get('id') === action.id)
-    return state.updateIn(
-      ['items', index],
-      event => event.merge(fromJS(action.data))
-    )
-  case REMINDED_BEFORE:
-    index = state.get('items')
-      .findIndex(event => event.get('id') === action.id)
-    return state.setIn(['items', index, 'remindedBefore'], true)
-  case REMINDED_AFTER:
-    index = state.get('items')
-      .findIndex(event => event.get('id') === action.id)
-    return state.setIn(['items', index, 'remindedAfter'], true)
-  case IMPORTED_DATA:
-    index = state.get('items')
-      .findIndex(event => event.get('id') === action.id)
-    return state.setIn(['items', index, 'importedData'], true)
+  case CREATE_SUCCESS: {
+    const event = fromJS(action.data)
+    return state
+      .update('items', items => items.push(event))
+      .set('newEvent', event)
+  }
   default:
     return state
   }

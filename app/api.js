@@ -1,3 +1,5 @@
+import { pickBy, omit, identity } from 'lodash'
+
 const BASE_URL = process.env.API_BASE_URL || 'http://localhost:5040'
 const GRAPHQL = '/graphql'
 const LOGIN = '/login'
@@ -5,8 +7,6 @@ const LOGOUT = '/logout'
 const PASSWORD_UPDATE = '/account/password'
 const PASSWORD_FORGOT = '/forgot'
 const PASSWORD_RESET = '/reset'
-const EVENTS = '/events'
-const COMPANIES = '/companies'
 const STATUS_OK = 200
 
 function checkStatus(response) {
@@ -39,12 +39,6 @@ function graphQLHeader() {
   }
 }
 
-function header() {
-  return {
-    // headers: authHeader(), TODO
-  }
-}
-
 function ftch(...args) {
   return fetch(...args)
     .then(checkStatus)
@@ -74,6 +68,7 @@ const USER_PROFILE_FIELDS = `
   master
   position
   picture
+  companyName
 `
 
 export function fetchUser() {
@@ -140,13 +135,16 @@ export function updateUserPassword({ password, confirmPassword }) {
 
 export function fetchUsers() {
   const query = `{
-    users(memberType: studs_member) {
+    studsUsers: users(memberType: studs_member) {
       profile { ${USER_PROFILE_FIELDS} }
       cv { ${CV_FIELDS} }
     }
+    companyUsers: users(memberType: company_member) {
+      profile { ${USER_PROFILE_FIELDS} }
+    }
   }
   `
-  return executeGraphQL(query).then(res => res.data.users)
+  return executeGraphQL(query).then(res => Promise.resolve(res.data))
 }
 
 const CV_FIELDS = `
@@ -209,46 +207,57 @@ export function resetPassword(password, confirmPassword, token) {
   })
 }
 
+// TODO
+const EVENT_FIELDS = `
+  id
+  companyName
+  schedule
+  privateDescription
+  publicDescription
+  date
+  beforeSurveys
+  afterSurveys
+  location
+  pictures
+`
+
 export function fetchEvents() {
-  return ftch(BASE_URL+EVENTS, header())
+  const query = `query {
+    allEvents {
+      ${EVENT_FIELDS}
+    }
+  }`
+  return executeGraphQL(query).then(res => res.data.allEvents)
 }
 
-export function updateEvent(id, event) {
-  return ftch(`${BASE_URL}${EVENTS}/${id}`, {
-    ...header(),
-    method: 'PATCH',
-    body: event,
-  })
+export function saveEvent(e) {
+  const event = omit(pickBy(e, identity), 'id')
+  const id = e.id
+  if (id) {
+    const mutation = `mutation {
+      updateEvent(eventId: "${id}", fields: ${toGraphQLFields(event)}) {
+        ${EVENT_FIELDS}
+      }
+    }
+    `
+    return executeGraphQL(mutation).then(res => res.data.updateEvent)
+  } else {
+    const mutation = `mutation {
+      createEvent(fields: ${toGraphQLFields(event)}) {
+        ${EVENT_FIELDS}
+      }
+    }
+    `
+    return executeGraphQL(mutation).then(res => res.data.createEvent)
+  }
 }
 
-export function fetchCompanies() {
-  return ftch(BASE_URL+COMPANIES, header())
-}
+// TODO
+// export function notifyBefore(eventId) {
+//   return ftch(`${BASE_URL}${EVENTS}/${eventId}/notify_before`, header())
+// }
 
-export function createEvent(event) {
-  return ftch(`${BASE_URL}${EVENTS}`, {
-    headers: {
-      // ...authHeader(), TODO
-      ...jsonHeader(),
-    },
-    method: 'POST',
-    body: JSON.stringify(event),
-  })
-}
+// export function notifyAfter(eventId) {
+//   return ftch(`${BASE_URL}${EVENTS}/${eventId}/notify_after`, header())
+// }
 
-export function fetchMissingForms(eventId) {
-  return ftch(`${BASE_URL}${EVENTS}/${eventId}/missing_forms`, header())
-}
-
-export function notifyBefore(eventId) {
-  return ftch(`${BASE_URL}${EVENTS}/${eventId}/notify_before`, header())
-}
-
-export function notifyAfter(eventId) {
-  return ftch(`${BASE_URL}${EVENTS}/${eventId}/notify_after`, header())
-}
-
-export function importData(eventId) {
-  return fetch(`${BASE_URL}${EVENTS}/${eventId}/import_formdata`, header())
-    .then(checkStatus)
-}

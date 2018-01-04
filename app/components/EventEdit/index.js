@@ -2,16 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { FormattedMessage } from 'react-intl'
+import { sortedUniq } from 'lodash'
 import messages from './messages'
 import styles from './styles.css'
 import Textarea from 'react-textarea-autosize'
+import Button from 'components/Button'
 
 class EventEdit extends React.Component {
   constructor(props) {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.handleSave = this.handleSave.bind(this)
-    this.handleImportClick = this.handleImportClick.bind(this)
   }
 
   handleChange(e) {
@@ -21,7 +22,8 @@ class EventEdit extends React.Component {
     } = this.props
     const data ={}
     if (e.target.type == 'file') {
-      data[e.target.name] = e.target.files[0]
+      // TODO UPLOAD IMAGE TO S3 FROM BACKEND
+      // uploadImage(e.target.files[0])
     } else {
       data[e.target.name] = e.target.value
     }
@@ -30,33 +32,31 @@ class EventEdit extends React.Component {
   }
 
   handleSave() {
-    const { save, create, event } = this.props
-    if (event.id) {
-      save(event)
-    } else {
-      create(event)
-    }
-  }
-
-  handleImportClick() {
-    const { importFormData, event } = this.props
-    importFormData(event.id)
+    const { save, event } = this.props
+    save(event)
   }
 
   render() {
-    const { event, companies, saving } = this.props
-    if (!event) {
-      return null
-    }
+    const { event, companyUsers, saving } = this.props
+    const companyOption = companyName => (
+      <option key={companyName} value={companyName} >
+        {companyName}
+      </option>
+    )
+
+    const companies = companyUsers &&
+      sortedUniq(companyUsers.map(u => u.companyName))
+
     return (
       <div className={styles.eventEdit}>
         <div className={styles.head}>
           <h2>Event: {event.companyName} - {event.date}</h2>
           { !saving &&
-            <button onClick={this.handleSave}
+            <Button onClick={this.handleSave}
+              type='submit'
               className='btn-bright'>
               Save
-            </button>
+            </Button>
           }
         </div>
         <div className='input-label'>
@@ -64,90 +64,64 @@ class EventEdit extends React.Component {
         </div>
         <div className={styles.selectContainer}>
           <select
-            name='company'
+            name='companyName'
             placeholder='Company'
-            value={event.company}
+            value={event.companyName}
             onChange={this.handleChange}>
             <option key='none' value={null} disabled>Select company</option>
-            {companies && companies.map(c =>
-              <option key={c.id} value={c.id}>{c.name}</option>
-            )}
+            { companies &&
+              companies.map(companyOption)
+            }
           </select>
         </div>
         <div className='input-label'>
           <FormattedMessage {...messages.date} />
         </div>
-        {/* TODO
-        <Cleave
+        <input
           name='date'
-          placeholder='YYYY/MM/DD'
+          type='datetime-local'
           value={event.date}
-          onChange={this.handleChange}
-          options={{ date: true, datePattern: ['Y', 'm', 'd']}} />
-          */}
+          onChange={this.handleChange} />
         <div className='input-label'>
-          <FormattedMessage {...messages.description} />
+          <FormattedMessage {...messages.location} />
+        </div>
+        <input
+          name='location'
+          placeholder='location'
+          value={event.location}
+          onChange={this.handleChange} />
+        <div className='input-label'>
+          <FormattedMessage {...messages.publicDescription} />
         </div>
         <Textarea
-          name='description'
-          placeholder='Description'
+          name='publicDescription'
+          placeholder='Public Description'
           onChange={this.handleChange}
-          value={event.description} />
+          value={event.publicDescription} />
         <div className='input-label'>
-          <FormattedMessage {...messages.publicText} />
+          <FormattedMessage {...messages.privateDescription} />
         </div>
         <Textarea
-          name='publicText'
-          placeholder='Public text'
+          name='privateDescription'
+          placeholder='Private text'
           onChange={this.handleChange}
-          value={event.publicText} />
-        <div className='input-label'>
-          <FormattedMessage {...messages.feedbackText} />
-        </div>
-        <Textarea
-          name='feedbackText'
-          placeholder='Feedback text'
-          onChange={this.handleChange}
-          value={event.feedbackText} />
+          value={event.privateDescription} />
         <div className='input-label'>
           <FormattedMessage {...messages.beforeSurvey} />
         </div>
         <input
-          name='beforeSurvey'
+          name='beforeSurveys'
           placeholder='URL'
           value={event.beforeSurvey}
-          onChange={this.handleChange} />
-        <div className='input-label'>
-          <FormattedMessage {...messages.beforeSurveyId} />
-        </div>
-        <input
-          name='beforeSurveyId'
-          placeholder='ID'
-          value={event.beforeSurveyId}
           onChange={this.handleChange} />
         <div className='input-label'>
           <FormattedMessage {...messages.afterSurvey} />
         </div>
         <input
-          name='afterSurvey'
+          name='afterSurveys'
           placeholder='URL'
           value={event.afterSurvey}
           onChange={this.handleChange} />
-        <div className='input-label'>
-          <FormattedMessage {...messages.afterSurveyId} />
-        </div>
-        <input
-          name='afterSurveyId'
-          placeholder='ID'
-          value={event.afterSurveyId}
-          onChange={this.handleChange} />
-        <div className={styles.import}>
-          <button onClick={this.handleImportClick}
-            className='btn-default'>
-            Import form data
-          </button>
-          { event.importedData && 'Imported' }
-        </div>
         <div className='input-label'>
           <FormattedMessage {...messages.picture1} />
         </div>
@@ -178,10 +152,8 @@ EventEdit.propTypes = {
   event: PropTypes.object.isRequired,
   update: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
-  create: PropTypes.func.isRequired,
-  importFormData: PropTypes.func.isRequired,
   saving: PropTypes.bool.isRequired,
-  companies: PropTypes.array.isRequired,
+  companyUsers: PropTypes.array.isRequired,
 }
 
 export default EventEdit

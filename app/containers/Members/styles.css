@@ -1,5 +1,5 @@
 .members {
-  padding-top: 18px;
+  padding-top: 16px;
   height: 100vh;
 }
 
@@ -13,10 +13,12 @@
   position: fixed;
   width: 250px;
   text-align: center;
+  margin-bottom: 40px;
 }
 
 .memberList {
   height: 100%;
   overflow: auto;
   margin-top: 40px;
+  padding-top: 40px;
 }

@@ -5,33 +5,31 @@ import styles from './styles.css'
 // import moment from 'moment' TODO do this without adding a dependecy
 import Markdown from 'react-markdown'
 
-const PublicEvent = ({event}) => {
-  if (!event) {
-    return null
-  }
-
-  return (
-    <div name={event.id} className={styles.publicEvent}>
-      <div className={styles.information}>
-        <h1>{ event.company.name }</h1>
-        <h2>
-          {/* TODO
-            moment(event.date).format('MMMM Do') } @ { event.company.address
-          */}
-        </h2>
-        <Markdown source={event.public_text}/>
-      </div>
-      <div className={styles.pictures}>
-        <img src={event.picture_1}/>
-        <img src={event.picture_2}/>
-        <img src={event.picture_3}/>
+const PublicEvent = ({ companyName, publicDescription, pictures }) => (
+  <div name={event.id} className={styles.publicEvent}>
+    <div className={styles.information}>
+      <h1 className={styles.companyName}>
+        { companyName }
+      </h1>
+      <h2>
+        {/* TODO
+          moment(event.date).format('MMMM Do') } @ { event.company.address
+        */}
+      </h2>
+      <div className={styles.description}>
+        <Markdown source={publicDescription} />
       </div>
     </div>
-  )
-}
+    <div className={styles.pictures}>
+      { pictures.map(pic => <img key={pic} src={pic} />) }
+    </div>
+  </div>
+)
 
 PublicEvent.propTypes = {
-  event: PropTypes.object.isRequired,
+  companyName: PropTypes.string.isRequired,
+  publicDescription: PropTypes.string.isRequired,
+  pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
 }
 
 export default PublicEvent

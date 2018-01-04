@@ -5,6 +5,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 92px;
+  line-height: 1.8;
 }
 
 .publicEvent > div {
@@ -15,18 +16,23 @@
 }
 
 .information {
-  line-height: 1.8;
+  flex: 1;
 }
 
-.information > h1 {
+.companyName {
   margin: 0;
 }
+
 .information > h2 {
   color: #A4A2A6;
-  font-size: 16px;
-  letter-spacing: 4px;
-  margin-top: 0;
-  margin-bottom: 30px;
+  /*font-size: 16px;*/
+  /*letter-spacing: 4px;*/
+  /*margin-top: 0;*/
+  /*margin-bottom: 30px;*/
+}
+
+.description {
+  flex: 1;
 }
 
 .pictures {

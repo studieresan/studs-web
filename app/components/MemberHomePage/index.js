@@ -7,9 +7,9 @@ function MemberHomePage({ user }) {
   return (
     <div className={styles.member}>
       <img width='20rem' height='auto' src={picture} />
-      <h5 className={styles.name}>
+      <h3 className={styles.name}>
         { firstName }
-      </h5>
+      </h3>
       <h5 className={styles.position}>
         { position }
       </h5>

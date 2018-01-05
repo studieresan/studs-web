@@ -6,24 +6,24 @@
   margin-right: auto;
   margin-bottom: 92px;
   line-height: 1.8;
+  flex-direction: column;
+  justify-content: center;
+  /*align-items: center;*/
+  padding: 3rem;
 }
 
-.publicEvent > div {
+.content {
   flex: 1;
-  min-width: 300px;
-  padding-left: 50px;
-  padding-right: 50px;
-}
-
-.information {
-  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .companyName {
-  margin: 0;
+  /*margin: 0;*/
 }
 
-.information > h2 {
+.content > h2 {
   color: #A4A2A6;
   /*font-size: 16px;*/
   /*letter-spacing: 4px;*/
@@ -32,11 +32,22 @@
 }
 
 .description {
-  flex: 1;
+  flex: 0 1 45%;
+  min-width: 20rem;
+  width: 100%;
+  /*text-align: justify;*/
+}
+
+.description p {
+  margin: 0;
+  margin-bottom: 1rem;
 }
 
 .pictures {
-  max-width: 550px;
+  flex: 0 1 45%;
+  width: 100%;
+  /*max-width: 50%;*/
+  /*margin: 2rem;*/
 }
 
 .pictures > img {

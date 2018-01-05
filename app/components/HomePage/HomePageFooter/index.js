@@ -78,9 +78,6 @@ const SubFooter = () => (
   <div className={styles.subfooter}>
     <Copyright />
     <Social />
-    <p>
-      Made with &hearts; in Stockholm
-    </p>
   </div>
 )
 
@@ -94,7 +91,6 @@ const Contact = () => (
   <div className={styles.contact}>
     <div className={styles.section}>
       <h5 className={styles.contactHeader}>
-        {/*Interested in working with us?*/}
         Work with us
       </h5>
       <div className={styles.pictures}>

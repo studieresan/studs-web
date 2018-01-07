@@ -14,7 +14,7 @@ import PublicEvents from 'containers/PublicEvents'
 import Events from 'containers/Events'
 import Trip from 'containers/Trip'
 import NotFoundPage from 'containers/NotFoundPage'
-import { AuthenticatedRoute } from './auth'
+import AuthenticatedRoute from 'containers/AuthenticatedRoute'
 
 class StudsRouter extends Component {
   render () {

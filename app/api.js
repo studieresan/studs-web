@@ -5,20 +5,18 @@ const LOGOUT = '/logout'
 const PASSWORD_UPDATE = '/account/password'
 const PASSWORD_FORGOT = '/forgot'
 const PASSWORD_RESET = '/reset'
-// const cvUrl = '/resume'
 const EVENTS = '/events'
 const COMPANIES = '/companies'
 const STATUS_OK = 200
 
 function checkStatus(response) {
   if (response.status >= STATUS_OK && response.status < 300) {
-    return response
+    return Promise.resolve(response)
   } else {
-    const error = new Error(response.statusText)
-    error.response = response
-    throw error
+    return Promise.reject(response)
   }
 }
+
 function parseJSON(response) {
   return response.json()
 }
@@ -87,7 +85,8 @@ export function fetchUser() {
     }
   }
   `
-  return executeGraphQL(query).then(res => res.data.user.profile)
+  return executeGraphQL(query)
+    .then(res => Promise.resolve(res.data.user.profile))
 }
 
 function toGraphQLFields(str) {

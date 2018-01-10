@@ -8,7 +8,8 @@
   font-size: 12px;
 }
 
-.eventListItem:hover {
+.eventListItem:hover,
+.selected {
   background-color: #6D6B6E;
   color: white;
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import moment from 'moment'
 import { FormattedMessage } from 'react-intl'
 import { sortedUniq } from 'lodash'
 import messages from './messages'
@@ -24,6 +25,8 @@ class EventEdit extends React.Component {
     if (e.target.type == 'file') {
       // TODO UPLOAD IMAGE TO S3 FROM BACKEND
       // uploadImage(e.target.files[0])
+    } else if (e.target.name === 'date') {
+      data[e.target.name] = new Date(e.target.value)
     } else {
       data[e.target.name] = e.target.value
     }
@@ -33,13 +36,17 @@ class EventEdit extends React.Component {
 
   handleSave() {
     const { save, event } = this.props
-    save(event)
+    if (event.companyName) {
+      save(event)
+    } else {
+      alert('You must select a company before saving.')
+    }
   }
 
   render() {
-    const { event, companyUsers, saving } = this.props
+    const { event, companyUsers, saving, saved } = this.props
     const companyOption = companyName => (
-      <option key={companyName} value={companyName} >
+      <option key={companyName} value={companyName || ''} >
         {companyName}
       </option>
     )
@@ -50,8 +57,9 @@ class EventEdit extends React.Component {
     return (
       <div className={styles.eventEdit}>
         <div className={styles.head}>
-          <h2>Event: {event.companyName} - {event.date}</h2>
-          { !saving &&
+          <h2>Event: {event.companyName} -
+            {event.date && event.date.toString()}</h2>
+          { !saving && !saved &&
             <Button onClick={this.handleSave}
               type='submit'
               className='btn-bright'>
@@ -66,9 +74,12 @@ class EventEdit extends React.Component {
           <select
             name='companyName'
             placeholder='Company'
-            value={event.companyName}
+            value={event.companyName || ''}
             onChange={this.handleChange}>
-            <option key='none' value={null} disabled>Select company</option>
+            <option key='none'
+              disabled>
+              Select company
+            </option>
             { companies &&
               companies.map(companyOption)
             }
@@ -80,7 +91,7 @@ class EventEdit extends React.Component {
         <input
           name='date'
           type='datetime-local'
-          value={event.date}
+          value={moment(event.date).format('YYYY-MM-DDTHH:mm')}
           onChange={this.handleChange} />
         <div className='input-label'>
           <FormattedMessage {...messages.location} />
@@ -88,7 +99,7 @@ class EventEdit extends React.Component {
         <input
           name='location'
           placeholder='location'
-          value={event.location}
+          value={event.location || ''}
           onChange={this.handleChange} />
         <div className='input-label'>
           <FormattedMessage {...messages.publicDescription} />
@@ -97,7 +108,7 @@ class EventEdit extends React.Component {
           name='publicDescription'
           placeholder='Public Description'
           onChange={this.handleChange}
-          value={event.publicDescription} />
+          value={event.publicDescription || ''} />
         <div className='input-label'>
           <FormattedMessage {...messages.privateDescription} />
         </div>
@@ -105,14 +116,14 @@ class EventEdit extends React.Component {
           name='privateDescription'
           placeholder='Private text'
           onChange={this.handleChange}
-          value={event.privateDescription} />
+          value={event.privateDescription || ''} />
         <div className='input-label'>
           <FormattedMessage {...messages.beforeSurvey} />
         </div>
         <input
           name='beforeSurveys'
           placeholder='URL'
-          value={event.beforeSurvey}
+          value={event.beforeSurvey || ''}
           onChange={this.handleChange} />
         <div className='input-label'>
           <FormattedMessage {...messages.afterSurvey} />
@@ -120,7 +131,7 @@ class EventEdit extends React.Component {
         <input
           name='afterSurveys'
           placeholder='URL'
-          value={event.afterSurvey}
+          value={event.afterSurvey || ''}
           onChange={this.handleChange} />
         <div className='input-label'>
           <FormattedMessage {...messages.picture1} />
@@ -152,6 +163,7 @@ EventEdit.propTypes = {
   event: PropTypes.object.isRequired,
   update: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
+  saved: PropTypes.bool.isRequired,
   saving: PropTypes.bool.isRequired,
   companyUsers: PropTypes.array.isRequired,
 }

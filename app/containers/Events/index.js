@@ -15,14 +15,27 @@ import EventEdit from 'components/EventEdit'
 import * as EventActions from './actions'
 import { getUsers } from 'containers/Members/actions'
 
+const WARNING = 'Are you sure you wish to delete this event? ' +
+  'This action cannot be undone.'
+
 export class Events extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      selected: null,
+    }
+    this.onDeleteEvent = this.onDeleteEvent.bind(this)
   }
 
   componentDidMount() {
     this.props.getEvents()
     this.props.getUsers()
+  }
+
+  onDeleteEvent(id) {
+    if (confirm(WARNING)) {
+      this.props.deleteEvent(id)
+    }
   }
 
   renderActions() {
@@ -40,9 +53,24 @@ export class Events extends React.Component {
     )
   }
 
-  renderEventsList(events, user) {
+  renderEventsList(events, user, params, path) {
+    const eventListItem = (event, isSelected) => (
+      <EventListItem
+        key={event.id}
+        event={event}
+        user={user}
+        isSelected={isSelected}
+      />
+    )
+
     const items =
-      events.items.map(e => <EventListItem key={e.id} event={e} user={user} />)
+      events.items
+        .sort((a, b) => a.date > b.date)
+        .map(event => eventListItem(event, event.id === params.id))
+
+    const newEventListItem = events.newEvent &&
+      eventListItem(events.newEvent, path === '/events/new')
+
     return (
       <div className={styles.listContainer}>
         <div className={styles.list}>
@@ -51,6 +79,7 @@ export class Events extends React.Component {
             <div><FormattedMessage {...messages.date} /></div>
           </div>
           { items }
+          { newEventListItem }
         </div>
         { this.renderActions(user) }
       </div>
@@ -74,6 +103,7 @@ export class Events extends React.Component {
         update={update}
         save={save}
         saving={events.saving}
+        saved={events.saved}
         companyUsers={companyUsers}
       />
     )
@@ -89,6 +119,7 @@ export class Events extends React.Component {
           event={event}
           user={user}
           id={params.id}
+          onDeleteEvent={this.onDeleteEvent}
         />
       }
       detailSelected = true
@@ -102,7 +133,7 @@ export class Events extends React.Component {
     return (
       <div className={styles.events}>
         <MasterDetail
-          master={this.renderEventsList(events, user)}
+          master={this.renderEventsList(events, user, params, path)}
           detail={detail}
           detailSelected={detailSelected} />
       </div>
@@ -120,6 +151,7 @@ Events.propTypes = {
   companyUsers: PropTypes.array.isRequired,
   getUsers: PropTypes.func.isRequired,
   createNewEvent: PropTypes.func.isRequired,
+  deleteEvent: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = selectEvents()

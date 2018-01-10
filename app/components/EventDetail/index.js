@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl'
 import { Link } from 'react-router-dom'
 import messages from './messages'
 import Markdown from 'react-markdown'
+import Button from 'components/Button'
 import { Chart } from 'react-google-charts' // TODO replace with chart.js
 
 import styles from './styles.css'
@@ -28,7 +29,7 @@ class EventDetail extends Component {
   }
 
   render() {
-    const { event, user } = this.props
+    const { event, user, onDeleteEvent } = this.props
     if (!event) {
       return null
     }
@@ -46,12 +47,22 @@ class EventDetail extends Component {
         <div className={styles.head}>
           <h2>
             <FormattedMessage {...messages.event} />
-              : {event.companyName} - {event.date}
+              : {event.companyName} - {event.date && event.date.toString()}
           </h2>
           { userHasPermission(user) &&
-            <Link to={`/events/${event.id}/edit`} >
-              <button className='btn-bright'>Edit</button>
-            </Link>
+            <div className={styles.buttonRow}>
+              <Link to={`/events/${event.id}/edit`} >
+                <Button
+                  color='bright'>
+                  Edit
+                </Button>
+              </Link>
+              <Button
+                color='danger'
+                onClick={() => onDeleteEvent(event.id)}>
+                Delete
+              </Button>
+            </div>
           }
         </div>
         <div className={styles.info}>
@@ -73,8 +84,7 @@ class EventDetail extends Component {
                 <A target='_blank' href={event.afterSurvey}>
                   <FormattedMessage {...messages.after} />
                 </A>
-              </div>
-            </div>
+              </div> </div>
           }
         </div>
         { event.description &&
@@ -179,6 +189,7 @@ EventDetail.propTypes = {
   id: PropTypes.string.isRequired,
   event: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
+  onDeleteEvent: PropTypes.func.isRequired,
 }
 
 export default EventDetail

@@ -6,6 +6,9 @@ import {
   UPDATE,
   CREATE_SUCCESS,
   NEW_EVENT,
+  DELETE_REQUEST,
+  DELETE_SUCCESS,
+  DELETE_ERROR,
 } from './constants'
 
 const newEvent = {
@@ -14,7 +17,7 @@ const newEvent = {
   schedule: '',
   privateDescription: '',
   publicDescription: '',
-  date: '',
+  date: new Date(),
   beforeSurveys: '',
   afterSurveys: '',
   location: '',
@@ -23,9 +26,11 @@ const newEvent = {
 
 const initialState = fromJS({
   items: [],
-  newEvent: newEvent,
-  saved: true,
+  newEvent: null,
+  saved: false,
   saving: false,
+  deleting: false,
+  deleteError: false,
 })
 
 function eventsReducer(state = initialState, action) {
@@ -45,19 +50,31 @@ function eventsReducer(state = initialState, action) {
     } else {
       s = state.mergeIn(['newEvent'], Map(action.data))
     }
-    return s.merge(Map({saved: false}))
+    return s.set('saved', false)
   }
   case NEW_EVENT:
     return state.set('newEvent', fromJS(newEvent))
   case SAVE_REQUEST:
   case SAVE_SUCCESS:
     return state.set('saving', false)
+      .set('saved', true)
   case CREATE_SUCCESS: {
     const event = fromJS(action.data)
     return state
       .update('items', items => items.push(event))
-      .set('newEvent', event)
+      .set('newEvent', null)
   }
+  case DELETE_REQUEST:
+    return state.set('deleting', true)
+  case DELETE_SUCCESS:
+    return state
+      .set('deleteError', false)
+      .set('deleting', false)
+      .update('items', items => items.filter(e => e.get('id') !== action.id))
+  case DELETE_ERROR:
+    return state
+      .set('deleteError', true)
+      .set('deleting', false)
   default:
     return state
   }

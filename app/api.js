@@ -85,7 +85,8 @@ export function fetchUser() {
 }
 
 function toGraphQLFields(str) {
-  return JSON.stringify(str).replace(/"([^"]*)":/g, '$1:')
+  const withoutNulls = pickBy(str, identity)
+  return JSON.stringify(withoutNulls).replace(/"([^"]*)":/g, '$1:')
 }
 
 export function updateUser(newFields) {
@@ -227,11 +228,13 @@ export function fetchEvents() {
       ${EVENT_FIELDS}
     }
   }`
-  return executeGraphQL(query).then(res => res.data.allEvents)
+  return executeGraphQL(query)
+    .then(res => res.data.allEvents)
+    .then(events => events.map(e => ({...e, date: new Date(e.date)})))
 }
 
 export function saveEvent(e) {
-  const event = omit(pickBy(e, identity), 'id')
+  const event = omit(e, 'id')
   const id = e.id
   if (id) {
     const mutation = `mutation {
@@ -241,6 +244,7 @@ export function saveEvent(e) {
     }
     `
     return executeGraphQL(mutation).then(res => res.data.updateEvent)
+      .then(event => ({...event, date: new Date(event.date)}))
   } else {
     const mutation = `mutation {
       createEvent(fields: ${toGraphQLFields(event)}) {
@@ -249,6 +253,17 @@ export function saveEvent(e) {
     }
     `
     return executeGraphQL(mutation).then(res => res.data.createEvent)
+      .then(event => ({...event, date: new Date(event.date)}))
+  }
+}
+
+export function deleteEventWithId(id) {
+  if (id) {
+    const mutation = `mutation {
+      deleteEvent(eventId: "${id}") { id }
+    }
+    `
+    return executeGraphQL(mutation).then(res => res.data.updateEvent)
   }
 }
 

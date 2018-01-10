@@ -1,6 +1,7 @@
 import {
   saveEvent,
   fetchEvents,
+  deleteEventWithId,
 } from 'api'
 import {
   UPDATE,
@@ -12,7 +13,11 @@ import {
   SAVE_ERROR,
   CREATE_SUCCESS,
   NEW_EVENT,
+  DELETE_REQUEST,
+  DELETE_SUCCESS,
+  DELETE_ERROR,
 } from './constants'
+import { push } from 'react-router-redux'
 
 const actionType = (type, extras) => ({
   type,
@@ -38,6 +43,10 @@ export const saveError = (err) => {
   return actionType(SAVE_ERROR)
 }
 
+const deleteRequest = () => actionType(DELETE_REQUEST)
+const deleteSuccess = (id) => actionType(DELETE_SUCCESS, { id })
+const deleteError = () => actionType(DELETE_ERROR)
+
 export const getEvents = () => dispatch => {
   dispatch(getRequest())
   fetchEvents()
@@ -51,9 +60,20 @@ export const save = event => dispatch => {
     .then(data => {
       if (!event.id) {
         dispatch(createSuccess(data))
+        dispatch(push(`/events/${data.id}/edit`))
       }
       dispatch(saveSuccess(data))
     })
     .catch(err => dispatch(saveError(err)))
+}
+
+export const deleteEvent = id => dispatch => {
+  dispatch(deleteRequest())
+  deleteEventWithId(id)
+    .then(() => {
+      dispatch(push('/events'))
+      dispatch(deleteSuccess(id))
+    })
+    .catch(err => dispatch(deleteError(err)))
 }
 

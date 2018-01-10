@@ -7,7 +7,7 @@ export default defineMessages({
   },
   company: {
     id: 'app.components.EventEdit.company',
-    defaultMessage: 'Company',
+    defaultMessage: 'Company *',
   },
   publicDescription: {
     id: 'app.components.EventEdit.publicText',

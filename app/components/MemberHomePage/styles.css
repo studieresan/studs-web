@@ -1,15 +1,20 @@
-.memberHomePage {
-  width: 150px;
+.member {
+  width: 20rem;
   margin-bottom: 1em;
-}
-
-.memberHomePage > div {
-  width: 100px;
   text-align: center;
+  padding: 1rem;
 }
 
-.memberHomePage > div > img {
-  width: 100px;
+.name {
+  margin-bottom: 0.25rem;
+}
+
+.position {
+  margin: 0;
+}
+
+.member > img {
+  width: 100%;
   height: auto;
-  border-radius: 50%;
+  background: url('static/img/checkers.png');
 }

@@ -1,3 +1,22 @@
 .publicEvents {
-  padding-top: 92px;
+  display: flex;
+}
+
+.eventList {
+  display: flex;
+  flex-direction: column;
+  flex: 4;
+  justify-content: center;
+  padding-bottom: 3rem;
+  padding-left: 200px;
+}
+
+@media (max-width: 1200px) {
+  .publicEvents {
+    flex-direction: column;
+  }
+
+  .eventList {
+    padding-left: 0;
+  }
 }

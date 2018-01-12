@@ -4,13 +4,15 @@ import {
   SAVE_REQUEST,
   SAVE_SUCCESS,
   UPDATE,
-  ADD_PICTURE,
-  REMOVE_PICTURE,
   CREATE_SUCCESS,
   NEW_EVENT,
   DELETE_REQUEST,
   DELETE_SUCCESS,
   DELETE_ERROR,
+  ADD_PICTURE,
+  REMOVE_PICTURE,
+  ADD_SURVEY,
+  REMOVE_SURVEY,
 } from './constants'
 
 const newEvent = {
@@ -87,6 +89,14 @@ function eventsReducer(state = initialState, action) {
     return updateEvent(state, action.id, (event) =>
       event.update('pictures', pictures =>
         pictures.filter((p, index) => index !== action.index)
+      ))
+  case ADD_SURVEY:
+    return updateEvent(state, action.id, (event) =>
+      event.update(action.surveyType, surveys => surveys.push(action.url)))
+  case REMOVE_SURVEY:
+    return updateEvent(state, action.id, (event) =>
+      event.update(action.surveyType, survey =>
+        survey.filter((p, index) => index !== action.index)
       ))
   default:
     return state

@@ -1,5 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import selectEvents from 'containers/Events/selectors'
+import * as EventActions from 'containers/Events/actions'
 
 import moment from 'moment'
 import { FormattedMessage } from 'react-intl'
@@ -10,13 +14,19 @@ import styles from './styles.css'
 import Textarea from 'react-textarea-autosize'
 import Button from 'components/Button'
 import EventEditPicture from 'components/EventEditPicture'
+import EventEditSurvey from 'components/EventEditSurvey'
 
 const MAX_PICTURE_COUNT = 3
 class EventEdit extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      beforeSurvey: '',
+      afterSurvey: '',
+    }
     this.handleChange = this.handleChange.bind(this)
     this.handleSave = this.handleSave.bind(this)
+    this.addSurvey = this.addSurvey.bind(this)
   }
 
   handleChange(e) {
@@ -50,8 +60,26 @@ class EventEdit extends React.Component {
     }
   }
 
+  addSurvey(surveyType, value, event) {
+    this.props.addSurvey(value, surveyType, event.id)
+    if (surveyType === 'beforeSurveys') {
+      this.setState({ beforeSurvey: '' })
+    } else {
+      this.setState({ afterSurvey: '' })
+    }
+  }
+
   render() {
-    const { event, companyUsers, saving, saved, removePicture } = this.props
+    const {
+      event,
+      companyUsers,
+      events: {
+        saving,
+        saved,
+      },
+      removePicture,
+      removeSurvey,
+    } = this.props
     const companyOption = companyName => (
       <option key={companyName} value={companyName || ''} >
         {companyName}
@@ -60,6 +88,14 @@ class EventEdit extends React.Component {
 
     const companies = companyUsers &&
       sortedUniq(companyUsers.map(u => u.companyName))
+
+    const surveyListItem = surveyType => (url, i) => (
+      <EventEditSurvey
+        key={url + i}
+        url={url}
+        onRemove={() => removeSurvey(i, surveyType, event.id)}
+      />
+    )
 
     return (
       <div className={styles.eventEdit}>
@@ -127,19 +163,25 @@ class EventEdit extends React.Component {
         <div className='input-label'>
           <FormattedMessage {...messages.beforeSurvey} />
         </div>
+        { event.beforeSurveys.map(surveyListItem('beforeSurveys')) }
         <input
           name='beforeSurveys'
           placeholder='URL'
-          value={event.beforeSurvey || ''}
-          onChange={this.handleChange} />
+          value={this.state.beforeSurvey}
+          onChange={e => this.setState({beforeSurvey: e.target.value})}
+          onKeyPress={e => e.key === 'Enter' &&
+            this.addSurvey(e.target.name, e.target.value, event) } />
         <div className='input-label'>
           <FormattedMessage {...messages.afterSurvey} />
         </div>
+        { event.afterSurveys.map(surveyListItem('afterSurveys')) }
         <input
           name='afterSurveys'
           placeholder='URL'
-          value={event.afterSurvey || ''}
-          onChange={this.handleChange} />
+          value={this.state.afterSurvey}
+          onChange={e => this.setState({afterSurvey: e.target.value})}
+          onKeyPress={e => e.key === 'Enter' &&
+            this.addSurvey(e.target.name, e.target.value, event) } />
         <div className='input-label'>
           <FormattedMessage {...messages.picture1} />
           &nbsp;({event.pictures.length}/{MAX_PICTURE_COUNT})
@@ -169,12 +211,19 @@ class EventEdit extends React.Component {
 EventEdit.propTypes = {
   event: PropTypes.object.isRequired,
   update: PropTypes.func.isRequired,
-  addPicture: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
-  saved: PropTypes.bool.isRequired,
-  saving: PropTypes.bool.isRequired,
   companyUsers: PropTypes.array.isRequired,
+  addPicture: PropTypes.func.isRequired,
   removePicture: PropTypes.func.isRequired,
+  addSurvey: PropTypes.func.isRequired,
+  removeSurvey: PropTypes.func.isRequired,
+  events: PropTypes.object.isRequired,
 }
 
-export default EventEdit
+const mapStateToProps = selectEvents()
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ ...EventActions }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventEdit)

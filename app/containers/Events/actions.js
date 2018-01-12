@@ -5,7 +5,6 @@ import {
 } from 'api'
 import {
   UPDATE,
-  ADD_PICTURE,
   GET_REQUEST,
   GET_SUCCESS,
   GET_ERROR,
@@ -17,7 +16,10 @@ import {
   DELETE_REQUEST,
   DELETE_SUCCESS,
   DELETE_ERROR,
+  ADD_PICTURE,
   REMOVE_PICTURE,
+  ADD_SURVEY,
+  REMOVE_SURVEY,
 } from './constants'
 import { push } from 'react-router-redux'
 
@@ -33,6 +35,12 @@ export const addPicture = (url, id) =>
 
 export const removePicture = (index, id) =>
   actionType(REMOVE_PICTURE, { index, id })
+
+export const addSurvey = (url, surveyType, id) =>
+  actionType(ADD_SURVEY, { url, surveyType, id })
+
+export const removeSurvey = (index, surveyType, id) =>
+  actionType(REMOVE_SURVEY, { index, surveyType, id })
 
 export const createNewEvent = () => actionType(NEW_EVENT)
 

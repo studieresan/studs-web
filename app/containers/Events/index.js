@@ -91,25 +91,10 @@ export class Events extends React.Component {
       events,
       user,
       match: { params, path },
-      update,
-      addPicture,
-      removePicture,
-      save,
-      companyUsers,
     } = this.props
 
     const eventEdit = e => e && (
-      <EventEdit
-        event={e}
-        companies={events.companies}
-        update={update}
-        addPicture={addPicture}
-        save={save}
-        saving={events.saving}
-        saved={events.saved}
-        companyUsers={companyUsers}
-        removePicture={removePicture}
-      />
+      <EventEdit event={e} />
     )
 
     let detail
@@ -151,13 +136,15 @@ Events.propTypes = {
   user: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   update: PropTypes.func.isRequired,
-  addPicture: PropTypes.func.isRequired,
-  removePicture: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
   companyUsers: PropTypes.array.isRequired,
   getUsers: PropTypes.func.isRequired,
   createNewEvent: PropTypes.func.isRequired,
   deleteEvent: PropTypes.func.isRequired,
+  addPicture: PropTypes.func.isRequired,
+  removePicture: PropTypes.func.isRequired,
+  addSurvey: PropTypes.func.isRequired,
+  removeSurvey: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = selectEvents()

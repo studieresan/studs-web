@@ -17,3 +17,6 @@ export const GET_COMPANIES = 'app/Events/GET_COMPANIES'
 
 export const UPDATE = 'app/Events/UPDATE'
 
+export const ADD_PICTURE = 'app/Events/ADD_PICTURE'
+export const REMOVE_PICTURE = 'app/Events/REMOVE_PICTURE'
+

@@ -4,6 +4,8 @@ import {
   SAVE_REQUEST,
   SAVE_SUCCESS,
   UPDATE,
+  ADD_PICTURE,
+  REMOVE_PICTURE,
   CREATE_SUCCESS,
   NEW_EVENT,
   DELETE_REQUEST,
@@ -21,7 +23,7 @@ const newEvent = {
   beforeSurveys: '',
   afterSurveys: '',
   location: '',
-  pictures: '',
+  pictures: [],
 }
 
 const initialState = fromJS({
@@ -33,25 +35,28 @@ const initialState = fromJS({
   deleteError: false,
 })
 
+const updateEvent = (state, id, body) => {
+  let s = state
+  if (id) {
+    const index =
+       state.get('items').findIndex(event => event.get('id') === id)
+    s = state.updateIn(['items', index], body)
+  } else {
+    s = state.update('newEvent', body)
+  }
+  return s.set('saved', false)
+}
+
 function eventsReducer(state = initialState, action) {
-  let index
   switch (action.type) {
   case GET_SUCCESS:
     return state.merge(Map({
       items: fromJS(action.data),
       saved: true,
     }))
-  case UPDATE: {
-    let s
-    if (action.id) {
-      index =
-         state.get('items').findIndex(event => event.get('id') === action.id)
-      s = state.mergeIn(['items', index], Map(action.data))
-    } else {
-      s = state.mergeIn(['newEvent'], Map(action.data))
-    }
-    return s.set('saved', false)
-  }
+  case UPDATE:
+    return updateEvent(state, action.id, (event) =>
+      event.merge(Map(action.data)))
   case NEW_EVENT:
     return state.set('newEvent', fromJS(newEvent))
   case SAVE_REQUEST:
@@ -75,6 +80,14 @@ function eventsReducer(state = initialState, action) {
     return state
       .set('deleteError', true)
       .set('deleting', false)
+  case ADD_PICTURE:
+    return updateEvent(state, action.id, (event) =>
+      event.update('pictures', pictures => pictures.push(action.url)))
+  case REMOVE_PICTURE:
+    return updateEvent(state, action.id, (event) =>
+      event.update('pictures', pictures =>
+        pictures.filter((p, index) => index !== action.index)
+      ))
   default:
     return state
   }

@@ -33,7 +33,8 @@ class EventDetail extends Component {
     if (!event) {
       return null
     }
-    const userHasPermission = (user) => (user && true) // TODO
+    const userHasPermission = user => user.permissions &&
+      user.permissions.find(permission => permission === 'event')
 
     let after, before
     if (event.after && event.before) {
@@ -84,7 +85,8 @@ class EventDetail extends Component {
                 <A target='_blank' href={event.afterSurvey}>
                   <FormattedMessage {...messages.after} />
                 </A>
-              </div> </div>
+              </div>
+            </div>
           }
         </div>
         { event.description &&

@@ -35,14 +35,6 @@ export default defineMessages({
   },
   picture1: {
     id: 'app.components.EventEdit.picture1',
-    defaultMessage: 'Picture 1',
-  },
-  picture2: {
-    id: 'app.components.EventEdit.picture2',
-    defaultMessage: 'Picture 2',
-  },
-  picture3: {
-    id: 'app.components.EventEdit.picture3',
-    defaultMessage: 'Picture 3',
+    defaultMessage: 'Pictures',
   },
 })

@@ -5,6 +5,7 @@ import {
 } from 'api'
 import {
   UPDATE,
+  ADD_PICTURE,
   GET_REQUEST,
   GET_SUCCESS,
   GET_ERROR,
@@ -16,6 +17,7 @@ import {
   DELETE_REQUEST,
   DELETE_SUCCESS,
   DELETE_ERROR,
+  REMOVE_PICTURE,
 } from './constants'
 import { push } from 'react-router-redux'
 
@@ -25,6 +27,12 @@ const actionType = (type, extras) => ({
 })
 
 export const update = (data, id) => actionType(UPDATE, { data, id })
+
+export const addPicture = (url, id) =>
+  actionType(ADD_PICTURE, { url, id })
+
+export const removePicture = (index, id) =>
+  actionType(REMOVE_PICTURE, { index, id })
 
 export const createNewEvent = () => actionType(NEW_EVENT)
 

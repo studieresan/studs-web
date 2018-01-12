@@ -92,6 +92,8 @@ export class Events extends React.Component {
       user,
       match: { params, path },
       update,
+      addPicture,
+      removePicture,
       save,
       companyUsers,
     } = this.props
@@ -101,10 +103,12 @@ export class Events extends React.Component {
         event={e}
         companies={events.companies}
         update={update}
+        addPicture={addPicture}
         save={save}
         saving={events.saving}
         saved={events.saved}
         companyUsers={companyUsers}
+        removePicture={removePicture}
       />
     )
 
@@ -147,6 +151,8 @@ Events.propTypes = {
   user: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   update: PropTypes.func.isRequired,
+  addPicture: PropTypes.func.isRequired,
+  removePicture: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
   companyUsers: PropTypes.array.isRequired,
   getUsers: PropTypes.func.isRequired,

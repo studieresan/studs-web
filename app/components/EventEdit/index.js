@@ -4,11 +4,14 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import { FormattedMessage } from 'react-intl'
 import { sortedUniq } from 'lodash'
+import { uploadImage } from 'api'
 import messages from './messages'
 import styles from './styles.css'
 import Textarea from 'react-textarea-autosize'
 import Button from 'components/Button'
+import EventEditPicture from 'components/EventEditPicture'
 
+const MAX_PICTURE_COUNT = 3
 class EventEdit extends React.Component {
   constructor(props) {
     super(props)
@@ -19,19 +22,23 @@ class EventEdit extends React.Component {
   handleChange(e) {
     const {
       update,
+      addPicture,
       event: { id },
     } = this.props
     const data ={}
     if (e.target.type == 'file') {
-      // TODO UPLOAD IMAGE TO S3 FROM BACKEND
-      // uploadImage(e.target.files[0])
-    } else if (e.target.name === 'date') {
-      data[e.target.name] = new Date(e.target.value)
+      uploadImage(e.target.files[0])
+        .then(url => {
+          addPicture(url, id)
+        })
     } else {
-      data[e.target.name] = e.target.value
+      if (e.target.name === 'date') {
+        data[e.target.name] = new Date(e.target.value)
+      } else {
+        data[e.target.name] = e.target.value
+      }
+      update(data, id)
     }
-
-    update(data, id)
   }
 
   handleSave() {
@@ -44,7 +51,7 @@ class EventEdit extends React.Component {
   }
 
   render() {
-    const { event, companyUsers, saving, saved } = this.props
+    const { event, companyUsers, saving, saved, removePicture } = this.props
     const companyOption = companyName => (
       <option key={companyName} value={companyName || ''} >
         {companyName}
@@ -135,25 +142,25 @@ class EventEdit extends React.Component {
           onChange={this.handleChange} />
         <div className='input-label'>
           <FormattedMessage {...messages.picture1} />
+          &nbsp;({event.pictures.length}/{MAX_PICTURE_COUNT})
         </div>
-        <input
-          type='file'
-          name='picture1'
-          onChange={this.handleChange}/>
-        <div className='input-label'>
-          <FormattedMessage {...messages.picture2} />
+        <div className={styles.eventPictures}>
+          { event.pictures.map((url, i) => (
+            <div className={styles.eventPicture}
+              key={url + i}>
+              <EventEditPicture
+                url={url}
+                onRemove={() => removePicture(i, event.id)} />
+            </div>
+          ))
+          }
         </div>
-        <input
-          type='file'
-          name='picture2'
-          onChange={this.handleChange}/>
-        <div className='input-label'>
-          <FormattedMessage {...messages.picture3} />
-        </div>
-        <input
-          type='file'
-          name='picture3'
-          onChange={this.handleChange}/>
+        { event.pictures.length < MAX_PICTURE_COUNT &&
+          <input
+            type='file'
+            name='picture'
+            onChange={this.handleChange}/>
+        }
       </div>
     )
   }
@@ -162,10 +169,12 @@ class EventEdit extends React.Component {
 EventEdit.propTypes = {
   event: PropTypes.object.isRequired,
   update: PropTypes.func.isRequired,
+  addPicture: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
   saved: PropTypes.bool.isRequired,
   saving: PropTypes.bool.isRequired,
   companyUsers: PropTypes.array.isRequired,
+  removePicture: PropTypes.func.isRequired,
 }
 
 export default EventEdit

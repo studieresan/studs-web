@@ -6,9 +6,9 @@ import {
   UPDATE,
   CREATE_SUCCESS,
   NEW_EVENT,
-  DELETE_REQUEST,
-  DELETE_SUCCESS,
-  DELETE_ERROR,
+  REMOVE_REQUEST,
+  REMOVE_SUCCESS,
+  REMOVE_ERROR,
   ADD_PICTURE,
   REMOVE_PICTURE,
   ADD_SURVEY,
@@ -33,8 +33,8 @@ const initialState = fromJS({
   newEvent: null,
   saved: false,
   saving: false,
-  deleting: false,
-  deleteError: false,
+  removing: false,
+  removeError: false,
 })
 
 const updateEvent = (state, id, body) => {
@@ -71,17 +71,17 @@ function eventsReducer(state = initialState, action) {
       .update('items', items => items.push(event))
       .set('newEvent', null)
   }
-  case DELETE_REQUEST:
-    return state.set('deleting', true)
-  case DELETE_SUCCESS:
+  case REMOVE_REQUEST:
+    return state.set('removing', true)
+  case REMOVE_SUCCESS:
     return state
-      .set('deleteError', false)
-      .set('deleting', false)
+      .set('removeError', false)
+      .set('removing', false)
       .update('items', items => items.filter(e => e.get('id') !== action.id))
-  case DELETE_ERROR:
+  case REMOVE_ERROR:
     return state
-      .set('deleteError', true)
-      .set('deleting', false)
+      .set('removeError', true)
+      .set('removing', false)
   case ADD_PICTURE:
     return updateEvent(state, action.id, (event) =>
       event.update('pictures', pictures => pictures.push(action.url)))

@@ -35,7 +35,7 @@ export class Events extends React.Component {
 
   onDeleteEvent(id) {
     if (confirm(WARNING)) {
-      this.props.deleteEvent(id)
+      this.props.removeEvent(id)
     }
   }
 
@@ -109,7 +109,7 @@ export class Events extends React.Component {
           event={event}
           user={user}
           id={params.id}
-          onDeleteEvent={this.onDeleteEvent}
+          onRemoveEvent={this.onDeleteEvent}
         />
       }
       detailSelected = true
@@ -141,7 +141,7 @@ Events.propTypes = {
   companyUsers: PropTypes.array.isRequired,
   getUsers: PropTypes.func.isRequired,
   createNewEvent: PropTypes.func.isRequired,
-  deleteEvent: PropTypes.func.isRequired,
+  removeEvent: PropTypes.func.isRequired,
   addPicture: PropTypes.func.isRequired,
   removePicture: PropTypes.func.isRequired,
   addSurvey: PropTypes.func.isRequired,

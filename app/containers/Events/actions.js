@@ -1,7 +1,7 @@
 import {
   saveEvent,
   fetchEvents,
-  deleteEventWithId,
+  removeEventWithId,
 } from 'api'
 import {
   UPDATE,
@@ -13,9 +13,9 @@ import {
   SAVE_ERROR,
   CREATE_SUCCESS,
   NEW_EVENT,
-  DELETE_REQUEST,
-  DELETE_SUCCESS,
-  DELETE_ERROR,
+  REMOVE_REQUEST,
+  REMOVE_SUCCESS,
+  REMOVE_ERROR,
   ADD_PICTURE,
   REMOVE_PICTURE,
   ADD_SURVEY,
@@ -59,9 +59,9 @@ export const saveError = (err) => {
   return actionType(SAVE_ERROR)
 }
 
-const deleteRequest = () => actionType(DELETE_REQUEST)
-const deleteSuccess = (id) => actionType(DELETE_SUCCESS, { id })
-const deleteError = () => actionType(DELETE_ERROR)
+const removeRequest = () => actionType(REMOVE_REQUEST)
+const removeSuccess = (id) => actionType(REMOVE_SUCCESS, { id })
+const removeError = () => actionType(REMOVE_ERROR)
 
 export const getEvents = () => dispatch => {
   dispatch(getRequest())
@@ -83,13 +83,13 @@ export const save = event => dispatch => {
     .catch(err => dispatch(saveError(err)))
 }
 
-export const deleteEvent = id => dispatch => {
-  dispatch(deleteRequest())
-  deleteEventWithId(id)
+export const removeEvent = id => dispatch => {
+  dispatch(removeRequest())
+  removeEventWithId(id)
     .then(() => {
       dispatch(push('/events'))
-      dispatch(deleteSuccess(id))
+      dispatch(removeSuccess(id))
     })
-    .catch(err => dispatch(deleteError(err)))
+    .catch(err => dispatch(removeError(err)))
 }
 

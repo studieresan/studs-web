@@ -89,6 +89,7 @@ export function fetchUser() {
 }
 
 function toGraphQLFields(str) {
+  // This will remove any key which has a 'null' value
   const withoutNulls = pickBy(str, identity)
   return JSON.stringify(withoutNulls).replace(/"([^"]*)":/g, '$1:')
 }
@@ -260,10 +261,10 @@ export function saveEvent(e) {
   }
 }
 
-export function deleteEventWithId(id) {
+export function removeEventWithId(id) {
   if (id) {
     const mutation = `mutation {
-      deleteEvent(eventId: "${id}") { id }
+      removeEvent(eventId: "${id}")
     }
     `
     return executeGraphQL(mutation).then(res => res.data.updateEvent)

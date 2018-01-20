@@ -30,7 +30,7 @@ class EventDetail extends Component {
   }
 
   render() {
-    const { event, user, onDeleteEvent } = this.props
+    const { event, user, onRemoveEvent } = this.props
     if (!event) {
       return null
     }
@@ -59,7 +59,7 @@ class EventDetail extends Component {
               </Link>
               <Button
                 color='danger'
-                onClick={() => onDeleteEvent(event.id)}>
+                onClick={() => onRemoveEvent(event.id)}>
                 Delete
               </Button>
             </div>
@@ -190,7 +190,7 @@ EventDetail.propTypes = {
   id: PropTypes.string.isRequired,
   event: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
-  onDeleteEvent: PropTypes.func.isRequired,
+  onRemoveEvent: PropTypes.func.isRequired,
 }
 
 export default EventDetail

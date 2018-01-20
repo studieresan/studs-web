@@ -34,7 +34,7 @@ class EventDetail extends Component {
       return null
     }
     const userHasPermission = user => user.permissions &&
-      user.permissions.find(permission => permission === 'event')
+      user.permissions.includes('event')
 
     let after, before
     if (event.after && event.before) {

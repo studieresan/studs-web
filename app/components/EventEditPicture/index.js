@@ -7,10 +7,10 @@ const EventEditPicture = ({ url, onRemove }) => (
   <div className={styles.container}>
     <img src={url}
       className={styles.image}/>
-    <div className={styles.crossContainer}
+    <button className={styles.crossContainer}
       onClick={onRemove}>
       <X className={styles.cross}/>
-    </div>
+    </button>
   </div>
 )
 

@@ -16,7 +16,6 @@ import Button from 'components/Button'
 import EventEditPicture from 'components/EventEditPicture'
 import EventEditSurvey from 'components/EventEditSurvey'
 
-const MAX_PICTURE_COUNT = 3
 class EventEdit extends React.Component {
   constructor(props) {
     super(props)
@@ -184,7 +183,6 @@ class EventEdit extends React.Component {
             this.addSurvey(e.target.name, e.target.value, event) } />
         <div className='input-label'>
           <FormattedMessage {...messages.picture1} />
-          &nbsp;({event.pictures.length}/{MAX_PICTURE_COUNT})
         </div>
         <div className={styles.eventPictures}>
           { event.pictures.map((url, i) => (
@@ -197,12 +195,10 @@ class EventEdit extends React.Component {
           ))
           }
         </div>
-        { event.pictures.length < MAX_PICTURE_COUNT &&
-          <input
-            type='file'
-            name='picture'
-            onChange={this.handleChange}/>
-        }
+        <input
+          type='file'
+          name='picture'
+          onChange={this.handleChange}/>
       </div>
     )
   }

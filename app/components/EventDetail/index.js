@@ -6,6 +6,7 @@ import messages from './messages'
 import Markdown from 'react-markdown'
 import Button from 'components/Button'
 import { Chart } from 'react-google-charts' // TODO replace with chart.js
+import { hasEventPermission } from 'users'
 
 import styles from './styles.css'
 import A from 'components/A'
@@ -33,8 +34,6 @@ class EventDetail extends Component {
     if (!event) {
       return null
     }
-    const userHasPermission = user => user.permissions &&
-      user.permissions.includes('event')
 
     let after, before
     if (event.after && event.before) {
@@ -50,7 +49,7 @@ class EventDetail extends Component {
             <FormattedMessage {...messages.event} />
               : {event.companyName} - {event.date && event.date.toString()}
           </h2>
-          { userHasPermission(user) &&
+          { hasEventPermission(user) &&
             <div className={styles.buttonRow}>
               <Link to={`/events/${event.id}/edit`} >
                 <Button
@@ -140,7 +139,7 @@ class EventDetail extends Component {
               width='100%' />
           </div>
         }
-        { userHasPermission(user)
+        { hasEventPermission(user)
             && (before && before.length || after && after.length) ?
           <div>
             <hr />

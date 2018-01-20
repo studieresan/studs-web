@@ -77,11 +77,15 @@ export function fetchUser() {
       profile {
         ${USER_PROFILE_FIELDS}
       }
+      permissions
     }
   }
   `
   return executeGraphQL(query)
-    .then(res => Promise.resolve(res.data.user.profile))
+    .then(res => Promise.resolve({
+      ...res.data.user.profile,
+      permissions: res.data.user.permissions,
+    }))
 }
 
 function toGraphQLFields(str) {
@@ -208,7 +212,6 @@ export function resetPassword(password, confirmPassword, token) {
   })
 }
 
-// TODO
 const EVENT_FIELDS = `
   id
   companyName

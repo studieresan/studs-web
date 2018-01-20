@@ -22,8 +22,8 @@ const newEvent = {
   privateDescription: '',
   publicDescription: '',
   date: new Date(),
-  beforeSurveys: '',
-  afterSurveys: '',
+  beforeSurveys: [],
+  afterSurveys: [],
   location: '',
   pictures: [],
 }

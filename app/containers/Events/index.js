@@ -14,6 +14,7 @@ import EventStaticDetail from 'components/EventStaticDetail'
 import EventEdit from 'components/EventEdit'
 import * as EventActions from './actions'
 import { getUsers } from 'containers/Members/actions'
+import { hasEventPermission } from 'users'
 
 const WARNING = 'Are you sure you wish to delete this event? ' +
   'This action cannot be undone.'
@@ -39,18 +40,18 @@ export class Events extends React.Component {
   }
 
   renderActions() {
-    // if (!user || !user.permissions.includes('event')) { TODO
-    //   return null
-    // }
-    return (
-      <div className={styles.actions}>
-        <Link
-          to="/events/new"
-          onClick={() => this.props.createNewEvent()}>
-          <FormattedMessage {...messages.create} />
-        </Link>
-      </div>
-    )
+    const { user } = this.props
+    if (hasEventPermission(user)) {
+      return (
+        <div className={styles.actions}>
+          <Link
+            to="/events/new"
+            onClick={() => this.props.createNewEvent()}>
+            <FormattedMessage {...messages.create} />
+          </Link>
+        </div>
+      )
+    } else return null
   }
 
   renderEventsList(events, user, params, path) {

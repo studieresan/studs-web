@@ -66,7 +66,7 @@ export class Events extends React.Component {
 
     const items =
       events.items
-        .sort((a, b) => a.date > b.date)
+        .sort((a, b) => a.date - b.date)
         .map(event => eventListItem(event, event.id === params.id))
 
     const newEventListItem = events.newEvent &&

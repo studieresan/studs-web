@@ -4,90 +4,100 @@ import {
   SAVE_REQUEST,
   SAVE_SUCCESS,
   UPDATE,
-  GET_COMPANIES,
-  CREATE_REQUEST,
   CREATE_SUCCESS,
-  GET_MISSING_FORMS,
-  REMINDED_BEFORE,
-  REMINDED_AFTER,
-  IMPORTED_DATA,
+  NEW_EVENT,
+  REMOVE_REQUEST,
+  REMOVE_SUCCESS,
+  REMOVE_ERROR,
+  ADD_PICTURE,
+  REMOVE_PICTURE,
+  ADD_SURVEY,
+  REMOVE_SURVEY,
 } from './constants'
 
 const newEvent = {
-  company: '',
-  contact: '',
-  date: '',
+  id: '',
+  companyName: '',
+  schedule: '',
+  privateDescription: '',
+  publicDescription: '',
+  date: new Date(),
+  beforeSurveys: [],
+  afterSurveys: [],
   location: '',
-  description: '',
-  beforeSurvey: '',
-  afterSurvey: '',
-  beforeSurveyId: '',
-  afterSurveyId: '',
-  picture1: '',
-  picture2: '',
-  picture3: '',
+  pictures: [],
 }
 
 const initialState = fromJS({
   items: [],
-  companies: [],
-  newEvent: newEvent,
-  saved: true,
+  newEvent: null,
+  saved: false,
   saving: false,
+  removing: false,
+  removeError: false,
 })
 
+const updateEvent = (state, id, body) => {
+  let s = state
+  if (id) {
+    const index =
+       state.get('items').findIndex(event => event.get('id') === id)
+    s = state.updateIn(['items', index], body)
+  } else {
+    s = state.update('newEvent', body)
+  }
+  return s.set('saved', false)
+}
+
 function eventsReducer(state = initialState, action) {
-  let index
   switch (action.type) {
   case GET_SUCCESS:
     return state.merge(Map({
       items: fromJS(action.data),
       saved: true,
     }))
-  case UPDATE: {
-    let s
-    if (action.id) {
-      index =
-         state.get('items').findIndex(event => event.get('id') === action.id)
-      s = state.mergeIn(['items', index], Map(action.data))
-    } else {
-      s = state.mergeIn(['newEvent'], Map(action.data))
-    }
-    return s.merge(Map({saved: false}))
-  }
-  case GET_COMPANIES:
-    return state.set('companies', fromJS(action.data))
+  case UPDATE:
+    return updateEvent(state, action.id, (event) =>
+      event.merge(Map(action.data)))
+  case NEW_EVENT:
+    return state.set('newEvent', fromJS(newEvent))
   case SAVE_REQUEST:
-  case CREATE_REQUEST:
-    return state.set('saving', true)
-  case CREATE_SUCCESS: {
-    const st = state.update('items', items => items.push(fromJS(action.data)))
-    return st.merge(fromJS({
-      newEvent: newEvent,
-      saving: false,
-    }))
-  }
   case SAVE_SUCCESS:
     return state.set('saving', false)
-  case GET_MISSING_FORMS:
-    index = state.get('items')
-      .findIndex(event => event.get('id') === action.id)
-    return state.updateIn(
-      ['items', index],
-      event => event.merge(fromJS(action.data))
-    )
-  case REMINDED_BEFORE:
-    index = state.get('items')
-      .findIndex(event => event.get('id') === action.id)
-    return state.setIn(['items', index, 'remindedBefore'], true)
-  case REMINDED_AFTER:
-    index = state.get('items')
-      .findIndex(event => event.get('id') === action.id)
-    return state.setIn(['items', index, 'remindedAfter'], true)
-  case IMPORTED_DATA:
-    index = state.get('items')
-      .findIndex(event => event.get('id') === action.id)
-    return state.setIn(['items', index, 'importedData'], true)
+      .set('saved', true)
+  case CREATE_SUCCESS: {
+    const event = fromJS(action.data)
+    return state
+      .update('items', items => items.push(event))
+      .set('newEvent', null)
+  }
+  case REMOVE_REQUEST:
+    return state.set('removing', true)
+  case REMOVE_SUCCESS:
+    return state
+      .set('removeError', false)
+      .set('removing', false)
+      .update('items', items => items.filter(e => e.get('id') !== action.id))
+  case REMOVE_ERROR:
+    return state
+      .set('removeError', true)
+      .set('removing', false)
+  case ADD_PICTURE:
+    return updateEvent(state, action.id, (event) =>
+      event.update('pictures', pictures => pictures.push(action.url)))
+  case REMOVE_PICTURE:
+    return updateEvent(state, action.id, (event) =>
+      event.update('pictures', pictures =>
+        pictures.filter((p, index) => index !== action.index)
+      ))
+  case ADD_SURVEY:
+    return updateEvent(state, action.id, (event) =>
+      event.update(action.surveyType, surveys => surveys.push(action.url)))
+  case REMOVE_SURVEY:
+    return updateEvent(state, action.id, (event) =>
+      event.update(action.surveyType, survey =>
+        survey.filter((p, index) => index !== action.index)
+      ))
   default:
     return state
   }

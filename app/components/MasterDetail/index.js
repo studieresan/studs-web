@@ -61,7 +61,7 @@ class MasterDetail extends React.Component {
 
 MasterDetail.propTypes = {
   master: PropTypes.object.isRequired,
-  detail: PropTypes.object.isRequired,
+  detail: PropTypes.object,
   detailSelected: PropTypes.bool.isRequired,
 }
 

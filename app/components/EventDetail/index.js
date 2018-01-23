@@ -4,49 +4,37 @@ import { FormattedMessage } from 'react-intl'
 import { Link } from 'react-router-dom'
 import messages from './messages'
 import Markdown from 'react-markdown'
+import Button from 'components/Button'
 import { Chart } from 'react-google-charts' // TODO replace with chart.js
+import { hasEventPermission } from 'users'
 
 import styles from './styles.css'
-import A from '../A'
-import IndicatorIcon from '../IndicatorIcon'
+import A from 'components/A'
+import IndicatorIcon from 'components/IndicatorIcon'
 
 class EventDetail extends Component {
   constructor(props) {
     super(props)
-    this.getMissingForms = this.getMissingForms.bind(this)
-    this.handleRemindClick = this.handleRemindClick.bind(this)
-  }
-
-  getMissingForms() {
-    const { id, getMissingForms } = this.props
-    getMissingForms(id)
-  }
-
-  handleRemindClick(e) {
-    const { id, remindBefore, remindAfter } = this.props
-    const name = e.target.name
-    if (name === 'before') {
-      remindBefore(id)
-    } else if (name === 'after') {
-      remindAfter(id)
-    }
   }
 
   componentDidMount() {
-    this.getMissingForms()
+    // TODO
+    // this.getMissingForms()
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.id !== this.props.id) {
-      this.getMissingForms()
-    }
+  componentDidUpdate() {
+    // TODO
+    // if (prevProps.id !== this.props.id) {
+    //   this.getMissingForms()
+    // }
   }
 
   render() {
-    const { event, user } = this.props
+    const { event, user, onRemoveEvent } = this.props
     if (!event) {
       return null
     }
+
     let after, before
     if (event.after && event.before) {
       const userList = person =>
@@ -59,13 +47,22 @@ class EventDetail extends Component {
         <div className={styles.head}>
           <h2>
             <FormattedMessage {...messages.event} />
-              : {event.companyName} - {event.date}
+              : {event.companyName} - {event.date && event.date.toString()}
           </h2>
-          { user && user.permissions.includes('event') ?
-            <Link to={`/events/${event.id}/edit`} >
-              <button className='btn-bright'>Edit</button>
-            </Link>
-            : null
+          { hasEventPermission(user) &&
+            <div className={styles.buttonRow}>
+              <Link to={`/events/${event.id}/edit`} >
+                <Button
+                  color='bright'>
+                  Edit
+                </Button>
+              </Link>
+              <Button
+                color='danger'
+                onClick={() => onRemoveEvent(event.id)}>
+                Delete
+              </Button>
+            </div>
           }
         </div>
         <div className={styles.info}>
@@ -73,7 +70,7 @@ class EventDetail extends Component {
             <h4>Company</h4>
             <div>{event.companyName}</div>
           </div>
-          { user && user.memberType === 'studs_member' ?
+          { user && user.memberType === 'studs_member' &&
             <div>
               <h4>Surveys</h4>
               <div>
@@ -89,7 +86,6 @@ class EventDetail extends Component {
                 </A>
               </div>
             </div>
-            : null
           }
         </div>
         { event.description &&
@@ -143,7 +139,7 @@ class EventDetail extends Component {
               width='100%' />
           </div>
         }
-        { user && user.permissions.includes('event_missing')
+        { hasEventPermission(user)
             && (before && before.length || after && after.length) ?
           <div>
             <hr />
@@ -192,11 +188,9 @@ class EventDetail extends Component {
 
 EventDetail.propTypes = {
   id: PropTypes.string.isRequired,
-  getMissingForms: PropTypes.func.isRequired,
   event: PropTypes.object.isRequired,
-  remindBefore: PropTypes.func.isRequired,
-  remindAfter: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
+  onRemoveEvent: PropTypes.func.isRequired,
 }
 
 export default EventDetail

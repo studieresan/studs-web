@@ -1,8 +1,3 @@
-/*
- * EventEdit Messages
- *
- * This contains all the text for the EventEdit component.
- */
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
@@ -12,19 +7,19 @@ export default defineMessages({
   },
   company: {
     id: 'app.components.EventEdit.company',
-    defaultMessage: 'Company',
+    defaultMessage: 'Company *',
   },
-  description: {
-    id: 'app.components.EventEdit.description',
-    defaultMessage: 'Description',
-  },
-  feedbackText: {
-    id: 'app.components.EventEdit.feedbackText',
-    defaultMessage: 'Feedback text',
-  },
-  publicText: {
+  publicDescription: {
     id: 'app.components.EventEdit.publicText',
-    defaultMessage: 'Public text',
+    defaultMessage: 'Public Description',
+  },
+  privateDescription: {
+    id: 'app.components.EventEdit.privateDescription',
+    defaultMessage: 'Private Description',
+  },
+  schedule: {
+    id: 'app.components.EventEdit.schedule',
+    defaultMessage: 'Schedule',
   },
   location: {
     id: 'app.components.EventEdit.location',
@@ -38,24 +33,8 @@ export default defineMessages({
     id: 'app.components.EventEdit.afterSurvey',
     defaultMessage: 'After survey url',
   },
-  beforeSurveyId: {
-    id: 'app.components.EventEdit.beforeSurveyId',
-    defaultMessage: 'Before survey id',
-  },
-  afterSurveyId: {
-    id: 'app.components.EventEdit.afterSurveyId',
-    defaultMessage: 'After survey id',
-  },
   picture1: {
     id: 'app.components.EventEdit.picture1',
-    defaultMessage: 'Picture 1',
-  },
-  picture2: {
-    id: 'app.components.EventEdit.picture2',
-    defaultMessage: 'Picture 2',
-  },
-  picture3: {
-    id: 'app.components.EventEdit.picture3',
-    defaultMessage: 'Picture 3',
+    defaultMessage: 'Pictures',
   },
 })

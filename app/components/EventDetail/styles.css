@@ -80,3 +80,8 @@
   flex: 50%;
   min-width: 300px;
 }
+
+.buttonRow a,
+.buttonRow button {
+  display: inline-block;
+}

@@ -13,7 +13,7 @@ const PublicEvent = ({ companyName, date, adress, publicDescription, pictures })
             { companyName }
           </h1>
           <h5 className={styles.date}>
-            { moment(date).format('YYYY-MM-DD') }
+            { moment(date).format('MMMM DD') }
           </h5>
           <h5 className={styles.adress}>
             { adress }

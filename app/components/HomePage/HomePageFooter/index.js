@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import { FormattedMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import { Link } from 'react-router-dom'
 import Isvg from 'react-inlinesvg'
 import { Facebook, Instagram, Github } from 'react-feather'
@@ -10,7 +10,8 @@ import Sasha from 'static/img/people/sasha.jpg'
 import Elin from 'static/img/people/elin.jpg'
 import Logo from 'static/img/logo/black-frame.svg'
 import styles from './styles.css'
-// import messages from './messages'
+import messages from './messages'
+import navigationMessages from 'containers/Navbar/messages'
 
 function HomePageFooter() {
   return (
@@ -33,10 +34,18 @@ const Menu = () => (
     </div>
     <Pitch />
     <nav className={styles.navigation}>
-      <MenuItem to="about">About us</MenuItem>
-      <MenuItem to="events">Events</MenuItem>
-      <MenuItem to="trip">The Trip</MenuItem>
-      <MenuItem to="login">Log in</MenuItem>
+      <MenuItem to="about">
+        <FormattedMessage {...navigationMessages.about} />
+      </MenuItem>
+      <MenuItem to="events">
+        <FormattedMessage {...navigationMessages.events} />
+      </MenuItem>
+      <MenuItem to="trip">
+        <FormattedMessage {...navigationMessages.trip} />
+      </MenuItem>
+      <MenuItem to="login">
+        <FormattedMessage {...navigationMessages.login} />
+      </MenuItem>
     </nav>
 
   </div>
@@ -45,7 +54,7 @@ const Menu = () => (
 
 const Pitch = () => (
   <p>
-    Studs helps your company connect with KTH students
+    <FormattedMessage {...messages.shortPitch} />
   </p>
 )
 
@@ -91,13 +100,15 @@ const Contact = () => (
   <div className={styles.contact}>
     <div className={styles.section}>
       <h5 className={styles.contactHeader}>
-        Work with us
+        <FormattedMessage {...messages.salesHeader} />
       </h5>
       <div className={styles.pictures}>
         <Image picture={Elin} />
       </div>
       <p><b>Elin Karagöz</b></p>
-      <p>Head of Sales</p>
+      <p>
+        <FormattedMessage {...messages.salesTitle} />
+      </p>
       <p>
         <a href="mailto:studs-salj@d.kth.se">
           studs-salj@d.kth.se
@@ -107,14 +118,16 @@ const Contact = () => (
 
     <div className={styles.section}>
       <h5 className={styles.contactHeader}>
-        Questions?
+        <FormattedMessage {...messages.projectManagerHeader} />
       </h5>
       <div className={styles.pictures}>
         <Image picture={Agnes} />
         <Image picture={Sasha} />
       </div>
       <p><b>Agnes Åman &amp; Sasha Hellstenius</b></p>
-      <p>Project Managers</p>
+      <p>
+        <FormattedMessage {...messages.projectManagerTitle} />
+      </p>
       <p>
         <a href="mailto:studs-ansvarig@d.kth.se">
           studs-ansvarig@d.kth.se

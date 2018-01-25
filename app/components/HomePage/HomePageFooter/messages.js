@@ -1,14 +1,24 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
-  footer: {
-    header: {
-      id: 'app.components.HomePage.footer.header',
-      defaultMessage: '',
-    },
-    content: {
-      id: 'app.components.HomePage.footer.content',
-      defaultMessage: '',
-    },
+  shortPitch: {
+    id: 'app.components.HomePage.footer.shortPitch',
+    defaultMessage: '',
+  },
+  salesHeader: {
+    id: 'app.components.HomePage.footer.SalesHeader',
+    defaultMessage: '',
+  },
+  salesTitle: {
+    id: 'app.components.HomePage.footer.salesTitle',
+    defaultMessage: '',
+  },
+  projectManagerHeader: {
+    id: 'app.components.HomePage.footer.projectManagerHeader',
+    defaultMessage: '',
+  },
+  projectManagerTitle: {
+    id: 'app.components.HomePage.footer.projectManagerTitle',
+    defaultMessage: '',
   },
 })

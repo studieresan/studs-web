@@ -27,8 +27,8 @@ function renderItem(item, i) {
 function renderSection(section) {
   const items = section.items.map((item, i) => renderItem(item, i))
   return (
-    <div key={section.title} className={styles.section} >
-      <h2>{section.title}</h2>
+    <div key={section.title} className={styles.section}>
+      <h2>{section.title.toLowerCase()}</h2>
       {items}
     </div>
   )

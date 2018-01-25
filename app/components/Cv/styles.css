@@ -36,6 +36,7 @@
 
 .section > h2 {
   border-bottom: 3px solid;
+  text-transform: capitalize;
 }
 
 .section .sectionInput {

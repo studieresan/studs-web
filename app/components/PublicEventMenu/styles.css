@@ -35,6 +35,7 @@
   .publicEventMenu {
     position: inherit;
     text-align: center;
+    padding-left: 0;
     padding-bottom: 46px;
     width: auto;
   }

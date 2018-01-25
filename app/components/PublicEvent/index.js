@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import moment from 'moment'
 import styles from './styles.css'
 import Markdown from 'react-markdown'
 
@@ -13,7 +13,7 @@ const PublicEvent = ({ companyName, date, adress, publicDescription, pictures })
             { companyName }
           </h1>
           <h5 className={styles.date}>
-            { date }
+            { moment(date).format('YYYY-MM-DD') }
           </h5>
           <h5 className={styles.adress}>
             { adress }
@@ -24,7 +24,7 @@ const PublicEvent = ({ companyName, date, adress, publicDescription, pictures })
         </div>
       </div>
       <div className={styles.pictures}>
-        { pictures.map(pic => <img key={pic} src={pic} /> )}
+        { pictures && pictures.map(pic => <img key={pic} src={pic} /> )}
       </div>
       <div className={styles.divider} />
     </div>
@@ -33,9 +33,9 @@ const PublicEvent = ({ companyName, date, adress, publicDescription, pictures })
 
 PublicEvent.propTypes = {
   companyName: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  adress: PropTypes.string.isRequired,
-  publicDescription: PropTypes.string.isRequired,
+  date: PropTypes.PropTypes.instanceOf(Date).isRequired,
+  adress: PropTypes.string,
+  publicDescription: PropTypes.string,
   pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
 }
 

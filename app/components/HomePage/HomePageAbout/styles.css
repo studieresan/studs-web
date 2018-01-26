@@ -1,0 +1,36 @@
+.HomePageAbout {
+  flex: 1;
+  padding: 5rem;
+  width: 90%;
+  max-width: 50rem;
+  margin: 0 auto;
+  display: flex;
+}
+
+.information {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 20rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.name {
+  margin: 0;
+}
+
+.link {
+  color: #dd696d;
+}
+
+.link:hover {
+  border-bottom: 1px solid;
+}
+
+.HomePageAbout img {
+  width: 100%;
+  max-width: 20rem;
+}

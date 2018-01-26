@@ -1,17 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
-import { Link } from 'react-router-dom'
-import Isvg from 'react-inlinesvg'
 import { Facebook, Instagram, Github } from 'react-feather'
 import MemberImage from 'components/MemberImage'
 import Agnes from 'static/img/people/agnes.jpg'
 import Sasha from 'static/img/people/sasha.jpg'
 import Elin from 'static/img/people/elin.jpg'
-import Logo from 'static/img/logo/black-frame.svg'
+import Menu from './Menu'
 import styles from './styles.css'
 import messages from './messages'
-import navigationMessages from 'containers/Navbar/messages'
 
 function HomePageFooter() {
   return (
@@ -23,50 +20,6 @@ function HomePageFooter() {
       <SubFooter />
     </div>
   )
-}
-
-HomePageFooter.propTypes = {}
-
-const Menu = () => (
-  <div className={styles.menu}>
-    <div className={styles.logo}>
-      <Isvg src={Logo} />
-    </div>
-    <Pitch />
-    <nav className={styles.navigation}>
-      <MenuItem to="about">
-        <FormattedMessage {...navigationMessages.about} />
-      </MenuItem>
-      <MenuItem to="events">
-        <FormattedMessage {...navigationMessages.events} />
-      </MenuItem>
-      <MenuItem to="trip">
-        <FormattedMessage {...navigationMessages.trip} />
-      </MenuItem>
-      <MenuItem to="login">
-        <FormattedMessage {...navigationMessages.login} />
-      </MenuItem>
-    </nav>
-
-  </div>
-)
-
-
-const Pitch = () => (
-  <p>
-    <FormattedMessage {...messages.shortPitch} />
-  </p>
-)
-
-const MenuItem = ({ to, children }) => (
-  <Link to={to}>
-    <h4>{ children }</h4>
-  </Link>
-)
-
-MenuItem.propTypes = {
-  to: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
 }
 
 const Social = () => (

@@ -24,10 +24,13 @@ class App extends Component {
   }
 
   render() {
+    const path = window.location.pathname
     return (
       <ScrollContainer>
         <div className={styles.container}>
-          <Navbar />
+          { path !== '/feedback' &&
+            <Navbar />
+          }
           { this.props.children }
         </div>
       </ScrollContainer>
@@ -39,6 +42,7 @@ App.propTypes = {
   children: PropTypes.node,
   loggedIn: PropTypes.bool.isRequired,
   getUser: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
 }
 
 function mapStateToProps(state) {

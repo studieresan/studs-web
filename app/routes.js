@@ -12,6 +12,7 @@ import User from 'containers/User'
 import CvEdit from 'containers/CvEdit'
 import PublicEvents from 'containers/PublicEvents'
 import Events from 'containers/Events'
+import EventFeedback from 'components/EventFeedback'
 import Trip from 'containers/Trip'
 import About from 'containers/About'
 import NotFoundPage from 'containers/NotFoundPage'
@@ -38,6 +39,8 @@ class StudsRouter extends Component {
         <AuthenticatedRoute exact path='/events/new' component={Events}/>
         <AuthenticatedRoute exact path='/events/:id' component={Events}/>
         <AuthenticatedRoute exact path='/events/:id/edit' component={Events}/>
+
+        <AuthenticatedRoute exact path='/feedback' component={EventFeedback}/>
 
         <Route exact path='/trip' component={Trip}/>
         <Route exact path='/about' component={About}/>

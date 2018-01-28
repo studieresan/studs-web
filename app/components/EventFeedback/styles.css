@@ -1,0 +1,85 @@
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.colLeft,
+.colRight {
+  padding: 1% 5%;
+}
+
+.noPad {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.colRight {
+  width: 60%;
+}
+
+.colLeft,
+.colLeftBackground {
+  width: 40%;
+}
+
+.colLeftBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: #FCF3E6;
+  z-index: -1;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.page {
+  height: 100%;
+  width: 100%;
+  color: black;
+  position: relative;
+  -webkit-print-color-adjust: exact;
+}
+
+h3 {
+  letter-spacing: inherit;
+  font-size: 14px;
+}
+
+.bullets {
+  padding: 0;
+}
+
+.bullet {
+  padding-bottom: 5px;
+}
+
+.header {
+  text-transform: capitalize;
+}
+
+.dividerHolder {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.divider {
+  height: 2px;
+  background-color: black;
+  width: 92%;
+}
+
+.chart {
+  margin-bottom: 75px;
+  width: 90%;
+}
+
+.chartTitle {
+  padding-bottom: 15px;
+}

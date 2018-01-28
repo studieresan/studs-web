@@ -16,8 +16,10 @@ export class Members extends React.Component {
   componentDidMount() {
     this.props.getUsers()
   }
+
   renderMembersList(users) {
     const sortedUsers = sortBy(users, ['firstName'])
+    const { selectMember, selectedMember } = this.props
     return (
       <div>
         <div className={styles.listHeader}>
@@ -27,7 +29,12 @@ export class Members extends React.Component {
         </div>
         <div className={styles.memberList}>
           {
-            sortedUsers.map(user => <MemberListItem key={user.id} user={user}/>)
+            sortedUsers.map(user =>
+              <MemberListItem
+                key={user.id}
+                selectMember={selectMember}
+                active={selectedMember === user.id}
+                user={user}/>)
           }
         </div>
       </div>
@@ -58,6 +65,7 @@ export class Members extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    selectedMember: state.getIn(['members', 'selectedMember']),
     users: state.getIn(['members', 'users']).toJS(),
   }
 }
@@ -80,6 +88,8 @@ Members.propTypes = {
       cv: PropTypes.object,
     })),
   match: PropTypes.object,
+  selectMember: PropTypes.func.isRequired,
+  selectedMember: PropTypes.string.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Members)

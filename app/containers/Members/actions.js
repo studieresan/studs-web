@@ -3,8 +3,10 @@ import {
   GET_MEMBERS_SUCCESS,
   GET_COMPANY_MEMBERS_SUCCESS,
   GET_MEMBERS_ERROR,
+  MEMBER_SELECTED,
 } from './constants'
 import { fetchUsers } from '../../api'
+import { push } from 'react-router-redux'
 
 const getMembersRequest = () => ({
   type: GET_MEMBERS_REQUEST,
@@ -39,3 +41,10 @@ export const getUsers = () => dispatch => {
     .catch(() => dispatch(getMembersError()))
 }
 
+export const selectMember = ({ id }) => dispatch => {
+  dispatch({
+    type: MEMBER_SELECTED,
+    id: id,
+  })
+  dispatch(push('/members/' + id))
+}

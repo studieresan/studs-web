@@ -16,17 +16,17 @@ const Menu = ({ loggedIn }) => (
     </div>
     <Pitch />
     <nav className={styles.navigation}>
-      <MenuItem to="about">
+      <MenuItem to="/about">
         <FormattedMessage {...navigationMessages.about} />
       </MenuItem>
-      <MenuItem to="events">
+      <MenuItem to="/events/public">
         <FormattedMessage {...navigationMessages.events} />
       </MenuItem>
-      <MenuItem to="trip">
+      <MenuItem to="/trip">
         <FormattedMessage {...navigationMessages.trip} />
       </MenuItem>
       { !loggedIn &&
-        <MenuItem to="login">
+        <MenuItem to="/login">
           <FormattedMessage {...navigationMessages.login} />
         </MenuItem>
       }

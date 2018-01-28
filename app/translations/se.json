@@ -41,6 +41,12 @@
   "id": "app.containers.Navbar.logout",
   "message": "Logga ut"
 }, {
+  "id": "app.containers.Navbar.about",
+  "message": "Om Studs"
+}, {
+  "id": "app.containers.Navbar.trip",
+  "message": "Resan"
+}, {
   "id": "app.containers.Navbar.studsmembers",
   "message": "Medlemmar"
 }, {
@@ -58,5 +64,19 @@
 }, {
   "id": "app.containers.About.subtitle",
   "message": "Människorna bakom Studs 2018"
-}
-]
+}, {
+  "id": "app.components.HomePage.footer.shortPitch",
+  "message": "Studs hjälper ditt företag att träffa KTH-studenter"
+}, {
+  "id": "app.components.HomePage.footer.SalesHeader",
+  "message": "Jobba med oss"
+}, {
+"id": "app.components.HomePage.footer.salesTitle",
+"message": "Säljansvarig"
+}, {
+"id": "app.components.HomePage.footer.projectManagerHeader",
+"message": "Frågor?"
+}, {
+"id": "app.components.HomePage.footer.projectManagerTitle",
+"message": "Projektledare"
+}]

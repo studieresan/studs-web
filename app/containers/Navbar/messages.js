@@ -25,4 +25,8 @@ export default defineMessages({
     id: 'app.containers.Navbar.trip',
     defaultMessage: 'Trip',
   },
+  about: {
+    id: 'app.containers.Navbar.about',
+    defaultMessage: 'About',
+  },
 })

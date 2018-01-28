@@ -49,5 +49,19 @@
 }, {
   "id": "app.containers.About.subtitle",
   "message": "The people behind Studs 2018"
-}
-]
+}, {
+  "id": "app.components.HomePage.footer.shortPitch",
+  "message": "Studs helps your company connect with KTH students"
+}, {
+  "id": "app.components.HomePage.footer.SalesHeader",
+  "message": "Work with us"
+}, {
+"id": "app.components.HomePage.footer.salesTitle",
+"message": "Head of Sales"
+}, {
+"id": "app.components.HomePage.footer.projectManagerHeader",
+"message": "Questions?"
+}, {
+"id": "app.components.HomePage.footer.projectManagerTitle",
+"message": "Project Managers"
+}]

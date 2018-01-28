@@ -41,4 +41,16 @@ export default defineMessages({
     id: 'app.containers.User.confirmPassword',
     defaultMessage: 'Confirm Password',
   },
+  editResume: {
+    id: 'app.containers.User.editResume',
+    defaultMessage: 'Edit Resume',
+  },
+  save: {
+    id: 'app.containers.User.save',
+    defaultMessage: 'Save',
+  },
+  saved: {
+    id: 'app.containers.User.saved',
+    defaultMessage: 'Saved',
+  },
 })

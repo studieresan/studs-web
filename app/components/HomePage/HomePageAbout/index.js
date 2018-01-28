@@ -3,8 +3,10 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Link } from 'react-router-dom'
+import { FormattedMessage } from 'react-intl'
 import * as actions from 'containers/Members/actions'
 import MemberImage from 'components/MemberImage'
+import messages from './messages'
 import styles from './styles.css'
 
 class HomePageAbout extends Component {
@@ -16,13 +18,9 @@ class HomePageAbout extends Component {
   }
   componentDidMount() {
     this.props.getUsers()
-    console.log('WHAAAAAAAAAT')
 
   }
   componentWillReceiveProps(nextProps) {
-    if (this.state.user && this.props.users.length > 0) {
-      return
-    }
     const { users } = nextProps
     const user = users[Math.floor(Math.random() * users.length)]
     this.setState({
@@ -31,7 +29,7 @@ class HomePageAbout extends Component {
   }
   render() {
     const { user } = this.state
-    if (!user) return <h1>LOADING</h1>
+    if (!user) return null
     return (
       <div className={styles.HomePageAbout}>
         <div className={styles.image}>
@@ -43,10 +41,14 @@ class HomePageAbout extends Component {
           </h1>
           <h5>{ user.position }</h5>
           <p>
-            {user.firstName} is one of the 32 students making the Studs project possible
+            <FormattedMessage
+              {...messages.intro}
+              values={{firstName: user.firstName}} />
           </p>
           <p>
-            <Link className={styles.link} to="/about">Get to know the rest of us</Link>
+            <Link className={styles.link} to="/about">
+              <FormattedMessage {...messages.link} />
+            </Link>
           </p>
         </div>
       </div>

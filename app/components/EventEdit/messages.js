@@ -37,4 +37,8 @@ export default defineMessages({
     id: 'app.components.EventEdit.picture1',
     defaultMessage: 'Pictures',
   },
+  published : {
+    id: 'app.components.EventEdit.published',
+    defaultMessage: 'Published',
+  },
 })

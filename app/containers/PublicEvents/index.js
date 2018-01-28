@@ -41,7 +41,9 @@ export class PublicEvents extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    events: state.getIn(['events', 'items']).toJS().sort((a, b) => a.date - b.date),
+    events: state.getIn(['events', 'items']).toJS()
+      .filter((e) => e.published)
+      .sort((a, b) => a.date - b.date),
   }
 }
 

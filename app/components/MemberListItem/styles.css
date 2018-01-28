@@ -25,13 +25,15 @@
 .container {
   height: 40px;
   width: 100%;
+  cursor: pointer;
 }
 
 .container a {
   text-decoration: none;
 }
 
-.memberListItem:hover {
+.memberListItem:hover,
+.active {
   background-color: #6D6B6E;
   color: white;
 }

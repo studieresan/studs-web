@@ -4,6 +4,7 @@ import {
   GET_MEMBERS_SUCCESS,
   GET_COMPANY_MEMBERS_SUCCESS,
   GET_MEMBERS_ERROR,
+  MEMBER_SELECTED,
 } from './constants'
 
 const initialState = fromJS({
@@ -11,6 +12,7 @@ const initialState = fromJS({
   companyUsers: [],
   fetching: false,
   error: false,
+  selectedMember: '',
 })
 
 function membersReducer(state = initialState, action) {
@@ -34,6 +36,8 @@ function membersReducer(state = initialState, action) {
       fetching: false,
       error: true,
     }))
+  case MEMBER_SELECTED:
+    return state.set('selectedMember', action.id)
   default:
     return state
   }

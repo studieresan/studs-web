@@ -224,6 +224,7 @@ const EVENT_FIELDS = `
   afterSurveys
   location
   pictures
+  published
 `
 
 export function fetchEvents() {

@@ -1,39 +1,72 @@
 .publicEvent {
   display: flex;
   flex-wrap: wrap;
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 92px;
-}
-
-.publicEvent > div {
-  flex: 1;
-  min-width: 300px;
-  padding-left: 50px;
-  padding-right: 50px;
-}
-
-.information {
+  margin: 5rem auto 0;
+  margin-top: 5rem;
   line-height: 1.8;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 60rem;
+  width: 90%;
 }
 
-.information > h1 {
-  margin: 0;
+.text {
+  display: flex;
+  flex-wrap: wrap;
 }
-.information > h2 {
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 20rem;
+}
+
+.description {
+  flex: 1;
+  min-width: 20rem;
+}
+
+.date {
   color: #A4A2A6;
-  font-size: 16px;
-  letter-spacing: 4px;
-  margin-top: 0;
-  margin-bottom: 30px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.adress {
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 .pictures {
-  max-width: 550px;
+  display: flex;
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
-.pictures > img {
-  width: 100%;
-  margin-bottom: 46px;
+.pictures img {
+  flex: 1;
+  width: 25%;
+  min-width: 300px;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem;
+  object-fit: contain;
+}
+
+.divider {
+  width: 50%;
+  background-image: url(static/img/gold-dot-2.svg);
+  background-position: center;
+  background-repeat: repeat-x;
+  background-clip: content-box;
+  height: 10px;
+  margin: 0 auto;
+  transform: scale(2);
 }

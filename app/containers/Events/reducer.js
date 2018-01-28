@@ -26,6 +26,7 @@ const newEvent = {
   afterSurveys: [],
   location: '',
   pictures: [],
+  published: false,
 }
 
 const initialState = fromJS({

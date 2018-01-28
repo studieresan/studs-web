@@ -4,31 +4,38 @@
   position: fixed;
   z-index: 10;
   width: 200px;
+  background: #F7DDC9;
+  height: 100%;
+  padding-left: 1.5rem;
+  padding-top: 3rem;
 }
 
 .publicEventMenu > h2 {
   font-size: 16px;
-  letter-spacing: 4px;
-  text-align: right;
 }
 
-.publicEventMenu a {
-  text-align: right;
+.links {
+  display: flex;
+  flex-direction: column;
+}
+
+.links a {
+  font-size: 14px;
+  margin: 0.5rem 0;
   cursor: pointer;
-  color: #A4A2A6;
+  color: #000;
 }
 
 .active {
-  color: #ffdaab !important;
   font-weight: 600;
-  /*color: #90CE9C !important;*/
+  color: #dd696d !important;
 }
 
-
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
   .publicEventMenu {
     position: inherit;
     text-align: center;
+    padding-left: 0;
     padding-bottom: 46px;
     width: auto;
   }

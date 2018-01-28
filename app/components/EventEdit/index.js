@@ -26,11 +26,11 @@ class EventEdit extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSave = this.handleSave.bind(this)
     this.addSurvey = this.addSurvey.bind(this)
+    this.update = this.update.bind(this)
   }
 
   handleChange(e) {
     const {
-      update,
       addPicture,
       event: { id },
     } = this.props
@@ -46,8 +46,16 @@ class EventEdit extends React.Component {
       } else {
         data[e.target.name] = e.target.value
       }
-      update(data, id)
+      this.update(data)
     }
+  }
+
+  update(data) {
+    const {
+      update,
+      event: { id },
+    } = this.props
+    update(data, id)
   }
 
   handleSave() {
@@ -199,6 +207,15 @@ class EventEdit extends React.Component {
           type='file'
           name='picture'
           onChange={this.handleChange}/>
+        <div className='input-label'>
+          <FormattedMessage {...messages.published} />
+        </div>
+        <input
+          type='checkbox'
+          name='published'
+          checked={event.published}
+          onChange={(e) =>
+            this.update({published: e.target.checked}, event.id)}/>
       </div>
     )
   }

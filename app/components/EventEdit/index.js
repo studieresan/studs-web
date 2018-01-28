@@ -215,7 +215,7 @@ class EventEdit extends React.Component {
           name='published'
           checked={event.published}
           onChange={(e) =>
-            this.update({published: e.target.checked}, event.id)}/>
+            this.update({published: !!e.target.checked}, event.id)}/>
       </div>
     )
   }

@@ -1,4 +1,4 @@
-import { pickBy, omit, identity } from 'lodash'
+import { pickBy, omit } from 'lodash'
 
 const BASE_URL = process.env.API_BASE_URL || 'http://localhost:5040'
 const GRAPHQL = '/graphql'
@@ -90,7 +90,7 @@ export function fetchUser() {
 
 function toGraphQLFields(str) {
   // This will remove any key which has a 'null' value
-  const withoutNulls = pickBy(str, identity)
+  const withoutNulls = pickBy(str, a => a !== null && a !== undefined)
   return JSON.stringify(withoutNulls).replace(/"([^"]*)":/g, '$1:')
 }
 

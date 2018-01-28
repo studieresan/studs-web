@@ -20,7 +20,7 @@ class HomePageAbout extends Component {
 
   }
   componentWillReceiveProps(nextProps) {
-    if (this.props.users.length > 0) {
+    if (this.state.user && this.props.users.length > 0) {
       return
     }
     const { users } = nextProps

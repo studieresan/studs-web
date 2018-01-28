@@ -17,7 +17,13 @@ class HomePageAbout extends Component {
   componentDidMount() {
     this.props.getUsers()
     console.log('WHAAAAAAAAAT')
-    const { users } = this.props
+
+  }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.users.length > 0) {
+      return
+    }
+    const { users } = nextProps
     const user = users[Math.floor(Math.random() * users.length)]
     this.setState({
       user,

@@ -23,8 +23,8 @@ export class HomePage extends Component {
         <HomePageHeader />
         <HomePagePitch />
         <HomePageSalesContact />
-        <HomePageFooter />
         <HomePageAbout />
+        <HomePageFooter />
       </div>
     )
   }

@@ -57,7 +57,7 @@
   "message": "Förra årets<br/>rapport"
 }, {
   "id": "app.components.MembersStaticDetail.header",
-  "message": "Välkommen till CVdatabasen!"
+  "message": "Välkommen till CV-databasen!"
 }, {
   "id": "app.containers.Members.listHeader",
   "message": "Medlemmar"

@@ -1,11 +1,28 @@
 import React from 'react'
-import classnames from 'classnames'
 import { Pie } from 'react-chartjs-2'
-
 import styles from './styles.css'
-
 import { datasets, responses } from './template'
 const COMPANY_NAME = 'COMPANY NAME'
+
+const props = {
+  height: 100,
+  options: {
+    title: {
+      fontFamily: 'Neuzeit S LT',
+      fontColor: '#000',
+    },
+  },
+  legend: {
+    position: 'bottom',
+    fullWidth: true,
+    labels: {
+      padding: 20,
+      fontFamily: 'Neuzeit S LT',
+      fontColor: '#000',
+      usePointStyle: true,
+    },
+  },
+}
 
 const EventFeedback = () => {
   const section = (response, i) => (
@@ -29,19 +46,16 @@ const EventFeedback = () => {
       <h3 className={styles.chartTitle}>
         {data.title}
       </h3>
-      <Pie data={data} />
+      <Pie data={data} {...props} />
     </div>
   )
   return (
-    <div className={classnames(styles.page, styles.col)}>
-      <div className={classnames(styles.col, styles.colLeftBackground)}/>
-
-      <div className={classnames(styles.header, styles.row)}>
-        <div
-          className={classnames(styles.col, styles.colLeft)}>
+    <div className={styles.feedback}>
+      <div className={styles.header}>
+        <div className={styles.sidebar}>
           <h6>2017-12-13</h6>
         </div>
-        <div className={classnames(styles.col, styles.colRight)}>
+        <div className={styles.container}>
           <h6>Event Feedback</h6>
         </div>
       </div>
@@ -50,14 +64,12 @@ const EventFeedback = () => {
         <div className={styles.divider} />
       </div>
 
-      <div className={classnames(styles.content, styles.row)}>
-        <div className={classnames(styles.col, styles.colLeft)}>
+      <div className={styles.content}>
+        <div className={styles.sidebar}>
           <h1>Statistics</h1>
-
           { datasets.map(chart) }
-
         </div>
-        <div className={classnames(styles.col, styles.colRight)}>
+        <div className={styles.main}>
           <h1>{ COMPANY_NAME }</h1>
           { responses.map(section) }
         </div>

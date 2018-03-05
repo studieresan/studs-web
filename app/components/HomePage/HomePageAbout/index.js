@@ -21,6 +21,9 @@ class HomePageAbout extends Component {
 
   }
   componentWillReceiveProps(nextProps) {
+    if (this.state.user && this.state.user.firstName) {
+      return
+    }
     const { users } = nextProps
     const user = users[Math.floor(Math.random() * users.length)]
     this.setState({

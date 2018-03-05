@@ -1,21 +1,28 @@
 .HomePageAbout {
   flex: 1;
   padding: 5rem;
-  width: 90%;
-  max-width: 50rem;
+  max-width: 60rem;
   margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .information {
-  flex: 1;
+  flex: 1 1 20rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 20rem;
-  padding: 2rem;
+  padding-top: 2rem;
   text-align: center;
+}
+
+.image {
+  flex: 1 1 15rem;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
 }
 
 .name {
@@ -32,5 +39,6 @@
 
 .HomePageAbout img {
   width: 100%;
-  max-width: 20rem;
+  height: 100%;
+  margin: 0 auto;
 }

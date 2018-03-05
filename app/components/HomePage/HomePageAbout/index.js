@@ -40,7 +40,9 @@ class HomePageAbout extends Component {
         </div>
         <div className={styles.information}>
           <h1 className={styles.name}>
-            This is { user.firstName }
+            <FormattedMessage
+              {...messages.headline}
+              values={{firstName: user.firstName}} />
           </h1>
           <h5>{ user.position }</h5>
           <p>

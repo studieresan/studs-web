@@ -64,4 +64,13 @@
 }, {
 "id": "app.components.HomePage.footer.projectManagerTitle",
 "message": "Project Managers"
+}, {
+  "id": "app.components.HomePage.about.headline",
+  "message": "This is {firstName}"
+}, {
+  "id": "app.components.HomePage.about.intro",
+  "message": "{firstName} is one of 32 students taking part of the Studs project"
+}, {
+  "id": "app.components.HomePage.about.link",
+  "message": "Get to know the rest of us"
 }]

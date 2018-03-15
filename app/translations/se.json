@@ -184,4 +184,26 @@
 }, {
   "id": "app.components.HomePage.about.link",
   "message": "Lär känna resten av oss"
+}, {
+  "id": "app.containers.Login.error",
+  "message": "Ogiltig email eller lösenord"
+},
+{
+  "id": "app.containers.Login.welcome",
+  "message": "Välkommen"
+},
+{
+  "id": "app.containers.Login.email",
+  "message": "Email"
+},
+{
+  "id": "app.containers.Login.password",
+  "message": "Lösenord"
+},
+{
+  "id": "app.containers.Login.forgotPassword",
+  "message": "Glömt lösenord?"
+}, {
+  "id": "app.containers.Login.login",
+  "message": "Logga in"
 }]

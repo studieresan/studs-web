@@ -61,20 +61,22 @@ class Login extends Component {
       <div className={styles.login}>
         <form className={styles.form} onSubmit={this.handleSubmit}>
           <h1 className={styles.header}>
-            Welcome
+            <FormattedMessage {...messages.welcome} />
           </h1>
 
-          <div className='input-label'>Email</div>
+          <div className='input-label'>
+            <FormattedMessage {...messages.email} />
+          </div>
           <input
-            placeholder='Email'
             type='email'
             value={user}
             onChange={this.handleUserChange}
           />
 
-          <div className='input-label'>Password</div>
+          <div className='input-label'>
+            <FormattedMessage {...messages.password} />
+          </div>
           <input
-            placeholder='Password'
             type='password'
             value={pass}
             onChange={this.handlePassChange}
@@ -82,11 +84,11 @@ class Login extends Component {
 
           <Link to="/user/forgot-password">
             <Button full>
-              Forgot password?
+              <FormattedMessage {...messages.forgotPassword} />
             </Button>
           </Link>
           <Button full type='submit' color='bright'>
-            Login
+            <FormattedMessage {...messages.login} />
           </Button>
 
           { this.renderError() }

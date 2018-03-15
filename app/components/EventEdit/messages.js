@@ -1,6 +1,10 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
+  save: {
+    id: 'app.components.EventEdit.save',
+    defaultMessage: 'Save',
+  },
   date: {
     id: 'app.components.EventEdit.date',
     defaultMessage: 'Date',
@@ -10,7 +14,7 @@ export default defineMessages({
     defaultMessage: 'Company *',
   },
   publicDescription: {
-    id: 'app.components.EventEdit.publicText',
+    id: 'app.components.EventEdit.publicDescription',
     defaultMessage: 'Public Description',
   },
   privateDescription: {
@@ -33,8 +37,8 @@ export default defineMessages({
     id: 'app.components.EventEdit.afterSurvey',
     defaultMessage: 'After survey url',
   },
-  picture1: {
-    id: 'app.components.EventEdit.picture1',
+  pictures: {
+    id: 'app.components.EventEdit.pictures',
     defaultMessage: 'Pictures',
   },
   published : {

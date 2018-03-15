@@ -113,7 +113,7 @@ class EventEdit extends React.Component {
             <Button onClick={this.handleSave}
               type='submit'
               className='btn-bright'>
-              Save
+              <FormattedMessage {...messages.save} />
             </Button>
           }
         </div>
@@ -190,7 +190,7 @@ class EventEdit extends React.Component {
           onKeyPress={e => e.key === 'Enter' &&
             this.addSurvey(e.target.name, e.target.value, event) } />
         <div className='input-label'>
-          <FormattedMessage {...messages.picture1} />
+          <FormattedMessage {...messages.pictures} />
         </div>
         <div className={styles.eventPictures}>
           { event.pictures.map((url, i) => (

@@ -56,6 +56,9 @@
   "id": "app.components.HomePage.report.lastYear",
   "message": "Förra årets<br/>rapport"
 }, {
+  "id": "app.components.MembersStaticDetail.header",
+  "message": "Välkommen till CV-databasen!"
+}, {
   "id": "app.containers.Members.listHeader",
   "message": "Medlemmar"
 }, {
@@ -71,14 +74,107 @@
   "id": "app.components.HomePage.footer.SalesHeader",
   "message": "Jobba med oss"
 }, {
-"id": "app.components.HomePage.footer.salesTitle",
-"message": "Säljansvarig"
+  "id": "app.components.HomePage.footer.salesTitle",
+  "message": "Säljansvarig"
 }, {
-"id": "app.components.HomePage.footer.projectManagerHeader",
-"message": "Frågor?"
+  "id": "app.components.HomePage.footer.projectManagerHeader",
+  "message": "Frågor?"
 }, {
-"id": "app.components.HomePage.footer.projectManagerTitle",
-"message": "Projektledare"
+  "id": "app.components.HomePage.footer.projectManagerTitle",
+  "message": "Projektledare"
+}, {
+  "id": "app.components.EventEdit.save",
+  "message": "Spara"
+}, {
+  "id": "app.components.EventEdit.company",
+  "message": "Företag"
+}, {
+  "id": "app.components.EventEdit.date",
+  "message": "Datum"
+}, {
+  "id": "app.components.EventEdit.location",
+  "message": "Plats"
+}, {
+  "id": "app.components.EventEdit.publicDescription",
+  "message": "Offentlig Beskrivning"
+}, {
+  "id": "app.components.EventEdit.privateDescription",
+  "message": "Privat Beskrivning"
+}, {
+  "id": "app.components.EventEdit.beforeSurvey",
+  "message": "Förenkät"
+}, {
+  "id": "app.components.EventEdit.afterSurvey",
+  "message": "Efterenkät"
+}, {
+  "id": "app.components.EventEdit.pictures",
+  "message": "Bilder"
+}, {
+  "id": "app.components.EventEdit.published",
+  "message": "Publicerad"
+}, {
+  "id": "app.components.EventDetail.event",
+  "message": "Event"
+}, {
+  "id": "app.containers.Navbar.internalevents",
+  "message": "Event info"
+}, {
+  "id": "app.containers.Navbar.events",
+  "message": "Events"
+}, {
+  "id": "app.containers.Navbar.trip",
+  "message": "Resan"
+}, {
+  "id": "app.containers.User.title",
+  "message": "Redigera Profil"
+}, {
+  "id": "app.containers.User.editResume",
+  "message": "Redigera CV"
+}, {
+  "id": "app.containers.User.firstName",
+  "message": "Förnamn"
+}, {
+  "id": "app.containers.User.lastName",
+  "message": "Efternamn"
+}, {
+  "id": "app.containers.User.phone",
+  "message": "Telefon"
+}, {
+  "id": "app.containers.User.position",
+  "message": "Roll"
+}, {
+  "id": "app.containers.User.master",
+  "message": "Master"
+}, {
+  "id": "app.containers.User.allergies",
+  "message": "Allergier"
+}, {
+  "id": "app.containers.User.password",
+  "message": "Nytt Lösenord"
+}, {
+  "id": "app.containers.User.confirmPassword",
+  "message": "Upprepa Lösenord"
+}, {
+  "id": "app.containers.User.save",
+  "message": "Spara"
+}, {
+  "id": "app.containers.User.saved",
+  "message": "Sparat"
+}, {
+  "id": "app.components.EventStaticDetail.header",
+  "message": "Välj ett event till vänster!"
+}, {
+  "id": "app.containers.Events.company",
+  "message": "Företag"
+}, {
+  "id": "app.containers.Events.create",
+  "message": "Skapa"
+}, {
+  "id": "app.containers.Events.date",
+  "message": "Datum"
+}, {
+  "id": "app.components.HomePage.footer.projectManagerTitle",
+  "message": "Projektledare"
 }, {
   "id": "app.components.HomePage.about.headline",
   "message": "Det här är {firstName}"
@@ -88,4 +184,26 @@
 }, {
   "id": "app.components.HomePage.about.link",
   "message": "Lär känna resten av oss"
+}, {
+  "id": "app.containers.Login.error",
+  "message": "Ogiltig email eller lösenord"
+},
+{
+  "id": "app.containers.Login.welcome",
+  "message": "Välkommen"
+},
+{
+  "id": "app.containers.Login.email",
+  "message": "Email"
+},
+{
+  "id": "app.containers.Login.password",
+  "message": "Lösenord"
+},
+{
+  "id": "app.containers.Login.forgotPassword",
+  "message": "Glömt lösenord?"
+}, {
+  "id": "app.containers.Login.login",
+  "message": "Logga in"
 }]

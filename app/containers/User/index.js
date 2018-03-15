@@ -65,7 +65,7 @@ export class User extends React.Component {
           { user.memberType === 'studs_member' &&
             <Link to={'/resume/edit'}>
               <Button full>
-                Edit Resume
+                <FormattedMessage {...messages.editResume} />
               </Button>
             </Link>
           }
@@ -164,11 +164,11 @@ export class User extends React.Component {
             onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
             onChange={this.handleChange}/>
           <Button full wrapper color='bright' onClick={this.handleSubmit}>
-            Save
+            <FormattedMessage {...messages.save} />
           </Button>
           { this.props.saved && // TODO translate
             <div className={styles.status}>
-              Saved
+              <FormattedMessage {...messages.saved} />
             </div>
           }
           { this.props.saveError && // TODO translate

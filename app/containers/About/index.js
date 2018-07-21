@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux'
 import { FormattedMessage } from 'react-intl'
 import sortBy from 'lodash/sortBy'
 import * as actions from 'containers/Members/actions'
-import MemberHomePage from 'components/MemberHomePage'
 import Logo from 'static/img/logo/black-frame.svg'
 import styles from './styles.css'
 import messages from './messages'
@@ -16,7 +15,6 @@ class About extends Component {
   }
 
   render() {
-    const { users } = this.props
     return (
       <div className='container'>
         <div className={styles.about}>
@@ -27,9 +25,7 @@ class About extends Component {
             <FormattedMessage {...messages.subtitle} />
           </h4>
 
-          <div className={styles.members}>
-            { users.map(user => <MemberHomePage key={user.id} user={user}/>) }
-          </div>
+          <h2>Under construction...</h2>
 
           <div className={styles.logo}>
             <img src={Logo} />

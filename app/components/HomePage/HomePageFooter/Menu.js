@@ -19,12 +19,6 @@ const Menu = ({ loggedIn }) => (
       <MenuItem to="/about">
         <FormattedMessage {...navigationMessages.about} />
       </MenuItem>
-      <MenuItem to="/events/public">
-        <FormattedMessage {...navigationMessages.events} />
-      </MenuItem>
-      <MenuItem to="/trip">
-        <FormattedMessage {...navigationMessages.trip} />
-      </MenuItem>
       { !loggedIn &&
         <MenuItem to="/login">
           <FormattedMessage {...navigationMessages.login} />

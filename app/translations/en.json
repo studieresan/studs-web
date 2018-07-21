@@ -30,7 +30,7 @@
 	"message": "Get in touch"
 }, {
 	"id": "app.components.HomePage.contact.content",
-	"message": "If you're interested in having an event with us, or you're curious and want to know more – contact Elin, our Head of Sales."
+	"message": "If you're interested in having an event with us, or you're curious and want to know more – contact Nils, our Head of Sales."
 }, {
 	"id": "app.components.HomePage.contact.phone",
 	"message": "Phone"
@@ -48,7 +48,7 @@
   "message": "About Us"
 }, {
   "id": "app.containers.About.subtitle",
-  "message": "The people behind Studs 2018"
+  "message": "The people behind Studs 2019"
 }, {
   "id": "app.components.HomePage.footer.shortPitch",
   "message": "Studs helps your company connect with KTH students"

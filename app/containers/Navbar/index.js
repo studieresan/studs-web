@@ -74,14 +74,6 @@ export class Navbar extends React.Component {
           <li>
             <Link to="/login"><FormattedMessage {...messages.login} /></Link>
           </li>
-          <li>
-            <Link to="/events/public">
-              <FormattedMessage {...messages.events} />
-            </Link>
-          </li>
-          <li>
-            <Link to="/trip"><FormattedMessage {...messages.trip} /></Link>
-          </li>
         </ul>
       )
     }

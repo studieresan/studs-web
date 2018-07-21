@@ -135,6 +135,11 @@
   margin: 1rem auto;
 }
 
+/* Won't need this later */
+.pictures > img {
+  background-color: grey;
+}
+
 .contactPicture ~ .contactPicture {
   margin-left: 1rem;
 }

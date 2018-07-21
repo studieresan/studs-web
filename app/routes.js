@@ -10,9 +10,7 @@ import ForgotPassword from 'containers/ForgotPassword'
 import PasswordReset from 'containers/PasswordReset'
 import User from 'containers/User'
 import CvEdit from 'containers/CvEdit'
-import PublicEvents from 'containers/PublicEvents'
 import Events from 'containers/Events'
-import Trip from 'containers/Trip'
 import About from 'containers/About'
 import NotFoundPage from 'containers/NotFoundPage'
 import AuthenticatedRoute from 'containers/AuthenticatedRoute'
@@ -33,13 +31,11 @@ class StudsRouter extends Component {
         <AuthenticatedRoute exact path='/members' component={Members}/>
         <AuthenticatedRoute exact path='/members/:id?' component={Members}/>
 
-        <Route exact path='/events/public' component={PublicEvents}/>
         <AuthenticatedRoute exact path='/events' component={Events}/>
         <AuthenticatedRoute exact path='/events/new' component={Events}/>
         <AuthenticatedRoute exact path='/events/:id' component={Events}/>
         <AuthenticatedRoute exact path='/events/:id/edit' component={Events}/>
 
-        <Route exact path='/trip' component={Trip}/>
         <Route exact path='/about' component={About}/>
 
         <Route exact path='*' component={NotFoundPage}/>

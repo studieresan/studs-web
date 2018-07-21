@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import { Facebook, Instagram, Github } from 'react-feather'
 import MemberImage from 'components/MemberImage'
-import Agnes from 'static/img/people/agnes.jpg'
-import Sasha from 'static/img/people/sasha.jpg'
-import Elin from 'static/img/people/elin.jpg'
+import PlaceholderPerson from 'static/img/person-placeholder.png'
 import Menu from './Menu'
 import styles from './styles.css'
 import messages from './messages'
@@ -56,9 +54,9 @@ const Contact = () => (
         <FormattedMessage {...messages.salesHeader} />
       </h5>
       <div className={styles.pictures}>
-        <Image picture={Elin} />
+        <Image picture={PlaceholderPerson} round />
       </div>
-      <p><b>Elin Karagöz</b></p>
+      <p><b>Nils Streijffert</b></p>
       <p>
         <FormattedMessage {...messages.salesTitle} />
       </p>
@@ -74,10 +72,10 @@ const Contact = () => (
         <FormattedMessage {...messages.projectManagerHeader} />
       </h5>
       <div className={styles.pictures}>
-        <Image picture={Agnes} />
-        <Image picture={Sasha} />
+        <Image picture={PlaceholderPerson} round />
+        <Image picture={PlaceholderPerson} round />
       </div>
-      <p><b>Agnes Åman &amp; Sasha Hellstenius</b></p>
+      <p><b>Andreas Heiskanen &amp; Emma Nimstad</b></p>
       <p>
         <FormattedMessage {...messages.projectManagerTitle} />
       </p>

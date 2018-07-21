@@ -45,7 +45,7 @@ const SubFooter = () => (
 
 const Copyright = () => (
   <p className={styles.copyright}>
-    &copy; 2017 Studs
+    &copy; 2018 Studs
   </p>
 )
 

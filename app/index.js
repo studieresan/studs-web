@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import { AppContainer } from 'react-hot-loader'
-import registerServiceWorker from './registerServiceWorker'
+import { unregister } from './registerServiceWorker'
 
 const render = (Component) => {
   ReactDOM.render((
@@ -21,4 +21,4 @@ if (module.hot) {
   })
 }
 
-registerServiceWorker()
+unregister()

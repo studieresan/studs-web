@@ -8,7 +8,9 @@ import LocaleToggle from '../LocaleToggle'
 import Black from 'static/img/logo/Black.svg'
 import White from 'static/img/logo/white.svg'
 import MenuIcon from './icon_menu.svg'
+import BlackMenuIcon from './icon_menu_black.svg'
 import CloseIcon from './icon_close.svg'
+import BlackCloseIcon from './icon_close_black.svg'
 
 import { withRouter, Link } from 'react-router-dom'
 import messages from './messages'
@@ -95,7 +97,7 @@ export class Navbar extends React.Component {
             <img src={Logo} height={24} />
           </Link>
           <img
-            src={this.state.collapsed ? MenuIcon : CloseIcon }
+            src={this.state.collapsed ? (bg ? BlackMenuIcon : MenuIcon) : (bg ? BlackCloseIcon : CloseIcon) }
             height={26}
             onClick={this.handleMenuClick} />
         </div>

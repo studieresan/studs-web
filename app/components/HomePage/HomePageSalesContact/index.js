@@ -3,13 +3,13 @@ import { FormattedMessage } from 'react-intl'
 import Section from 'components/Section'
 import styles from './styles.css'
 import messages from './messages'
-import PlaceholderPerson from 'static/img/person-placeholder.png'
+import Nils from 'static/img/people/nils.png'
 
 const HomePageSalesContact = () =>
   <div className={styles.contact}>
     <Section {...messages.contact} />
     <div className={styles.contactInfo}>
-      <img src={PlaceholderPerson}/>
+      <img src={Nils}/>
       <div>
         <b>Nils Streijffert</b>
         <br/>

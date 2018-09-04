@@ -206,4 +206,9 @@
 }, {
   "id": "app.containers.Login.login",
   "message": "Logga in"
-}]
+},
+  {
+    "id": "app.components.HomePage.intro.application",
+    "message": "Ansökan till Studs19 är öppen! Klicka här för att läsa mer."
+  }
+]

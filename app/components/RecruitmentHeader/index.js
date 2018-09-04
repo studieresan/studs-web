@@ -5,7 +5,7 @@ const RecruitmentHeader = () =>
   <div className={styles.recruitmentHeader}>
     <h2>Sök Studs19!</h2>
     <p>
-      Studs19 är ett projekt där ca 30 studenter tillsammans planerar, finansierar och åker på en studieresa i slutet av VT19. Kursen i sig är på 15 högskolepoäng, och destinationen för resan bestäms gemensamt av projektmedlemmarna.
+      Studs19 är ett projekt där ca 30 masterstudenter tillsammans planerar, finansierar och åker på en studieresa i slutet av VT19. Kursen i sig är på 15 högskolepoäng, och destinationen för resan bestäms gemensamt av projektmedlemmarna.
 
       Resan finansieras av de obligatoriska företagsevent vi arrangerar och går på under läsåret. Merparten av dessa events kommer ligga under våren då det är då kursen går och vi inte har lika mycket andra kurser som krockar. Events ligger nästan alltid under kvällen och det kommer vara kring 28 stycken vilket innebär att det är 1-3 obligatoriska events per vecka under våren.
 

@@ -10,5 +10,9 @@ export default defineMessages({
       id: 'app.components.HomePage.intro.content',
       defaultMessage: '',
     },
+    application: {
+      id: 'app.components.HomePage.intro.application',
+      defaultMessage: '',
+    },
   },
 })

@@ -3,8 +3,15 @@
 }
 
 .recruitmentHeader h2 {
+  color: black;
+  font-weight: 900;
   font-size: 50px;
   padding-bottom: 0;
   margin-bottom: 0;
   margin-top: 0;
+}
+
+.recruitmentHeader p {
+  font-weight: 300;
+  font-size: 16px;
 }

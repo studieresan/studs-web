@@ -4,7 +4,6 @@
   margin-top: 16px;
 }
 
-
 .contactContainer {
   display: flex;
   flex-direction: row;
@@ -17,18 +16,23 @@
   margin-top: 32px;
 }
 
+.contactInfo > p {
+  font-size: 12px;
+  font-weight: 300;
+}
+
 .contactInfo h4 {
   padding: 0;
   margin: 0;
 }
 
 .name {
-  color: #37444b;
+  color: black;
   font-weight: bold;
 }
 
 .title {
-  color: #37444b;
+  color: black;
   font-weight: lighter;
 }
 
@@ -39,6 +43,7 @@
 
 .contactInfo a {
   color: #00c6ac;
+  font-weight: 300;
 }
 
 .rolesContainer {
@@ -48,8 +53,8 @@
 }
 
 .leaderImage {
-  width: 150px;
-  height: 150px;
+  width: 175px;
+  height: 175px;
   object-fit: cover;
   border-radius: 100%;
   transition: 0.4s;

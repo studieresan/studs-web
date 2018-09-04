@@ -1,5 +1,5 @@
 body {
-  font-family: 'Neuzeit S LT';
+  font-family: 'Lato';
 }
 
 h1,
@@ -24,7 +24,7 @@ li {
 }
 
 .container input {
-  font-family: 'Neuzeit S LT';
+  font-family: 'Lato';
   display: block;
   padding: 1rem;
   width: 100%;
@@ -33,7 +33,7 @@ li {
 }
 
 .container select {
-  font-family: 'Neuzeit S LT';
+  font-family: 'Lato';
   display: block;
 }
 

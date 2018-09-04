@@ -13,7 +13,12 @@
 }
 
 .intro {
-  font-size: 16px;
+  font-size: 17px;
+}
+
+.introTitle {
+  text-align: justify;
+  max-width: 818px;
 }
 
 .recruitmentSectionContainer p {
@@ -23,7 +28,7 @@
 .boldIntro {
   color: #37444b;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 @media (max-width: 1130px) {

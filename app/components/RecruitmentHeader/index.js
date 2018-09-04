@@ -4,13 +4,11 @@ import styles from './styles.css'
 const RecruitmentHeader = () =>
   <div className={styles.recruitmentHeader}>
     <h2>Sök Studs19!</h2>
-    <p>
-      Studs19 är ett projekt där ca 30 masterstudenter tillsammans planerar, finansierar och åker på en studieresa i slutet av VT19. Kursen i sig är på 15 högskolepoäng, och destinationen för resan bestäms gemensamt av projektmedlemmarna.
+    <p className={styles.boldIntro}>Studs är en årlig projektkurs som genomförs av ca 30 masterstudenter med datainriktning. Gemensamt planerar och anordnar vi i projektgruppen företagsevent, som tillsammans finansierar en studieresa under sommaren 2019. Kursen (AI2151) är på 15 HP och destinationen för studieresan bestäms gemensamt av projektmedlemmarna.</p>
 
-      Resan finansieras av de obligatoriska företagsevent vi arrangerar och går på under läsåret. Merparten av dessa events kommer ligga under våren då det är då kursen går och vi inte har lika mycket andra kurser som krockar. Events ligger nästan alltid under kvällen och det kommer vara kring 28 stycken vilket innebär att det är 1-3 obligatoriska events per vecka under våren.
+    <p>De företagsevent som arrangeras under läsåret är obligatoriska för samtliga projektmedlemmar och merparten av dessa event sker under VT19. Vanligtvis äger eventen rum på kvällen och uppläggen kan skilja sig mellan olika event – totalt ca 30 företagsevent under läsåret. Med detta är Studs en unik chans att knyta värdefulla kontakter inom näringslivet.</p>
 
-      Utöver events så har varje medlem i projektgruppen en arbetsuppgift inom en specifik undergrupp, detta arbete sträcker sig över hela läsåret. Vårt mål är att inget ansvar ska vara tyngre än något annat, men när varje undergrupps intensitet är högst kan komma att variera.
-    </p>
+    <p>Inom projektet har varje projektmedlem en arbetsuppgift inom en undergrupp. Detta arbete sträcker sig över hela läsåret – arbetsintensiteten kan dock variera mellan olika perioder och undergrupper. Målet är att arbetet ska vara jämnt fördelat mellan alla projektmedlemmar oavsett undergrupp.</p>
   </div>
 
 export default RecruitmentHeader

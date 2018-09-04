@@ -13,7 +13,12 @@
 
 .recruitmentHeader p {
   font-weight: 300;
-  font-size: 16px;
+  text-align: justify;
+  font-size: 17px;
+}
+
+.boldIntro {
+  font-weight: 900 !important;
 }
 
 @media (max-width: 1130px) {

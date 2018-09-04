@@ -10,6 +10,7 @@ import Nils from 'static/img/people/nils.png'
 import Michel from 'static/img/people/michel.png'
 import Emmeli from 'static/img/people/emmeli.jpg'
 import Moa from 'static/img/people/moa.jpg'
+import Mauritz from 'static/img/people/mauritz.png'
 import RecruitmentHeader from '../../components/RecruitmentHeader'
 import RecruitmentFooter from '../../components/RecruitmentFooter'
 
@@ -61,7 +62,7 @@ class Recruitment extends PureComponent {
             new StudsRecruitmentLeaderModel(
               'Reseansvarig',
               'Mauritz Zachrisson',
-              Nils,
+              Mauritz,
               'mauritzz@kth.se',
               [
                 new StudsRecruitmentRoleModel(

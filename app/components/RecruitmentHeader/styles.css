@@ -25,6 +25,7 @@
   text-shadow: 5px 5px 0 rgb(55, 179, 160), -4px -4px 0 #8eded7;
   background: #26cab2;
   padding: 50px;
+  position: relative;
   z-index: 19;
   box-shadow: 0 3px 8px rgba(0, 0, 0, .05);
 }

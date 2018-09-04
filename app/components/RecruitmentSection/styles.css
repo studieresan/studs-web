@@ -12,12 +12,9 @@
   margin-top: 32px;
 }
 
-.intro {
-  font-size: 17px;
-}
-
 .introTitle {
   text-align: justify;
+  font-size: 17px;
   max-width: 818px;
 }
 

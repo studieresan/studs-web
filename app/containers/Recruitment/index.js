@@ -79,9 +79,9 @@ class Recruitment extends PureComponent {
           'IT- och informationsgrupperna ',
           `
           jobbar med information om Studs, både internt och externt. 
-          Informationsgruppen består av fotografer, redaktörer och en art director. 
+          Informationsgruppen består av fotografer, redaktörer och en Art Director. 
           De sätter tillsammans ihop en rapport för projektet, som är en sammanställning av projektet, resan och eventen. 
-          IT-gruppen består av utvecklare och en art director, som ansvarar för Studs webbsida och de interna webbapplikationerna.
+          IT-gruppen består av utvecklare och en Art Director, som ansvarar för Studs webbsida och de interna webbapplikationerna.
           `,
           [
             new StudsRecruitmentLeaderModel(
@@ -92,7 +92,7 @@ class Recruitment extends PureComponent {
               [
                 new StudsRecruitmentRoleModel(
                   'Utvecklare',
-                  'Utvecklarna bygger Studs IT-system. ',
+                  'IT-gruppen ansvarar för Studs webbsida och de interna mobilapplikationerna. ',
                   `
                   De programmeringsspråk som används är JavaScript (React, Node), Kotlin (Android) och Swift (iOS). 
                   Som utvecklare får du stor frihet att jobba med det du vill inom webb och app. 

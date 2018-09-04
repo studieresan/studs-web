@@ -41,6 +41,13 @@
   }
 }
 
+@media (max-width: 360px) {
+  .buttonContainer > p {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
 .applicationInfo {
   margin-top: 19px;
 }

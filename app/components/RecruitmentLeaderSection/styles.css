@@ -74,7 +74,8 @@
 @media (max-width: 1130px) {
   .leaderSectionContainer {
     flex-direction: column;
-    padding: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 
   .contactContainer {
@@ -87,6 +88,15 @@
 
   .contactInfo {
     margin-right: 24px;
+  }
+}
+
+@media (max-width: 360px) {
+  .leaderSectionContainer {
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 0;
+    width: 85%;
   }
 }
 

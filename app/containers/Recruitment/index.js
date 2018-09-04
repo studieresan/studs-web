@@ -4,15 +4,15 @@ import StudsRecruitmentSectionModel
 import StudsRecruitmentLeaderModel
   from '../../models/StudsRecruitmentLeaderModel'
 import StudsRecruitmentRoleModel from '../../models/StudsRecruitmentRoleModel'
-import RecruitmentSection from '../../components/RecruitmentSection'
+import RecruitmentSection from 'components/RecruitmentSection'
 import styles from './styles.css'
 import Nils from 'static/img/people/nils.png'
 import Michel from 'static/img/people/michel.png'
 import Emmeli from 'static/img/people/emmeli.jpg'
 import Moa from 'static/img/people/moa.jpg'
 import Mauritz from 'static/img/people/mauritz.png'
-import RecruitmentHeader from '../../components/RecruitmentHeader'
-import RecruitmentFooter from '../../components/RecruitmentFooter'
+import RecruitmentHeader from 'components/RecruitmentHeader'
+import RecruitmentFooter from 'components/RecruitmentFooter'
 
 const RECRUITMENT_URL = 'https://studieresan.se/ansok'
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import StudsRecruitmentLeaderModel
-  from '../../models/StudsRecruitmentLeaderModel'
+  from 'models/StudsRecruitmentLeaderModel'
 import styles from './styles.css'
-import RecruitmentRole from '../RecruitmentRole'
+import RecruitmentRole from 'components/RecruitmentRole'
 
 const RecruitmentLeaderSection = ({ recruitmentLeader }) =>
   <div className={styles.leaderSectionContainer}>

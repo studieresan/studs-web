@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import StudsRecruitmentRoleModel from '../../models/StudsRecruitmentRoleModel'
+import StudsRecruitmentRoleModel from 'models/StudsRecruitmentRoleModel'
 import styles from './styles.css'
 
 const RecruitmentRole = ({ role }) => {

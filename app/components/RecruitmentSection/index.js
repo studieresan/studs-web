@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import StudsRecruitmentSectionModel
-  from '../../models/StudsRecruitmentSectionModel'
+  from 'models/StudsRecruitmentSectionModel'
 import RecruitmentLeaderSection from 'components/RecruitmentLeaderSection'
 
 const RecruitmentSection = ({ recruitmentSection }) =>

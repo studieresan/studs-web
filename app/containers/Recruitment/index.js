@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
 import StudsRecruitmentSectionModel
-  from '../../models/StudsRecruitmentSectionModel'
+  from 'models/StudsRecruitmentSectionModel'
 import StudsRecruitmentLeaderModel
-  from '../../models/StudsRecruitmentLeaderModel'
-import StudsRecruitmentRoleModel from '../../models/StudsRecruitmentRoleModel'
+  from 'models/StudsRecruitmentLeaderModel'
+import StudsRecruitmentRoleModel from 'models/StudsRecruitmentRoleModel'
 import RecruitmentSection from 'components/RecruitmentSection'
 import styles from './styles.css'
 import Nils from 'static/img/people/nils.png'

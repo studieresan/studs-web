@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl'
 import Isvg from 'react-inlinesvg'
 import NavbarWaypoint from 'containers/NavbarWaypoint'
 import Logo from 'static/img/logo/White + Frame (16x10).svg'
+import { Link } from 'react-router-dom'
 import styles from './styles.css'
 
 import messages from './messages'
@@ -23,6 +24,9 @@ class HomePageHeader extends Component {
             <p>
               <FormattedMessage {...messages.intro.content} />
             </p>
+            <Link to="/student" style={{color: 'white'}}>
+              <FormattedMessage {...messages.intro.application} />
+            </Link>
           </div>
         </div>
       </NavbarWaypoint>

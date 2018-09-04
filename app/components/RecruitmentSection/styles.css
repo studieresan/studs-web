@@ -1,0 +1,36 @@
+.recruitmentSectionContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.divider {
+  height: 5px;
+  width: 100px;
+  background-color: #00c6ac;
+  margin-bottom: 16px;
+  margin-top: 32px;
+}
+
+.introTitle {
+  text-align: justify;
+  font-size: 17px;
+  max-width: 818px;
+}
+
+.recruitmentSectionContainer p {
+  font-weight: 300;
+}
+
+.boldIntro {
+  color: #37444b;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+@media (max-width: 1130px) {
+  .recruitmentSectionContainer > p {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}

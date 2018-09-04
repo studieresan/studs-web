@@ -130,13 +130,15 @@ class Recruitment extends PureComponent {
 
   render() {
     return (
-      <div className={styles.container}>
-        <div>
-          <RecruitmentHeader/>
-          { this.state.sections.map(section => <RecruitmentSection key={section.id} recruitmentSection={section}/>) }
-          <RecruitmentFooter onClickUrl={RECRUITMENT_URL}/>
+      <React.Fragment>
+        <RecruitmentHeader/>
+        <div className={styles.container}>
+          <div>
+            { this.state.sections.map(section => <RecruitmentSection key={section.id} recruitmentSection={section}/>) }
+            <RecruitmentFooter onClickUrl={RECRUITMENT_URL}/>
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     )
   }
 }

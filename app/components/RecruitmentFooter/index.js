@@ -5,7 +5,7 @@ import styles from './styles.css'
 const RecruitmentFooter = ({ onClickUrl }) =>
   <div className={styles.recruitmentFooter}>
     <div className={styles.buttonContainer}>
-      <p><span className={styles.intro}>Vad väntar du på?</span> Sök Studs19 idag!</p>
+      <p><span className={styles.intro}>Vad väntar du på?</span> Sök Studs 2019 idag!</p>
       <a href={onClickUrl} target='_blank'>
         <button>Ansök nu »</button>
       </a>

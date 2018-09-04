@@ -1,0 +1,31 @@
+.recruitmentFooter {
+  margin-top: 32px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 32px;
+}
+
+.buttonContainer button {
+  background-color: #00c6ac;
+  border-radius: 30px;
+  margin-left: 16px;
+  padding: 9px 30px;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.7s;
+}
+
+.buttonContainer button:hover {
+  transform: scale(0.90);
+}
+
+@media (min-width: 1250px) {
+  .buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}

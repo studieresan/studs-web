@@ -1,0 +1,13 @@
+.recruitmentSectionContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.divider {
+  height: 5px;
+  width: 100px;
+  background-color: #00c6ac;
+  margin-bottom: 16px;
+  margin-top: 32px;
+}

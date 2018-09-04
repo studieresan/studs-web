@@ -1,0 +1,81 @@
+.leaderSectionContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 16px;
+}
+
+
+.contactContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 32px;
+}
+
+.contactInfo {
+  margin-right: 64px;
+  padding: 0;
+  margin-top: 32px;
+}
+
+.contactInfo h4 {
+  padding: 0;
+  margin: 0;
+}
+
+.name {
+  color: #37444b;
+  font-weight: bold;
+}
+
+.title {
+  color: #37444b;
+  font-weight: lighter;
+}
+
+.contactInfo p {
+  padding: 0;
+  margin: 0;
+}
+
+.contactInfo a {
+  color: #00c6ac;
+}
+
+.rolesContainer {
+  display: flex;
+  flex-direction: column;
+  margin-left: 64px;
+}
+
+.leaderImage {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 100%;
+  transition: 0.4s;
+}
+
+@media (max-width: 1250px) {
+  .rolesContainer {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 1250px) {
+  .leaderSectionContainer {
+    flex-direction: column;
+  }
+
+  .contactContainer {
+    justify-content: center;
+  }
+
+  .leaderImage {
+    transform: scale(0.75);
+  }
+
+  .contactInfo {
+    margin-right: 24px;
+  }
+}
+

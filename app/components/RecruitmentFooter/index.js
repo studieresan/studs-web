@@ -5,14 +5,14 @@ import styles from './styles.css'
 const RecruitmentFooter = ({ onClickUrl }) =>
   <div className={styles.recruitmentFooter}>
     <div className={styles.buttonContainer}>
-      <p>Vad väntar du på? Sök Studs19 idag!</p>
+      <p><span className={styles.intro}>Vad väntar du på?</span> Sök Studs19 idag!</p>
       <a href={onClickUrl} target='_blank'>
-        <button>Ansök nu</button>
+        <button>Ansök nu »</button>
       </a>
     </div>
     <div className={styles.applicationInfo}>
-      <p>Ansökningsperiod 5 - 19 september</p>
-      <p>Intervjuer hålls löpande</p>
+      <p className={styles.period}>Ansökningsperiod 5 - 19 september</p>
+      <p className={styles.interviewInfo}>Intervjuer hålls löpande</p>
     </div>
   </div>
 

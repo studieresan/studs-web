@@ -28,7 +28,9 @@
 
 .name {
   color: black;
+  font-size: 18px;
   font-weight: bold;
+  margin: 4px 0 !important;
 }
 
 .title {
@@ -39,11 +41,13 @@
 .contactInfo p {
   padding: 0;
   margin: 0;
+  color: #a7a6a6;
 }
 
 .contactInfo a {
   color: #00c6ac;
   font-weight: 300;
+  font-size: 17px;
 }
 
 .rolesContainer {
@@ -60,15 +64,16 @@
   transition: 0.4s;
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1130px) {
   .rolesContainer {
     margin-left: 0;
   }
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1130px) {
   .leaderSectionContainer {
     flex-direction: column;
+    padding: 32px;
   }
 
   .contactContainer {

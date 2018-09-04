@@ -13,6 +13,22 @@
 }
 
 .intro {
-  font-weight: 300;
   font-size: 16px;
+}
+
+.recruitmentSectionContainer p {
+  font-weight: 300;
+}
+
+.boldIntro {
+  color: #37444b;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+@media (max-width: 1130px) {
+  .recruitmentSectionContainer > p {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 }

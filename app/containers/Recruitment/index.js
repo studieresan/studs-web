@@ -22,7 +22,8 @@ class Recruitment extends PureComponent {
       sections: [
         new StudsRecruitmentSectionModel(
           1,
-          'Sälj- och eventgrupperna utgör ryggraden i Studs och jobbar tätt tillsammans med alla de företagsevent som finansierar studieresan.',
+          'Sälj- och eventgrupperna ',
+          'utgör ryggraden i Studs och jobbar tätt tillsammans med alla de företagsevent som finansierar studieresan.',
           [
             new StudsRecruitmentLeaderModel(
               'Säljansvarig',
@@ -32,8 +33,8 @@ class Recruitment extends PureComponent {
               [
                 new StudsRecruitmentRoleModel(
                   'Säljgruppen',
-                  `Säljgruppen är Studs största grupp, och arbetar med att kontakta företag och sälja in event. 
-                  I denna grupp behöver du tycka om att arbeta i grupp, vara utåtriktad och social. 
+                  'Säljgruppen är Studs största grupp, och arbetar med att kontakta företag och sälja in event. ',
+                  `I denna grupp behöver du tycka om att arbeta i grupp, vara utåtriktad och social. 
                   Arbetet är som mest intensivt under hösten och drar igång direkt efter rekryteringen. 
                   Om du söker denna grupp så boka upp D-dagen den 11:e oktober.`),
               ]),
@@ -45,7 +46,8 @@ class Recruitment extends PureComponent {
               [
                 new StudsRecruitmentRoleModel(
                   'Eventgruppen',
-                  `Eventgruppen ansvarar för genomförandet av alla företagsevent och kommer tillsammans med företagen att utforma event som är relevanta, intressanta och roliga både för oss och företagen. 
+                  'Eventgruppen ansvarar för genomförandet av alla företagsevent ',
+                  `och kommer tillsammans med företagen att utforma event som är relevanta, intressanta och roliga både för oss och företagen. 
                   Som en del av detta arbete kommer gruppen också att sammanställa feedback i samband med varje event. 
                   Till eventgruppen söker vi personer som vill jobba nära företagen i en kreativ roll.`),
               ]),
@@ -53,6 +55,7 @@ class Recruitment extends PureComponent {
 
         new StudsRecruitmentSectionModel(
           2,
+          '',
           '',
           [
             new StudsRecruitmentLeaderModel(
@@ -63,7 +66,8 @@ class Recruitment extends PureComponent {
               [
                 new StudsRecruitmentRoleModel(
                   'Resegruppen',
-                  `Resegruppen står för all planering och genomförande av studieresan som avslutar projektet – allt ifrån resrutt och flyg till koordinering av dagsaktiviteter. 
+                  'Resegruppen står för all planering och genomförande av studieresan som avslutar projektet',
+                  ` – allt ifrån resrutt och flyg till koordinering av dagsaktiviteter. 
                   Arbetet är både kreativt och strukturerat, då resegruppen utöver planering och logistik också är ansvarig för att ta fram inspiration och förslag på resmål, som gruppen sedan väljer bland. 
                   Merparten av arbetet sker under hösten.`),
               ]),
@@ -71,8 +75,9 @@ class Recruitment extends PureComponent {
 
         new StudsRecruitmentSectionModel(
           3,
+          'IT- och informationsgrupperna ',
           `
-          IT-gruppen och Informationsgruppen jobbar med information om Studs, både internt och externt. 
+          jobbar med information om Studs, både internt och externt. 
           Informationsgruppen består av fotografer, redaktörer och en art director. 
           De sätter tillsammans ihop en rapport för projektet, som är en sammanställning av projektet, resan och eventen. 
           IT-gruppen består av utvecklare och en art director, som ansvarar för Studs webbsida och de interna webbapplikationerna.
@@ -86,7 +91,8 @@ class Recruitment extends PureComponent {
               [
                 new StudsRecruitmentRoleModel(
                   'Utvecklare',
-                  `Utvecklarna bygger Studs IT-system. 
+                  'Utvecklarna bygger Studs IT-system. ',
+                  `
                   De programmeringsspråk som används är JavaScript (React, Node), Kotlin (Android) och Swift (iOS). 
                   Som utvecklare får du stor frihet att jobba med det du vill inom webb och app. 
                   Du bör ha ett intresse för programmering och mjukvaruutveckling och ett sug efter att lära dig nya saker. 
@@ -95,8 +101,8 @@ class Recruitment extends PureComponent {
 
                 new StudsRecruitmentRoleModel(
                   'Art Director',
-                  `Studs har två Art Directors som tillsammans skapar projektets grafiska profil. 
-                  Den ena kommer att jobba mest med webbdesign som en del av IT-gruppen, och den andra mest med designen av rapporten (läs: sammanställning av projektet, resan och eventen i en slags broschyr), som en del av informationsgruppen.`),
+                  'Studs har två Art Directors som tillsammans skapar projektets grafiska profil. ',
+                  'Den ena kommer att jobba mest med webbdesign som en del av IT-gruppen, och den andra mest med designen av rapporten (läs: sammanställning av projektet, resan och eventen i en slags broschyr), som en del av informationsgruppen.'),
               ]),
 
             new StudsRecruitmentLeaderModel(
@@ -107,12 +113,14 @@ class Recruitment extends PureComponent {
               [
                 new StudsRecruitmentRoleModel(
                   'Redaktör',
-                  `Redaktörerna skriver de texter som hamnar i rapporten, på hemsidan och på sociala medier. 
+                  'Redaktörerna skriver de texter som hamnar i rapporten',
+                  `, på hemsidan och på sociala medier. 
                   Det är texter om företagen vi besöker, eventen på företagen och intrycken av dessa, samt texter om resan och upplevelserna på resan.`),
 
                 new StudsRecruitmentRoleModel(
                   'Fotograf',
-                  'Vill du hjälpa till att fånga ögonblicken? Som fotograf tar du bilder av projektgruppen - både porträttbilder och bilder av de event och resor som vi gör - som används till webbsidan, marknadsföring på sociala medier och rapporten.'),
+                  'Vill du hjälpa till att fånga ögonblicken? ',
+                  'Som fotograf tar du bilder av projektgruppen - både porträttbilder och bilder av de event och resor som vi gör - som används till webbsidan, marknadsföring på sociala medier och rapporten.'),
               ]),
           ]),
       ],

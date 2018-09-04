@@ -7,7 +7,7 @@ const RecruitmentRole = ({ role }) => {
   return (
     <div className={styles.roleContainer}>
       <h3 className={styles.title}>{role.title}</h3>
-      <p className={styles.description}>{role.description}</p>
+      <p className={styles.description}><span className={styles.boldIntro}>{role.shortDescription}</span>{role.description}</p>
     </div>
   )
 }

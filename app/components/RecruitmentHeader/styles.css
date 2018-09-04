@@ -15,3 +15,9 @@
   font-weight: 300;
   font-size: 16px;
 }
+
+@media (max-width: 1130px) {
+  .recruitmentHeader {
+    padding: 32px;
+  }
+}

@@ -10,6 +10,8 @@ const RecruitmentHeader = () =>
       <p>De företagsevent som arrangeras under läsåret är obligatoriska för samtliga projektmedlemmar och merparten av dessa event sker under VT19. Vanligtvis äger eventen rum på kvällen och uppläggen kan skilja sig mellan olika event – totalt ca 30 företagsevent under läsåret. Med detta är Studs en unik chans att knyta värdefulla kontakter inom näringslivet.</p>
 
       <p>Inom projektet har varje projektmedlem en arbetsuppgift inom en undergrupp. Detta arbete sträcker sig över hela läsåret – arbetsintensiteten kan dock variera mellan olika perioder och undergrupper. Målet är att arbetet ska vara jämnt fördelat mellan alla projektmedlemmar oavsett undergrupp.</p>
+
+      <p>Du kan söka om du läser en master på KTH med en inriktning åt datahållet. Det inkluderar dig som läser civilingenjör i Datateknik, master i Datalogi, master i Maskininlärning eller master i Interaktiv Medieteknik (om du inriktar dig mot exempelvis webb eller UX), men det finns andra inriktningar som kan söka. Fråga oss om du är osäker!</p>
     </div>
   </div>
 

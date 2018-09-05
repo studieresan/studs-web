@@ -24,7 +24,7 @@ class HomePageHeader extends Component {
             <p>
               <FormattedMessage {...messages.intro.content} />
             </p>
-            <Link to="/student" style={{color: 'white'}}>
+            <Link to="/student" style={{color: 'white', fontSize: '28px'}}>
               <FormattedMessage {...messages.intro.application} />
             </Link>
           </div>

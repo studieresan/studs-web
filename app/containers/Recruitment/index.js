@@ -31,7 +31,7 @@ class Recruitment extends PureComponent {
               'Säljansvarig',
               'Nils Streijffert',
               Nils,
-              'nilsstre@kth.se',
+              'studs-salj@d.kth.se',
               [
                 new StudsRecruitmentRoleModel(
                   'Säljgruppen',

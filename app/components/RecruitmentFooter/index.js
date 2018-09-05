@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 
-const RecruitmentFooter = ({ onClickUrl }) =>
+const RecruitmentFooter = ({ onClickUrl, onClick }) =>
   <div className={styles.recruitmentFooter}>
     <div className={styles.buttonContainer}>
       <p><span className={styles.intro}>Vad väntar du på?</span> Sök Studs 2019 idag!</p>
       <a href={onClickUrl} target='_blank'>
-        <button>Ansök nu »</button>
+        <button onClick={onClick}>Ansök nu »</button>
       </a>
     </div>
     <div className={styles.applicationInfo}>
@@ -19,6 +19,7 @@ const RecruitmentFooter = ({ onClickUrl }) =>
 
 RecruitmentFooter.propTypes = {
   onClickUrl: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 }
 
 export default RecruitmentFooter

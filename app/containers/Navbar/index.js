@@ -81,6 +81,11 @@ export class Navbar extends React.Component {
               <FormattedMessage {...messages.events} />
             </Link>
           </li>
+          <li>
+            <Link to="/student">
+              Student
+            </Link>
+          </li>
         </ul>
       )
     }

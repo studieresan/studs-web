@@ -1,9 +1,9 @@
 [{
-	"id": "app.components.HomePage.intro.header",
-	"message": "We enjoy challenges and adventures"
+  "id": "app.components.HomePage.intro.header",
+  "message": "We enjoy challenges and adventures"
 }, {
-	"id": "app.components.HomePage.intro.content",
-	"message": "The KTH Study Trip, or Studs, is an annual project at the Royal Institute of Technology (KTH) in Stockholm. The project aims to create a platform for interaction between students close to graduation and relevant companies. The project ends with a study trip to give the students an opportunity to meet companies abroad."
+  "id": "app.components.HomePage.intro.content",
+  "message": "The KTH Study Trip, or Studs, is an annual project at the Royal Institute of Technology (KTH) in Stockholm. The project aims to create a platform for interaction between students close to graduation and relevant companies. The project ends with a study trip to give the students an opportunity to meet companies abroad."
 }, {
   "id": "app.components.HomePage.headline",
   "message": "About Studs"
@@ -26,20 +26,20 @@
   "id": "app.components.HomePage.trip.content",
   "message": "The project ends with a trip to the United States, in order to give the project members an opportunity for cultural and professional exchange. The US has a unique position in the world of technology with cities such as San Francisco, New York, and Seattle that generate continuous innovation and growth for startups and established players alike."
 }, {
-	"id": "app.components.HomePage.contact.header",
-	"message": "Get in touch"
+  "id": "app.components.HomePage.contact.header",
+  "message": "Get in touch"
 }, {
-	"id": "app.components.HomePage.contact.content",
-	"message": "If you're interested in having an event with us, or you're curious and want to know more – contact Nils, our Head of Sales."
+  "id": "app.components.HomePage.contact.content",
+  "message": "If you're interested in having an event with us, or you're curious and want to know more – contact Nils, our Head of Sales."
 }, {
-	"id": "app.components.HomePage.contact.phone",
-	"message": "Phone"
+  "id": "app.components.HomePage.contact.phone",
+  "message": "Phone"
 }, {
-	"id": "app.components.HomePage.members.header",
-	"message": "This is us"
+  "id": "app.components.HomePage.members.header",
+  "message": "This is us"
 }, {
-	"id": "app.components.HomePage.report.lastYear",
-	"message": "Last year's<br/>report"
+  "id": "app.components.HomePage.report.lastYear",
+  "message": "Last year's<br/>report"
 }, {
   "id": "app.containers.Members.listHeader",
   "message": "Members"
@@ -56,14 +56,14 @@
   "id": "app.components.HomePage.footer.SalesHeader",
   "message": "Work with us"
 }, {
-"id": "app.components.HomePage.footer.salesTitle",
-"message": "Head of Sales"
+  "id": "app.components.HomePage.footer.salesTitle",
+  "message": "Head of Sales"
 }, {
-"id": "app.components.HomePage.footer.projectManagerHeader",
-"message": "Questions?"
+  "id": "app.components.HomePage.footer.projectManagerHeader",
+  "message": "Questions?"
 }, {
-"id": "app.components.HomePage.footer.projectManagerTitle",
-"message": "Project Managers"
+  "id": "app.components.HomePage.footer.projectManagerTitle",
+  "message": "Project Managers"
 }, {
   "id": "app.components.HomePage.about.headline",
   "message": "This is {firstName}"
@@ -73,4 +73,9 @@
 }, {
   "id": "app.components.HomePage.about.link",
   "message": "Get to know the rest of us"
-}]
+},
+  {
+    "id": "app.components.HomePage.intro.application",
+    "message": "The application to Studs 2019 is open! Click here to learn more."
+  }
+]

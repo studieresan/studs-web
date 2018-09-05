@@ -1,0 +1,56 @@
+.recruitmentHeader {
+  text-align: center;
+}
+
+.recruitmentHeader a {
+  color: #26cab2;
+}
+
+.recruitmentHeader > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 25px;
+  background-color: #fafbfd;
+  z-index: 19;
+  padding-bottom: 25px;
+}
+
+.recruitmentHeader h2 {
+  font-weight: 900;
+  margin-bottom: 0;
+  color: #fff;
+  font-size: 75px;
+  margin-top: 50px;
+  text-shadow: 5px 5px 0 rgb(55, 179, 160), -4px -4px 0 #8eded7;
+  background: #26cab2;
+  padding: 50px;
+  position: relative;
+  z-index: 19;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .05);
+}
+
+.recruitmentHeader p:nth-child(-n + 2) {
+  font-weight: 300;
+  text-align: justify;
+  font-size: 17px;
+  max-width: 1130px;
+  margin-bottom: 0;
+}
+
+.recruitmentHeader p:last-child {
+  font-weight: 300;
+  text-align: justify;
+  font-size: 17px;
+  max-width: 1130px;
+}
+
+.boldIntro {
+  font-weight: 900 !important;
+}
+
+@media (max-width: 1130px) {
+  .recruitmentHeader > div {
+    padding: 32px;
+  }
+}

@@ -41,10 +41,9 @@
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 411px) {
   .buttonContainer > p {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 0 32px;
   }
 }
 

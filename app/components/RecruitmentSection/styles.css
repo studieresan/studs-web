@@ -30,7 +30,6 @@
 
 @media (max-width: 1130px) {
   .recruitmentSectionContainer > p {
-    padding-left: 32px;
-    padding-right: 32px;
+    padding: 0 32px;
   }
 }

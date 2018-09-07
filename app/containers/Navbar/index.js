@@ -74,9 +74,6 @@ export class Navbar extends React.Component {
       return (
         <ul className={styles.navbarMenu}>
           <li>
-            <Link to="/login"><FormattedMessage {...messages.login} /></Link>
-          </li>
-          <li>
             <Link to="/events/public">
               <FormattedMessage {...messages.events} />
             </Link>
@@ -85,6 +82,9 @@ export class Navbar extends React.Component {
             <Link to="/student">
               Student
             </Link>
+          </li>
+          <li>
+            <Link to="/login"><FormattedMessage {...messages.login} /></Link>
           </li>
         </ul>
       )

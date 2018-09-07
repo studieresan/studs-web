@@ -81,7 +81,7 @@ class Recruitment extends PureComponent {
           `
           jobbar med information om Studs, både internt och externt. 
           Informationsgruppen består av fotografer, redaktörer och en Art Director. 
-          De sätter tillsammans ihop en rapport för projektet, som är en sammanställning av projektet, resan och eventen. 
+          De sätter tillsammans ihop en rapport för projektet, som är en sammanställning av projektet, resan och eventen (som en slags broschyr). 
           IT-gruppen består av utvecklare och en Art Director, som ansvarar för Studs webbsida och de interna webbapplikationerna.
           `,
           [

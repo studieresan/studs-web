@@ -2,12 +2,9 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #072C2E;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('static/img/flower-pattern-1.svg');
-  background-size: 50%;
-  background-repeat: repeat;
+  background: linear-gradient(top left, #383f50, #22395d);
   padding: 120px;
-  color: #F7DDC9;
+  color: #fff;
 }
 
 .contact > div:first-child {

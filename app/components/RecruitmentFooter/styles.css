@@ -8,7 +8,7 @@
 }
 
 .buttonContainer button {
-  background-color: #42ceb8;
+  background-color: #2e99e4;
   border-radius: 30px;
   margin-left: 16px;
   padding: 19px 40px;
@@ -24,7 +24,7 @@
 
 .buttonContainer > p {
   font-size: 22px;
-  color: #42ceb8;
+  color: #2e99e4;
   font-weight: 900;
 }
 

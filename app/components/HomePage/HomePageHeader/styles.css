@@ -4,9 +4,7 @@
   display: flex;
   justify-content: center;
   align-content: center;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('static/img/flower-pattern-1.svg');
-  background-size: cover;
-  background-position: center center;
+  background: linear-gradient(top left, #383f50, #22395d);
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -42,13 +40,20 @@
   max-width: 100%;
   color: white;
   fill: white;
+  filter: drop-shadow(0 1px 2px #1c2c3a);
 }
 
 .headerContentLogo svg path,
 .headerContentLogo svg text {
-  fill: #F7DDC9;
+  fill: #fff;
 }
 
 .headerContentLogo svg rect {
-  stroke: #F7DDC9;
+  stroke: #8b9fb2;
+}
+
+.headerContentApply {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 900;
 }

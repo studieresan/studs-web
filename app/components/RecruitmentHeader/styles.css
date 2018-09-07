@@ -3,7 +3,7 @@
 }
 
 .recruitmentHeader a {
-  color: #26cab2;
+  color: #2e99e4;
 }
 
 .recruitmentHeader > div {
@@ -22,8 +22,8 @@
   color: #fff;
   font-size: 75px;
   margin-top: 50px;
-  text-shadow: 5px 5px 0 rgb(55, 179, 160), -4px -4px 0 #8eded7;
-  background: #26cab2;
+  text-shadow: 5px 5px 0 rgba(0, 0, 0, .15), -4px -4px 0 rgba(255, 255, 255, .2);
+  background: #2e99e4;
   padding: 50px;
   position: relative;
   z-index: 19;

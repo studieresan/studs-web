@@ -6,7 +6,7 @@ import classNames from 'classnames'
 import styles from './styles.css'
 import LocaleToggle from '../LocaleToggle'
 import Black from 'static/img/logo/Black.svg'
-import White from 'static/img/logo/white.svg'
+// import White from 'static/img/logo/white.svg'
 import MenuIcon from './icon_menu.svg'
 import BlackMenuIcon from './icon_menu_black.svg'
 import CloseIcon from './icon_close.svg'
@@ -97,9 +97,9 @@ export class Navbar extends React.Component {
 
     const bg = this.props.displayNavbarBackground
     const navbarClasses = classNames(styles.navbar, {
-      [styles.background]: bg,
+      [styles.background]: true,
     })
-    const Logo = bg ? Black : White
+    const Logo = Black // bg ? Black : White
     return (
       <div className={navbarClasses}>
         <div className={styles.control}>

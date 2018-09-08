@@ -7,12 +7,21 @@ import Isvg from 'react-inlinesvg'
 import NavbarWaypoint from 'containers/NavbarWaypoint'
 import Logo from 'static/img/logo/White + Frame (16x10).svg'
 import { Link } from 'react-router-dom'
+import ReactGA from 'react-ga'
 import styles from './styles.css'
 
 import messages from './messages'
 import * as actions from 'containers/App/actions'
 
 class HomePageHeader extends Component {
+  trackLearnMoreClick() {
+    ReactGA.event({
+      category: 'Application',
+      action: 'Clicked learn more',
+      label: 'Learn more button',
+    })
+  }
+
   render() {
     return (
       <NavbarWaypoint>
@@ -28,7 +37,7 @@ class HomePageHeader extends Component {
               <FormattedMessage {...messages.intro.application} />
             </p>
             <Link to="/student">
-              <button className={styles.learnMoreButton}><FormattedMessage {...messages.intro.learnMore} /> »</button>
+              <button onClick={this.trackLearnMoreClick} className={styles.learnMoreButton}><FormattedMessage {...messages.intro.learnMore} /> »</button>
             </Link>
           </div>
         </div>

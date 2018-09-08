@@ -57,3 +57,22 @@
   font-size: 28px;
   font-weight: 900;
 }
+
+.learnMoreButton {
+  background-color: #2e99e4;
+  border-radius: 30px;
+  margin-left: 16px;
+  padding: 19px 40px;
+  color: #fff;
+  font-size: 25px;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  outline: none;
+  transition: all 0.7s;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .06);
+}
+
+.learnMoreButton:hover {
+  transform: scale(0.90);
+}

@@ -76,6 +76,10 @@
 },
   {
     "id": "app.components.HomePage.intro.application",
-    "message": "The application to Studs 2019 is open! Click here to learn more."
+    "message": "The application to Studs 2019 is open!"
+  },
+  {
+    "id": "app.components.HomePage.intro.learnMore",
+    "message": "Learn more"
   }
 ]

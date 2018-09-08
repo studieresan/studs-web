@@ -14,5 +14,9 @@ export default defineMessages({
       id: 'app.components.HomePage.intro.application',
       defaultMessage: '',
     },
+    learnMore: {
+      id: 'app.components.HomePage.intro.learnMore',
+      defaultMessage: '',
+    },
   },
 })

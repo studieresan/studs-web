@@ -24,8 +24,11 @@ class HomePageHeader extends Component {
             <p>
               <FormattedMessage {...messages.intro.content} />
             </p>
-            <Link to="/student" className={styles.headerContentApply}>
+            <p>
               <FormattedMessage {...messages.intro.application} />
+            </p>
+            <Link to="/student">
+              <button className={styles.learnMoreButton}><FormattedMessage {...messages.intro.learnMore} /> »</button>
             </Link>
           </div>
         </div>

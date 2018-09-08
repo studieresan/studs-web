@@ -33,7 +33,7 @@ class HomePageHeader extends Component {
             <p>
               <FormattedMessage {...messages.intro.content} />
             </p>
-            <p>
+            <p className={styles.headerContentApply}>
               <FormattedMessage {...messages.intro.application} />
             </p>
             <Link to="/student">

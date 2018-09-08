@@ -54,8 +54,9 @@
 
 .headerContentApply {
   color: #fff;
-  font-size: 28px;
-  font-weight: 900;
+  font-size: 28px !important;
+  font-weight: 900 !important;
+  margin-top: 6vh !important;
 }
 
 .learnMoreButton {

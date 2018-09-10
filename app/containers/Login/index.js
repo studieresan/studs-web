@@ -70,6 +70,7 @@ class Login extends Component {
           <input
             type='email'
             value={user}
+            autoComplete='username'
             onChange={this.handleUserChange}
           />
 
@@ -79,6 +80,7 @@ class Login extends Component {
           <input
             type='password'
             value={pass}
+            autoComplete='current-password'
             onChange={this.handlePassChange}
           />
 

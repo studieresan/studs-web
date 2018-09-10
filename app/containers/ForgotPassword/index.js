@@ -47,6 +47,7 @@ class ForgotPassword extends React.Component {
             <input
               type='text'
               name='email'
+              autoComplete='username'
               value={email}
               onChange={this.handleChange}
               placeholder='Email'/>

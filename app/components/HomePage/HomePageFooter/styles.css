@@ -95,6 +95,15 @@
   fill: transparent;
 }
 
+.social svg:hover {
+  transition: 0.7s ease;
+  transform: scale(1.2);
+}
+
+.social svg {
+  transition: 0.7s ease;
+}
+
 .social a ~ a {
   margin-left: 1rem;
 }

@@ -25,13 +25,13 @@ function HomePageFooter() {
 const Social = () => (
   <div className={styles.social}>
     <a href="http://facebook.com/studskth">
-      <Facebook size={24} />
+      <Facebook color="#3b5998" size={24} />
     </a>
     <a href="http://instagram.com/studskth">
-      <Instagram size={24} />
+      <Instagram color="#d6249f" size={24} />
     </a>
     <a href="http://github.com/studieresan">
-      <Github size={24} />
+      <Github color="#6cc644" size={24} />
     </a>
   </div>
 )

@@ -13,6 +13,7 @@ import Moa from 'static/img/people/moa.jpg'
 import Mauritz from 'static/img/people/mauritz.png'
 import RecruitmentHeader from 'components/RecruitmentHeader'
 import RecruitmentFooter from 'components/RecruitmentFooter'
+import { HomePageFooter } from 'components/HomePage'
 import ReactGA from 'react-ga'
 
 const RECRUITMENT_URL = 'https://studieresan.se/ansok'
@@ -150,6 +151,9 @@ class Recruitment extends PureComponent {
             { this.state.sections.map(section => <RecruitmentSection key={section.id} recruitmentSection={section}/>) }
             <RecruitmentFooter recruitmentOpen={false} onClickUrl={RECRUITMENT_URL} onClick={this.onApplyClick}/>
           </div>
+        </div>
+        <div style={{ marginTop: 16 }}>
+          <HomePageFooter/>
         </div>
       </React.Fragment>
     )

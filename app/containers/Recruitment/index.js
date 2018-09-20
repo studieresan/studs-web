@@ -148,7 +148,7 @@ class Recruitment extends PureComponent {
         <div className={styles.container}>
           <div>
             { this.state.sections.map(section => <RecruitmentSection key={section.id} recruitmentSection={section}/>) }
-            <RecruitmentFooter onClickUrl={RECRUITMENT_URL} onClick={this.onApplyClick}/>
+            <RecruitmentFooter recruitmentOpen={false} onClickUrl={RECRUITMENT_URL} onClick={this.onApplyClick}/>
           </div>
         </div>
       </React.Fragment>

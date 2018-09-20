@@ -3,7 +3,7 @@ import styles from './styles.css'
 
 const RecruitmentHeader = () =>
   <div className={styles.recruitmentHeader}>
-    <h2>Sök Studs 2019!</h2>
+    <h2>Studs 2019</h2>
     <div>
       <p className={styles.boldIntro}>Studs är en årlig projektkurs som genomförs av ca 30 masterstudenter med datainriktning. Gemensamt planerar och anordnar vi i projektgruppen företagsevent, som tillsammans finansierar en studieresa under sommaren 2019. <a href='https://www.kth.se/student/kurser/kurs/AI2151' target="_blank" rel="noopener noreferrer">Kursen (AI2151)</a> är på 15 HP och destinationen för studieresan bestäms gemensamt av projektmedlemmarna.</p>
 

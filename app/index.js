@@ -6,7 +6,9 @@ import { AppContainer } from 'react-hot-loader'
 import ReactGA from 'react-ga'
 import { unregister } from './registerServiceWorker'
 
-ReactGA.initialize('UA-125271813-1')
+if (NPM_CONFIG_PRODUCTION === 'production') {
+  ReactGA.initialize('UA-125271813-1')
+}
 
 const render = (Component) => {
   ReactDOM.render((

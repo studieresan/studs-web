@@ -113,6 +113,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "flow-bin": "^0.83.0",
     "react-hot-loader": "^3.1.3"
   }
 }

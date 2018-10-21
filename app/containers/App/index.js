@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+// @flow
+import * as React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux'
@@ -9,8 +10,13 @@ import Navbar from 'containers/Navbar'
 import ScrollContainer from 'containers/ScrollContainer'
 import * as actions from './actions'
 
-class App extends Component {
+type Props = {|
+  children: React.Node,
+  loggedIn: boolean,
+  getUser: () => any
+|}
 
+class App extends React.Component<Props, {}> {
   componentDidMount() {
     if (this.props.loggedIn) {
       this.props.getUser()
@@ -35,17 +41,11 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  children: PropTypes.node,
-  loggedIn: PropTypes.bool.isRequired,
-  getUser: PropTypes.func.isRequired,
-}
-
 function mapStateToProps(state) {
   return {
     user: state.getIn(['global', 'user']),
     fetchingUser: state.getIn(['global', 'fetchingUser']),
-    loggedIn: state.getIn(['global', 'loggedIn']),
+    loggedIn: state.getIn(['global', 'loggedIn'])
   }
 }
 
@@ -53,4 +53,9 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actions, dispatch)
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+)

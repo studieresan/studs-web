@@ -1,0 +1,23 @@
+[ignore]
+<PROJECT_ROOT>/public
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
+
+emoji=true
+
+include_warnings=true
+
+module.name_mapper='^@containers\(.*\)$' -> '<PROJECT_ROOT>/containers/\1'
+module.name_mapper='^containers\(.*\)$' -> '<PROJECT_ROOT>/app/containers/\1'
+module.name_mapper='^@components\(.*\)$' -> '<PROJECT_ROOT>/components/\1'
+module.name_mapper='^components\(.*\)$' -> '<PROJECT_ROOT>/app/components/\1'
+
+[strict]

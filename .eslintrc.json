@@ -47,8 +47,10 @@
     "es6": true,
     "node": true
   },
+  "parser": "babel-eslint",
   "plugins": [
-    "react"
+    "react",
+    "flowtype"
   ],
   "parserOptions": {
     "ecmaVersion": 8,

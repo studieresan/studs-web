@@ -68,7 +68,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "start:prod": "yarn build && yarn start"
+    "start:prod": "yarn build && yarn start",
+    "flow": "flow"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -113,6 +114,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "flow-bin": "^0.83.0",
     "react-hot-loader": "^3.1.3"
   }
 }

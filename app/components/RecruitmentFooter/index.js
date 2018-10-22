@@ -24,7 +24,7 @@ const RecruitmentFooter = ({ recruitmentOpen, onClickUrl, onClick }) => {
 RecruitmentFooter.propTypes = {
   recruitmentOpen: PropTypes.bool.isRequired,
   onClickUrl: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 }
 
 export default RecruitmentFooter

@@ -29,3 +29,13 @@
 .radioButtonGroup {
   margin-top: 10px;
 }
+
+.errorMsg {
+  margin-bottom: 20px;
+  color: red;
+}
+
+.successMsg {
+  margin-bottom: 20px;
+  color: #30d12e;
+}

@@ -13,7 +13,6 @@ const isValidValue = elem => (
 function formToObject(formElements) {
   // Use reduce.call since formElements is not actually an array
   const formData = [].reduce.call(formElements, (data, elem) => {
-    console.log(elem.type)
     if (isValidElement(elem) && isValidValue(elem)) {
       let value
       if (elem.type == 'checkbox') {

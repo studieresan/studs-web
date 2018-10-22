@@ -9,24 +9,76 @@ class CreateUser extends React.Component {
   // and use an arrow function for handleSubmit instead
   constructor(props) {
     super(props)
+
+    this.state = {
+      errorMsg: '',
+      successMsg: '',
+    }
+
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    const formData = formToObject(event.target.elements)
-    console.log(formData)
+    const form = event.target
+
+    this.setState({
+      errorMsg: '',
+      successMsg: '',
+    })
+
+    const formData = formToObject(form.elements)
     createUser(formData)
       .then(res => {
-        console.log(res)
+        form.reset()
+        this.setState({
+          successMsg: `Successfully created user ${res.email}!`,
+        })
+      })
+      .catch(res => {
+        if (!res.json) {
+          console.error(res)
+          return
+        }
+
+        return res.json()
+          .then(err => {
+            let errorMsg
+            if (Array.isArray(err)) {
+              errorMsg = err.map(({ msg }) => msg).join(', ')
+            } else {
+              errorMsg = err.error
+            }
+
+            this.setState({
+              errorMsg,
+            })
+          })
       })
   }
 
   render() {
+    const { errorMsg, successMsg } = this.state
+    const errorIsVisible = errorMsg && errorMsg !== ''
+    const successIsVisible = successMsg && successMsg !== '' && !errorIsVisible
+
     return (
       <div className={styles.createUser}>
         <div className={styles.content}>
-          <h1>Create user</h1>
+          <h2>Create user</h2>
+
+          {errorIsVisible && (
+            <div className={styles.errorMsg}>
+              {errorMsg}
+            </div>
+          )}
+
+          {successIsVisible && (
+            <div className={styles.successMsg}>
+              {successMsg}
+            </div>
+          )}
+
           <form onSubmit={this.handleSubmit}>
             <label>
               Email:

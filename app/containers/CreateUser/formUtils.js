@@ -11,11 +11,10 @@ const isValidValue = elem => (
  * @param {HTMLFormControlsCollection} formElements
  */
 function formToObject(formElements) {
-  // Use reduce.call since formElements is not actually an array
-  const formData = [].reduce.call(formElements, (data, elem) => {
+  const formData = Array.from(formElements).reduce((data, elem) => {
     if (isValidElement(elem) && isValidValue(elem)) {
       let value
-      if (elem.type == 'checkbox') {
+      if (elem.type === 'checkbox') {
         // if multiple values are checked, save them in an array
         value = [...data[elem.name], elem.value]
       } else {

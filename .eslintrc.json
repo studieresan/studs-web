@@ -40,7 +40,8 @@
     "max-len": [
       "warn",
       { "code": 80  }
-    ]
+    ],
+    "eqeqeq": "error"
   },
   "env": {
     "browser": true,

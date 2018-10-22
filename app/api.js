@@ -142,7 +142,7 @@ export function logoutUser() {
 
 export function updateUserPassword({ password, confirmPassword }) {
   const post = {
-    method: 'POST',
+    method: 'PUT',
     credentials: 'include',
     headers: {
       ...jsonHeader(),

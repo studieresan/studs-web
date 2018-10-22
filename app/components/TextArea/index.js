@@ -4,7 +4,7 @@ import React from 'react'
 type Props = {
   name?: string,
   value?: string,
-  onChange?: Function,
+  onChange?: SyntheticEvent<HTMLTextAreaElement> => void,
 }
 
 class TextArea extends React.Component<Props> {

@@ -5,8 +5,6 @@ import styles from './styles.css'
 import formToObject from './formUtils'
 
 class CreateUser extends React.Component {
-  // If we use babel-eslint as parser, we can remove this constructor
-  // and use an arrow function for handleSubmit instead
   constructor(props) {
     super(props)
 

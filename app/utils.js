@@ -3,9 +3,9 @@ import * as Sentry from '@sentry/browser'
 
 export const initializeThirdParty = () => {
   if (isProduction()) {
-    ReactGA.initialize('UA-125271813-1')
+    ReactGA.initialize(process.env.GA_TOKEN)
     Sentry.init({
-      dsn: 'https://544ec1664d084abea6f10bf97334a80b@sentry.io/1298596',
+      dsn: process.env.SENTRY_DSN,
     })
   }
 }

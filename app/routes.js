@@ -9,6 +9,7 @@ import Login from 'containers/Login'
 import ForgotPassword from 'containers/ForgotPassword'
 import PasswordReset from 'containers/PasswordReset'
 import User from 'containers/User'
+import CreateUser from 'containers/CreateUser'
 import CvEdit from 'containers/CvEdit'
 import Events from 'containers/Events'
 import About from 'containers/About'
@@ -31,6 +32,7 @@ class StudsRouter extends Component {
         <Route exact path='/student' component={Recruitment}/>
         <AuthenticatedRoute exact path='/user' component={User}/>
         <AuthenticatedRoute exact path='/resume/edit' component={CvEdit}/>
+        <AuthenticatedRoute exact path='/create-user' component={CreateUser} />
 
         <AuthenticatedRoute exact path='/members' component={Members}/>
         <AuthenticatedRoute exact path='/members/:id?' component={Members}/>

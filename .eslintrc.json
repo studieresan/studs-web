@@ -4,6 +4,8 @@
     "plugin:react/recommended"
   ],
   "rules": {
+    "flowtype/define-flow-type": 1,
+    "flowtype/use-flow-type": 1,
     "no-trailing-spaces": "error",
     "no-console": "off",
     "no-var": "error",
@@ -47,8 +49,10 @@
     "es6": true,
     "node": true
   },
+  "parser": "babel-eslint",
   "plugins": [
-    "react"
+    "react",
+    "flowtype"
   ],
   "parserOptions": {
     "ecmaVersion": 8,

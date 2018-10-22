@@ -1,32 +1,23 @@
+// @flow
 import React from 'react'
-import PropTypes from 'prop-types'
 
-class TextArea extends React.Component {
-  constructor(props) {
-    super(props)
-    this.onChange = this.onChange.bind(this)
-  }
+type Props = {
+  name?: string,
+  value?: string,
+  onChange?: SyntheticEvent<HTMLTextAreaElement> => void,
+}
 
-  onChange(...args) {
-    this.props.onChange(...args)
-  }
-
+class TextArea extends React.Component<Props> {
   render() {
-    const { name, value } = this.props
+    const { name, value, onChange } = this.props
     return (
       <textarea
         name={name}
         value={value}
-        onChange={this.onChange}
-        ref={textarea => this.textarea = textarea} />
+        onChange={onChange}
+      />
     )
   }
-}
-
-TextArea.propTypes = {
-  name: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func,
 }
 
 export default TextArea

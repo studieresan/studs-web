@@ -14,7 +14,7 @@ import Mauritz from 'static/img/people/mauritz.png'
 import RecruitmentHeader from 'components/RecruitmentHeader'
 import RecruitmentFooter from 'components/RecruitmentFooter'
 import { HomePageFooter } from 'components/HomePage'
-import ReactGA from 'react-ga'
+import { trackPageView } from 'utils'
 
 const RECRUITMENT_URL = 'https://studieresan.se/ansok'
 
@@ -131,15 +131,7 @@ class Recruitment extends PureComponent {
   }
 
   componentDidMount() {
-    ReactGA.pageview('/student')
-  }
-
-  onApplyClick() {
-    ReactGA.event({
-      category: 'Application',
-      action: 'Clicked apply now',
-      label: 'Apply button',
-    })
+    trackPageView('/student')
   }
 
   render() {
@@ -149,7 +141,7 @@ class Recruitment extends PureComponent {
         <div className={styles.container}>
           <div>
             { this.state.sections.map(section => <RecruitmentSection key={section.id} recruitmentSection={section}/>) }
-            <RecruitmentFooter recruitmentOpen={false} onClickUrl={RECRUITMENT_URL} onClick={this.onApplyClick}/>
+            <RecruitmentFooter recruitmentOpen={false} onClickUrl={RECRUITMENT_URL} />
           </div>
         </div>
         <div style={{ marginTop: 16 }}>

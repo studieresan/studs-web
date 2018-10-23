@@ -15,9 +15,10 @@ function CvHeader({ user }) {
           round />
         <div className={styles.contact}>
           <div>{user.firstName} {user.lastName}</div>
+          <div>{user.position} @ Studs</div>
           <div>Studying {user.master} @ KTH</div>
-          <div>{user.email}</div>
-          <div>{user.phone}</div>
+          <div><a href={'mailto:' + user.email}>{user.email}</a></div>
+          <div><a href={'tel:' + user.phone}>{user.phone}</a></div>
         </div>
       </div>
       <div className={styles.logo}>

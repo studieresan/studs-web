@@ -26,7 +26,7 @@ export class User extends React.Component {
 
   handleChange(event) {
     const user = {}
-    if (event.target.type == 'file') {
+    if (event.target.type === 'file') {
       user[event.target.name] = event.target.files[0]
     } else {
       user[event.target.name] = event.target.value

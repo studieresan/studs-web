@@ -1,0 +1,41 @@
+.createUser {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: 5rem 0;
+  background: #003450;
+}
+
+.createUser input[type="radio"] {
+  display: inline-block;
+  width: initial;
+  margin: 0.5ch 1ch;
+}
+
+.content {
+  background: #FFF;
+  width: 90%;
+  max-width: 30rem;
+  padding: 1rem 3rem 1rem;
+}
+
+.formLabel, .createUser form > label {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.radioButtonGroup {
+  margin-top: 10px;
+}
+
+.errorMsg {
+  margin-bottom: 20px;
+  color: red;
+}
+
+.successMsg {
+  margin-bottom: 20px;
+  color: #30d12e;
+}

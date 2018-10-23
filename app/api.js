@@ -2,6 +2,7 @@ import { pickBy, omit } from 'lodash'
 
 const BASE_URL = process.env.API_BASE_URL || 'http://localhost:5040'
 const GRAPHQL = '/graphql'
+const SIGNUP = '/signup'
 const LOGIN = '/login'
 const LOGOUT = '/logout'
 const PASSWORD_UPDATE = '/account/password'
@@ -104,6 +105,21 @@ export function updateUser(newFields) {
   return executeGraphQL(mutation).then(res => res.data.updateProfile)
 }
 
+export function createUser(userInfo) {
+  const body = JSON.stringify({
+    ...userInfo,
+    token: process.env.SIGNUP_TOKEN || 'asdf',
+  })
+
+  return ftch(BASE_URL + SIGNUP, {
+    method: 'POST',
+    headers: {
+      ...jsonHeader(),
+    },
+    body,
+  })
+}
+
 export function loginUser(email, password) {
   const data = {
     email,
@@ -126,7 +142,7 @@ export function logoutUser() {
 
 export function updateUserPassword({ password, confirmPassword }) {
   const post = {
-    method: 'POST',
+    method: 'PUT',
     credentials: 'include',
     headers: {
       ...jsonHeader(),

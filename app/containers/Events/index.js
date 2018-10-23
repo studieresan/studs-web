@@ -101,7 +101,7 @@ export class Events extends React.Component {
     let detail
     let detailSelected = false
     if (params.id) {
-      const event = events.items.find(e => e.id == params.id)
+      const event = events.items.find(e => e.id === params.id)
       if (path === '/events/:id/edit') {
         detail = eventEdit(event)
       } else {

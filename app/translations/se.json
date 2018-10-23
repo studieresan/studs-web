@@ -12,7 +12,7 @@
   "message": "Projektet"
 }, {
   "id": "app.components.HomePage.project.content",
-  "message": "Studs är ett årligt ideellt projekt vid KTH, bedrivet av studenter. Projektet utgörs av 32 utvalda ingenjörsstudenter inom mastersprogram relevanta till datavetenskap. Genom att organisera evenemang tillsammans med företag skapar vi en plattform för att ge studenter och deras potentiella framtida arbetsgivare koncentrerad tid tillsammans."
+  "message": "Studs är ett årligt ideellt projekt vid KTH, bedrivet av studenter. Projektet utgörs av 30 utvalda ingenjörsstudenter inom mastersprogram relevanta till datavetenskap. Genom att organisera evenemang tillsammans med företag skapar vi en plattform för att ge studenter och deras potentiella framtida arbetsgivare koncentrerad tid tillsammans."
 }, {
   "id": "app.components.HomePage.events.header",
   "message": "Evenemangen"

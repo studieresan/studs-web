@@ -12,7 +12,7 @@
   "message": "The Project"
 }, {
   "id": "app.components.HomePage.project.content",
-  "message": "Studs is an annual non-profit project at KTH, driven by students. The project consists of 32 selected engineering students enrolled in a master’s program related to computer science. By organizing events together with companies, we create a platform to give students and their potential future employers focused time together. "
+  "message": "Studs is an annual non-profit project at KTH, driven by students. The project consists of 30 selected engineering students enrolled in a master’s program related to computer science. By organizing events together with companies, we create a platform to give students and their potential future employers focused time together. "
 }, {
   "id": "app.components.HomePage.events.header",
   "message": "The Events"

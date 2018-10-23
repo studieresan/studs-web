@@ -35,7 +35,7 @@ class EventEdit extends React.Component {
       event: { id },
     } = this.props
     const data ={}
-    if (e.target.type == 'file') {
+    if (e.target.type === 'file') {
       uploadImage(e.target.files[0])
         .then(url => {
           addPicture(url, id)

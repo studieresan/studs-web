@@ -68,6 +68,7 @@ const USER_PROFILE_FIELDS = `
   allergies
   master
   position
+  linkedIn
   picture
   companyName
 `

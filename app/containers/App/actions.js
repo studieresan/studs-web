@@ -33,6 +33,7 @@ export function getUserSuccess(user) {
       picture: user.picture,
       phone: user.phone || '',
       position: user.position || '',
+      linkedIn: user.linkedIn || '',
       master: user.master || '',
       allergies: user.allergies || '',
       type: user.memberType,

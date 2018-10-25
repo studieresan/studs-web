@@ -20,6 +20,7 @@ function CvHeader({ user }) {
           <div>Studying {user.master} @ KTH</div>
           <div><a href={`mailto:${user.email}`}>{user.email}</a></div>
           <div><a href={`tel:${user.phone}`}>{user.phone}</a></div>
+          {user.linkedIn && <div><a href={user.linkedIn}>LinkedIn</a></div>}
         </div>
       </div>
       <div className={styles.logo}>

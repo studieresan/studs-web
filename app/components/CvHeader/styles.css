@@ -23,3 +23,7 @@
 .logo > img {
   height: 50px;
 }
+
+a {
+  text-decoration: underline;
+}

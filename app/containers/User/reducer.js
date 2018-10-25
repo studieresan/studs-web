@@ -19,6 +19,7 @@ export const defaultUser = {
   lastName: '',
   phone: '',
   position: '',
+  linkedIn: '',
   master: '',
   allergies: '',
   password: '',

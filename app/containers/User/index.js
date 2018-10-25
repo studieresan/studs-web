@@ -120,6 +120,18 @@ export class User extends React.Component {
                 maxLength='30'
               />
               <div className='input-label'>
+                <FormattedMessage {...messages.linkedIn} />
+              </div>
+              <input
+                type='url'
+                name='linkedIn'
+                value={user.linkedIn}
+                onChange={this.handleChange}
+                onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
+                placeholder='LinkedIn URL'
+                maxLength='50'
+              />
+              <div className='input-label'>
                 <FormattedMessage {...messages.master} />
               </div>
               <input

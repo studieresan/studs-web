@@ -21,6 +21,10 @@ export default defineMessages({
     id: 'app.containers.User.position',
     defaultMessage: 'Position',
   },
+  linkedIn: {
+    id: 'app.containers.User.linkedIn',
+    defaultMessage: 'LinkedIn',
+  },
   master: {
     id: 'app.containers.User.master',
     defaultMessage: 'Master',

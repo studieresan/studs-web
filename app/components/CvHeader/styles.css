@@ -11,19 +11,9 @@
 .contact {
   align-self: center;
   font-size: 12px;
-  padding: 0 20px;
   flex: 2;
 }
 
-.logo {
-  margin-bottom: 20px;
-  align-self: top;
-}
-
-.logo > img {
-  height: 50px;
-}
-
-a {
+.contact a {
   text-decoration: underline;
 }

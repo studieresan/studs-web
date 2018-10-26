@@ -7,10 +7,10 @@
   background-color: #FCFCFC;
   width: 250px;
   height: 100%;
+  padding-top: 16px;
 }
 
 .detail {
   flex: 2;
   height: 100%;
-  padding-top: 1rem;
 }

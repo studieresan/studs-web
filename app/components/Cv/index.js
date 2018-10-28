@@ -14,7 +14,7 @@ function renderItem(item, i) {
           { item.organization &&
             <div className={styles.organization}>
               {item.organization}
-              { item.city && <span>- {item.city}</span> }
+              { item.city && <span> - {item.city}</span> }
             </div>
           }
         </div>

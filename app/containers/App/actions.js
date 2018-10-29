@@ -34,6 +34,7 @@ export function getUserSuccess(user) {
       phone: user.phone || '',
       position: user.position || '',
       linkedIn: user.linkedIn || '',
+      github: user.github || '',
       master: user.master || '',
       allergies: user.allergies || '',
       type: user.memberType,

@@ -132,6 +132,18 @@ export class User extends React.Component {
                 maxLength='50'
               />
               <div className='input-label'>
+                <FormattedMessage {...messages.github} />
+              </div>
+              <input
+                type='url'
+                name='github'
+                value={user.github}
+                onChange={this.handleChange}
+                onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
+                placeholder='Github URL'
+                maxLength='50'
+              />
+              <div className='input-label'>
                 <FormattedMessage {...messages.master} />
               </div>
               <input

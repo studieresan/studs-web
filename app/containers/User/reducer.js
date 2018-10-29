@@ -20,6 +20,7 @@ export const defaultUser = {
   phone: '',
   position: '',
   linkedIn: '',
+  github: '',
   master: '',
   allergies: '',
   password: '',

@@ -69,6 +69,7 @@ const USER_PROFILE_FIELDS = `
   master
   position
   linkedIn
+  github
   picture
   companyName
 `

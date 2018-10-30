@@ -25,6 +25,10 @@ export default defineMessages({
     id: 'app.containers.User.linkedIn',
     defaultMessage: 'LinkedIn',
   },
+  github: {
+    id: 'app.containers.User.github',
+    defaultMessage: 'Github',
+  },
   master: {
     id: 'app.containers.User.master',
     defaultMessage: 'Master',

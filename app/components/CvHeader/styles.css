@@ -34,3 +34,10 @@
 .social a ~ a {
   margin-left: 1rem;
 }
+
+@media (max-width: 690px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+}

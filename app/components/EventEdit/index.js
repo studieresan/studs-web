@@ -7,7 +7,7 @@ import * as EventActions from 'containers/Events/actions'
 
 import moment from 'moment'
 import { FormattedMessage } from 'react-intl'
-import { sortedUniq } from 'lodash'
+import { sortedUniq, sortBy } from 'lodash'
 import { uploadImage } from 'api'
 import messages from './messages'
 import styles from './styles.css'
@@ -94,7 +94,7 @@ class EventEdit extends React.Component {
     )
 
     const companies = companyUsers &&
-      sortedUniq(companyUsers.map(u => u.companyName))
+      sortedUniq(sortBy(companyUsers, ['companyName']).map(u => u.companyName))
 
     const surveyListItem = surveyType => (url, i) => (
       <EventEditSurvey

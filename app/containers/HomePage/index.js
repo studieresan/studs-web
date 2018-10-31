@@ -9,6 +9,7 @@ import {
   HomePageHeader,
   HomePagePitch,
   HomePageSalesContact,
+  HomePageAbout,
 } from 'components/HomePage'
 
 export class HomePage extends Component {
@@ -22,6 +23,7 @@ export class HomePage extends Component {
         <HomePageHeader />
         <HomePagePitch />
         <HomePageSalesContact />
+        <HomePageAbout />
         <HomePageFooter />
       </div>
     )

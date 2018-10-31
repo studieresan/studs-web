@@ -180,7 +180,7 @@
   "message": "Det här är {firstName}"
 }, {
   "id": "app.components.HomePage.about.intro",
-  "message": "{firstName} är en av de 32 studenter som gör Studs-projektet möjligt"
+  "message": "{firstName} är en av de 30 studenter som gör Studs-projektet möjligt"
 }, {
   "id": "app.components.HomePage.about.link",
   "message": "Lär känna resten av oss"

@@ -69,7 +69,7 @@
   "message": "This is {firstName}"
 }, {
   "id": "app.components.HomePage.about.intro",
-  "message": "{firstName} is one of 32 students taking part of the Studs project"
+  "message": "{firstName} is one of 30 students taking part of the Studs project"
 }, {
   "id": "app.components.HomePage.about.link",
   "message": "Get to know the rest of us"

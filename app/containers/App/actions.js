@@ -10,7 +10,6 @@ import {
 import {
   fetchUser,
   loginUser,
-  logoutUser,
 } from 'api'
 import { setLoggedOut, setLoggedIn } from 'auth'
 import { push } from 'react-router-redux'
@@ -61,7 +60,8 @@ export const getUser = () => dispatch => {
     })
 }
 
-export function loginSuccess() {
+export function loginSuccess(jwtToken) {
+  setLoggedIn(jwtToken)
   return {
     type: LOGIN_SUCCESS,
   }
@@ -74,9 +74,7 @@ export function loginError() {
 }
 
 export function logout() {
-  logoutUser().then(() =>
-    setLoggedOut()
-  )
+  setLoggedOut()
   return {
     type: LOGOUT,
   }
@@ -86,8 +84,7 @@ export const login = (email, pass) => dispatch => {
   loginUser(email, pass)
     .then(user => {
       dispatch(getUserSuccess(user))
-      dispatch(loginSuccess())
-      setLoggedIn()
+      dispatch(loginSuccess(user.token))
     })
     .catch(() => dispatch(loginError()))
 }

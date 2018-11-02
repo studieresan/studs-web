@@ -1,5 +1,5 @@
 .events {
-  padding-top: 46px;
+  padding-top: 56px;
   height: 100vh;
 }
 
@@ -39,6 +39,9 @@
   font-weight: bold;
   border-bottom: 1px solid #eee;
   font-size: 12px;
+  height: 40px;
+  align-items: center;
+  background-color: #F7DDC9;
 }
 
 .listContainer {

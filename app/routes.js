@@ -14,6 +14,7 @@ import CvEdit from 'containers/CvEdit'
 import Events from 'containers/Events'
 import About from 'containers/About'
 import NotFoundPage from 'containers/NotFoundPage'
+import AdminRoute from 'containers/AdminRoute'
 import AuthenticatedRoute from 'containers/AuthenticatedRoute'
 import PublicEvents from 'containers/PublicEvents'
 import Recruitment from 'containers/Recruitment'
@@ -32,7 +33,7 @@ class StudsRouter extends Component {
         <Route exact path='/student' component={Recruitment}/>
         <AuthenticatedRoute exact path='/user' component={User}/>
         <AuthenticatedRoute exact path='/resume/edit' component={CvEdit}/>
-        <AuthenticatedRoute exact path='/create-user' component={CreateUser} />
+        <AdminRoute exact path='/create-user' component={CreateUser} />
 
         <AuthenticatedRoute exact path='/members' component={Members}/>
         <AuthenticatedRoute exact path='/members/:id?' component={Members}/>

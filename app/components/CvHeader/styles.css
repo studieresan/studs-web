@@ -45,6 +45,10 @@
     align-items: center;
   }
 
+  .contactWrapper {
+    padding-bottom: 1em;
+  }
+
   .social {
     align-self: auto;
   }

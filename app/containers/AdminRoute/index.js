@@ -9,10 +9,10 @@ type State = {|
   loggedIn: boolean,
   hasFetchedLoggedInUser: boolean,
 |}
-type Props = {|
+type Props = {
   ...State,
   component: React.ComponentType<any>,
-|}
+}
 
 function AdminRoute({
   component: Component,

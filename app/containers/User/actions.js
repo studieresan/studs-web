@@ -8,7 +8,6 @@ import {
   UPDATE,
 } from './constants'
 import { fetchUser, updateUser, updateUserPassword } from 'api'
-import { setLoggedIn } from 'auth'
 import { getUserSuccess } from 'containers/App/actions'
 import differenceWith from 'lodash/differenceWith'
 import toPairs from 'lodash/toPairs'

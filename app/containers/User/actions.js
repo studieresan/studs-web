@@ -68,7 +68,6 @@ export const save = (user) => (dispatch, getState) => {
     .then(user => {
       dispatch(saveSuccess())
       dispatch(getSuccess(user))
-      setLoggedIn()
       // Update the user globally
       dispatch(getUserSuccess(user))
     })

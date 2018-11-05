@@ -16,6 +16,7 @@ const initialState = fromJS({
   loggedIn: loggedIn(),
   loginError: false,
   fetchingUser: false,
+  hasFetchedLoggedInUser: false,
   displayNavbarBackground: true,
 })
 
@@ -27,6 +28,7 @@ function reducer(state = initialState, action) {
     return state.merge(Map({
       user: Map(action.user),
       fetchingUser: false,
+      hasFetchedLoggedInUser: true,
     }))
   case GET_USER_ERROR:
     return state.merge(Map({
@@ -43,6 +45,7 @@ function reducer(state = initialState, action) {
     return state.merge(Map({
       loggedIn: false,
       user: null,
+      hasFetchedLoggedInUser: false,
     }))
   case SET_NAVBAR_BACKGROUND:
     return state.merge(Map({

@@ -25,6 +25,7 @@ export const defaultUser = {
   allergies: '',
   password: '',
   confirmPassword: '',
+  permissions: [],
 }
 
 const initialState = fromJS({

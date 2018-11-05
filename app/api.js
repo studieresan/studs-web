@@ -4,7 +4,6 @@ const BASE_URL = process.env.API_BASE_URL || 'http://localhost:5040'
 const GRAPHQL = '/graphql'
 const SIGNUP = '/signup'
 const LOGIN = '/login'
-const LOGOUT = '/logout'
 const PASSWORD_UPDATE = '/account/password'
 const PASSWORD_FORGOT = '/forgot'
 const PASSWORD_RESET = '/reset'
@@ -34,6 +33,13 @@ function jsonHeader() {
   }
 }
 
+function authorizationHeader() {
+  const jwtToken = localStorage.token
+  return {
+    'Authorization': `Bearer ${jwtToken}`,
+  }
+}
+
 function graphQLHeader() {
   return {
     'Content-Type': 'application/graphql',
@@ -52,6 +58,7 @@ function executeGraphQL(query) {
     method: 'POST',
     ...credentials(),
     headers: {
+      ...authorizationHeader(),
       ...graphQLHeader(),
     },
     body: query,
@@ -138,15 +145,12 @@ export function loginUser(email, password) {
   return ftch(BASE_URL+LOGIN, post)
 }
 
-export function logoutUser() {
-  return ftch(`${BASE_URL}${LOGOUT}`, { ...credentials() })
-}
-
 export function updateUserPassword({ password, confirmPassword }) {
   const post = {
     method: 'PUT',
     credentials: 'include',
     headers: {
+      ...authorizationHeader(),
       ...jsonHeader(),
     },
     body: JSON.stringify({

@@ -9,6 +9,7 @@ type State = {|
   loggedIn: boolean,
   hasFetchedLoggedInUser: boolean,
 |}
+
 type Props = {
   ...State,
   component: React.ComponentType<any>,

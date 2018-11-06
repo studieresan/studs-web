@@ -9,7 +9,7 @@ import styles from './styles.css'
 import PublicEvent from 'components/PublicEvent'
 import PublicEventMenu from 'components/PublicEventMenu'
 
-export class OldEvents extends React.Component {
+class OldEvents extends React.Component {
   componentDidMount() {
     this.props.getOldEvents()
 

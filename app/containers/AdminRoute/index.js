@@ -43,7 +43,7 @@ function mapStateToProps(state: Map<string, any>): State {
   const user: Map<string, any> = state.getIn(['global', 'user']) || Map()
 
   return {
-    isAdmin: hasAdminPermission(user),
+    isAdmin: hasAdminPermission(user.toJS()),
     loggedIn: state.getIn(['global', 'loggedIn']) || false,
     hasFetchedLoggedInUser:
       state.getIn(['global', 'hasFetchedLoggedInUser']) || false,

@@ -1,6 +1,7 @@
 import {
   saveEvent,
   fetchEvents,
+  fetchOldEvents,
   removeEventWithId,
 } from 'api'
 import {
@@ -66,6 +67,13 @@ const removeError = () => actionType(REMOVE_ERROR)
 export const getEvents = () => dispatch => {
   dispatch(getRequest())
   fetchEvents()
+    .then(events => dispatch(getSuccess(events)))
+    .catch(err => dispatch(getError(err)))
+}
+
+export const getOldEvents = () => dispatch => {
+  dispatch(getRequest())
+  fetchOldEvents()
     .then(events => dispatch(getSuccess(events)))
     .catch(err => dispatch(getError(err)))
 }

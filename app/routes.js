@@ -17,6 +17,7 @@ import NotFoundPage from 'containers/NotFoundPage'
 import AdminRoute from 'containers/AdminRoute'
 import AuthenticatedRoute from 'containers/AuthenticatedRoute'
 import PublicEvents from 'containers/PublicEvents'
+import OldEvents from 'containers/OldEvents'
 import Recruitment from 'containers/Recruitment'
 
 class StudsRouter extends Component {
@@ -30,6 +31,7 @@ class StudsRouter extends Component {
 
         <Route exact path='/password-reset/:token' component={PasswordReset}/>
         <Route exact path='/events/public' component={PublicEvents}/>
+        <Route exact path='/events/old' component={OldEvents}/>
         <Route exact path='/student' component={Recruitment}/>
         <AuthenticatedRoute exact path='/user' component={User}/>
         <AuthenticatedRoute exact path='/resume/edit' component={CvEdit}/>

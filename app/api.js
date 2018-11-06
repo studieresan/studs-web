@@ -260,6 +260,17 @@ export function fetchEvents() {
     .then(events => events.map(e => ({...e, date: new Date(e.date)})))
 }
 
+export function fetchOldEvents() {
+  const query = `query {
+    oldEvents {
+      ${EVENT_FIELDS}
+    }
+  }`
+  return executeGraphQL(query)
+    .then(res => res.data.oldEvents)
+    .then(events => events.map(e => ({...e, date: new Date(e.date)})))
+}
+
 export function saveEvent(e) {
   const event = omit(e, 'id')
   const id = e.id

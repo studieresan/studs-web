@@ -4,9 +4,6 @@
   justify-content: center;
   height: 100%;
   overflow: auto;
-
-  /* iPhone-X bottom insets */
-  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* iPhone X landscape insets */
@@ -19,6 +16,19 @@
     /* stylelint-disable */
     padding-right: constant(safe-area-inset-right);
     padding-right: env(safe-area-inset-right);
+    /* stylelint-enable */
+  }
+}
+
+/* iPhone X portrait insets */
+@media only screen
+  and (device-width: 375px)
+  and (device-height: 812px)
+  and (-webkit-device-pixel-ratio: 3)
+  and (orientation: portrait) {
+  .cv {
+    /* stylelint-disable */
+    padding-bottom: env(safe-area-inset-bottom);
     /* stylelint-enable */
   }
 }

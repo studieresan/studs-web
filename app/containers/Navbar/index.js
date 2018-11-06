@@ -108,7 +108,7 @@ export class Navbar extends React.Component {
           </Link>
           <img
             src={this.state.collapsed ? (bg ? BlackMenuIcon : MenuIcon) : (bg ? BlackCloseIcon : CloseIcon) }
-            height={26}
+            height={24}
             onClick={this.handleMenuClick} />
         </div>
         <div className={ collapsed }>

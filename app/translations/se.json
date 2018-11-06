@@ -117,7 +117,7 @@
   "message": "Event"
 }, {
   "id": "app.containers.Navbar.internalevents",
-  "message": "Event info"
+  "message": "Eventinfo"
 }, {
   "id": "app.containers.Navbar.events",
   "message": "Events"

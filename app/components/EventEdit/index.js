@@ -125,6 +125,7 @@ class EventEdit extends React.Component {
             name='companyName'
             placeholder='Company'
             value={event.companyName || ''}
+            onClick={this.handleChange}
             onChange={this.handleChange}>
             <option key='none'
               disabled>

@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl'
 import Section from 'components/Section'
 import styles from './styles.css'
 import messages from './messages'
-import Nils from 'static/img/people/nils.png'
+import Nils from 'static/img/people/nils.jpg'
 
 const CONTACT_NAME = 'Nils Streijffert'
 const CONTACT_PHONE_NUMBER = '+4670-1440857'

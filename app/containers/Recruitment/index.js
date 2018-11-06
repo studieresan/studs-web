@@ -6,7 +6,7 @@ import StudsRecruitmentLeaderModel
 import StudsRecruitmentRoleModel from 'models/StudsRecruitmentRoleModel'
 import RecruitmentSection from 'components/RecruitmentSection'
 import styles from './styles.css'
-import Nils from 'static/img/people/nils.png'
+import Nils from 'static/img/people/nils.jpg'
 import Michel from 'static/img/people/michel.png'
 import Emmeli from 'static/img/people/emmeli.png'
 import Moa from 'static/img/people/moa.jpg'

@@ -2,7 +2,8 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { Route, Redirect } from 'react-router-dom'
-import { List, Map } from 'immutable'
+import { Map } from 'immutable'
+import { hasAdminPermission } from '../../users'
 
 type State = {|
   isAdmin: boolean,
@@ -39,11 +40,10 @@ function AdminRoute({
 }
 
 function mapStateToProps(state: Map<string, any>): State {
-  const userPermissions: List<string> =
-    state.getIn(['global', 'user', 'permissions']) || List()
+  const user: Map<string, any> = state.getIn(['global', 'user']) || Map()
 
   return {
-    isAdmin: userPermissions.includes('admin_permission'),
+    isAdmin: hasAdminPermission(user),
     loggedIn: state.getIn(['global', 'loggedIn']) || false,
     hasFetchedLoggedInUser:
       state.getIn(['global', 'hasFetchedLoggedInUser']) || false,

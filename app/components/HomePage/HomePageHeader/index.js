@@ -1,44 +1,22 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+// @flow
+import React from 'react'
 import { FormattedMessage } from 'react-intl'
-import Isvg from 'react-inlinesvg'
-import NavbarWaypoint from 'containers/NavbarWaypoint'
-import Logo from 'static/img/logo/White + Frame (16x10).svg'
+import messages from './messages'
 import styles from './styles.css'
 
-import messages from './messages'
-import * as actions from 'containers/App/actions'
-
-class HomePageHeader extends Component {
-  render() {
-    return (
-      <NavbarWaypoint>
-        <div className={styles.header}>
-          <div className={styles.headerContent}>
-            <div className={styles.headerContentLogo}>
-              <Isvg src={Logo} />
-            </div>
-            <p>
-              <FormattedMessage {...messages.intro.content} />
-            </p>
-          </div>
-        </div>
-      </NavbarWaypoint>
-    )
-  }
+function HomePageHeader() {
+  return (
+    <div className={styles.header}>
+      <div className={styles.headerContent}>
+        <h1>
+          <FormattedMessage {...messages.intro.headline} />
+        </h1>
+        <p className={styles.headerText}>
+          <FormattedMessage {...messages.intro.content} />
+        </p>
+      </div>
+    </div>
+  )
 }
 
-HomePageHeader.propTypes = {
-  setNavbarBackground: PropTypes.func.isRequired,
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch)
-}
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(HomePageHeader)
+export default HomePageHeader

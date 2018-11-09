@@ -1,7 +1,7 @@
 [
   {
-    "id": "app.components.HomePage.intro.header",
-    "message": "Vi älskar utmaningar och äventyr"
+    "id": "app.components.HomePage.intro.headline",
+    "message": "Vad är Studs?"
   },
   {
     "id": "app.components.HomePage.intro.content",

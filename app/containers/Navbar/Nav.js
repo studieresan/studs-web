@@ -25,7 +25,7 @@ type State = {
   collapsed: boolean,
 }
 
-class HeroNav extends React.Component<Props, State> {
+class Nav extends React.Component<Props, State> {
   static defaultProps = {
     invert: false,
   }
@@ -73,7 +73,7 @@ class HeroNav extends React.Component<Props, State> {
     return (
       <div className={navbarClasses}>
         <div className={styles.control}>
-          <Link to="/">
+          <Link to='/'>
             <Isvg src={logo} className={styles.navbarLogo} />
           </Link>
           <img src={menuIcon} height={24} onClick={this.handleMenuClick} />
@@ -96,6 +96,6 @@ function mapStateToProps(state) {
 export default withRouter(
   connect(
     mapStateToProps,
-    null,
-  )(HeroNav),
+    null
+  )(Nav)
 )

@@ -8,6 +8,8 @@
   padding: 32px 55px;
   z-index: 1;
   background: none;
+  transition: 300ms all;
+  height: var(--header-height);
 }
 
 .invert {
@@ -101,10 +103,10 @@
 @media (max-width: 800px) {
   .open.navbar {
     background: var(--primary-dark);
-    height: 100vh;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
     position: fixed;
+    height: 100vh;
   }
 
   .navbar {
@@ -116,7 +118,7 @@
   }
 
   .navbar .collapsed {
-    display: none;
+    pointer-events: none;
   }
 
   .navLinks {
@@ -151,5 +153,16 @@
 
   .control > img {
     display: block;
+  }
+
+  .open .navLinks {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: transform 300ms;
+  }
+
+  .navLinks {
+    opacity: 0;
+    transform: translateY(-30px);
   }
 }

@@ -56,11 +56,11 @@ function eventsReducer(state = initialState, action) {
         Map({
           items: fromJS(action.data),
           saved: true,
-        }),
+        })
       )
     case UPDATE:
       return updateEvent(state, action.id, event =>
-        event.merge(Map(action.data)),
+        event.merge(Map(action.data))
       )
     case NEW_EVENT:
       return state.set('newEvent', fromJS(newEvent))
@@ -84,23 +84,23 @@ function eventsReducer(state = initialState, action) {
       return state.set('removeError', true).set('removing', false)
     case ADD_PICTURE:
       return updateEvent(state, action.id, event =>
-        event.update('pictures', pictures => pictures.push(action.url)),
+        event.update('pictures', pictures => pictures.push(action.url))
       )
     case REMOVE_PICTURE:
       return updateEvent(state, action.id, event =>
         event.update('pictures', pictures =>
-          pictures.filter((p, index) => index !== action.index),
-        ),
+          pictures.filter((p, index) => index !== action.index)
+        )
       )
     case ADD_SURVEY:
       return updateEvent(state, action.id, event =>
-        event.update(action.surveyType, surveys => surveys.push(action.url)),
+        event.update(action.surveyType, surveys => surveys.push(action.url))
       )
     case REMOVE_SURVEY:
       return updateEvent(state, action.id, event =>
         event.update(action.surveyType, survey =>
-          survey.filter((p, index) => index !== action.index),
-        ),
+          survey.filter((p, index) => index !== action.index)
+        )
       )
     default:
       return state

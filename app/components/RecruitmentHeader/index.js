@@ -15,7 +15,8 @@ const RecruitmentHeader = () => (
         <a
           href='https://www.kth.se/student/kurser/kurs/AI2151'
           target='_blank'
-          rel='noopener noreferrer'>
+          rel='noopener noreferrer'
+        >
           Kursen (AI2151)
         </a>{' '}
         är på 15 HP och destinationen för studieresan bestäms gemensamt av

@@ -52,5 +52,5 @@ function mapStateToProps(state: Map<string, any>): State {
 
 export default connect(
   mapStateToProps,
-  null,
+  null
 )(AdminRoute)

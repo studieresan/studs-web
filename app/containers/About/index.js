@@ -47,7 +47,7 @@ About.propTypes = {
     PropTypes.shape({
       firstName: PropTypes.string.isRequired,
       picture: PropTypes.string,
-    }),
+    })
   ),
   getUsers: PropTypes.func.isRequired,
 }
@@ -69,5 +69,5 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(About)

@@ -111,7 +111,8 @@ class EventEdit extends React.Component {
             <Button
               onClick={this.handleSave}
               type='submit'
-              className='btn-bright'>
+              className='btn-bright'
+            >
               <FormattedMessage {...messages.save} />
             </Button>
           )}
@@ -125,7 +126,8 @@ class EventEdit extends React.Component {
             placeholder='Company'
             value={event.companyName || ''}
             onClick={this.handleChange}
-            onChange={this.handleChange}>
+            onChange={this.handleChange}
+          >
             <option key='none' disabled>
               Select company
             </option>
@@ -246,5 +248,5 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(EventEdit)

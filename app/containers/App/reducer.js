@@ -30,20 +30,20 @@ function reducer(state = initialState, action) {
           user: Map(action.user),
           fetchingUser: false,
           hasFetchedLoggedInUser: true,
-        }),
+        })
       )
     case GET_USER_ERROR:
       return state.merge(
         Map({
           fetchingUser: false,
-        }),
+        })
       )
     case LOGIN_SUCCESS:
       return state.merge(
         Map({
           loggedIn: true,
           loginError: false,
-        }),
+        })
       )
     case LOGIN_ERROR:
       return state.set('loginError', true)
@@ -53,13 +53,13 @@ function reducer(state = initialState, action) {
           loggedIn: false,
           user: null,
           hasFetchedLoggedInUser: false,
-        }),
+        })
       )
     case SET_NAVBAR_BACKGROUND:
       return state.merge(
         Map({
           displayNavbarBackground: action.payload,
-        }),
+        })
       )
     default:
       return state

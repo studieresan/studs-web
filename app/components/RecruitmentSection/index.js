@@ -23,7 +23,7 @@ const RecruitmentSection = ({ recruitmentSection }) => (
 
 RecruitmentSection.propTypes = {
   recruitmentSection: PropTypes.PropTypes.instanceOf(
-    StudsRecruitmentSectionModel,
+    StudsRecruitmentSectionModel
   ).isRequired,
 }
 

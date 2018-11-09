@@ -57,10 +57,10 @@ export const save = user => (dispatch, getState) => {
     .getIn(['global', 'user'])
     .toJS()
   const localChanges = toPairs(
-    omit(user, ['password', 'confirmPassword', 'memberType']),
+    omit(user, ['password', 'confirmPassword', 'memberType'])
   )
   const diff = fromPairs(
-    differenceWith(localChanges, toPairs(savedUser), isEqual),
+    differenceWith(localChanges, toPairs(savedUser), isEqual)
   )
   if (isEmpty(diff)) return
 

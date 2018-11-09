@@ -20,7 +20,7 @@ function Button({
       [styles.full]: full,
     },
     styles.button,
-    className,
+    className
   )
   return (
     <Wrapper display={wrapper}>

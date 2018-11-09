@@ -56,6 +56,6 @@ class StudsRouter extends Component {
 export default withRouter(
   connect(
     null,
-    null,
-  )(StudsRouter),
+    null
+  )(StudsRouter)
 )

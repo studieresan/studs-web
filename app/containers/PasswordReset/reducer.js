@@ -26,14 +26,14 @@ export default function(state = initialState, action) {
           resetting: false,
           error: false,
           success: true,
-        }),
+        })
       )
     case RESET_ERROR:
       return state.merge(
         Map({
           resetting: false,
           error: true,
-        }),
+        })
       )
     default:
       return state

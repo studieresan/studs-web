@@ -35,7 +35,8 @@ function CvHeader({ user }) {
             href={user.linkedIn}
             target='_blank'
             rel='noopener noreferrer'
-            title='LinkedIn'>
+            title='LinkedIn'
+          >
             <Linkedin color='#333' size={24} />
           </a>
         )}
@@ -44,7 +45,8 @@ function CvHeader({ user }) {
             href={user.github}
             target='_blank'
             rel='noopener noreferrer'
-            title='Github'>
+            title='Github'
+          >
             <Github color='#333' size={24} />
           </a>
         )}

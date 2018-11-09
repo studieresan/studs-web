@@ -10,7 +10,7 @@ export function getLocaleMessages(locales) {
           defaultMessage: `${locale}`,
         },
       }),
-    {},
+    {}
   )
 }
 

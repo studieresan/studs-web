@@ -162,7 +162,8 @@ class EventDetail extends Component {
                       <button
                         name='before'
                         onClick={this.handleRemindClick}
-                        className='btn-default'>
+                        className='btn-default'
+                      >
                         Remind on slack
                       </button>
                     )}
@@ -178,7 +179,8 @@ class EventDetail extends Component {
                       <button
                         name='after'
                         onClick={this.handleRemindClick}
-                        className='btn-default'>
+                        className='btn-default'
+                      >
                         Remind on slack
                       </button>
                     )}

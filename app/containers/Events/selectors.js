@@ -14,7 +14,7 @@ const selectEvents = () =>
       events: events.toJS(),
       user: user ? user.toJS() : null,
       companyUsers: companyUsers.toJS(),
-    }),
+    })
   )
 
 export default selectEvents

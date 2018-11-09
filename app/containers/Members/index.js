@@ -87,7 +87,7 @@ Members.propTypes = {
       master: PropTypes.string,
       picture: PropTypes.string,
       cv: PropTypes.object,
-    }),
+    })
   ),
   match: PropTypes.object,
   selectMember: PropTypes.func.isRequired,
@@ -96,5 +96,5 @@ Members.propTypes = {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Members)

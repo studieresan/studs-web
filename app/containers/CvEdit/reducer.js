@@ -35,14 +35,14 @@ function sectionReducer(state, action) {
     }
     case UPDATE_ITEM:
       return state.updateIn(['items', action.index], item =>
-        item.merge(Map(action.item)),
+        item.merge(Map(action.item))
       )
     case REMOVE_ITEM:
       return state.removeIn(['items', action.index])
     case MOVE_ITEM: {
       const oldItem = state.getIn(['items', action.fromIndex])
       return state.update('items', items =>
-        items.splice(action.fromIndex, 1).splice(action.toIndex, 0, oldItem),
+        items.splice(action.fromIndex, 1).splice(action.toIndex, 0, oldItem)
       )
     }
     default:
@@ -66,13 +66,13 @@ function cvEditReducer(state = initialState, action) {
         ],
       })
       return state.updateIn(['content', 'sections'], sections =>
-        sections.push(section),
+        sections.push(section)
       )
     }
     case UPDATE_SECTION:
       state = state.set('saved', false)
       return state.updateIn(['content', 'sections', action.index], section =>
-        section.merge(Map(action.section)),
+        section.merge(Map(action.section))
       )
     case REMOVE_SECTION:
       state = state.set('saved', false)
@@ -83,7 +83,7 @@ function cvEditReducer(state = initialState, action) {
     case MOVE_ITEM:
       state = state.set('saved', false)
       return state.updateIn(['content', 'sections', action.section], s =>
-        sectionReducer(s, action),
+        sectionReducer(s, action)
       )
     case GET_SUCCESS:
       return state.set('content', fromJS(action.cv))
@@ -92,7 +92,7 @@ function cvEditReducer(state = initialState, action) {
         Map({
           saving: true,
           saveError: false,
-        }),
+        })
       )
     case SAVE_SUCCESS:
       return state.merge(
@@ -100,14 +100,14 @@ function cvEditReducer(state = initialState, action) {
           saving: false,
           saved: true,
           saveError: false,
-        }),
+        })
       )
     case SAVE_ERROR:
       return state.merge(
         Map({
           saving: false,
           saveError: true,
-        }),
+        })
       )
     default:
       return state

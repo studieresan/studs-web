@@ -26,7 +26,8 @@ const PublicEventMenuLink = ({ company }) => {
       smooth={true}
       offset={-92}
       duration={400}
-      spy={true}>
+      spy={true}
+    >
       {company}
     </Link>
   )

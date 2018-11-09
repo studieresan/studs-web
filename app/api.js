@@ -95,7 +95,7 @@ export function fetchUser() {
     Promise.resolve({
       ...res.data.user.profile,
       permissions: res.data.user.permissions,
-    }),
+    })
   )
 }
 
@@ -326,7 +326,7 @@ export const uploadImage = file => {
   // url from the backend, then uploading the file using that url.
   // The url for the image is returned if everything worked
   return ftch(signedUrlEndpoint, credentials()).then(({ signedRequest, url }) =>
-    uploadFile(file, signedRequest, url),
+    uploadFile(file, signedRequest, url)
   )
 }
 

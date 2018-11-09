@@ -90,7 +90,8 @@ export class CvEdit extends React.Component {
               disabled={moveUpDisabled}
               onClick={() =>
                 this.onMoveItemClick(item, sectionIndex, index, index - 1)
-              }>
+              }
+            >
               <ChevronUp />
             </Button>
             <Button
@@ -99,7 +100,8 @@ export class CvEdit extends React.Component {
               disabled={moveDownDisabled}
               onClick={() =>
                 this.onMoveItemClick(item, sectionIndex, index, index + 1)
-              }>
+              }
+            >
               <ChevronDown />
             </Button>
           </div>
@@ -151,7 +153,8 @@ export class CvEdit extends React.Component {
           <Button
             color='danger'
             className={styles.cvAction}
-            onClick={this.onRemoveItemClick.bind(null, sectionIndex, index)}>
+            onClick={this.onRemoveItemClick.bind(null, sectionIndex, index)}
+          >
             <X />
           </Button>
         </div>
@@ -160,7 +163,7 @@ export class CvEdit extends React.Component {
   }
   renderSection(section, index) {
     const items = section.items.map((item, i) =>
-      this.renderItem(item, index, i, section),
+      this.renderItem(item, index, i, section)
     )
     const addItemEnabled = section.items.length < MAX_ITEMS
     return (
@@ -179,7 +182,8 @@ export class CvEdit extends React.Component {
             <Button
               color='danger'
               className={styles.cvAction}
-              onClick={this.onRemoveSectionClick.bind(null, index)}>
+              onClick={this.onRemoveSectionClick.bind(null, index)}
+            >
               <X /> Section
             </Button>
           </div>
@@ -189,7 +193,8 @@ export class CvEdit extends React.Component {
           wrapper
           className={styles.addItem}
           onClick={this.onAddItemClick.bind(null, index)}
-          disabled={!addItemEnabled}>
+          disabled={!addItemEnabled}
+        >
           <Plus /> Add Item
         </Button>
       </div>
@@ -225,7 +230,8 @@ export class CvEdit extends React.Component {
               wrapper
               className={styles.cvAction}
               onClick={this.props.addSection}
-              disabled={!addSectionsEnabled}>
+              disabled={!addSectionsEnabled}
+            >
               <Plus /> Add Section
             </Button>
           </div>
@@ -271,5 +277,5 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(CvEdit)

@@ -117,11 +117,11 @@ function mapDispatchToProps(dispatch) {
       login,
       push,
     },
-    dispatch,
+    dispatch
   )
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Login)

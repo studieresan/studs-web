@@ -25,7 +25,7 @@ function membersReducer(state = initialState, action) {
           users: action.users,
           fetching: false,
           error: false,
-        }),
+        })
       )
     case GET_COMPANY_MEMBERS_SUCCESS:
       return state.merge(
@@ -33,14 +33,14 @@ function membersReducer(state = initialState, action) {
           companyUsers: action.users,
           fetching: false,
           error: false,
-        }),
+        })
       )
     case GET_MEMBERS_ERROR:
       return state.merge(
         Map({
           fetching: false,
           error: true,
-        }),
+        })
       )
     case MEMBER_SELECTED:
       return state.set('selectedMember', action.id)

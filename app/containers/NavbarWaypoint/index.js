@@ -29,7 +29,8 @@ class NavbarWaypoint extends Component {
       <Waypoint
         scrollableAncestor={window}
         onEnter={this.handleEnter}
-        onLeave={this.handleLeave}>
+        onLeave={this.handleLeave}
+      >
         <div>{this.props.children}</div>
       </Waypoint>
     )
@@ -47,5 +48,5 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(
   null,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(NavbarWaypoint)

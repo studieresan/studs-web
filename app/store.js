@@ -25,7 +25,7 @@ export default function configureStore(initialState = {}, history) {
       ...reducers,
     }),
     fromJS(initialState),
-    compose(...enhancers),
+    compose(...enhancers)
   )
 
   if (module.hot) {

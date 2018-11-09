@@ -45,21 +45,21 @@ function userReducer(state = initialState, action) {
           user: Map(action.user),
           fetching: false,
           error: false,
-        }),
+        })
       )
     case GET_ERROR:
       return state.merge(
         Map({
           fetching: false,
           error: true,
-        }),
+        })
       )
     case UPDATE:
       return state.merge(
         Map({
           user: state.get('user').merge(Map(action.user)),
           saved: false,
-        }),
+        })
       )
     case SAVE_REQUEST:
       return state.merge(
@@ -67,7 +67,7 @@ function userReducer(state = initialState, action) {
           saving: true,
           error: false,
           passwordSaveErrors: [],
-        }),
+        })
       )
     case SAVE_SUCCESS:
       return state.merge(
@@ -76,7 +76,7 @@ function userReducer(state = initialState, action) {
           saving: false,
           error: false,
           saveError: false,
-        }),
+        })
       )
     case SAVE_ERROR:
       return state.merge(
@@ -84,7 +84,7 @@ function userReducer(state = initialState, action) {
           saved: false,
           saving: false,
           saveError: true,
-        }),
+        })
       )
     case PASSWORD_SAVE_SUCCESS:
       return state.merge(
@@ -93,7 +93,7 @@ function userReducer(state = initialState, action) {
           saving: false,
           saveError: false,
           passwordSaveErrors: [],
-        }),
+        })
       )
     case PASSWORD_SAVE_ERROR:
       return state.merge(
@@ -104,7 +104,7 @@ function userReducer(state = initialState, action) {
           passwordSaveErrors: [
             'Passwords must match and be longer than 4 characters',
           ],
-        }),
+        })
       )
     default:
       return state

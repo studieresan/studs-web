@@ -71,5 +71,5 @@ const mapDispatchToProps = dispatch => bindActionCreators({ push }, dispatch)
 
 export default connect(
   null,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ForgotPassword)

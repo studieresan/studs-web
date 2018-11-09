@@ -17,7 +17,8 @@ function LocaleToggle(props) {
             key={key}
             className={styles.localeToggleLink}
             onClick={props.onLocaleSwitch}
-            data-language={key}>
+            data-language={key}
+          >
             {value}
           </span>
         ))}
@@ -42,5 +43,5 @@ export function mapDispatchToProps(dispatch) {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(LocaleToggle)

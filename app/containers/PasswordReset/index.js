@@ -27,7 +27,7 @@ export class PasswordReset extends React.Component {
   }
 
   render() {
-    const { password, confirmPassword, error } = this.props
+    const { password, confirmPassword, error, errorMsg } = this.props
     return (
       <div className={styles.user}>
         <form onSubmit={this.handleSubmit} className={styles.content}>
@@ -55,7 +55,7 @@ export class PasswordReset extends React.Component {
           <Button full wrapper color='bright' type='submit'>
             Save
           </Button>
-          {error ? <div>Error</div> : null}
+          {error ? <div>{errorMsg}</div> : null}
         </form>
       </div>
     )
@@ -69,6 +69,7 @@ PasswordReset.propTypes = {
   updatePassword: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  errorMsg: PropTypes.string.isRequired,
 }
 
 function mapStateToProps(state) {

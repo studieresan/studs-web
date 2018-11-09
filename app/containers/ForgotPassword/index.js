@@ -27,8 +27,10 @@ class ForgotPassword extends React.Component {
       .then(() => {
         this.props.push('/')
       })
-      .catch(() => {
-        this.setState({error: true})
+      .catch(e => {
+        e.json().then(e => {
+          this.setState({error: true, errorMsg: e.error})
+        })
       })
   }
 
@@ -55,7 +57,7 @@ class ForgotPassword extends React.Component {
               Reset
             </Button>
           </div>
-          {this.state.error ? <div>Error</div> : null}
+          {this.state.error ? <div>{this.state.errorMsg}</div> : null}
         </form>
       </div>
     )

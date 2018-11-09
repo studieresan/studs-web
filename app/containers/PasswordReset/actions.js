@@ -25,9 +25,10 @@ export function updatePassword(passwordChange) {
   }
 }
 
-export function resetError() {
+export function resetError(e) {
   return {
     type: RESET_ERROR,
+    errorMsg: e.error,
   }
 }
 
@@ -40,5 +41,7 @@ export const reset = token => (dispatch, getState) => {
       dispatch(resetSuccess())
       dispatch(push('/login'))
     })
-    .catch(() => dispatch(resetError()))
+    .catch(e => {
+      e.json().then(e => dispatch(resetError(e)))
+    })
 }

@@ -12,6 +12,7 @@ const initialState = fromJS({
   success: false,
   resetting: false,
   error: false,
+  errorMsg: '',
 })
 
 export default function(state = initialState, action) {
@@ -30,6 +31,7 @@ export default function(state = initialState, action) {
     return state.merge(Map({
       resetting: false,
       error: true,
+      errorMsg: action.errorMsg,
     }))
   default:
     return state

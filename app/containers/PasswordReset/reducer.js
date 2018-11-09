@@ -12,28 +12,30 @@ const initialState = fromJS({
   success: false,
   resetting: false,
   error: false,
-  errorMsg: '',
 })
 
 export default function(state = initialState, action) {
   switch (action.type) {
-  case UPDATE_PASSWORD:
-    return state.merge(action.passwordChange)
-  case RESET_REQUEST:
-    return state.set('resetting', true)
-  case RESET_SUCCESS:
-    return state.merge(Map({
-      resetting: false,
-      error: false,
-      success: true,
-    }))
-  case RESET_ERROR:
-    return state.merge(Map({
-      resetting: false,
-      error: true,
-      errorMsg: action.errorMsg,
-    }))
-  default:
-    return state
+    case UPDATE_PASSWORD:
+      return state.merge(action.passwordChange)
+    case RESET_REQUEST:
+      return state.set('resetting', true)
+    case RESET_SUCCESS:
+      return state.merge(
+        Map({
+          resetting: false,
+          error: false,
+          success: true,
+        })
+      )
+    case RESET_ERROR:
+      return state.merge(
+        Map({
+          resetting: false,
+          error: true,
+        })
+      )
+    default:
+      return state
   }
 }

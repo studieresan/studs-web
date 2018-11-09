@@ -37,8 +37,11 @@ class EventDetail extends Component {
 
     let after, before
     if (event.after && event.before) {
-      const userList = person =>
-        <li key={person.id}>{person.first_name} {person.last_name}</li>
+      const userList = person => (
+        <li key={person.id}>
+          {person.first_name} {person.last_name}
+        </li>
+      )
       before = event.before.map(userList)
       after = event.after.map(userList)
     }
@@ -46,31 +49,26 @@ class EventDetail extends Component {
       <div className={styles.eventDetail}>
         <div className={styles.head}>
           <h2>
-            <FormattedMessage {...messages.event} />
-              : {event.companyName} - {event.date && event.date.toString()}
+            <FormattedMessage {...messages.event} />: {event.companyName} -{' '}
+            {event.date && event.date.toString()}
           </h2>
-          { hasEventPermission(user) &&
+          {hasEventPermission(user) && (
             <div className={styles.buttonRow}>
-              <Link to={`/events/${event.id}/edit`} >
-                <Button
-                  color='bright'>
-                  Edit
-                </Button>
+              <Link to={`/events/${event.id}/edit`}>
+                <Button color='bright'>Edit</Button>
               </Link>
-              <Button
-                color='danger'
-                onClick={() => onRemoveEvent(event.id)}>
+              <Button color='danger' onClick={() => onRemoveEvent(event.id)}>
                 Delete
               </Button>
             </div>
-          }
+          )}
         </div>
         <div className={styles.info}>
           <div>
             <h4>Company</h4>
             <div>{event.companyName}</div>
           </div>
-          { user && user.memberType === 'studs_member' &&
+          {user && user.memberType === 'studs_member' && (
             <div>
               <h4>Surveys</h4>
               <div>
@@ -86,23 +84,27 @@ class EventDetail extends Component {
                 </A>
               </div>
             </div>
-          }
+          )}
         </div>
-        { event.description &&
+        {event.description && (
           <div>
             <hr />
-            <h2><FormattedMessage {...messages.description} /></h2>
-            <Markdown source={event.description}/>
+            <h2>
+              <FormattedMessage {...messages.description} />
+            </h2>
+            <Markdown source={event.description} />
           </div>
-        }
-        { event.formData && event.feedbackText &&
+        )}
+        {event.formData && event.feedbackText && (
           <div>
             <hr />
-            <h2><FormattedMessage {...messages.feedback} /></h2>
-            <Markdown source={event.feedbackText}/>
+            <h2>
+              <FormattedMessage {...messages.feedback} />
+            </h2>
+            <Markdown source={event.feedbackText} />
           </div>
-        }
-        { event.formData &&
+        )}
+        {event.formData && (
           <div className={styles.charts}>
             <Chart
               chartType='PieChart'
@@ -111,7 +113,8 @@ class EventDetail extends Component {
                 title: 'Interest in the company before the event',
               }}
               graph_id='beforeInterest'
-              width='100%' />
+              width='100%'
+            />
             <Chart
               chartType='PieChart'
               data={event.formData.afterInterest}
@@ -119,7 +122,8 @@ class EventDetail extends Component {
                 title: 'Interest in the company after the event',
               }}
               graph_id='afterInterest'
-              width='100%' />
+              width='100%'
+            />
             <Chart
               chartType='PieChart'
               data={event.formData.knowDoes}
@@ -127,60 +131,66 @@ class EventDetail extends Component {
                 title: 'Do you know what the company does (before the event)?',
               }}
               graph_id='knowDoes'
-              width='100%' />
+              width='100%'
+            />
             <Chart
               chartType='PieChart'
               data={event.formData.qualified}
               options={{
-                title: 'Do you feel like you are qualified to work at' +
-                       'this company?',
+                title:
+                  'Do you feel like you are qualified to work at' +
+                  'this company?',
               }}
               graph_id='qualified'
-              width='100%' />
+              width='100%'
+            />
           </div>
-        }
-        { hasEventPermission(user)
-            && (before && before.length || after && after.length) ?
+        )}
+        {hasEventPermission(user) &&
+        ((before && before.length) || (after && after.length)) ? (
           <div>
             <hr />
-            <h2><FormattedMessage {...messages.missing} /></h2>
+            <h2>
+              <FormattedMessage {...messages.missing} />
+            </h2>
             <div className={styles.missing}>
               <div>
-                { before && before.length ?
+                {before && before.length ? (
                   <div>
                     <div className={styles.missingHead}>Before</div>
-                    { !event.remindedBefore &&
-                      <button name='before'
+                    {!event.remindedBefore && (
+                      <button
+                        name='before'
                         onClick={this.handleRemindClick}
-                        className='btn-default'>
+                        className='btn-default'
+                      >
                         Remind on slack
                       </button>
-                    }
+                    )}
                     <ul>{before}</ul>
                   </div>
-                  : null
-                }
+                ) : null}
               </div>
               <div>
-                { after && after.length ?
+                {after && after.length ? (
                   <div>
                     <div className={styles.missingHead}>After</div>
-                    { !event.remindedAfter &&
-                      <button name='after'
+                    {!event.remindedAfter && (
+                      <button
+                        name='after'
                         onClick={this.handleRemindClick}
-                        className='btn-default'>
+                        className='btn-default'
+                      >
                         Remind on slack
                       </button>
-                    }
+                    )}
                     <ul>{after}</ul>
                   </div>
-                  : null
-                }
+                ) : null}
               </div>
             </div>
           </div>
-          : null
-        }
+        ) : null}
       </div>
     )
   }

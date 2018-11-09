@@ -1,9 +1,8 @@
 const isValidElement = elem => elem.name && elem.value
 
 // Only take into account text-like inputs and checked radios/checkboxes
-const isValidValue = elem => (
+const isValidValue = elem =>
   !['checkbox', 'radio'].includes(elem.type) || elem.checked
-)
 
 /**
  * Utility function for converting form data to an object.

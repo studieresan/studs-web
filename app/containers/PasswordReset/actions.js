@@ -33,7 +33,9 @@ export function resetError(e) {
 }
 
 export const reset = token => (dispatch, getState) => {
-  const { password, confirmPassword } = getState().get('passwordReset').toJS()
+  const { password, confirmPassword } = getState()
+    .get('passwordReset')
+    .toJS()
 
   dispatch(resetRequest())
   resetPassword(password, confirmPassword, token)

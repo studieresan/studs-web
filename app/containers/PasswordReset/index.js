@@ -42,7 +42,8 @@ export class PasswordReset extends React.Component {
             name='password'
             value={password}
             onChange={this.handleChange}
-            placeholder='Password'/>
+            placeholder='Password'
+          />
           <div className='input-label'>
             <FormattedMessage {...messages.confirmPassword} />
           </div>
@@ -51,7 +52,8 @@ export class PasswordReset extends React.Component {
             name='confirmPassword'
             value={confirmPassword}
             onChange={this.handleChange}
-            placeholder='Confirm Password'/>
+            placeholder='Confirm Password'
+          />
           <Button full wrapper color='bright' type='submit'>
             Save
           </Button>
@@ -80,4 +82,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PasswordReset)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PasswordReset)

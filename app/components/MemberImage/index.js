@@ -12,9 +12,7 @@ function MemberImage({ picture, size, square, round, className }) {
   const classes = classnames(styles.picture, className, {
     [styles.round]: round,
   })
-  return (
-    <img className={classes} src={picture} {...sizes} />
-  )
+  return <img className={classes} src={picture} {...sizes} />
 }
 
 MemberImage.propTypes = {

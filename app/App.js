@@ -7,7 +7,7 @@ import App from 'containers/App'
 import StudsRouter from './routes'
 import configureStore from './store'
 
-import { createBrowserHistory  } from 'history'
+import { createBrowserHistory } from 'history'
 import { ConnectedRouter } from 'react-router-redux'
 import LanguageProvider from 'containers/LanguageProvider'
 
@@ -20,16 +20,17 @@ const store = configureStore(initialState, browserHistory)
 
 class AppComponent extends Component {
   render() {
-    return <Provider store={store}>
-      <LanguageProvider messages={translationMessages}>
-        <ConnectedRouter
-          history={browserHistory}>
-          <App>
-            <StudsRouter/>
-          </App>
-        </ConnectedRouter>
-      </LanguageProvider>
-    </Provider>
+    return (
+      <Provider store={store}>
+        <LanguageProvider messages={translationMessages}>
+          <ConnectedRouter history={browserHistory}>
+            <App>
+              <StudsRouter />
+            </App>
+          </ConnectedRouter>
+        </LanguageProvider>
+      </Provider>
+    )
   }
 }
 

@@ -8,15 +8,15 @@ function renderItem(item, i) {
     <div key={i} className={styles.item}>
       <div className={styles.meta}>
         <div className={styles.when}>{item.when}</div>
-        <div className={styles.divider}/>
+        <div className={styles.divider} />
         <div className={styles.where}>
           <div className={styles.title}>{item.title}</div>
-          { item.organization &&
+          {item.organization && (
             <div className={styles.organization}>
               {item.organization}
-              { item.city && <span> - {item.city}</span> }
+              {item.city && <span> - {item.city}</span>}
             </div>
-          }
+          )}
         </div>
       </div>
       <div className={styles.description}>{item.description}</div>

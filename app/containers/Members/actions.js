@@ -12,12 +12,12 @@ const getMembersRequest = () => ({
   type: GET_MEMBERS_REQUEST,
 })
 
-const getMembersSuccess = (users) => ({
+const getMembersSuccess = users => ({
   type: GET_MEMBERS_SUCCESS,
   users,
 })
 
-const getCompanyMembersSuccess = (users) => ({
+const getCompanyMembersSuccess = users => ({
   type: GET_COMPANY_MEMBERS_SUCCESS,
   users,
 })

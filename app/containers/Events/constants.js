@@ -21,4 +21,3 @@ export const ADD_PICTURE = 'app/Events/ADD_PICTURE'
 export const REMOVE_PICTURE = 'app/Events/REMOVE_PICTURE'
 export const ADD_SURVEY = 'app/Events/ADD_SURVEY'
 export const REMOVE_SURVEY = 'app/Events/REMOVE_SURVEY'
-

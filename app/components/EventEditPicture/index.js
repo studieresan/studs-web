@@ -5,11 +5,9 @@ import { X } from 'react-feather'
 
 const EventEditPicture = ({ url, onRemove }) => (
   <div className={styles.container}>
-    <img src={url}
-      className={styles.image}/>
-    <button className={styles.crossContainer}
-      onClick={onRemove}>
-      <X className={styles.cross}/>
+    <img src={url} className={styles.image} />
+    <button className={styles.crossContainer} onClick={onRemove}>
+      <X className={styles.cross} />
     </button>
   </div>
 )

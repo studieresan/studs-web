@@ -10,7 +10,6 @@ import ScrollContainer from 'containers/ScrollContainer'
 import * as actions from './actions'
 
 class App extends Component {
-
   componentDidMount() {
     if (this.props.loggedIn) {
       this.props.getUser()
@@ -28,7 +27,7 @@ class App extends Component {
       <ScrollContainer>
         <div className={styles.container}>
           <Navbar />
-          { this.props.children }
+          {this.props.children}
         </div>
       </ScrollContainer>
     )
@@ -53,4 +52,9 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actions, dispatch)
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+)

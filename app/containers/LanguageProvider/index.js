@@ -16,7 +16,8 @@ export class LanguageProvider extends React.Component {
       <IntlProvider
         locale={this.props.locale}
         key={this.props.locale}
-        messages={this.props.messages[this.props.locale]}>
+        messages={this.props.messages[this.props.locale]}
+      >
         {React.Children.only(this.props.children)}
       </IntlProvider>
     )
@@ -29,9 +30,9 @@ LanguageProvider.propTypes = {
   children: PropTypes.element.isRequired,
 }
 
-const mapStateToProps = createSelector(
-  selectLocale(),
-  (locale) => ({ locale })
-)
+const mapStateToProps = createSelector(selectLocale(), locale => ({ locale }))
 
-export default connect(mapStateToProps, null)(LanguageProvider)
+export default connect(
+  mapStateToProps,
+  null
+)(LanguageProvider)

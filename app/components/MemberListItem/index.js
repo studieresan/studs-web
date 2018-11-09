@@ -5,14 +5,11 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 
 const MemberListItem = ({ user, selectMember, active }) => {
-  const style = classnames(
-    styles.memberListItem,
-    styles.container,
-    { [styles.active]: active }
-  )
+  const style = classnames(styles.memberListItem, styles.container, {
+    [styles.active]: active,
+  })
   return (
-    <div className={style}
-      onClick={() => selectMember(user)}>
+    <div className={style} onClick={() => selectMember(user)}>
       <div className={style}>
         <div className={styles.name}>
           {user.firstName} {user.lastName}

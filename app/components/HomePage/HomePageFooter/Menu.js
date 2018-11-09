@@ -16,20 +16,18 @@ const Menu = ({ loggedIn }) => (
     </div>
     <Pitch />
     <nav className={styles.navigation}>
-      <MenuItem to="/about">
+      <MenuItem to='/about'>
         <FormattedMessage {...navigationMessages.about} />
       </MenuItem>
-      <MenuItem to="/events/public">
+      <MenuItem to='/events/public'>
         <FormattedMessage {...navigationMessages.events} />
       </MenuItem>
-      <MenuItem to="/student">
-        Student
-      </MenuItem>
-      { !loggedIn &&
-        <MenuItem to="/login">
+      <MenuItem to='/student'>Student</MenuItem>
+      {!loggedIn && (
+        <MenuItem to='/login'>
           <FormattedMessage {...navigationMessages.login} />
         </MenuItem>
-      }
+      )}
     </nav>
   </div>
 )
@@ -46,7 +44,7 @@ Menu.propTypes = {
 
 const MenuItem = ({ to, children }) => (
   <Link to={to}>
-    <h4>{ children }</h4>
+    <h4>{children}</h4>
   </Link>
 )
 

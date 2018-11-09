@@ -32,7 +32,9 @@ class OldEvents extends React.Component {
       <div className={styles.publicEvents}>
         <PublicEventMenu events={events} />
         <div className={styles.eventList}>
-          { events.map(e => <PublicEvent key={e.id} {...e} />)}
+          {events.map(e => (
+            <PublicEvent key={e.id} {...e} />
+          ))}
         </div>
       </div>
     )
@@ -41,8 +43,10 @@ class OldEvents extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    events: state.getIn(['events', 'items']).toJS()
-      .filter((e) => e.published)
+    events: state
+      .getIn(['events', 'items'])
+      .toJS()
+      .filter(e => e.published)
       .sort((a, b) => a.date - b.date),
   }
 }
@@ -61,5 +65,7 @@ OldEvents.propTypes = {
   }),
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(OldEvents)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(OldEvents)

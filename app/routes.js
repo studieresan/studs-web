@@ -21,36 +21,41 @@ import OldEvents from 'containers/OldEvents'
 import Recruitment from 'containers/Recruitment'
 
 class StudsRouter extends Component {
-  render () {
+  render() {
     return (
       <Switch>
-        <Route exact path='/' component={HomePage}/>
-        <Route exact path='/logout' component={Logout}/>
-        <Route exact path='/login' component={Login}/>
-        <Route exact path='/user/forgot-password' component={ForgotPassword}/>
+        <Route exact path='/' component={HomePage} />
+        <Route exact path='/logout' component={Logout} />
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/user/forgot-password' component={ForgotPassword} />
 
-        <Route exact path='/password-reset/:token' component={PasswordReset}/>
-        <Route exact path='/events/public' component={PublicEvents}/>
-        <Route exact path='/events/old' component={OldEvents}/>
-        <Route exact path='/student' component={Recruitment}/>
-        <AuthenticatedRoute exact path='/user' component={User}/>
-        <AuthenticatedRoute exact path='/resume/edit' component={CvEdit}/>
+        <Route exact path='/password-reset/:token' component={PasswordReset} />
+        <Route exact path='/events/public' component={PublicEvents} />
+        <Route exact path='/events/old' component={OldEvents} />
+        <Route exact path='/student' component={Recruitment} />
+        <AuthenticatedRoute exact path='/user' component={User} />
+        <AuthenticatedRoute exact path='/resume/edit' component={CvEdit} />
         <AdminRoute exact path='/create-user' component={CreateUser} />
 
-        <AuthenticatedRoute exact path='/members' component={Members}/>
-        <AuthenticatedRoute exact path='/members/:id?' component={Members}/>
+        <AuthenticatedRoute exact path='/members' component={Members} />
+        <AuthenticatedRoute exact path='/members/:id?' component={Members} />
 
-        <AuthenticatedRoute exact path='/events' component={Events}/>
-        <AuthenticatedRoute exact path='/events/new' component={Events}/>
-        <AuthenticatedRoute exact path='/events/:id' component={Events}/>
-        <AuthenticatedRoute exact path='/events/:id/edit' component={Events}/>
+        <AuthenticatedRoute exact path='/events' component={Events} />
+        <AuthenticatedRoute exact path='/events/new' component={Events} />
+        <AuthenticatedRoute exact path='/events/:id' component={Events} />
+        <AuthenticatedRoute exact path='/events/:id/edit' component={Events} />
 
-        <Route exact path='/about' component={About}/>
+        <Route exact path='/about' component={About} />
 
-        <Route exact path='*' component={NotFoundPage}/>
+        <Route exact path='*' component={NotFoundPage} />
       </Switch>
     )
   }
 }
 
-export default withRouter(connect(null, null)(StudsRouter))
+export default withRouter(
+  connect(
+    null,
+    null
+  )(StudsRouter)
+)

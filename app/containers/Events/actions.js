@@ -1,9 +1,4 @@
-import {
-  saveEvent,
-  fetchEvents,
-  fetchOldEvents,
-  removeEventWithId,
-} from 'api'
+import { saveEvent, fetchEvents, fetchOldEvents, removeEventWithId } from 'api'
 import {
   UPDATE,
   GET_REQUEST,
@@ -31,8 +26,7 @@ const actionType = (type, extras) => ({
 
 export const update = (data, id) => actionType(UPDATE, { data, id })
 
-export const addPicture = (url, id) =>
-  actionType(ADD_PICTURE, { url, id })
+export const addPicture = (url, id) => actionType(ADD_PICTURE, { url, id })
 
 export const removePicture = (index, id) =>
   actionType(REMOVE_PICTURE, { index, id })
@@ -46,8 +40,8 @@ export const removeSurvey = (index, surveyType, id) =>
 export const createNewEvent = () => actionType(NEW_EVENT)
 
 const getRequest = () => actionType(GET_REQUEST)
-const getSuccess = (data) => actionType(GET_SUCCESS, { data })
-const getError = (err) => {
+const getSuccess = data => actionType(GET_SUCCESS, { data })
+const getError = err => {
   console.log(err)
   return actionType(GET_ERROR)
 }
@@ -55,13 +49,13 @@ const getError = (err) => {
 const saveRequest = () => actionType(SAVE_REQUEST)
 const saveSuccess = () => actionType(SAVE_SUCCESS)
 const createSuccess = data => actionType(CREATE_SUCCESS, { data })
-export const saveError = (err) => {
+export const saveError = err => {
   console.log(err)
   return actionType(SAVE_ERROR)
 }
 
 const removeRequest = () => actionType(REMOVE_REQUEST)
-const removeSuccess = (id) => actionType(REMOVE_SUCCESS, { id })
+const removeSuccess = id => actionType(REMOVE_SUCCESS, { id })
 const removeError = () => actionType(REMOVE_ERROR)
 
 export const getEvents = () => dispatch => {
@@ -100,4 +94,3 @@ export const removeEvent = id => dispatch => {
     })
     .catch(err => dispatch(removeError(err)))
 }
-

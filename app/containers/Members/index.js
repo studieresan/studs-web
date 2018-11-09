@@ -28,14 +28,14 @@ export class Members extends React.Component {
           </h5>
         </div>
         <div className={styles.memberList}>
-          {
-            sortedUsers.map(user =>
-              <MemberListItem
-                key={user.id}
-                selectMember={selectMember}
-                active={selectedMember === user.id}
-                user={user}/>)
-          }
+          {sortedUsers.map(user => (
+            <MemberListItem
+              key={user.id}
+              selectMember={selectMember}
+              active={selectedMember === user.id}
+              user={user}
+            />
+          ))}
         </div>
       </div>
     )
@@ -57,7 +57,8 @@ export class Members extends React.Component {
         <MasterDetail
           master={this.renderMembersList(users)}
           detail={detail}
-          detailSelected={detailSelected} />
+          detailSelected={detailSelected}
+        />
       </div>
     )
   }
@@ -86,10 +87,14 @@ Members.propTypes = {
       master: PropTypes.string,
       picture: PropTypes.string,
       cv: PropTypes.object,
-    })),
+    })
+  ),
   match: PropTypes.object,
   selectMember: PropTypes.func.isRequired,
   selectedMember: PropTypes.string.isRequired,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Members)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Members)

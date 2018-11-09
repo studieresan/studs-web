@@ -16,7 +16,6 @@ class NavbarWaypoint extends Component {
     this.props.setNavbarBackground(true)
   }
 
-
   handleEnter() {
     this.props.setNavbarBackground(false)
   }
@@ -30,10 +29,9 @@ class NavbarWaypoint extends Component {
       <Waypoint
         scrollableAncestor={window}
         onEnter={this.handleEnter}
-        onLeave={this.handleLeave}>
-        <div>
-          { this.props.children }
-        </div>
+        onLeave={this.handleLeave}
+      >
+        <div>{this.props.children}</div>
       </Waypoint>
     )
   }
@@ -48,4 +46,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actions, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(NavbarWaypoint)
+export default connect(
+  null,
+  mapDispatchToProps
+)(NavbarWaypoint)

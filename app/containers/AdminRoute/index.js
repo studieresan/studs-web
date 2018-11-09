@@ -33,7 +33,7 @@ function AdminRoute({
     <Route
       {...rest}
       render={props =>
-        isAdmin ? <Component {...props} /> : <Redirect to="/" />
+        isAdmin ? <Component {...props} /> : <Redirect to='/' />
       }
     />
   )
@@ -52,5 +52,5 @@ function mapStateToProps(state: Map<string, any>): State {
 
 export default connect(
   mapStateToProps,
-  null,
+  null
 )(AdminRoute)

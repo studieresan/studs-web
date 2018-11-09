@@ -9,7 +9,9 @@ const PublicEventMenu = ({ events }) => {
     <div className={styles.publicEventMenu}>
       <h2>Events</h2>
       <div className={styles.links}>
-        { events.map(e => <PublicEventMenuLink key={e.companyName} company={e.companyName} />) }
+        {events.map(e => (
+          <PublicEventMenuLink key={e.companyName} company={e.companyName} />
+        ))}
       </div>
     </div>
   )

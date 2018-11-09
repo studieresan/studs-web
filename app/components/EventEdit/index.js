@@ -34,12 +34,11 @@ class EventEdit extends React.Component {
       addPicture,
       event: { id },
     } = this.props
-    const data ={}
+    const data = {}
     if (e.target.type === 'file') {
-      uploadImage(e.target.files[0])
-        .then(url => {
-          addPicture(url, id)
-        })
+      uploadImage(e.target.files[0]).then(url => {
+        addPicture(url, id)
+      })
     } else {
       if (e.target.name === 'date') {
         data[e.target.name] = new Date(e.target.value)
@@ -80,20 +79,18 @@ class EventEdit extends React.Component {
     const {
       event,
       companyUsers,
-      events: {
-        saving,
-        saved,
-      },
+      events: { saving, saved },
       removePicture,
       removeSurvey,
     } = this.props
     const companyOption = companyName => (
-      <option key={companyName} value={companyName || ''} >
+      <option key={companyName} value={companyName || ''}>
         {companyName}
       </option>
     )
 
-    const companies = companyUsers &&
+    const companies =
+      companyUsers &&
       sortedUniq(sortBy(companyUsers, ['companyName']).map(u => u.companyName))
 
     const surveyListItem = surveyType => (url, i) => (
@@ -107,15 +104,18 @@ class EventEdit extends React.Component {
     return (
       <div className={styles.eventEdit}>
         <div className={styles.head}>
-          <h2>Event: {event.companyName} -
-            {event.date && event.date.toString()}</h2>
-          { !saving && !saved &&
-            <Button onClick={this.handleSave}
+          <h2>
+            Event: {event.companyName} -{event.date && event.date.toString()}
+          </h2>
+          {!saving && !saved && (
+            <Button
+              onClick={this.handleSave}
               type='submit'
-              className='btn-bright'>
+              className='btn-bright'
+            >
               <FormattedMessage {...messages.save} />
             </Button>
-          }
+          )}
         </div>
         <div className='input-label'>
           <FormattedMessage {...messages.company} />
@@ -126,14 +126,12 @@ class EventEdit extends React.Component {
             placeholder='Company'
             value={event.companyName || ''}
             onClick={this.handleChange}
-            onChange={this.handleChange}>
-            <option key='none'
-              disabled>
+            onChange={this.handleChange}
+          >
+            <option key='none' disabled>
               Select company
             </option>
-            { companies &&
-              companies.map(companyOption)
-            }
+            {companies && companies.map(companyOption)}
           </select>
         </div>
         <div className='input-label'>
@@ -143,7 +141,8 @@ class EventEdit extends React.Component {
           name='date'
           type='datetime-local'
           value={moment(event.date).format('YYYY-MM-DDTHH:mm')}
-          onChange={this.handleChange} />
+          onChange={this.handleChange}
+        />
         <div className='input-label'>
           <FormattedMessage {...messages.location} />
         </div>
@@ -151,7 +150,8 @@ class EventEdit extends React.Component {
           name='location'
           placeholder='location'
           value={event.location || ''}
-          onChange={this.handleChange} />
+          onChange={this.handleChange}
+        />
         <div className='input-label'>
           <FormattedMessage {...messages.publicDescription} />
         </div>
@@ -159,7 +159,8 @@ class EventEdit extends React.Component {
           name='publicDescription'
           placeholder='Public Description'
           onChange={this.handleChange}
-          value={event.publicDescription || ''} />
+          value={event.publicDescription || ''}
+        />
         <div className='input-label'>
           <FormattedMessage {...messages.privateDescription} />
         </div>
@@ -167,47 +168,50 @@ class EventEdit extends React.Component {
           name='privateDescription'
           placeholder='Private text'
           onChange={this.handleChange}
-          value={event.privateDescription || ''} />
+          value={event.privateDescription || ''}
+        />
         <div className='input-label'>
           <FormattedMessage {...messages.beforeSurvey} />
         </div>
-        { event.beforeSurveys.map(surveyListItem('beforeSurveys')) }
+        {event.beforeSurveys.map(surveyListItem('beforeSurveys'))}
         <input
           name='beforeSurveys'
           placeholder='URL'
           value={this.state.beforeSurvey}
-          onChange={e => this.setState({beforeSurvey: e.target.value})}
-          onKeyPress={e => e.key === 'Enter' &&
-            this.addSurvey(e.target.name, e.target.value, event) } />
+          onChange={e => this.setState({ beforeSurvey: e.target.value })}
+          onKeyPress={e =>
+            e.key === 'Enter' &&
+            this.addSurvey(e.target.name, e.target.value, event)
+          }
+        />
         <div className='input-label'>
           <FormattedMessage {...messages.afterSurvey} />
         </div>
-        { event.afterSurveys.map(surveyListItem('afterSurveys')) }
+        {event.afterSurveys.map(surveyListItem('afterSurveys'))}
         <input
           name='afterSurveys'
           placeholder='URL'
           value={this.state.afterSurvey}
-          onChange={e => this.setState({afterSurvey: e.target.value})}
-          onKeyPress={e => e.key === 'Enter' &&
-            this.addSurvey(e.target.name, e.target.value, event) } />
+          onChange={e => this.setState({ afterSurvey: e.target.value })}
+          onKeyPress={e =>
+            e.key === 'Enter' &&
+            this.addSurvey(e.target.name, e.target.value, event)
+          }
+        />
         <div className='input-label'>
           <FormattedMessage {...messages.pictures} />
         </div>
         <div className={styles.eventPictures}>
-          { event.pictures.map((url, i) => (
-            <div className={styles.eventPicture}
-              key={url + i}>
+          {event.pictures.map((url, i) => (
+            <div className={styles.eventPicture} key={url + i}>
               <EventEditPicture
                 url={url}
-                onRemove={() => removePicture(i, event.id)} />
+                onRemove={() => removePicture(i, event.id)}
+              />
             </div>
-          ))
-          }
+          ))}
         </div>
-        <input
-          type='file'
-          name='picture'
-          onChange={this.handleChange}/>
+        <input type='file' name='picture' onChange={this.handleChange} />
         <div className='input-label'>
           <FormattedMessage {...messages.published} />
         </div>
@@ -215,8 +219,10 @@ class EventEdit extends React.Component {
           type='checkbox'
           name='published'
           checked={event.published}
-          onChange={(e) =>
-            this.update({published: !!e.target.checked}, event.id)}/>
+          onChange={e =>
+            this.update({ published: !!e.target.checked }, event.id)
+          }
+        />
       </div>
     )
   }
@@ -240,4 +246,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ ...EventActions }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventEdit)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EventEdit)

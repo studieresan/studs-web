@@ -11,21 +11,19 @@ function EventListItem(props) {
   const { event, user, isSelected } = props
   const { date } = event
   const dateString = date && moment(date).format('HH:mm, MMM DD')
-  const classes = classnames(
-    styles.eventListItem,
-    { [styles.selected]: isSelected }
-  )
+  const classes = classnames(styles.eventListItem, {
+    [styles.selected]: isSelected,
+  })
   return (
     <Link to={`/events/${event.id}`}>
       <div className={classes}>
         <div>
-          { user && user.memberType === 'studs_member' &&
+          {user && user.memberType === 'studs_member' && (
             <span>
-              <IndicatorIcon
-                ok={event.beforeSurveyReplied} />
+              <IndicatorIcon ok={event.beforeSurveyReplied} />
               <IndicatorIcon ok={event.afterSurveyReplied} />
             </span>
-          }
+          )}
           {event.companyName}
         </div>
         <div>{dateString}</div>

@@ -8,12 +8,8 @@ function MemberHomePage({ user }) {
   return (
     <div className={styles.member}>
       <MemberImage picture={picture} size='20rem' />
-      <h3 className={styles.name}>
-        { firstName }
-      </h3>
-      <h5 className={styles.position}>
-        { position }
-      </h5>
+      <h3 className={styles.name}>{firstName}</h3>
+      <h5 className={styles.position}>{position}</h5>
     </div>
   )
 }

@@ -19,11 +19,9 @@ const MAX_SECTIONS = 8
 const MAX_ITEMS = 15
 const CONFIRM_DELETE_SECTION_MESSAGE =
   'Are you sure you want to delete this entire section?'
-const CONFIRM_DELETE_ITEM_MESSAGE =
-  'Are you sure you want to delete this item?'
+const CONFIRM_DELETE_ITEM_MESSAGE = 'Are you sure you want to delete this item?'
 
 export class CvEdit extends React.Component {
-
   constructor(props) {
     super(props)
     this.onSectionChange = this.onSectionChange.bind(this)
@@ -45,7 +43,7 @@ export class CvEdit extends React.Component {
 
   onSectionChange(index, event) {
     const { updateSection } = this.props
-    updateSection(index, {title: event.target.value})
+    updateSection(index, { title: event.target.value })
     this.props.saveCv(this.getId())
   }
 
@@ -91,16 +89,20 @@ export class CvEdit extends React.Component {
               className={moveUpDisabled && styles.arrowDisabled}
               disabled={moveUpDisabled}
               onClick={() =>
-                this.onMoveItemClick(item, sectionIndex, index, index - 1)}>
-              <ChevronUp/>
+                this.onMoveItemClick(item, sectionIndex, index, index - 1)
+              }
+            >
+              <ChevronUp />
             </Button>
             <Button
               color='icon'
               className={moveDownDisabled && styles.arrowDisabled}
               disabled={moveDownDisabled}
               onClick={() =>
-                this.onMoveItemClick(item, sectionIndex, index, index + 1)}>
-              <ChevronDown/>
+                this.onMoveItemClick(item, sectionIndex, index, index + 1)
+              }
+            >
+              <ChevronDown />
             </Button>
           </div>
           <div className={styles.when}>
@@ -112,7 +114,7 @@ export class CvEdit extends React.Component {
               maxLength={SMALL_FIELD_MAX_LENGTH}
             />
           </div>
-          <div className={styles.divider}/>
+          <div className={styles.divider} />
           <div className={styles.where}>
             <TextArea
               name='title'
@@ -151,7 +153,8 @@ export class CvEdit extends React.Component {
           <Button
             color='danger'
             className={styles.cvAction}
-            onClick={this.onRemoveItemClick.bind(null, sectionIndex, index)}>
+            onClick={this.onRemoveItemClick.bind(null, sectionIndex, index)}
+          >
             <X />
           </Button>
         </div>
@@ -159,8 +162,9 @@ export class CvEdit extends React.Component {
     )
   }
   renderSection(section, index) {
-    const items =
-      section.items.map((item, i) => this.renderItem(item, index, i, section))
+    const items = section.items.map((item, i) =>
+      this.renderItem(item, index, i, section)
+    )
     const addItemEnabled = section.items.length < MAX_ITEMS
     return (
       <div key={index} className={styles.section}>
@@ -172,12 +176,14 @@ export class CvEdit extends React.Component {
             value={section.title}
             className={styles.sectionInput}
             onChange={this.onSectionChange.bind(null, index)}
-            maxLength={SMALL_FIELD_MAX_LENGTH}/>
+            maxLength={SMALL_FIELD_MAX_LENGTH}
+          />
           <div className={styles.removeSection}>
             <Button
               color='danger'
               className={styles.cvAction}
-              onClick={this.onRemoveSectionClick.bind(null, index)}>
+              onClick={this.onRemoveSectionClick.bind(null, index)}
+            >
               <X /> Section
             </Button>
           </div>
@@ -187,7 +193,8 @@ export class CvEdit extends React.Component {
           wrapper
           className={styles.addItem}
           onClick={this.onAddItemClick.bind(null, index)}
-          disabled={!addItemEnabled}>
+          disabled={!addItemEnabled}
+        >
           <Plus /> Add Item
         </Button>
       </div>
@@ -196,7 +203,7 @@ export class CvEdit extends React.Component {
   render() {
     if (!this.props.content.get('sections')) {
       // TODO Show better loading indicator
-      return (<Loader color="black" />)
+      return <Loader color='black' />
     }
     const sections = this.props.content.get('sections').toJS()
     let header = null
@@ -215,22 +222,21 @@ export class CvEdit extends React.Component {
     return (
       <div className={styles.cvEdit + ' ' + styles.cv}>
         <div>
-          { header }
-          { sections.map((s, i) => this.renderSection(s, i)) }
+          {header}
+          {sections.map((s, i) => this.renderSection(s, i))}
           <div className={styles.addSection}>
             <Button
               color='bright'
               wrapper
               className={styles.cvAction}
               onClick={this.props.addSection}
-              disabled={!addSectionsEnabled} >
+              disabled={!addSectionsEnabled}
+            >
               <Plus /> Add Section
             </Button>
           </div>
         </div>
-        <div className={styles.saveStatus}>
-          { saveStatus }
-        </div>
+        <div className={styles.saveStatus}>{saveStatus}</div>
       </div>
     )
   }
@@ -266,7 +272,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({...actions}, dispatch)
+  return bindActionCreators({ ...actions }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CvEdit)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CvEdit)

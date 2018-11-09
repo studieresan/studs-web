@@ -16,7 +16,8 @@ import * as EventActions from './actions'
 import { getUsers } from 'containers/Members/actions'
 import { hasEventPermission } from 'users'
 
-const WARNING = 'Are you sure you wish to delete this event? ' +
+const WARNING =
+  'Are you sure you wish to delete this event? ' +
   'This action cannot be undone.'
 
 export class Events extends React.Component {
@@ -44,9 +45,7 @@ export class Events extends React.Component {
     if (hasEventPermission(user)) {
       return (
         <div className={styles.actions}>
-          <Link
-            to="/events/new"
-            onClick={() => this.props.createNewEvent()}>
+          <Link to='/events/new' onClick={() => this.props.createNewEvent()}>
             <FormattedMessage {...messages.create} />
           </Link>
         </div>
@@ -64,25 +63,28 @@ export class Events extends React.Component {
       />
     )
 
-    const items =
-      events.items
-        .sort((a, b) => a.date - b.date)
-        .map(event => eventListItem(event, event.id === params.id))
+    const items = events.items
+      .sort((a, b) => a.date - b.date)
+      .map(event => eventListItem(event, event.id === params.id))
 
-    const newEventListItem = events.newEvent &&
-      eventListItem(events.newEvent, path === '/events/new')
+    const newEventListItem =
+      events.newEvent && eventListItem(events.newEvent, path === '/events/new')
 
     return (
       <div className={styles.listContainer}>
         <div className={styles.list}>
           <div className={styles.listHeader}>
-            <div><FormattedMessage {...messages.company} /></div>
-            <div><FormattedMessage {...messages.date} /></div>
+            <div>
+              <FormattedMessage {...messages.company} />
+            </div>
+            <div>
+              <FormattedMessage {...messages.date} />
+            </div>
           </div>
-          { items }
-          { newEventListItem }
+          {items}
+          {newEventListItem}
         </div>
-        { this.renderActions(user) }
+        {this.renderActions(user)}
       </div>
     )
   }
@@ -94,9 +96,7 @@ export class Events extends React.Component {
       match: { params, path },
     } = this.props
 
-    const eventEdit = e => e && (
-      <EventEdit event={e} />
-    )
+    const eventEdit = e => e && <EventEdit event={e} />
 
     let detail
     let detailSelected = false
@@ -105,12 +105,14 @@ export class Events extends React.Component {
       if (path === '/events/:id/edit') {
         detail = eventEdit(event)
       } else {
-        detail = event && <EventDetail
-          event={event}
-          user={user}
-          id={params.id}
-          onRemoveEvent={this.onDeleteEvent}
-        />
+        detail = event && (
+          <EventDetail
+            event={event}
+            user={user}
+            id={params.id}
+            onRemoveEvent={this.onDeleteEvent}
+          />
+        )
       }
       detailSelected = true
     } else if (path === '/events/new') {
@@ -125,7 +127,8 @@ export class Events extends React.Component {
         <MasterDetail
           master={this.renderEventsList(events, user, params, path)}
           detail={detail}
-          detailSelected={detailSelected} />
+          detailSelected={detailSelected}
+        />
       </div>
     )
   }
@@ -154,4 +157,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ ...EventActions, getUsers }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Events)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Events)

@@ -11,4 +11,3 @@ export function setLoggedOut() {
 export function loggedIn() {
   return localStorage.loggedIn === 'true'
 }
-

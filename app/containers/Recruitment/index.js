@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react'
-import StudsRecruitmentSectionModel
-  from 'models/StudsRecruitmentSectionModel'
-import StudsRecruitmentLeaderModel
-  from 'models/StudsRecruitmentLeaderModel'
+import StudsRecruitmentSectionModel from 'models/StudsRecruitmentSectionModel'
+import StudsRecruitmentLeaderModel from 'models/StudsRecruitmentLeaderModel'
 import StudsRecruitmentRoleModel from 'models/StudsRecruitmentRoleModel'
 import RecruitmentSection from 'components/RecruitmentSection'
 import styles from './styles.css'
@@ -39,8 +37,10 @@ class Recruitment extends PureComponent {
                   'Säljgruppen är Studs största grupp, och arbetar med att kontakta företag och sälja in event. ',
                   `I denna grupp behöver du tycka om att arbeta i grupp, vara utåtriktad och social. 
                   Arbetet är som mest intensivt under hösten och drar igång direkt efter rekryteringen. 
-                  Om du söker denna grupp så boka upp D-dagen den 11:e oktober.`),
-              ]),
+                  Om du söker denna grupp så boka upp D-dagen den 11:e oktober.`,
+                ),
+              ],
+            ),
             new StudsRecruitmentLeaderModel(
               'Eventansvarig',
               'Moa Bäck',
@@ -52,29 +52,30 @@ class Recruitment extends PureComponent {
                   'Eventgruppen ansvarar för genomförandet av alla företagsevent ',
                   `och kommer tillsammans med företagen att utforma event som är relevanta, intressanta och roliga både för oss och företagen. 
                   Som en del av detta arbete kommer gruppen också att sammanställa feedback i samband med varje event. 
-                  Till eventgruppen söker vi personer som vill jobba nära företagen i en kreativ roll.`),
-              ]),
-          ]),
+                  Till eventgruppen söker vi personer som vill jobba nära företagen i en kreativ roll.`,
+                ),
+              ],
+            ),
+          ],
+        ),
 
-        new StudsRecruitmentSectionModel(
-          2,
-          '',
-          '',
-          [
-            new StudsRecruitmentLeaderModel(
-              'Reseansvarig',
-              'Mauritz Zachrisson',
-              Mauritz,
-              'mauritzz@kth.se',
-              [
-                new StudsRecruitmentRoleModel(
-                  'Resegruppen',
-                  'Resegruppen står för all planering och genomförande av studieresan som avslutar projektet',
-                  ` – allt ifrån resrutt och flyg till koordinering av dagsaktiviteter. 
+        new StudsRecruitmentSectionModel(2, '', '', [
+          new StudsRecruitmentLeaderModel(
+            'Reseansvarig',
+            'Mauritz Zachrisson',
+            Mauritz,
+            'mauritzz@kth.se',
+            [
+              new StudsRecruitmentRoleModel(
+                'Resegruppen',
+                'Resegruppen står för all planering och genomförande av studieresan som avslutar projektet',
+                ` – allt ifrån resrutt och flyg till koordinering av dagsaktiviteter. 
                   Arbetet är både kreativt och strukturerat, då resegruppen utöver planering och logistik också är ansvarig för att ta fram inspiration och förslag på resmål, som gruppen sedan väljer bland. 
-                  Merparten av arbetet sker under hösten.`),
-              ]),
-          ]),
+                  Merparten av arbetet sker under hösten.`,
+              ),
+            ],
+          ),
+        ]),
 
         new StudsRecruitmentSectionModel(
           3,
@@ -100,13 +101,16 @@ class Recruitment extends PureComponent {
                   Som utvecklare får du stor frihet att jobba med det du vill inom webb och app. 
                   Du bör ha ett intresse för programmering och mjukvaruutveckling och ett sug efter att lära dig nya saker. 
                   Det är ett plus om du har tidigare erfarenhet, men det är inget krav. 
-                  Arbetsbelastningen är kontinuerlig under året.`),
+                  Arbetsbelastningen är kontinuerlig under året.`,
+                ),
 
                 new StudsRecruitmentRoleModel(
                   'Art Director',
                   'Studs har två Art Directors som tillsammans skapar projektets grafiska profil. ',
-                  'Den ena kommer att jobba mest med webbdesign som en del av IT-gruppen, och den andra mest med designen av rapporten (läs: sammanställning av projektet, resan och eventen i en slags broschyr), som en del av informationsgruppen.'),
-              ]),
+                  'Den ena kommer att jobba mest med webbdesign som en del av IT-gruppen, och den andra mest med designen av rapporten (läs: sammanställning av projektet, resan och eventen i en slags broschyr), som en del av informationsgruppen.',
+                ),
+              ],
+            ),
 
             new StudsRecruitmentLeaderModel(
               'Informationsansvarig',
@@ -118,14 +122,18 @@ class Recruitment extends PureComponent {
                   'Redaktör',
                   'Redaktörerna skriver de texter som hamnar i rapporten',
                   `, på hemsidan och på sociala medier. 
-                  Det är texter om företagen vi besöker, eventen på företagen och intrycken av dessa, samt texter om resan och upplevelserna på resan.`),
+                  Det är texter om företagen vi besöker, eventen på företagen och intrycken av dessa, samt texter om resan och upplevelserna på resan.`,
+                ),
 
                 new StudsRecruitmentRoleModel(
                   'Fotograf',
                   'Vill du hjälpa till att fånga ögonblicken? ',
-                  'Som fotograf tar du bilder av projektgruppen - både porträttbilder och bilder av de event och resor som vi gör - som används till webbsidan, marknadsföring på sociala medier och rapporten.'),
-              ]),
-          ]),
+                  'Som fotograf tar du bilder av projektgruppen - både porträttbilder och bilder av de event och resor som vi gör - som används till webbsidan, marknadsföring på sociala medier och rapporten.',
+                ),
+              ],
+            ),
+          ],
+        ),
       ],
     }
   }
@@ -137,15 +145,23 @@ class Recruitment extends PureComponent {
   render() {
     return (
       <React.Fragment>
-        <RecruitmentHeader/>
+        <RecruitmentHeader />
         <div className={styles.container}>
           <div>
-            { this.state.sections.map(section => <RecruitmentSection key={section.id} recruitmentSection={section}/>) }
-            <RecruitmentFooter recruitmentOpen={false} onClickUrl={RECRUITMENT_URL} />
+            {this.state.sections.map(section => (
+              <RecruitmentSection
+                key={section.id}
+                recruitmentSection={section}
+              />
+            ))}
+            <RecruitmentFooter
+              recruitmentOpen={false}
+              onClickUrl={RECRUITMENT_URL}
+            />
           </div>
         </div>
         <div style={{ marginTop: 16 }}>
-          <HomePageFooter/>
+          <HomePageFooter />
         </div>
       </React.Fragment>
     )

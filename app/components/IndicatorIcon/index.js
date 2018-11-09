@@ -11,9 +11,7 @@ const IndicatorIcon = ({ ok }) => {
     indicatorIcon: true,
     ok: ok,
   })
-  return (
-    <span className={className}>&#9679;</span>
-  )
+  return <span className={className}>&#9679;</span>
 }
 
 IndicatorIcon.propTypes = {

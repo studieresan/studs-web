@@ -33,7 +33,7 @@ function AdminRoute({
     <Route
       {...rest}
       render={props =>
-        isAdmin ? <Component {...props} /> : <Redirect to="/" />
+        isAdmin ? <Component {...props} /> : <Redirect to='/' />
       }
     />
   )

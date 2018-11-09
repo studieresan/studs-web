@@ -11,7 +11,6 @@ import Button from 'components/Button'
 import MemberImage from 'components/MemberImage'
 
 export class User extends React.Component {
-
   constructor(props) {
     super(props)
     this.handleChange = this.handleChange.bind(this)
@@ -41,9 +40,7 @@ export class User extends React.Component {
 
   renderError(err, key) {
     return (
-      <div
-        key={key}
-        className={styles.status}>
+      <div key={key} className={styles.status}>
         {err}
       </div>
     )
@@ -54,21 +51,24 @@ export class User extends React.Component {
 
     return (
       <div className={styles.user}>
-        <MemberImage className={styles.picture}
+        <MemberImage
+          className={styles.picture}
           picture={user.picture}
           size={150}
-          square round />
+          square
+          round
+        />
         <div className={styles.content}>
           <h2 className={styles.header}>
             <FormattedMessage {...messages.title} />
           </h2>
-          { user.memberType === 'studs_member' &&
+          {user.memberType === 'studs_member' && (
             <Link to={'/resume/edit'}>
               <Button full>
                 <FormattedMessage {...messages.editResume} />
               </Button>
             </Link>
-          }
+          )}
           <div className='input-label'>
             <FormattedMessage {...messages.firstName} />
           </div>
@@ -77,7 +77,7 @@ export class User extends React.Component {
             name='firstName'
             value={user.firstName}
             onChange={this.handleChange}
-            onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
+            onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
             placeholder='First name'
             maxLength='30'
           />
@@ -89,11 +89,11 @@ export class User extends React.Component {
             name='lastName'
             value={user.lastName}
             onChange={this.handleChange}
-            onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
+            onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
             placeholder='Last name'
             maxLength='30'
           />
-          { user.memberType === 'studs_member' &&
+          {user.memberType === 'studs_member' && (
             <div>
               <div className='input-label'>
                 <FormattedMessage {...messages.phone} />
@@ -103,7 +103,7 @@ export class User extends React.Component {
                 name='phone'
                 value={user.phone}
                 onChange={this.handleChange}
-                onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
+                onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
                 placeholder='Phone number'
                 maxLength='30'
               />
@@ -115,7 +115,7 @@ export class User extends React.Component {
                 name='position'
                 value={user.position}
                 onChange={this.handleChange}
-                onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
+                onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
                 placeholder='Position'
                 maxLength='30'
               />
@@ -127,7 +127,7 @@ export class User extends React.Component {
                 name='linkedIn'
                 value={user.linkedIn}
                 onChange={this.handleChange}
-                onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
+                onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
                 placeholder='LinkedIn URL'
                 maxLength='50'
               />
@@ -139,7 +139,7 @@ export class User extends React.Component {
                 name='github'
                 value={user.github}
                 onChange={this.handleChange}
-                onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
+                onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
                 placeholder='Github URL'
                 maxLength='50'
               />
@@ -151,7 +151,7 @@ export class User extends React.Component {
                 name='master'
                 value={user.master}
                 onChange={this.handleChange}
-                onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
+                onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
                 placeholder='Master'
                 maxLength='30'
               />
@@ -163,12 +163,12 @@ export class User extends React.Component {
                 name='allergies'
                 value={user.allergies}
                 onChange={this.handleChange}
-                onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
+                onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
                 placeholder='Allergies'
                 maxLength='30'
               />
             </div>
-          }
+          )}
           <div className='input-label'>
             <FormattedMessage {...messages.password} />
           </div>
@@ -176,8 +176,9 @@ export class User extends React.Component {
             type='password'
             name='password'
             value={user.password || ''}
-            onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
-            onChange={this.handleChange}/>
+            onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
+            onChange={this.handleChange}
+          />
           <div className='input-label'>
             <FormattedMessage {...messages.confirmPassword} />
           </div>
@@ -185,24 +186,22 @@ export class User extends React.Component {
             type='password'
             name='confirmPassword'
             value={user.confirmPassword || ''}
-            onKeyPress={(e) => e.key === 'Enter' && this.handleSubmit()}
-            onChange={this.handleChange}/>
+            onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
+            onChange={this.handleChange}
+          />
           <Button full wrapper color='bright' onClick={this.handleSubmit}>
             <FormattedMessage {...messages.save} />
           </Button>
-          { this.props.saved && // TODO translate
+          {this.props.saved && ( // TODO translate
             <div className={styles.status}>
               <FormattedMessage {...messages.saved} />
             </div>
-          }
-          { this.props.saveError && // TODO translate
-            <div className={styles.status}>
-              Error, please try again later
-            </div>
-          }
-          { this.props.passwordSaveErrors && // TODO translate
-            this.props.passwordSaveErrors.map(this.renderError)
-          }
+          )}
+          {this.props.saveError && ( // TODO translate
+            <div className={styles.status}>Error, please try again later</div>
+          )}
+          {this.props.passwordSaveErrors && // TODO translate
+            this.props.passwordSaveErrors.map(this.renderError)}
         </div>
       </div>
     )
@@ -220,12 +219,9 @@ User.propTypes = {
 }
 
 function mapStateToProps(state) {
-  const {
-    user,
-    saved,
-    saveError,
-    passwordSaveErrors,
-  } = state.getIn(['user']).toJS()
+  const { user, saved, saveError, passwordSaveErrors } = state
+    .getIn(['user'])
+    .toJS()
   return {
     user,
     saved,
@@ -238,4 +234,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(User)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(User)

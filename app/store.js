@@ -7,21 +7,15 @@ import reducers from 'reducers'
 import languageProviderReducer from 'containers/LanguageProvider/reducer'
 import globalReducer from 'containers/App/reducer'
 
-const devtools = window.devToolsExtension || (() => (noop) => noop)
+const devtools = window.devToolsExtension || (() => noop => noop)
 
 export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares
   // 1. thunkMiddleware: Allows for async dispatch calls
   // 2. routerMiddleware: Syncs the location/URL path to the state
-  const middlewares = [
-    thunkMiddleware,
-    routerMiddleware(history),
-  ]
+  const middlewares = [thunkMiddleware, routerMiddleware(history)]
 
-  const enhancers = [
-    applyMiddleware(...middlewares),
-    devtools(),
-  ]
+  const enhancers = [applyMiddleware(...middlewares), devtools()]
 
   const store = createStore(
     combineReducers({
@@ -31,7 +25,7 @@ export default function configureStore(initialState = {}, history) {
       ...reducers,
     }),
     fromJS(initialState),
-    compose(...enhancers)
+    compose(...enhancers),
   )
 
   if (module.hot) {

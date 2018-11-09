@@ -4,27 +4,27 @@ import moment from 'moment'
 import styles from './styles.css'
 import Markdown from 'react-markdown'
 
-const PublicEvent = ({ companyName, date, adress, publicDescription, pictures }) => {
+const PublicEvent = ({
+  companyName,
+  date,
+  adress,
+  publicDescription,
+  pictures,
+}) => {
   return (
     <div name={companyName} className={styles.publicEvent}>
       <div className={styles.text}>
         <div className={styles.info}>
-          <h1 className={styles.companyName}>
-            { companyName }
-          </h1>
-          <h5 className={styles.date}>
-            { moment(date).format('MMMM DD') }
-          </h5>
-          <h5 className={styles.adress}>
-            { adress }
-          </h5>
+          <h1 className={styles.companyName}>{companyName}</h1>
+          <h5 className={styles.date}>{moment(date).format('MMMM DD')}</h5>
+          <h5 className={styles.adress}>{adress}</h5>
         </div>
         <div className={styles.description}>
           <Markdown source={publicDescription} />
         </div>
       </div>
       <div className={styles.pictures}>
-        { pictures && pictures.map(pic => <img key={pic} src={pic} /> )}
+        {pictures && pictures.map(pic => <img key={pic} src={pic} />)}
       </div>
       <div className={styles.divider} />
     </div>

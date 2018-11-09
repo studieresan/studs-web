@@ -7,9 +7,14 @@ const RecruitmentFooter = ({ recruitmentOpen, onClickUrl, onClick }) => {
   return (
     <div className={styles.recruitmentFooter}>
       <div className={styles.buttonContainer}>
-        <p><span className={styles.intro}>Vad väntar du på?</span> Sök Studs 2019 idag!</p>
+        <p>
+          <span className={styles.intro}>Vad väntar du på?</span> Sök Studs 2019
+          idag!
+        </p>
         <a href={onClickUrl} target='_blank'>
-          <button disabled onClick={onClick}>Ansök nu »</button>
+          <button disabled onClick={onClick}>
+            Ansök nu »
+          </button>
         </a>
       </div>
       <div className={styles.applicationInfo}>
@@ -19,7 +24,6 @@ const RecruitmentFooter = ({ recruitmentOpen, onClickUrl, onClick }) => {
     </div>
   )
 }
-
 
 RecruitmentFooter.propTypes = {
   recruitmentOpen: PropTypes.bool.isRequired,

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import styles from './styles.css'
 
-
 class MasterDetail extends React.Component {
   constructor(props) {
     super(props)
@@ -12,7 +11,7 @@ class MasterDetail extends React.Component {
 
   updateDimensions() {
     const width = window.innerWidth
-    this.setState({width})
+    this.setState({ width })
   }
 
   componentWillMount() {
@@ -40,12 +39,8 @@ class MasterDetail extends React.Component {
     const { master, detail } = this.props
     return (
       <div className={styles.masterDetail}>
-        <div className={styles.master}>
-          {master}
-        </div>
-        <div className={styles.detail}>
-          {detail}
-        </div>
+        <div className={styles.master}>{master}</div>
+        <div className={styles.detail}>{detail}</div>
       </div>
     )
   }

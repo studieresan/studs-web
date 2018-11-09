@@ -16,7 +16,7 @@ class HomePageHeader extends Component {
     return (
       <NavbarWaypoint>
         <div className={styles.header}>
-          <div className={styles.headerContent} >
+          <div className={styles.headerContent}>
             <div className={styles.headerContentLogo}>
               <Isvg src={Logo} />
             </div>
@@ -38,4 +38,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actions, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(HomePageHeader)
+export default connect(
+  null,
+  mapDispatchToProps,
+)(HomePageHeader)

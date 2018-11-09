@@ -28,7 +28,9 @@ class About extends Component {
           </h4>
 
           <div className={styles.members}>
-            {users.map(user => <MemberHomePage key={user.id} user={user} />)}
+            {users.map(user => (
+              <MemberHomePage key={user.id} user={user} />
+            ))}
           </div>
 
           <div className={styles.logo}>
@@ -41,10 +43,12 @@ class About extends Component {
 }
 
 About.propTypes = {
-  users: PropTypes.arrayOf(PropTypes.shape({
-    firstName: PropTypes.string.isRequired,
-    picture: PropTypes.string,
-  })),
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      firstName: PropTypes.string.isRequired,
+      picture: PropTypes.string,
+    }),
+  ),
   getUsers: PropTypes.func.isRequired,
 }
 
@@ -63,4 +67,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(About)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(About)

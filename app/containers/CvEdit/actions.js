@@ -122,7 +122,9 @@ export const saveCv = id => (dispatch, getState) => {
     dispatch(saveRequest())
     setTimeout(() => {
       timeout = false
-      const content = getState().getIn(['cv', 'content']).toJS()
+      const content = getState()
+        .getIn(['cv', 'content'])
+        .toJS()
       updateCv(id, omit(content, 'userId'))
         .then(() => dispatch(saveSuccess()))
         .catch(() => dispatch(saveError()))

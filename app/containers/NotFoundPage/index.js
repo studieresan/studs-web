@@ -11,9 +11,7 @@ export default class NotFound extends React.Component {
         <h1>
           <FormattedMessage {...messages.header} />
         </h1>
-        <Link to='/'>
-          Take me home
-        </Link>
+        <Link to='/'>Take me home</Link>
       </div>
     )
   }

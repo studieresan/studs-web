@@ -29,4 +29,7 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(Logout))
+export default connect(
+  null,
+  mapDispatchToProps,
+)(withRouter(Logout))

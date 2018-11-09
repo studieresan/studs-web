@@ -8,10 +8,7 @@ import se from 'react-intl/locale-data/se'
 import enTranslationMessages from './translations/en.json'
 import seTranslationMessages from './translations/se.json'
 
-export const appLocales = [
-  'se',
-  'en',
-]
+export const appLocales = ['se', 'en']
 
 export const appLocaleNames = [
   { key: 'se', value: 'Swedish' },
@@ -20,7 +17,7 @@ export const appLocaleNames = [
 
 addLocaleData([...en, ...se])
 
-const formatTranslationMessages = (messages) => {
+const formatTranslationMessages = messages => {
   const formattedMessages = {}
   for (const message of messages) {
     formattedMessages[message.id] = message.message || message.defaultMessage

@@ -28,12 +28,12 @@ export class Navbar extends React.Component {
   }
 
   handleMenuClick() {
-    this.setState({collapsed: !this.state.collapsed})
+    this.setState({ collapsed: !this.state.collapsed })
   }
 
   componentWillMount() {
     // this.props.router.listenBefore(() => { TODO
-    this.setState({collapsed: true})
+    this.setState({ collapsed: true })
     // })
   }
 
@@ -43,30 +43,32 @@ export class Navbar extends React.Component {
       return (
         <ul className={styles.navbarMenu}>
           <li>
-            <Link to="/logout"><FormattedMessage {...messages.logout} /></Link>
+            <Link to='/logout'>
+              <FormattedMessage {...messages.logout} />
+            </Link>
           </li>
           <li>
-            <Link to="/user">{ user.firstName || 'Profile' }</Link>
+            <Link to='/user'>{user.firstName || 'Profile'}</Link>
           </li>
           <li>
-            <Link to="/members">
+            <Link to='/members'>
               <FormattedMessage {...messages.studsmembers} />
             </Link>
           </li>
           <li>
-            <Link to="/events">
+            <Link to='/events'>
               <FormattedMessage {...messages.internalevents} />
             </Link>
           </li>
-          {
-            /* TODO <li>
+          {/* TODO <li>
               <Link to="/events/public">
                 <FormattedMessage {...messages.events} />
               </Link>
-            </li> */
-          }
+            </li> */}
           <li>
-            <Link to="/trip"><FormattedMessage {...messages.trip} /></Link>
+            <Link to='/trip'>
+              <FormattedMessage {...messages.trip} />
+            </Link>
           </li>
         </ul>
       )
@@ -74,17 +76,17 @@ export class Navbar extends React.Component {
       return (
         <ul className={styles.navbarMenu}>
           <li>
-            <Link to="/events/public">
+            <Link to='/events/public'>
               <FormattedMessage {...messages.events} />
             </Link>
           </li>
           <li>
-            <Link to="/student">
-              Student
-            </Link>
+            <Link to='/student'>Student</Link>
           </li>
           <li>
-            <Link to="/login"><FormattedMessage {...messages.login} /></Link>
+            <Link to='/login'>
+              <FormattedMessage {...messages.login} />
+            </Link>
           </li>
         </ul>
       )
@@ -103,16 +105,25 @@ export class Navbar extends React.Component {
     return (
       <div className={navbarClasses}>
         <div className={styles.control}>
-          <Link to="/">
+          <Link to='/'>
             <img src={Logo} height={24} />
           </Link>
           <img
-            src={this.state.collapsed ? (bg ? BlackMenuIcon : MenuIcon) : (bg ? BlackCloseIcon : CloseIcon) }
+            src={
+              this.state.collapsed
+                ? bg
+                  ? BlackMenuIcon
+                  : MenuIcon
+                : bg
+                ? BlackCloseIcon
+                : CloseIcon
+            }
             height={24}
-            onClick={this.handleMenuClick} />
+            onClick={this.handleMenuClick}
+          />
         </div>
-        <div className={ collapsed }>
-          { this.menu() }
+        <div className={collapsed}>
+          {this.menu()}
           <LocaleToggle />
         </div>
       </div>
@@ -139,4 +150,9 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actions, dispatch)
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar))
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(Navbar),
+)

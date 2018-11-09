@@ -10,9 +10,8 @@ function A({ ...props }) {
       href={href}
       target={target}
       className={className || styles.link}
-      {...rest}
-    >
-      { children }
+      {...rest}>
+      {children}
     </a>
   )
 }

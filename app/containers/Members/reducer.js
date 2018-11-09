@@ -17,29 +17,35 @@ const initialState = fromJS({
 
 function membersReducer(state = initialState, action) {
   switch (action.type) {
-  case GET_MEMBERS_REQUEST:
-    return state.set('fetching', true)
-  case GET_MEMBERS_SUCCESS:
-    return state.merge(fromJS({
-      users: action.users,
-      fetching: false,
-      error: false,
-    }))
-  case GET_COMPANY_MEMBERS_SUCCESS:
-    return state.merge(fromJS({
-      companyUsers: action.users,
-      fetching: false,
-      error: false,
-    }))
-  case GET_MEMBERS_ERROR:
-    return state.merge(Map({
-      fetching: false,
-      error: true,
-    }))
-  case MEMBER_SELECTED:
-    return state.set('selectedMember', action.id)
-  default:
-    return state
+    case GET_MEMBERS_REQUEST:
+      return state.set('fetching', true)
+    case GET_MEMBERS_SUCCESS:
+      return state.merge(
+        fromJS({
+          users: action.users,
+          fetching: false,
+          error: false,
+        }),
+      )
+    case GET_COMPANY_MEMBERS_SUCCESS:
+      return state.merge(
+        fromJS({
+          companyUsers: action.users,
+          fetching: false,
+          error: false,
+        }),
+      )
+    case GET_MEMBERS_ERROR:
+      return state.merge(
+        Map({
+          fetching: false,
+          error: true,
+        }),
+      )
+    case MEMBER_SELECTED:
+      return state.set('selectedMember', action.id)
+    default:
+      return state
   }
 }
 

@@ -14,11 +14,11 @@ class ForgotPassword extends React.Component {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.state = {email: ''}
+    this.state = { email: '' }
   }
 
   handleChange(event) {
-    this.setState({email: event.target.value})
+    this.setState({ email: event.target.value })
   }
 
   handleSubmit(event) {
@@ -27,10 +27,8 @@ class ForgotPassword extends React.Component {
       .then(() => {
         this.props.push('/')
       })
-      .catch(e => {
-        e.json().then(e => {
-          this.setState({error: true, errorMsg: e.error})
-        })
+      .catch(() => {
+        this.setState({ error: true })
       })
   }
 
@@ -52,12 +50,13 @@ class ForgotPassword extends React.Component {
               autoComplete='username'
               value={email}
               onChange={this.handleChange}
-              placeholder='Email'/>
+              placeholder='Email'
+            />
             <Button full wrapper type='submit' color='bright'>
               Reset
             </Button>
           </div>
-          {this.state.error ? <div>{this.state.errorMsg}</div> : null}
+          {this.state.error ? <div>Error</div> : null}
         </form>
       </div>
     )
@@ -68,7 +67,9 @@ ForgotPassword.propTypes = {
   push: PropTypes.func.isRequired,
 }
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ push }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ push }, dispatch)
 
-export default connect(null, mapDispatchToProps)(ForgotPassword)
+export default connect(
+  null,
+  mapDispatchToProps,
+)(ForgotPassword)

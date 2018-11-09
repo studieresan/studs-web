@@ -18,7 +18,6 @@ class HomePageAbout extends Component {
   }
   componentDidMount() {
     this.props.getUsers()
-
   }
   componentWillReceiveProps(nextProps) {
     if (this.state.user && this.state.user.firstName) {
@@ -42,16 +41,18 @@ class HomePageAbout extends Component {
           <h1 className={styles.name}>
             <FormattedMessage
               {...messages.headline}
-              values={{firstName: user.firstName}} />
+              values={{ firstName: user.firstName }}
+            />
           </h1>
-          <h5>{ user.position }</h5>
+          <h5>{user.position}</h5>
           <p>
             <FormattedMessage
               {...messages.intro}
-              values={{firstName: user.firstName}} />
+              values={{ firstName: user.firstName }}
+            />
           </p>
           <p>
-            <Link className={styles.link} to="/about">
+            <Link className={styles.link} to='/about'>
               <FormattedMessage {...messages.link} />
             </Link>
           </p>
@@ -76,4 +77,7 @@ HomePageAbout.propTypes = {
   users: PropTypes.array,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePageAbout)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomePageAbout)

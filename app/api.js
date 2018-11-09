@@ -36,7 +36,7 @@ function jsonHeader() {
 function authorizationHeader() {
   const jwtToken = localStorage.token
   return {
-    'Authorization': `Bearer ${jwtToken}`,
+    Authorization: `Bearer ${jwtToken}`,
   }
 }
 
@@ -91,11 +91,12 @@ export function fetchUser() {
     }
   }
   `
-  return executeGraphQL(query)
-    .then(res => Promise.resolve({
+  return executeGraphQL(query).then(res =>
+    Promise.resolve({
       ...res.data.user.profile,
       permissions: res.data.user.permissions,
-    }))
+    }),
+  )
 }
 
 function toGraphQLFields(str) {
@@ -142,7 +143,7 @@ export function loginUser(email, password) {
     },
     body: JSON.stringify(data),
   }
-  return ftch(BASE_URL+LOGIN, post)
+  return ftch(BASE_URL + LOGIN, post)
 }
 
 export function updateUserPassword({ password, confirmPassword }) {
@@ -158,7 +159,7 @@ export function updateUserPassword({ password, confirmPassword }) {
       confirmPassword,
     }),
   }
-  return ftch(BASE_URL+PASSWORD_UPDATE, post)
+  return ftch(BASE_URL + PASSWORD_UPDATE, post)
 }
 
 export function fetchUsers() {
@@ -257,7 +258,7 @@ export function fetchEvents() {
   }`
   return executeGraphQL(query)
     .then(res => res.data.allEvents)
-    .then(events => events.map(e => ({...e, date: new Date(e.date)})))
+    .then(events => events.map(e => ({ ...e, date: new Date(e.date) })))
 }
 
 export function fetchOldEvents() {
@@ -268,7 +269,7 @@ export function fetchOldEvents() {
   }`
   return executeGraphQL(query)
     .then(res => res.data.oldEvents)
-    .then(events => events.map(e => ({...e, date: new Date(e.date)})))
+    .then(events => events.map(e => ({ ...e, date: new Date(e.date) })))
 }
 
 export function saveEvent(e) {
@@ -281,8 +282,9 @@ export function saveEvent(e) {
       }
     }
     `
-    return executeGraphQL(mutation).then(res => res.data.updateEvent)
-      .then(event => ({...event, date: new Date(event.date)}))
+    return executeGraphQL(mutation)
+      .then(res => res.data.updateEvent)
+      .then(event => ({ ...event, date: new Date(event.date) }))
   } else {
     const mutation = `mutation {
       createEvent(fields: ${toGraphQLFields(event)}) {
@@ -290,8 +292,9 @@ export function saveEvent(e) {
       }
     }
     `
-    return executeGraphQL(mutation).then(res => res.data.createEvent)
-      .then(event => ({...event, date: new Date(event.date)}))
+    return executeGraphQL(mutation)
+      .then(res => res.data.createEvent)
+      .then(event => ({ ...event, date: new Date(event.date) }))
   }
 }
 
@@ -314,15 +317,17 @@ export function removeEventWithId(id) {
 //   return ftch(`${BASE_URL}${EVENTS}/${eventId}/notify_after`, header())
 // }
 
-export const uploadImage = (file) => {
-  const signedUrlEndpoint =
-    `${BASE_URL}/signed-upload?file-name=${file.name}&file-type=${file.type}`
+export const uploadImage = file => {
+  const signedUrlEndpoint = `${BASE_URL}/signed-upload?file-name=${
+    file.name
+  }&file-type=${file.type}`
 
   // Uploading a file consists of two steps. First fetching a signed s3
   // url from the backend, then uploading the file using that url.
   // The url for the image is returned if everything worked
-  return ftch(signedUrlEndpoint, credentials())
-    .then(({signedRequest, url}) => uploadFile(file, signedRequest, url))
+  return ftch(signedUrlEndpoint, credentials()).then(({ signedRequest, url }) =>
+    uploadFile(file, signedRequest, url),
+  )
 }
 
 const uploadFile = (file, signedRequest, url) => {

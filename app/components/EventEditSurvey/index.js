@@ -5,9 +5,8 @@ import { X } from 'react-feather'
 
 const EventEditSurvey = ({ url, onRemove }) => (
   <div>
-    <X onClick={onRemove}
-      className={styles.cross}/>
-    { url }
+    <X onClick={onRemove} className={styles.cross} />
+    {url}
   </div>
 )
 

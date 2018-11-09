@@ -7,10 +7,7 @@ import {
   LOGOUT,
   SET_NAVBAR_BACKGROUND,
 } from './constants'
-import {
-  fetchUser,
-  loginUser,
-} from 'api'
+import { fetchUser, loginUser } from 'api'
 import { setLoggedOut, setLoggedIn } from 'auth'
 import { push } from 'react-router-redux'
 

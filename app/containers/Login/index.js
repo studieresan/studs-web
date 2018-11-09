@@ -53,10 +53,7 @@ class Login extends Component {
   }
 
   render() {
-    const {
-      user,
-      pass,
-    } = this.state
+    const { user, pass } = this.state
     return (
       <div className={styles.login}>
         <form className={styles.form} onSubmit={this.handleSubmit}>
@@ -84,7 +81,7 @@ class Login extends Component {
             onChange={this.handlePassChange}
           />
 
-          <Link to="/user/forgot-password">
+          <Link to='/user/forgot-password'>
             <Button full>
               <FormattedMessage {...messages.forgotPassword} />
             </Button>
@@ -93,7 +90,7 @@ class Login extends Component {
             <FormattedMessage {...messages.login} />
           </Button>
 
-          { this.renderError() }
+          {this.renderError()}
         </form>
       </div>
     )
@@ -109,16 +106,22 @@ Login.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    loggedIn: state.getIn(['global', 'loggedIn' ]),
-    loginError: state.getIn(['global', 'loginError' ]),
+    loggedIn: state.getIn(['global', 'loggedIn']),
+    loginError: state.getIn(['global', 'loginError']),
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    login,
-    push,
-  }, dispatch)
+  return bindActionCreators(
+    {
+      login,
+      push,
+    },
+    dispatch,
+  )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Login)

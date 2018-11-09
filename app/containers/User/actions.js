@@ -1,6 +1,8 @@
 import {
   GET_REQUEST,
-  GET_SUCCESS, GET_ERROR, SAVE_REQUEST,
+  GET_SUCCESS,
+  GET_ERROR,
+  SAVE_REQUEST,
   SAVE_SUCCESS,
   PASSWORD_SAVE_SUCCESS,
   SAVE_ERROR,
@@ -44,21 +46,21 @@ const savePassword = ({ password, confirmPassword }, dispatch) => {
     .catch(() => dispatch(passwordSaveError()))
 }
 
-export const save = (user) => (dispatch, getState) => {
+export const save = user => (dispatch, getState) => {
   // Strip out any changes to the password since this is handled seperately
   if (user.password || user.confirmPassword) {
     savePassword(user, dispatch)
   }
 
   // Calculate changes made to the user and only send those
-  const savedUser = getState().getIn(['global', 'user']).toJS()
-  const localChanges = toPairs(omit(user, [
-    'password',
-    'confirmPassword',
-    'memberType',
-  ]))
+  const savedUser = getState()
+    .getIn(['global', 'user'])
+    .toJS()
+  const localChanges = toPairs(
+    omit(user, ['password', 'confirmPassword', 'memberType']),
+  )
   const diff = fromPairs(
-    differenceWith(localChanges, toPairs(savedUser), isEqual)
+    differenceWith(localChanges, toPairs(savedUser), isEqual),
   )
   if (isEmpty(diff)) return
 
@@ -85,7 +87,6 @@ function getError() {
     type: GET_ERROR,
   }
 }
-
 
 function saveRequest() {
   return {

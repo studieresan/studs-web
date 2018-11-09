@@ -45,4 +45,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomePage)

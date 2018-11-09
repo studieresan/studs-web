@@ -1,48 +1,15 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
-  ],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
   "rules": {
     "flowtype/define-flow-type": 1,
     "flowtype/use-flow-type": 1,
-    "no-trailing-spaces": "error",
     "no-console": "off",
     "no-var": "error",
     "prefer-const": "error",
-    "comma-dangle": [
-      "error",
-      "always-multiline"
-    ],
-    "indent": [
-      "error",
-      2
-    ],
-    "quotes": [
-      "error",
-      "single"
-    ],
-    "semi": [
-      "error",
-      "never"
-    ],
+    "quotes": ["error", "single"],
     "camelcase": "error",
-    "no-duplicate-imports": [
-      "error",
-      { "includeExports": true }
-    ],
-    "comma-spacing": [
-      "error",
-      { "before": false, "after": true }
-    ],
-    "keyword-spacing": [
-      "error",
-      { "before": true  }
-    ],
-    "max-len": [
-      "warn",
-      { "code": 80  }
-    ],
+    "no-duplicate-imports": ["error", { "includeExports": true }],
+    "max-len": ["warn", { "code": 80 }],
     "eqeqeq": "error"
   },
   "env": {
@@ -51,10 +18,7 @@
     "node": true
   },
   "parser": "babel-eslint",
-  "plugins": [
-    "react",
-    "flowtype"
-  ],
+  "plugins": ["react", "flowtype"],
   "parserOptions": {
     "ecmaVersion": 8,
     "sourceType": "module",

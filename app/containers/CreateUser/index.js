@@ -47,19 +47,18 @@ class CreateUser extends React.Component {
           return
         }
 
-        return res.json()
-          .then(err => {
-            let errorMsg
-            if (Array.isArray(err)) {
-              errorMsg = err.map(({ msg }) => msg).join(', ')
-            } else {
-              errorMsg = err.error
-            }
+        return res.json().then(err => {
+          let errorMsg
+          if (Array.isArray(err)) {
+            errorMsg = err.map(({ msg }) => msg).join(', ')
+          } else {
+            errorMsg = err.error
+          }
 
-            this.setState({
-              errorMsg,
-            })
+          this.setState({
+            errorMsg,
           })
+        })
       })
   }
 
@@ -73,16 +72,10 @@ class CreateUser extends React.Component {
         <div className={styles.content}>
           <h2>Create user</h2>
 
-          {errorIsVisible && (
-            <div className={styles.errorMsg}>
-              {errorMsg}
-            </div>
-          )}
+          {errorIsVisible && <div className={styles.errorMsg}>{errorMsg}</div>}
 
           {successIsVisible && (
-            <div className={styles.successMsg}>
-              {successMsg}
-            </div>
+            <div className={styles.successMsg}>{successMsg}</div>
           )}
 
           <form onSubmit={this.handleSubmit}>
@@ -90,25 +83,25 @@ class CreateUser extends React.Component {
               Member type:
               <div className={styles.radioButtonGroup}>
                 <input
-                  type="radio"
-                  name="memberType"
-                  id="studs_member"
-                  value="studs_member"
+                  type='radio'
+                  name='memberType'
+                  id='studs_member'
+                  value='studs_member'
                   onChange={this.handleMemberChange}
                   checked={selectedMemberType === 'studs_member'}
                 />
-                <label htmlFor="studs_member">Studs member</label>
-                <br/>
+                <label htmlFor='studs_member'>Studs member</label>
+                <br />
 
                 <input
-                  type="radio"
-                  name="memberType"
-                  id="company_member"
-                  value="company_member"
+                  type='radio'
+                  name='memberType'
+                  id='company_member'
+                  value='company_member'
                   onChange={this.handleMemberChange}
                   checked={selectedMemberType === 'company_member'}
                 />
-                <label htmlFor="company_member">Company member</label>
+                <label htmlFor='company_member'>Company member</label>
               </div>
             </div>
 
@@ -116,10 +109,10 @@ class CreateUser extends React.Component {
               <label>
                 Company name:
                 <input
-                  type="text"
-                  placeholder="Company name"
-                  name="companyName"
-                  id="companyName"
+                  type='text'
+                  placeholder='Company name'
+                  name='companyName'
+                  id='companyName'
                   required
                 />
               </label>
@@ -128,10 +121,10 @@ class CreateUser extends React.Component {
             <label>
               Email:
               <input
-                type="email"
-                placeholder="some@email.com"
-                name="email"
-                id="email"
+                type='email'
+                placeholder='some@email.com'
+                name='email'
+                id='email'
                 required
               />
             </label>
@@ -139,10 +132,10 @@ class CreateUser extends React.Component {
             <label>
               First name:
               <input
-                type="text"
-                placeholder="First name"
-                name="firstName"
-                id="firstName"
+                type='text'
+                placeholder='First name'
+                name='firstName'
+                id='firstName'
                 required
               />
             </label>
@@ -150,15 +143,15 @@ class CreateUser extends React.Component {
             <label>
               Last name:
               <input
-                type="text"
-                placeholder="Last name"
-                name="lastName"
-                id="lastName"
+                type='text'
+                placeholder='Last name'
+                name='lastName'
+                id='lastName'
                 required
               />
             </label>
 
-            <Button full type="submit">
+            <Button full type='submit'>
               Create new user
             </Button>
           </form>

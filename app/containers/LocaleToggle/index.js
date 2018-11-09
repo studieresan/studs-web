@@ -10,19 +10,17 @@ import styles from './styles.css'
 function LocaleToggle(props) {
   return (
     <div className={styles.localeToggle}>
-      {
-        appLocaleNames
-          .filter(({ key }) => key !== props.locale)
-          .map(({ key, value }) => (
-            <span
-              key={key}
-              className={styles.localeToggleLink}
-              onClick={props.onLocaleSwitch}
-              data-language={key}>
-              {value}
-            </span>
-          ))
-      }
+      {appLocaleNames
+        .filter(({ key }) => key !== props.locale)
+        .map(({ key, value }) => (
+          <span
+            key={key}
+            className={styles.localeToggleLink}
+            onClick={props.onLocaleSwitch}
+            data-language={key}>
+            {value}
+          </span>
+        ))}
     </div>
   )
 }
@@ -33,17 +31,16 @@ LocaleToggle.propTypes = {
   locale: PropTypes.string,
 }
 
-const mapStateToProps = createSelector(
-  selectLocale(),
-  (locale) => ({ locale })
-)
+const mapStateToProps = createSelector(selectLocale(), locale => ({ locale }))
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onLocaleSwitch: (evt) =>
-      dispatch(changeLocale(evt.target.dataset.language)),
+    onLocaleSwitch: evt => dispatch(changeLocale(evt.target.dataset.language)),
     dispatch,
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LocaleToggle)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LocaleToggle)

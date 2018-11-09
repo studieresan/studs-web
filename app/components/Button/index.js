@@ -13,15 +13,19 @@ function Button({
   onClick,
   children,
 }) {
-  const classes = classNames({
-    [styles[`${color}`]]: color,
-    [styles.disabled]: disabled,
-    [styles.full]: full,
-  }, styles.button, className)
+  const classes = classNames(
+    {
+      [styles[`${color}`]]: color,
+      [styles.disabled]: disabled,
+      [styles.full]: full,
+    },
+    styles.button,
+    className,
+  )
   return (
     <Wrapper display={wrapper}>
       <button type={type} className={classes} onClick={onClick}>
-        { children }
+        {children}
       </button>
     </Wrapper>
   )
@@ -29,11 +33,7 @@ function Button({
 
 const Wrapper = ({ display, children }) => {
   if (!display) return children
-  return (
-    <div className={styles.wrapper}>
-      { children }
-    </div>
-  )
+  return <div className={styles.wrapper}>{children}</div>
 }
 
 Wrapper.propTypes = {
@@ -43,17 +43,8 @@ Wrapper.propTypes = {
 
 Button.propTypes = {
   className: PropTypes.string,
-  type: PropTypes.oneOf([
-    'button',
-    'submit',
-    'reset',
-  ]),
-  color: PropTypes.oneOf([
-    'icon',
-    'default',
-    'bright',
-    'danger',
-  ]),
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
+  color: PropTypes.oneOf(['icon', 'default', 'bright', 'danger']),
   full: PropTypes.bool,
   wrapper: PropTypes.bool,
   disabled: PropTypes.bool,

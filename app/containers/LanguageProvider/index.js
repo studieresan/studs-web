@@ -29,9 +29,9 @@ LanguageProvider.propTypes = {
   children: PropTypes.element.isRequired,
 }
 
-const mapStateToProps = createSelector(
-  selectLocale(),
-  (locale) => ({ locale })
-)
+const mapStateToProps = createSelector(selectLocale(), locale => ({ locale }))
 
-export default connect(mapStateToProps, null)(LanguageProvider)
+export default connect(
+  mapStateToProps,
+  null,
+)(LanguageProvider)

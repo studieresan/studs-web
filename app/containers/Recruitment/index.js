@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { PureComponent } from 'react'
 import StudsRecruitmentSectionModel from 'models/StudsRecruitmentSectionModel'
 import StudsRecruitmentLeaderModel from 'models/StudsRecruitmentLeaderModel'

@@ -3,26 +3,25 @@
   --primary-dark: #0f344e;
   --primary-light: #ecf8fc;
   --secondary: #ffe8dd;
+
+  --heading-font: 'Playfair Display', serif;
+  --body-font: 'IBM Plex Sans', sans-serif;
 }
 
 html,
 body {
-  width: 100%;
-  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: var(--body-font);
   font-size: 16px;
 }
 
 #root {
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
 }
 
 h1,
@@ -30,13 +29,9 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-  line-height: 1.5;
-}
-
+h6,
 p,
 li {
-  font-size: 14px;
   line-height: 1.5;
 }
 
@@ -57,95 +52,7 @@ input:focus {
   outline: none;
 }
 
-:global .input-label {
-  font-size: 12px;
-  padding-top: 10px;
-  padding-bottom: 3px;
-}
-
-:global .btn-default {
-  font-family: 'DIN Condensed';
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  background: #072c2e;
-  color: white;
-  line-height: 40px;
-  height: 35px;
-  padding: 0 24px;
-  transition: background-color 0.2s;
-  cursor: pointer;
-}
-
-:global .btn-danger {
-  font-family: 'DIN Condensed';
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  background: #dd696d;
-  color: black;
-  line-height: 40px;
-  height: 35px;
-  padding: 0 24px;
-  transition: background-color 0.2s;
-  cursor: pointer;
-}
-
-:global .btn-bright {
-  font-family: 'DIN Condensed';
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  background: #f7ddc9;
-  color: black;
-  width: 100%;
-  line-height: 40px;
-  font-size: 12px;
-  border-radius: 4px;
-  height: 35px;
-  padding: 1em 2em;
-  transition: background-color 0.2s;
-  cursor: pointer;
-}
-
-:global .btn-gold {
-  font-family: 'DIN Condensed';
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  background: #f7ddc9;
-  color: black;
-  line-height: 40px;
-  height: 35px;
-  padding: 0 24px;
-  transition: background-color 0.2s;
-  cursor: pointer;
-}
-
-:global .btn-disabled {
-  font-family: 'DIN Condensed';
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  background-color: #ccc;
-  color: #666;
-  line-height: 40px;
-  height: 35px;
-  padding: 0 24px;
-  transition: background-color 0.2s;
-  pointer-events: none;
-  cursor: pointer;
-}
-
-:global .button-wrapper {
-  margin: 20px;
-  display: flex;
-  justify-content: center;
-}
-
-:global .center {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-:global a {
-  color: black;
+a {
+  color: inherit;
   text-decoration: none;
 }

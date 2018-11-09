@@ -1,23 +1,5 @@
-.localeToggle {
-  float: right;
-}
-
 .localeToggleLink {
-  color: #DD696D;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  font-size: 14px;
   cursor: pointer;
-}
-
-.localeToggleLink:hover {
-  border-bottom: 1px solid #DD696D;
-}
-
-.localeToggleLink:first-child {
-  padding-left: 0;
-}
-
-.localeToggleLink:last-child {
-  padding-right: 0;
+  border-bottom: 1px solid;
+  padding: 0;
 }

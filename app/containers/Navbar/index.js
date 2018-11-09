@@ -1,9 +1,9 @@
 // @flow
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import HeroNav from './HeroNav'
+import Nav from './Nav'
 
-const LightNav = props => <HeroNav {...props} invert />
+const LightNav = props => <Nav {...props} invert />
 
 /**
  * Use a different variation of the navbar depending on which
@@ -12,9 +12,9 @@ const LightNav = props => <HeroNav {...props} invert />
 function Navbar() {
   return (
     <Switch>
-      <Route exact path="/" render={LightNav} />
-      <Route path="/login" render={LightNav} />
-      <Route component={HeroNav} />
+      <Route exact path='/' render={LightNav} />
+      <Route path='/login' render={LightNav} />
+      <Route component={Nav} />
     </Switch>
   )
 }

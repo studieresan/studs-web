@@ -121,6 +121,12 @@
   }
 }
 
+@media (max-width: 740px) {
+  .section {
+    flex-direction: column;
+  }
+}
+
 @media (orientation: portrait) {
   .section {
     flex-direction: column;

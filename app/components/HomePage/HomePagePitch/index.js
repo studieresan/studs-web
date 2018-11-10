@@ -2,11 +2,47 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import Project from 'static/img/home/project-1.jpg'
-import Event from 'static/img/home/event-1.jpg'
-import Trip from 'static/img/home/trip-1.jpg'
+import Cinnober from 'static/img/home/cinnober.jpg'
+import Tritech from 'static/img/home/tritech.jpg'
+import SanFransisco from 'static/img/home/sanfrancisco.jpg'
+import NewYork from 'static/img/home/newyork.jpg'
 
 import messages from './messages'
 import styles from './styles.css'
+
+const projectNode = () => {
+  return (
+    <div className={styles.images}>
+      <img className={styles.image} src={Project} />
+    </div>
+  )
+}
+
+const eventNode = () => {
+  return (
+    <div className={styles.images}>
+      <div className={styles.eventImageContainer}>
+        <img id={styles.tritech} className={styles.image} src={Tritech} />
+        <img id={styles.cinnober} className={styles.image} src={Cinnober} />
+      </div>
+    </div>
+  )
+}
+
+const tripNode = () => {
+  return (
+    <div className={styles.images}>
+      <div className={styles.tripImageContainer}>
+        <img
+          id={styles.sanFransisco}
+          className={styles.image}
+          src={SanFransisco}
+        />
+        <img id={styles.newYork} className={styles.image} src={NewYork} />
+      </div>
+    </div>
+  )
+}
 
 function HomePagePitch() {
   return (
@@ -14,19 +50,17 @@ function HomePagePitch() {
       <h1 className={styles.headline}>
         <FormattedMessage {...messages.headline} />
       </h1>
-      <Section image={Project} {...messages.project} />
-      <Section image={Event} {...messages.events} />
-      <Section image={Trip} {...messages.trip} />
+      <Section {...messages.project}>{projectNode()}</Section>
+      <Section {...messages.events}>{eventNode()}</Section>
+      <Section {...messages.trip}>{tripNode()}</Section>
     </div>
   )
 }
 
-function Section({ image, header, content }) {
+function Section({ header, content, children }) {
   return (
     <div className={styles.section}>
-      <div className={styles.images}>
-        <img className={styles.image} src={image} />
-      </div>
+      {children}
       <div className={styles.text}>
         <h2 className={styles.header}>
           <FormattedMessage {...header} />
@@ -49,6 +83,7 @@ Section.propTypes = {
     id: PropTypes.string.isRequired,
     defaultMessage: PropTypes.string,
   }).isRequired,
+  children: PropTypes.node,
 }
 
 export default HomePagePitch

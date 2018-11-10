@@ -10,7 +10,7 @@ import NewYork from 'static/img/home/newyork.jpg'
 import messages from './messages'
 import styles from './styles.css'
 
-const projectNode = () => {
+const ProjectNode = () => {
   return (
     <div className={styles.images}>
       <img className={styles.image} src={Project} />
@@ -18,7 +18,7 @@ const projectNode = () => {
   )
 }
 
-const eventNode = () => {
+const EventNode = () => {
   return (
     <div className={styles.images}>
       <div className={styles.eventImageContainer}>
@@ -29,7 +29,7 @@ const eventNode = () => {
   )
 }
 
-const tripNode = () => {
+const TripNode = () => {
   return (
     <div className={styles.images}>
       <div className={styles.tripImageContainer}>
@@ -50,9 +50,15 @@ function HomePagePitch() {
       <h1 className={styles.headline}>
         <FormattedMessage {...messages.headline} />
       </h1>
-      <Section {...messages.project}>{projectNode()}</Section>
-      <Section {...messages.events}>{eventNode()}</Section>
-      <Section {...messages.trip}>{tripNode()}</Section>
+      <Section {...messages.project}>
+        <ProjectNode />
+      </Section>
+      <Section {...messages.events}>
+        <EventNode />
+      </Section>
+      <Section {...messages.trip}>
+        <TripNode />
+      </Section>
     </div>
   )
 }

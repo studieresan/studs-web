@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 80%;
-  margin: 0 auto 5rem;
+  margin: 0 auto 7.5rem;
 }
 
 .headline {
@@ -15,12 +15,17 @@
   justify-content: center;
 }
 
+.header {
+  margin-top: 0;
+}
+
 .section + .section {
   margin-top: 5rem;
 }
 
 .images {
-  flex: 0 0 50%;
+  flex: 0 0 30%;
+  padding: 0 1rem;
 }
 
 .section:nth-of-type(2n) .images {
@@ -32,18 +37,80 @@
   height: auto;
   margin: 0 auto;
   text-align: center;
-  display: block;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.3);
+}
+
+.body {
+  line-height: normal;
+}
+
+.eventImageContainer {
+  width: 380px;
+  height: 254px;
+  position: relative;
+  padding: 4px;
+  top: 0;
+  left: 0;
+}
+
+.tripImageContainer {
+  width: 380px;
+  height: 264px;
+  position: relative;
+  padding: 4px;
+  top: 0;
+  left: 0;
+}
+
+#cinnober {
+  max-width: 264px;
+  max-height: 176px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+#tritech {
+  max-width: 324px;
+  max-height: 216px;
+  position: absolute;
+  top: 0;
+  left: 60px;
+}
+
+#sanFransisco {
+  max-width: 300px;
+  max-height: 200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#newYork {
+  max-height: 247px;
+  max-width: 173px;
+  position: absolute;
+  top: 15px;
+  right: 0;
+  z-index: 1;
 }
 
 .text {
   flex: 0 1 auto;
-  max-width: 400px;
-  padding: 0 2rem;
+  max-width: 521px;
+  padding: 0 1rem;
 }
 
-.body {
-  margin: 0;
-  margin-top: 2rem;
+@media (max-width: 460px) {
+  .eventImageContainer, .tripImageContainer {
+    width: 200px;
+  }
+
+  #tritech {
+    top: auto;
+    left: auto;
+  }
 }
 
 @media (orientation: portrait) {

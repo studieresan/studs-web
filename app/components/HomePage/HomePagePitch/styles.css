@@ -35,8 +35,6 @@
 .images .image {
   width: 100%;
   height: auto;
-  margin: 0 auto;
-  text-align: center;
   box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -60,6 +58,11 @@
   padding: 4px;
   top: 0;
   left: 0;
+}
+
+#projectImage {
+  width: 380px;
+  height: 214px;
 }
 
 #cinnober {
@@ -107,6 +110,11 @@
     width: 200px;
   }
 
+  #projectImage {
+    width: 100%;
+    height: 100%;
+  }
+
   #tritech {
     top: auto;
     left: auto;
@@ -123,7 +131,7 @@
   }
 
   .section div {
-    padding: 1rem 2rem;
+    padding: 1rem 1rem;
   }
 
   .images {

@@ -13,7 +13,7 @@ import styles from './styles.css'
 const ProjectNode = () => {
   return (
     <div className={styles.images}>
-      <img className={styles.image} src={Project} />
+      <img id={styles.projectImage} className={styles.image} src={Project} />
     </div>
   )
 }

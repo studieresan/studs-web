@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-scroll'
+import { trackEvent } from '../../utils'
 
 import styles from './styles.css'
 
@@ -27,6 +28,7 @@ const PublicEventMenuLink = ({ company }) => {
       offset={-92}
       duration={400}
       spy={true}
+      onClick={trackEvent('Events', `Clicked the ${company} event`)}
     >
       {company}
     </Link>

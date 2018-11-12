@@ -12,11 +12,15 @@ import { ConnectedRouter } from 'react-router-redux'
 import LanguageProvider from 'containers/LanguageProvider'
 
 import { translationMessages } from './i18n'
+import { trackPageView } from './utils'
 
 // Create redux store with history
 const initialState = {}
 const browserHistory = createBrowserHistory()
 const store = configureStore(initialState, browserHistory)
+
+trackPageView('/')
+browserHistory.listen(location => trackPageView(location.pathname))
 
 class AppComponent extends Component {
   render() {

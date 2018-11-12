@@ -21,20 +21,20 @@ function NavLinks({ loggedIn, user }: Props) {
     userLinks = (
       <React.Fragment>
         <li>
-          <Link to="/user">{user.firstName || 'Profile'}</Link>
+          <Link to='/user'>{user.firstName || 'Profile'}</Link>
         </li>
         <li>
-          <Link to="/members">
+          <Link to='/members'>
             <FormattedMessage {...messages.studsmembers} />
           </Link>
         </li>
         <li>
-          <Link to="/trip">
+          <Link to='/trip'>
             <FormattedMessage {...messages.trip} />
           </Link>
         </li>
         <li>
-          <Link to="/logout">
+          <Link to='/logout'>
             <FormattedMessage {...messages.logout} />
           </Link>
         </li>
@@ -43,7 +43,7 @@ function NavLinks({ loggedIn, user }: Props) {
   } else {
     userLinks = (
       <li>
-        <Link to="/login">
+        <Link to='/login'>
           <FormattedMessage {...messages.login} />
         </Link>
       </li>
@@ -54,17 +54,14 @@ function NavLinks({ loggedIn, user }: Props) {
     <div className={styles.navLinks}>
       <ul className={styles.navbarMenu}>
         <li>
-          <Link to="/about">
+          <Link to='/about'>
             <FormattedMessage {...messages.about} />
           </Link>
         </li>
         <li>
-          <Link to="/events">
+          <Link to='/events'>
             <FormattedMessage {...messages.internalevents} />
           </Link>
-        </li>
-        <li>
-          <Link to="/student">Student</Link>
         </li>
       </ul>
       <ul className={styles.navbarUserMenu}>

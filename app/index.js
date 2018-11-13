@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import { AppContainer } from 'react-hot-loader'
-import { unregister } from './registerServiceWorker'
+import registerServiceWorker from './registerServiceWorker'
 import { initializeThirdParty } from './utils'
 
 initializeThirdParty()
@@ -25,4 +25,4 @@ if (module.hot) {
   })
 }
 
-unregister()
+registerServiceWorker()

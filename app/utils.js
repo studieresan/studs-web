@@ -16,4 +16,13 @@ export const trackPageView = url => {
   }
 }
 
+export const trackEvent = (category, action) => {
+  if (isProduction) {
+    ReactGA.event({
+      category,
+      action,
+    })
+  }
+}
+
 const isProduction = process.env.NPM_CONFIG_PRODUCTION === 'production'

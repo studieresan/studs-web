@@ -30,7 +30,7 @@ class OldEvents extends React.Component {
 
     return (
       <div className={styles.publicEvents}>
-        <PublicEventMenu title='Event 2018' events={events} />
+        <PublicEventMenu title='Studs 2018' events={events} />
         <div className={styles.eventList}>
           {events.map(e => (
             <PublicEvent key={e.id} {...e} />

@@ -39,7 +39,7 @@ PublicEventMenu.propTypes = {
 }
 
 PublicEventMenu.defaultProps = {
-  title: 'Event 2019',
+  title: 'Studs 2019',
 }
 
 PublicEventMenuLink.propTypes = {

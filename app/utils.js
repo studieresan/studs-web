@@ -12,7 +12,7 @@ export const initializeThirdParty = () => {
 
 export const trackPageView = url => {
   if (isProduction) {
-    ReactGA.pageView(url)
+    ReactGA.pageview(url)
   }
 }
 
@@ -25,4 +25,4 @@ export const trackEvent = (category, action) => {
   }
 }
 
-const isProduction = process.env.NPM_CONFIG_PRODUCTION === 'production'
+const isProduction = process.env.NPM_CONFIG_PRODUCTION === 'true'

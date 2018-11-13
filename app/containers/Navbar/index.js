@@ -32,9 +32,7 @@ export class Navbar extends React.Component {
   }
 
   componentWillMount() {
-    // this.props.router.listenBefore(() => { TODO
     this.setState({ collapsed: true })
-    // })
   }
 
   menu() {
@@ -76,8 +74,18 @@ export class Navbar extends React.Component {
       return (
         <ul className={styles.navbarMenu}>
           <li>
+            <Link to='/about'>
+              <FormattedMessage {...messages.about} />
+            </Link>
+          </li>
+          <li>
             <Link to='/events/public'>
               <FormattedMessage {...messages.events} />
+            </Link>
+          </li>
+          <li>
+            <Link to='/events/2018'>
+              <FormattedMessage {...messages.pastEvents} />
             </Link>
           </li>
           <li>

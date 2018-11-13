@@ -4,10 +4,10 @@ import { Link } from 'react-scroll'
 
 import styles from './styles.css'
 
-const PublicEventMenu = ({ events }) => {
+const PublicEventMenu = ({ title, events }) => {
   return (
     <div className={styles.publicEventMenu}>
-      <h2>Events</h2>
+      <h2>{title}</h2>
       <div className={styles.links}>
         {events.map(e => (
           <PublicEventMenuLink key={e.companyName} company={e.companyName} />
@@ -34,7 +34,12 @@ const PublicEventMenuLink = ({ company }) => {
 }
 
 PublicEventMenu.propTypes = {
+  title: PropTypes.string,
   events: PropTypes.array.isRequired,
+}
+
+PublicEventMenu.defaultProps = {
+  title: 'Event 2019',
 }
 
 PublicEventMenuLink.propTypes = {

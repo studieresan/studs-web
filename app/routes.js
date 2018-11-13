@@ -31,7 +31,7 @@ class StudsRouter extends Component {
 
         <Route exact path='/password-reset/:token' component={PasswordReset} />
         <Route exact path='/events/public' component={PublicEvents} />
-        <Route exact path='/events/old' component={OldEvents} />
+        <Route exact path='/events/2018' component={OldEvents} />
         <Route exact path='/student' component={Recruitment} />
         <AuthenticatedRoute exact path='/user' component={User} />
         <AuthenticatedRoute exact path='/resume/edit' component={CvEdit} />

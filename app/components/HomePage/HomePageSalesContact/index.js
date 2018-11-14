@@ -10,7 +10,6 @@ import Nils from 'static/img/people/nils.jpg'
 const CONTACT_NAME = 'Nils Streijffert'
 const CONTACT_PHONE_NUMBER = '+4670-1440857'
 const CONTACT_EMAIL = 'studs-salj@d.kth.se'
-const CONTACT_ROLE = 'Head of Sales'
 
 const HomePageSalesContact = () => (
   <div className={styles.contact}>
@@ -20,7 +19,7 @@ const HomePageSalesContact = () => (
       <div>
         <b>{CONTACT_NAME}</b>
         <br/>
-        <span>{CONTACT_ROLE}</span>
+        <FormattedMessage {...messages.contact.title} />
         <br/>
         <FormattedMessage {...messages.contact.phone} />{': '}
         <a href={`tel:${CONTACT_PHONE_NUMBER}`}>{`${CONTACT_PHONE_NUMBER}`}</a>

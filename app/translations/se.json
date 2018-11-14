@@ -1,212 +1,278 @@
-[{
-  "id": "app.components.HomePage.intro.header",
-  "message": "Vi älskar utmaningar och äventyr"
-}, {
-  "id": "app.components.HomePage.intro.content",
-  "message": "Studs, eller Studieresan, är ett årligt projekt på Kungliga Tekniska Högskolan (KTH). Projektet har som mål att skapa en plattform för interaktion mellan snart examinerade studenter och relevanta företag. Projektet avslutas med en studieresa för att ge studenterna möjlighet att träffa företag utomlands."
-}, {
-  "id": "app.components.HomePage.headline",
-  "message": "Om Studs"
-}, {
-  "id": "app.components.HomePage.project.header",
-  "message": "Projektet"
-}, {
-  "id": "app.components.HomePage.project.content",
-  "message": "Studs är ett årligt ideellt projekt vid KTH, bedrivet av studenter. Projektet utgörs av 30 utvalda ingenjörsstudenter inom mastersprogram relevanta till datavetenskap. Genom att organisera evenemang tillsammans med företag skapar vi en plattform för att ge studenter och deras potentiella framtida arbetsgivare koncentrerad tid tillsammans."
-}, {
-  "id": "app.components.HomePage.events.header",
-  "message": "Evenemangen"
-}, {
-  "id": "app.components.HomePage.events.content",
-  "message": "Genom året kommer medlemmarna av Studs besöka företag genom evenemang, vanligtvis arrangerade på företagens kontor. För studenterna är det här en möjlighet att få djupare insikter om hur livet på företaget ser ut och om företagets verksamhet. Studs hjälper företagen att skräddarsy evenemangen till deras behov, vilket garanterar att varje evenemang är lika unikt som företaget som arrangerat det."
-}, {
-  "id": "app.components.HomePage.trip.header",
-  "message": "Resan"
-}, {
-  "id": "app.components.HomePage.trip.content",
-  "message": "Projektet avslutas med en resa till USA, i syfte att ge projektmedlemmarna möjligheter för både kulturellt och professionellt utbyte. USA har en unik position inom teknologin med städer som San Francisco, New York och Seattle som ger upphov till ständig innovation och tillväxt för såväl startups som etablerade aktörer."
-}, {
-  "id": "app.containers.Navbar.login",
-  "message": "Logga in"
-}, {
-  "id": "app.containers.Navbar.logout",
-  "message": "Logga ut"
-}, {
-  "id": "app.containers.Navbar.about",
-  "message": "Om Studs"
-}, {
-  "id": "app.containers.Navbar.trip",
-  "message": "Resan"
-}, {
-  "id": "app.containers.Navbar.studsmembers",
-  "message": "Medlemmar"
-}, {
-  "id": "app.components.HomePage.members.header",
-  "message": "Det här är vi"
-}, {
-  "id": "app.components.HomePage.report.lastYear",
-  "message": "Förra årets<br/>rapport"
-}, {
-  "id": "app.components.MembersStaticDetail.header",
-  "message": "Välkommen till CV-databasen!"
-}, {
-  "id": "app.containers.Members.listHeader",
-  "message": "Medlemmar"
-}, {
-  "id": "app.containers.About.header",
-  "message": "Det här är vi"
-}, {
-  "id": "app.containers.About.subtitle",
-  "message": "Människorna bakom Studs 2019"
-}, {
-  "id": "app.components.HomePage.footer.shortPitch",
-  "message": "Studs hjälper ditt företag att träffa KTH-studenter"
-}, {
-  "id": "app.components.HomePage.footer.SalesHeader",
-  "message": "Jobba med oss"
-}, {
-  "id": "app.components.HomePage.footer.SalesContent",
-  "message": "Om ni är intresserade av att ha ett event med oss, eller om ni är nyfikna och vill veta mer, kontakta vår säljansvarig Nils."
-}, {
-  "id": "app.components.HomePage.footer.salesTitle",
-  "message": "Säljansvarig"
-},  {
-  "id": "app.components.HomePage.footer.phone",
-  "message": "Telefon"
-}, {
-  "id": "app.components.HomePage.footer.projectManagerHeader",
-  "message": "Frågor?"
-}, {
-  "id": "app.components.HomePage.footer.projectManagerTitle",
-  "message": "Projektledare"
-}, {
-  "id": "app.components.EventEdit.save",
-  "message": "Spara"
-}, {
-  "id": "app.components.EventEdit.company",
-  "message": "Företag"
-}, {
-  "id": "app.components.EventEdit.date",
-  "message": "Datum"
-}, {
-  "id": "app.components.EventEdit.location",
-  "message": "Plats"
-}, {
-  "id": "app.components.EventEdit.publicDescription",
-  "message": "Offentlig Beskrivning"
-}, {
-  "id": "app.components.EventEdit.privateDescription",
-  "message": "Privat Beskrivning"
-}, {
-  "id": "app.components.EventEdit.beforeSurvey",
-  "message": "Förenkät"
-}, {
-  "id": "app.components.EventEdit.afterSurvey",
-  "message": "Efterenkät"
-}, {
-  "id": "app.components.EventEdit.pictures",
-  "message": "Bilder"
-}, {
-  "id": "app.components.EventEdit.published",
-  "message": "Publicerad"
-}, {
-  "id": "app.components.EventDetail.event",
-  "message": "Event"
-}, {
-  "id": "app.containers.Navbar.internalevents",
-  "message": "Eventinfo"
-}, {
-  "id": "app.containers.Navbar.events",
-  "message": "Events"
-}, {
-  "id": "app.containers.Navbar.trip",
-  "message": "Resan"
-}, {
-  "id": "app.containers.User.title",
-  "message": "Redigera Profil"
-}, {
-  "id": "app.containers.User.editResume",
-  "message": "Redigera CV"
-}, {
-  "id": "app.containers.User.firstName",
-  "message": "Förnamn"
-}, {
-  "id": "app.containers.User.lastName",
-  "message": "Efternamn"
-}, {
-  "id": "app.containers.User.phone",
-  "message": "Telefon"
-}, {
-  "id": "app.containers.User.position",
-  "message": "Roll"
-}, {
-  "id": "app.containers.User.master",
-  "message": "Master"
-}, {
-  "id": "app.containers.User.allergies",
-  "message": "Allergier"
-}, {
-  "id": "app.containers.User.password",
-  "message": "Nytt Lösenord"
-}, {
-  "id": "app.containers.User.confirmPassword",
-  "message": "Upprepa Lösenord"
-}, {
-  "id": "app.containers.User.save",
-  "message": "Spara"
-}, {
-  "id": "app.containers.User.saved",
-  "message": "Sparat"
-}, {
-  "id": "app.components.EventStaticDetail.header",
-  "message": "Välj ett event till vänster!"
-}, {
-  "id": "app.containers.Events.company",
-  "message": "Företag"
-}, {
-  "id": "app.containers.Events.create",
-  "message": "Skapa"
-}, {
-  "id": "app.containers.Events.date",
-  "message": "Datum"
-}, {
-  "id": "app.components.HomePage.footer.projectManagerTitle",
-  "message": "Projektledare"
-}, {
-  "id": "app.components.HomePage.about.headline",
-  "message": "Det här är {firstName}"
-}, {
-  "id": "app.components.HomePage.about.intro",
-  "message": "{firstName} är en av de 30 studenter som gör Studs-projektet möjligt"
-}, {
-  "id": "app.components.HomePage.about.link",
-  "message": "Lär känna resten av oss"
-}, {
-  "id": "app.containers.Login.error",
-  "message": "Ogiltig email eller lösenord"
-},
-{
-  "id": "app.containers.Login.welcome",
-  "message": "Välkommen"
-},
-{
-  "id": "app.containers.Login.email",
-  "message": "Email"
-},
-{
-  "id": "app.containers.Login.password",
-  "message": "Lösenord"
-},
-{
-  "id": "app.containers.Login.forgotPassword",
-  "message": "Glömt lösenord?"
-}, {
-  "id": "app.containers.Login.login",
-  "message": "Logga in"
-}, {
-  "id": "app.components.HomePage.intro.application",
-  "message": "Ansökan till Studs 2019 är öppen!"
-}, {
-  "id": "app.components.HomePage.intro.learnMore",
-  "message": "Läs mer"
-}]
+[
+  {
+    "id": "app.components.HomePage.intro.headline",
+    "message": "Vad är Studs?"
+  },
+  {
+    "id": "app.components.HomePage.intro.content",
+    "message": "Studs, eller Studieresan, är ett årligt projekt på Kungliga Tekniska Högskolan (KTH). Projektet har som mål att skapa en plattform för interaktion mellan snart examinerade studenter och relevanta företag. Projektet avslutas med en studieresa för att ge studenterna möjlighet att träffa företag utomlands."
+  },
+  {
+    "id": "app.components.HomePage.headline",
+    "message": "Om Studs"
+  },
+  {
+    "id": "app.components.HomePage.project.header",
+    "message": "Projektet"
+  },
+  {
+    "id": "app.components.HomePage.project.content",
+    "message": "Studs är ett årligt ideellt projekt vid KTH, bedrivet av studenter. Projektet utgörs av 30 utvalda ingenjörsstudenter inom mastersprogram relevanta till datavetenskap. Genom att organisera evenemang tillsammans med företag skapar vi en plattform för att ge studenter och deras potentiella framtida arbetsgivare koncentrerad tid tillsammans."
+  },
+  {
+    "id": "app.components.HomePage.events.header",
+    "message": "Evenemangen"
+  },
+  {
+    "id": "app.components.HomePage.events.content",
+    "message": "Genom året kommer medlemmarna av Studs besöka företag genom evenemang, vanligtvis arrangerade på företagens kontor. För studenterna är det här en möjlighet att få djupare insikter om hur livet på företaget ser ut och om företagets verksamhet. Studs hjälper företagen att skräddarsy evenemangen till deras behov, vilket garanterar att varje evenemang är lika unikt som företaget som arrangerat det."
+  },
+  {
+    "id": "app.components.HomePage.trip.header",
+    "message": "Resan"
+  },
+  {
+    "id": "app.components.HomePage.trip.content",
+    "message": "Projektet avslutas med en resa till USA, i syfte att ge projektmedlemmarna möjligheter för både kulturellt och professionellt utbyte. USA har en unik position inom teknologin med städer som San Francisco, New York och Seattle som ger upphov till ständig innovation och tillväxt för såväl startups som etablerade aktörer."
+  },
+  {
+    "id": "app.components.HomePage.footer.SalesContent",
+    "message": "Om ni är intresserade av att ha ett event med oss, eller om ni är nyfikna och vill veta mer, kontakta vår säljansvarig Nils."
+  },
+  {
+    "id": "app.components.HomePage.footer.phone",
+    "message": "Telefon"
+  },
+  {
+    "id": "app.containers.Navbar.login",
+    "message": "Logga in"
+  },
+  {
+    "id": "app.containers.Navbar.logout",
+    "message": "Logga ut"
+  },
+  {
+    "id": "app.containers.Navbar.about",
+    "message": "Om Studs"
+  },
+  {
+    "id": "app.containers.Navbar.trip",
+    "message": "Resan"
+  },
+  {
+    "id": "app.containers.Navbar.studsmembers",
+    "message": "Medlemmar"
+  },
+  {
+    "id": "app.components.HomePage.members.header",
+    "message": "Det här är vi"
+  },
+  {
+    "id": "app.components.HomePage.report.lastYear",
+    "message": "Förra årets<br/>rapport"
+  },
+  {
+    "id": "app.components.MembersStaticDetail.header",
+    "message": "Välkommen till CV-databasen!"
+  },
+  {
+    "id": "app.containers.Members.listHeader",
+    "message": "Medlemmar"
+  },
+  {
+    "id": "app.containers.About.header",
+    "message": "Det här är vi"
+  },
+  {
+    "id": "app.containers.About.subtitle",
+    "message": "Människorna bakom Studs 2019"
+  },
+  {
+    "id": "app.components.HomePage.footer.shortPitch",
+    "message": "Studs hjälper ditt företag att träffa KTH-studenter"
+  },
+  {
+    "id": "app.components.HomePage.footer.SalesHeader",
+    "message": "Jobba med oss"
+  },
+  {
+    "id": "app.components.HomePage.footer.salesTitle",
+    "message": "Säljansvarig"
+  },
+  {
+    "id": "app.components.HomePage.footer.projectManagerHeader",
+    "message": "Frågor?"
+  },
+  {
+    "id": "app.components.HomePage.footer.projectManagerTitle",
+    "message": "Projektledare"
+  },
+  {
+    "id": "app.components.EventEdit.save",
+    "message": "Spara"
+  },
+  {
+    "id": "app.components.EventEdit.company",
+    "message": "Företag"
+  },
+  {
+    "id": "app.components.EventEdit.date",
+    "message": "Datum"
+  },
+  {
+    "id": "app.components.EventEdit.location",
+    "message": "Plats"
+  },
+  {
+    "id": "app.components.EventEdit.publicDescription",
+    "message": "Offentlig Beskrivning"
+  },
+  {
+    "id": "app.components.EventEdit.privateDescription",
+    "message": "Privat Beskrivning"
+  },
+  {
+    "id": "app.components.EventEdit.beforeSurvey",
+    "message": "Förenkät"
+  },
+  {
+    "id": "app.components.EventEdit.afterSurvey",
+    "message": "Efterenkät"
+  },
+  {
+    "id": "app.components.EventEdit.pictures",
+    "message": "Bilder"
+  },
+  {
+    "id": "app.components.EventEdit.published",
+    "message": "Publicerad"
+  },
+  {
+    "id": "app.components.EventDetail.event",
+    "message": "Event"
+  },
+  {
+    "id": "app.containers.Navbar.internalevents",
+    "message": "Eventinfo"
+  },
+  {
+    "id": "app.containers.Navbar.events",
+    "message": "Events"
+  },
+  {
+    "id": "app.containers.Navbar.trip",
+    "message": "Resan"
+  },
+  {
+    "id": "app.containers.User.title",
+    "message": "Redigera Profil"
+  },
+  {
+    "id": "app.containers.User.editResume",
+    "message": "Redigera CV"
+  },
+  {
+    "id": "app.containers.User.firstName",
+    "message": "Förnamn"
+  },
+  {
+    "id": "app.containers.User.lastName",
+    "message": "Efternamn"
+  },
+  {
+    "id": "app.containers.User.phone",
+    "message": "Telefon"
+  },
+  {
+    "id": "app.containers.User.position",
+    "message": "Roll"
+  },
+  {
+    "id": "app.containers.User.master",
+    "message": "Master"
+  },
+  {
+    "id": "app.containers.User.allergies",
+    "message": "Allergier"
+  },
+  {
+    "id": "app.containers.User.password",
+    "message": "Nytt Lösenord"
+  },
+  {
+    "id": "app.containers.User.confirmPassword",
+    "message": "Upprepa Lösenord"
+  },
+  {
+    "id": "app.containers.User.save",
+    "message": "Spara"
+  },
+  {
+    "id": "app.containers.User.saved",
+    "message": "Sparat"
+  },
+  {
+    "id": "app.components.EventStaticDetail.header",
+    "message": "Välj ett event till vänster!"
+  },
+  {
+    "id": "app.containers.Events.company",
+    "message": "Företag"
+  },
+  {
+    "id": "app.containers.Events.create",
+    "message": "Skapa"
+  },
+  {
+    "id": "app.containers.Events.date",
+    "message": "Datum"
+  },
+  {
+    "id": "app.components.HomePage.footer.projectManagerTitle",
+    "message": "Projektledare"
+  },
+  {
+    "id": "app.components.HomePage.about.headline",
+    "message": "Det här är {firstName}"
+  },
+  {
+    "id": "app.components.HomePage.about.intro",
+    "message": "{firstName} är en av de 30 studenter som gör Studs-projektet möjligt"
+  },
+  {
+    "id": "app.components.HomePage.about.link",
+    "message": "Lär känna resten av oss"
+  },
+  {
+    "id": "app.containers.Login.error",
+    "message": "Ogiltig email eller lösenord"
+  },
+  {
+    "id": "app.containers.Login.welcome",
+    "message": "Välkommen"
+  },
+  {
+    "id": "app.containers.Login.email",
+    "message": "Email"
+  },
+  {
+    "id": "app.containers.Login.password",
+    "message": "Lösenord"
+  },
+  {
+    "id": "app.containers.Login.forgotPassword",
+    "message": "Glömt lösenord?"
+  },
+  {
+    "id": "app.containers.Login.login",
+    "message": "Logga in"
+  },
+  {
+    "id": "app.components.HomePage.intro.application",
+    "message": "Ansökan till Studs 2019 är öppen!"
+  },
+  {
+    "id": "app.components.HomePage.intro.learnMore",
+    "message": "Läs mer"
+  }
+]

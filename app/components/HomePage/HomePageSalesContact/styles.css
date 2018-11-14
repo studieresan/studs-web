@@ -2,14 +2,15 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: linear-gradient(top left, #383f50, #22395d);
-  padding: 120px;
-  color: #fff;
+  background: var(--primary-light);
+  padding-bottom: 70px;
+  color: var(--primary-dark);
 }
 
 .contact > div:first-child {
-  max-width: 600px;
+  max-width: 485px;
   text-align: center;
+  padding: 0 20px;
 }
 
 .contactInfo {
@@ -17,22 +18,24 @@
   margin-top: 30px;
   align-items: center;
   text-align: left;
+  padding: 0 20px;
 }
 
 .contact a {
   text-decoration: none;
-  color: white;
+  color: var(--primary-dark);
 }
 
 .contact a:hover {
   text-decoration: underline;
 }
 
-.contact > div > img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 100%;
-  margin-right: 60px;
-  background-color: grey;
+@media (max-width: 300px) {  
+  .contactInfo img {
+    display: none;
+  }
+
+  .contactInfo div {
+    text-align: center;
+  }
 }

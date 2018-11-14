@@ -64,6 +64,7 @@
 .navigation a {
   color: black;
   font-weight: bold;
+  border-bottom: 2px solid transparent;
 }
 
 .navigation a:hover {
@@ -156,7 +157,8 @@
     order: 2;
   }
 
-  .contact, .contact p {
+  .contact,
+  .contact p {
     text-align: center;
     width: 100%;
     justify-content: center;

@@ -136,7 +136,7 @@
   line-height: normal;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 920px) {
   .content {
     flex-direction: column;
   }

@@ -1,79 +1,106 @@
-[{
-  "id": "app.components.HomePage.intro.header",
-  "message": "We enjoy challenges and adventures"
-}, {
-  "id": "app.components.HomePage.intro.content",
-  "message": "The KTH Study Trip, or Studs, is an annual project at the Royal Institute of Technology (KTH) in Stockholm. The project aims to create a platform for interaction between students close to graduation and relevant companies. The project ends with a study trip to give the students an opportunity to meet companies abroad."
-}, {
-  "id": "app.components.HomePage.headline",
-  "message": "About Studs"
-}, {
-  "id": "app.components.HomePage.project.header",
-  "message": "The Project"
-}, {
-  "id": "app.components.HomePage.project.content",
-  "message": "Studs is an annual non-profit project at KTH, driven by students. The project consists of 30 selected engineering students enrolled in a master’s program related to computer science. By organizing events together with companies, we create a platform to give students and their potential future employers focused time together. "
-}, {
-  "id": "app.components.HomePage.events.header",
-  "message": "The Events"
-}, {
-  "id": "app.components.HomePage.events.content",
-  "message": "Throughout the year, the Studs members will visit various companies through events, usually arranged at their offices. The students take this opportunity to gain deeper insight into life at the company and its operations. Studs helps these companies tailor the events to their specific needs, guaranteeing that each event is as unique as the company hosting it."
-}, {
-  "id": "app.components.HomePage.trip.header",
-  "message": "The Trip"
-}, {
-  "id": "app.components.HomePage.trip.content",
-  "message": "The project ends with a trip to the United States, in order to give the project members an opportunity for cultural and professional exchange. The US has a unique position in the world of technology with cities such as San Francisco, New York, and Seattle that generate continuous innovation and growth for startups and established players alike."
-}, {
-  "id": "app.components.HomePage.members.header",
-  "message": "This is us"
-}, {
-  "id": "app.components.HomePage.report.lastYear",
-  "message": "Last year's<br/>report"
-}, {
-  "id": "app.containers.Members.listHeader",
-  "message": "Members"
-}, {
-  "id": "app.containers.About.header",
-  "message": "About Us"
-}, {
-  "id": "app.containers.About.subtitle",
-  "message": "The people behind Studs 2019"
-}, {
-  "id": "app.components.HomePage.footer.shortPitch",
-  "message": "Studs helps your company connect with KTH students"
-}, {
-  "id": "app.components.HomePage.footer.SalesHeader",
-  "message": "Work with us"
-}, {
-  "id": "app.components.HomePage.footer.SalesContent",
-  "message": "If you're interested in having an event with us, or you're curious and want to know more – contact Nils, our Head of Sales."
-}, {
-  "id": "app.components.HomePage.footer.salesTitle",
-  "message": "Head of Sales"
-}, {
-  "id": "app.components.HomePage.footer.phone",
-  "message": "Phone"
-}, {
-  "id": "app.components.HomePage.footer.projectManagerHeader",
-  "message": "Questions?"
-}, {
-  "id": "app.components.HomePage.footer.projectManagerTitle",
-  "message": "Project Managers"
-}, {
-  "id": "app.components.HomePage.about.headline",
-  "message": "This is {firstName}"
-}, {
-  "id": "app.components.HomePage.about.intro",
-  "message": "{firstName} is one of 30 students taking part of the Studs project"
-}, {
-  "id": "app.components.HomePage.about.link",
-  "message": "Get to know the rest of us"
-}, {
-  "id": "app.components.HomePage.intro.application",
-  "message": "The application to Studs 2019 is open!"
-}, {
-  "id": "app.components.HomePage.intro.learnMore",
-  "message": "Learn more"
-}]
+[
+  {
+    "id": "app.components.HomePage.intro.headline",
+    "message": "What is Studs?"
+  },
+  {
+    "id": "app.components.HomePage.intro.content",
+    "message": "The KTH Study Trip, or Studs, is an annual project at the Royal Institute of Technology (KTH) in Stockholm. The project aims to create a platform for interaction between students close to graduation and relevant companies. The project ends with a study trip to give the students an opportunity to meet companies abroad."
+  },
+  {
+    "id": "app.components.HomePage.headline",
+    "message": "About Studs"
+  },
+  {
+    "id": "app.components.HomePage.project.header",
+    "message": "The Project"
+  },
+  {
+    "id": "app.components.HomePage.project.content",
+    "message": "Studs is an annual non-profit project at KTH, driven by students. The project consists of 30 selected engineering students enrolled in a master’s program related to computer science. By organizing events together with companies, we create a platform to give students and their potential future employers focused time together. "
+  },
+  {
+    "id": "app.components.HomePage.events.header",
+    "message": "The Events"
+  },
+  {
+    "id": "app.components.HomePage.events.content",
+    "message": "Throughout the year, the Studs members will visit various companies through events, usually arranged at their offices. The students take this opportunity to gain deeper insight into life at the company and its operations. Studs helps these companies tailor the events to their specific needs, guaranteeing that each event is as unique as the company hosting it."
+  },
+  {
+    "id": "app.components.HomePage.trip.header",
+    "message": "The Trip"
+  },
+  {
+    "id": "app.components.HomePage.trip.content",
+    "message": "The project ends with a trip to the United States, in order to give the project members an opportunity for cultural and professional exchange. The US has a unique position in the world of technology with cities such as San Francisco, New York, and Seattle that generate continuous innovation and growth for startups and established players alike."
+  },
+  {
+    "id": "app.components.HomePage.footer.SalesContent",
+    "message": "If you're interested in having an event with us, or you're curious and want to know more – contact Nils, our Head of Sales."
+  },
+  {
+    "id": "app.components.HomePage.footer.phone",
+    "message": "Phone"
+  },
+  {
+    "id": "app.components.HomePage.members.header",
+    "message": "This is us"
+  },
+  {
+    "id": "app.components.HomePage.report.lastYear",
+    "message": "Last year's<br/>report"
+  },
+  {
+    "id": "app.containers.Members.listHeader",
+    "message": "Members"
+  },
+  {
+    "id": "app.containers.About.header",
+    "message": "About Us"
+  },
+  {
+    "id": "app.containers.About.subtitle",
+    "message": "The people behind Studs 2019"
+  },
+  {
+    "id": "app.components.HomePage.footer.shortPitch",
+    "message": "Studs helps your company connect with KTH students"
+  },
+  {
+    "id": "app.components.HomePage.footer.SalesHeader",
+    "message": "Work with us"
+  },
+  {
+    "id": "app.components.HomePage.footer.salesTitle",
+    "message": "Head of Sales"
+  },
+  {
+    "id": "app.components.HomePage.footer.projectManagerHeader",
+    "message": "Questions?"
+  },
+  {
+    "id": "app.components.HomePage.footer.projectManagerTitle",
+    "message": "Project Managers"
+  },
+  {
+    "id": "app.components.HomePage.about.headline",
+    "message": "This is {firstName}"
+  },
+  {
+    "id": "app.components.HomePage.about.intro",
+    "message": "{firstName} is one of 30 students taking part of the Studs project"
+  },
+  {
+    "id": "app.components.HomePage.about.link",
+    "message": "Get to know the rest of us"
+  },
+  {
+    "id": "app.components.HomePage.intro.application",
+    "message": "The application to Studs 2019 is open!"
+  },
+  {
+    "id": "app.components.HomePage.intro.learnMore",
+    "message": "Learn more"
+  }
+]

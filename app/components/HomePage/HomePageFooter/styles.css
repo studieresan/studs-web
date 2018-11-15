@@ -128,7 +128,8 @@
 /* Won't need this later */
 .pictures > img {
   background-color: grey;
-  margin-left: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .contact p {
@@ -163,19 +164,4 @@
     width: 100%;
     justify-content: center;
   }
-}
-
-@media (max-width: 380px) {
-  .pictures {
-    /* flex-direction: column; */
-    display: none;
-  }
-
-  .contactPicture {
-    margin-top: 1rem;
-  }
-
-  /* .contactPicture ~ .contactPicture {
-    margin-left: 0;
-  } */
 }

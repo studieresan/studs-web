@@ -11,6 +11,12 @@
   --header-height: 110px;
 }
 
+@media (max-width: 1024px) {
+  :root {
+    --header-height: 90px;
+  }
+}
+
 html,
 body {
   margin: 0;

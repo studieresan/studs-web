@@ -21,6 +21,10 @@
   padding: 0 20px;
 }
 
+.contactInfo img {
+  outline: none !important;
+}
+
 .contact a {
   text-decoration: none;
   color: var(--primary-dark);
@@ -30,7 +34,7 @@
   text-decoration: underline;
 }
 
-@media (max-width: 300px) {  
+@media (max-width: 300px) {
   .contactInfo img {
     display: none;
   }

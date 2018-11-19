@@ -8,7 +8,7 @@
   padding: 0 2rem;
 }
 
-.content {
+/* .content {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,6 +17,15 @@
   flex-wrap: wrap;
   align-self: center;
   max-width: 900px;
+} */
+
+.content {
+  width: 900px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-self: center;
+  align-items: center;
+  padding-top: 46px;
 }
 
 .menu {
@@ -25,11 +34,15 @@
   justify-content: center;
   flex: 0;
   min-width: 14rem;
+  width: 272px;
+  box-sizing: border-box;
+  padding-left: 20px;
 }
 
 .menu p {
   font-size: 18px;
   margin-top: 0;
+  max-width: 220px;
 }
 
 .subfooter {
@@ -101,6 +114,7 @@
   flex: 0;
   flex-wrap: wrap;
   min-width: 17rem;
+  box-sizing: border-box;
 }
 
 .section {
@@ -123,6 +137,7 @@
 .pictures {
   display: flex;
   margin: 1rem auto;
+  height: 120px;
 }
 
 /* Won't need this later */

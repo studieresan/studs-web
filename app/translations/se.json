@@ -36,15 +36,11 @@
     "message": "Projektet avslutas med en resa till USA, i syfte att ge projektmedlemmarna möjligheter för både kulturellt och professionellt utbyte. USA har en unik position inom teknologin med städer som San Francisco, New York och Seattle som ger upphov till ständig innovation och tillväxt för såväl startups som etablerade aktörer."
   },
   {
-    "id": "app.components.HomePage.contact.header",
-    "message": "Kontakta oss"
-  },
-  {
-    "id": "app.components.HomePage.contact.content",
+    "id": "app.components.HomePage.footer.SalesContent",
     "message": "Om ni är intresserade av att ha ett event med oss, eller om ni är nyfikna och vill veta mer, kontakta vår säljansvarig Nils."
   },
   {
-    "id": "app.components.HomePage.contact.phone",
+    "id": "app.components.HomePage.footer.phone",
     "message": "Telefon"
   },
   {

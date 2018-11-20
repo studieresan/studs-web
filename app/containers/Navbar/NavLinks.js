@@ -59,8 +59,13 @@ function NavLinks({ loggedIn, user }: Props) {
           </Link>
         </li>
         <li>
-          <Link to='/events'>
-            <FormattedMessage {...messages.internalevents} />
+          <Link to='/events/public'>
+            <FormattedMessage {...messages.events} />
+          </Link>
+        </li>
+        <li>
+          <Link to='/events/2018'>
+            <FormattedMessage {...messages.pastEvents} />
           </Link>
         </li>
       </ul>

@@ -12,6 +12,7 @@
   max-width: 900px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
   align-self: center;
   align-items: center;
   padding-top: 46px;
@@ -91,9 +92,6 @@
 }
 
 .copyright {
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: bold;
   color: #626262;
 }
 
@@ -146,8 +144,6 @@
 @media (max-width: 920px) {
   .content {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    max-height: 500px;
     justify-items: center;
   }
 

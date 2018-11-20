@@ -3,12 +3,12 @@
   align-items: center;
   flex-direction: column;
   background: var(--primary-light);
-  padding-bottom: 70px;
+  padding: 35px 0 70px 0;
   color: var(--primary-dark);
 }
 
 .contact > div:first-child {
-  max-width: 485px;
+  max-width: 525px;
   text-align: center;
   padding: 0 20px;
 }
@@ -19,6 +19,11 @@
   align-items: center;
   text-align: left;
   padding: 0 20px;
+  font-size: 1.25rem;
+}
+
+.contactPicture {
+  margin-right: 30px;
 }
 
 .contactInfo img {
@@ -32,6 +37,18 @@
 
 .contact a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 400px) {
+  .contactInfo {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contactPicture {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
 }
 
 @media (max-width: 300px) {

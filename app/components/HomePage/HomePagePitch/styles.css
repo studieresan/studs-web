@@ -106,8 +106,9 @@
 }
 
 @media (max-width: 460px) {
-  .eventImageContainer, .tripImageContainer {
-    width: 200px;
+  .eventImageContainer,
+  .tripImageContainer {
+    width: 100%;
   }
 
   #projectImage {
@@ -121,9 +122,36 @@
   }
 }
 
+@media (max-width: 320px) {
+  #sanFransisco {
+    width: 180px;
+  }
+
+  #newYork {
+    top: 70px;
+    width: 120px;
+  }
+}
+
 @media (max-width: 740px) {
   .section {
     flex-direction: column;
+  }
+
+  .section + .section {
+    margin-top: 2rem;
+  }
+
+  .section div {
+    padding: 1rem 1rem;
+  }
+
+  .images {
+    order: 1;
+  }
+
+  .text {
+    order: 2;
   }
 }
 

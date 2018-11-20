@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { FormattedMessage } from 'react-intl'
 import Isvg from 'react-inlinesvg'
-import Logo from 'static/img/logo/black-frame.svg'
+import Logo from 'static/img/logo/studs19.svg'
 import messages from './messages'
 import navigationMessages from 'containers/Navbar/messages'
 import styles from './styles.css'
@@ -22,10 +22,6 @@ const Menu = ({ loggedIn }) => (
       <MenuItem to='/events/public'>
         <FormattedMessage {...navigationMessages.events} />
       </MenuItem>
-      <MenuItem to='/events/2018'>
-        <FormattedMessage {...navigationMessages.pastEvents} />
-      </MenuItem>
-      <MenuItem to='/student'>Student</MenuItem>
       {!loggedIn && (
         <MenuItem to='/login'>
           <FormattedMessage {...navigationMessages.login} />

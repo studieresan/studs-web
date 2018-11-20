@@ -1,5 +1,5 @@
 .events {
-  padding-top: 56px;
+  padding-top: var(--header-height);
   height: 100vh;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .actions a:hover {
-  color: #90CE9C;
+  color: #90ce9c;
 }
 
 .list {
@@ -33,6 +33,8 @@
 }
 
 .listHeader {
+  position: sticky;
+  top: 0px;
   display: flex;
   justify-content: space-between;
   padding: 10px;
@@ -41,7 +43,7 @@
   font-size: 12px;
   height: 40px;
   align-items: center;
-  background-color: #F7DDC9;
+  background-color: #f7ddc9;
 }
 
 .listContainer {

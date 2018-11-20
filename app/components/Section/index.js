@@ -1,14 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
-import styles from './styles.css'
 
 function Section({ header, content }) {
   return (
     <div>
-      <h2 className={styles.header}>
+      <h1>
         <FormattedMessage {...header} />
-      </h2>
+      </h1>
       <p>
         <FormattedMessage {...content} />
       </p>

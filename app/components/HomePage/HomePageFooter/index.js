@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import { Facebook, Instagram, Github } from 'react-feather'
 import MemberImage from 'components/MemberImage'
-import Nils from 'static/img/people/nils.jpg'
 import Emma from 'static/img/people/emma.jpg'
 import Andreas from 'static/img/people/andreas.jpg'
 import Menu from './Menu'
@@ -15,6 +14,7 @@ function HomePageFooter() {
     <div className={styles.footer}>
       <div className={styles.content}>
         <Menu />
+        <Images />
         <Contact />
       </div>
       <SubFooter />
@@ -43,45 +43,36 @@ const SubFooter = () => (
   </div>
 )
 
-const Copyright = () => <p className={styles.copyright}>&copy; 2018 Studs</p>
+const Copyright = () => (
+  <p className={styles.copyright}>
+    &copy; 2018-2019 Studs
+  </p>
+)
+
+const Images = () => (
+  <div className={styles.pictures}>
+    <Image picture={Andreas} round />
+    <Image picture={Emma} round />
+  </div>
+)
 
 const Contact = () => (
   <div className={styles.contact}>
     <div className={styles.section}>
-      <h5 className={styles.contactHeader}>
-        <FormattedMessage {...messages.salesHeader} />
-      </h5>
-      <div className={styles.pictures}>
-        <Image picture={Nils} round />
+      <div className={styles.contactDetails}>
+        <h5 className={styles.contactHeader}>
+          <FormattedMessage {...messages.projectManagerHeader} />
+        </h5>
+        <p>Andreas Heiskanen &amp; Emma Nimstad</p>
+        <p>
+          <FormattedMessage {...messages.projectManagerTitle} />
+        </p>
+        <p>
+          <a href="mailto:studs-ansvarig@d.kth.se">
+            studs-ansvarig@d.kth.se
+          </a>
+        </p>
       </div>
-      <p>
-        <b>Nils Streijffert</b>
-      </p>
-      <p>
-        <FormattedMessage {...messages.salesTitle} />
-      </p>
-      <p>
-        <a href='mailto:studs-salj@d.kth.se'>studs-salj@d.kth.se</a>
-      </p>
-    </div>
-
-    <div className={styles.section}>
-      <h5 className={styles.contactHeader}>
-        <FormattedMessage {...messages.projectManagerHeader} />
-      </h5>
-      <div className={styles.pictures}>
-        <Image picture={Andreas} round />
-        <Image picture={Emma} round />
-      </div>
-      <p>
-        <b>Andreas Heiskanen &amp; Emma Nimstad</b>
-      </p>
-      <p>
-        <FormattedMessage {...messages.projectManagerTitle} />
-      </p>
-      <p>
-        <a href='mailto:studs-ansvarig@d.kth.se'>studs-ansvarig@d.kth.se</a>
-      </p>
     </div>
   </div>
 )
@@ -90,7 +81,7 @@ const Image = ({ picture }) => (
   <MemberImage
     className={styles.contactPicture}
     picture={picture}
-    size={75}
+    size={119}
     square
     round
   />

@@ -55,12 +55,6 @@ class EventDetail extends Component {
           </h2>
           {hasEventPermission(user) &&
           <div className={styles.buttonRow}>
-            {/* <Link to={`/events/${event.id}/edit`}>
-              <Button
-                color='bright'>
-                Edit
-              </Button>
-            </Link> */}
             <Button
               color='bright'
               onClick={() => this.toggleEditing()}>

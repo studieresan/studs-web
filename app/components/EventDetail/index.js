@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {FormattedMessage} from 'react-intl'
-import {Link} from 'react-router-dom'
 import messages from './messages'
 import Markdown from 'react-markdown'
 import Button from 'components/Button'
@@ -12,8 +11,23 @@ import {hasEventPermission} from 'users'
 import styles from './styles.css'
 import A from 'components/A'
 import IndicatorIcon from 'components/IndicatorIcon'
+import EventEdit from '../EventEdit'
+import Lightbox from 'components/Lightbox'
 
 class EventDetail extends Component {
+  constructor () {
+    super()
+    this.state = {
+      isEditing: false,
+    }
+  }
+
+  toggleEditing () {
+    this.setState({
+      isEditing: !this.state.isEditing,
+    })
+  }
+
   render() {
     const {event, user, onRemoveEvent} = this.props
     if (!event) {
@@ -31,6 +45,9 @@ class EventDetail extends Component {
     }
     return (
       <div className={styles.eventDetail}>
+        {this.state.isEditing && <Lightbox>
+          <EventEdit event={event} toggleEditing={() => {this.toggleEditing()}}/>
+        </Lightbox>}
         <div className={styles.head}>
           <h2>
             <FormattedMessage {...messages.event} />
@@ -38,12 +55,17 @@ class EventDetail extends Component {
           </h2>
           {hasEventPermission(user) &&
           <div className={styles.buttonRow}>
-            <Link to={`/events/${event.id}/edit`}>
+            {/* <Link to={`/events/${event.id}/edit`}>
               <Button
                 color='bright'>
                 Edit
               </Button>
-            </Link>
+            </Link> */}
+            <Button
+              color='bright'
+              onClick={() => this.toggleEditing()}>
+              Edit
+            </Button>
             <Button
               color='danger'
               onClick={() => onRemoveEvent(event.id)}>

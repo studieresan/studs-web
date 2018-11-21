@@ -8,16 +8,20 @@ import Andreas from 'static/img/people/andreas.jpg'
 import Menu from './Menu'
 import styles from './styles.css'
 import messages from './messages'
+import SalesContact from 'components/Footer/SalesContact'
 
-function HomePageFooter() {
+function Footer() {
   return (
-    <div className={styles.footer}>
-      <div className={styles.content}>
-        <Menu />
-        <Images />
-        <Contact />
+    <div>
+      <SalesContact />
+      <div className={styles.footer}>
+        <div className={styles.content}>
+          <Menu />
+          <Images />
+          <Contact />
+        </div>
+        <SubFooter />
       </div>
-      <SubFooter />
     </div>
   )
 }
@@ -44,9 +48,7 @@ const SubFooter = () => (
 )
 
 const Copyright = () => (
-  <p className={styles.copyright}>
-    &copy; 2018-2019 Studs
-  </p>
+  <p className={styles.copyright}>&copy; 2018-2019 Studs</p>
 )
 
 const Images = () => (
@@ -68,9 +70,7 @@ const Contact = () => (
           <FormattedMessage {...messages.projectManagerTitle} />
         </p>
         <p>
-          <a href="mailto:studs-ansvarig@d.kth.se">
-            studs-ansvarig@d.kth.se
-          </a>
+          <a href='mailto:studs-ansvarig@d.kth.se'>studs-ansvarig@d.kth.se</a>
         </p>
       </div>
     </div>
@@ -91,4 +91,4 @@ Image.propTypes = {
   picture: PropTypes.string.isRequird,
 }
 
-export default HomePageFooter
+export default Footer

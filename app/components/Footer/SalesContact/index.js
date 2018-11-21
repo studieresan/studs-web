@@ -11,17 +11,18 @@ const CONTACT_NAME = 'Nils Streijffert'
 const CONTACT_PHONE_NUMBER = '+4670-1440857'
 const CONTACT_EMAIL = 'studs-salj@d.kth.se'
 
-const HomePageSalesContact = () => (
+const SalesContact = () => (
   <div className={styles.contact}>
     <Section {...messages.contact} />
     <div className={styles.contactInfo}>
-      <Image picture={Nils} round/>
+      <Image picture={Nils} round />
       <div>
         <b>{CONTACT_NAME}</b>
-        <br/>
+        <br />
         <FormattedMessage {...messages.contact.title} />
-        <br/>
-        <FormattedMessage {...messages.contact.phone} />{': '}
+        <br />
+        <FormattedMessage {...messages.contact.phone} />
+        {': '}
         <a href={`tel:${CONTACT_PHONE_NUMBER}`}>{`${CONTACT_PHONE_NUMBER}`}</a>
         <br />
         <span>{'Email: '}</span>
@@ -45,4 +46,4 @@ Image.propTypes = {
   picture: PropTypes.string.isRequird,
 }
 
-export default HomePageSalesContact
+export default SalesContact

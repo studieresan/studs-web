@@ -4,11 +4,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../Members/actions'
 
-import {
-  HomePageFooter,
-  HomePageHeader,
-  HomePagePitch,
-} from 'components/HomePage'
+import { HomePageHeader, HomePagePitch } from 'components/HomePage'
+
+import Footer from 'components/Footer/Footer'
 
 export class HomePage extends Component {
   componentDidMount() {
@@ -20,7 +18,7 @@ export class HomePage extends Component {
       <div>
         <HomePageHeader />
         <HomePagePitch />
-        <HomePageFooter />
+        <Footer />
       </div>
     )
   }

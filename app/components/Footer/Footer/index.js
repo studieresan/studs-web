@@ -8,12 +8,12 @@ import Andreas from 'static/img/people/andreas.jpg'
 import Menu from './Menu'
 import styles from './styles.css'
 import messages from './messages'
-import HomePageSalesContact from 'components/HomePage/HomePageSalesContact'
+import SalesContact from 'components/Footer/SalesContact'
 
-function HomePageFooter() {
+function Footer() {
   return (
     <div>
-      <HomePageSalesContact />
+      <SalesContact />
       <div className={styles.footer}>
         <div className={styles.content}>
           <Menu />
@@ -91,4 +91,4 @@ Image.propTypes = {
   picture: PropTypes.string.isRequird,
 }
 
-export default HomePageFooter
+export default Footer

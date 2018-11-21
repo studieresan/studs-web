@@ -8,7 +8,7 @@ import * as actions from 'containers/Members/actions'
 import MemberHomePage from 'components/MemberHomePage'
 import styles from './styles.css'
 import messages from './messages'
-import HomePageFooter from 'components/HomePage/HomePageFooter'
+import Footer from 'components/Footer/Footer'
 
 class About extends Component {
   componentDidMount() {
@@ -33,7 +33,7 @@ class About extends Component {
             ))}
           </div>
         </div>
-        <HomePageFooter />
+        <Footer />
       </div>
     )
   }

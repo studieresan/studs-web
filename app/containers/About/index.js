@@ -8,7 +8,7 @@ import * as actions from 'containers/Members/actions'
 import MemberHomePage from 'components/MemberHomePage'
 import styles from './styles.css'
 import messages from './messages'
-import Footer from 'components/Footer/Footer'
+import Footer from 'components/Footer'
 
 class About extends Component {
   componentDidMount() {

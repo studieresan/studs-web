@@ -1,19 +1,5 @@
-.listHeader {
-  background: #F7DDC9;
-  color: black;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  width: 250px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
 .memberList {
   height: 100%;
   overflow: auto;
-  margin-top: 56px;
-  padding-top: 40px;
+  padding-top: var(--header-height);
 }

@@ -52,10 +52,6 @@
     "message": "Last year's<br/>report"
   },
   {
-    "id": "app.containers.Members.listHeader",
-    "message": "Members"
-  },
-  {
     "id": "app.containers.About.header",
     "message": "About Us"
   },

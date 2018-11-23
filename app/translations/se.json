@@ -76,10 +76,6 @@
     "message": "Välkommen till CV-databasen!"
   },
   {
-    "id": "app.containers.Members.listHeader",
-    "message": "Medlemmar"
-  },
-  {
     "id": "app.containers.About.header",
     "message": "Det här är vi"
   },

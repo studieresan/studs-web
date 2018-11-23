@@ -1,5 +1,5 @@
 .cv {
-  padding: 6rem 2rem;
+  padding: var(--header-height) 6rem 2rem 6rem;
   display: flex;
   justify-content: center;
   height: 100%;
@@ -7,11 +7,7 @@
 }
 
 /* iPhone X landscape insets */
-@media only screen
-  and (device-width: 375px)
-  and (device-height: 812px)
-  and (-webkit-device-pixel-ratio: 3)
-  and (orientation: landscape) {
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
   .cv {
     /* stylelint-disable */
     padding-right: constant(safe-area-inset-right);
@@ -21,11 +17,7 @@
 }
 
 /* iPhone X portrait insets */
-@media only screen
-  and (device-width: 375px)
-  and (device-height: 812px)
-  and (-webkit-device-pixel-ratio: 3)
-  and (orientation: portrait) {
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
   .cv {
     /* stylelint-disable */
     padding-bottom: env(safe-area-inset-bottom);
@@ -41,7 +33,7 @@
 .section {
   margin-top: 3rem;
   padding-bottom: 1rem;
-  background: #FFF;
+  background: #fff;
 }
 
 .section > h2 {
@@ -67,12 +59,12 @@
 
 .section input:focus {
   outline: none;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
 }
 
 .section textarea:focus {
   outline: none;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
 }
 
 .item {
@@ -81,7 +73,7 @@
   flex-wrap: wrap;
   position: relative;
   padding: 1rem;
-  background: #FFF;
+  background: #fff;
 }
 
 .item textarea {
@@ -96,7 +88,7 @@
 
 .item textarea:focus {
   outline: none;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
 }
 
 .item::after {

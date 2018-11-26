@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import { AppContainer } from 'react-hot-loader'
-import registerServiceWorker from './registerServiceWorker'
+import { unregister } from './registerServiceWorker'
 import { initializeThirdParty } from './utils'
 import './index.css'
 
@@ -13,7 +13,7 @@ const render = Component => {
     <AppContainer>
       <Component />
     </AppContainer>,
-    document.getElementById('root'),
+    document.getElementById('root')
   )
 }
 
@@ -25,4 +25,4 @@ if (module.hot) {
   })
 }
 
-registerServiceWorker()
+unregister()

@@ -60,7 +60,7 @@ CvHeader.propTypes = {
     picture: PropTypes.string,
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
-    master: PropTypes.string.isRequired,
+    master: PropTypes.string,
     email: PropTypes.string,
     phone: PropTypes.string,
     linkedIn: PropTypes.string,

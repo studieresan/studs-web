@@ -30,6 +30,11 @@
   max-width: 960px;
 }
 
+.printButton {
+  margin: 0 auto;
+  font-size: 18px;
+}
+
 .section {
   margin-top: 3rem;
   padding-bottom: 1rem;

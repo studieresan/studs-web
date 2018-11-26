@@ -7,6 +7,7 @@ import {
   LOGIN_ERROR,
   LOGOUT,
   SET_NAVBAR_BACKGROUND,
+  SET_PRINT_MODE,
 } from './constants'
 import { loggedIn } from '../../auth'
 import { defaultUser } from '../User/reducer'
@@ -18,6 +19,7 @@ const initialState = fromJS({
   fetchingUser: false,
   hasFetchedLoggedInUser: false,
   displayNavbarBackground: true,
+  printMode: false,
 })
 
 function reducer(state = initialState, action) {
@@ -59,6 +61,12 @@ function reducer(state = initialState, action) {
       return state.merge(
         Map({
           displayNavbarBackground: action.payload,
+        })
+      )
+    case SET_PRINT_MODE:
+      return state.merge(
+        Map({
+          printMode: action.payload,
         })
       )
     default:

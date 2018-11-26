@@ -7,3 +7,4 @@ export const LOGIN_ERROR = 'app/App/LOGIN_ERROR'
 export const LOGOUT = 'app/App/LOGOUT'
 
 export const SET_NAVBAR_BACKGROUND = 'app/App/SET_NAVBAR_BACKGROUND'
+export const SET_PRINT_MODE = 'app/App/SET_PRINT_MODE'

@@ -6,6 +6,7 @@ import {
   LOGIN_ERROR,
   LOGOUT,
   SET_NAVBAR_BACKGROUND,
+  SET_PRINT_MODE,
 } from './constants'
 import { fetchUser, loginUser } from 'api'
 import { setLoggedOut, setLoggedIn } from 'auth'
@@ -74,6 +75,13 @@ export function logout() {
   setLoggedOut()
   return {
     type: LOGOUT,
+  }
+}
+
+export function setPrintMode(printMode) {
+  return {
+    type: SET_PRINT_MODE,
+    payload: printMode,
   }
 }
 

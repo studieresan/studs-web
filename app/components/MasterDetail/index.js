@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import styles from './styles.css'
@@ -36,13 +37,21 @@ class MasterDetail extends React.Component {
   }
 
   renderDesktop() {
-    const { master, detail } = this.props
-    return (
-      <div className={styles.masterDetail}>
-        <div className={styles.master}>{master}</div>
-        <div className={styles.detail}>{detail}</div>
-      </div>
-    )
+    const { master, detail, printMode } = this.props
+    if (printMode) {
+      return (
+        <div className={styles.masterDetail}>
+          <div className={styles.detail}>{detail}</div>
+        </div>
+      )
+    } else {
+      return (
+        <div className={styles.masterDetail}>
+          <div className={styles.master}>{master}</div>
+          <div className={styles.detail}>{detail}</div>
+        </div>
+      )
+    }
   }
 
   render() {
@@ -58,6 +67,13 @@ MasterDetail.propTypes = {
   master: PropTypes.object.isRequired,
   detail: PropTypes.object,
   detailSelected: PropTypes.bool.isRequired,
+  printMode: PropTypes.bool.isRequired,
 }
 
-export default MasterDetail
+const mapStateToProps = state => {
+  return {
+    printMode: state.getIn(['global', 'printMode']),
+  }
+}
+
+export default connect(mapStateToProps)(MasterDetail)

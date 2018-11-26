@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as actions from 'containers/App/actions'
 import styles from './styles.css'
 import CvHeader from '../CvHeader'
 
@@ -34,6 +37,31 @@ function renderSection(section) {
   )
 }
 
+function PrintButton(props) {
+  return (
+    <button
+      className={styles.printButton}
+      style={{
+        display: props.printMode ? 'none' : 'block',
+      }}
+      onClick={() => {
+        props.setPrintMode(true)
+        setTimeout(() => {
+          window.print()
+          props.setPrintMode(false)
+        }, 1000)
+      }}
+    >
+      Print CV
+    </button>
+  )
+}
+
+PrintButton.propTypes = {
+  printMode: PropTypes.bool.isRequired,
+  setPrintMode: PropTypes.func.isRequired,
+}
+
 function Cv(props) {
   let sections = null
   if (props.cv) {
@@ -45,6 +73,7 @@ function Cv(props) {
       <div>
         <CvHeader user={props.user} />
         {sections}
+        <PrintButton {...props} />
       </div>
     </div>
   )
@@ -55,4 +84,14 @@ Cv.propTypes = {
   cv: PropTypes.object,
 }
 
-export default Cv
+const mapStateToProps = state => {
+  return {
+    printMode: state.getIn(['global', 'printMode']),
+  }
+}
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cv)

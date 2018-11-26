@@ -82,6 +82,7 @@ class EventEdit extends React.Component {
       events: { saving, saved },
       removePicture,
       removeSurvey,
+      toggleEditing,
     } = this.props
     const companyOption = companyName => (
       <option key={companyName} value={companyName || ''}>
@@ -103,6 +104,12 @@ class EventEdit extends React.Component {
 
     return (
       <div className={styles.eventEdit}>
+        <Button
+          type='button'
+          className={styles.close}
+          onClick={() => toggleEditing()}>
+          <span>X</span>
+        </Button>
         <div className={styles.head}>
           <h2>
             Event: {event.companyName} -{event.date && event.date.toString()}
@@ -238,6 +245,7 @@ EventEdit.propTypes = {
   addSurvey: PropTypes.func.isRequired,
   removeSurvey: PropTypes.func.isRequired,
   events: PropTypes.object.isRequired,
+  toggleEditing: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = selectEvents()

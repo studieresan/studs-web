@@ -107,7 +107,8 @@ class EventEdit extends React.Component {
         <Button
           type='button'
           className={styles.close}
-          onClick={() => toggleEditing()}>
+          onClick={() => toggleEditing()}
+        >
           <span>X</span>
         </Button>
         <div className={styles.head}>
@@ -183,7 +184,7 @@ class EventEdit extends React.Component {
         {event.beforeSurveys.map(surveyListItem('beforeSurveys'))}
         <input
           name='beforeSurveys'
-          placeholder='URL'
+          placeholder='Enter survey url. Press Enter when done.'
           value={this.state.beforeSurvey}
           onChange={e => this.setState({ beforeSurvey: e.target.value })}
           onKeyPress={e =>
@@ -197,7 +198,7 @@ class EventEdit extends React.Component {
         {event.afterSurveys.map(surveyListItem('afterSurveys'))}
         <input
           name='afterSurveys'
-          placeholder='URL'
+          placeholder='Enter survey url. Press Enter when done.'
           value={this.state.afterSurvey}
           onChange={e => this.setState({ afterSurvey: e.target.value })}
           onKeyPress={e =>

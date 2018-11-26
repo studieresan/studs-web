@@ -92,13 +92,13 @@ class EventDetail extends Component {
               <h4>Surveys</h4>
               <div>
                 <IndicatorIcon ok={event.beforeSurveyReplied} />
-                <A target='_blank' href={event.beforeSurvey}>
+                <A target='_blank' href={event.beforeSurveys[0] || ''}>
                   <FormattedMessage {...messages.before} />
                 </A>
               </div>
               <div>
                 <IndicatorIcon ok={event.afterSurveyReplied} />
-                <A target='_blank' href={event.afterSurvey}>
+                <A target='_blank' href={event.afterSurveys[0] || ''}>
                   <FormattedMessage {...messages.after} />
                 </A>
               </div>

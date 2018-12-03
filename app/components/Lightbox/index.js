@@ -4,10 +4,6 @@ import styles from './styles.css'
 import Button from 'components/Button'
 
 class Lightbox extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   clickBackgroundToClose = e => {
     if (e.target.className === styles.lightbox) {
       this.props.toggleLightbox()

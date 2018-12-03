@@ -110,7 +110,7 @@ class EventEdit extends React.Component {
             onClick={this.handleSave}
             type='submit'
             color={'default'}
-            disabled={!(!saving && !saved)}
+            disabled={saving && saved}
             rounded={true}
           >
             <FormattedMessage {...messages.save} />

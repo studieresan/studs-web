@@ -10,7 +10,7 @@ import styles from './styles.css'
 function EventListItem(props) {
   const { event, user, isSelected } = props
   const { date } = event
-  const dateString = date && moment(date).format('HH:mm, MMM DD')
+  const dateString = date && moment(date).format('MMM DD, HH:mm')
   const classes = classnames(styles.eventListItem, {
     [styles.selected]: isSelected,
   })

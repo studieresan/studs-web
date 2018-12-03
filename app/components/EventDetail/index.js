@@ -8,6 +8,7 @@ import Button from 'components/Button'
 import { Chart } from 'react-google-charts' // TODO replace with chart.js
 import { hasEventPermission } from 'users'
 
+import moment from 'moment'
 import styles from './styles.css'
 import A from 'components/A'
 import IndicatorIcon from 'components/IndicatorIcon'
@@ -46,42 +47,56 @@ class EventDetail extends Component {
     return (
       <div className={styles.eventDetail}>
         {this.state.isEditing && (
-          <Lightbox>
+          <Lightbox
+            toggleLightbox={() => {
+              this.toggleEditing()
+            }}
+          >
             <EventEdit
               event={event}
-              toggleEditing={() => {
-                this.toggleEditing()
-              }}
+              toggleLightbox={() => this.toggleEditing()}
             />
           </Lightbox>
         )}
         <div className={styles.head}>
-          <h2>
-            <FormattedMessage {...messages.event} />: {event.companyName} -{' '}
-            {event.date && event.date.toString()}
-          </h2>
+          <h2>{event.companyName}</h2>
           {hasEventPermission(user) && (
             <div className={styles.buttonRow}>
-              <Button color='bright' onClick={() => this.toggleEditing()}>
+              <Button
+                color='bright'
+                onClick={() => this.toggleEditing()}
+                rounded={true}
+              >
                 Edit
               </Button>
-              <Button color='danger' onClick={() => onRemoveEvent(event.id)}>
+              <Button
+                color='danger'
+                onClick={() => onRemoveEvent(event.id)}
+                rounded={true}
+              >
                 Delete
               </Button>
             </div>
           )}
         </div>
         <div className={styles.info}>
+          {event && event.responsible && (
+            <div>
+              <h4>Responsible</h4>
+              <div>{event.responsible}</div>
+            </div>
+          )}
           <div>
-            <h4>Company</h4>
-            <div>{event.companyName}</div>
+            <h4>Date</h4>
+            <div>
+              {event.date && moment(event.date).format('MMM DD, HH:mm')}
+            </div>
           </div>
           <div>
             <h4>Location</h4>
             <a
-              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                event.location
-              )}`}
+              href={`https://www.google.com/maps/search/?api=1&query=
+              + ${encodeURIComponent(event.location)}`}
               target='_blank'
             >
               {event.location}
@@ -91,13 +106,13 @@ class EventDetail extends Component {
             <div>
               <h4>Surveys</h4>
               <div>
-                <IndicatorIcon ok={event.beforeSurveyReplied} />
+                <IndicatorIcon ok={event.beforeSurveyReplied || false} />
                 <A target='_blank' href={event.beforeSurveys[0] || ''}>
                   <FormattedMessage {...messages.before} />
                 </A>
               </div>
               <div>
-                <IndicatorIcon ok={event.afterSurveyReplied} />
+                <IndicatorIcon ok={event.afterSurveyReplied || false} />
                 <A target='_blank' href={event.afterSurveys[0] || ''}>
                   <FormattedMessage {...messages.after} />
                 </A>

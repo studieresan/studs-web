@@ -1,14 +1,18 @@
 .eventEdit {
-  padding: 30px;
+  padding: 50px;
   height: 100%;
-  overflow: auto;
   width: 50%;
+  max-width: 640px;
   background-color: white;
   position: relative;
+  margin-top: 50px;
+  overflow: scroll;
+  padding-bottom: 75px;
 }
 
 .head {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
 }
@@ -16,18 +20,24 @@
 .head > h2 {
   margin-top: 0;
   letter-spacing: 2px;
+  margin-bottom: 0;
 }
 
 .eventEdit input {
-  width: 100%;
-  max-width: 500px;
+  width: 60%;
+  display: inline-block;
+  padding: 0;
+  font-family: var(--body-font);
+}
+
+.eventEdit .checkbox {
+  width: 40px;
 }
 
 .eventEdit textarea {
   border: 1px solid black;
   padding: 6px;
   width: 100%;
-  max-width: 500px;
 }
 
 .eventEdit textarea:focus {
@@ -38,6 +48,10 @@
   border: 1px solid black;
   padding: 5px;
   width: fit-content;
+}
+
+.selectContainer select {
+  font-family: var(--body-font);
 }
 
 .import {
@@ -58,4 +72,22 @@
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 2;
+}
+
+.inputLabel {
+  padding-top: 20px;
+}
+
+.rounded {
+  border-radius: 20px;
+}
+
+@media (max-width: 795px) {
+  .eventEdit {
+    margin-top: 0px;
+    min-width: 100%;
+    padding-left: 15%;
+    padding-right: 15%;
+  }
 }

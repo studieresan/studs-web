@@ -9,12 +9,16 @@
 }
 
 .default {
-  background: #303B4B;
+  background: #303b4b;
   color: white;
 }
 
+.rounded {
+  border-radius: 9999px;
+}
+
 .default:hover {
-  color: #F7DDC9;
+  color: #f7ddc9;
 }
 
 .full {
@@ -23,39 +27,39 @@
 }
 
 .danger {
-  background: #FCF0E8;
-  color: #DD696D;
+  background: #fcf0e8;
+  color: #dd696d;
 }
 
 .danger:hover {
-  background: #DD696D;
-  color: #FCF0E8;
+  background: #dd696d;
+  color: #fcf0e8;
 }
 
 .bright {
-  background: #F7DDC9;
+  background: #f7ddc9;
   color: black;
 }
 
 .bright:hover {
   background: black;
-  color: #F7DDC9;
+  color: #f7ddc9;
 }
 
 .dark {
   background: black;
-  color: #F7DDC9;
+  color: #f7ddc9;
 }
 
 .disabled {
-  background: #CCC;
+  background: #ccc;
   color: #666;
   pointer-events: none;
 }
 
 .icon {
   background: none;
-  color: #303B4B;
+  color: #303b4b;
   padding: 0;
 }
 
@@ -63,4 +67,10 @@
   margin: 1rem 0;
   display: flex;
   justify-content: center;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

@@ -144,8 +144,40 @@
     "message": "Publicerad"
   },
   {
+    "id": "app.components.EventEdit.responsible",
+    "message": "Ansvarig"
+  },
+  {
     "id": "app.components.EventDetail.event",
     "message": "Event"
+  },
+  {
+    "id": "app.components.EventDetail.edit",
+    "message": "Redigera"
+  },
+  {
+    "id": "app.components.EventDetail.delete",
+    "message": "Ta bort"
+  },
+  {
+    "id": "app.components.EventDetail.surveys",
+    "message": "Enkäter"
+  },
+  {
+    "id": "app.components.EventDetail.before",
+    "message": "Före"
+  },
+  {
+    "id": "app.components.EventDetail.after",
+    "message": "Efter"
+  },
+  {
+    "id": "app.components.EventDetail.description",
+    "message": "Beskrivning"
+  },
+  {
+    "id": "app.components.EventDetail.privateDescription",
+    "message": "Privat Beskrivning"
   },
   {
     "id": "app.containers.Navbar.internalevents",

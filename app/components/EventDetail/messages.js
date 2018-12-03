@@ -34,4 +34,28 @@ export default defineMessages({
     id: 'app.components.EventDetail.missing',
     defaultMessage: 'Missing Surveys',
   },
+  date: {
+    id: 'app.containers.Events.date',
+    defaultMessage: 'Date',
+  },
+  location: {
+    id: 'app.components.EventEdit.location',
+    defaultMessage: 'Location',
+  },
+  responsible: {
+    id: 'app.components.EventEdit.responsible',
+    defaultMessage: 'Responsible',
+  },
+  surveys: {
+    id: 'app.components.EventDetail.surveys',
+    defaultMessage: 'Surveys',
+  },
+  edit: {
+    id: 'app.components.EventDetail.edit',
+    defaultMessage: 'Edit',
+  },
+  delete: {
+    id: 'app.components.EventDetail.delete',
+    defaultMessage: 'Delete',
+  },
 })

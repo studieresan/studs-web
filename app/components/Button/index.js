@@ -10,6 +10,7 @@ function Button({
   full,
   wrapper,
   disabled,
+  rounded,
   onClick,
   children,
 }) {
@@ -18,6 +19,7 @@ function Button({
       [styles[`${color}`]]: color,
       [styles.disabled]: disabled,
       [styles.full]: full,
+      [styles.rounded]: rounded,
     },
     styles.button,
     className
@@ -48,6 +50,7 @@ Button.propTypes = {
   full: PropTypes.bool,
   wrapper: PropTypes.bool,
   disabled: PropTypes.bool,
+  rounded: PropTypes.bool,
   onClick: PropTypes.func,
   children: PropTypes.node,
 }
@@ -57,6 +60,7 @@ Button.defaultProps = {
   type: 'button',
   full: false,
   wrapper: false,
+  rounded: false,
 }
 
 export default Button

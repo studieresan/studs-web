@@ -61,6 +61,7 @@ class EventEdit extends React.Component {
     const { save, event } = this.props
     if (event.companyName) {
       save(event)
+      this.props.toggleLightbox()
     } else {
       alert('You must select a company before saving.')
     }
@@ -82,7 +83,6 @@ class EventEdit extends React.Component {
       events: { saving, saved },
       removePicture,
       removeSurvey,
-      toggleEditing,
     } = this.props
     const companyOption = companyName => (
       <option key={companyName} value={companyName || ''}>
@@ -104,28 +104,40 @@ class EventEdit extends React.Component {
 
     return (
       <div className={styles.eventEdit}>
-        <Button
-          type='button'
-          className={styles.close}
-          onClick={() => toggleEditing()}
-        >
-          <span>X</span>
-        </Button>
         <div className={styles.head}>
-          <h2>
-            Event: {event.companyName} -{event.date && event.date.toString()}
-          </h2>
-          {!saving && !saved && (
-            <Button
-              onClick={this.handleSave}
-              type='submit'
-              className='btn-bright'
-            >
-              <FormattedMessage {...messages.save} />
-            </Button>
-          )}
+          <h2>{event.companyName}</h2>
+          <Button
+            onClick={this.handleSave}
+            type='submit'
+            color={'default'}
+            disabled={saving || saved}
+            rounded={true}
+          >
+            <FormattedMessage {...messages.save} />
+          </Button>
         </div>
-        <div className='input-label'>
+        <div className={styles.inputLabel}>
+          <FormattedMessage {...messages.published} />
+          <input
+            className={styles.checkbox}
+            type='checkbox'
+            name='published'
+            checked={event.published}
+            onChange={e =>
+              this.update({ published: !!e.target.checked }, event.id)
+            }
+          />
+        </div>
+        <div className={styles.inputLabel}>
+          <FormattedMessage {...messages.responsible} />
+        </div>
+        <input
+          name='responsible'
+          placeholder=''
+          value={event.responsible || ''}
+          onChange={this.handleChange}
+        />
+        <div className={styles.inputLabel}>
           <FormattedMessage {...messages.company} />
         </div>
         <div className={styles.selectContainer}>
@@ -142,7 +154,7 @@ class EventEdit extends React.Component {
             {companies && companies.map(companyOption)}
           </select>
         </div>
-        <div className='input-label'>
+        <div className={styles.inputLabel}>
           <FormattedMessage {...messages.date} />
         </div>
         <input
@@ -151,7 +163,7 @@ class EventEdit extends React.Component {
           value={moment(event.date).format('YYYY-MM-DDTHH:mm')}
           onChange={this.handleChange}
         />
-        <div className='input-label'>
+        <div className={styles.inputLabel}>
           <FormattedMessage {...messages.location} />
         </div>
         <input
@@ -160,7 +172,7 @@ class EventEdit extends React.Component {
           value={event.location || ''}
           onChange={this.handleChange}
         />
-        <div className='input-label'>
+        <div className={styles.inputLabel}>
           <FormattedMessage {...messages.publicDescription} />
         </div>
         <Textarea
@@ -169,7 +181,7 @@ class EventEdit extends React.Component {
           onChange={this.handleChange}
           value={event.publicDescription || ''}
         />
-        <div className='input-label'>
+        <div className={styles.inputLabel}>
           <FormattedMessage {...messages.privateDescription} />
         </div>
         <Textarea
@@ -178,7 +190,7 @@ class EventEdit extends React.Component {
           onChange={this.handleChange}
           value={event.privateDescription || ''}
         />
-        <div className='input-label'>
+        <div className={styles.inputLabel}>
           <FormattedMessage {...messages.beforeSurvey} />
         </div>
         {event.beforeSurveys.map(surveyListItem('beforeSurveys'))}
@@ -192,7 +204,7 @@ class EventEdit extends React.Component {
             this.addSurvey(e.target.name, e.target.value, event)
           }
         />
-        <div className='input-label'>
+        <div className={styles.inputLabel}>
           <FormattedMessage {...messages.afterSurvey} />
         </div>
         {event.afterSurveys.map(surveyListItem('afterSurveys'))}
@@ -206,7 +218,7 @@ class EventEdit extends React.Component {
             this.addSurvey(e.target.name, e.target.value, event)
           }
         />
-        <div className='input-label'>
+        <div className={styles.inputLabel}>
           <FormattedMessage {...messages.pictures} />
         </div>
         <div className={styles.eventPictures}>
@@ -220,17 +232,6 @@ class EventEdit extends React.Component {
           ))}
         </div>
         <input type='file' name='picture' onChange={this.handleChange} />
-        <div className='input-label'>
-          <FormattedMessage {...messages.published} />
-        </div>
-        <input
-          type='checkbox'
-          name='published'
-          checked={event.published}
-          onChange={e =>
-            this.update({ published: !!e.target.checked }, event.id)
-          }
-        />
       </div>
     )
   }
@@ -246,7 +247,7 @@ EventEdit.propTypes = {
   addSurvey: PropTypes.func.isRequired,
   removeSurvey: PropTypes.func.isRequired,
   events: PropTypes.object.isRequired,
-  toggleEditing: PropTypes.func.isRequired,
+  toggleLightbox: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = selectEvents()

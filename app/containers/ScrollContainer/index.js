@@ -18,7 +18,7 @@ class ScrollContainer extends Component {
 }
 
 ScrollContainer.propTypes = {
-  location: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired,
 }
 

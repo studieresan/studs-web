@@ -129,6 +129,15 @@ class EventEdit extends React.Component {
           />
         </div>
         <div className={styles.inputLabel}>
+          <FormattedMessage {...messages.responsible} />
+        </div>
+        <input
+          name='responsible'
+          placeholder=''
+          value={event.responsible || ''}
+          onChange={this.handleChange}
+        />
+        <div className={styles.inputLabel}>
           <FormattedMessage {...messages.company} />
         </div>
         <div className={styles.selectContainer}>

@@ -248,6 +248,7 @@ const EVENT_FIELDS = `
   location
   pictures
   published
+  responsible
 `
 
 export function fetchEvents() {

@@ -27,6 +27,7 @@ const newEvent = {
   location: '',
   pictures: [],
   published: false,
+  responsible: '',
 }
 
 const initialState = fromJS({

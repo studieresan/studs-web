@@ -67,14 +67,14 @@ class EventDetail extends Component {
                 onClick={() => this.toggleEditing()}
                 rounded={true}
               >
-                Edit
+                <FormattedMessage {...messages.edit} />
               </Button>
               <Button
                 color='danger'
                 onClick={() => onRemoveEvent(event.id)}
                 rounded={true}
               >
-                Delete
+                <FormattedMessage {...messages.delete} />
               </Button>
             </div>
           )}
@@ -87,13 +87,17 @@ class EventDetail extends Component {
             </div>
           )}
           <div>
-            <h4>Date</h4>
+            <h4>
+              <FormattedMessage {...messages.date} />
+            </h4>
             <div>
               {event.date && moment(event.date).format('MMM DD, HH:mm')}
             </div>
           </div>
           <div>
-            <h4>Location</h4>
+            <h4>
+              <FormattedMessage {...messages.location} />
+            </h4>
             <a
               href={`https://www.google.com/maps/search/?api=1&query=
               + ${encodeURIComponent(event.location)}`}
@@ -104,7 +108,9 @@ class EventDetail extends Component {
           </div>
           {user && user.type === 'studs_member' && (
             <div>
-              <h4>Surveys</h4>
+              <h4>
+                <FormattedMessage {...messages.surveys} />
+              </h4>
               <div>
                 <IndicatorIcon ok={event.beforeSurveyReplied || false} />
                 <A target='_blank' href={event.beforeSurveys[0] || ''}>

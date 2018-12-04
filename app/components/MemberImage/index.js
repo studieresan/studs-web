@@ -17,7 +17,7 @@ function MemberImage({ picture, size, square, round, className }) {
 
 MemberImage.propTypes = {
   picture: PropTypes.string,
-  size: PropTypes.string,
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   square: PropTypes.bool,
   round: PropTypes.bool,
   className: PropTypes.string,

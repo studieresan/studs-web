@@ -43,7 +43,7 @@ const Image = ({ picture }) => (
 )
 
 Image.propTypes = {
-  picture: PropTypes.string.isRequird,
+  picture: PropTypes.string.isRequired,
 }
 
 export default SalesContact

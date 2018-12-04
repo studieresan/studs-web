@@ -80,7 +80,6 @@ function Section({ header, content, children }) {
 }
 
 Section.propTypes = {
-  image: PropTypes.string.isRequired,
   header: PropTypes.shape({
     id: PropTypes.string.isRequired,
     defaultMessage: PropTypes.string,

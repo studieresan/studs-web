@@ -2,7 +2,7 @@
 import React from 'react'
 import { Pie } from 'react-chartjs-2'
 import moment from 'moment'
-import styles from './EventFeedback.css'
+import styles from './styles.css'
 const COMPANY_NAME = 'COMPANY NAME'
 
 const props = {

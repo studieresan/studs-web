@@ -281,7 +281,7 @@
   },
   {
     "id": "app.containers.Login.welcome",
-    "message": "Välkommen"
+    "message": "Logga in"
   },
   {
     "id": "app.containers.Login.email",

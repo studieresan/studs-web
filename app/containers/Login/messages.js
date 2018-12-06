@@ -7,7 +7,7 @@ export default defineMessages({
   },
   welcome: {
     id: 'app.containers.Login.welcome',
-    defaultMessage: 'Welcome',
+    defaultMessage: 'Log in',
   },
   email: {
     id: 'app.containers.Login.email',

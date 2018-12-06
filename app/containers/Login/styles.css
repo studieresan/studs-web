@@ -10,10 +10,22 @@
 .form {
   background: #fff;
   width: 90%;
-  max-width: 30rem;
+  max-width: 460px;
   padding: 1rem 3rem 2rem;
 }
 
 .header {
   text-align: center;
+  font-size: 72px;
+  margin: 1rem 0 2rem 0;
+}
+
+@media screen and (max-width: 375px) {
+  .form {
+    padding: 15px 30px;
+  }
+
+  .header {
+    font-size: 50px;
+  }
 }

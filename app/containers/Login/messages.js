@@ -23,6 +23,6 @@ export default defineMessages({
   },
   login: {
     id: 'app.containers.Login.login',
-    defaultMessage: 'Login',
+    defaultMessage: 'Log in',
   },
 })

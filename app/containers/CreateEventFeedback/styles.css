@@ -56,3 +56,7 @@
   grid-gap: 20px;
   grid-template-columns: repeat(5, 1fr);
 }
+
+.submitWrapper {
+  margin-bottom: 40px;
+}

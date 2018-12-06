@@ -14,6 +14,10 @@
   padding: 1rem 3rem 2rem;
 }
 
+.buttons {
+  margin-top: 40px;
+}
+
 .header {
   text-align: center;
   font-size: 72px;

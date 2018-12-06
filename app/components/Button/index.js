@@ -10,16 +10,14 @@ function Button({
   full,
   wrapper,
   disabled,
-  rounded,
   onClick,
   children,
 }) {
   const classes = classNames(
     {
-      [styles[`${color}`]]: color,
+      [styles[color]]: color,
       [styles.disabled]: disabled,
       [styles.full]: full,
-      [styles.rounded]: rounded,
     },
     styles.button,
     className
@@ -46,11 +44,17 @@ Wrapper.propTypes = {
 Button.propTypes = {
   className: PropTypes.string,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
-  color: PropTypes.oneOf(['icon', 'default', 'bright', 'danger']),
+  color: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'icon',
+    'default',
+    'bright',
+    'danger',
+  ]),
   full: PropTypes.bool,
   wrapper: PropTypes.bool,
   disabled: PropTypes.bool,
-  rounded: PropTypes.bool,
   onClick: PropTypes.func,
   children: PropTypes.node,
 }

@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import template from './template'
 import Fieldset from './Fieldset'
+import Button from 'components/Button'
 import styles from './styles.css'
 
 class CreateEventFeedback extends Component<null, null> {
@@ -13,6 +14,11 @@ class CreateEventFeedback extends Component<null, null> {
           {template.map(question => (
             <Fieldset key={question.title} {...question} />
           ))}
+          <div className={styles.submitWrapper}>
+            <Button wrapper color='primary'>
+              Create feedback PDF
+            </Button>
+          </div>
         </form>
       </div>
     )

@@ -1,11 +1,10 @@
 .container {
   padding-top: var(--header-height);
   background-color: #f3f8fb;
-  display: flex;
-  justify-content: center;
 }
 
 .form {
+  margin: 0 auto;
   padding: 0 1rem;
   max-width: 940px;
   width: 100%;

@@ -1,0 +1,79 @@
+.feedback {
+  height: 100%;
+  width: 100%;
+  color: black;
+  position: relative;
+  -webkit-print-color-adjust: exact;
+  z-index: 99999; /* Higher than navbar, so the nav isn't visible */
+  background: white;
+}
+
+.header {
+  display: flex;
+  text-transform: capitalize;
+}
+
+.sidebar-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: red;
+  z-index: -1;
+}
+
+.sidebar {
+  width: 40%;
+  padding: 1% 5%;
+  display: flex;
+  flex-direction: column;
+  background: #f7ddc9;
+  color: #000;
+}
+
+.container {
+  padding: 1% 5%;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  padding: 1% 5%;
+}
+
+h3 {
+  letter-spacing: inherit;
+  font-size: 14px;
+}
+
+.bullet {
+  padding-bottom: 5px;
+}
+
+.dividerHolder {
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+}
+
+.divider {
+  height: 2px;
+  background-color: #000;
+  width: 92%;
+}
+
+.chart {
+  padding-bottom: 2rem;
+}
+
+.chartTitle {
+  text-align: center;
+  margin-bottom: 1rem;
+}

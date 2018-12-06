@@ -5,7 +5,7 @@ import styles from './styles.css'
 type Question = {|
   title: string,
   labels?: string[],
-  type?: 'response' | '',
+  type?: 'response' | '5scale' | 'interestScale' | 'posNegScale',
 |}
 
 function Fieldset({ title, labels, type }: Question) {
@@ -15,7 +15,7 @@ function Fieldset({ title, labels, type }: Question) {
       <Fragment>
         <label>
           <span>Put each comment on its own line</span>
-          <textarea required />
+          <textarea name={title} required defaultValue='lol' />
         </label>
       </Fragment>
     )
@@ -27,7 +27,7 @@ function Fieldset({ title, labels, type }: Question) {
             <Fragment key={label}>
               <label>
                 {label}
-                <input type='number' required />
+                <input type='number' name={title} required defaultValue='1' />
               </label>
             </Fragment>
           ))}

@@ -4,13 +4,16 @@ import { connect } from 'react-redux'
 import EventFeedback from 'components/EventFeedback'
 
 type Props = {|
-  +eventFeedback: Object,
+  +eventFeedback: {
+    companyName: string,
+    feedbackData: Array<Object>,
+  },
 |}
 
 class EventFeedbackPage extends Component<Props, {}> {
   render() {
-    console.log(this.props)
-    return <EventFeedback questions={this.props.eventFeedback.feedbackData} />
+    const { companyName, feedbackData } = this.props.eventFeedback
+    return <EventFeedback companyName={companyName} questions={feedbackData} />
   }
 }
 

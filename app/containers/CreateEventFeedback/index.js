@@ -12,23 +12,38 @@ type Props = {|
   +history: {
     +push: string => void,
   },
+  +eventFeedback: {
+    companyName: string,
+    feedbackData: Array<Object>,
+  },
   +setFeedbackData: (string, Array<Object>) => void,
 |}
 
-class CreateEventFeedback extends Component<Props, {}> {
+type State = {
+  companyName: string,
+}
+
+class CreateEventFeedback extends Component<Props, State> {
+  state = {
+    companyName: this.props.eventFeedback.companyName,
+  }
+
   handleSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
+    const { setFeedbackData, history } = this.props
+    const { companyName } = this.state
+
     event.preventDefault()
     const form = event.target
-    // $FlowFixMe
-    console.log(form.elements)
 
     // $FlowFixMe
     const formData = formToObject(form.elements)
-    console.log(formData)
     const templateWithResponses = addResponses(formData)
-    console.log(templateWithResponses)
-    this.props.setFeedbackData('Some name', templateWithResponses)
-    this.props.history.push('/event-feedback')
+    setFeedbackData(companyName, templateWithResponses)
+    history.push('/event-feedback')
+  }
+
+  handleCompanyNameChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+    this.setState({ companyName: event.target.value })
   }
 
   render() {
@@ -36,6 +51,18 @@ class CreateEventFeedback extends Component<Props, {}> {
       <div className={styles.container}>
         <form className={styles.form} onSubmit={this.handleSubmit}>
           <h1>Event feedback</h1>
+          <fieldset>
+            <label>
+              <h2>Company name</h2>
+              <input
+                value={this.state.companyName}
+                onChange={this.handleCompanyNameChange}
+                type='text'
+                name='company-name'
+                required
+              />
+            </label>
+          </fieldset>
           {template.map(question => (
             <Fieldset key={question.title} {...question} />
           ))}
@@ -50,6 +77,13 @@ class CreateEventFeedback extends Component<Props, {}> {
   }
 }
 
+function mapStateToProps(state) {
+  const eventFeedback = state.getIn(['eventFeedback'])
+  return {
+    eventFeedback,
+  }
+}
+
 function mapDispatchToProps(dispatch: Function) {
   return {
     setFeedbackData: (name, data) => {
@@ -59,6 +93,6 @@ function mapDispatchToProps(dispatch: Function) {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(CreateEventFeedback)

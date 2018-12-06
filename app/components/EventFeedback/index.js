@@ -3,7 +3,6 @@ import React from 'react'
 import { Pie } from 'react-chartjs-2'
 import moment from 'moment'
 import styles from './styles.css'
-const COMPANY_NAME = 'COMPANY NAME'
 
 const props = {
   legend: {
@@ -15,10 +14,11 @@ const props = {
 }
 
 type Props = {|
+  +companyName: string,
   +questions: Array<Object>,
 |}
 
-function EventFeedback({ questions }: Props) {
+function EventFeedback({ companyName, questions }: Props) {
   const section = (response, i) => (
     <div key={`section${i}`}>
       <h2>{response.title}</h2>
@@ -58,7 +58,7 @@ function EventFeedback({ questions }: Props) {
           {questions.filter(q => !q.type).map(chart)}
         </div>
         <div className={styles.main}>
-          <h1>{COMPANY_NAME}</h1>
+          <h1>{companyName}</h1>
           {questions.filter(q => q.type === 'response').map(section)}
         </div>
       </div>

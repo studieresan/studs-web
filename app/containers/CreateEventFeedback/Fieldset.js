@@ -15,7 +15,7 @@ function Fieldset({ title, labels, type }: Question) {
       <Fragment>
         <label>
           <span>Put each comment on its own line</span>
-          <textarea />
+          <textarea required />
         </label>
       </Fragment>
     )
@@ -27,7 +27,7 @@ function Fieldset({ title, labels, type }: Question) {
             <Fragment key={label}>
               <label>
                 {label}
-                <input type='text' />
+                <input type='number' required />
               </label>
             </Fragment>
           ))}

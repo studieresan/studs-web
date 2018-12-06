@@ -15,7 +15,7 @@ class CreateEventFeedback extends Component<null, null> {
             <Fieldset key={question.title} {...question} />
           ))}
           <div className={styles.submitWrapper}>
-            <Button wrapper color='primary'>
+            <Button wrapper color='primary' type='submit'>
               Create feedback PDF
             </Button>
           </div>

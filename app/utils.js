@@ -42,9 +42,17 @@ export function formToObject(formElements) {
   const formData = Array.from(formElements).reduce((data, elem) => {
     if (isValidElement(elem) && isValidValue(elem)) {
       let value
+
+      // if multiple values exist with the same name, save them in an array
       if (elem.type === 'checkbox' || data[elem.name]) {
-        // if multiple values exist with the same name, save them in an array
-        value = [...data[elem.name], elem.value]
+        const existingValues = data[elem.name]
+        if (Array.isArray(existingValues)) {
+          value = [...data[elem.name], elem.value]
+        } else {
+          // If the old value is not an array, using the spread operator
+          // will destroy the value: 14 -> '1', '4' for example
+          value = [existingValues, elem.value]
+        }
       } else {
         value = elem.value
       }

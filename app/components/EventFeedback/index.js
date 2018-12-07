@@ -5,7 +5,7 @@ import moment from 'moment'
 import { formatResponses } from 'containers/CreateEventFeedback/template'
 import styles from './styles.css'
 
-const props = {
+const chartOptions = {
   legend: {
     position: 'bottom',
     labels: {
@@ -38,7 +38,7 @@ function EventFeedback({ companyName, questions }: Props) {
   const chart = (data, i) => (
     <div className={styles.chart} key={`chart${i}`}>
       <h3 className={styles.chartTitle}>{data.title}</h3>
-      <Pie data={data} {...props} />
+      <Pie data={data} {...chartOptions} />
     </div>
   )
   return (

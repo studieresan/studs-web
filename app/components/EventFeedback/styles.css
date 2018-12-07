@@ -23,16 +23,16 @@
 }
 
 .sidebar {
-  width: 40%;
-  padding: 1% 5%;
+  width: 310px;
+  padding: 20px 40px;
   display: flex;
   flex-direction: column;
-  background: #f7ddc9;
+  /* background: #f7ddc9; */
   color: #000;
 }
 
 .container {
-  padding: 1% 5%;
+  padding: 20px 0px;
 }
 
 .content {
@@ -44,7 +44,7 @@
   display: flex;
   flex-direction: column;
   width: 60%;
-  padding: 1% 5%;
+  padding: 20px 50px 20px 0;
 }
 
 h3 {
@@ -71,6 +71,7 @@ h3 {
 
 .chart {
   padding-bottom: 2rem;
+  width: 240px;
 }
 
 .chartTitle {

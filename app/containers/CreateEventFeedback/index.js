@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Button from 'components/Button'
 import { formToObject } from 'utils'
-import template, { addResponses } from './template'
+import { addResponses } from './template'
 import { setFeedback } from './actions'
 import Fieldset from './Fieldset'
 import styles from './styles.css'
@@ -47,6 +47,7 @@ class CreateEventFeedback extends Component<Props, State> {
   }
 
   render() {
+    const { eventFeedback } = this.props
     return (
       <div className={styles.container}>
         <form className={styles.form} onSubmit={this.handleSubmit}>
@@ -63,7 +64,7 @@ class CreateEventFeedback extends Component<Props, State> {
               />
             </label>
           </fieldset>
-          {template.map(question => (
+          {eventFeedback.feedbackData.map(question => (
             <Fieldset key={question.title} {...question} />
           ))}
           <div className={styles.submitWrapper}>

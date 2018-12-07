@@ -1,8 +1,9 @@
 import { SET_FEEDBACK } from './actions'
+import template from './template'
 
 const initialState = {
   companyName: '',
-  feedbackData: [],
+  feedbackData: [...template],
 }
 
 export default function eventFeedback(state = initialState, action) {

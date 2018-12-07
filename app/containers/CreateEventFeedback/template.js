@@ -1,10 +1,18 @@
 /* eslint quotes: 0 max-len: 0*/
 // @flow
 
-type Question = {|
+export type Question = {|
   title: string,
   labels?: string[],
-  type?: 'response' | '5scale' | 'interestScale' | 'posNegScale',
+  type?: 'response' | '5scale' | 'interestScale' | 'posNegScale' | null,
+
+  // responses if type is 'response', otherwise datasets
+  responses?: Array<string>,
+  datasets?: Array<{
+    data: Array<any>,
+    backgroundColor: Array<string>,
+    hoverBackgroundColor: Array<string>,
+  }>,
 |}
 
 const oneToFive = ['1', '2', '3', '4', '5']
@@ -73,7 +81,7 @@ const template: Question[] = [
   },
 ]
 
-function scaleToYesNo(scaleData: Array<string> = []) {
+function scaleToYesNo(scaleData: Array<any> = []) {
   let yes = 0
   let no = 0
   scaleData.forEach((amount, index) => {
@@ -87,7 +95,7 @@ function scaleToYesNo(scaleData: Array<string> = []) {
 }
 
 // Used both for posNegScale and interestScale
-function scaleToPosNeg(scaleData: Array<string> = []) {
+function scaleToPosNeg(scaleData: Array<any> = []) {
   let pos = 0
   let neutral = 0
   let neg = 0
@@ -110,7 +118,10 @@ function scaleToPosNeg(scaleData: Array<string> = []) {
  * @param {Object} formData
  */
 export function addResponses(formData: Object) {
+  console.log(formData)
   const data: Array<Object> = [...template].map(question => {
+    console.log(question)
+
     if (question.type === 'response') {
       return {
         ...question,
@@ -118,25 +129,47 @@ export function addResponses(formData: Object) {
       }
     }
 
-    let data
+    return {
+      ...question,
+      datasets: [
+        {
+          data: formData[question.title],
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+          hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+        },
+      ],
+    }
+  })
+
+  return data
+}
+
+export function formatResponses(responses: Question[]): Question[] {
+  return responses.map(question => {
+    if (question.type === 'response') {
+      return {
+        ...question,
+      }
+    }
+
+    let data = question.datasets && question.datasets[0].data
     let labels
 
     // The form contains many 1-5 scales, but we want to simplify them
     switch (question.type) {
       case '5scale':
         labels = ['Yes', 'No']
-        data = scaleToYesNo(formData[question.title])
+        data = scaleToYesNo(data)
         break
       case 'interestScale':
         labels = ['Interested', 'Neutral', 'Not interested']
-        data = scaleToPosNeg(formData[question.title])
+        data = scaleToPosNeg(data)
         break
       case 'posNegScale':
         labels = ['Positive', 'Neutral', 'Negative']
-        data = scaleToPosNeg(formData[question.title])
+        data = scaleToPosNeg(data)
         break
       default:
-        data = formData[question.title]
         labels = question.labels
         break
     }
@@ -150,15 +183,13 @@ export function addResponses(formData: Object) {
       type: null,
       datasets: [
         {
-          data,
+          data: data || [],
           backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
           hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
         },
       ],
     }
   })
-
-  return data
 }
 
 export default template

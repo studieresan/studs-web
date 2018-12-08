@@ -1,7 +1,10 @@
 // @flow
 import React from 'react'
 import { Pie } from 'react-chartjs-2'
-import { formatResponses } from 'containers/CreateEventFeedback/template'
+import {
+  formatResponses,
+  type Question,
+} from 'containers/CreateEventFeedback/template'
 import styles from './styles.css'
 
 const chartOptions = {
@@ -15,7 +18,7 @@ const chartOptions = {
 
 type Props = {|
   +companyName: string,
-  +questions: Array<Object>,
+  +questions: Array<Question>,
 |}
 
 function EventFeedback({ companyName, questions }: Props) {
@@ -32,12 +35,14 @@ function EventFeedback({ companyName, questions }: Props) {
       </ul>
     </div>
   )
+
   const chart = (data, i) => (
     <div className={styles.chart} key={`chart${i}`}>
       <h3 className={styles.chartTitle}>{data.title}</h3>
       <Pie data={data} {...chartOptions} />
     </div>
   )
+
   return (
     <div className={styles.feedback}>
       <div className={styles.content}>

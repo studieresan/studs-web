@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Button from 'components/Button'
 import { formToObject } from 'utils'
-import { addResponses } from './template'
+import { addResponses, type Question } from './template'
 import { setFeedback } from './actions'
 import Fieldset from './Fieldset'
 import styles from './styles.css'
@@ -14,9 +14,9 @@ type Props = {|
   },
   +eventFeedback: {
     companyName: string,
-    feedbackData: Array<Object>,
+    feedbackData: Array<Question>,
   },
-  +setFeedbackData: (string, Array<Object>) => void,
+  +setFeedbackData: (string, Array<Question>) => void,
 |}
 
 type State = {

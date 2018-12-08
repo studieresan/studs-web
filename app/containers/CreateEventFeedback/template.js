@@ -10,11 +10,14 @@ export type Question = {|
   responses?: Array<string>,
   datasets?: Array<{
     data: Array<any>,
-    backgroundColor: Array<string>,
+    backgroundColor?: Array<string>,
   }>,
 |}
 
 const oneToFive = ['1', '2', '3', '4', '5']
+
+// The types have 1-5 scales in the actual form, but will later
+// be converted to another type in the feedback PDF
 
 const oneToFiveScale = {
   labels: oneToFive,
@@ -82,31 +85,31 @@ const template: Question[] = [
   },
 ]
 
-function scaleToYesNo(scaleData: Array<any> = []) {
+function scaleToYesNo(scaleData: Array<string> = []) {
   let yes = 0
   let no = 0
   scaleData.forEach((amount, index) => {
     if (index + 1 >= 3) {
-      yes += Number.parseInt(amount, 10)
+      yes += parseInt(amount)
     } else {
-      no += Number.parseInt(amount, 10)
+      no += parseInt(amount)
     }
   })
   return [yes, no]
 }
 
 // Used both for posNegScale and interestScale
-function scaleToPosNeg(scaleData: Array<any> = []) {
+function scaleToPosNeg(scaleData: Array<string> = []) {
   let pos = 0
   let neutral = 0
   let neg = 0
   scaleData.forEach((amount, index) => {
     if (index + 1 >= 4) {
-      pos += Number.parseInt(amount, 10)
+      pos += parseInt(amount)
     } else if (index + 1 <= 2) {
-      neg += Number.parseInt(amount, 10)
+      neg += parseInt(amount)
     } else {
-      neutral += Number.parseInt(amount, 10)
+      neutral += parseInt(amount)
     }
   })
   return [pos, neutral, neg]
@@ -118,11 +121,8 @@ function scaleToPosNeg(scaleData: Array<any> = []) {
  *
  * @param {Object} formData
  */
-export function addResponses(formData: Object) {
-  console.log(formData)
-  const data: Array<Object> = [...template].map(question => {
-    console.log(question)
-
+export function addResponses(formData: Object): Array<Question> {
+  return [...template].map(question => {
     if (question.type === 'response') {
       return {
         ...question,
@@ -141,11 +141,16 @@ export function addResponses(formData: Object) {
       ],
     }
   })
-
-  return data
 }
 
-export function formatResponses(responses: Question[]): Question[] {
+/**
+ * This function takes an array of questions and simplifies it:
+ * Questions that have 1-5 scales are converted to
+ * "positive", "neutral", "negative" style instead.
+ *
+ * @param {Array<Question>} responses
+ */
+export function formatResponses(responses: Array<Question>): Array<Question> {
   return responses.map(question => {
     if (question.type === 'response') {
       return {

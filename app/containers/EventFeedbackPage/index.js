@@ -2,11 +2,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import EventFeedback from 'components/EventFeedback'
+import type { Question } from 'containers/CreateEventFeedback/template'
 
 type Props = {|
   +eventFeedback: {
     companyName: string,
-    feedbackData: Array<Object>,
+    feedbackData: Array<Question>,
   },
 |}
 

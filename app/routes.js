@@ -18,6 +18,8 @@ import AdminRoute from 'containers/AdminRoute'
 import AuthenticatedRoute from 'containers/AuthenticatedRoute'
 import PublicEvents from 'containers/PublicEvents'
 import OldEvents from 'containers/OldEvents'
+import EventFeedbackPage from 'containers/EventFeedbackPage'
+import CreateEventFeedback from 'containers/CreateEventFeedback'
 
 class StudsRouter extends Component {
   render() {
@@ -42,6 +44,14 @@ class StudsRouter extends Component {
         <AuthenticatedRoute exact path='/events/new' component={Events} />
         <AuthenticatedRoute exact path='/events/:id' component={Events} />
         <AuthenticatedRoute exact path='/events/:id/edit' component={Events} />
+        <AuthenticatedRoute
+          path='/event-feedback'
+          component={EventFeedbackPage}
+        />
+        <AuthenticatedRoute
+          path='/create-event-feedback'
+          component={CreateEventFeedback}
+        />
 
         <Route exact path='/about' component={About} />
 

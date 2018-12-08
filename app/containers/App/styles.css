@@ -5,12 +5,27 @@
 }
 
 .container input {
-  font-family: 'Lato';
   display: block;
-  padding: 1rem;
   width: 100%;
+  border: 2px solid #e9edef;
+  font-family: var(--body-font);
+  padding: 10px;
+  background: #f8fbfc;
+  transition: 100ms all;
+  margin-top: 5px;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+.container input:focus {
+  border-color: #a9e0f2;
+  background: white;
+}
+
+.container input[type='file'] {
+  background: none;
   border: none;
-  border-bottom: 2px solid black;
+  padding: 0;
 }
 
 .container select {

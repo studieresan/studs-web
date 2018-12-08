@@ -2,7 +2,7 @@ import React from 'react'
 import { createUser } from 'api'
 import Button from 'components/Button'
 import styles from './styles.css'
-import formToObject from './formUtils'
+import { formToObject } from 'utils'
 
 class CreateUser extends React.Component {
   constructor(props) {

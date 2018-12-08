@@ -7,7 +7,7 @@ export default defineMessages({
   },
   welcome: {
     id: 'app.containers.Login.welcome',
-    defaultMessage: 'Welcome',
+    defaultMessage: 'Log in',
   },
   email: {
     id: 'app.containers.Login.email',
@@ -23,6 +23,6 @@ export default defineMessages({
   },
   login: {
     id: 'app.containers.Login.login',
-    defaultMessage: 'Login',
+    defaultMessage: 'Log in',
   },
 })

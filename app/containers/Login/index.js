@@ -81,14 +81,16 @@ class Login extends Component {
             onChange={this.handlePassChange}
           />
 
-          <Link to='/user/forgot-password'>
-            <Button full>
-              <FormattedMessage {...messages.forgotPassword} />
+          <div className={styles.buttons}>
+            <Button wrapper type='submit' color='primary'>
+              <FormattedMessage {...messages.login} />
             </Button>
-          </Link>
-          <Button full type='submit' color='bright'>
-            <FormattedMessage {...messages.login} />
-          </Button>
+            <Link to='/user/forgot-password'>
+              <Button wrapper color='secondary'>
+                <FormattedMessage {...messages.forgotPassword} />
+              </Button>
+            </Link>
+          </div>
 
           {this.renderError()}
         </form>

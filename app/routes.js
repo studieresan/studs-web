@@ -44,8 +44,11 @@ class StudsRouter extends Component {
         <AuthenticatedRoute exact path='/events/new' component={Events} />
         <AuthenticatedRoute exact path='/events/:id' component={Events} />
         <AuthenticatedRoute exact path='/events/:id/edit' component={Events} />
-        <AdminRoute path='/event-feedback' component={EventFeedbackPage} />
-        <AdminRoute
+        <AuthenticatedRoute
+          path='/event-feedback'
+          component={EventFeedbackPage}
+        />
+        <AuthenticatedRoute
           path='/create-event-feedback'
           component={CreateEventFeedback}
         />

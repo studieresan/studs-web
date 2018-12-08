@@ -64,7 +64,7 @@ class EventDetail extends Component {
             <div className={styles.buttonRow}>
               <Link to='/create-event-feedback'>
                 <Button color='bright'>
-                  <FormattedMessage {...messages.edit} />
+                  <FormattedMessage {...messages.generateFeedback} />
                 </Button>
               </Link>
               <Button color='bright' onClick={() => this.toggleEditing()}>

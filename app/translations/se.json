@@ -152,6 +152,10 @@
     "message": "Event"
   },
   {
+    "id": "app.components.EventDetail.generateFeedback",
+    "message": "Generera feedback"
+  },
+  {
     "id": "app.components.EventDetail.edit",
     "message": "Redigera"
   },

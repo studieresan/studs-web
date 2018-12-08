@@ -50,6 +50,10 @@ export default defineMessages({
     id: 'app.components.EventDetail.surveys',
     defaultMessage: 'Surveys',
   },
+  generateFeedback: {
+    id: 'app.components.EventDetail.generateFeedback',
+    defaultMessage: 'Generate Feedback',
+  },
   edit: {
     id: 'app.components.EventDetail.edit',
     defaultMessage: 'Edit',

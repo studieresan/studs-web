@@ -5,7 +5,6 @@ import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import Markdown from 'react-markdown'
 import Button from 'components/Button'
-import { Chart } from 'react-google-charts' // TODO replace with chart.js
 import { hasEventPermission } from 'users'
 
 import moment from 'moment'
@@ -14,6 +13,7 @@ import A from 'components/A'
 import IndicatorIcon from 'components/IndicatorIcon'
 import EventEdit from '../EventEdit'
 import Lightbox from 'components/Lightbox'
+import { Link } from 'react-router-dom'
 
 class EventDetail extends Component {
   constructor() {
@@ -62,18 +62,15 @@ class EventDetail extends Component {
           <h2>{event.companyName}</h2>
           {hasEventPermission(user) && (
             <div className={styles.buttonRow}>
-              <Button
-                color='bright'
-                onClick={() => this.toggleEditing()}
-                rounded={true}
-              >
+              <Link to='/create-event-feedback'>
+                <Button color='bright'>
+                  <FormattedMessage {...messages.edit} />
+                </Button>
+              </Link>
+              <Button color='bright' onClick={() => this.toggleEditing()}>
                 <FormattedMessage {...messages.edit} />
               </Button>
-              <Button
-                color='danger'
-                onClick={() => onRemoveEvent(event.id)}
-                rounded={true}
-              >
+              <Button color='danger' onClick={() => onRemoveEvent(event.id)}>
                 <FormattedMessage {...messages.delete} />
               </Button>
             </div>
@@ -151,48 +148,6 @@ class EventDetail extends Component {
               <FormattedMessage {...messages.feedback} />
             </h2>
             <Markdown source={event.feedbackText} />
-          </div>
-        )}
-        {event.formData && (
-          <div className={styles.charts}>
-            <Chart
-              chartType='PieChart'
-              data={event.formData.beforeInterest}
-              options={{
-                title: 'Interest in the company before the event',
-              }}
-              graph_id='beforeInterest'
-              width='100%'
-            />
-            <Chart
-              chartType='PieChart'
-              data={event.formData.afterInterest}
-              options={{
-                title: 'Interest in the company after the event',
-              }}
-              graph_id='afterInterest'
-              width='100%'
-            />
-            <Chart
-              chartType='PieChart'
-              data={event.formData.knowDoes}
-              options={{
-                title: 'Do you know what the company does (before the event)?',
-              }}
-              graph_id='knowDoes'
-              width='100%'
-            />
-            <Chart
-              chartType='PieChart'
-              data={event.formData.qualified}
-              options={{
-                title:
-                  'Do you feel like you are qualified to work at' +
-                  'this company?',
-              }}
-              graph_id='qualified'
-              width='100%'
-            />
           </div>
         )}
         {hasEventPermission(user) &&

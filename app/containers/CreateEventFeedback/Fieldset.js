@@ -34,6 +34,7 @@ function Fieldset({ title, labels, type, datasets, responses }: Question) {
                   type='number'
                   name={title}
                   defaultValue={defaultValues && defaultValues[i]}
+                  min='0'
                   required
                 />
               </label>

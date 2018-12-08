@@ -137,7 +137,6 @@ export function addResponses(formData: Object) {
       datasets: [
         {
           data: formData[question.title],
-          backgroundColor,
         },
       ],
     }

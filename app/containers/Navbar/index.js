@@ -23,6 +23,7 @@ function Navbar({ printMode }: Props) {
     <Switch>
       <Route exact path='/' render={LightNav} />
       <Route path='/login' render={LightNav} />
+      <Route path='/event-feedback' render={null} />
       <Route component={Nav} />
     </Switch>
   )

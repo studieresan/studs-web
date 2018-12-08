@@ -9,22 +9,6 @@
   padding: 20px 40px;
 }
 
-.header {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-gap: 20px;
-  text-transform: capitalize;
-}
-
-.sidebar-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  background: red;
-  z-index: -1;
-}
-
 .sidebar {
   padding: 30px 0;
 }
@@ -62,10 +46,6 @@
 h3 {
   letter-spacing: inherit;
   font-size: 11pt;
-}
-
-.bullet {
-  padding-bottom: 5px;
 }
 
 .divider {

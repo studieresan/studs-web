@@ -44,26 +44,24 @@ function EventFeedback({ companyName, questions }: Props) {
   return (
     <div className={styles.feedback}>
       <div className={styles.header}>
-        <div className={styles.sidebar}>
+        <div>
           <h6>{moment().format('YYYY-MM-DD')}</h6>
         </div>
-        <div className={styles.container}>
+        <div>
           <h6>Event Feedback</h6>
         </div>
       </div>
 
-      <div className={styles.dividerHolder}>
-        <div className={styles.divider} />
-      </div>
+      <div className={styles.divider} />
 
       <div className={styles.content}>
-        <div className={styles.sidebar}>
-          <h1>Statistics</h1>
-          {formatted.filter(q => !q.type).map(chart)}
-        </div>
         <div className={styles.main}>
           <h1>{companyName}</h1>
           {formatted.filter(q => q.type === 'response').map(section)}
+        </div>
+        <div className={styles.sidebar}>
+          <h2>Statistics</h2>
+          {formatted.filter(q => !q.type).map(chart)}
         </div>
       </div>
     </div>

@@ -11,7 +11,6 @@ export type Question = {|
   datasets?: Array<{
     data: Array<any>,
     backgroundColor: Array<string>,
-    hoverBackgroundColor: Array<string>,
   }>,
 |}
 
@@ -31,6 +30,8 @@ const posNegScale = {
   labels: oneToFive,
   type: 'posNegScale',
 }
+
+const backgroundColor = ['#a9e0f2', '#1d6598', '#0f344e']
 
 const template: Question[] = [
   {
@@ -125,7 +126,9 @@ export function addResponses(formData: Object) {
     if (question.type === 'response') {
       return {
         ...question,
-        responses: formData[question.title].split('\n'),
+        responses: formData[question.title]
+          .split('\n')
+          .filter(txt => txt.length > 0), // filter out empty lines
       }
     }
 
@@ -134,8 +137,7 @@ export function addResponses(formData: Object) {
       datasets: [
         {
           data: formData[question.title],
-          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-          hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+          backgroundColor,
         },
       ],
     }
@@ -184,8 +186,7 @@ export function formatResponses(responses: Question[]): Question[] {
       datasets: [
         {
           data: data || [],
-          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-          hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+          backgroundColor,
         },
       ],
     }

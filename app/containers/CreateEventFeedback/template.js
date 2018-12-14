@@ -38,6 +38,34 @@ const backgroundColor = ['#a9e0f2', '#1d6598', '#0f344e']
 
 const template: Question[] = [
   {
+    title: 'Pre Event: Are you familiar with the company and what they do?',
+    labels: ['Yes', 'To some extent', 'No'],
+  },
+  {
+    title: 'Pre Event: How interested in working at this company are you?',
+    ...interestScale,
+  },
+  {
+    title:
+      "Pre Event: How interested in writing your master's thesis at this company are you?",
+    ...interestScale,
+  },
+  {
+    title:
+      "Pre Event: Are you looking for a company to do your master's thesis at?",
+    labels: ['Yes, I am', 'No, I am not'],
+  },
+  {
+    title:
+      "Pre Event: Please motivate why you are or aren't interested in working at this company.",
+    type: 'response',
+  },
+  {
+    title:
+      "Pre Event: How would you describe your view of the company and what's your general opinion about them?",
+    type: 'response',
+  },
+  {
     title: 'How did the event impact your opinion about the company?',
     labels: ['Positive impact', 'No change', 'Negative impact'],
   },

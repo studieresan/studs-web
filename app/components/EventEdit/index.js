@@ -61,7 +61,6 @@ class EventEdit extends React.Component {
     const { save, event } = this.props
     if (event.companyName) {
       save(event)
-      this.props.toggleLightbox()
     } else {
       alert('You must select a company before saving.')
     }
@@ -247,7 +246,6 @@ EventEdit.propTypes = {
   addSurvey: PropTypes.func.isRequired,
   removeSurvey: PropTypes.func.isRequired,
   events: PropTypes.object.isRequired,
-  toggleLightbox: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = selectEvents()

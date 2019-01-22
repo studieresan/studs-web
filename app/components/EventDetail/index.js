@@ -11,24 +11,9 @@ import moment from 'moment'
 import styles from './styles.css'
 import A from 'components/A'
 import IndicatorIcon from 'components/IndicatorIcon'
-import EventEdit from '../EventEdit'
-import Lightbox from 'components/Lightbox'
 import { Link } from 'react-router-dom'
 
 class EventDetail extends Component {
-  constructor() {
-    super()
-    this.state = {
-      isEditing: false,
-    }
-  }
-
-  toggleEditing() {
-    this.setState({
-      isEditing: !this.state.isEditing,
-    })
-  }
-
   render() {
     const { event, user, onRemoveEvent } = this.props
     if (!event) {
@@ -46,18 +31,6 @@ class EventDetail extends Component {
     }
     return (
       <div className={styles.eventDetail}>
-        {this.state.isEditing && (
-          <Lightbox
-            toggleLightbox={() => {
-              this.toggleEditing()
-            }}
-          >
-            <EventEdit
-              event={event}
-              toggleLightbox={() => this.toggleEditing()}
-            />
-          </Lightbox>
-        )}
         <div className={styles.head}>
           <h2>{event.companyName}</h2>
           {hasEventPermission(user) && (
@@ -67,9 +40,11 @@ class EventDetail extends Component {
                   <FormattedMessage {...messages.generateFeedback} />
                 </Button>
               </Link>
-              <Button color='bright' onClick={() => this.toggleEditing()}>
-                <FormattedMessage {...messages.edit} />
-              </Button>
+              <Link to={`/events/${event.id}/edit`}>
+                <Button color='bright'>
+                  <FormattedMessage {...messages.edit} />
+                </Button>
+              </Link>
               <Button color='danger' onClick={() => onRemoveEvent(event.id)}>
                 <FormattedMessage {...messages.delete} />
               </Button>

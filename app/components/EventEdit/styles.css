@@ -1,11 +1,10 @@
 .eventEdit {
-  padding: 50px;
+  padding: 0 50px 50px;
   height: 100%;
-  width: 50%;
-  max-width: 640px;
+  width: 85%;
   background-color: white;
   position: relative;
-  margin-top: 50px;
+  margin-top: 10px;
   overflow: scroll;
   padding-bottom: 75px;
 }

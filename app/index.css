@@ -18,6 +18,12 @@
   }
 }
 
+@media print {
+  @page {
+    margin: 1.8cm;
+  }
+}
+
 html,
 body {
   margin: 0;

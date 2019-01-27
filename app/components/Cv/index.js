@@ -42,12 +42,13 @@ function renderSection(section) {
 }
 
 function PrintButton(props) {
+  if (props.printMode) {
+    return null
+  }
+
   return (
     <button
       className={styles.printButton}
-      style={{
-        display: props.printMode ? 'none' : 'block',
-      }}
       onClick={() => {
         props.setPrintMode(true)
         setTimeout(() => {

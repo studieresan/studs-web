@@ -33,6 +33,7 @@
 .printButton {
   margin: 0 auto;
   font-size: 18px;
+  display: block;
 }
 
 .section {
@@ -254,6 +255,10 @@
      */
     page-break-inside: avoid;
     padding: 0.5rem 1rem;
+  }
+
+  .section:last-child .item:last-child {
+    padding-bottom: 0;
   }
 
   .section h2 {

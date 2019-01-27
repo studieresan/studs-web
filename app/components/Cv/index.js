@@ -28,22 +28,27 @@ function renderItem(item, i) {
 }
 
 function renderSection(section) {
-  const items = section.items.map((item, i) => renderItem(item, i))
+  const items = section.items.splice(1).map((item, i) => renderItem(item, i))
   return (
     <div key={section.title} className={styles.section}>
-      <h2>{section.title.toLowerCase()}</h2>
+      <div className={styles.printWrapper}>
+        {/* Keep title and first item together for printing, see styles.css */}
+        <h2>{section.title.toLowerCase()}</h2>
+        {renderItem(section.items[0], 0)}
+      </div>
       {items}
     </div>
   )
 }
 
 function PrintButton(props) {
+  if (props.printMode) {
+    return null
+  }
+
   return (
     <button
       className={styles.printButton}
-      style={{
-        display: props.printMode ? 'none' : 'block',
-      }}
       onClick={() => {
         props.setPrintMode(true)
         setTimeout(() => {

@@ -85,12 +85,13 @@ class EventDetail extends Component {
               </h4>
               <div>
                 <IndicatorIcon ok={event.beforeSurveyReplied || false} />
-                <A
+                {/* <A
                   target='_blank'
                   href={(event.beforeSurveys && event.beforeSurveys[0]) || ''}
                 >
                   <FormattedMessage {...messages.before} />
-                </A>
+                </A> */}
+                <Link to={`/events/${event.id}/pre_form`}>Pre Event Form</Link>
               </div>
               <div>
                 <IndicatorIcon ok={event.afterSurveyReplied || false} />

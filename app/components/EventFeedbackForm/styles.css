@@ -54,7 +54,47 @@
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+}
+
+.inputGroup > div {
+  display: flex;
+  align-items: flex-end;
+}
+
+.horizontalRadioLabel {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  vertical-align: middle;
+  min-height: 6em;
+}
+
+.horizontalRadioLabel > div {
+  min-height: 3em;
+  text-align: center;
+  width: 100%;
+}
+
+.horizontalRadioLabel > div > input {
+  max-width: 15px;
+  margin: 16px auto;
+}
+
+.verticalRadioLabel {
+  display: flex;
+  flex-direction: row;
+  min-width: 6em;
+}
+
+.verticalRadioLabel > div {
+  min-width: 3em;
+  min-height: 3em;
+}
+
+.verticalRadioLabel > div > input {
+  max-width: 15px;
+  margin: 3px auto;
 }
 
 .submitWrapper {

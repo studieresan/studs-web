@@ -7,6 +7,83 @@ import * as actions from './actions'
 import Button from 'components/Button'
 import styles from './styles.css'
 
+const createScaleRadios = (scale, name) => {
+  const radios = []
+  for (let i = 1; i < scale + 1; i++) {
+    radios.push(
+      <label className={styles.horizontalRadioLabel} key={i}>
+        <div>{i}</div>
+        <div>
+          <input
+            type='radio'
+            key={'scale' + i}
+            name={name}
+            value={i}
+            required
+          />
+        </div>
+      </label>
+    )
+  }
+  return radios
+}
+
+const createRadios = (name, choices) => {
+  const radios = []
+  for (const [count, choice] of choices.entries()) {
+    radios.push(
+      <label className={styles.verticalRadioLabel} key={count}>
+        <div>
+          <input type='radio' name={name} value={choice} required />
+        </div>
+        <div>{choice}</div>
+      </label>
+    )
+  }
+  return radios
+}
+
+const fiveScaleQuestion = (title, labels) => {
+  return (
+    <fieldset>
+      <h2>
+        <legend>{title}</legend>
+      </h2>
+      <div className={styles.inputGroup}>
+        <div>
+          <div>{labels[0]}</div>
+        </div>
+        {createScaleRadios(5, title)}
+        <div>
+          <div>{labels[1]}</div>
+        </div>
+      </div>
+    </fieldset>
+  )
+}
+
+const textQuestion = title => {
+  return (
+    <fieldset>
+      <h2>
+        <legend>{title}</legend>
+      </h2>
+      <label>
+        <textarea name={title} defaultValue='' required />
+      </label>
+    </fieldset>
+  )
+}
+
+const choiceQuestion = (title, choices) => {
+  return (
+    <fieldset>
+      <h2>{title}</h2>
+      {createRadios(title, choices)}
+    </fieldset>
+  )
+}
+
 export class EventFeedbackForm extends Component {
   render() {
     const {
@@ -14,42 +91,21 @@ export class EventFeedbackForm extends Component {
       //user,
     } = this.props
 
-    const values = ['1', '2', '3', '4', '5']
+    const handleSubmit = e => {
+      e.preventDefault()
+      console.log('xd')
+    }
 
-    console.log(values)
     return (
       <div className={styles.container}>
-        <form className={styles.form} onSubmit={this.handleSubmit}>
-          <h1>Pre Event feedback: {event.companyName}</h1>
-          <fieldset>
-            <h2>
-              <legend>This is a text question</legend>
-            </h2>
-            <label>
-              <span>Put each comment on its own line</span>
-              <textarea name='test1' required defaultValue='' />
-            </label>
-          </fieldset>
-          <fieldset>
-            <h2>
-              <legend>This is a radio question</legend>
-            </h2>
-            <div className={styles.inputGroup}>
-              <label />
-              {values.map(value => (
-                <label key={value}>{value}</label>
-              ))}
-              <label />
-              <label>Not at all interested.</label>
-              {values.map(value => (
-                <input key={value} type='radio' value={value} name='test2' />
-              ))}
-              <label>Very interested.</label>
-            </div>
-          </fieldset>
-          {/* {eventFeedback.feedbackData.map(question => (
-                <Fieldset key={question.title} {...question} />
-                ))} */}
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <h1>{event.companyName}: Pre Event feedback</h1>
+          {textQuestion('This is a text question')}
+          {fiveScaleQuestion('This is a radio question', [
+            'Not at all interested.',
+            'Very interested.',
+          ])}
+          {choiceQuestion('This is a choice question.', ['Yes.', 'No.'])}
           <div className={styles.submitWrapper}>
             <Button wrapper color='primary' type='submit'>
               Submit

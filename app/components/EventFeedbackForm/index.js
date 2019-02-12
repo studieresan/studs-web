@@ -3,11 +3,10 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from './actions'
-// import { FormattedMessage } from 'react-intl'
 import Button from 'components/Button'
 import styles from './styles.css'
 
-const createScaleRadios = (scale, name) => {
+const scaleQuestion = (scale, name, labels) => {
   const radios = []
   for (let i = 1; i < scale + 1; i++) {
     radios.push(
@@ -25,61 +24,62 @@ const createScaleRadios = (scale, name) => {
       </label>
     )
   }
-  return radios
+  return (
+    <div className={styles.inputGroup}>
+      <div>
+        <div>{labels[0]}</div>
+      </div>
+      {radios}
+      <div>
+        <div>{labels[1]}</div>
+      </div>
+    </div>
+  )
 }
 
-const createRadios = (name, choices) => {
+const choiceQuestion = (title, labels) => {
   const radios = []
-  for (const [count, choice] of choices.entries()) {
+  for (const [count, label] of labels.entries()) {
     radios.push(
       <label className={styles.verticalRadioLabel} key={count}>
         <div>
-          <input type='radio' name={name} value={choice} required />
+          <input type='radio' name={title} value={label} required />
         </div>
-        <div>{choice}</div>
+        <div>{label}</div>
       </label>
     )
   }
   return radios
 }
 
-const fiveScaleQuestion = (title, labels) => {
-  return (
-    <fieldset>
-      <h2>
-        <legend>{title}</legend>
-      </h2>
-      <div className={styles.inputGroup}>
-        <div>
-          <div>{labels[0]}</div>
-        </div>
-        {createScaleRadios(5, title)}
-        <div>
-          <div>{labels[1]}</div>
-        </div>
-      </div>
-    </fieldset>
-  )
-}
-
 const textQuestion = title => {
   return (
-    <fieldset>
-      <h2>
-        <legend>{title}</legend>
-      </h2>
-      <label>
-        <textarea name={title} defaultValue='' required />
-      </label>
-    </fieldset>
+    <label>
+      <textarea name={title} defaultValue='' required />
+    </label>
   )
 }
 
-const choiceQuestion = (title, choices) => {
+const question = (type, title, labels, scale) => {
+  let content
+  switch (type) {
+    case 'choice':
+      content = choiceQuestion(title, labels)
+      break
+    case 'fiveScale':
+      content = scaleQuestion(scale, title, labels)
+      break
+    case 'text':
+      content = textQuestion(title)
+      break
+    default:
+      break
+  }
+
   return (
     <fieldset>
       <h2>{title}</h2>
-      {createRadios(title, choices)}
+      {content}
     </fieldset>
   )
 }
@@ -100,12 +100,17 @@ export class EventFeedbackForm extends Component {
       <div className={styles.container}>
         <form className={styles.form} onSubmit={handleSubmit}>
           <h1>{event.companyName}: Pre Event feedback</h1>
-          {textQuestion('This is a text question')}
-          {fiveScaleQuestion('This is a radio question', [
+          {question('text', 'This is a text question')}
+          {question(
+            'fiveScale',
+            'This is a radio question',
+            ['Not at all interested.', 'Very interested.'],
+            5
+          )}
+          {question('choice', 'This is a radio question', [
             'Not at all interested.',
             'Very interested.',
           ])}
-          {choiceQuestion('This is a choice question.', ['Yes.', 'No.'])}
           <div className={styles.submitWrapper}>
             <Button wrapper color='primary' type='submit'>
               Submit

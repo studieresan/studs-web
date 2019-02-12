@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import * as actions from './actions'
 import Button from 'components/Button'
@@ -149,9 +148,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ ...actions }, dispatch)
 }
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(EventFeedbackForm)
-)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EventFeedbackForm)

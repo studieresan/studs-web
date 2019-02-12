@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import * as actions from './actions'
 import Button from 'components/Button'
 import styles from './styles.css'
+import { preEventQuestions, postEventQuestions } from './template'
 
 const scaleQuestion = (scale, name, labels) => {
   const radios = []
@@ -37,13 +39,13 @@ const scaleQuestion = (scale, name, labels) => {
   )
 }
 
-const choiceQuestion = (title, labels) => {
+const choiceQuestion = (name, labels) => {
   const radios = []
   for (const [count, label] of labels.entries()) {
     radios.push(
       <label className={styles.verticalRadioLabel} key={count}>
         <div>
-          <input type='radio' name={title} value={label} required />
+          <input type='radio' name={name} value={label} required />
         </div>
         <div>{label}</div>
       </label>
@@ -52,25 +54,25 @@ const choiceQuestion = (title, labels) => {
   return radios
 }
 
-const textQuestion = title => {
+const textQuestion = name => {
   return (
     <label>
-      <textarea name={title} defaultValue='' required />
+      <textarea name={name} defaultValue='' required />
     </label>
   )
 }
 
-const question = (type, title, labels, scale) => {
+const formatQuestion = question => {
   let content
-  switch (type) {
+  switch (question.type) {
     case 'choice':
-      content = choiceQuestion(title, labels)
+      content = choiceQuestion(question.labels, question.name)
       break
-    case 'fiveScale':
-      content = scaleQuestion(scale, title, labels)
+    case 'scale':
+      content = scaleQuestion(5, question.labels, question.name)
       break
-    case 'text':
-      content = textQuestion(title)
+    case 'response':
+      content = textQuestion(question.name)
       break
     default:
       break
@@ -78,7 +80,7 @@ const question = (type, title, labels, scale) => {
 
   return (
     <fieldset>
-      <h2>{title}</h2>
+      <h2>{question.title}</h2>
       {content}
     </fieldset>
   )
@@ -86,31 +88,38 @@ const question = (type, title, labels, scale) => {
 
 export class EventFeedbackForm extends Component {
   render() {
-    const {
-      event,
-      //user,
-    } = this.props
+    const { events, user } = this.props
+
+    console.log(this.props)
+    console.log('events: ' + events)
+    console.log('user: ' + user)
 
     const handleSubmit = e => {
       e.preventDefault()
       console.log('xd')
     }
 
+    let questions
+    if (
+      this.props.location.pathname &&
+      this.props.location.pathname.includes('pre-event')
+    ) {
+      questions = preEventQuestions
+    } else {
+      questions = postEventQuestions
+    }
+
+    let form
+
+    for (const question in questions) {
+      form.push(formatQuestion(question))
+    }
+
     return (
       <div className={styles.container}>
         <form className={styles.form} onSubmit={handleSubmit}>
-          <h1>{event.companyName}: Pre Event feedback</h1>
-          {question('text', 'This is a text question')}
-          {question(
-            'fiveScale',
-            'This is a radio question',
-            ['Not at all interested.', 'Very interested.'],
-            5
-          )}
-          {question('choice', 'This is a radio question', [
-            'Not at all interested.',
-            'Very interested.',
-          ])}
+          {/* <h1>{event.companyName}: Pre Event feedback</h1> */}
+          {form}
           <div className={styles.submitWrapper}>
             <Button wrapper color='primary' type='submit'>
               Submit
@@ -124,12 +133,15 @@ export class EventFeedbackForm extends Component {
 
 EventFeedbackForm.propTypes = {
   user: PropTypes.object.isRequired,
-  event: PropTypes.object.isRequired,
+  events: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 }
 
 function mapStateToProps(state) {
+  console.log('state', state)
   return {
     user: state.getIn(['global', 'user']).toJS(),
+    events: state.getIn(['events']).toJS(),
   }
 }
 
@@ -137,7 +149,9 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ ...actions }, dispatch)
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EventFeedbackForm)
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(EventFeedbackForm)
+)

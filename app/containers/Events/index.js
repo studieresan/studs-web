@@ -12,7 +12,6 @@ import EventListItem from 'components/EventListItem'
 import EventDetail from 'components/EventDetail'
 import EventStaticDetail from 'components/EventStaticDetail'
 import EventEdit from 'components/EventEdit'
-import EventFeedbackForm from 'components/EventFeedbackForm'
 import * as EventActions from './actions'
 import { getUsers } from 'containers/Members/actions'
 import { hasEventPermission } from 'users'
@@ -98,7 +97,6 @@ export class Events extends React.Component {
     } = this.props
 
     const eventEdit = e => e && <EventEdit event={e} />
-    const eventForm = e => e && <EventFeedbackForm event={e} />
 
     let detail
     let detailSelected = false
@@ -106,10 +104,6 @@ export class Events extends React.Component {
       const event = events.items.find(e => e.id === params.id)
       if (path === '/events/:id/edit') {
         detail = eventEdit(event)
-      } else if (path === '/events/:id/pre_form') {
-        detail = eventForm(event)
-      } else if (path === '/events/:id/post_form') {
-        detail = eventForm(event)
       } else {
         detail = event && (
           <EventDetail

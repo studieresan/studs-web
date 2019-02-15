@@ -9,7 +9,6 @@ import { hasEventPermission } from 'users'
 
 import moment from 'moment'
 import styles from './styles.css'
-import A from 'components/A'
 import IndicatorIcon from 'components/IndicatorIcon'
 import { Link } from 'react-router-dom'
 
@@ -85,22 +84,13 @@ class EventDetail extends Component {
               </h4>
               <div>
                 <IndicatorIcon ok={event.beforeSurveyReplied || false} />
-                {/* <A
-                  target='_blank'
-                  href={(event.beforeSurveys && event.beforeSurveys[0]) || ''}
-                >
-                  <FormattedMessage {...messages.before} />
-                </A> */}
                 <Link to={`/events/${event.id}/pre_form`}>Pre Event Form</Link>
               </div>
               <div>
                 <IndicatorIcon ok={event.afterSurveyReplied || false} />
-                <A
-                  target='_blank'
-                  href={(event.afterSurveys && event.afterSurveys[0]) || ''}
-                >
-                  <FormattedMessage {...messages.after} />
-                </A>
+                <Link to={`/events/${event.id}/post_form`}>
+                  Post Event Form
+                </Link>
               </div>
             </div>
           )}

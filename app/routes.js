@@ -20,7 +20,7 @@ import PublicEvents from 'containers/PublicEvents'
 import OldEvents from 'containers/OldEvents'
 import EventFeedbackPage from 'containers/EventFeedbackPage'
 import CreateEventFeedback from 'containers/CreateEventFeedback'
-import { EventFeedbackForm } from './components/EventFeedbackForm'
+import EventFeedbackForm from './components/EventFeedbackForm'
 
 class StudsRouter extends Component {
   render() {

@@ -84,6 +84,7 @@ const USER_PROFILE_FIELDS = `
 export function fetchUser() {
   const query = `{
     user {
+      id
       profile {
         ${USER_PROFILE_FIELDS}
       }
@@ -93,6 +94,7 @@ export function fetchUser() {
   `
   return executeGraphQL(query).then(res =>
     Promise.resolve({
+      id: res.data.user.id,
       ...res.data.user.profile,
       permissions: res.data.user.permissions,
     })

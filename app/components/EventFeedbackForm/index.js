@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as actions from './actions'
 import Button from 'components/Button'
 import styles from './styles.css'
 import { preEventQuestions, postEventQuestions } from './template'
+import * as EventActions from 'containers/Events/actions'
+import { formToObject } from 'utils'
 
 const scaleQuestion = (scale, name, labels) => {
   const radios = []
@@ -14,13 +15,7 @@ const scaleQuestion = (scale, name, labels) => {
       <label className={styles.horizontalRadioLabel} key={i}>
         <div>{i}</div>
         <div>
-          <input
-            type='radio'
-            key={'scale' + i}
-            name={name}
-            value={i}
-            required
-          />
+          <input type='radio' key={name + i} name={name} value={i} required />
         </div>
       </label>
     )
@@ -40,9 +35,9 @@ const scaleQuestion = (scale, name, labels) => {
 
 const choiceQuestion = (name, labels) => {
   const radios = []
-  for (const [count, label] of labels.entries()) {
+  for (const label of labels) {
     radios.push(
-      <label className={styles.verticalRadioLabel} key={count}>
+      <label className={styles.verticalRadioLabel} key={name + label}>
         <div>
           <input type='radio' name={name} value={label} required />
         </div>
@@ -65,10 +60,10 @@ const formatQuestion = question => {
   let content
   switch (question.type) {
     case 'choice':
-      content = choiceQuestion(question.labels, question.name)
+      content = choiceQuestion(question.name, question.labels)
       break
     case 'scale':
-      content = scaleQuestion(5, question.labels, question.name)
+      content = scaleQuestion(5, question.name, question.labels)
       break
     case 'response':
       content = textQuestion(question.name)
@@ -78,46 +73,63 @@ const formatQuestion = question => {
   }
 
   return (
-    <fieldset>
+    <fieldset key={question.title}>
       <h2>{question.title}</h2>
       {content}
     </fieldset>
   )
 }
 
-export class EventFeedbackForm extends Component {
-  render() {
-    const { events, user } = this.props
+class EventFeedbackForm extends Component {
+  componentDidMount() {
+    this.props.getEvents()
+  }
 
-    console.log(this.props)
-    console.log('events: ' + events)
-    console.log('user: ' + user)
+  render() {
+    const {
+      events,
+      //user
+    } = this.props
+
+    if (events.length < 1) {
+      return null
+    }
 
     const handleSubmit = e => {
       e.preventDefault()
-      console.log('xd')
+
+      const formData = formToObject(e.target.elements)
+
+      formData.eventId = this.props.match.params.id
+      formData.userId = this.props.user.id
+      console.log(formData)
     }
 
     let questions
-    if (
+    const preEvent =
       this.props.location.pathname &&
-      this.props.location.pathname.includes('pre-event')
-    ) {
+      this.props.location.pathname.includes('pre_form')
+        ? true
+        : false
+    if (preEvent) {
       questions = preEventQuestions
     } else {
       questions = postEventQuestions
     }
 
-    let form
-
-    for (const question in questions) {
-      form.push(formatQuestion(question))
-    }
+    const form = questions.map(question => formatQuestion(question))
 
     return (
       <div className={styles.container}>
         <form className={styles.form} onSubmit={handleSubmit}>
-          {/* <h1>{event.companyName}: Pre Event feedback</h1> */}
+          <h1>
+            {
+              this.props.events.find(
+                event => event.id === this.props.match.params.id
+              ).companyName
+            }
+            : Pre Event feedback
+          </h1>
           {form}
           <div className={styles.submitWrapper}>
             <Button wrapper color='primary' type='submit'>
@@ -132,20 +144,21 @@ export class EventFeedbackForm extends Component {
 
 EventFeedbackForm.propTypes = {
   user: PropTypes.object.isRequired,
-  events: PropTypes.object.isRequired,
+  events: PropTypes.array.isRequired,
   location: PropTypes.object.isRequired,
+  getEvents: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
 }
 
 function mapStateToProps(state) {
-  console.log('state', state)
   return {
     user: state.getIn(['global', 'user']).toJS(),
-    events: state.getIn(['events']).toJS(),
+    events: state.getIn(['events', 'items']).toJS(),
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ ...actions }, dispatch)
+  return bindActionCreators({ ...EventActions }, dispatch)
 }
 
 export default connect(

@@ -7,6 +7,7 @@ import styles from './styles.css'
 import { preEventQuestions, postEventQuestions } from './template'
 import * as EventActions from 'containers/Events/actions'
 import { formToObject } from 'utils'
+import { saveEventForm } from 'api'
 
 const scaleQuestion = (scale, name, labels) => {
   const radios = []
@@ -33,13 +34,13 @@ const scaleQuestion = (scale, name, labels) => {
   )
 }
 
-const choiceQuestion = (name, labels) => {
+const choiceQuestion = (name, labels, labelValues) => {
   const radios = []
-  for (const label of labels) {
+  for (const [index, label] of labels.entries()) {
     radios.push(
       <label className={styles.verticalRadioLabel} key={name + label}>
         <div>
-          <input type='radio' name={name} value={label} required />
+          <input type='radio' name={name} value={labelValues[index]} required />
         </div>
         <div>{label}</div>
       </label>
@@ -60,7 +61,11 @@ const formatQuestion = question => {
   let content
   switch (question.type) {
     case 'choice':
-      content = choiceQuestion(question.name, question.labels)
+      content = choiceQuestion(
+        question.name,
+        question.labels,
+        question.labelValues
+      )
       break
     case 'scale':
       content = scaleQuestion(5, question.name, question.labels)
@@ -86,10 +91,7 @@ class EventFeedbackForm extends Component {
   }
 
   render() {
-    const {
-      events,
-      //user
-    } = this.props
+    const { events } = this.props
 
     if (events.length < 1) {
       return null
@@ -98,11 +100,23 @@ class EventFeedbackForm extends Component {
     const handleSubmit = e => {
       e.preventDefault()
 
-      const formData = formToObject(e.target.elements)
+      const formdata = formToObject(e.target.elements)
 
-      formData.eventId = this.props.match.params.id
-      formData.userId = this.props.user.id
-      console.log(formData)
+      formdata.preEvent = preEvent ? true : false
+      formdata.eventId = this.props.match.params.id
+
+      for (const data in formdata) {
+        if (!isNaN(Number(formdata[data]))) {
+          formdata[data] = Number(formdata[data])
+        } else if (formdata.data === 'true') {
+          formdata[data] = true
+        } else if (formdata.data === 'false') {
+          formdata[data] = false
+        }
+      }
+
+      console.log(formdata)
+      saveEventForm(formdata)
     }
 
     let questions
@@ -128,7 +142,7 @@ class EventFeedbackForm extends Component {
                 event => event.id === this.props.match.params.id
               ).companyName
             }
-            : Pre Event feedback
+            : {preEvent ? 'Pre' : 'Post'} Event feedback
           </h1>
           {form}
           <div className={styles.submitWrapper}>

@@ -5,32 +5,20 @@ export const preEventQuestions = [
     title: 'Are you familiar with the company and what they do?',
     type: 'choice',
     labels: ['Yes.', 'To some extent.', 'No.'],
+    labelValues: ['YES', 'SOMEWHAT', 'NO'],
     name: 'familiarWithCompany',
   },
   {
     title: 'How interested in working at this company are you?',
     type: 'scale',
     labels: ['Not interested at all.', 'Very interested.'],
-    name: 'interestedInWorkingRating',
-  },
-  {
-    title:
-      "How interested in writing your master's thesis at this company are you?",
-    type: 'scale',
-    labels: ['Not interested at all.', 'Very interested.'],
-    name: 'interestedInThesisWorkRating',
-  },
-  {
-    title: "Are you looking for a company to do your master's thesis at?",
-    type: 'choice',
-    labels: ['Yes, I am.', 'No, I am not.'],
-    name: 'willWriteThesis',
+    name: 'interestInRegularWork',
   },
   {
     title:
       "Please motivate why you are or aren't interested in working at this company.",
     type: 'response',
-    name: 'interestMotivation',
+    name: 'interestInCompanyMotivation',
   },
   {
     title:
@@ -49,37 +37,26 @@ export const postEventQuestions = [
       "It didn't change my view of the company.",
       'The event had a negative impact on my view of the company.',
     ],
+    labelValues: ['Positive', 'Neutral', 'Negative'],
     name: 'eventImpact',
   },
   {
     title: 'How interested in working at this company are you now?',
     type: 'scale',
     labels: ['Not interested at all.', 'Very interested.'],
-    name: 'interestedInWorkingRating',
-  },
-  {
-    title:
-      "How interested in writing your master's thesis at this company are you now?",
-    type: 'scale',
-    labels: ['Not interested at all.', 'Very interested.'],
-    name: 'interestedInThesisWorkRating',
-  },
-  {
-    title: "Are you looking for a company to do your master's thesis at?",
-    type: 'choice',
-    labels: ['Yes, I am.', 'No, I am not.'],
-    name: 'willWriteThesis',
+    name: 'interestInRegularWork',
   },
   {
     title:
       "Please motivate why you are or aren't interested in working at this company.",
     type: 'response',
-    name: 'interestInCompany',
+    name: 'interestInCompanyMotivation',
   },
   {
     title: 'Do you feel qualified to work at this company?',
     type: 'choice',
     labels: ['Yes, I do.', "No, I don't"],
+    labelValues: [true, false],
     name: 'qualifiedToWork',
   },
   {
@@ -103,11 +80,11 @@ export const postEventQuestions = [
   {
     title: 'What did you enjoy the most about the event and the company? ',
     type: 'response',
-    name: 'feedback',
+    name: 'eventFeedback',
   },
   {
     title: 'What could have been improved?',
     type: 'response',
-    name: 'improvements',
+    name: 'eventImprovements',
   },
 ]

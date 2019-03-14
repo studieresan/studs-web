@@ -342,3 +342,36 @@ const uploadFile = (file, signedRequest, url) => {
     .then(checkStatus)
     .then(() => Promise.resolve(url))
 }
+
+const PRE_EVENT_FIELDS = `
+  interestInRegularWork,
+  viewOfCompany,
+  interestInCompanyMotivation,
+  familiarWithCompany,
+`
+
+// const POST_EVENT_FIELDS = `
+//   interestInRegularWork,
+//   interestInThesisWork,
+//   lookingForThesisWork,
+//   viewOfCompany,
+//   interestInCompanyMotivation,
+//   familiarWithCompany,
+// `
+
+export const saveEventForm = formdata => {
+  const eventId = formdata.eventId
+  const preEvent = formdata.preEvent === 'true'
+  formdata = omit(formdata, ['eventId', 'preEvent'])
+
+  const mutation = `mutation {
+    ${preEvent ? 'createPostEventForm' : 'createPreEventForm'}(
+      eventId: "${eventId}",
+      fields: ${toGraphQLFields(formdata)}
+      ) {
+        ${PRE_EVENT_FIELDS}
+      }
+  }`
+
+  console.log('MUTATION: ' + mutation)
+}

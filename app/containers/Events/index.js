@@ -9,7 +9,7 @@ import messages from './messages'
 import styles from './styles.css'
 import MasterDetail from 'components/MasterDetail'
 import EventListItem from 'components/EventListItem'
-import EventDetail from 'components/EventDetail'
+import EventDetailPage from 'containers/EventDetailPage'
 import EventStaticDetail from 'components/EventStaticDetail'
 import EventEdit from 'components/EventEdit'
 import * as EventActions from './actions'
@@ -106,7 +106,7 @@ export class Events extends React.Component {
         detail = eventEdit(event)
       } else {
         detail = event && (
-          <EventDetail
+          <EventDetailPage
             event={event}
             user={user}
             id={params.id}

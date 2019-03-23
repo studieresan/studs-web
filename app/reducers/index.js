@@ -4,6 +4,7 @@ import events from 'containers/Events/reducer'
 import language from 'containers/LanguageProvider/reducer'
 import passwordReset from 'containers/PasswordReset/reducer'
 import eventFeedback from 'containers/CreateEventFeedback/reducer'
+import eventFeedbackForm from 'containers/EventDetailPage/reducer'
 import members from 'containers/Members/reducer'
 import user from 'containers/User/reducer'
 
@@ -15,5 +16,6 @@ export default {
   language,
   passwordReset,
   eventFeedback,
+  eventFeedbackForm,
   user,
 }

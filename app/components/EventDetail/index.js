@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import Markdown from 'react-markdown'
@@ -12,7 +11,7 @@ import styles from './styles.css'
 import IndicatorIcon from 'components/IndicatorIcon'
 import { Link } from 'react-router-dom'
 
-class EventDetail extends Component {
+export class EventDetail extends Component {
   render() {
     const { event, user, onRemoveEvent } = this.props
     if (!event) {
@@ -172,17 +171,9 @@ class EventDetail extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    user: state.getIn(['global', 'user']).toJS(),
-  }
-}
-
 EventDetail.propTypes = {
   id: PropTypes.string.isRequired,
   event: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   onRemoveEvent: PropTypes.func.isRequired,
 }
-
-export default connect(mapStateToProps)(EventDetail)

@@ -82,8 +82,7 @@ function executeGraphQL(query) {
   })
 }
 
-function executeGraphQLWithJsonHeader(query) {
-  //return executeGraphQLWithHeader(query, jsonHeader())
+function executeGraphQLMutation(query) {
   const url = `${BASE_URL}${GRAPHQL}`
   return ftch(url, {
     method: 'POST',
@@ -379,46 +378,71 @@ const PRE_EVENT_FIELDS = `
   interestInCompanyMotivation,
   familiarWithCompany,
   viewOfCompany,
-  `
+`
 
-// const POST_EVENT_FIELDS = `
-//   interestInRegularWork,
-//   interestInCompanyMotivation,
-//   eventImpact,
-//   qualifiedToWork,
-//   atmosphereRating,
-//   activitiesRating,
-//   eventFeedback,
-//   eventImprovements,
-// `
+const POST_EVENT_FIELDS = `
+  interestInRegularWork,
+  interestInCompanyMotivation,
+  eventImpact,
+  qualifiedToWork,
+  atmosphereRating,
+  activitiesRating,
+  foodRating,
+  eventFeedback,
+  eventImprovements,
+`
+
+export const fetchEventForms = (userId, eventId) => {
+  const query = `{
+    eventForms(userId: "${userId}", eventId:"${eventId}") {
+      ... on PreEventForm {
+        ${PRE_EVENT_FIELDS}
+      },
+      ... on PostEventForm {
+        ${POST_EVENT_FIELDS}
+      }
+    }
+  }`
+
+  return executeGraphQL(query).then(res => res.data.eventForms)
+}
+
+const CreatePreEventFormOperationName = 'CreatePreEventForm'
+const CreatePostEventFormOperationName = 'CreatePostEventForm'
+
+const CreatePreEventFormQuery = `
+  mutation ${CreatePreEventFormOperationName}
+  ($eventId: String!, $fields: PreEventFormInputType!) {
+    createPreEventForm(eventId: $eventId, fields: $fields) {
+      ${PRE_EVENT_FIELDS}
+    }
+  }
+`
+
+const CreatePostEventFormQuery = `
+  mutation ${CreatePostEventFormOperationName}
+  ($eventId: String!, $fields: PostEventFormInputType!) {
+    createPostEventForm(eventId: $eventId, fields: $fields) {
+      ${POST_EVENT_FIELDS}
+    }
+  }
+`
 
 export const saveEventForm = formdata => {
   const eventId = formdata.eventId
   const preEvent = formdata.preEvent === true
   formdata = omit(formdata, ['eventId', 'preEvent'])
 
-  const query = `mutation UpdatePreEventForm
-  ($eventId: String!, $fields: PreEventFormInputType!) {
-    update${preEvent ? 'PreEvent' : 'PostEvent'}Form(
-      eventId: "${eventId}",
-      fields: ${toGraphQLFields(formdata)}
-      ) {${PRE_EVENT_FIELDS}}
-  }`
-
   const mutation = JSON.stringify({
-    query: query,
+    query: preEvent ? CreatePreEventFormQuery : CreatePostEventFormQuery,
     variables: {
       eventId: eventId,
-      formdata: formdata,
+      fields: formdata,
     },
-    operationName: 'Create' + (preEvent ? 'PreEvent' : 'PostEvent') + 'Form',
+    operationName: preEvent ? 'CreatePreEventForm' : 'CreatePostEventForm',
   })
 
-  console.log(mutation)
-
-  return executeGraphQLWithJsonHeader(mutation).then(res => {
-    console.log(res)
-  })
+  executeGraphQLMutation(mutation)
 }
 
 //export const getEventForm = (userId,)

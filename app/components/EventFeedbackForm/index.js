@@ -102,9 +102,6 @@ class EventFeedbackForm extends Component {
 
       const formdata = formToObject(e.target.elements)
 
-      formdata.preEvent = preEvent ? true : false
-      formdata.eventId = this.props.match.params.id
-
       for (const data in formdata) {
         if (!isNaN(Number(formdata[data]))) {
           formdata[data] = Number(formdata[data])
@@ -115,7 +112,9 @@ class EventFeedbackForm extends Component {
         }
       }
 
-      console.log(formdata)
+      formdata.preEvent = preEvent ? true : false
+      formdata.eventId = this.props.match.params.id
+
       saveEventForm(formdata)
     }
 

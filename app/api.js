@@ -52,6 +52,23 @@ function ftch(...args) {
     .then(parseJSON)
 }
 
+// function executeGraphQLWithHeader(query, header) {
+//   const url = `${BASE_URL}${GRAPHQL}`
+//   return ftch(url, {
+//     method: 'POST',
+//     ...credentials(),
+//     headers: {
+//       ...authorizationHeader(),
+//       ...header,
+//     },
+//     body: query,
+//   })
+// }
+
+// function executeGraphQL(query) {
+//   return executeGraphQLWithHeader(query, graphQLHeader())
+// }
+
 function executeGraphQL(query) {
   const url = `${BASE_URL}${GRAPHQL}`
   return ftch(url, {
@@ -60,6 +77,20 @@ function executeGraphQL(query) {
     headers: {
       ...authorizationHeader(),
       ...graphQLHeader(),
+    },
+    body: query,
+  })
+}
+
+function executeGraphQLWithJsonHeader(query) {
+  //return executeGraphQLWithHeader(query, jsonHeader())
+  const url = `${BASE_URL}${GRAPHQL}`
+  return ftch(url, {
+    method: 'POST',
+    ...credentials(),
+    headers: {
+      ...authorizationHeader(),
+      ...jsonHeader(),
     },
     body: query,
   })
@@ -345,33 +376,49 @@ const uploadFile = (file, signedRequest, url) => {
 
 const PRE_EVENT_FIELDS = `
   interestInRegularWork,
-  viewOfCompany,
   interestInCompanyMotivation,
   familiarWithCompany,
-`
+  viewOfCompany,
+  `
 
 // const POST_EVENT_FIELDS = `
 //   interestInRegularWork,
-//   interestInThesisWork,
-//   lookingForThesisWork,
-//   viewOfCompany,
 //   interestInCompanyMotivation,
-//   familiarWithCompany,
+//   eventImpact,
+//   qualifiedToWork,
+//   atmosphereRating,
+//   activitiesRating,
+//   eventFeedback,
+//   eventImprovements,
 // `
 
 export const saveEventForm = formdata => {
   const eventId = formdata.eventId
-  const preEvent = formdata.preEvent === 'true'
+  const preEvent = formdata.preEvent === true
   formdata = omit(formdata, ['eventId', 'preEvent'])
 
-  const mutation = `mutation {
-    ${preEvent ? 'createPostEventForm' : 'createPreEventForm'}(
+  const query = `mutation UpdatePreEventForm
+  ($eventId: String!, $fields: PreEventFormInputType!) {
+    update${preEvent ? 'PreEvent' : 'PostEvent'}Form(
       eventId: "${eventId}",
       fields: ${toGraphQLFields(formdata)}
-      ) {
-        ${PRE_EVENT_FIELDS}
-      }
+      ) {${PRE_EVENT_FIELDS}}
   }`
 
-  console.log('MUTATION: ' + mutation)
+  const mutation = JSON.stringify({
+    query: query,
+    variables: {
+      eventId: eventId,
+      formdata: formdata,
+    },
+    operationName: 'Create' + (preEvent ? 'PreEvent' : 'PostEvent') + 'Form',
+  })
+
+  console.log(mutation)
+
+  return executeGraphQLWithJsonHeader(mutation).then(res => {
+    console.log(res)
+  })
 }
+
+//export const getEventForm = (userId,)

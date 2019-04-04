@@ -116,6 +116,7 @@ class EventFeedbackForm extends Component {
       formdata.eventId = this.props.match.params.id
 
       saveEventForm(formdata)
+      this.props.history.push(`/events/${this.props.match.params.id}`)
     }
 
     let questions
@@ -161,6 +162,7 @@ EventFeedbackForm.propTypes = {
   location: PropTypes.object.isRequired,
   getEvents: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 }
 
 function mapStateToProps(state) {

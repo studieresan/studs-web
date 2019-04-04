@@ -37,7 +37,7 @@ export const postEventQuestions = [
       "It didn't change my view of the company.",
       'The event had a negative impact on my view of the company.',
     ],
-    labelValues: ['Positive', 'Neutral', 'Negative'],
+    labelValues: ['POSITIVE', 'NEUTRAL', 'NEGATIVE'],
     name: 'eventImpact',
   },
   {

@@ -176,6 +176,6 @@ EventDetail.propTypes = {
   event: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   onRemoveEvent: PropTypes.func.isRequired,
-  preEventFormReplied: PropTypes.object.isRequired,
-  postEventFormReplied: PropTypes.object.isRequired,
+  preEventFormReplied: PropTypes.bool.isRequired,
+  postEventFormReplied: PropTypes.bool.isRequired,
 }

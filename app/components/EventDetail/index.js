@@ -82,11 +82,11 @@ export class EventDetail extends Component {
                 <FormattedMessage {...messages.surveys} />
               </h4>
               <div>
-                <IndicatorIcon ok={event.beforeSurveyReplied || false} />
+                <IndicatorIcon ok={this.props.preEventFormReplied} />
                 <Link to={`/events/${event.id}/pre_form`}>Pre Event Form</Link>
               </div>
               <div>
-                <IndicatorIcon ok={event.afterSurveyReplied || false} />
+                <IndicatorIcon ok={this.props.postEventFormReplied} />
                 <Link to={`/events/${event.id}/post_form`}>
                   Post Event Form
                 </Link>
@@ -176,4 +176,6 @@ EventDetail.propTypes = {
   event: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   onRemoveEvent: PropTypes.func.isRequired,
+  preEventFormReplied: PropTypes.object.isRequired,
+  postEventFormReplied: PropTypes.object.isRequired,
 }

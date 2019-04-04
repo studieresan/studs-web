@@ -8,7 +8,6 @@ import { EventDetail } from '../../components/EventDetail'
 export class EventDetailPage extends React.Component {
   componentDidMount() {
     const { id, user } = this.props
-
     this.props.getEventForms(user.id, id)
   }
 
@@ -19,6 +18,8 @@ export class EventDetailPage extends React.Component {
         event={this.props.event}
         user={this.props.user}
         onRemoveEvent={this.props.onRemoveEvent}
+        preEventFormReplied={Boolean(this.props.eventForms[0])}
+        postEventFormReplied={Boolean(this.props.eventForms[1])}
       />
     )
   }
@@ -30,11 +31,13 @@ EventDetailPage.propTypes = {
   user: PropTypes.object.isRequired,
   onRemoveEvent: PropTypes.func.isRequired,
   getEventForms: PropTypes.func.isRequired,
+  eventForms: PropTypes.array.isRequired,
 }
 
 function mapStateToProps(state) {
   return {
     user: state.getIn(['global', 'user']).toJS(),
+    eventForms: state.getIn(['eventFeedbackForm', 'eventForms']),
   }
 }
 

@@ -13,7 +13,13 @@ import { Link } from 'react-router-dom'
 
 export class EventDetail extends Component {
   render() {
-    const { event, user, onRemoveEvent } = this.props
+    const {
+      event,
+      user,
+      onRemoveEvent,
+      preEventFormReplied,
+      postEventFormReplied,
+    } = this.props
     if (!event) {
       return null
     }
@@ -82,11 +88,11 @@ export class EventDetail extends Component {
                 <FormattedMessage {...messages.surveys} />
               </h4>
               <div>
-                <IndicatorIcon ok={this.props.preEventFormReplied} />
+                <IndicatorIcon ok={preEventFormReplied} />
                 <Link to={`/events/${event.id}/pre_form`}>Pre Event Form</Link>
               </div>
               <div>
-                <IndicatorIcon ok={this.props.postEventFormReplied} />
+                <IndicatorIcon ok={postEventFormReplied} />
                 <Link to={`/events/${event.id}/post_form`}>
                   Post Event Form
                 </Link>

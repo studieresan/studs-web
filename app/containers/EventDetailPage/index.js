@@ -12,14 +12,23 @@ export class EventDetailPage extends React.Component {
   }
 
   render() {
+    const form1 = this.props.eventForms[0]
+    const form2 = this.props.eventForms[1]
+    const preEventFormReplied = Boolean(
+      (form1 && form2) || (form1 && 'familiarWithCompany' in form1)
+    )
+    const postEventFormReplied = Boolean(
+      form2 || (form1 && !('familiarWithCompany' in form1))
+    )
+
     return (
       <EventDetail
         id={this.props.id}
         event={this.props.event}
         user={this.props.user}
         onRemoveEvent={this.props.onRemoveEvent}
-        preEventFormReplied={Boolean(this.props.eventForms[0])}
-        postEventFormReplied={Boolean(this.props.eventForms[1])}
+        preEventFormReplied={preEventFormReplied}
+        postEventFormReplied={postEventFormReplied}
       />
     )
   }

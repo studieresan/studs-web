@@ -9,14 +9,21 @@ import * as EventActions from 'containers/Events/actions'
 import { formToObject } from 'utils'
 import { saveEventForm } from 'api'
 
-const scaleQuestion = (scale, name, labels) => {
+const scaleQuestion = (scale, name, labels, prevAnswer) => {
   const radios = []
   for (let i = 1; i < scale + 1; i++) {
     radios.push(
       <label className={styles.horizontalRadioLabel} key={i}>
         <div>{i}</div>
         <div>
-          <input type='radio' key={name + i} name={name} value={i} required />
+          <input
+            type='radio'
+            key={name + i}
+            name={name}
+            value={i}
+            defaultChecked={prevAnswer && prevAnswer === i}
+            required
+          />
         </div>
       </label>
     )
@@ -34,13 +41,19 @@ const scaleQuestion = (scale, name, labels) => {
   )
 }
 
-const choiceQuestion = (name, labels, labelValues) => {
+const choiceQuestion = (name, labels, labelValues, prevAnswer) => {
   const radios = []
   for (const [index, label] of labels.entries()) {
     radios.push(
       <label className={styles.verticalRadioLabel} key={name + label}>
         <div>
-          <input type='radio' name={name} value={labelValues[index]} required />
+          <input
+            type='radio'
+            name={name}
+            value={labelValues[index]}
+            defaultChecked={prevAnswer && prevAnswer === labelValues[index]}
+            required
+          />
         </div>
         <div>{label}</div>
       </label>
@@ -49,29 +62,30 @@ const choiceQuestion = (name, labels, labelValues) => {
   return radios
 }
 
-const textQuestion = name => {
+const textQuestion = (name, prevAnswer) => {
   return (
     <label>
-      <textarea name={name} defaultValue='' required />
+      <textarea name={name} defaultValue={prevAnswer || ''} required />
     </label>
   )
 }
 
-const formatQuestion = question => {
+const formatQuestion = (question, prevAnswer) => {
   let content
   switch (question.type) {
     case 'choice':
       content = choiceQuestion(
         question.name,
         question.labels,
-        question.labelValues
+        question.labelValues,
+        prevAnswer
       )
       break
     case 'scale':
-      content = scaleQuestion(5, question.name, question.labels)
+      content = scaleQuestion(5, question.name, question.labels, prevAnswer)
       break
     case 'response':
-      content = textQuestion(question.name)
+      content = textQuestion(question.name, prevAnswer)
       break
     default:
       break
@@ -92,6 +106,7 @@ class EventFeedbackForm extends Component {
 
   render() {
     const { events } = this.props
+    const eventId = this.props.match.params.id
 
     if (events.length < 1) {
       return null
@@ -113,25 +128,37 @@ class EventFeedbackForm extends Component {
       }
 
       formdata.preEvent = preEvent ? true : false
-      formdata.eventId = this.props.match.params.id
+      formdata.eventId = eventId
 
       saveEventForm(formdata)
-      this.props.history.push(`/events/${this.props.match.params.id}`)
+      this.props.history.push(`/events/${eventId}`)
     }
 
-    let questions
     const preEvent =
       this.props.location.pathname &&
       this.props.location.pathname.includes('pre_form')
-        ? true
-        : false
+
+    const questions = preEvent ? preEventQuestions : postEventQuestions
+
+    let previousAnswers
     if (preEvent) {
-      questions = preEventQuestions
+      previousAnswers =
+        this.props.eventForms[0] &&
+        'familiarWithCompany' in this.props.eventForms[0] &&
+        this.props.eventForms[0]
     } else {
-      questions = postEventQuestions
+      previousAnswers =
+        this.props.eventForms[1] ||
+        (this.props.eventForms[0] &&
+          !('familiarWithCompany' in this.props.eventForms[0]) &&
+          this.props.eventForms[0])
     }
 
-    const form = questions.map(question => formatQuestion(question))
+    const form = questions.map(question =>
+      previousAnswers && question.name in previousAnswers
+        ? formatQuestion(question, previousAnswers[question.name])
+        : formatQuestion(question)
+    )
 
     return (
       <div className={styles.container}>
@@ -163,12 +190,14 @@ EventFeedbackForm.propTypes = {
   getEvents: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  eventForms: PropTypes.array.isRequired,
 }
 
 function mapStateToProps(state) {
   return {
     user: state.getIn(['global', 'user']).toJS(),
     events: state.getIn(['events', 'items']).toJS(),
+    eventForms: state.getIn(['eventFeedbackForm', 'eventForms']),
   }
 }
 

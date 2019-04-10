@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 
 const IndicatorIcon = ({ ok }) => {
-  return (
-    <span className={styles.indicatorIcon + (ok ? ' ' + styles.ok : '')}>
-      &#9679;
-    </span>
+  return ok ? (
+    <span className={styles.indicatorIconOk}>&#9679;</span>
+  ) : (
+    <span className={styles.indicatorIcon}>&#9679;</span>
   )
 }
 

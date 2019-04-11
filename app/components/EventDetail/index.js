@@ -39,7 +39,7 @@ export class EventDetail extends Component {
           <h2>{event.companyName}</h2>
           {hasEventPermission(user) && (
             <div className={styles.buttonRow}>
-              <Link to='/create-event-feedback'>
+              <Link to={`/events/${event.id}/create-event-feedback`}>
                 <Button color='bright'>
                   <FormattedMessage {...messages.generateFeedback} />
                 </Button>

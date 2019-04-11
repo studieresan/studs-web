@@ -56,11 +56,12 @@ class StudsRouter extends Component {
           component={EventFeedbackForm}
         />
         <AuthenticatedRoute
-          path='/event-feedback'
+          path='/events/:id/event-feedback'
           component={EventFeedbackPage}
         />
         <AuthenticatedRoute
-          path='/create-event-feedback'
+          exact
+          path='/events/:id/create-event-feedback'
           component={CreateEventFeedback}
         />
 

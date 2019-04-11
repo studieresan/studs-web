@@ -407,6 +407,20 @@ export const fetchEventForms = (userId, eventId) => {
   return executeGraphQL(query).then(res => res.data.eventForms)
 }
 
+export const fetchAllEventFormsByEventId = eventId => {
+  const query = `{
+    allEventForms(eventId:"${eventId}") {
+      ... on PreEventForm {
+        ${PRE_EVENT_FIELDS}
+      },
+      ... on PostEventForm {
+        ${POST_EVENT_FIELDS}
+      }
+    }
+  }`
+  return executeGraphQL(query).then(res => res.data.allEventForms)
+}
+
 const CreatePreEventFormOperationName = 'CreatePreEventForm'
 const CreatePostEventFormOperationName = 'CreatePostEventForm'
 

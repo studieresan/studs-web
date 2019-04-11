@@ -47,16 +47,6 @@ const template: Question[] = [
   },
   {
     title:
-      "Pre Event: How interested in writing your master's thesis at this company are you?",
-    ...interestScale,
-  },
-  {
-    title:
-      "Pre Event: Are you looking for a company to do your master's thesis at?",
-    labels: ['Yes, I am', 'No, I am not'],
-  },
-  {
-    title:
       "Pre Event: Please motivate why you are or aren't interested in working at this company.",
     type: 'response',
   },

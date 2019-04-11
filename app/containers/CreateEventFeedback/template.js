@@ -5,6 +5,7 @@ export type Question = {|
   title: string,
   labels?: string[],
   type?: 'response' | '5scale' | 'interestScale' | 'posNegScale' | null,
+  optional?: boolean,
 
   // responses if type is 'response', otherwise datasets
   responses?: Array<string>,
@@ -49,11 +50,13 @@ const template: Question[] = [
     title:
       "Pre Event: How interested in writing your master's thesis at this company are you?",
     ...interestScale,
+    optional: true,
   },
   {
     title:
       "Pre Event: Are you looking for a company to do your master's thesis at?",
     labels: ['Yes, I am', 'No, I am not'],
+    optional: true,
   },
   {
     title:
@@ -160,6 +163,11 @@ export function addResponses(formData: Object): Array<Question> {
       }
     }
 
+    // if question is optional with no responses, don't add the `datasets` property
+    if (question.optional && !formData[question.title]) {
+      return { ...question }
+    }
+
     return {
       ...question,
       datasets: [
@@ -179,50 +187,57 @@ export function addResponses(formData: Object): Array<Question> {
  * @param {Array<Question>} responses
  */
 export function formatResponses(responses: Array<Question>): Array<Question> {
-  return responses.map(question => {
-    if (question.type === 'response') {
+  console.log('responses:', responses)
+  return responses
+    .filter((question: Question) => {
+      // filter out optional questions without responses
+      if (question.optional && !question.datasets) return false
+      return true
+    })
+    .map(question => {
+      if (question.type === 'response') {
+        return {
+          ...question,
+        }
+      }
+
+      let data = question.datasets && question.datasets[0].data
+      let labels
+
+      // The form contains many 1-5 scales, but we want to simplify them
+      switch (question.type) {
+        case '5scale':
+          labels = ['Yes', 'No']
+          data = scaleToYesNo(data)
+          break
+        case 'interestScale':
+          labels = ['Interested', 'Neutral', 'Not interested']
+          data = scaleToPosNeg(data)
+          break
+        case 'posNegScale':
+          labels = ['Positive', 'Neutral', 'Negative']
+          data = scaleToPosNeg(data)
+          break
+        default:
+          labels = question.labels
+          break
+      }
+
+      // Strip the type property since ChartJS won't work if it's present.
+      // Note that we still need to keep the 'response' type, since
+      // that is used to determine whether to render a chart or a bullet list
       return {
         ...question,
+        labels,
+        type: null,
+        datasets: [
+          {
+            data: data || [],
+            backgroundColor,
+          },
+        ],
       }
-    }
-
-    let data = question.datasets && question.datasets[0].data
-    let labels
-
-    // The form contains many 1-5 scales, but we want to simplify them
-    switch (question.type) {
-      case '5scale':
-        labels = ['Yes', 'No']
-        data = scaleToYesNo(data)
-        break
-      case 'interestScale':
-        labels = ['Interested', 'Neutral', 'Not interested']
-        data = scaleToPosNeg(data)
-        break
-      case 'posNegScale':
-        labels = ['Positive', 'Neutral', 'Negative']
-        data = scaleToPosNeg(data)
-        break
-      default:
-        labels = question.labels
-        break
-    }
-
-    // Strip the type property since ChartJS won't work if it's present.
-    // Note that we still need to keep the 'response' type, since
-    // that is used to determine whether to render a chart or a bullet list
-    return {
-      ...question,
-      labels,
-      type: null,
-      datasets: [
-        {
-          data: data || [],
-          backgroundColor,
-        },
-      ],
-    }
-  })
+    })
 }
 
 export default template

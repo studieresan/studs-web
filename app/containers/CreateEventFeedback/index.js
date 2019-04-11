@@ -7,6 +7,7 @@ import { addResponses, type Question } from './template'
 import { setFeedback } from './actions'
 import Fieldset from './Fieldset'
 import styles from './styles.css'
+import { fetchAllEventFormsByEventId } from '../../api'
 
 type Props = {|
   +history: {
@@ -16,16 +17,26 @@ type Props = {|
     companyName: string,
     feedbackData: Array<Question>,
   },
+  +match: {
+    params: Object,
+  },
   +setFeedbackData: (string, Array<Question>) => void,
 |}
 
 type State = {
   companyName: string,
+  eventForms: Object,
 }
 
 class CreateEventFeedback extends Component<Props, State> {
   state = {
     companyName: this.props.eventFeedback.companyName,
+  }
+
+  componentWillMount() {
+    fetchAllEventFormsByEventId(this.props.match.params.id).then(res => {
+      this.setState(res)
+    })
   }
 
   handleSubmit = (event: SyntheticEvent<HTMLFormElement>) => {

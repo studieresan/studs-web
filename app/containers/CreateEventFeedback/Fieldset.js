@@ -20,13 +20,6 @@ function Fieldset({
   // inputs in this component (after the initial render).
   const inputs = useRef({})
 
-  // If any input is filled in for a question, all inputs should be
-  // filled (i.e., if you fill in numbers for "Yes", must also fill in "No").
-  const anyInputHasValue = Object.values(inputValues).some(
-    // $FlowFixMe Flow thinks `value` has type mixed
-    (value: string) => value.length > 0
-  )
-
   // Go through all inputs in this field set and set their values in the
   // `inputValues` state so we know if this field set as a whole is
   // required or not. If we navigate back to /create-event-feedback after
@@ -44,6 +37,13 @@ function Fieldset({
     })
     setInputValues(inputValues)
   }
+
+  // If any input is filled in for a question, all inputs should be
+  // filled (i.e., if you fill in a number for "Yes", must also fill in "No").
+  const anyInputHasValue = Object.values(inputValues).some(
+    // $FlowFixMe Flow thinks `value` has type mixed
+    (value: string) => value.length > 0
+  )
 
   let content
   if (type && type === 'response') {

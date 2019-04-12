@@ -59,3 +59,9 @@
 .submitWrapper {
   margin-bottom: 40px;
 }
+
+.optionalNote {
+  opacity: 0.5;
+  font-size: 0.8em;
+  margin-top: 1em;
+}

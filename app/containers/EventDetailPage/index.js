@@ -12,8 +12,8 @@ export class EventDetailPage extends React.Component {
   }
 
   render() {
-    const form1 = this.props.eventForms[0]
-    const form2 = this.props.eventForms[1]
+    const form1 = (this.props.eventForms && this.props.eventForms[0]) || {}
+    const form2 = (this.props.eventForms && this.props.eventForms[1]) || {}
     const preEventFormReplied = Boolean(
       (form1 && form2) || (form1 && 'familiarWithCompany' in form1)
     )
@@ -40,7 +40,7 @@ EventDetailPage.propTypes = {
   user: PropTypes.object.isRequired,
   onRemoveEvent: PropTypes.func.isRequired,
   getEventForms: PropTypes.func.isRequired,
-  eventForms: PropTypes.array.isRequired,
+  eventForms: PropTypes.array,
 }
 
 function mapStateToProps(state) {

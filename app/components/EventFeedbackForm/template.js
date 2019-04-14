@@ -12,13 +12,13 @@ export const preEventQuestions = [
     title: 'How interested in working at this company are you?',
     type: 'scale',
     labels: ['Not interested at all.', 'Very interested.'],
-    name: 'interestInRegularWork',
+    name: 'interestInRegularWorkBefore',
   },
   {
     title:
       "Please motivate why you are or aren't interested in working at this company.",
     type: 'response',
-    name: 'interestInCompanyMotivation',
+    name: 'interestInCompanyMotivationBefore',
   },
   {
     title:

@@ -374,8 +374,8 @@ const uploadFile = (file, signedRequest, url) => {
 }
 
 const PRE_EVENT_FIELDS = `
-  interestInRegularWork,
-  interestInCompanyMotivation,
+  interestInRegularWorkBefore,
+  interestInCompanyMotivationBefore,
   familiarWithCompany,
   viewOfCompany,
 `

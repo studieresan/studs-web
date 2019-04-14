@@ -35,7 +35,7 @@ class CreateEventFeedback extends Component<Props, State> {
 
   componentWillMount() {
     fetchAllEventFormsByEventId(this.props.match.params.id).then(res => {
-      this.setState(res)
+      this.setState({ eventForms: res })
     })
   }
 

@@ -10,12 +10,12 @@ function Fieldset({
   datasets,
   responses,
   optional,
+  answers,
 }: Question) {
   // Keep track of all input values in this field set.
   // Object keys: question title + index of the input
   // Object values: input value
   const [inputValues, setInputValues] = useState({})
-
   // `inputs.current` will be an object where each property is one of the
   // inputs in this component (after the initial render).
   const inputs = useRef({})
@@ -48,18 +48,17 @@ function Fieldset({
   let content
   if (type && type === 'response') {
     let defaultValue
-    if (responses && responses.length > 0) {
+    if (answers) {
+      defaultValue = answers
+    } else if (responses && responses.length > 0) {
       defaultValue = responses.join('\n')
     }
+    console.log(defaultValue)
     content = (
       <Fragment>
         <label>
           <span>Put each comment on its own line</span>
-          <textarea
-            name={title}
-            required={!optional}
-            defaultValue={defaultValue}
-          />
+          <textarea name={title} required={!optional} value={defaultValue} />
         </label>
       </Fragment>
     )

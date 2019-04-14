@@ -31,12 +31,18 @@ type State = {
 class CreateEventFeedback extends Component<Props, State> {
   state = {
     companyName: this.props.eventFeedback.companyName,
+    eventForms: [],
   }
 
   componentWillMount() {
-    fetchAllEventFormsByEventId(this.props.match.params.id).then(res => {
-      this.setState({ eventForms: res })
+    fetchAllEventFormsByEventId(this.props.match.params.id).then(eventForms => {
+      this.setState({ eventForms: eventForms })
     })
+    // .then(forms =>
+    //   this.props.eventFeedback.feedbackData.map(question =>
+    //     this.setState(this.aggregateAnswers(question, forms))
+    //   )
+    // )
   }
 
   handleSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
@@ -57,8 +63,31 @@ class CreateEventFeedback extends Component<Props, State> {
     this.setState({ companyName: event.target.value })
   }
 
+  aggregateAnswers = question => {
+    if (!question.name) return null
+
+    const answers = this.state.eventForms
+      .filter(form => question.name && question.name in form)
+      .map(form => {
+        return form[question.name]
+      })
+
+    if (question.type === 'response') {
+      return answers.join('\n')
+    } else {
+      const optionAnswers = {}
+      answers.forEach(answer => {
+        answer in optionAnswers
+          ? optionAnswers[answer]++
+          : (optionAnswers[answer] = 1)
+      })
+      return optionAnswers
+    }
+  }
+
   render() {
     const { eventFeedback } = this.props
+
     return (
       <div className={styles.container}>
         <form className={styles.form} onSubmit={this.handleSubmit}>
@@ -76,7 +105,11 @@ class CreateEventFeedback extends Component<Props, State> {
             </label>
           </fieldset>
           {eventFeedback.feedbackData.map(question => (
-            <Fieldset key={question.title} {...question} />
+            <Fieldset
+              key={question.title}
+              answers={this.aggregateAnswers(question)}
+              {...question}
+            />
           ))}
           <div className={styles.submitWrapper}>
             <Button wrapper color='primary' type='submit'>

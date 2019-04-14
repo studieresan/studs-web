@@ -92,7 +92,7 @@ const formatQuestion = (question, prevAnswer) => {
   }
 
   return (
-    <fieldset key={question.title}>
+    <fieldset disabled={prevAnswer} key={question.title}>
       <h2>{question.title}</h2>
       {content}
     </fieldset>
@@ -173,7 +173,12 @@ class EventFeedbackForm extends Component {
           </h1>
           {form}
           <div className={styles.submitWrapper}>
-            <Button wrapper color='primary' type='submit'>
+            <Button
+              disabled={Boolean(previousAnswers)}
+              wrapper
+              color='primary'
+              type='submit'
+            >
               Submit
             </Button>
           </div>

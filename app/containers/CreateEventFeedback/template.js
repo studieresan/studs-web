@@ -88,10 +88,12 @@ const template: Question[] = [
     title:
       "How interested in writing your master's thesis at this company are you now?",
     ...interestScale,
+    optional: true,
   },
   {
     title: "Are you looking for a company to do your master's thesis at?",
     labels: ['Yes, I am', 'No, I am not'],
+    optional: true,
   },
   {
     title:

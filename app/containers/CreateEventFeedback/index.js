@@ -26,23 +26,27 @@ type Props = {|
 type State = {
   companyName: string,
   eventForms: Object,
+  aggregatedAnswers: Object,
 }
 
 class CreateEventFeedback extends Component<Props, State> {
   state = {
     companyName: this.props.eventFeedback.companyName,
     eventForms: [],
+    aggregatedAnswers: {},
   }
 
   componentWillMount() {
     fetchAllEventFormsByEventId(this.props.match.params.id).then(eventForms => {
       this.setState({ eventForms: eventForms })
+      const object = {}
+
+      this.props.eventFeedback.feedbackData.map(question => {
+        object[question.name] = this.aggregateAnswers(question)
+      })
+
+      this.setState({ aggregatedAnswers: object })
     })
-    // .then(forms =>
-    //   this.props.eventFeedback.feedbackData.map(question =>
-    //     this.setState(this.aggregateAnswers(question, forms))
-    //   )
-    // )
   }
 
   handleSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
@@ -73,10 +77,23 @@ class CreateEventFeedback extends Component<Props, State> {
       })
 
     if (question.type === 'response') {
-      return answers.join('\n')
+      return answers
     } else {
       const optionAnswers = {}
       answers.forEach(answer => {
+        if (answer === 'YES' || answer === 'POSITIVE' || answer === true) {
+          answer = 0
+        } else if (
+          answer === 'SOMEWHAT' ||
+          answer === 'NEUTRAL' ||
+          answer === false
+        ) {
+          answer = 1
+        } else if (answer === 'NO' || answer === 'NEGATIVE') {
+          answer = 2
+        } else {
+          answer--
+        }
         answer in optionAnswers
           ? optionAnswers[answer]++
           : (optionAnswers[answer] = 1)
@@ -87,7 +104,6 @@ class CreateEventFeedback extends Component<Props, State> {
 
   render() {
     const { eventFeedback } = this.props
-
     return (
       <div className={styles.container}>
         <form className={styles.form} onSubmit={this.handleSubmit}>
@@ -107,6 +123,16 @@ class CreateEventFeedback extends Component<Props, State> {
           {eventFeedback.feedbackData.map(question => (
             <Fieldset
               key={question.title}
+              responses={
+                question.type === 'response' && question.name
+                  ? this.state.aggregatedAnswers[question.name]
+                  : []
+              }
+              datasets={
+                question.type !== 'response' && question.name
+                  ? [{ data: this.state.aggregatedAnswers[question.name] }]
+                  : []
+              }
               answers={this.aggregateAnswers(question)}
               {...question}
             />

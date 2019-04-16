@@ -53,12 +53,15 @@ function Fieldset({
     } else if (responses && responses.length > 0) {
       defaultValue = responses.join('\n')
     }
-    console.log(defaultValue)
     content = (
       <Fragment>
         <label>
           <span>Put each comment on its own line</span>
-          <textarea name={title} required={!optional} value={defaultValue} />
+          <textarea
+            name={title}
+            required={!optional}
+            defaultValue={defaultValue}
+          />
         </label>
       </Fragment>
     )

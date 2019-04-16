@@ -8,7 +8,16 @@ import { EventDetail } from '../../components/EventDetail'
 export class EventDetailPage extends React.Component {
   componentDidMount() {
     const { id, user } = this.props
-    this.props.getEventForms(user.id, id)
+    this.props.getEventForms(user.get('id'), id)
+  }
+
+  componentDidUpdate(prevProps) {
+    const { id, user, getEventForms } = this.props
+    // fetch event feedback forms if it's a different event
+    // or if the user has just been authenticated
+    if (id !== prevProps.id || (user.get('id') && !prevProps.user.get('id'))) {
+      getEventForms(user.get('id'), id)
+    }
   }
 
   render() {
@@ -25,7 +34,7 @@ export class EventDetailPage extends React.Component {
       <EventDetail
         id={this.props.id}
         event={this.props.event}
-        user={this.props.user}
+        user={this.props.user.toJS()}
         onRemoveEvent={this.props.onRemoveEvent}
         preEventFormReplied={preEventFormReplied}
         postEventFormReplied={postEventFormReplied}
@@ -45,7 +54,7 @@ EventDetailPage.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    user: state.getIn(['global', 'user']).toJS(),
+    user: state.getIn(['global', 'user']),
     eventForms: state.getIn(['eventFeedbackForm', 'eventForms']),
   }
 }

@@ -52,23 +52,6 @@ function ftch(...args) {
     .then(parseJSON)
 }
 
-// function executeGraphQLWithHeader(query, header) {
-//   const url = `${BASE_URL}${GRAPHQL}`
-//   return ftch(url, {
-//     method: 'POST',
-//     ...credentials(),
-//     headers: {
-//       ...authorizationHeader(),
-//       ...header,
-//     },
-//     body: query,
-//   })
-// }
-
-// function executeGraphQL(query) {
-//   return executeGraphQLWithHeader(query, graphQLHeader())
-// }
-
 function executeGraphQL(query) {
   const url = `${BASE_URL}${GRAPHQL}`
   return ftch(url, {

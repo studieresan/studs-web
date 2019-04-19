@@ -33,7 +33,7 @@ export const postEventQuestions = [
     title: 'How did the event impact your opinion about the company?',
     type: 'choice',
     labels: [
-      'The event had a positve impact on my view of the company.',
+      'The event had a positive impact on my view of the company.',
       "It didn't change my view of the company.",
       'The event had a negative impact on my view of the company.',
     ],

@@ -41,7 +41,7 @@ export class EventDetail extends Component {
           {hasEventPermission(user) && (
             <div className={styles.buttonRow}>
               <Link to={`/events/${event.id}/create-event-feedback`}>
-                <Button color='bright' onClick={onGenerateFeedback}>
+                <Button color='bright' onClick={() => onGenerateFeedback}>
                   <FormattedMessage {...messages.generateFeedback} />
                 </Button>
               </Link>

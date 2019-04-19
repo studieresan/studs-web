@@ -60,7 +60,7 @@ class CreateEventFeedback extends Component<Props, State> {
     const formData = formToObject(form.elements)
     const templateWithResponses = addResponses(formData)
     setFeedbackData(companyName, templateWithResponses)
-    history.push('/event-feedback')
+    history.push(`/${this.props.match.params.id}/event-feedback`)
   }
 
   handleCompanyNameChange = (event: SyntheticInputEvent<HTMLInputElement>) => {

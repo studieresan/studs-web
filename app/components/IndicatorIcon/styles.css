@@ -1,9 +1,11 @@
 .indicatorIcon {
   font-size: 16px;
-  color: #FF6159;
   padding-right: 5px;
+  color: #ff6159;
 }
 
-.ok {
-  color: #90CE9C;
+.indicatorIconOk {
+  font-size: 16px;
+  padding-right: 5px;
+  color: #90ce9c;
 }

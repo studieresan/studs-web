@@ -9,7 +9,7 @@ import messages from './messages'
 import styles from './styles.css'
 import MasterDetail from 'components/MasterDetail'
 import EventListItem from 'components/EventListItem'
-import EventDetail from 'components/EventDetail'
+import EventDetailPage from 'containers/EventDetailPage'
 import EventStaticDetail from 'components/EventStaticDetail'
 import EventEdit from 'components/EventEdit'
 import * as EventActions from './actions'
@@ -56,16 +56,17 @@ export class Events extends React.Component {
   renderEventsList(events, user, params, path) {
     const eventListItem = (event, isSelected) => (
       <EventListItem
-        key={event.id}
-        event={event}
+        key={event.get('id')}
+        event={event.toJS()}
         user={user}
         isSelected={isSelected}
       />
     )
 
-    const items = events.items
-      .sort((a, b) => a.date - b.date)
-      .map(event => eventListItem(event, event.id === params.id))
+    const items = events
+      .get('items')
+      .sort((a, b) => a.get('date') - b.get('date'))
+      .map(event => eventListItem(event, event.get('id') === params.id))
 
     const newEventListItem =
       events.newEvent && eventListItem(events.newEvent, path === '/events/new')
@@ -101,13 +102,13 @@ export class Events extends React.Component {
     let detail
     let detailSelected = false
     if (params.id) {
-      const event = events.items.find(e => e.id === params.id)
+      const event = events.get('items').find(e => e.get('id') === params.id)
       if (path === '/events/:id/edit') {
         detail = eventEdit(event)
       } else {
         detail = event && (
-          <EventDetail
-            event={event}
+          <EventDetailPage
+            event={event.toJS()}
             user={user}
             id={params.id}
             onRemoveEvent={this.onDeleteEvent}

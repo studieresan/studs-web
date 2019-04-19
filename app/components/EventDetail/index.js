@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import Markdown from 'react-markdown'
@@ -9,13 +8,18 @@ import { hasEventPermission } from 'users'
 
 import moment from 'moment'
 import styles from './styles.css'
-import A from 'components/A'
 import IndicatorIcon from 'components/IndicatorIcon'
 import { Link } from 'react-router-dom'
 
-class EventDetail extends Component {
+export class EventDetail extends Component {
   render() {
-    const { event, user, onRemoveEvent } = this.props
+    const {
+      event,
+      user,
+      onRemoveEvent,
+      preEventFormReplied,
+      postEventFormReplied,
+    } = this.props
     if (!event) {
       return null
     }
@@ -35,7 +39,7 @@ class EventDetail extends Component {
           <h2>{event.companyName}</h2>
           {hasEventPermission(user) && (
             <div className={styles.buttonRow}>
-              <Link to='/create-event-feedback'>
+              <Link to={`/events/${event.id}/create-event-feedback`}>
                 <Button color='bright'>
                   <FormattedMessage {...messages.generateFeedback} />
                 </Button>
@@ -84,22 +88,14 @@ class EventDetail extends Component {
                 <FormattedMessage {...messages.surveys} />
               </h4>
               <div>
-                <IndicatorIcon ok={event.beforeSurveyReplied || false} />
-                <A
-                  target='_blank'
-                  href={(event.beforeSurveys && event.beforeSurveys[0]) || ''}
-                >
-                  <FormattedMessage {...messages.before} />
-                </A>
+                <IndicatorIcon ok={preEventFormReplied} />
+                <Link to={`/events/${event.id}/pre_form`}>Pre Event Form</Link>
               </div>
               <div>
-                <IndicatorIcon ok={event.afterSurveyReplied || false} />
-                <A
-                  target='_blank'
-                  href={(event.afterSurveys && event.afterSurveys[0]) || ''}
-                >
-                  <FormattedMessage {...messages.after} />
-                </A>
+                <IndicatorIcon ok={postEventFormReplied} />
+                <Link to={`/events/${event.id}/post_form`}>
+                  Post Event Form
+                </Link>
               </div>
             </div>
           )}
@@ -181,17 +177,11 @@ class EventDetail extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    user: state.getIn(['global', 'user']).toJS(),
-  }
-}
-
 EventDetail.propTypes = {
   id: PropTypes.string.isRequired,
   event: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   onRemoveEvent: PropTypes.func.isRequired,
+  preEventFormReplied: PropTypes.bool.isRequired,
+  postEventFormReplied: PropTypes.bool.isRequired,
 }
-
-export default connect(mapStateToProps)(EventDetail)

@@ -20,6 +20,7 @@ import PublicEvents from 'containers/PublicEvents'
 import OldEvents from 'containers/OldEvents'
 import EventFeedbackPage from 'containers/EventFeedbackPage'
 import CreateEventFeedback from 'containers/CreateEventFeedback'
+import EventFeedbackForm from './components/EventFeedbackForm'
 
 class StudsRouter extends Component {
   render() {
@@ -45,11 +46,22 @@ class StudsRouter extends Component {
         <AuthenticatedRoute exact path='/events/:id' component={Events} />
         <AuthenticatedRoute exact path='/events/:id/edit' component={Events} />
         <AuthenticatedRoute
-          path='/event-feedback'
+          exact
+          path='/events/:id/pre_form'
+          component={EventFeedbackForm}
+        />
+        <AuthenticatedRoute
+          exact
+          path='/events/:id/post_form'
+          component={EventFeedbackForm}
+        />
+        <AuthenticatedRoute
+          path='/events/:id/event-feedback'
           component={EventFeedbackPage}
         />
         <AuthenticatedRoute
-          path='/create-event-feedback'
+          exact
+          path='/events/:id/create-event-feedback'
           component={CreateEventFeedback}
         />
 

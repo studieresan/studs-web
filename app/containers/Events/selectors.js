@@ -11,7 +11,7 @@ const selectEvents = () =>
   createSelector(
     [selectCompanyUsers(), selectEventsDomain(), selectUser()],
     (companyUsers, events, user) => ({
-      events: events.toJS(),
+      events: events,
       user: user ? user.toJS() : null,
       companyUsers: companyUsers.toJS(),
     })

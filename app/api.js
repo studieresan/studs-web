@@ -65,6 +65,19 @@ function executeGraphQL(query) {
   })
 }
 
+function executeGraphQLMutation(query) {
+  const url = `${BASE_URL}${GRAPHQL}`
+  return ftch(url, {
+    method: 'POST',
+    ...credentials(),
+    headers: {
+      ...authorizationHeader(),
+      ...jsonHeader(),
+    },
+    body: query,
+  })
+}
+
 const USER_PROFILE_FIELDS = `
   memberType
   email
@@ -84,6 +97,7 @@ const USER_PROFILE_FIELDS = `
 export function fetchUser() {
   const query = `{
     user {
+      id
       profile {
         ${USER_PROFILE_FIELDS}
       }
@@ -93,6 +107,7 @@ export function fetchUser() {
   `
   return executeGraphQL(query).then(res =>
     Promise.resolve({
+      id: res.data.user.id,
       ...res.data.user.profile,
       permissions: res.data.user.permissions,
     })
@@ -339,4 +354,90 @@ const uploadFile = (file, signedRequest, url) => {
   return fetch(signedRequest, uploadData)
     .then(checkStatus)
     .then(() => Promise.resolve(url))
+}
+
+const PRE_EVENT_FIELDS = `
+  interestInRegularWorkBefore,
+  interestInCompanyMotivationBefore,
+  familiarWithCompany,
+  viewOfCompany,
+`
+
+const POST_EVENT_FIELDS = `
+  interestInRegularWork,
+  interestInCompanyMotivation,
+  eventImpact,
+  qualifiedToWork,
+  atmosphereRating,
+  activitiesRating,
+  foodRating,
+  eventFeedback,
+  eventImprovements,
+`
+
+export const fetchEventForms = (userId, eventId) => {
+  const query = `{
+    eventForms(userId: "${userId}", eventId:"${eventId}") {
+      ... on PreEventForm {
+        ${PRE_EVENT_FIELDS}
+      },
+      ... on PostEventForm {
+        ${POST_EVENT_FIELDS}
+      }
+    }
+  }`
+
+  return executeGraphQL(query).then(res => res.data.eventForms)
+}
+
+export const fetchAllEventFormsByEventId = eventId => {
+  const query = `{
+    allEventForms(eventId:"${eventId}") {
+      ... on PreEventForm {
+        ${PRE_EVENT_FIELDS}
+      },
+      ... on PostEventForm {
+        ${POST_EVENT_FIELDS}
+      }
+    }
+  }`
+  return executeGraphQL(query).then(res => res.data.allEventForms)
+}
+
+const CreatePreEventFormOperationName = 'CreatePreEventForm'
+const CreatePostEventFormOperationName = 'CreatePostEventForm'
+
+const CreatePreEventFormQuery = `
+  mutation ${CreatePreEventFormOperationName}
+  ($eventId: String!, $fields: PreEventFormInputType!) {
+    createPreEventForm(eventId: $eventId, fields: $fields) {
+      ${PRE_EVENT_FIELDS}
+    }
+  }
+`
+
+const CreatePostEventFormQuery = `
+  mutation ${CreatePostEventFormOperationName}
+  ($eventId: String!, $fields: PostEventFormInputType!) {
+    createPostEventForm(eventId: $eventId, fields: $fields) {
+      ${POST_EVENT_FIELDS}
+    }
+  }
+`
+
+export const saveEventForm = formdata => {
+  const eventId = formdata.eventId
+  const preEvent = formdata.preEvent === true
+  formdata = omit(formdata, ['eventId', 'preEvent'])
+
+  const mutation = JSON.stringify({
+    query: preEvent ? CreatePreEventFormQuery : CreatePostEventFormQuery,
+    variables: {
+      eventId: eventId,
+      fields: formdata,
+    },
+    operationName: preEvent ? 'CreatePreEventForm' : 'CreatePostEventForm',
+  })
+
+  return executeGraphQLMutation(mutation)
 }

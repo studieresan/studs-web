@@ -1,0 +1,102 @@
+.container {
+  padding-top: var(--header-height);
+  background-color: #f3f8fb;
+}
+
+.form {
+  margin: 0 auto;
+  padding: 0 1rem;
+  max-width: 940px;
+  width: 100%;
+}
+
+.form > h1 {
+  margin-top: 0;
+  color: var(--primary-dark);
+}
+
+.form h2 {
+  margin: 0 0 30px 0;
+}
+
+.form > fieldset {
+  border: none;
+  background: white;
+  padding: 40px;
+  border-radius: 5px;
+  margin-bottom: 40px;
+  transition: box-shadow 200ms;
+}
+
+.form > fieldset:focus-within {
+  box-shadow: 0 10px 20px 0 #dbe7ee;
+}
+
+.form textarea {
+  width: 100%;
+  border: 2px solid #e9edef;
+  font-family: var(--body-font);
+  padding: 10px;
+  background: #f8fbfc;
+  transition: 100ms all;
+  margin-top: 5px;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+.form textarea:focus {
+  border-color: #a9e0f2;
+  background: white;
+  outline: none;
+}
+
+.inputGroup {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.inputGroup > div {
+  display: flex;
+  align-items: flex-end;
+}
+
+.horizontalRadioLabel {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  vertical-align: middle;
+  min-height: 6em;
+}
+
+.horizontalRadioLabel > div {
+  min-height: 3em;
+  text-align: center;
+  width: 100%;
+}
+
+.horizontalRadioLabel > div > input {
+  max-width: 15px;
+  margin: 16px auto;
+}
+
+.verticalRadioLabel {
+  display: flex;
+  flex-direction: row;
+  min-width: 6em;
+}
+
+.verticalRadioLabel > div {
+  min-width: 3em;
+  min-height: 3em;
+}
+
+.verticalRadioLabel > div > input {
+  max-width: 15px;
+  margin: 3px auto;
+}
+
+.submitWrapper {
+  margin-bottom: 40px;
+}

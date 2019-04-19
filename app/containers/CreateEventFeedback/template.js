@@ -6,6 +6,8 @@ export type Question = {|
   labels?: string[],
   type?: 'response' | '5scale' | 'interestScale' | 'posNegScale' | null,
   optional?: boolean,
+  name?: string,
+  answers?: Object,
 
   // responses if type is 'response', otherwise datasets
   responses?: Array<string>,
@@ -41,10 +43,12 @@ const template: Question[] = [
   {
     title: 'Pre Event: Are you familiar with the company and what they do?',
     labels: ['Yes', 'To some extent', 'No'],
+    name: 'familiarWithCompany',
   },
   {
     title: 'Pre Event: How interested in working at this company are you?',
     ...interestScale,
+    name: 'interestInRegularWorkBefore',
   },
   {
     title:
@@ -62,57 +66,70 @@ const template: Question[] = [
     title:
       "Pre Event: Please motivate why you are or aren't interested in working at this company.",
     type: 'response',
+    name: 'interestInCompanyMotivationBefore',
   },
   {
     title:
       "Pre Event: How would you describe your view of the company and what's your general opinion about them?",
     type: 'response',
+    name: 'viewOfCompany',
   },
   {
     title: 'How did the event impact your opinion about the company?',
     labels: ['Positive impact', 'No change', 'Negative impact'],
+    name: 'eventImpact',
   },
   {
     title: 'How interested in working at this company are you now?',
     ...interestScale,
+    name: 'interestInRegularWork',
   },
   {
     title:
       "How interested in writing your master's thesis at this company are you now?",
     ...interestScale,
+    optional: true,
   },
   {
     title: "Are you looking for a company to do your master's thesis at?",
     labels: ['Yes, I am', 'No, I am not'],
+    optional: true,
   },
   {
     title:
       "Please motivate why you are or aren't interested in working at this company.",
     type: 'response',
+    name: 'interestInCompanyMotivation',
   },
   {
     title: 'Do you feel qualified to work at this company?',
     labels: ['Yes, I do', "No, I don't"],
+    name: 'qualifiedToWork',
   },
   {
     title: 'How did you experience the atmosphere at the event?',
     ...posNegScale,
+    name: 'atmosphereRating',
   },
   {
     title: 'Did you enjoy the activities at the event?',
     ...oneToFiveScale,
+    name: 'activitiesRating',
   },
   {
     title: 'Did you like the food at the event?',
     ...oneToFiveScale,
+    name: 'foodRating',
   },
   {
     title: 'What did you enjoy the most about the event and the company?',
     type: 'response',
+    name: 'eventFeedback',
   },
   {
     title: 'What could have been improved?',
     type: 'response',
+    name: 'eventImprovements',
   },
 ]
 

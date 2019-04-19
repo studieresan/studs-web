@@ -11,7 +11,7 @@ export const preEventQuestions = [
   {
     title: 'How interested in working at this company are you?',
     type: 'scale',
-    labels: ['Not interested at all.', 'Very interested.'],
+    labels: ['Not at all interested.', 'Very interested.'],
     name: 'interestInRegularWorkBefore',
   },
   {
@@ -43,7 +43,7 @@ export const postEventQuestions = [
   {
     title: 'How interested in working at this company are you now?',
     type: 'scale',
-    labels: ['Not interested at all.', 'Very interested.'],
+    labels: ['Not at all interested.', 'Very interested.'],
     name: 'interestInRegularWork',
   },
   {

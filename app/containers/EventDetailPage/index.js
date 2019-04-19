@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as EventDetailActions from './actions'
+import * as CreateEventFeedbackActions from '../CreateEventFeedback/actions'
 import { EventDetail } from '../../components/EventDetail'
 
 export class EventDetailPage extends React.Component {
@@ -30,6 +31,8 @@ export class EventDetailPage extends React.Component {
       form2 || (form1 && !('familiarWithCompany' in form1))
     )
 
+    const companyName = this.props.event.companyName
+
     return (
       <EventDetail
         id={this.props.id}
@@ -38,6 +41,7 @@ export class EventDetailPage extends React.Component {
         onRemoveEvent={this.props.onRemoveEvent}
         preEventFormReplied={preEventFormReplied}
         postEventFormReplied={postEventFormReplied}
+        onGenerateFeedback={this.props.setFeedbackCompanyName(companyName)}
       />
     )
   }
@@ -50,6 +54,7 @@ EventDetailPage.propTypes = {
   onRemoveEvent: PropTypes.func.isRequired,
   getEventForms: PropTypes.func.isRequired,
   eventForms: PropTypes.array,
+  setFeedbackCompanyName: PropTypes.func.isRequired,
 }
 
 function mapStateToProps(state) {
@@ -60,7 +65,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ ...EventDetailActions }, dispatch)
+  return bindActionCreators(
+    { ...EventDetailActions, ...CreateEventFeedbackActions },
+    dispatch
+  )
 }
 
 export default connect(

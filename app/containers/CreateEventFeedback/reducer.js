@@ -1,4 +1,4 @@
-import { SET_FEEDBACK } from './actions'
+import { SET_FEEDBACK, SET_COMPANY_NAME } from './actions'
 import template from './template'
 
 const initialState = {
@@ -12,6 +12,11 @@ export default function eventFeedback(state = initialState, action) {
       return {
         companyName: action.companyName,
         feedbackData: action.feedbackData,
+      }
+    case SET_COMPANY_NAME:
+      return {
+        companyName: action.companyName,
+        feedbackData: Object.assign([], state.feedbackData),
       }
     default:
       return state

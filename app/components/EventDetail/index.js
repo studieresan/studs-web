@@ -19,6 +19,7 @@ export class EventDetail extends Component {
       onRemoveEvent,
       preEventFormReplied,
       postEventFormReplied,
+      onGenerateFeedback,
     } = this.props
     if (!event) {
       return null
@@ -40,7 +41,7 @@ export class EventDetail extends Component {
           {hasEventPermission(user) && (
             <div className={styles.buttonRow}>
               <Link to={`/events/${event.id}/create-event-feedback`}>
-                <Button color='bright'>
+                <Button color='bright' onClick={() => onGenerateFeedback()}>
                   <FormattedMessage {...messages.generateFeedback} />
                 </Button>
               </Link>
@@ -184,4 +185,5 @@ EventDetail.propTypes = {
   onRemoveEvent: PropTypes.func.isRequired,
   preEventFormReplied: PropTypes.bool.isRequired,
   postEventFormReplied: PropTypes.bool.isRequired,
+  onGenerateFeedback: PropTypes.func.isRequired,
 }

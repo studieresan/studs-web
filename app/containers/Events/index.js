@@ -99,7 +99,8 @@ export class Events extends React.Component {
     if (params.id) {
       const event = events.get('items').find(e => e.get('id') === params.id)
       if (path === '/events/:id/edit') {
-        detail = <EventEdit event={event.toJS()} />
+        // event will be undefined on initial page load
+        detail = <EventEdit event={event && event.toJS()} />
       } else {
         detail = event && (
           <EventDetailPage

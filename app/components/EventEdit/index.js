@@ -29,6 +29,13 @@ class EventEdit extends React.Component {
   state = {
     beforeSurvey: '',
     afterSurvey: '',
+    showSavedLabel: false,
+  }
+
+  saveBtnTimer = null
+
+  componentWillUnmount() {
+    clearTimeout(this.saveBtnTimer)
   }
 
   handleChange = e => {
@@ -63,6 +70,12 @@ class EventEdit extends React.Component {
     const { save, event } = this.props
     if (event.companyName) {
       save(event)
+
+      // Change the save button label to "Saved" for a few seconds
+      this.setState({ showSavedLabel: true })
+      this.saveBtnTimer = setTimeout(() => {
+        this.setState({ showSavedLabel: false })
+      }, 1000)
     } else {
       alert('You must select a company before saving.')
     }
@@ -104,6 +117,10 @@ class EventEdit extends React.Component {
       />
     )
 
+    const saveBtnMessage = this.state.showSavedLabel
+      ? messages.saved
+      : messages.save
+
     return (
       <div className={styles.eventEdit}>
         <div className={styles.head}>
@@ -115,7 +132,7 @@ class EventEdit extends React.Component {
             disabled={saving || saved}
             rounded={true}
           >
-            <FormattedMessage {...messages.save} />
+            <FormattedMessage {...saveBtnMessage} />
           </Button>
         </div>
         <div className={styles.inputLabel}>

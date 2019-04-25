@@ -18,10 +18,9 @@ import EventEditPicture from 'components/EventEditPicture'
 import EventEditSurvey from 'components/EventEditSurvey'
 
 class EventEdit extends React.Component {
-  // When first navigating to /events/new, the newEvent state property will
-  // be null (see containers/Events). Instead, we use an empty Event object
-  // so this form can render with empty inputs. As soon as any field is updated,
-  // an UPDATE event will be dispatched, and thus setting the newEvent state.
+  // If this component is rendered before the events have been fetched,
+  // for example on initial page load, we can use an empty event object
+  // as a placeholder
   static defaultProps = {
     event: getEmptyEventObject(),
   }

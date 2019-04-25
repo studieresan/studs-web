@@ -33,7 +33,7 @@ export function getEmptyEventObject() {
 
 const initialState = fromJS({
   items: [],
-  newEvent: null,
+  newEvent: Map(getEmptyEventObject()),
   saved: false,
   saving: false,
   removing: false,
@@ -61,15 +61,9 @@ function eventsReducer(state = initialState, action) {
         })
       )
     case UPDATE:
-      return updateEvent(state, action.id, event => {
-        // Event will be null if we have just started filling in
-        // a new event. If that's the case, we create a new Map from
-        // the empty event template and merge it with the action data
-        if (event === null) {
-          return Map(getEmptyEventObject()).merge(Map(action.data))
-        }
-        return event.merge(Map(action.data))
-      })
+      return updateEvent(state, action.id, event =>
+        event.merge(Map(action.data))
+      )
     case SAVE_REQUEST:
     case SAVE_SUCCESS:
       return state.set('saving', false).set('saved', true)
@@ -77,7 +71,7 @@ function eventsReducer(state = initialState, action) {
       const event = fromJS(action.data)
       return state
         .update('items', items => items.push(event))
-        .set('newEvent', null)
+        .set('newEvent', Map(getEmptyEventObject()))
     }
     case REMOVE_REQUEST:
       return state.set('removing', true)

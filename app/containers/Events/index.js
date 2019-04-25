@@ -68,6 +68,8 @@ export class Events extends React.Component {
       events.get('newEvent') &&
       eventListItem(events.get('newEvent'), path === '/events/new')
 
+    const shouldShowNewEventItem = path === '/events/new'
+
     return (
       <div className={styles.listContainer}>
         <div className={styles.list}>
@@ -80,7 +82,7 @@ export class Events extends React.Component {
             </div>
           </div>
           {items}
-          {newEventListItem}
+          {shouldShowNewEventItem && newEventListItem}
         </div>
         <Events.UserActions user={user} />
       </div>
@@ -113,12 +115,7 @@ export class Events extends React.Component {
       }
       detailSelected = true
     } else if (path === '/events/new') {
-      // We specifically want undefined here, not null, because null
-      // will not trigger EventEdit to use its defaultProp
-      let event = undefined
-      if (events.get('newEvent') !== null) {
-        event = events.get('newEvent').toJS()
-      }
+      const event = events.get('newEvent').toJS()
       detail = <EventEdit event={event} />
       detailSelected = true
     } else {

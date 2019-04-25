@@ -21,12 +21,8 @@ const WARNING =
   'This action cannot be undone.'
 
 export class Events extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      selected: null,
-    }
-    this.onDeleteEvent = this.onDeleteEvent.bind(this)
+  state = {
+    selected: null,
   }
 
   componentDidMount() {
@@ -34,26 +30,26 @@ export class Events extends React.Component {
     this.props.getUsers()
   }
 
-  onDeleteEvent(id) {
+  onDeleteEvent = id => {
     if (confirm(WARNING)) {
       this.props.removeEvent(id)
     }
   }
 
-  renderActions() {
-    const { user } = this.props
+  static UserActions({ user }) {
     if (hasEventPermission(user)) {
       return (
         <div className={styles.actions}>
-          <Link to='/events/new' onClick={() => this.props.createNewEvent()}>
+          <Link to='/events/new'>
             <FormattedMessage {...messages.create} />
           </Link>
         </div>
       )
-    } else return null
+    }
+    return null
   }
 
-  renderEventsList(events, user, params, path) {
+  static EventsList({ events, user, params, path }) {
     const eventListItem = (event, isSelected) => (
       <EventListItem
         key={event.get('id')}
@@ -86,7 +82,7 @@ export class Events extends React.Component {
           {items}
           {newEventListItem}
         </div>
-        {this.renderActions(user)}
+        <Events.UserActions user={user} />
       </div>
     )
   }
@@ -103,7 +99,7 @@ export class Events extends React.Component {
     if (params.id) {
       const event = events.get('items').find(e => e.get('id') === params.id)
       if (path === '/events/:id/edit') {
-        detail = <EventEdit event={event} />
+        detail = <EventEdit event={event.toJS()} />
       } else {
         detail = event && (
           <EventDetailPage
@@ -116,16 +112,31 @@ export class Events extends React.Component {
       }
       detailSelected = true
     } else if (path === '/events/new') {
-      detail = <EventEdit event={events.get('newEvent')} />
+      // We specifically want undefined here, not null, because null
+      // will not trigger EventEdit to use its defaultProp
+      let event = undefined
+      if (events.get('newEvent') !== null) {
+        event = events.get('newEvent').toJS()
+      }
+      detail = <EventEdit event={event} />
       detailSelected = true
     } else {
       detail = <EventStaticDetail />
     }
 
+    const master = (
+      <Events.EventsList
+        events={events}
+        user={user}
+        params={params}
+        path={path}
+      />
+    )
+
     return (
       <div className={styles.events}>
         <MasterDetail
-          master={this.renderEventsList(events, user, params, path)}
+          master={master}
           detail={detail}
           detailSelected={detailSelected}
         />
@@ -143,7 +154,6 @@ Events.propTypes = {
   save: PropTypes.func.isRequired,
   companyUsers: PropTypes.array.isRequired,
   getUsers: PropTypes.func.isRequired,
-  createNewEvent: PropTypes.func.isRequired,
   removeEvent: PropTypes.func.isRequired,
   addPicture: PropTypes.func.isRequired,
   removePicture: PropTypes.func.isRequired,

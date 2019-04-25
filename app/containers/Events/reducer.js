@@ -5,7 +5,6 @@ import {
   SAVE_SUCCESS,
   UPDATE,
   CREATE_SUCCESS,
-  NEW_EVENT,
   REMOVE_REQUEST,
   REMOVE_SUCCESS,
   REMOVE_ERROR,
@@ -15,19 +14,21 @@ import {
   REMOVE_SURVEY,
 } from './constants'
 
-const newEvent = {
-  id: '',
-  companyName: '',
-  schedule: '',
-  privateDescription: '',
-  publicDescription: '',
-  date: new Date(),
-  beforeSurveys: [],
-  afterSurveys: [],
-  location: '',
-  pictures: [],
-  published: false,
-  responsible: '',
+export function getEmptyEventObject() {
+  return {
+    id: '',
+    companyName: '',
+    schedule: '',
+    privateDescription: '',
+    publicDescription: '',
+    date: new Date(),
+    beforeSurveys: [],
+    afterSurveys: [],
+    location: '',
+    pictures: [],
+    published: false,
+    responsible: '',
+  }
 }
 
 const initialState = fromJS({
@@ -60,11 +61,15 @@ function eventsReducer(state = initialState, action) {
         })
       )
     case UPDATE:
-      return updateEvent(state, action.id, event =>
-        event.merge(Map(action.data))
-      )
-    case NEW_EVENT:
-      return state.set('newEvent', fromJS(newEvent))
+      return updateEvent(state, action.id, event => {
+        // Event will be null if we have just started filling in
+        // a new event. If that's the case, we create a new Map from
+        // the empty event template and merge it with the action data
+        if (event === null) {
+          return Map(getEmptyEventObject()).merge(Map(action.data))
+        }
+        return event.merge(Map(action.data))
+      })
     case SAVE_REQUEST:
     case SAVE_SUCCESS:
       return state.set('saving', false).set('saved', true)

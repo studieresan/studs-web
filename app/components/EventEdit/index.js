@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { getEmptyEventObject } from 'containers/Events/reducer'
 import selectEvents from 'containers/Events/selectors'
 import * as EventActions from 'containers/Events/actions'
 
@@ -17,19 +18,20 @@ import EventEditPicture from 'components/EventEditPicture'
 import EventEditSurvey from 'components/EventEditSurvey'
 
 class EventEdit extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      beforeSurvey: '',
-      afterSurvey: '',
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSave = this.handleSave.bind(this)
-    this.addSurvey = this.addSurvey.bind(this)
-    this.update = this.update.bind(this)
+  // When first navigating to /events/new, the newEvent state property will
+  // be null (see containers/Events). Instead, we use an empty Event object
+  // so this form can render with empty inputs. As soon as any field is updated,
+  // an UPDATE event will be dispatched, and thus setting the newEvent state.
+  static defaultProps = {
+    event: getEmptyEventObject(),
   }
 
-  handleChange(e) {
+  state = {
+    beforeSurvey: '',
+    afterSurvey: '',
+  }
+
+  handleChange = e => {
     const {
       addPicture,
       event: { id },
@@ -49,7 +51,7 @@ class EventEdit extends React.Component {
     }
   }
 
-  update(data) {
+  update = data => {
     const {
       update,
       event: { id },
@@ -57,7 +59,7 @@ class EventEdit extends React.Component {
     update(data, id)
   }
 
-  handleSave() {
+  handleSave = () => {
     const { save, event } = this.props
     if (event.companyName) {
       save(event)
@@ -66,7 +68,7 @@ class EventEdit extends React.Component {
     }
   }
 
-  addSurvey(surveyType, value, event) {
+  addSurvey = (surveyType, value, event) => {
     this.props.addSurvey(value, surveyType, event.id)
     if (surveyType === 'beforeSurveys') {
       this.setState({ beforeSurvey: '' })
@@ -83,6 +85,7 @@ class EventEdit extends React.Component {
       removePicture,
       removeSurvey,
     } = this.props
+
     const companyOption = companyName => (
       <option key={companyName} value={companyName || ''}>
         {companyName}
@@ -240,7 +243,11 @@ class EventEdit extends React.Component {
 }
 
 EventEdit.propTypes = {
-  event: PropTypes.object.isRequired,
+  /** can be null if we are creating a new event */
+  event: PropTypes.object,
+
+  // redux props
+
   update: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
   companyUsers: PropTypes.array.isRequired,

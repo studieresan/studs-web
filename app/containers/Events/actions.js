@@ -8,7 +8,6 @@ import {
   SAVE_SUCCESS,
   SAVE_ERROR,
   CREATE_SUCCESS,
-  NEW_EVENT,
   REMOVE_REQUEST,
   REMOVE_SUCCESS,
   REMOVE_ERROR,
@@ -36,8 +35,6 @@ export const addSurvey = (url, surveyType, id) =>
 
 export const removeSurvey = (index, surveyType, id) =>
   actionType(REMOVE_SURVEY, { index, surveyType, id })
-
-export const createNewEvent = () => actionType(NEW_EVENT)
 
 const getRequest = () => actionType(GET_REQUEST)
 const getSuccess = data => actionType(GET_SUCCESS, { data })
@@ -77,6 +74,7 @@ export const save = event => dispatch => {
   saveEvent(event)
     .then(data => {
       if (!event.id) {
+        // creating a new event
         dispatch(createSuccess(data))
         dispatch(push(`/events/${data.id}/edit`))
       }

@@ -69,7 +69,8 @@ export class Events extends React.Component {
       .map(event => eventListItem(event, event.get('id') === params.id))
 
     const newEventListItem =
-      events.newEvent && eventListItem(events.newEvent, path === '/events/new')
+      events.get('newEvent') &&
+      eventListItem(events.get('newEvent'), path === '/events/new')
 
     return (
       <div className={styles.listContainer}>
@@ -97,14 +98,12 @@ export class Events extends React.Component {
       match: { params, path },
     } = this.props
 
-    const eventEdit = e => e && <EventEdit event={e} />
-
     let detail
     let detailSelected = false
     if (params.id) {
       const event = events.get('items').find(e => e.get('id') === params.id)
       if (path === '/events/:id/edit') {
-        detail = eventEdit(event)
+        detail = <EventEdit event={event} />
       } else {
         detail = event && (
           <EventDetailPage
@@ -117,7 +116,7 @@ export class Events extends React.Component {
       }
       detailSelected = true
     } else if (path === '/events/new') {
-      detail = eventEdit(events.newEvent)
+      detail = <EventEdit event={events.get('newEvent')} />
       detailSelected = true
     } else {
       detail = <EventStaticDetail />

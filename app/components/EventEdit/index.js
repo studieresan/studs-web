@@ -192,7 +192,8 @@ class EventEdit extends React.Component {
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.beforeSurvey} />
         </div>
-        {event.beforeSurveys.map(surveyListItem('beforeSurveys'))}
+        {event.beforeSurveys &&
+          event.beforeSurveys.map(surveyListItem('beforeSurveys'))}
         <input
           name='beforeSurveys'
           placeholder='Enter survey url. Press Enter when done.'
@@ -206,7 +207,8 @@ class EventEdit extends React.Component {
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.afterSurvey} />
         </div>
-        {event.afterSurveys.map(surveyListItem('afterSurveys'))}
+        {event.afterSurveys &&
+          event.afterSurveys.map(surveyListItem('afterSurveys'))}
         <input
           name='afterSurveys'
           placeholder='Enter survey url. Press Enter when done.'
@@ -221,14 +223,15 @@ class EventEdit extends React.Component {
           <FormattedMessage {...messages.pictures} />
         </div>
         <div className={styles.eventPictures}>
-          {event.pictures.map((url, i) => (
-            <div className={styles.eventPicture} key={url + i}>
-              <EventEditPicture
-                url={url}
-                onRemove={() => removePicture(i, event.id)}
-              />
-            </div>
-          ))}
+          {event.pictures &&
+            event.pictures.map((url, i) => (
+              <div className={styles.eventPicture} key={url + i}>
+                <EventEditPicture
+                  url={url}
+                  onRemove={() => removePicture(i, event.id)}
+                />
+              </div>
+            ))}
         </div>
         <input type='file' name='picture' onChange={this.handleChange} />
       </div>

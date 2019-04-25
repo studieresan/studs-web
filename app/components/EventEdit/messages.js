@@ -5,6 +5,10 @@ export default defineMessages({
     id: 'app.components.EventEdit.save',
     defaultMessage: 'Save',
   },
+  saved: {
+    id: 'app.components.EventEdit.saved',
+    defaultMessage: 'Saved',
+  },
   date: {
     id: 'app.components.EventEdit.date',
     defaultMessage: 'Date',

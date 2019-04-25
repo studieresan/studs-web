@@ -5,7 +5,6 @@ import {
   SAVE_SUCCESS,
   UPDATE,
   CREATE_SUCCESS,
-  NEW_EVENT,
   REMOVE_REQUEST,
   REMOVE_SUCCESS,
   REMOVE_ERROR,
@@ -15,24 +14,26 @@ import {
   REMOVE_SURVEY,
 } from './constants'
 
-const newEvent = {
-  id: '',
-  companyName: '',
-  schedule: '',
-  privateDescription: '',
-  publicDescription: '',
-  date: new Date(),
-  beforeSurveys: [],
-  afterSurveys: [],
-  location: '',
-  pictures: [],
-  published: false,
-  responsible: '',
+export function getEmptyEventObject() {
+  return {
+    id: '',
+    companyName: '',
+    schedule: '',
+    privateDescription: '',
+    publicDescription: '',
+    date: new Date(),
+    beforeSurveys: [],
+    afterSurveys: [],
+    location: '',
+    pictures: [],
+    published: false,
+    responsible: '',
+  }
 }
 
 const initialState = fromJS({
   items: [],
-  newEvent: null,
+  newEvent: Map(getEmptyEventObject()),
   saved: false,
   saving: false,
   removing: false,
@@ -63,8 +64,6 @@ function eventsReducer(state = initialState, action) {
       return updateEvent(state, action.id, event =>
         event.merge(Map(action.data))
       )
-    case NEW_EVENT:
-      return state.set('newEvent', fromJS(newEvent))
     case SAVE_REQUEST:
     case SAVE_SUCCESS:
       return state.set('saving', false).set('saved', true)
@@ -72,7 +71,7 @@ function eventsReducer(state = initialState, action) {
       const event = fromJS(action.data)
       return state
         .update('items', items => items.push(event))
-        .set('newEvent', null)
+        .set('newEvent', Map(getEmptyEventObject()))
     }
     case REMOVE_REQUEST:
       return state.set('removing', true)

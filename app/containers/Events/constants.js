@@ -7,7 +7,6 @@ export const SAVE_REQUEST = 'app/Events/SAVE_REQUEST'
 export const SAVE_SUCCESS = 'app/Events/SAVE_SUCCESS'
 export const CREATE_SUCCESS = 'app/Events/CREATE_SUCCESS'
 export const SAVE_ERROR = 'app/Events/SAVE_ERROR'
-export const NEW_EVENT = 'app/Events/NEW_EVENT'
 
 export const REMOVE_REQUEST = 'app/Events/REMOVE_REQUEST'
 export const REMOVE_SUCCESS = 'app/Events/REMOVE_SUCCESS'

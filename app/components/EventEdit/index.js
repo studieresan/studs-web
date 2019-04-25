@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { getEmptyEventObject } from 'containers/Events/reducer'
 import selectEvents from 'containers/Events/selectors'
 import * as EventActions from 'containers/Events/actions'
 
@@ -17,19 +18,26 @@ import EventEditPicture from 'components/EventEditPicture'
 import EventEditSurvey from 'components/EventEditSurvey'
 
 class EventEdit extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      beforeSurvey: '',
-      afterSurvey: '',
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSave = this.handleSave.bind(this)
-    this.addSurvey = this.addSurvey.bind(this)
-    this.update = this.update.bind(this)
+  // If this component is rendered before the events have been fetched,
+  // for example on initial page load, we can use an empty event object
+  // as a placeholder
+  static defaultProps = {
+    event: getEmptyEventObject(),
   }
 
-  handleChange(e) {
+  state = {
+    beforeSurvey: '',
+    afterSurvey: '',
+    showSavedLabel: false,
+  }
+
+  saveBtnTimer = null
+
+  componentWillUnmount() {
+    clearTimeout(this.saveBtnTimer)
+  }
+
+  handleChange = e => {
     const {
       addPicture,
       event: { id },
@@ -49,7 +57,7 @@ class EventEdit extends React.Component {
     }
   }
 
-  update(data) {
+  update = data => {
     const {
       update,
       event: { id },
@@ -57,16 +65,22 @@ class EventEdit extends React.Component {
     update(data, id)
   }
 
-  handleSave() {
+  handleSave = () => {
     const { save, event } = this.props
     if (event.companyName) {
       save(event)
+
+      // Change the save button label to "Saved" for a few seconds
+      this.setState({ showSavedLabel: true })
+      this.saveBtnTimer = setTimeout(() => {
+        this.setState({ showSavedLabel: false })
+      }, 1000)
     } else {
       alert('You must select a company before saving.')
     }
   }
 
-  addSurvey(surveyType, value, event) {
+  addSurvey = (surveyType, value, event) => {
     this.props.addSurvey(value, surveyType, event.id)
     if (surveyType === 'beforeSurveys') {
       this.setState({ beforeSurvey: '' })
@@ -83,6 +97,7 @@ class EventEdit extends React.Component {
       removePicture,
       removeSurvey,
     } = this.props
+
     const companyOption = companyName => (
       <option key={companyName} value={companyName || ''}>
         {companyName}
@@ -101,6 +116,10 @@ class EventEdit extends React.Component {
       />
     )
 
+    const saveBtnMessage = this.state.showSavedLabel
+      ? messages.saved
+      : messages.save
+
     return (
       <div className={styles.eventEdit}>
         <div className={styles.head}>
@@ -112,7 +131,7 @@ class EventEdit extends React.Component {
             disabled={saving || saved}
             rounded={true}
           >
-            <FormattedMessage {...messages.save} />
+            <FormattedMessage {...saveBtnMessage} />
           </Button>
         </div>
         <div className={styles.inputLabel}>
@@ -240,7 +259,11 @@ class EventEdit extends React.Component {
 }
 
 EventEdit.propTypes = {
-  event: PropTypes.object.isRequired,
+  /** can be null if we are creating a new event */
+  event: PropTypes.object,
+
+  // redux props
+
   update: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
   companyUsers: PropTypes.array.isRequired,

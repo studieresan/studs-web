@@ -108,6 +108,10 @@
     "message": "Spara"
   },
   {
+    "id": "app.components.EventEdit.saved",
+    "message": "Sparad"
+  },
+  {
     "id": "app.components.EventEdit.company",
     "message": "Företag"
   },

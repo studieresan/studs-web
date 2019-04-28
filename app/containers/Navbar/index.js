@@ -10,10 +10,13 @@ const LightNav = props => <Nav {...props} invert />
  * page you are in currently.
  */
 function Navbar() {
+  // For some reason, using `component` instead of `render` makes
+  // the transition from light to dark and vice versa janky, but it's
+  // smooth when using render
   return (
     <Switch>
-      <Route exact path='/' component={LightNav} />
-      <Route path='/login' component={LightNav} />
+      <Route exact path='/' render={LightNav} />
+      <Route path='/login' render={LightNav} />
       <Route path='/events/:eventId/event-feedback' render={() => null} />
       <Route component={Nav} />
     </Switch>

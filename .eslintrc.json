@@ -10,7 +10,8 @@
     "camelcase": "error",
     "no-duplicate-imports": ["error", { "includeExports": true }],
     "max-len": ["warn", { "code": 80 }],
-    "eqeqeq": "error"
+    "eqeqeq": "error",
+    "no-unused-vars": "warn"
   },
   "env": {
     "browser": true,

@@ -82,30 +82,36 @@ class CreateEventFeedback extends Component<Props, State> {
     // array of all answers for this question
     const answers = formsWithThisQuestion.map(form => form[question.name])
 
+    // if response type, just return the array of answers directly,
+    // formatting will be performed in Fieldset.js
     if (question.type === 'response') {
       return answers
-    } else {
-      const optionAnswers = {}
-      answers.forEach(answer => {
-        if (answer === 'YES' || answer === 'POSITIVE' || answer === true) {
-          answer = 0
-        } else if (
-          answer === 'SOMEWHAT' ||
-          answer === 'NEUTRAL' ||
-          answer === false
-        ) {
-          answer = 1
-        } else if (answer === 'NO' || answer === 'NEGATIVE') {
-          answer = 2
-        } else {
-          answer--
-        }
-        answer in optionAnswers
-          ? optionAnswers[answer]++
-          : (optionAnswers[answer] = 1)
-      })
-      return optionAnswers
     }
+
+    // Choice questions have up to 5 answers. This objects corresponds to which
+    // input in the fieldset will be filled out.
+    const optionAnswers = [
+      0, // "YES", "POSITIVE" or 1
+      0, // "SOMEWHAT", "NEUTRAL" or 2
+      0, // "NO", "NEGATIVE" or 3
+      0, // 4
+      0, // 5
+    ]
+    answers.forEach(answer => {
+      let questionIdx
+      if (['YES', 'POSITIVE'].includes(answer)) {
+        questionIdx = 0
+      } else if (['SOMEWHAT', 'NEUTRAL'].includes(answer)) {
+        questionIdx = 1
+      } else if (['NO', 'NEGATIVE'].includes(answer)) {
+        questionIdx = 2
+      } else {
+        // Answer is for a 5scale question
+        questionIdx = answer - 1
+      }
+      optionAnswers[questionIdx]++
+    })
+    return optionAnswers
   }
 
   render() {

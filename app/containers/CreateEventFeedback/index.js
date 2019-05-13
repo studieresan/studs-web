@@ -88,7 +88,7 @@ class CreateEventFeedback extends Component<Props, State> {
       return answers
     }
 
-    // Choice questions have up to 5 answers. This objects corresponds to which
+    // Choice questions have up to 5 answers. This array corresponds to which
     // input in the fieldset will be filled out.
     const optionAnswers = [
       0, // "YES", "POSITIVE" or 1

@@ -72,11 +72,15 @@ class CreateEventFeedback extends Component<Props, State> {
   aggregateAnswers = question => {
     if (!question.name) return null
 
-    const answers = this.state.eventForms
-      .filter(form => question.name && question.name in form)
-      .map(form => {
-        return form[question.name]
-      })
+    // eventForms is an array where each element is a complete form response,
+    // pre event forms and post event forms all in one array
+    const { eventForms } = this.state
+    // pick out all form responses with this particular question
+    const formsWithThisQuestion = eventForms.filter(
+      form => !!form[question.name]
+    )
+    // array of all answers for this question
+    const answers = formsWithThisQuestion.map(form => form[question.name])
 
     if (question.type === 'response') {
       return answers
@@ -138,7 +142,6 @@ class CreateEventFeedback extends Component<Props, State> {
                   ? [{ data: this.state.aggregatedAnswers[question.name] }]
                   : []
               }
-              answers={this.aggregateAnswers(question)}
               {...question}
             />
           ))}

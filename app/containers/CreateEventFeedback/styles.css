@@ -35,6 +35,7 @@
 
 .form textarea {
   width: 100%;
+  min-height: 300px;
   border: 2px solid #e9edef;
   font-family: var(--body-font);
   padding: 10px;

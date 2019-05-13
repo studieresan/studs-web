@@ -6,6 +6,7 @@ import { formToObject } from 'utils'
 import { addResponses, type Question } from './template'
 import { setFeedback } from './actions'
 import Fieldset from './Fieldset'
+import MissingPeople from './MissingPeople'
 import styles from './styles.css'
 import { fetchAllEventFormsByEventId } from '../../api'
 
@@ -30,14 +31,15 @@ type State = {
 }
 
 class CreateEventFeedback extends Component<Props, State> {
-  state = {
+  state: State = {
     companyName: this.props.eventFeedback.companyName,
     eventForms: [],
     aggregatedAnswers: {},
   }
 
   componentWillMount() {
-    fetchAllEventFormsByEventId(this.props.match.params.id).then(eventForms => {
+    const eventId = this.props.match.params.id
+    fetchAllEventFormsByEventId(eventId).then(eventForms => {
       this.setState({ eventForms: eventForms })
       const object = {}
 
@@ -103,11 +105,14 @@ class CreateEventFeedback extends Component<Props, State> {
   }
 
   render() {
-    const { eventFeedback } = this.props
+    const { eventFeedback, match } = this.props
+    const eventId = match.params.id
+
     return (
       <div className={styles.container}>
         <form className={styles.form} onSubmit={this.handleSubmit}>
           <h1>Event feedback</h1>
+          <MissingPeople eventId={eventId} />
           <fieldset>
             <label>
               <h2>Company name</h2>

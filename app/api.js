@@ -441,3 +441,30 @@ export const saveEventForm = formdata => {
 
   return executeGraphQLMutation(mutation)
 }
+
+/**
+ * Fetch list of people who haven't filled in pre event forms
+ * and post event forms for an event
+ *
+ * @export
+ * @param {string} eventId
+ */
+export function fetchPeopleMissingFeedback(eventId) {
+  const query = `
+    query {
+      missingPostEventFormUsers(eventId: "${eventId}") {
+        profile {
+          firstName
+          lastName
+        }
+      }
+      missingPreEventFormUsers(eventId: "${eventId}") {
+        profile {
+          firstName
+          lastName
+        }
+      }
+    }
+  `
+  return executeGraphQL(query).then(res => res.data)
+}

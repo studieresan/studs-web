@@ -19,7 +19,8 @@
   margin: 0 0 30px 0;
 }
 
-.form > fieldset {
+.form > fieldset,
+.missingPeople {
   border: none;
   background: white;
   padding: 40px;
@@ -64,4 +65,20 @@
   opacity: 0.5;
   font-size: 0.8em;
   margin-top: 1em;
+}
+
+/* Missing people feedback */
+
+.missingPeople h2 {
+  margin-bottom: 0px;
+}
+
+.missingPeople h3 {
+  font-size: 20px;
+}
+
+.listsContainer {
+  display: grid;
+  justify-content: space-evenly;
+  grid-template-columns: 1fr 1fr;
 }

@@ -10,7 +10,6 @@ function Fieldset({
   datasets,
   responses,
   optional,
-  answers,
 }: Question) {
   // Keep track of all input values in this field set.
   // Object keys: question title + index of the input
@@ -48,11 +47,16 @@ function Fieldset({
   let content
   if (type && type === 'response') {
     let defaultValue
-    if (answers) {
-      defaultValue = answers
-    } else if (responses && responses.length > 0) {
-      defaultValue = responses.join('\n')
+    if (responses && responses.length > 0) {
+      defaultValue = responses.join('\n\n\n')
     }
+
+    // Setting the `key` prop is a hack that enables us to
+    // set the `defaultValue` prop even after the initial render of
+    // this component, since the responses won't be immediately available
+    // when this component is mounted the first time.
+    // Source:
+    // https://github.com/mui-org/material-ui/issues/1328#issuecomment-198087347
     content = (
       <Fragment>
         <label>
@@ -60,6 +64,7 @@ function Fieldset({
           <textarea
             name={title}
             required={!optional}
+            key={defaultValue}
             defaultValue={defaultValue}
           />
         </label>

@@ -7,7 +7,6 @@ export type Question = {|
   type?: 'response' | '5scale' | 'interestScale' | 'posNegScale' | null,
   optional?: boolean,
   name?: string,
-  answers?: Object,
 
   // responses if type is 'response', otherwise datasets
   responses?: Array<string>,
@@ -175,7 +174,7 @@ export function addResponses(formData: Object): Array<Question> {
       return {
         ...question,
         responses: formData[question.title]
-          .split('\n')
+          .split('\n\n\n')
           .filter(txt => txt.length > 0), // filter out empty lines
       }
     }

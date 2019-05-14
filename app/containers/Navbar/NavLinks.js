@@ -77,6 +77,11 @@ function NavLinks({ loggedIn, user }: Props) {
             <FormattedMessage {...messages.pastEvents} />
           </Link>
         </li>
+        <li>
+          <Link to='/trip'>
+            <FormattedMessage {...messages.trip} />
+          </Link>
+        </li>
       </ul>
       <ul className={styles.navbarUserMenu}>
         <li>

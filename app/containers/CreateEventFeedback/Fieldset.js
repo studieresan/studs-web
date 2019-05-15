@@ -60,7 +60,9 @@ function Fieldset({
     content = (
       <Fragment>
         <label>
-          <span>Put each comment on its own line</span>
+          <span>
+            Separate each response by putting two empty lines between them.
+          </span>
           <textarea
             name={title}
             required={!optional}

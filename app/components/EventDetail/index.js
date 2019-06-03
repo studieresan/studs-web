@@ -185,5 +185,5 @@ EventDetail.propTypes = {
   onRemoveEvent: PropTypes.func.isRequired,
   preEventFormReplied: PropTypes.bool.isRequired,
   postEventFormReplied: PropTypes.bool.isRequired,
-  onGenerateFeedback: PropTypes.func.isRequired,
+  onGenerateFeedback: PropTypes.object.isRequired,
 }

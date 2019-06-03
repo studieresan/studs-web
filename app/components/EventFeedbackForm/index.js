@@ -104,15 +104,8 @@ class EventFeedbackForm extends Component {
     this.props.getEvents()
   }
 
-  render() {
-    const { events } = this.props
-    const eventId = this.props.match.params.id
-
-    if (events.length < 1) {
-      return null
-    }
-
-    const handleSubmit = e => {
+  handleSubmit = (eventId, preEvent) => {
+    return e => {
       e.preventDefault()
 
       const formdata = formToObject(e.target.elements)
@@ -132,6 +125,15 @@ class EventFeedbackForm extends Component {
 
       saveEventForm(formdata)
       this.props.history.push(`/events/${eventId}`)
+    }
+  }
+
+  render() {
+    const { events } = this.props
+    const eventId = this.props.match.params.id
+
+    if (events.length < 1) {
+      return <div className={styles.container} />
     }
 
     const preEvent =
@@ -162,7 +164,10 @@ class EventFeedbackForm extends Component {
 
     return (
       <div className={styles.container}>
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form
+          className={styles.form}
+          onSubmit={this.handleSubmit(eventId, preEvent)}
+        >
           <h1>
             {
               this.props.events.find(

@@ -338,10 +338,17 @@ export const uploadImage = file => {
     file.name
   }&file-type=${file.type}`
 
+  const options = {
+    method: 'GET',
+    headers: {
+      ...authorizationHeader(),
+    },
+  }
+
   // Uploading a file consists of two steps. First fetching a signed s3
   // url from the backend, then uploading the file using that url.
   // The url for the image is returned if everything worked
-  return ftch(signedUrlEndpoint, credentials()).then(({ signedRequest, url }) =>
+  return ftch(signedUrlEndpoint, options).then(({ signedRequest, url }) =>
     uploadFile(file, signedRequest, url)
   )
 }
@@ -350,10 +357,8 @@ const uploadFile = (file, signedRequest, url) => {
   const uploadData = {
     method: 'PUT',
     body: file,
-    headers: {
-      ...authorizationHeader(),
-    },
   }
+
   return fetch(signedRequest, uploadData)
     .then(checkStatus)
     .then(() => Promise.resolve(url))

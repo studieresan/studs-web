@@ -350,10 +350,12 @@ const uploadFile = (file, signedRequest, url) => {
   const uploadData = {
     method: 'PUT',
     body: file,
+    ...credentials(),
     headers: {
       ...authorizationHeader(),
     },
   }
+
   return fetch(signedRequest, uploadData)
     .then(checkStatus)
     .then(() => Promise.resolve(url))

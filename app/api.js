@@ -340,6 +340,7 @@ export const uploadImage = file => {
 
   const options = {
     method: 'GET',
+    ...credentials(),
     headers: {
       ...authorizationHeader(),
     },

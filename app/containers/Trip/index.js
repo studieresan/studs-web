@@ -2,8 +2,7 @@ import React from 'react'
 import styles from './styles.css'
 
 const JUICER_URL =
-  'https://www.juicer.io/' +
-  'api/feeds/studs18/iframe?starting-at=2018-06-11&after=hello()'
+  'https://www.juicer.io/api/feeds/studskth/iframe?starting-at=2019-06-12'
 export class Trip extends React.Component {
   render() {
     return (

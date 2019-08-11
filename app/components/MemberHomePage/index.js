@@ -4,11 +4,11 @@ import MemberImage from 'components/MemberImage'
 import styles from './styles.css'
 
 function MemberHomePage({ user }) {
-  const { firstName, position, picture } = user
+  const { firstName, lastName, position, picture } = user
   return (
     <div className={styles.member}>
       <MemberImage picture={picture} size='20rem' />
-      <h3 className={styles.name}>{firstName}</h3>
+      <h3 className={styles.name}>{firstName + ' ' + lastName}</h3>
       <h5 className={styles.position}>{position}</h5>
     </div>
   )

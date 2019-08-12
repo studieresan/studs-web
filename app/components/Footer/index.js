@@ -48,7 +48,7 @@ const SubFooter = () => (
 )
 
 const Copyright = () => (
-  <p className={styles.copyright}>&copy; 2018-2019 Studs</p>
+  <p className={styles.copyright}>&copy; 2019-2020 Studs</p>
 )
 
 const Images = () => (

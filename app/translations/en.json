@@ -57,7 +57,7 @@
   },
   {
     "id": "app.containers.About.subtitle",
-    "message": "The people behind Studs 2019"
+    "message": "The people behind Studs 2020"
   },
   {
     "id": "app.components.HomePage.footer.shortPitch",
@@ -93,7 +93,7 @@
   },
   {
     "id": "app.components.HomePage.intro.application",
-    "message": "The application to Studs 2019 is open!"
+    "message": "The application to Studs 2020 is open!"
   },
   {
     "id": "app.components.HomePage.intro.learnMore",

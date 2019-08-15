@@ -309,7 +309,7 @@
   },
   {
     "id": "app.components.HomePage.intro.application",
-    "message": "Ansökan till Studs 2020 är öppen!"
+    "message": "Ansök"
   },
   {
     "id": "app.components.HomePage.intro.learnMore",
@@ -318,5 +318,9 @@
   {
     "id": "app.containers.Navbar.apply",
     "message": "Ansök"
+  },
+  {
+    "id": "app.components.HomePage.intro.about",
+    "message": "Välkommen till Studs - KTH Datatekniks plattform för att få företag att interagera med snart examinerade studenter."
   }
 ]

@@ -93,10 +93,14 @@
   },
   {
     "id": "app.components.HomePage.intro.application",
-    "message": "The application to Studs 2020 is open!"
+    "message": "Apply"
   },
   {
     "id": "app.components.HomePage.intro.learnMore",
     "message": "Learn more"
+  },
+  {
+    "id": "app.components.HomePage.intro.about",
+    "message": "Welcome to Studs - The platform were companies can interact with soon-to-be examined Computer Science students from KTH."
   }
 ]

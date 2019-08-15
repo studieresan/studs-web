@@ -13,7 +13,7 @@
 }
 
 .invert {
-  color: var(--secondary);
+  color: rgb(255, 255, 255);
 }
 
 /* iPhone-X landscape insets */

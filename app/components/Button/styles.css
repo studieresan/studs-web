@@ -64,6 +64,15 @@
   pointer-events: none;
 }
 
+.blue {
+  background: #3c5a76;
+  color: white;
+}
+
+.blue:hover {
+  background: #375573;
+}
+
 .icon {
   background: none;
   color: #303b4b;

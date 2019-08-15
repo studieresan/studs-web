@@ -13,13 +13,16 @@ function HomePageHeader() {
         <img className={styles.logo} src={Logo} />
         <div className={styles.header_text}>
           <h3>
-            Välkommen till Studs - KTH Datatekniks plattform för att få företag
-            att interagera med snart examinerade studenter.
+            <FormattedMessage {...messages.intro.about} />
           </h3>
         </div>
         <div className={styles.buttons}>
-          <Button color='default'>Ansök</Button>
-          <Button color='default'>Läs mer</Button>
+          <Button color='blue'>
+            <FormattedMessage {...messages.intro.application} />
+          </Button>
+          <Button color='blue'>
+            <FormattedMessage {...messages.intro.learnMore} />
+          </Button>
         </div>
       </div>
     </div>

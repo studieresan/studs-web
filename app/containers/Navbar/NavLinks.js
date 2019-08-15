@@ -24,6 +24,11 @@ function NavLinks({ loggedIn, user }: Props) {
           <Link to='/user'>{user.firstName || 'Profile'}</Link>
         </li>
         <li>
+          <Link to='/apply'>
+            <FormattedMessage {...messages.apply} />
+          </Link>
+        </li>
+        <li>
           <Link to='/members'>
             <FormattedMessage {...messages.studsmembers} />
           </Link>
@@ -54,6 +59,11 @@ function NavLinks({ loggedIn, user }: Props) {
     <div className={styles.navLinks}>
       <ul className={styles.navbarMenu}>
         <li>
+          <Link to='/apply'>
+            <FormattedMessage {...messages.apply} />
+          </Link>
+        </li>
+        <li>
           <Link to='/about'>
             <FormattedMessage {...messages.about} />
           </Link>
@@ -61,27 +71,17 @@ function NavLinks({ loggedIn, user }: Props) {
         {user.type !== 'studs_member' && (
           <li>
             <Link to='/events/public'>
-              <FormattedMessage {...messages.events} />
+              <FormattedMessage {...messages.pastEvents} />
             </Link>
           </li>
         )}
         {user.type === 'studs_member' && (
           <li>
             <Link to='/events/'>
-              <FormattedMessage {...messages.events} />
+              <FormattedMessage {...messages.pastEvents} />
             </Link>
           </li>
         )}
-        <li>
-          <Link to='/events/2018'>
-            <FormattedMessage {...messages.pastEvents} />
-          </Link>
-        </li>
-        <li>
-          <Link to='/trip'>
-            <FormattedMessage {...messages.trip} />
-          </Link>
-        </li>
       </ul>
       <ul className={styles.navbarUserMenu}>
         <li>

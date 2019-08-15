@@ -31,6 +31,10 @@ export default defineMessages({
   },
   about: {
     id: 'app.containers.Navbar.about',
-    defaultMessage: 'About',
+    defaultMessage: 'About Us',
+  },
+  apply: {
+    id: 'app.containers.Navbar.apply',
+    defaultMessage: 'Apply',
   },
 })

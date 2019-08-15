@@ -1,56 +1,58 @@
 .header {
-  height: 100vh;
+  height: 80vh;
   width: 100%;
-  display: flex;
   justify-content: center;
   align-content: center;
-  background: url(static/img/home/coworking.jpg);
-  background-size: cover;
-  background-position: center;
+  background-color: rgb(19, 46, 72);
   padding-left: 10px;
   padding-right: 10px;
   font-size: 18px;
+  display: table;
 }
 
-.header h1 {
-  font-size: 72px;
-  text-align: left;
-  line-height: 0.95;
-  margin: 0;
+.logo {
+  width: 20em;
+  height: auto;
+  padding: 1%;
+  margin-top: 0;
+  margin-bottom: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  align-self: flex-start;
 }
 
-.headerContent {
+.buttons {
   display: flex;
-  align-items: flex-start;
+  flex-wrap: wrap;
   justify-content: center;
-  flex-direction: column;
-  color: white;
-  width: 960px;
-  padding: 20px;
 }
 
-.headerText {
-  max-width: 570px;
+.buttons button {
+  margin: 1%;
 }
 
-.headerContentApply {
-  color: #fff;
-  font-size: 28px !important;
-  font-weight: 900 !important;
-  margin-top: 6vh !important;
+.header_text h3 {
+  font-size: 24px;
+}
+
+.header_text {
+  text-align: center;
+  width: 50%;
+  color: rgb(255, 255, 255);
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.header_content {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 @media (max-width: 600px) {
   .header {
     font-size: 16px;
-  }
-
-  .headerContent {
-    padding: 50px;
-  }
-
-  .header h1 {
-    font-size: 56px;
   }
 }
 

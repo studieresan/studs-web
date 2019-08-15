@@ -18,3 +18,40 @@
 .logo {
   margin: 5rem auto;
 }
+
+.about_text {
+  width: 50%;
+  text-align: center;
+}
+
+.image_row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 75%;
+  max-width: 90rem;
+}
+
+.member {
+  display: inline;
+}
+
+.member img {
+  margin: 0;
+}
+
+.member h3 {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.member h5 {
+  margin-top: 1%;
+  text-align: center;
+}
+
+@media (max-width: 920px) {
+  .about_text {
+    width: 90%;
+  }
+}

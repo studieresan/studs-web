@@ -37,7 +37,7 @@
   },
   {
     "id": "app.components.HomePage.footer.SalesContent",
-    "message": "If you're interested in having an event with us, or you're curious and want to know more – contact Nils, our Head of Sales."
+    "message": "If you're interested in having an event with us, or you're curious and want to know more – contact Cristian"
   },
   {
     "id": "app.components.HomePage.footer.phone",
@@ -53,11 +53,11 @@
   },
   {
     "id": "app.containers.About.header",
-    "message": "About Us"
+    "message": "This is Studs"
   },
   {
     "id": "app.containers.About.subtitle",
-    "message": "The people behind Studs 2020"
+    "message": "We're the people behind Studs"
   },
   {
     "id": "app.components.HomePage.footer.shortPitch",

@@ -37,7 +37,7 @@
   },
   {
     "id": "app.components.HomePage.footer.SalesContent",
-    "message": "Om ni är intresserade av att ha ett event med oss, eller om ni är nyfikna och vill veta mer, kontakta vår säljansvarig Nils."
+    "message": "Om ni är intresserade av att ha ett event med oss, eller om ni är nyfikna och vill veta mer, kontakta Cristian."
   },
   {
     "id": "app.components.HomePage.footer.phone",
@@ -53,7 +53,7 @@
   },
   {
     "id": "app.containers.Navbar.about",
-    "message": "Om Studs"
+    "message": "Om oss"
   },
   {
     "id": "app.containers.Navbar.trip",
@@ -77,11 +77,11 @@
   },
   {
     "id": "app.containers.About.header",
-    "message": "Det här är vi"
+    "message": "Det här är Studs"
   },
   {
     "id": "app.containers.About.subtitle",
-    "message": "Människorna bakom Studs 2020"
+    "message": "Vi är människorna bakom Studs"
   },
   {
     "id": "app.components.HomePage.footer.shortPitch",
@@ -89,7 +89,7 @@
   },
   {
     "id": "app.components.HomePage.footer.SalesHeader",
-    "message": "Jobba med oss"
+    "message": "Samarbeta med oss"
   },
   {
     "id": "app.components.HomePage.footer.salesTitle",
@@ -314,5 +314,9 @@
   {
     "id": "app.components.HomePage.intro.learnMore",
     "message": "Läs mer"
+  },
+  {
+    "id": "app.containers.Navbar.apply",
+    "message": "Ansök"
   }
 ]

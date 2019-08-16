@@ -54,6 +54,10 @@
   .header {
     font-size: 16px;
   }
+
+  .header_text {
+    width: 100%;
+  }
 }
 
 /* iPhone-X landscape insets */

@@ -50,6 +50,7 @@
 
 .logo {
   margin-bottom: 1rem;
+  width: 8em;
 }
 
 .navigation {
@@ -153,7 +154,6 @@
     align-items: center;
     align-self: center;
     flex-direction: column;
-    margin-top: 2rem;
     text-align: center;
     order: 3;
     padding-left: 0;

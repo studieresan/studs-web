@@ -28,6 +28,10 @@
   }
 }
 
+.logo {
+  width: 4em;
+}
+
 .navbarLogo svg {
   height: 46px;
   width: 101px;

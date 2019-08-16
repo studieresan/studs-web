@@ -2,13 +2,12 @@
 import React from 'react'
 import classNames from 'classnames'
 import styles from './styles.css'
-import LogoInvert from 'static/img/logo/studs19_invert.svg'
-import Logo from 'static/img/logo/studs19.svg'
+import LogoInvert from 'static/img/logo/studs20white.svg'
+import Logo from 'static/img/logo/studs20.svg'
 import MenuIcon from './icon_menu.svg'
 import BlackMenuIcon from './icon_menu_black.svg'
 import CloseIcon from './icon_close.svg'
 import BlackCloseIcon from './icon_close_black.svg'
-import Isvg from 'react-inlinesvg'
 
 import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -74,7 +73,7 @@ class Nav extends React.Component<Props, State> {
       <div className={navbarClasses}>
         <div className={styles.control}>
           <Link to='/'>
-            <Isvg src={logo} className={styles.navbarLogo} />
+            <img className={styles.logo} src={logo} />
           </Link>
           <img src={menuIcon} height={24} onClick={this.handleMenuClick} />
         </div>

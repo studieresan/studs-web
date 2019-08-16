@@ -3,17 +3,14 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { FormattedMessage } from 'react-intl'
-import Isvg from 'react-inlinesvg'
-import Logo from 'static/img/logo/studs19.svg'
+import Logo from 'static/img/logo/studs20black.svg'
 import messages from './messages'
 import navigationMessages from 'containers/Navbar/messages'
 import styles from './styles.css'
 
 const Menu = ({ loggedIn }) => (
   <div className={styles.menu}>
-    <div className={styles.logo}>
-      <Isvg src={Logo} />
-    </div>
+    <img src={Logo} className={styles.logo} />
     <Pitch />
     <nav className={styles.navigation}>
       <MenuItem to='/about'>
@@ -53,7 +50,7 @@ MenuItem.propTypes = {
 }
 
 const Pitch = () => (
-  <p>
+  <p className={styles.pitch}>
     <FormattedMessage {...messages.shortPitch} />
   </p>
 )

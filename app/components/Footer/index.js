@@ -43,7 +43,6 @@ const Social = () => (
 const SubFooter = () => (
   <div className={styles.subfooter}>
     <Copyright />
-    <Social />
   </div>
 )
 

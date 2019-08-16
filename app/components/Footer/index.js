@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
-import { Facebook, Instagram, Github } from 'react-feather'
+import { Facebook, Instagram } from 'react-feather'
+import Github from 'react-feather/dist/icons/github'
 import MemberImage from 'components/MemberImage'
 import Josefin from 'static/img/people/josefin.jpg'
 import Helena from 'static/img/people/helena.jpg'
@@ -43,6 +44,7 @@ const Social = () => (
 const SubFooter = () => (
   <div className={styles.subfooter}>
     <Copyright />
+    <Social />
   </div>
 )
 

@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MemberImage from 'components/MemberImage'
-import { Github, Linkedin } from 'react-feather'
+import { Linkedin } from 'react-feather'
+import Github from 'react-feather/dist/icons/github'
 import styles from './styles.css'
 
 function CvHeader({ user }) {

@@ -2,9 +2,9 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: var(--primary-light);
+  background: var(--primary);
   padding: 35px 0 70px 0;
-  color: var(--primary-dark);
+  color: rgb(255, 255, 255);
 }
 
 .contact > div:first-child {
@@ -32,7 +32,7 @@
 
 .contact a {
   text-decoration: none;
-  color: var(--primary-dark);
+  color: rgb(255, 255, 255);
 }
 
 .contact a:hover {

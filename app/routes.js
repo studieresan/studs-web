@@ -22,6 +22,7 @@ import OldEvents from 'containers/OldEvents'
 import EventFeedbackPage from 'containers/EventFeedbackPage'
 import CreateEventFeedback from 'containers/CreateEventFeedback'
 import Application from 'containers/Application'
+import Student from 'containers/Student'
 import EventFeedbackForm from './components/EventFeedbackForm'
 
 class StudsRouter extends Component {
@@ -38,6 +39,7 @@ class StudsRouter extends Component {
         <Route exact path='/events/2018' component={OldEvents} />
 
         <Route exact path='/apply' component={Application} />
+        <Route exact path='/student' component={Student} />
 
         <AuthenticatedRoute exact path='/user' component={User} />
         <AuthenticatedRoute exact path='/resume/edit' component={CvEdit} />

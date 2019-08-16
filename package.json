@@ -25,7 +25,7 @@
     "react": "^16.8.6",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.8.6",
-    "react-feather": "^1.0.8",
+    "react-feather": "^2.0.3",
     "react-ga": "^2.5.3",
     "react-google-charts": "^1.5.5",
     "react-hot-loader": "^3.1.3",

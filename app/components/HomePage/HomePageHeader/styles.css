@@ -3,7 +3,14 @@
   width: 100%;
   justify-content: center;
   align-content: center;
-  background-color: var(--primary);
+  background-image: linear-gradient(
+    to bottom,
+    #011660,
+    #002365,
+    #002f68,
+    #08396a,
+    #1c436a
+  );
   padding-left: 10px;
   padding-right: 10px;
   font-size: 18px;
@@ -34,6 +41,7 @@
 
 .header_text h3 {
   font-size: 24px;
+  font-family: var(--body-font);
 }
 
 .header_text {

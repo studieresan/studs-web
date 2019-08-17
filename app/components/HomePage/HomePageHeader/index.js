@@ -17,10 +17,10 @@ function HomePageHeader() {
           </h3>
         </div>
         <div className={styles.buttons}>
-          <Button color='blue'>
+          <Button color='gold'>
             <FormattedMessage {...messages.intro.application} />
           </Button>
-          <Button color='blue'>
+          <Button color='gold'>
             <FormattedMessage {...messages.intro.learnMore} />
           </Button>
         </div>

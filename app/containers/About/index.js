@@ -18,6 +18,9 @@ import Marko from 'static/img/people/marko.jpg'
 import Helena from 'static/img/people/helena.jpg'
 import Carl from 'static/img/people/carl.jpg'
 import MemberImage from 'components/MemberImage'
+import { StudentComponent, ApplyButton } from 'components/Student/index'
+import Button from 'components/Button'
+import { Link } from 'react-router-dom'
 
 class About extends Component {
   // componentDidMount() {
@@ -40,6 +43,7 @@ class About extends Component {
               graduation and relevant companies. The project ends with a study
               trip to give the students an opportunity to meet companies abroad.
             </p>
+            <ApplyButton />
           </div>
           <h2>
             <FormattedMessage {...messages.subtitle} />
@@ -137,6 +141,7 @@ class About extends Component {
             </div>
           </div>
         </div>
+        <StudentComponent />
         <Footer />
       </div>
     )

@@ -5,6 +5,7 @@ import messages from './messages'
 import styles from './styles.css'
 import Logo from 'static/img/logo/studs20.svg'
 import Button from 'components/Button'
+import { Link } from 'react-router-dom'
 
 function HomePageHeader() {
   return (
@@ -17,12 +18,11 @@ function HomePageHeader() {
           </h3>
         </div>
         <div className={styles.buttons}>
-          <Button color='gold'>
-            <FormattedMessage {...messages.intro.application} />
-          </Button>
-          <Button color='gold'>
-            <FormattedMessage {...messages.intro.learnMore} />
-          </Button>
+          <Link to='/about'>
+            <Button color='gold'>
+              <FormattedMessage {...messages.intro.application} />
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

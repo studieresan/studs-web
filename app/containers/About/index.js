@@ -37,11 +37,7 @@ class About extends Component {
           </h1>
           <div className={styles.about_text}>
             <p>
-              The KTH Study Trip, or Studs, is an annual project at the Royal
-              Institute of Technology (KTH) in Stockholm. The project aims to
-              create a platform for interaction between students close to
-              graduation and relevant companies. The project ends with a study
-              trip to give the students an opportunity to meet companies abroad.
+              <FormattedMessage {...messages.intro} />
             </p>
             <ApplyButton />
           </div>

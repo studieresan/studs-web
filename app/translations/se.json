@@ -81,7 +81,7 @@
   },
   {
     "id": "app.containers.About.subtitle",
-    "message": "Vi är människorna bakom Studs"
+    "message": "Vi är ledningsgruppen"
   },
   {
     "id": "app.components.HomePage.footer.shortPitch",
@@ -197,7 +197,7 @@
   },
   {
     "id": "app.containers.Navbar.pastEvents",
-    "message": "Tidigare Event"
+    "message": "Tidigare event"
   },
   {
     "id": "app.containers.Navbar.trip",
@@ -309,7 +309,7 @@
   },
   {
     "id": "app.components.HomePage.intro.application",
-    "message": "Ansök"
+    "message": "Läs mer och ansök"
   },
   {
     "id": "app.components.HomePage.intro.learnMore",

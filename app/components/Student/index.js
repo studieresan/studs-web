@@ -30,7 +30,7 @@ export class StudentComponent extends Component {
         <div className={styles.intro}>
           <p>
             Studs består av sex olika grupper med varsitt arbetsområde och
-            varsin ledare, där alla gruppers insats är lika viktiga för
+            varsin ledare, där alla gruppers insats är lika viktiga för att
             projektet ska lyckas. Mycket av arbetet i Studs sker grupperna
             emellan och det är därför viktigt att du som gruppmedlem är
             samarbetsvillig och förstår att vi alla arbetar mot ett gemensamt
@@ -98,7 +98,7 @@ export class StudentComponent extends Component {
                 Informationsgruppen består av fotografer, redaktörer och en art
                 director som tillsammans skapar allt innehåll och den grafiska
                 profil som syns i våra olika kanaler samt rapporten.
-                Fotograferna tar porträttbilder av projektgrupper samt
+                Fotograferna tar porträttbilder av projektgruppen samt
                 fotograferar alla event och resan. Redaktörerna producerar all
                 text i sociala medier och rapporten och art directorn skapar
                 layouten för rapporten.

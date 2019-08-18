@@ -5,7 +5,7 @@
   },
   {
     "id": "app.containers.About.intro",
-    "message": "Studs är ett årligt projekt på Kungliga Tekniska Högskolans Datateknikprogram som har som mål att skapa en pllatform för interaktion mellan snart examinerade studenter och relevanta företag. För studenterna är projektet även en kurs på 15 högskolepoäng som examineras i form av en rapport som sammanfattar projektet i sin helhet. Som avslutning åker hela projektgruppen på en resa som har i syfte att ge medlemmarna möjligheter för både professionellt och kulturellt utbyte."
+    "message": "Studs är ett årligt projekt på Kungliga Tekniska Högskolans Datateknikprogram som har som mål att skapa en plattform för interaktion mellan snart examinerade studenter och relevanta företag. För studenterna är projektet även en kurs på 15 högskolepoäng som examineras i form av en rapport som sammanfattar projektet i sin helhet. Som avslutning åker hela projektgruppen på en resa som har i syfte att ge medlemmarna möjligheter för både professionellt och kulturellt utbyte."
   },
   {
     "id": "app.components.HomePage.headline",

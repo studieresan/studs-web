@@ -5,7 +5,7 @@
   },
   {
     "id": "app.containers.About.intro",
-    "message": "The KTH Study Trip, or Studs, is an annual project at the Computer Science Program at the Royal Institute of Technology. The project aims to create a platform for interaction betwen soon-to-be examined students and relevant companies. For the students the project is also a 15 credit cours that is examined by a report that summarizes the project as a whole. The project ends with a trip that gives the members opportunities for professional as well as cultural exchange."
+    "message": "The KTH Study Trip, or Studs, is an annual project at the Computer Science Program at the Royal Institute of Technology. The project aims to create a platform for interaction betwen soon-to-be examined students and relevant companies. For the students the project is also a 15 credit course that is examined by a report that summarizes the project as a whole. The project ends with a trip that gives the members opportunities for professional as well as cultural exchange."
   },
   {
     "id": "app.components.HomePage.headline",

@@ -28,8 +28,12 @@
   }
 }
 
-.logo {
+.logoDesktop {
   width: 4em;
+}
+
+.logoMobile {
+  display: none;
 }
 
 .navbarLogo svg {
@@ -168,6 +172,17 @@
   .navLinks {
     opacity: 0;
     transform: translateY(-30px);
+  }
+}
+
+@media (max-width: 600px) {
+  .logoDesktop {
+    display: none;
+  }
+
+  .logoMobile {
+    width: 4em;
+    display: block;
   }
 }
 

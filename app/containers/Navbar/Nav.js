@@ -3,7 +3,8 @@ import React from 'react'
 import classNames from 'classnames'
 import styles from './styles.css'
 import LogoInvert from 'static/img/logo/studs20white.svg'
-import Logo from 'static/img/logo/studs20.svg'
+import LogoSvg from 'static/img/logo/studs20.svg'
+import LogoPng from 'static/img/logo/studs20.png'
 import MenuIcon from './icon_menu.svg'
 import BlackMenuIcon from './icon_menu_black.svg'
 import CloseIcon from './icon_close.svg'
@@ -61,7 +62,9 @@ class Nav extends React.Component<Props, State> {
       [styles.invert]: useInvertColors || !collapsed,
     })
 
-    const logo = useInvertColors ? LogoInvert : Logo
+    // if mobile view we use png-logo to avoid gradient being destroyed
+    const logoDesktop = useInvertColors ? LogoInvert : LogoSvg
+    const logoMobile = useInvertColors ? LogoInvert : LogoPng
     let menuIcon
     if (collapsed) {
       menuIcon = useInvertColors ? MenuIcon : BlackMenuIcon
@@ -73,7 +76,8 @@ class Nav extends React.Component<Props, State> {
       <div className={navbarClasses}>
         <div className={styles.control}>
           <Link to='/'>
-            <img className={styles.logo} src={logo} />
+            <img className={styles.logoDesktop} src={logoDesktop} />
+            <img className={styles.logoMobile} src={logoMobile} />
           </Link>
           <img src={menuIcon} height={24} onClick={this.handleMenuClick} />
         </div>

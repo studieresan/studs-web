@@ -3,7 +3,8 @@ import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import styles from './styles.css'
-import Logo from 'static/img/logo/studs20.svg'
+import LogoSvg from 'static/img/logo/studs20.svg'
+import LogoPng from 'static/img/logo/studs20.png'
 import Button from 'components/Button'
 import { Link } from 'react-router-dom'
 
@@ -11,7 +12,8 @@ function HomePageHeader() {
   return (
     <div className={styles.header}>
       <div className={styles.header_content}>
-        <img className={styles.logo} src={Logo} />
+        <img className={styles.logoDesktop} src={LogoSvg} />
+        <img className={styles.logoMobile} src={LogoPng} />
         <div className={styles.header_text}>
           <h3>
             <FormattedMessage {...messages.intro.about} />

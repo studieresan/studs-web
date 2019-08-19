@@ -47,9 +47,13 @@
   padding: 1rem 0;
 }
 
-.logo {
+.logoDesktop {
   margin-bottom: 1rem;
   width: 8em;
+}
+
+.logoMobile {
+  display: none;
 }
 
 .navigation {
@@ -172,5 +176,17 @@
 
   .contact {
     align-self: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .logoDesktop {
+    display: none;
+  }
+
+  .logoMobile {
+    display: block;
+    margin-bottom: 1rem;
+    width: 8em;
   }
 }

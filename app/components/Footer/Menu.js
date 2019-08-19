@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { FormattedMessage } from 'react-intl'
-import LogoSvg from 'static/img/logo/studs20.svg'
 import LogoPng from 'static/img/logo/studs20.png'
 import messages from './messages'
 import navigationMessages from 'containers/Navbar/messages'
@@ -11,7 +10,7 @@ import styles from './styles.css'
 
 const Menu = ({ loggedIn }) => (
   <div className={styles.menu}>
-    <img src={LogoSvg} className={styles.logoDesktop} />
+    <img src={LogoPng} className={styles.logoDesktop} />
     <img src={LogoPng} className={styles.logoMobile} />
     <Pitch />
     <nav className={styles.navigation}>

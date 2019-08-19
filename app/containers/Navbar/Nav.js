@@ -2,8 +2,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import styles from './styles.css'
-import LogoInvert from 'static/img/logo/studs20white.svg'
-import LogoSvg from 'static/img/logo/studs20.svg'
+import LogoInvert from 'static/img/logo/studs20white.png'
 import LogoPng from 'static/img/logo/studs20.png'
 import MenuIcon from './icon_menu.svg'
 import BlackMenuIcon from './icon_menu_black.svg'
@@ -63,7 +62,7 @@ class Nav extends React.Component<Props, State> {
     })
 
     // if mobile view we use png-logo to avoid gradient being destroyed
-    const logoDesktop = useInvertColors ? LogoInvert : LogoSvg
+    const logoDesktop = useInvertColors ? LogoInvert : LogoPng
     const logoMobile = useInvertColors ? LogoInvert : LogoPng
     let menuIcon
     if (collapsed) {

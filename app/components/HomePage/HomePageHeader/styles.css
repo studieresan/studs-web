@@ -59,6 +59,10 @@
 }
 
 @media (max-width: 600px) {
+  .logo {
+    height: 18vh;
+  }
+
   .header {
     font-size: 16px;
   }

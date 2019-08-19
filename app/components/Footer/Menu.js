@@ -12,7 +12,6 @@ const Menu = ({ loggedIn }) => (
   <div className={styles.menu}>
     <img src={LogoPng} className={styles.logoDesktop} />
     <img src={LogoPng} className={styles.logoMobile} />
-    <Pitch />
     <nav className={styles.navigation}>
       <MenuItem to='/about'>
         <FormattedMessage {...navigationMessages.about} />
@@ -49,11 +48,5 @@ MenuItem.propTypes = {
   to: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 }
-
-const Pitch = () => (
-  <p className={styles.pitch}>
-    <FormattedMessage {...messages.shortPitch} />
-  </p>
-)
 
 export default connect(mapStateToProps)(Menu)

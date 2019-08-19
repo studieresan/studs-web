@@ -2,7 +2,7 @@ import { fromJS } from 'immutable'
 import { CHANGE_LOCALE } from './constants'
 
 const initialState = fromJS({
-  locale: localStorage.getItem('language') || 'en',
+  locale: localStorage.getItem('language') || 'se',
 })
 
 function languageProviderReducer(state = initialState, action) {

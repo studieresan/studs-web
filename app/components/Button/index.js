@@ -51,6 +51,7 @@ Button.propTypes = {
     'default',
     'bright',
     'danger',
+    'gold',
   ]),
   full: PropTypes.bool,
   wrapper: PropTypes.bool,

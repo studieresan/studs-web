@@ -1,0 +1,33 @@
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="79" height="57" version="1.1" inkscape:version="0.92.1 r15371" sodipodi:docname="logoBlack.svg"><rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="none" stroke="none" class="" style=""/>
+  <defs id="defs4591">
+    <linearGradient id="linearGradient5221" inkscape:collect="always">
+      <stop id="stop5217" offset="0" style="stop-color:#f2c57c;stop-opacity:1"/>
+      <stop id="stop5219" offset="1" style="stop-color:#dba351;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient inkscape:collect="always" id="linearGradient5148">
+      <stop style="stop-color:#153451;stop-opacity:1" offset="0" id="stop5144"/>
+      <stop style="stop-color:#495867;stop-opacity:1" offset="1" id="stop5146"/>
+    </linearGradient>
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient5148" id="linearGradient5150" x1="99.9428482055664" y1="314.90704345703125" x2="153.9073486328125" y2="35.07585906982422" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.88157894,0,0,1,1.9947462,-0.56696429)"/>
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient5221" id="linearGradient5215" gradientUnits="userSpaceOnUse" x1="66.50874328613281" y1="177.6174774169922" x2="145.64659118652344" y2="233.55795288085938"/>
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient5221" id="linearGradient5223" gradientUnits="userSpaceOnUse" x1="66.50874328613281" y1="177.6174774169922" x2="145.64659118652344" y2="233.55795288085938"/>
+  </defs>
+  <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="0.7" inkscape:cx="400.08006" inkscape:cy="288.40727" inkscape:document-units="mm" inkscape:current-layer="layer2" showgrid="false" inkscape:measure-start="579.828,231.325" inkscape:measure-end="546.904,254.701" inkscape:window-width="1360" inkscape:window-height="706" inkscape:window-x="-8" inkscape:window-y="-8" inkscape:window-maximized="1"/>
+  <metadata id="metadata4594">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <dc:title/>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  
+<g class="currentLayer" style=""><title>Layer 1</title><g inkscape:groupmode="layer" id="layer2" inkscape:label="line" style="display:inline" class="">
+    <g id="g5197" style="fill:#000000;fill-opacity:1;stroke:#130d02;stroke-opacity:1">
+      <text transform="translate(-65.4676284790039,-178.41726684570312) scale(0.9284190535545349,1.0770998001098633) " id="text5154" y="205.006973859907" x="71.08158226269269" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:43.85785675px;line-height:1.25;font-family:'Bebas Neue';-inkscape-font-specification:'Bebas Neue';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#130d02;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" xml:space="preserve"><tspan style="fill:#000000;fill-opacity:1;stroke:#130d02;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" y="205.006973859907" x="71.08158226269269" id="tspan5152" sodipodi:role="line">Studs</tspan></text>
+      <text id="text5158" y="53.09460909267426" x="55.495338959083554" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Bebas Neue';-inkscape-font-specification:'Bebas Neue';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#130d02;stroke-width:0.30000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" xml:space="preserve"><tspan style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#130d02;stroke-width:0.30000001;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" y="53.09460909267426" x="55.495338959083554" id="tspan5156" sodipodi:role="line">2020</tspan></text>
+      <path inkscape:connector-curvature="0" id="path5161" d="M-4.09164470083212e-8,49.42948909267426 H54.84059895908355 " style="fill:#000000;fill-opacity:1;stroke:#130d02;stroke-width:1.13437152;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
+      <path inkscape:connector-curvature="0" id="path5161-0" d="m73.36117895908356,49.43177909267425 h5.2097 " style="fill:#000000;fill-opacity:1;stroke:#130d02;stroke-width:1.21569335;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
+    </g>
+  </g></g></svg>

@@ -4,8 +4,8 @@
     "message": "Vad är Studs?"
   },
   {
-    "id": "app.components.HomePage.intro.content",
-    "message": "Studs, eller Studieresan, är ett årligt projekt på Kungliga Tekniska Högskolan (KTH). Projektet har som mål att skapa en plattform för interaktion mellan snart examinerade studenter och relevanta företag. Projektet avslutas med en studieresa för att ge studenterna möjlighet att träffa företag utomlands."
+    "id": "app.containers.About.intro",
+    "message": "Studs är ett årligt projekt på Kungliga Tekniska Högskolans Datateknikprogram som har som mål att skapa en plattform för interaktion mellan snart examinerade studenter och relevanta företag. För studenterna är projektet även en kurs på 15 högskolepoäng som examineras i form av en rapport som sammanfattar projektet i sin helhet. Som avslutning åker hela projektgruppen på en resa som har i syfte att ge medlemmarna möjligheter för både professionellt och kulturellt utbyte."
   },
   {
     "id": "app.components.HomePage.headline",
@@ -37,7 +37,7 @@
   },
   {
     "id": "app.components.HomePage.footer.SalesContent",
-    "message": "Om ni är intresserade av att ha ett event med oss, eller om ni är nyfikna och vill veta mer, kontakta vår säljansvarig Nils."
+    "message": "Om ni är intresserade av att ha ett event med oss, eller om ni är nyfikna och vill veta mer, kontakta Cristian."
   },
   {
     "id": "app.components.HomePage.footer.phone",
@@ -53,7 +53,7 @@
   },
   {
     "id": "app.containers.Navbar.about",
-    "message": "Om Studs"
+    "message": "Om oss"
   },
   {
     "id": "app.containers.Navbar.trip",
@@ -77,11 +77,11 @@
   },
   {
     "id": "app.containers.About.header",
-    "message": "Det här är vi"
+    "message": "Det här är Studs"
   },
   {
     "id": "app.containers.About.subtitle",
-    "message": "Människorna bakom Studs 2020"
+    "message": "Vi är ledningsgruppen"
   },
   {
     "id": "app.components.HomePage.footer.shortPitch",
@@ -89,7 +89,7 @@
   },
   {
     "id": "app.components.HomePage.footer.SalesHeader",
-    "message": "Jobba med oss"
+    "message": "Samarbeta med oss"
   },
   {
     "id": "app.components.HomePage.footer.salesTitle",
@@ -197,7 +197,7 @@
   },
   {
     "id": "app.containers.Navbar.pastEvents",
-    "message": "Tidigare Event"
+    "message": "Tidigare event"
   },
   {
     "id": "app.containers.Navbar.trip",
@@ -309,10 +309,18 @@
   },
   {
     "id": "app.components.HomePage.intro.application",
-    "message": "Ansökan till Studs 2020 är öppen!"
+    "message": "Läs mer och ansök"
   },
   {
     "id": "app.components.HomePage.intro.learnMore",
     "message": "Läs mer"
+  },
+  {
+    "id": "app.containers.Navbar.apply",
+    "message": "Ansök"
+  },
+  {
+    "id": "app.components.HomePage.intro.about",
+    "message": "Välkommen till Studs - KTH Datateknikpogrammets plattform för att få företag att interagera med snart examinerade studenter."
   }
 ]

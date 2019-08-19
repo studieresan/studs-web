@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
-import { Facebook, Instagram, Github } from 'react-feather'
+import { Facebook, Instagram } from 'react-feather'
+import Github from 'react-feather/dist/icons/github'
 import MemberImage from 'components/MemberImage'
-import Emma from 'static/img/people/emma.jpg'
-import Andreas from 'static/img/people/andreas.jpg'
+import Josefin from 'static/img/people/josefin.jpg'
+import Helena from 'static/img/people/helena.jpg'
 import Menu from './Menu'
 import styles from './styles.css'
 import messages from './messages'
@@ -53,8 +54,8 @@ const Copyright = () => (
 
 const Images = () => (
   <div className={styles.pictures}>
-    <Image picture={Andreas} round />
-    <Image picture={Emma} round />
+    <Image picture={Helena} round />
+    <Image picture={Josefin} round />
   </div>
 )
 
@@ -65,12 +66,14 @@ const Contact = () => (
         <h5 className={styles.contactHeader}>
           <FormattedMessage {...messages.projectManagerHeader} />
         </h5>
-        <p>Andreas Heiskanen &amp; Emma Nimstad</p>
         <p>
-          <FormattedMessage {...messages.projectManagerTitle} />
+          Helena Alinder <a href='mailto:helena@studs.se'>helena@studs.se</a>
         </p>
         <p>
-          <a href='mailto:studs-ansvarig@d.kth.se'>studs-ansvarig@d.kth.se</a>
+          Josefin Nilsson <a href='mailto:josefin@studs.se'>josefin@studs.se</a>
+        </p>
+        <p>
+          <FormattedMessage {...messages.projectManagerTitle} />
         </p>
       </div>
     </div>

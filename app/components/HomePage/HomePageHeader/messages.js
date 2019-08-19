@@ -6,8 +6,8 @@ export default defineMessages({
       id: 'app.components.HomePage.intro.headline',
       defaultMessage: '',
     },
-    content: {
-      id: 'app.components.HomePage.intro.content',
+    about: {
+      id: 'app.components.HomePage.intro.about',
       defaultMessage: '',
     },
     application: {

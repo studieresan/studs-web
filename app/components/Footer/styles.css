@@ -15,7 +15,7 @@
   grid-gap: 20px;
   align-self: center;
   align-items: center;
-  padding-top: 46px;
+  padding-top: 2.5%;
 }
 
 .menu {
@@ -45,11 +45,11 @@
   align-items: center;
   align-self: center;
   padding: 1rem 0;
-  margin-top: 3rem;
 }
 
 .logo {
   margin-bottom: 1rem;
+  width: 8em;
 }
 
 .navigation {
@@ -153,7 +153,6 @@
     align-items: center;
     align-self: center;
     flex-direction: column;
-    margin-top: 2rem;
     text-align: center;
     order: 3;
     padding-left: 0;

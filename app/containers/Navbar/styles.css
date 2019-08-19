@@ -13,7 +13,7 @@
 }
 
 .invert {
-  color: var(--secondary);
+  color: rgb(255, 255, 255);
 }
 
 /* iPhone-X landscape insets */
@@ -26,6 +26,10 @@
     padding-right: env(safe-area-inset-right);
     /* stylelint-enable */
   }
+}
+
+.logo {
+  width: 4em;
 }
 
 .navbarLogo svg {

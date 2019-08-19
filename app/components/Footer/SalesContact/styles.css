@@ -2,9 +2,14 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: var(--primary-light);
-  padding: 35px 0 70px 0;
-  color: var(--primary-dark);
+  background: #1c436a;
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+  color: rgb(255, 255, 255);
+}
+
+.contact h1 {
+  margin: 0 !important;
 }
 
 .contact > div:first-child {
@@ -15,11 +20,10 @@
 
 .contactInfo {
   display: flex;
-  margin-top: 30px;
+  margin: 1%;
   align-items: center;
   text-align: left;
   padding: 0 20px;
-  font-size: 1.25rem;
 }
 
 .contactPicture {
@@ -28,15 +32,25 @@
 
 .contactInfo img {
   outline: none !important;
+  background: red;
 }
 
 .contact a {
   text-decoration: none;
-  color: var(--primary-dark);
+  color: rgb(255, 255, 255);
 }
 
 .contact a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 920px) {
+  .contact {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+  }
 }
 
 @media (max-width: 400px) {

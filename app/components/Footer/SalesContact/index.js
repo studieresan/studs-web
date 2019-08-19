@@ -5,21 +5,19 @@ import Section from 'components/Section'
 import styles from './styles.css'
 import messages from './messages'
 import MemberImage from 'components/MemberImage'
-import Nils from 'static/img/people/nils.jpg'
+import Cristian from 'static/img/people/cristian.jpg'
 
-const CONTACT_NAME = 'Nils Streijffert'
-const CONTACT_PHONE_NUMBER = '+4670-1440857'
-const CONTACT_EMAIL = 'studs-salj@d.kth.se'
+const CONTACT_NAME = 'Cristian Osorio Bretti'
+const CONTACT_PHONE_NUMBER = '+46 70-782 65 60'
+const CONTACT_EMAIL = 'cristian@studs.se'
 
 const SalesContact = () => (
   <div className={styles.contact}>
     <Section {...messages.contact} />
     <div className={styles.contactInfo}>
-      <Image picture={Nils} round />
+      <Image picture={Cristian} round />
       <div>
         <b>{CONTACT_NAME}</b>
-        <br />
-        <FormattedMessage {...messages.contact.title} />
         <br />
         <FormattedMessage {...messages.contact.phone} />
         {': '}

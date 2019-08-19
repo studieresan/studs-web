@@ -64,6 +64,19 @@
   pointer-events: none;
 }
 
+.gold {
+  background: rgba(255, 255, 255, 0.1);
+  border-style: solid;
+  border-width: medium;
+  border-color: rgb(250, 200, 130);
+  color: rgb(250, 200, 130);
+}
+
+.gold:hover {
+  border-color: rgb(247, 223, 183);
+  color: rgb(247, 223, 183);
+}
+
 .icon {
   background: none;
   color: #303b4b;

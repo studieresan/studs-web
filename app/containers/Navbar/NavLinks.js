@@ -68,6 +68,11 @@ function NavLinks({ loggedIn, user }: Props) {
             <FormattedMessage {...messages.about} />
           </Link>
         </li>
+        <li>
+          <Link to='/sales-tool'>
+            <FormattedMessage {...messages.salesTool} />
+          </Link>
+        </li>
         {user.type !== 'studs_member' && (
           <li>
             <Link to='/events/public'>

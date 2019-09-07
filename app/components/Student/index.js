@@ -178,18 +178,9 @@ export class StudentComponent extends Component {
             </div>
           </div>
         </div>
-        <ApplyButton />
       </div>
     )
   }
-}
-
-export const ApplyButton = () => {
-  return (
-    <Link to='/apply'>
-      <Button color='gold'>Ansök</Button>
-    </Link>
-  )
 }
 
 Image.propTypes = {

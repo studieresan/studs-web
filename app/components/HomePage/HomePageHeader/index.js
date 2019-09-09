@@ -21,7 +21,7 @@ function HomePageHeader() {
         <div className={styles.buttons}>
           <Link to='/about'>
             <Button color='gold'>
-              <FormattedMessage {...messages.intro.application} />
+              <FormattedMessage {...messages.intro.learnMore} />
             </Button>
           </Link>
         </div>

@@ -136,7 +136,6 @@ class About extends Component {
             </div>
           </div>
         </div>
-        <StudentComponent />
         <Footer />
       </div>
     )

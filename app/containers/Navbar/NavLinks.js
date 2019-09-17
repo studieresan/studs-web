@@ -69,7 +69,7 @@ function NavLinks({ loggedIn, user }: Props) {
           </Link>
         </li>
         <li>
-          <Link to='/sales-tool'>
+          <Link to='/sales-tool/companies'>
             <FormattedMessage {...messages.salesTool} />
           </Link>
         </li>

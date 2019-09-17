@@ -1,0 +1,81 @@
+.content {
+  text-align: center;
+  padding: 5em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 1rem;
+}
+
+.filter_input {
+  margin-right: 0.5rem;
+}
+
+.number_of_companies {
+  margin-bottom: 1rem;
+}
+
+.add_new_container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add_new_text_input {
+  width: 100%;
+}
+
+.body {
+  width: 100%;
+  margin-top: 2rem;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.table_head {
+  display: table-header-group;
+  vertical-align: middle;
+  color: black;
+}
+
+.table_head th {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #454d55;
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.table tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.company_link {
+  cursor: pointer;
+}
+
+.company_link:hover {
+  font-weight: 800;
+  text-decoration: underline;
+}

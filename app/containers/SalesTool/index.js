@@ -1,23 +1,29 @@
 import React, { Component } from 'react'
 //import { companiesApi, addCompanyApi } from '../utils/api'
 import { HeaderSortButton } from 'components/HeaderSortButton'
-//import CompanyDetails from './CompanyDetails'
+import Button from 'components/Button'
+import SalesToolCompanyDetails from '../SalesToolCompanyDetails'
 import PropTypes from 'prop-types'
+import styles from './styles.css'
 
-class Companies extends Component {
+class SalesTool extends Component {
   constructor(props) {
     super(props)
     this.state = {
       renderCompanyDetails: false,
-      companies: [],
+      companies: [
+        { id: 1, name: 'Company 1', status: 1, userId: 1 },
+        { id: 2, name: 'Company 2', status: 1, userId: 1 },
+        { id: 3, name: 'Company 3', status: 2, userId: 1 },
+      ],
       filteredCompanies: [],
-      users: { 1: 'Cristian Osorio Bretti' },
-      statuses: { 1: 'Kontaktad' },
+      users: { 1: 'Cristian Osorio Bretti', 2: 'Pelle' },
+      statuses: { 1: 'Ej kontaktad', 2: 'Kontaktad' },
       showAddNew: false,
       newCompanyName: '',
       filterText: '',
-      filterUser: 'Alla',
-      filterStatus: 'Alla',
+      filterUser: 0,
+      filterStatus: 0,
       sortStatus: {
         property: 'status',
         direction: 'DESC',
@@ -29,6 +35,7 @@ class Companies extends Component {
     if (this.props.match.params.id) {
       this.setState({ renderCompanyDetails: true })
     }
+    this.filterResult()
     //this.getCompanies()
     document.title = 'STUDS | Alla företag'
   }
@@ -64,14 +71,14 @@ class Companies extends Component {
               .includes(this.state.filterText.toLowerCase())
           )
           .filter(company =>
-            this.state.filterStatus === 'Alla'
+            this.state.filterStatus === 0
               ? 1
               : company.status === this.state.filterStatus
           )
           .filter(company =>
-            this.state.filterUser === 'Alla'
+            this.state.filterUser === 0
               ? 1
-              : company.user_id === this.state.filterUser
+              : company.userId === this.state.filterUser
           ),
       },
       this.applySortStatus
@@ -172,161 +179,150 @@ class Companies extends Component {
   }
 
   render() {
-    // if (this.state.renderCompanyDetails) {
-    //   return (
-    //     <CompanyDetails
-    //       {...this.props}
-    //       back={() => {
-    //         this.props.history.push({ pathname: '/empty' })
-    //         this.props.history.replace({ pathname: '/companies' })
-    //         this.setState({ renderCompanyDetails: false })
-    //         this.getCompanies() //TODO: This should be replaced with something more efficient
-    //       }}
-    //     />
-    //   )
-    // }
+    if (this.state.renderCompanyDetails) {
+      return (
+        <SalesToolCompanyDetails
+          {...this.props}
+          back={() => {
+            this.props.history.push({ pathname: '/empty' })
+            this.props.history.replace({ pathname: '/companies' })
+            this.setState({ renderCompanyDetails: false })
+            this.getCompanies() //TODO: This should be replaced with something more efficient
+          }}
+        />
+      )
+    }
     return (
-      <div className='text-center m-w-full m-h-full flex flex-col items-center justify-center'>
-        <div className='bg-gray-700 w-100 text-5xl pt-4 pb-4 text-white'>
-          Företag
-        </div>
-        <div className='bg-white flex-1 w-100 flex flex-col items-center'>
-          <div className='body flex justify-center'>
-            <div className='form-group mr-2'>
-              <label>Företag</label>
-              <input
-                type='text'
-                className='form-control'
-                value={this.state.filterText}
-                onChange={event => {
-                  this.setState(
-                    { filterText: event.target.value },
-                    this.filterResult
-                  )
-                }}
-              />
-            </div>
-            <div className='mr-2'>
-              <label>Status</label>
-              <select
-                className='form-control'
-                id='status-select'
-                value={this.state.filterStatus}
-                onChange={event =>
-                  this.setState(
-                    { filterStatus: event.target.value },
-                    this.filterResult
-                  )
-                }
-              >
-                <option value='Alla'>Alla</option>
-                {Object.keys(this.state.statuses).map(key => (
-                  <option key={key} value={key}>
-                    {this.state.statuses[key]}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className='mr-2'>
-              <label>Ansvarig</label>
-              <select
-                className='form-control'
-                id='member-select'
-                value={this.state.filterUser}
-                onChange={event =>
-                  this.setState(
-                    { filterUser: event.target.value },
-                    this.filterResult
-                  )
-                }
-              >
-                <option value='Alla'>Alla</option>
-                {Object.keys(this.state.users).map(key => (
-                  <option key={key} value={key}>
-                    {this.state.users[key]}
-                  </option>
-                ))}
-              </select>
-            </div>
+      <div className={styles.content}>
+        {/* 'bg-white flex-1 w-100 flex flex-col items-center'> */}
+        <div className={styles.filter}>
+          <div className={styles.filter_input}>
+            <label>Företag</label>
+            <input
+              type='text'
+              value={this.state.filterText}
+              onChange={event => {
+                this.setState(
+                  { filterText: event.target.value },
+                  this.filterResult
+                )
+              }}
+            />
           </div>
-          <div>
-            Visar <b>{this.state.filteredCompanies.length}</b> företag
-          </div>
-          {!this.state.showAddNew && (
-            <button
-              className='btn-sm md:btn-md btn-primary'
-              onClick={() => this.setState({ showAddNew: true })}
+          <div className={styles.filter_input}>
+            <label>Status</label>
+            <select
+              id='status-select'
+              value={this.state.filterStatus}
+              onChange={event =>
+                this.setState(
+                  { filterStatus: parseInt(event.target.value) },
+                  this.filterResult
+                )
+              }
             >
-              Lägg till ny
-            </button>
-          )}
-
-          {this.state.showAddNew && this.renderAddNewInput()}
-
-          <div className='body mt-2'>
-            <table className='table table-striped'>
-              <thead className='thead-dark'>
-                <tr>
-                  <HeaderSortButton
-                    text='Företag'
-                    attribute='name'
-                    setSortStatus={this.setSortStatus}
-                    sortStatus={this.state.sortStatus}
-                  />
-                  <HeaderSortButton
-                    text='Status'
-                    attribute='status'
-                    setSortStatus={this.setSortStatus}
-                    sortStatus={this.state.sortStatus}
-                  />
-                  <HeaderSortButton
-                    text='Ansvarig'
-                    attribute='user_id'
-                    setSortStatus={this.setSortStatus}
-                    sortStatus={this.state.sortStatus}
-                  />
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.filteredCompanies.map(company =>
-                  this.renderCompany(company)
-                )}
-              </tbody>
-            </table>
+              <option value={0}>Alla</option>
+              {Object.keys(this.state.statuses).map(key => (
+                <option key={key} value={key}>
+                  {this.state.statuses[key]}
+                </option>
+              ))}
+            </select>
           </div>
-          <div />
+          <div className={styles.filter_input}>
+            <label>Ansvarig</label>
+            <select
+              id='member-select'
+              value={this.state.filterUser}
+              onChange={event =>
+                this.setState(
+                  { filterUser: parseInt(event.target.value) },
+                  this.filterResult
+                )
+              }
+            >
+              <option value={0}>Alla</option>
+              {Object.keys(this.state.users).map(key => (
+                <option key={key} value={key}>
+                  {this.state.users[key]}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
+        <div className={styles.number_of_companies}>
+          Visar <b>{this.state.filteredCompanies.length}</b> företag
+        </div>
+        {!this.state.showAddNew && (
+          <Button onClick={() => this.setState({ showAddNew: true })}>
+            Lägg till ny
+          </Button>
+        )}
+        {this.state.showAddNew && this.renderAddNewInput()}
+        <div className={styles.body}>
+          <table className={styles.table}>
+            <thead className={styles.table_head}>
+              <tr>
+                <HeaderSortButton
+                  text='Företag'
+                  attribute='name'
+                  setSortStatus={this.setSortStatus}
+                  sortStatus={this.state.sortStatus}
+                />
+                <HeaderSortButton
+                  text='Status'
+                  attribute='status'
+                  setSortStatus={this.setSortStatus}
+                  sortStatus={this.state.sortStatus}
+                />
+                <HeaderSortButton
+                  text='Ansvarig'
+                  attribute='user_id'
+                  setSortStatus={this.setSortStatus}
+                  sortStatus={this.state.sortStatus}
+                />
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.filteredCompanies.map(company =>
+                this.renderCompany(company)
+              )}
+            </tbody>
+          </table>
+        </div>
+        <div />
       </div>
     )
   }
 
   renderCompany({ id, name, status, userId }) {
-    const statusName = this.props.statuses[status]
+    const statusName = this.state.statuses[status]
     return (
       <tr key={id}>
         <td
-          className='cursor-pointer hover:font-bold hover:underline'
+          className={styles.company_link}
           onClick={() => {
             this.props.history.push({ pathname: '/empty' })
-            this.props.history.replace({ pathname: `/companies/${id}` })
+            this.props.history.replace({
+              pathname: `sales-tool/companies/${id}`,
+            })
             this.setState({ renderCompanyDetails: true })
           }}
         >
           {name}
         </td>
-        <td className={`status-box status-color-${status}`}>{statusName}</td>
-        <td>{this.props.users[userId]}</td>
+        <td>{statusName}</td>
+        <td>{this.state.users[userId]}</td>
       </tr>
     )
   }
   renderAddNewInput = () => {
     return (
-      <div className='body flex flex-column justify-center items-center mb-4'>
-        <div className='mb-2 w-2/5'>
+      <div className={styles.add_new_container}>
+        <div className={styles.add_new_text_input}>
           <label>Företag</label>
           <input
             type='text'
-            className='form-control'
             id='newCompanyInput'
             value={this.state.newCompanyName}
             onChange={event =>
@@ -334,26 +330,21 @@ class Companies extends Component {
             }
           />
         </div>
-        <div className='flex justify-center'>
-          <button
-            className='btn-sm md:btn-md btn-secondary'
+        <div>
+          <Button
+            color='danger'
             onClick={() => this.setState({ showAddNew: false })}
           >
             Avbryt
-          </button>
-          <button
-            className='btn-sm md:btn-md btn-primary whitespace-no-wrap'
-            onClick={() => this.addNewCompany()}
-          >
-            Lägg till
-          </button>
+          </Button>
+          <Button onClick={() => this.addNewCompany()}>Lägg till</Button>
         </div>
       </div>
     )
   }
 }
 
-Companies.propTypes = {
+SalesTool.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
@@ -364,4 +355,4 @@ Companies.propTypes = {
   update: PropTypes.func.isRequired,
 }
 
-export default Companies
+export default SalesTool

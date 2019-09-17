@@ -1,0 +1,30 @@
+.static_comment_container {
+  width: 100%;
+  display: flex;
+}
+
+.static_comment_card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5%;
+  flex: 1 1;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.comment_text {
+  padding: 1rem;
+}
+
+.small_button {
+  font-size: 0.7rem;
+}
+
+.card_actions {
+  display: flex;
+  padding: 2%;
+  justify-content: center;
+}

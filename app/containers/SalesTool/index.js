@@ -4,27 +4,25 @@ import { HeaderSortButton } from 'components/HeaderSortButton'
 import Button from 'components/Button'
 import SalesToolCompanyDetails from '../SalesToolCompanyDetails'
 import PropTypes from 'prop-types'
-import { fetchCompanies, fetchStudsUserNames } from 'api'
+import { fetchCompanies, fetchStudsUserNames, fetchSaleStatuses } from 'api'
 import styles from './styles.css'
+
+const MISSING = 'MISSING'
 
 class SalesTool extends Component {
   constructor(props) {
     super(props)
     this.state = {
       renderCompanyDetails: false,
-      companies: [
-        { id: 1, name: 'Company 1', status: 1, userId: 1 },
-        { id: 2, name: 'Company 2', status: 1, userId: 1 },
-        { id: 3, name: 'Company 3', status: 2, userId: 1 },
-      ],
+      companies: [],
       filteredCompanies: [],
-      users: { 1: 'Cristian Osorio Bretti', 2: 'Pelle' },
-      statuses: { 1: 'Ej kontaktad', 2: 'Kontaktad' },
+      users: {},
+      statuses: {},
       showAddNew: false,
       newCompanyName: '',
       filterText: '',
-      filterUser: 0,
-      filterStatus: 0,
+      filterUser: 'Alla',
+      filterStatus: 'Alla',
       sortStatus: {
         property: 'status',
         direction: 'DESC',
@@ -36,27 +34,33 @@ class SalesTool extends Component {
     if (this.props.match.params.id) {
       this.setState({ renderCompanyDetails: true })
     }
-    this.filterResult()
-    this.getCompanies()
-    this.getStudsUsers()
+    Promise.all([
+      this.getCompanies(),
+      this.getStudsUsers(),
+      this.getSaleStatuses(),
+    ]).then(this.filterResult)
     document.title = 'STUDS | Alla företag'
   }
 
-  async getCompanies() {
+  getCompanies() {
     try {
-      const companies = await fetchCompanies()
-      // this.setState({ companies }, this.filterResult)
-      console.log(companies)
+      return fetchCompanies().then(companies => this.setState({ companies }))
     } catch (e) {
       console.error(e)
     }
   }
 
-  async getStudsUsers() {
+  getStudsUsers() {
     try {
-      const users = await fetchStudsUserNames()
-      console.log(users)
-      this.setState({ users })
+      return fetchStudsUserNames().then(users => this.setState({ users }))
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  getSaleStatuses() {
+    try {
+      return fetchSaleStatuses().then(statuses => this.setState({ statuses }))
     } catch (e) {
       console.error(e)
     }
@@ -84,14 +88,18 @@ class SalesTool extends Component {
               .includes(this.state.filterText.toLowerCase())
           )
           .filter(company =>
-            this.state.filterStatus === 0
-              ? 1
-              : company.status === this.state.filterStatus
+            this.state.filterStatus === 'Alla'
+              ? true
+              : (company.status &&
+                  company.status.id === this.state.filterStatus) ||
+                (!company.status && this.state.filterStatus === MISSING)
           )
           .filter(company =>
-            this.state.filterUser === 0
-              ? 1
-              : company.userId === this.state.filterUser
+            this.state.filterUser === 'Alla'
+              ? true
+              : (company.responsibleUser &&
+                  company.responsibleUser.id === this.state.filterUser) ||
+                (!company.responsibleUser && this.state.filterUser === MISSING)
           ),
       },
       this.applySortStatus
@@ -128,61 +136,43 @@ class SalesTool extends Component {
     const { property, direction } = this.state.sortStatus
     switch (property) {
       case 'name':
-        this.sortByStringProperty(property, direction)
+        this.sortByStringProperty(company => company.name, direction)
         break
-      case 'user_id':
-        this.sortByStringProperty(property, direction)
+      case 'responsibleUser':
+        this.sortByStringProperty(company => {
+          return company.responsibleUser
+            ? this.state.users[company.responsibleUser.id]
+            : null
+        }, direction)
         break
       case 'status':
-        this.sortByStatus(direction)
+        this.sortByStringProperty(
+          company =>
+            company.status ? this.state.statuses[company.status.id] : null,
+          direction
+        )
         break
       default:
         throw new RangeError('Wrong sort property')
     }
   }
 
-  sortByStringProperty = (property, direction) => {
+  sortByStringProperty = (getProperty, direction) => {
     let sortedList = []
     if (direction === 'ASC') {
       sortedList = this.state.filteredCompanies.sort(
         (a, b) =>
-          (a[property] === null) - (b[property] === null) ||
-          +(a[property] > b[property]) ||
-          -(a[property] < b[property])
+          (getProperty(a) === null) - (getProperty(b) === null) ||
+          +(getProperty(a) > getProperty(b)) ||
+          -(getProperty(a) < getProperty(b))
       )
     } else {
       sortedList = this.state.filteredCompanies.sort(
         (a, b) =>
-          (a[property] === null) - (b[property] === null) ||
-          -(a[property] > b[property]) ||
-          +(a[property] < b[property])
+          (getProperty(b) === null) - (getProperty(a) === null) ||
+          -(getProperty(a) > getProperty(b)) ||
+          +(getProperty(a) < getProperty(b))
       )
-    }
-    this.setState({ filteredCompanies: sortedList })
-  }
-
-  sortByStatus = direction => {
-    let sortedList = []
-    if (direction === 'ASC') {
-      sortedList = this.state.filteredCompanies.sort((a, b) => {
-        if (a.status > b.status) {
-          return 1
-        } else if (a.status < b.status) {
-          return -1
-        } else {
-          return 0
-        }
-      })
-    } else {
-      sortedList = this.state.filteredCompanies.sort((a, b) => {
-        if (a.status > b.status) {
-          return -1
-        } else if (a.status < b.status) {
-          return 1
-        } else {
-          return 0
-        }
-      })
     }
     this.setState({ filteredCompanies: sortedList })
   }
@@ -229,12 +219,13 @@ class SalesTool extends Component {
               value={this.state.filterStatus}
               onChange={event =>
                 this.setState(
-                  { filterStatus: parseInt(event.target.value) },
+                  { filterStatus: event.target.value },
                   this.filterResult
                 )
               }
             >
-              <option value={0}>Alla</option>
+              <option value={'Alla'}>Alla</option>
+              <option value={MISSING}>{'Saknar status'}</option>
               {Object.keys(this.state.statuses).map(key => (
                 <option key={key} value={key}>
                   {this.state.statuses[key]}
@@ -249,12 +240,13 @@ class SalesTool extends Component {
               value={this.state.filterUser}
               onChange={event =>
                 this.setState(
-                  { filterUser: parseInt(event.target.value) },
+                  { filterUser: event.target.value },
                   this.filterResult
                 )
               }
             >
-              <option value={0}>Alla</option>
+              <option value={'Alla'}>Alla</option>
+              <option value={MISSING}>{'Ingen ansvarig'}</option>
               {Object.keys(this.state.users).map(key => (
                 <option key={key} value={key}>
                   {this.state.users[key]}
@@ -290,7 +282,7 @@ class SalesTool extends Component {
                 />
                 <HeaderSortButton
                   text='Ansvarig'
-                  attribute='user_id'
+                  attribute='responsibleUser'
                   setSortStatus={this.setSortStatus}
                   sortStatus={this.state.sortStatus}
                 />
@@ -308,8 +300,11 @@ class SalesTool extends Component {
     )
   }
 
-  renderCompany({ id, name, status, userId }) {
-    const statusName = this.state.statuses[status]
+  renderCompany({ id, name, status, responsibleUser }) {
+    const statusName = status ? this.state.statuses[status.id] : 'Saknar status'
+    const responsibleUserName = responsibleUser
+      ? this.state.users[responsibleUser.id]
+      : '-'
     return (
       <tr key={id}>
         <td
@@ -325,7 +320,7 @@ class SalesTool extends Component {
           {name}
         </td>
         <td>{statusName}</td>
-        <td>{this.state.users[userId]}</td>
+        <td>{responsibleUserName}</td>
       </tr>
     )
   }
@@ -360,12 +355,6 @@ class SalesTool extends Component {
 SalesTool.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired,
-  users: PropTypes.array.isRequired,
-  statuses: PropTypes.array.isRequired,
-  getUser: PropTypes.func.isRequired,
-  save: PropTypes.func.isRequired,
-  update: PropTypes.func.isRequired,
 }
 
 export default SalesTool

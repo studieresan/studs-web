@@ -513,3 +513,17 @@ export const fetchStudsUserNames = () => {
     return usersMap
   })
 }
+
+export const fetchSaleStatuses = () => {
+  const query = `{
+    allCompanySalesStatuses {
+        id,
+        name
+    }
+  }`
+  return executeGraphQL(query).then(res => {
+    const statusMap = {}
+    res.data.allCompanySalesStatuses.forEach(s => (statusMap[s.id] = s.name))
+    return statusMap
+  })
+}

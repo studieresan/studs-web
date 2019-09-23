@@ -65,6 +65,10 @@
   border-top: 1px solid #dee2e6;
 }
 
+.table_head th span {
+  margin-left: 10px;
+}
+
 .table tbody tr:nth-of-type(odd) {
   background-color: rgba(0, 0, 0, 0.05);
 }

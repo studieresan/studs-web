@@ -4,7 +4,7 @@ import { HeaderSortButton } from 'components/HeaderSortButton'
 import Button from 'components/Button'
 import SalesToolCompanyDetails from '../SalesToolCompanyDetails'
 import PropTypes from 'prop-types'
-import { fetchCompanies } from 'api'
+import { fetchCompanies, fetchStudsUserNames } from 'api'
 import styles from './styles.css'
 
 class SalesTool extends Component {
@@ -38,6 +38,7 @@ class SalesTool extends Component {
     }
     this.filterResult()
     this.getCompanies()
+    this.getStudsUsers()
     document.title = 'STUDS | Alla företag'
   }
 
@@ -46,6 +47,16 @@ class SalesTool extends Component {
       const companies = await fetchCompanies()
       // this.setState({ companies }, this.filterResult)
       console.log(companies)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  async getStudsUsers() {
+    try {
+      const users = await fetchStudsUserNames()
+      console.log(users)
+      this.setState({ users })
     } catch (e) {
       console.error(e)
     }

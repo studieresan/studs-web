@@ -484,17 +484,32 @@ export const fetchCompanies = () => {
         id,
         name,
         status {
-          id,
-          name,
+          id
         },
         responsibleUser {
-          id,
-          profile {
-              firstName,
-              lastName
-          }
+          id
         }
       }
     }`
   return executeGraphQL(query).then(res => res.data.companies)
+}
+
+export const fetchStudsUserNames = () => {
+  const query = `{
+      studsUsers: users(memberType: studs_member) {
+        id,
+        profile { 
+          firstName,
+          lastName,
+          picture,
+        }
+      }
+    }`
+  return executeGraphQL(query).then(res => {
+    const usersMap = {}
+    res.data.studsUsers.forEach(
+      u => (usersMap[u.id] = u.profile.firstName + ' ' + u.profile.lastName)
+    )
+    return usersMap
+  })
 }

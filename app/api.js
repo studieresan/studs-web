@@ -477,3 +477,24 @@ export function fetchPeopleMissingFeedback(eventId) {
   `
   return executeGraphQL(query).then(res => res.data)
 }
+
+export const fetchCompanies = () => {
+  const query = `{
+      companies {
+        id,
+        name,
+        status {
+          id,
+          name,
+        },
+        responsibleUser {
+          id,
+          profile {
+              firstName,
+              lastName
+          }
+        }
+      }
+    }`
+  return executeGraphQL(query).then(res => res.data.companies)
+}

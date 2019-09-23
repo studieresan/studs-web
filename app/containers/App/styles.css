@@ -25,6 +25,7 @@
   -webkit-appearance: none;
   appearance: none;
   background-color: #f8fbfc;
+  padding-right: 30px;
 }
 
 .container input:focus {

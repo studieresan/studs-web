@@ -4,6 +4,7 @@ import { HeaderSortButton } from 'components/HeaderSortButton'
 import Button from 'components/Button'
 import SalesToolCompanyDetails from '../SalesToolCompanyDetails'
 import PropTypes from 'prop-types'
+import { fetchCompanies } from 'api'
 import styles from './styles.css'
 
 class SalesTool extends Component {
@@ -36,18 +37,19 @@ class SalesTool extends Component {
       this.setState({ renderCompanyDetails: true })
     }
     this.filterResult()
-    //this.getCompanies()
+    this.getCompanies()
     document.title = 'STUDS | Alla företag'
   }
 
-  //   getCompanies = async () => {
-  //     try {
-  //       const companies = await companiesApi()
-  //       this.setState({ companies }, this.filterResult)
-  //     } catch (err) {
-  //       console.error(err)
-  //     }
-  //   }
+  async getCompanies() {
+    try {
+      const companies = await fetchCompanies()
+      // this.setState({ companies }, this.filterResult)
+      console.log(companies)
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   //   addNewCompany = async () => {
   //     try {

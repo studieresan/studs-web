@@ -34,6 +34,11 @@ function NavLinks({ loggedIn, user }: Props) {
           </Link>
         </li>
         <li>
+          <Link to='/sales-tool/companies'>
+            <FormattedMessage {...messages.salesTool} />
+          </Link>
+        </li>
+        <li>
           <Link to='/trip'>
             <FormattedMessage {...messages.trip} />
           </Link>
@@ -66,11 +71,6 @@ function NavLinks({ loggedIn, user }: Props) {
         <li>
           <Link to='/about'>
             <FormattedMessage {...messages.about} />
-          </Link>
-        </li>
-        <li>
-          <Link to='/sales-tool/companies'>
-            <FormattedMessage {...messages.salesTool} />
           </Link>
         </li>
         {user.type !== 'studs_member' && (

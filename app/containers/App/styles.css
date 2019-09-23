@@ -4,7 +4,8 @@
   min-height: 100vh;
 }
 
-.container input {
+.container input,
+.container select {
   display: block;
   width: 100%;
   border: 2px solid #e9edef;

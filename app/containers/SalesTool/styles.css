@@ -20,6 +20,10 @@
   margin-right: 0.5rem;
 }
 
+.filter_input select {
+  height: 50%;
+}
+
 .number_of_companies {
   margin-bottom: 1rem;
 }

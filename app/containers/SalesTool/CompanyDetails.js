@@ -1,17 +1,6 @@
 import React, { Component } from 'react'
 
-// import {
-//   companyInfoApi,
-//   companyContactsApi,
-//   companyCommentsApi,
-//   updateCompanyApi,
-//   addCommentApi,
-//   updateCommentApi,
-//   deleteCommentApi,
-//   addContactApi,
-//   deleteContactApi,
-//   updateContactApi,
-// } from '../utils/api'
+import { fetchCompany } from 'api'
 
 import StaticCommentCard from 'components/StaticCommentCard'
 import CreateContactCard from 'components/CreateContactCard'
@@ -21,25 +10,14 @@ import EditCommentCard from 'components/EditCommentCard'
 import Button from 'components/Button'
 
 import styles from './CompanyDetailsStyles.css'
-
-// import {
-//   StaticCommentCard,
-//   EditCommentCard,
-//   CreateContactCard,
-//   NewCommentCard,
-//   StaticContactCard,
-//   EditCompanyInfoDropdown,
-// } from '../components'
-
 import PropTypes from 'prop-types'
+
+const MISSING = 'MISSING'
 
 class CompanyDetails extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      users: { 1: 'Cristian Osorio Bretti', 2: 'Pelle' },
-      statuses: { 1: 'Ej kontaktad', 2: 'Kontaktad' },
-      companyId: props.match.params.id,
       info: {},
       contacts: [],
       comments: [
@@ -57,56 +35,43 @@ class CompanyDetails extends Component {
   }
 
   componentDidMount = () => {
-    //this.getAllInfo()
+    this.getAllInfo()
   }
 
-  /*
-  getAllInfo = async () => {
-    const { info } = await companyInfoApi(this.state.companyId)
-    const { contacts } = await companyContactsApi(this.state.companyId)
-    const { comments } = await companyCommentsApi(this.state.companyId)
+  async getAllInfo() {
+    const info = await fetchCompany(this.props.companyId)
+    console.log(info)
+    // const { contacts } = await companyContactsApi(this.props.companyId)
+    // const { comments } = await companyCommentsApi(this.props.companyId)
     this.setState({
       info,
-      contacts,
-      comments,
     })
-    document.title = 'STUDS | ' + info.company_name
+    //   contacts,
+    //   comments,
+    // })
+    document.title = 'STUDS | ' + info.name
   }
-
+  /*
   getComments = async () => {
-    const { comments } = await companyCommentsApi(this.state.companyId)
+    const { comments } = await companyCommentsApi(this.props.companyId)
     this.setState({ comments })
   }
 
   getContacts = async () => {
-    const { contacts } = await companyContactsApi(this.state.companyId)
+    const { contacts } = await companyContactsApi(this.props.companyId)
     this.setState({ contacts })
   }
+  */
 
-  updateCompany = async () => {
-    try {
-      const wasUpdated = await updateCompanyApi({
-        id: this.state.companyId,
-        body: {
-          status: this.state.info.status,
-          responsible_user: this.state.info.responsible_user,
-        },
-      })
-      if (wasUpdated) {
-        this.setState({ completedUpdating: true })
-        setTimeout(() => {
-          this.setState({ completedUpdating: false })
-        }, 3000)
-      }
-    } catch (err) {
-      console.log(err)
-    }
+  updateCompany = (target, value) => {
+    console.log('UPDATE', target, value)
   }
 
+  /*
   createComment = async text => {
     try {
       const addedComment = await addCommentApi({
-        id: this.state.companyId,
+        id: this.props.companyId,
         body: {
           user: 1,
           text,
@@ -188,7 +153,7 @@ class CompanyDetails extends Component {
   createContact = async body => {
     try {
       const addedComment = await addContactApi({
-        id: this.state.companyId,
+        id: this.props.companyId,
         body,
       })
       if (addedComment) {
@@ -232,7 +197,7 @@ class CompanyDetails extends Component {
     return (
       <div className={styles.content}>
         <div className={styles.header}>
-          {/* <div
+          <div
             className={styles.back_button}
             onClick={() => {
               this.props.back()
@@ -240,8 +205,7 @@ class CompanyDetails extends Component {
           >
             Back
           </div>
-          <div>{this.state.info.company_name}</div> */}
-          <div>Företagsnamn</div>
+          <div>{this.state.info.name}</div>
         </div>
         <div className={styles.body}>
           <div className={styles.company_details}>
@@ -255,21 +219,17 @@ class CompanyDetails extends Component {
             <div className={styles.select_input}>
               <label>Status</label>
               <select
-                className='form-control'
-                id='status-select'
-                value={this.state.info.status}
+                value={
+                  this.state.info.status ? this.state.info.status.id : MISSING
+                }
                 onChange={event =>
-                  this.setState(
-                    {
-                      info: { ...this.state.info, status: event.target.value },
-                    }
-                    //this.updateCompany
-                  )
+                  this.updateCompany('status', event.target.value)
                 }
               >
-                {Object.keys(this.state.statuses).map(key => (
+                <option value={MISSING}>{'Saknar status'}</option>
+                {Object.keys(this.props.statuses).map(key => (
                   <option key={key} value={key}>
-                    {this.state.statuses[key]}
+                    {this.props.statuses[key]}
                   </option>
                 ))}
               </select>
@@ -277,12 +237,10 @@ class CompanyDetails extends Component {
             <div>
               <label>Ansvarig</label>
               <select
-                className='form-control'
-                id='member-select'
                 value={
-                  this.state.info.responsible_user !== null
-                    ? this.state.info.responsible_user
-                    : 0
+                  this.state.info.responsibleUser
+                    ? this.state.info.responsibleUser.id
+                    : MISSING
                 }
                 onChange={event => {
                   this.setState(
@@ -296,10 +254,10 @@ class CompanyDetails extends Component {
                   )
                 }}
               >
-                <option value={0}>Ingen</option>
-                {Object.keys(this.state.users).map(key => (
+                <option value={MISSING}>{'Ingen ansvarig'}</option>
+                {Object.keys(this.props.users).map(key => (
                   <option key={key} value={key}>
-                    {this.state.users[key]}
+                    {this.props.users[key]}
                   </option>
                 ))}
               </select>
@@ -343,6 +301,7 @@ class CompanyDetails extends Component {
                 .map(comment =>
                   this.isCommentBeingEdited(comment) ? (
                     <EditCommentCard
+                      key={comment.id}
                       comment={comment}
                       changeCommentText={this.changeCommentText}
                       saveNewComment={this.saveNewComment}
@@ -350,6 +309,7 @@ class CompanyDetails extends Component {
                     />
                   ) : (
                     <StaticCommentCard
+                      key={comment.id}
                       comment={comment}
                       startEditingComment={this.startEditingComment}
                       deleteComment={this.deleteComment}
@@ -373,14 +333,10 @@ class CompanyDetails extends Component {
 }
 
 CompanyDetails.propTypes = {
-  match: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired,
-  users: PropTypes.array.isRequired,
-  statuses: PropTypes.array.isRequired,
+  companyId: PropTypes.string.isRequired,
+  users: PropTypes.object.isRequired,
+  statuses: PropTypes.object.isRequired,
   back: PropTypes.func.isRequired,
-  save: PropTypes.func.isRequired,
-  update: PropTypes.func.isRequired,
 }
 
 export default CompanyDetails

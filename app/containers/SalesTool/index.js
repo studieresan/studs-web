@@ -187,12 +187,10 @@ class SalesTool extends Component {
       return (
         <CompanyDetails
           companyId={this.state.companyDetailsId}
-          {...this.props}
+          users={this.state.users}
+          statuses={this.state.statuses}
           back={() => {
-            this.props.history.push({ pathname: '/empty' })
-            this.props.history.replace({ pathname: '/companies' })
-            // this.setState({ renderCompanyDetails: false })
-            // this.getCompanies() //TODO: This should be replaced with something more efficient
+            this.props.history.push({ pathname: '/sales-tool/companies' })
           }}
         />
       )

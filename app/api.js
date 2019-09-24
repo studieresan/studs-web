@@ -498,6 +498,31 @@ export const fetchCompanies = () => {
   }
 }
 
+export const fetchCompany = companyId => {
+  const query = `{
+    company (companyId: "${companyId}") {
+        id,
+        name,
+        status {
+            id,
+            name,
+        },
+        responsibleUser {
+            id,
+            profile {
+                firstName,
+                lastName
+            }
+        }
+    }
+  }`
+  try {
+    return executeGraphQL(query).then(res => res.data.company)
+  } catch (e) {
+    console.error(e)
+  }
+}
+
 export const fetchStudsUserNames = () => {
   const query = `{
       studsUsers: users(memberType: studs_member) {

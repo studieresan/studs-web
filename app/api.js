@@ -491,7 +491,11 @@ export const fetchCompanies = () => {
         }
       }
     }`
-  return executeGraphQL(query).then(res => res.data.companies)
+  try {
+    return executeGraphQL(query).then(res => res.data.companies)
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 export const fetchStudsUserNames = () => {
@@ -505,7 +509,11 @@ export const fetchStudsUserNames = () => {
         }
       }
     }`
-  return executeGraphQL(query).then(res => res.data.studsUsers)
+  try {
+    return executeGraphQL(query).then(res => res.data.studsUsers)
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 export const fetchSaleStatuses = () => {
@@ -515,5 +523,9 @@ export const fetchSaleStatuses = () => {
         name
     }
   }`
-  return executeGraphQL(query).then(res => res.data.allCompanySalesStatuses)
+  try {
+    return executeGraphQL(query).then(res => res.data.allCompanySalesStatuses)
+  } catch (e) {
+    console.error(e)
+  }
 }

@@ -42,56 +42,40 @@ class SalesTool extends Component {
     document.title = 'STUDS | Alla företag'
   }
 
-  getCompanies() {
-    try {
-      return fetchCompanies().then(companies => this.setState({ companies }))
-    } catch (e) {
-      console.error(e)
-    }
-  }
+  getCompanies = () =>
+    fetchCompanies().then(companies => this.setState({ companies }))
 
-  getStudsUsers() {
-    try {
-      return fetchStudsUserNames()
-        .then(studsUsers => {
-          const usersMap = {}
-          studsUsers.forEach(
-            u =>
-              (usersMap[u.id] = u.profile.firstName + ' ' + u.profile.lastName)
-          )
-          return usersMap
-        })
-        .then(users => this.setState({ users }))
-    } catch (e) {
-      console.error(e)
-    }
-  }
+  getStudsUsers = () =>
+    fetchStudsUserNames()
+      .then(studsUsers => {
+        const usersMap = {}
+        studsUsers.forEach(
+          u => (usersMap[u.id] = u.profile.firstName + ' ' + u.profile.lastName)
+        )
+        return usersMap
+      })
+      .then(users => this.setState({ users }))
 
-  getSaleStatuses() {
-    try {
-      return fetchSaleStatuses()
-        .then(allCompanySalesStatuses => {
-          const statusMap = {}
-          allCompanySalesStatuses.forEach(s => (statusMap[s.id] = s.name))
-          return statusMap
-        })
-        .then(statuses => this.setState({ statuses }))
-    } catch (e) {
-      console.error(e)
-    }
-  }
+  getSaleStatuses = () =>
+    fetchSaleStatuses()
+      .then(allCompanySalesStatuses => {
+        const statusMap = {}
+        allCompanySalesStatuses.forEach(s => (statusMap[s.id] = s.name))
+        return statusMap
+      })
+      .then(statuses => this.setState({ statuses }))
 
-  //   addNewCompany = async () => {
-  //     try {
-  //       const wasAdded = await addCompanyApi({ name: this.state.newCompanyName })
-  //       if (wasAdded) {
-  //         this.setState({ showAddNew: false, newCompanyName: '' })
-  //         this.getCompanies()
-  //       }
-  //     } catch (err) {
-  //       console.log(err)
+  // addNewCompany() {
+  //   try {
+  //     return addCompanyApi({ name: this.state.newCompanyName })
+  //     if (wasAdded) {
+  //       this.setState({ showAddNew: false, newCompanyName: '' })
+  //       this.getCompanies()
   //     }
+  //   } catch (err) {
+  //     console.log(err)
   //   }
+  // }
 
   filterResult = () => {
     this.setState(

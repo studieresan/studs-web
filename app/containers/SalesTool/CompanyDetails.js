@@ -48,11 +48,8 @@ class CompanyDetails extends Component {
   async getAllInfo() {
     const currentUser = await fetchUser()
     const info = await fetchCompany(this.props.companyId)
-    console.log(info)
     const contacts = await fetchContacts(this.props.companyId)
-    console.log(contacts)
     const comments = await fetchComments(this.props.companyId)
-    console.log(comments)
     this.setState({
       currentUser,
       info,

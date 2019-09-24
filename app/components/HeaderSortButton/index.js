@@ -37,5 +37,5 @@ HeaderSortButton.propTypes = {
   text: PropTypes.string.isRequired,
   attribute: PropTypes.string.isRequired,
   setSortStatus: PropTypes.func.isRequired,
-  sortStatus: PropTypes.func.isRequired,
+  sortStatus: PropTypes.object.isRequired,
 }

@@ -50,6 +50,9 @@ class SalesTool extends Component {
     if (newProps.match.params.id !== this.state.companyDetailsId) {
       this.setState({ companyDetailsId: newProps.match.params.id })
     }
+    if (!newProps.match.params.id) {
+      this.getCompanies().then(this.filterResult)
+    }
   }
 
   getCompanies = () =>

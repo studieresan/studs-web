@@ -5,7 +5,7 @@ import Button from 'components/Button'
 
 import styles from './styles.css'
 
-const EditCommentCard = ({ comment, saveNewComment, cancelEditingComment }) => {
+const EditCommentCard = ({ comment, saveComment, cancelEditingComment }) => {
   const [text, setText] = useState(comment.text)
   return (
     <div className={styles.comment_container}>
@@ -23,7 +23,7 @@ const EditCommentCard = ({ comment, saveNewComment, cancelEditingComment }) => {
           <Button
             color='primary'
             className={styles.small_button}
-            onClick={() => saveNewComment(comment.id, text)}
+            onClick={() => saveComment(comment.id, text)}
           >
             Save
           </Button>
@@ -41,7 +41,7 @@ const EditCommentCard = ({ comment, saveNewComment, cancelEditingComment }) => {
 
 EditCommentCard.propTypes = {
   comment: PropTypes.object.isRequired,
-  saveNewComment: PropTypes.func.isRequired,
+  saveComment: PropTypes.func.isRequired,
   cancelEditingComment: PropTypes.func.isRequired,
 }
 

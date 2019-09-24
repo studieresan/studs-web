@@ -10,6 +10,7 @@ import {
   fetchUser,
   createComment,
   removeComment,
+  updateComment,
 } from 'api'
 
 import StaticCommentCard from 'components/CompanyCommentCard/StaticCommentCard'
@@ -92,23 +93,16 @@ class CompanyDetails extends Component {
       })
     }
   }
-  /*
-  changeCommentText = (id, newText) => {
-    let oldComments = this.state.comments
-    oldComments.find(comment => comment.id === id).text = newText
-    this.setState({ comments: oldComments })
-  }
 
-  saveNewComment = async (id, text) => {
-    const updated = await updateCommentApi({ id, body: { text } })
+  async saveComment(id, text) {
+    const updated = await updateComment(id, text)
     if (updated) {
-      this.cancelEditingComment(id)
       this.getComments()
     } else {
       console.log('could not update')
     }
+    this.cancelEditingComment(id)
   }
-  */
 
   cancelEditingComment = id => {
     this.setState({
@@ -270,8 +264,7 @@ class CompanyDetails extends Component {
                     <EditCommentCard
                       key={comment.id}
                       comment={comment}
-                      changeCommentText={this.changeCommentText}
-                      saveNewComment={this.saveNewComment}
+                      saveComment={(id, text) => this.saveComment(id, text)}
                       cancelEditingComment={this.cancelEditingComment}
                     />
                   ) : (

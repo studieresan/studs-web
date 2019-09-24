@@ -688,3 +688,16 @@ export const removeComment = commentId => {
     console.error(e)
   }
 }
+
+export const updateComment = (commentId, text) => {
+  const query = `mutation {
+    updateComment(id: "${commentId}", text: "${text}") {
+      id
+    }
+  }`
+  try {
+    return executeGraphQL(query).then(res => res.data.updateComment)
+  } catch (e) {
+    console.error(e)
+  }
+}

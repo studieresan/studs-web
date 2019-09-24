@@ -588,10 +588,9 @@ export const fetchContacts = companyId => {
 export const createContact = (companyId, contactFields) => {
   const query = `mutation {
     createContact(companyId: "${companyId}", fields: {
-        ${contactFields.name ? contactFields.name : ''}
-        ${contactFields.email ? contactFields.email : ''}
-        ${contactFields.phoneNumber ? contactFields.phoneNumber : ''}
-        ${contactFields.comment ? contactFields.comment : ''}
+        ${Object.keys(contactFields).map(
+          k => k + ': "' + contactFields[k] + '",'
+        )}
     }) {
         id
     }

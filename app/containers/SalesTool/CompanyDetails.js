@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { fetchCompany, fetchContacts } from 'api'
+import { fetchCompany, fetchContacts, createContact } from 'api'
 
 import StaticCommentCard from 'components/StaticCommentCard'
 import CreateContactCard from 'components/CompanyContactCard/CreateContactCard'
@@ -60,7 +60,7 @@ class CompanyDetails extends Component {
   */
   async getContacts() {
     const contacts = await fetchContacts(this.props.companyId)
-    this.setState({ contacts })
+    this.setState({ contacts, showCreateContact: false })
   }
 
   updateCompany = (target, value) => {
@@ -149,24 +149,13 @@ class CompanyDetails extends Component {
       }
     }
   }
+  */
 
-  createContact = async body => {
-    try {
-      const addedComment = await addContactApi({
-        id: this.props.companyId,
-        body,
-      })
-      if (addedComment) {
-        console.log('ADDED Contact')
-        this.getContacts()
-        this.setState({
-          showCreateContact: false,
-        })
-      }
-    } catch (err) {
-      console.log(err)
-    }
+  createContact = body => {
+    createContact(this.props.companyId, body).then(() => this.getContacts())
   }
+
+  /*
 
   deleteContact = async id => {
     if (window.confirm('Are you sure you want to delete this contact?')) {

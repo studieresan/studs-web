@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { fetchCompany, fetchContacts, createContact } from 'api'
+import { fetchCompany, fetchContacts, createContact, removeContact } from 'api'
 
 import StaticCommentCard from 'components/StaticCommentCard'
 import CreateContactCard from 'components/CompanyContactCard/CreateContactCard'
@@ -155,11 +155,9 @@ class CompanyDetails extends Component {
     createContact(this.props.companyId, body).then(() => this.getContacts())
   }
 
-  /*
-
-  deleteContact = async id => {
+  async deleteContact(id) {
     if (window.confirm('Are you sure you want to delete this contact?')) {
-      const deleted = await deleteContactApi(id)
+      const deleted = await removeContact(id)
       if (deleted) {
         this.getContacts()
       } else {
@@ -168,6 +166,7 @@ class CompanyDetails extends Component {
     }
   }
 
+  /*
   saveContact = async (id, body) => {
     const updated = await updateContactApi({ id, body })
     if (updated) {
@@ -258,7 +257,7 @@ class CompanyDetails extends Component {
                   <StaticContactCard
                     key={contactInfo.id}
                     contactInfo={contactInfo}
-                    deleteContact={this.deleteContact}
+                    deleteContact={() => this.deleteContact(contactInfo.id)}
                     startEditingContact={this.startEditingContact}
                   />
                 )

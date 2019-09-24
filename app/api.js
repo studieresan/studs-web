@@ -601,3 +601,14 @@ export const createContact = (companyId, contactFields) => {
     console.error(e)
   }
 }
+
+export const removeContact = contactId => {
+  const query = `mutation {
+    removeContact(id: "${contactId}")
+  }`
+  try {
+    return executeGraphQL(query).then(res => res.data.removeContact)
+  } catch (e) {
+    console.error(e)
+  }
+}

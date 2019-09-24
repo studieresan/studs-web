@@ -22,6 +22,7 @@ const NewCommentCard = ({ currentUser, createComment }) => {
           className={styles.comment_input}
           value={text}
           onChange={event => setText(event.target.value)}
+          placeholder='Skriv här för att lägga till en ny kommentar'
         />
         <div className={styles.card_actions}>
           <Button

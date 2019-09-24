@@ -169,7 +169,7 @@ class CompanyDetails extends Component {
               this.props.back()
             }}
           >
-            Back
+            <i className='fa fa-arrow-left' />
           </div>
           <div>{this.state.info.name}</div>
         </div>
@@ -205,7 +205,7 @@ class CompanyDetails extends Component {
                 ))}
               </select>
             </div>
-            <div>
+            <div className={styles.select_input}>
               <label>Ansvarig</label>
               <select
                 value={

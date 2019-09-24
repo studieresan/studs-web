@@ -205,6 +205,7 @@ class SalesTool extends Component {
             <label>Företag</label>
             <input
               type='text'
+              autoFocus
               value={this.state.filterText}
               onChange={event => {
                 this.setState(
@@ -260,12 +261,6 @@ class SalesTool extends Component {
         <div className={styles.number_of_companies}>
           Visar <b>{this.state.filteredCompanies.length}</b> företag
         </div>
-        {!this.state.showAddNew && (
-          <Button onClick={() => this.setState({ showAddNew: true })}>
-            Lägg till ny
-          </Button>
-        )}
-        {this.state.showAddNew && this.renderAddNewInput()}
         <div className={styles.body}>
           <table className={styles.table}>
             <thead className={styles.table_head}>
@@ -297,6 +292,13 @@ class SalesTool extends Component {
             </tbody>
           </table>
         </div>
+        {!this.state.showAddNew ? (
+          <Button onClick={() => this.setState({ showAddNew: true })}>
+            Lägg till ny
+          </Button>
+        ) : (
+          this.renderAddNewInput()
+        )}
         <div />
       </div>
     )
@@ -330,9 +332,10 @@ class SalesTool extends Component {
     return (
       <div className={styles.add_new_container}>
         <div className={styles.add_new_text_input}>
-          <label>Företag</label>
+          <label>Namn på det nya företaget</label>
           <input
             type='text'
+            autoFocus
             id='newCompanyInput'
             value={this.state.newCompanyName}
             onChange={event =>

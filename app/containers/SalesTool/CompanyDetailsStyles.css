@@ -22,11 +22,16 @@
   left: 0px;
   color: white;
   cursor: pointer;
-  font-size: 0.5em;
+  font-size: 2rem;
+  margin: 0.5rem;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 .back_button:hover {
-  text-decoration: underline;
+  color: grey;
+  background-color: white;
+  border-radius: 0.8rem;
 }
 
 .body {
@@ -44,10 +49,12 @@
   padding-left: 10%;
   padding-right: 10%;
   padding-bottom: 1rem;
+  padding-top: 1rem;
 }
 
 .select_input {
   margin-right: 0.5rem;
+  text-align: left;
 }
 
 .contact_comment_container {

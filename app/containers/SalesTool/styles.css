@@ -33,15 +33,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  padding: 1rem;
 }
 
 .add_new_text_input {
   width: 100%;
+  text-align: left;
 }
 
 .body {
   width: 100%;
-  margin-top: 2rem;
   padding-left: 10%;
   padding-right: 10%;
 }

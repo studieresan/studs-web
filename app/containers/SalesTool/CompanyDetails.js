@@ -9,6 +9,7 @@ import {
   fetchComments,
   fetchUser,
   createComment,
+  removeComment,
 } from 'api'
 
 import StaticCommentCard from 'components/CompanyCommentCard/StaticCommentCard'
@@ -125,10 +126,9 @@ class CompanyDetails extends Component {
     })
   }
 
-  /*
-  deleteComment = async id => {
+  async deleteComment(id) {
     if (window.confirm('Are you sure you want to delete this comment?')) {
-      const deleted = await deleteCommentApi(id)
+      const deleted = await removeComment(id)
       if (deleted) {
         this.getComments()
       } else {
@@ -136,7 +136,6 @@ class CompanyDetails extends Component {
       }
     }
   }
-  */
 
   createContact = body => {
     createContact(this.props.companyId, body).then(() => this.getContacts())
@@ -280,7 +279,7 @@ class CompanyDetails extends Component {
                       key={comment.id}
                       comment={comment}
                       startEditingComment={this.startEditingComment}
-                      deleteComment={this.deleteComment}
+                      deleteComment={() => this.deleteComment(comment.id)}
                     />
                   )
                 )}

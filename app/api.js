@@ -629,12 +629,6 @@ export const updateContact = (contactId, contactFields) => {
     console.error(e)
   }
 }
-// text:  { type: GraphQLString },
-//     id: { type: GraphQLString },
-//     company: { type: Company },
-//     user: { type: UserType },
-//     createdAt: {type: GraphQLDateTime },
-//     edited: { type: GraphQLBoolean},
 
 export const createComment = (companyId, text) => {
   const query = `mutation {
@@ -679,6 +673,17 @@ export const fetchComments = companyId => {
         )
         return comments
       })
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+export const removeComment = commentId => {
+  const query = `mutation {
+    removeComment(id: "${commentId}")
+  }`
+  try {
+    return executeGraphQL(query).then(res => res.data.removeComment)
   } catch (e) {
     console.error(e)
   }

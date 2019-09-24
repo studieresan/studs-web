@@ -589,7 +589,7 @@ export const createContact = (companyId, contactFields) => {
   const query = `mutation {
     createContact(companyId: "${companyId}", fields: {
         ${Object.keys(contactFields).map(
-          k => k + ': "' + contactFields[k] + '",'
+          k => k + ': "' + contactFields[k] + '"\n'
         )}
     }) {
         id
@@ -608,6 +608,23 @@ export const removeContact = contactId => {
   }`
   try {
     return executeGraphQL(query).then(res => res.data.removeContact)
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+export const updateContact = (contactId, contactFields) => {
+  const query = `mutation {
+    updateContact(id: "${contactId}", fields: {
+        ${Object.keys(contactFields).map(
+          k => k + ': "' + contactFields[k] + '"\n'
+        )}
+    }) {
+        id
+    }
+  }`
+  try {
+    return executeGraphQL(query).then(res => res.data.updateContact)
   } catch (e) {
     console.error(e)
   }

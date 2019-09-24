@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 
-import { fetchCompany, fetchContacts, createContact, removeContact } from 'api'
+import {
+  fetchCompany,
+  fetchContacts,
+  createContact,
+  removeContact,
+  updateContact,
+} from 'api'
 
 import StaticCommentCard from 'components/StaticCommentCard'
 import CreateContactCard from 'components/CompanyContactCard/CreateContactCard'
@@ -94,7 +100,6 @@ class CompanyDetails extends Component {
       })
     }
   }
-  /*
 
   startEditingContact = contactId => {
     if (!this.state.contactsBeingEdited.includes(contactId)) {
@@ -103,7 +108,7 @@ class CompanyDetails extends Component {
       })
     }
   }
-
+  /*
   changeCommentText = (id, newText) => {
     let oldComments = this.state.comments
     oldComments.find(comment => comment.id === id).text = newText
@@ -129,8 +134,6 @@ class CompanyDetails extends Component {
     })
   }
 
-  /*
-
   cancelEditingContact = id => {
     this.setState({
       contactsBeingEdited: this.state.contactsBeingEdited.filter(
@@ -139,6 +142,7 @@ class CompanyDetails extends Component {
     })
   }
 
+  /*
   deleteComment = async id => {
     if (window.confirm('Are you sure you want to delete this comment?')) {
       const deleted = await deleteCommentApi(id)
@@ -166,20 +170,16 @@ class CompanyDetails extends Component {
     }
   }
 
-  /*
-  saveContact = async (id, body) => {
-    const updated = await updateContactApi({ id, body })
+  async saveContact(id, body) {
+    const updated = await updateContact(id, body)
     if (updated) {
       console.log('UPDATED CONTACT')
-      this.cancelEditingContact(id)
       this.getContacts()
     } else {
-      console.error('failed to update contact')
-      this.cancelEditingContact(id)
+      console.error('failed to update contact with id' + id)
     }
+    this.cancelEditingContact(id)
   }
-
-  */
 
   render() {
     return (

@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Button from 'components/Button'
+import styles from './styles.css'
 
 const StaticContactCard = ({
   contactInfo,
@@ -7,34 +9,35 @@ const StaticContactCard = ({
   startEditingContact,
 }) => {
   return (
-    <div className='card card-container'>
-      <div className='p-2 flex flex-col justify-start items-start'>
-        <div className='flex flex-col w-100'>
-          <div className='text-left ml-1'>
+    <div className={styles.card}>
+      <div className={styles.card_content}>
+        <div>
+          <div>
             <b>Namn:</b> {contactInfo.name}
           </div>
-          <div className='text-left ml-1'>
-            <b>Nummer</b> {contactInfo.phone_number}
+          <div>
+            <b>Nummer</b> {contactInfo.phoneNumber}
           </div>
-          <div className='text-left ml-1'>
+          <div>
             <b>Mejl:</b> {contactInfo.email}
           </div>
         </div>
-        <div className='text-left pt-2'>{contactInfo.comment}</div>
+        <div>{contactInfo.comment}</div>
       </div>
-      <div className='card-actions'>
-        <button
-          className='btn-sm md:btn-md  btn-primary'
+      <div className={styles.card_actions}>
+        <Button
+          className={styles.small_button}
           onClick={() => startEditingContact(contactInfo.id)}
         >
           Edit
-        </button>
-        <button
-          className='btn-sm md:btn-md btn-danger'
+        </Button>
+        <Button
+          color='danger'
+          className={styles.small_button}
           onClick={() => deleteContact(contactInfo.id)}
         >
           Delete
-        </button>
+        </Button>
       </div>
     </div>
   )

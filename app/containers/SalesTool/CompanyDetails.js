@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-import { fetchCompany } from 'api'
+import { fetchCompany, fetchContacts } from 'api'
 
 import StaticCommentCard from 'components/StaticCommentCard'
-import CreateContactCard from 'components/CreateContactCard'
-import StaticContactCard from 'components/StaticContactCard'
+import CreateContactCard from 'components/CompanyContactCard/CreateContactCard'
+import StaticContactCard from 'components/CompanyContactCard/StaticContactCard'
 import NewCommentCard from 'components/NewCommentCard'
 import EditCommentCard from 'components/EditCommentCard'
 import Button from 'components/Button'
@@ -41,12 +41,13 @@ class CompanyDetails extends Component {
   async getAllInfo() {
     const info = await fetchCompany(this.props.companyId)
     console.log(info)
-    // const { contacts } = await companyContactsApi(this.props.companyId)
+    const contacts = await fetchContacts(this.props.companyId)
+    console.log(contacts)
     // const { comments } = await companyCommentsApi(this.props.companyId)
     this.setState({
       info,
+      contacts,
     })
-    //   contacts,
     //   comments,
     // })
     document.title = 'STUDS | ' + info.name
@@ -56,12 +57,11 @@ class CompanyDetails extends Component {
     const { comments } = await companyCommentsApi(this.props.companyId)
     this.setState({ comments })
   }
-
-  getContacts = async () => {
-    const { contacts } = await companyContactsApi(this.props.companyId)
+  */
+  async getContacts() {
+    const contacts = await fetchContacts(this.props.companyId)
     this.setState({ contacts })
   }
-  */
 
   updateCompany = (target, value) => {
     console.log('UPDATE', target, value)
@@ -242,17 +242,9 @@ class CompanyDetails extends Component {
                     ? this.state.info.responsibleUser.id
                     : MISSING
                 }
-                onChange={event => {
-                  this.setState(
-                    {
-                      info: {
-                        ...this.state.info,
-                        responsibleUser: event.target.value,
-                      },
-                    },
-                    this.updateCompany
-                  )
-                }}
+                onChange={event =>
+                  this.updateCompany('responsibleUser', event.target.value)
+                }
               >
                 <option value={MISSING}>{'Ingen ansvarig'}</option>
                 {Object.keys(this.props.users).map(key => (
@@ -268,29 +260,30 @@ class CompanyDetails extends Component {
               {this.state.contacts.map(contactInfo =>
                 this.isContactBeingEdited(contactInfo) ? (
                   <CreateContactCard
+                    key={contactInfo.id}
                     contactInfo={contactInfo}
                     saveContact={body => this.saveContact(contactInfo.id, body)}
                     hideCard={() => this.cancelEditingContact(contactInfo.id)}
                   />
                 ) : (
                   <StaticContactCard
+                    key={contactInfo.id}
                     contactInfo={contactInfo}
                     deleteContact={this.deleteContact}
                     startEditingContact={this.startEditingContact}
                   />
                 )
               )}
-              {this.state.showCreateContact && (
+              {this.state.showCreateContact ? (
                 <CreateContactCard
                   saveContact={this.createContact}
                   hideCard={() => this.setState({ showCreateContact: false })}
                 />
-              )}
-              {!this.state.showCreateContact && (
+              ) : (
                 <Button
                   onClick={() => this.setState({ showCreateContact: true })}
                 >
-                  Lägg till kontaktperson
+                  Add
                 </Button>
               )}
             </div>

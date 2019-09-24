@@ -61,9 +61,10 @@
 
 .contact_container {
   height: 100%;
+  flex: 1;
 }
 
 .comments_container {
-  flex: 1;
+  flex: 3;
   margin-left: 2rem;
 }

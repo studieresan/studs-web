@@ -567,3 +567,38 @@ export const createCompany = name => {
     console.error(e)
   }
 }
+
+export const fetchContacts = companyId => {
+  const query = `{
+    contacts(companyId: "${companyId}") {
+        id,
+        name,
+        email,
+        phoneNumber,
+        comment,
+    }
+  }`
+  try {
+    return executeGraphQL(query).then(res => res.data.contacts)
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+export const createContact = (companyId, contactFields) => {
+  const query = `mutation {
+    createContact(companyId: "${companyId}", fields: {
+        ${contactFields.name ? contactFields.name : ''}
+        ${contactFields.email ? contactFields.email : ''}
+        ${contactFields.phoneNumber ? contactFields.phoneNumber : ''}
+        ${contactFields.comment ? contactFields.comment : ''}
+    }) {
+        id
+    }
+  }`
+  try {
+    return executeGraphQL(query).then(res => res.data.createContact.id)
+  } catch (e) {
+    console.error(e)
+  }
+}

@@ -52,7 +52,16 @@ class SalesTool extends Component {
 
   getStudsUsers() {
     try {
-      return fetchStudsUserNames().then(users => this.setState({ users }))
+      return fetchStudsUserNames()
+        .then(studsUsers => {
+          const usersMap = {}
+          studsUsers.forEach(
+            u =>
+              (usersMap[u.id] = u.profile.firstName + ' ' + u.profile.lastName)
+          )
+          return usersMap
+        })
+        .then(users => this.setState({ users }))
     } catch (e) {
       console.error(e)
     }
@@ -60,7 +69,13 @@ class SalesTool extends Component {
 
   getSaleStatuses() {
     try {
-      return fetchSaleStatuses().then(statuses => this.setState({ statuses }))
+      return fetchSaleStatuses()
+        .then(allCompanySalesStatuses => {
+          const statusMap = {}
+          allCompanySalesStatuses.forEach(s => (statusMap[s.id] = s.name))
+          return statusMap
+        })
+        .then(statuses => this.setState({ statuses }))
     } catch (e) {
       console.error(e)
     }

@@ -505,13 +505,7 @@ export const fetchStudsUserNames = () => {
         }
       }
     }`
-  return executeGraphQL(query).then(res => {
-    const usersMap = {}
-    res.data.studsUsers.forEach(
-      u => (usersMap[u.id] = u.profile.firstName + ' ' + u.profile.lastName)
-    )
-    return usersMap
-  })
+  return executeGraphQL(query).then(res => res.data.studsUsers)
 }
 
 export const fetchSaleStatuses = () => {
@@ -521,9 +515,5 @@ export const fetchSaleStatuses = () => {
         name
     }
   }`
-  return executeGraphQL(query).then(res => {
-    const statusMap = {}
-    res.data.allCompanySalesStatuses.forEach(s => (statusMap[s.id] = s.name))
-    return statusMap
-  })
+  return executeGraphQL(query).then(res => res.data.allCompanySalesStatuses)
 }

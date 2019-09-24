@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import {
   fetchCompany,
+  updateCompany,
   fetchContacts,
   createContact,
   removeContact,
@@ -61,6 +62,11 @@ class CompanyDetails extends Component {
     document.title = 'STUDS | ' + info.name
   }
 
+  async getCompanyInfo() {
+    const info = await fetchCompany(this.props.companyId)
+    this.setState({ info })
+  }
+
   async getComments() {
     const comments = await fetchComments(this.props.companyId)
     this.setState({ comments })
@@ -71,9 +77,8 @@ class CompanyDetails extends Component {
     this.setState({ contacts, showCreateContact: false })
   }
 
-  updateCompany = (target, value) => {
-    console.log('UPDATE', target, value)
-  }
+  updateCompany = body =>
+    updateCompany(this.props.companyId, body).then(() => this.getCompanyInfo())
 
   createComment = text =>
     createComment(this.props.companyId, text).then(() => this.getComments())
@@ -187,7 +192,12 @@ class CompanyDetails extends Component {
                   this.state.info.status ? this.state.info.status.id : MISSING
                 }
                 onChange={event =>
-                  this.updateCompany('status', event.target.value)
+                  this.updateCompany({
+                    status:
+                      event.target.value !== MISSING
+                        ? event.target.value
+                        : null,
+                  })
                 }
               >
                 <option value={MISSING}>{'Saknar status'}</option>
@@ -207,7 +217,12 @@ class CompanyDetails extends Component {
                     : MISSING
                 }
                 onChange={event =>
-                  this.updateCompany('responsibleUser', event.target.value)
+                  this.updateCompany({
+                    responsibleUser:
+                      event.target.value !== MISSING
+                        ? event.target.value
+                        : null,
+                  })
                 }
               >
                 <option value={MISSING}>{'Ingen ansvarig'}</option>

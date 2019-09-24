@@ -491,11 +491,9 @@ export const fetchCompanies = () => {
         }
       }
     }`
-  try {
-    return executeGraphQL(query).then(res => res.data.companies)
-  } catch (e) {
-    console.error(e)
-  }
+  return executeGraphQL(query)
+    .then(res => res.data.companies)
+    .catch(err => console.error(err))
 }
 
 export const fetchCompany = companyId => {
@@ -516,11 +514,9 @@ export const fetchCompany = companyId => {
         }
     }
   }`
-  try {
-    return executeGraphQL(query).then(res => res.data.company)
-  } catch (e) {
-    console.error(e)
-  }
+  return executeGraphQL(query)
+    .then(res => res.data.company)
+    .catch(err => console.error(err))
 }
 
 export const fetchStudsUserNames = () => {
@@ -534,11 +530,9 @@ export const fetchStudsUserNames = () => {
         }
       }
     }`
-  try {
-    return executeGraphQL(query).then(res => res.data.studsUsers)
-  } catch (e) {
-    console.error(e)
-  }
+  return executeGraphQL(query)
+    .then(res => res.data.studsUsers)
+    .catch(err => console.error(err))
 }
 
 export const fetchSaleStatuses = () => {
@@ -548,11 +542,9 @@ export const fetchSaleStatuses = () => {
         name
     }
   }`
-  try {
-    return executeGraphQL(query).then(res => res.data.allCompanySalesStatuses)
-  } catch (e) {
-    console.error(e)
-  }
+  return executeGraphQL(query)
+    .then(res => res.data.allCompanySalesStatuses)
+    .catch(err => console.error(err))
 }
 
 export const createCompany = name => {
@@ -561,11 +553,27 @@ export const createCompany = name => {
         id,
     }
   }`
-  try {
-    return executeGraphQL(query).then(res => res.data.createCompany.id)
-  } catch (e) {
-    console.error(e)
-  }
+  return executeGraphQL(query)
+    .then(res => res.data.createCompany.id)
+    .catch(err => console.error(err))
+}
+
+export const updateCompany = (companyId, companyFields) => {
+  const query = `mutation {
+    updateCompany(id: "${companyId}", fields: {
+        ${Object.keys(companyFields).map(
+          k =>
+            k +
+            ': ' +
+            (companyFields[k] ? '"' + companyFields[k] + '"\n' : null + '\n')
+        )}
+    }) {
+        id
+    }
+  }`
+  return executeGraphQL(query)
+    .then(res => res.data.updateCompany.id)
+    .catch(err => console.error(err))
 }
 
 export const fetchContacts = companyId => {
@@ -578,11 +586,9 @@ export const fetchContacts = companyId => {
         comment,
     }
   }`
-  try {
-    return executeGraphQL(query).then(res => res.data.contacts)
-  } catch (e) {
-    console.error(e)
-  }
+  return executeGraphQL(query)
+    .then(res => res.data.contacts)
+    .catch(err => console.error(err))
 }
 
 export const createContact = (companyId, contactFields) => {
@@ -595,22 +601,18 @@ export const createContact = (companyId, contactFields) => {
         id
     }
   }`
-  try {
-    return executeGraphQL(query).then(res => res.data.createContact.id)
-  } catch (e) {
-    console.error(e)
-  }
+  return executeGraphQL(query)
+    .then(res => res.data.createContact.id)
+    .catch(err => console.error(err))
 }
 
 export const removeContact = contactId => {
   const query = `mutation {
     removeContact(id: "${contactId}")
   }`
-  try {
-    return executeGraphQL(query).then(res => res.data.removeContact)
-  } catch (e) {
-    console.error(e)
-  }
+  return executeGraphQL(query)
+    .then(res => res.data.removeContact)
+    .catch(err => console.error(err))
 }
 
 export const updateContact = (contactId, contactFields) => {
@@ -623,11 +625,9 @@ export const updateContact = (contactId, contactFields) => {
         id
     }
   }`
-  try {
-    return executeGraphQL(query).then(res => res.data.updateContact)
-  } catch (e) {
-    console.error(e)
-  }
+  return executeGraphQL(query)
+    .then(res => res.data.updateContact)
+    .catch(err => console.error(err))
 }
 
 export const createComment = (companyId, text) => {
@@ -636,11 +636,9 @@ export const createComment = (companyId, text) => {
         id
     }
   }`
-  try {
-    return executeGraphQL(query).then(res => res.data.createComment.id)
-  } catch (e) {
-    console.error(e)
-  }
+  return executeGraphQL(query)
+    .then(res => res.data.createComment.id)
+    .catch(err => console.error(err))
 }
 
 export const fetchComments = companyId => {
@@ -658,35 +656,30 @@ export const fetchComments = companyId => {
         edited,
     }
   }`
-  try {
-    return executeGraphQL(query)
-      .then(res => res.data.comments)
-      .then(comments =>
-        comments.map(c => ({
-          ...c,
-          user: { id: c.user.id, picture: c.user.profile.picture },
-        }))
+  return executeGraphQL(query)
+    .then(res => res.data.comments)
+    .then(comments =>
+      comments.map(c => ({
+        ...c,
+        user: { id: c.user.id, picture: c.user.profile.picture },
+      }))
+    )
+    .then(comments => {
+      comments.sort((a, b) =>
+        new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1
       )
-      .then(comments => {
-        comments.sort((a, b) =>
-          new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1
-        )
-        return comments
-      })
-  } catch (e) {
-    console.error(e)
-  }
+      return comments
+    })
+    .catch(err => console.error(err))
 }
 
 export const removeComment = commentId => {
   const query = `mutation {
     removeComment(id: "${commentId}")
   }`
-  try {
-    return executeGraphQL(query).then(res => res.data.removeComment)
-  } catch (e) {
-    console.error(e)
-  }
+  return executeGraphQL(query)
+    .then(res => res.data.removeComment)
+    .catch(err => console.error(err))
 }
 
 export const updateComment = (commentId, text) => {
@@ -695,9 +688,7 @@ export const updateComment = (commentId, text) => {
       id
     }
   }`
-  try {
-    return executeGraphQL(query).then(res => res.data.updateComment)
-  } catch (e) {
-    console.error(e)
-  }
+  return executeGraphQL(query)
+    .then(res => res.data.updateComment)
+    .catch(err => console.error(err))
 }

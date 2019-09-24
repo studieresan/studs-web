@@ -20,7 +20,7 @@ import NewCommentCard from 'components/NewCommentCard'
 import EditCommentCard from 'components/EditCommentCard'
 import Button from 'components/Button'
 
-import styles from './styles.css'
+import styles from './CompanyDetailsStyles.css'
 
 // import {
 //   StaticCommentCard,
@@ -33,7 +33,7 @@ import styles from './styles.css'
 
 import PropTypes from 'prop-types'
 
-class SalesToolCompanyDetails extends Component {
+class CompanyDetails extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -372,7 +372,7 @@ class SalesToolCompanyDetails extends Component {
   }
 }
 
-SalesToolCompanyDetails.propTypes = {
+CompanyDetails.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
@@ -383,4 +383,4 @@ SalesToolCompanyDetails.propTypes = {
   update: PropTypes.func.isRequired,
 }
 
-export default SalesToolCompanyDetails
+export default CompanyDetails

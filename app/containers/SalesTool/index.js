@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-//import { companiesApi, addCompanyApi } from '../utils/api'
 import { HeaderSortButton } from 'components/HeaderSortButton'
 import Button from 'components/Button'
-import SalesToolCompanyDetails from '../SalesToolCompanyDetails'
+import CompanyDetails from './CompanyDetails'
 import PropTypes from 'prop-types'
 import {
   fetchCompanies,
@@ -18,7 +17,7 @@ class SalesTool extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      renderCompanyDetails: false,
+      companyDetailsId: null,
       companies: [],
       filteredCompanies: [],
       users: {},
@@ -37,7 +36,7 @@ class SalesTool extends Component {
 
   componentDidMount() {
     if (this.props.match.params.id) {
-      this.setState({ renderCompanyDetails: true })
+      this.setState({ companyDetailsId: this.props.match.params.id })
     }
     Promise.all([
       this.getCompanies(),
@@ -45,6 +44,12 @@ class SalesTool extends Component {
       this.getSaleStatuses(),
     ]).then(this.filterResult)
     document.title = 'STUDS | Alla företag'
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.match.params.id !== this.state.companyDetailsId) {
+      this.setState({ companyDetailsId: newProps.match.params.id })
+    }
   }
 
   getCompanies = () =>
@@ -178,22 +183,22 @@ class SalesTool extends Component {
   }
 
   render() {
-    if (this.state.renderCompanyDetails) {
+    if (this.state.companyDetailsId) {
       return (
-        <SalesToolCompanyDetails
+        <CompanyDetails
+          companyId={this.state.companyDetailsId}
           {...this.props}
           back={() => {
             this.props.history.push({ pathname: '/empty' })
             this.props.history.replace({ pathname: '/companies' })
-            this.setState({ renderCompanyDetails: false })
-            this.getCompanies() //TODO: This should be replaced with something more efficient
+            // this.setState({ renderCompanyDetails: false })
+            // this.getCompanies() //TODO: This should be replaced with something more efficient
           }}
         />
       )
     }
     return (
       <div className={styles.content}>
-        {/* 'bg-white flex-1 w-100 flex flex-col items-center'> */}
         <div className={styles.filter}>
           <div className={styles.filter_input}>
             <label>Företag</label>

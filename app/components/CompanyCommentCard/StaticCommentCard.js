@@ -7,9 +7,12 @@ import MemberImageTime from '../MemberImageTime'
 
 const StaticCommentCard = ({ comment, startEditingComment, deleteComment }) => {
   return (
-    <div className={styles.static_comment_container}>
-      <MemberImageTime picture='cristian' timestamp={comment.timestamp} />
-      <div className={styles.static_comment_card}>
+    <div className={styles.comment_container}>
+      <MemberImageTime
+        picture={comment.user.picture}
+        createdAt={comment.createdAt}
+      />
+      <div className={styles.comment_card}>
         <div className={styles.comment_text}>{comment.text}</div>
         <div className={styles.card_actions}>
           <Button

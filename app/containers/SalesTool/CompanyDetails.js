@@ -6,13 +6,16 @@ import {
   createContact,
   removeContact,
   updateContact,
+  fetchComments,
+  fetchUser,
+  createComment,
 } from 'api'
 
-import StaticCommentCard from 'components/StaticCommentCard'
+import StaticCommentCard from 'components/CompanyCommentCard/StaticCommentCard'
 import CreateContactCard from 'components/CompanyContactCard/CreateContactCard'
 import StaticContactCard from 'components/CompanyContactCard/StaticContactCard'
-import NewCommentCard from 'components/NewCommentCard'
-import EditCommentCard from 'components/EditCommentCard'
+import NewCommentCard from 'components/CompanyCommentCard/NewCommentCard'
+import EditCommentCard from 'components/CompanyCommentCard/EditCommentCard'
 import Button from 'components/Button'
 
 import styles from './CompanyDetailsStyles.css'
@@ -24,15 +27,10 @@ class CompanyDetails extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      currentUser: null,
       info: {},
       contacts: [],
-      comments: [
-        {
-          timestamp: 1568727537000,
-          text: 'This is a very nice comment',
-          id: 1,
-        },
-      ],
+      comments: [],
       commentsBeingEdited: [],
       contactsBeingEdited: [],
       completedUpdating: false,
@@ -45,25 +43,27 @@ class CompanyDetails extends Component {
   }
 
   async getAllInfo() {
+    const currentUser = await fetchUser()
     const info = await fetchCompany(this.props.companyId)
     console.log(info)
     const contacts = await fetchContacts(this.props.companyId)
     console.log(contacts)
-    // const { comments } = await companyCommentsApi(this.props.companyId)
+    const comments = await fetchComments(this.props.companyId)
+    console.log(comments)
     this.setState({
+      currentUser,
       info,
       contacts,
+      comments,
     })
-    //   comments,
-    // })
     document.title = 'STUDS | ' + info.name
   }
-  /*
-  getComments = async () => {
-    const { comments } = await companyCommentsApi(this.props.companyId)
+
+  async getComments() {
+    const comments = await fetchComments(this.props.companyId)
     this.setState({ comments })
   }
-  */
+
   async getContacts() {
     const contacts = await fetchContacts(this.props.companyId)
     this.setState({ contacts, showCreateContact: false })
@@ -73,26 +73,9 @@ class CompanyDetails extends Component {
     console.log('UPDATE', target, value)
   }
 
-  /*
-  createComment = async text => {
-    try {
-      const addedComment = await addCommentApi({
-        id: this.props.companyId,
-        body: {
-          user: 1,
-          text,
-        },
-      })
-      if (addedComment) {
-        console.log('ADDED')
-        this.getComments()
-        this.setState({ newComment: '' })
-      }
-    } catch (err) {
-      console.log(err)
-    }
-  }
-  */
+  createComment = text =>
+    createComment(this.props.companyId, text).then(() => this.getComments())
+
   startEditingComment = commentId => {
     if (!this.state.commentsBeingEdited.includes(commentId)) {
       this.setState({
@@ -269,6 +252,7 @@ class CompanyDetails extends Component {
                 />
               ) : (
                 <Button
+                  className={styles.small_button}
                   onClick={() => this.setState({ showCreateContact: true })}
                 >
                   Add
@@ -276,7 +260,10 @@ class CompanyDetails extends Component {
               )}
             </div>
             <div className={styles.comments_container}>
-              <NewCommentCard createComment={this.createComment} />
+              <NewCommentCard
+                createComment={this.createComment}
+                currentUser={this.state.currentUser}
+              />
               {this.state.comments
                 .sort((a, b) => b.timestamp - a.timestamp)
                 .map(comment =>

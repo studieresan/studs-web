@@ -3,21 +3,24 @@ import PropTypes from 'prop-types'
 import MemberImage from 'components/MemberImage'
 import styles from './styles.css'
 
-import { dateStringFromTimestamp, timeStringFromTimestamp } from '../../utils'
-
-const MemberImageTime = ({ picture, timestamp }) => {
+const MemberImageTime = ({ picture, createdAt }) => {
+  const formattedDate = new Date(createdAt)
+  console.log(formattedDate)
+  const prettyDate =
+    formattedDate.toLocaleDateString() +
+    ' ' +
+    formattedDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
   return (
-    <div className='profile-date-time-container'>
+    <div className={styles.container}>
       <MemberImage picture={picture} size={'90'} square round />
-      <div className='text-sm'>{dateStringFromTimestamp(timestamp)}</div>
-      <div className='text-xs'>{timeStringFromTimestamp(timestamp)}</div>
+      <div className={styles.small_text}>{prettyDate}</div>
     </div>
   )
 }
 
 MemberImageTime.propTypes = {
   picture: PropTypes.string.isRequired,
-  timestamp: PropTypes.number.isRequired,
+  createdAt: PropTypes.string.isRequired,
 }
 
 export default MemberImageTime

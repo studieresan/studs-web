@@ -629,3 +629,57 @@ export const updateContact = (contactId, contactFields) => {
     console.error(e)
   }
 }
+// text:  { type: GraphQLString },
+//     id: { type: GraphQLString },
+//     company: { type: Company },
+//     user: { type: UserType },
+//     createdAt: {type: GraphQLDateTime },
+//     edited: { type: GraphQLBoolean},
+
+export const createComment = (companyId, text) => {
+  const query = `mutation {
+    createComment(companyId: "${companyId}", text: "${text}") {
+        id
+    }
+  }`
+  try {
+    return executeGraphQL(query).then(res => res.data.createComment.id)
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+export const fetchComments = companyId => {
+  const query = `{
+    comments(companyId: "${companyId}") {
+        id,
+        text,
+        user {
+          id,
+          profile {
+              picture
+          }
+        },
+        createdAt,
+        edited,
+    }
+  }`
+  try {
+    return executeGraphQL(query)
+      .then(res => res.data.comments)
+      .then(comments =>
+        comments.map(c => ({
+          ...c,
+          user: { id: c.user.id, picture: c.user.profile.picture },
+        }))
+      )
+      .then(comments => {
+        comments.sort((a, b) =>
+          new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1
+        )
+        return comments
+      })
+  } catch (e) {
+    console.error(e)
+  }
+}

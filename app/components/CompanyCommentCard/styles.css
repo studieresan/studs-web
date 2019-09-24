@@ -1,9 +1,9 @@
-.edit_comment_container {
+.comment_container {
   width: 100%;
   display: flex;
 }
 
-.edit_comment_card {
+.comment_card {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -15,15 +15,28 @@
   border-radius: 0.25rem;
 }
 
-.edit_input {
-  margin: 1rem;
-  width: auto !important;
+.comment_text {
+  padding: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .small_button {
+  padding: 10px 30px;
   font-size: 0.7rem;
 }
 
 .card_actions {
+  display: flex;
   padding: 2%;
+  padding-top: 0;
+  justify-content: center;
+}
+
+.comment_input {
+  margin: 1rem;
+  width: auto !important;
+}
+
+.current_user_picture {
+  margin-right: 20px;
 }

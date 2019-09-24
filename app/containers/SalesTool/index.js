@@ -4,7 +4,12 @@ import { HeaderSortButton } from 'components/HeaderSortButton'
 import Button from 'components/Button'
 import SalesToolCompanyDetails from '../SalesToolCompanyDetails'
 import PropTypes from 'prop-types'
-import { fetchCompanies, fetchStudsUserNames, fetchSaleStatuses } from 'api'
+import {
+  fetchCompanies,
+  fetchStudsUserNames,
+  fetchSaleStatuses,
+  createCompany,
+} from 'api'
 import styles from './styles.css'
 
 const MISSING = 'MISSING'
@@ -65,17 +70,13 @@ class SalesTool extends Component {
       })
       .then(statuses => this.setState({ statuses }))
 
-  // addNewCompany() {
-  //   try {
-  //     return addCompanyApi({ name: this.state.newCompanyName })
-  //     if (wasAdded) {
-  //       this.setState({ showAddNew: false, newCompanyName: '' })
-  //       this.getCompanies()
-  //     }
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
+  addNewCompany = () =>
+    createCompany(this.state.newCompanyName)
+      .then(() => {
+        this.setState({ showAddNew: false, newCompanyName: '' })
+        return this.getCompanies()
+      })
+      .then(this.filterResult)
 
   filterResult = () => {
     this.setState(
@@ -174,10 +175,6 @@ class SalesTool extends Component {
       )
     }
     this.setState({ filteredCompanies: sortedList })
-  }
-
-  getStatusIdByStatusName = name => {
-    return this.state.statuses.find(s => s.status === name).id
   }
 
   render() {

@@ -529,3 +529,16 @@ export const fetchSaleStatuses = () => {
     console.error(e)
   }
 }
+
+export const createCompany = name => {
+  const query = `mutation {
+    createCompany(name: "${name}") {
+        id,
+    }
+  }`
+  try {
+    return executeGraphQL(query).then(res => res.data.createCompany.id)
+  } catch (e) {
+    console.error(e)
+  }
+}

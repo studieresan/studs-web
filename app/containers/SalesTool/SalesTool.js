@@ -17,8 +17,6 @@ class SalesTool extends Component {
       users: {},
       showAddNew: false,
       newCompanyName: '',
-      filterUser: 'Alla',
-      filterStatus: 'Alla',
       sortStatus: {
         property: 'status',
         direction: 'DESC',
@@ -50,23 +48,23 @@ class SalesTool extends Component {
       Object.keys(this.props.companies.data).length !==
         Object.keys(newProps.companies.data).length
     ) {
-      this.setState({
-        showAddNew: false,
-        newCompanyName: '',
-        filterUser: 'Alla',
-        filterStatus: 'Alla',
-        filteredCompanies: Object.keys(newProps.companies.data),
-      })
+      this.setState(
+        {
+          showAddNew: false,
+          newCompanyName: '',
+        },
+        () => {
+          this.props.updateFilter({ text: '', user: 'Alla', status: 'Alla' })
+          this.filterResult(newProps.companies.data, newProps.filter)
+        }
+      )
     }
     if (this.props.filter !== newProps.filter) {
       this.filterResult(newProps.companies.data, newProps.filter)
     }
   }
 
-  filterResult = (
-    companies = this.props.companies.data,
-    filter = this.props.filter
-  ) => {
+  filterResult = (companies, filter) => {
     this.setState(
       {
         filteredCompanies: Object.keys(companies)
@@ -126,7 +124,7 @@ class SalesTool extends Component {
     switch (property) {
       case 'name':
         this.sortByStringProperty(
-          companyId => companies[companyId].name,
+          companyId => companies[companyId].name.toLowerCase(),
           direction
         )
         break

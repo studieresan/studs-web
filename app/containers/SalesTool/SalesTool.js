@@ -212,6 +212,7 @@ class SalesTool extends Component {
           loadComments={this.props.loadComments}
           comments={this.props.comments}
           addComment={this.props.addComment}
+          deleteComment={this.props.deleteComment}
           users={this.state.users}
           statuses={this.state.statuses}
           back={() => {
@@ -405,6 +406,7 @@ SalesTool.propTypes = {
   comments: PropTypes.object.isRequired,
   loadComments: PropTypes.func.isRequired,
   addComment: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
 }
 
 export default SalesTool

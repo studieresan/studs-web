@@ -78,14 +78,9 @@ class CompanyDetails extends Component {
     })
   }
 
-  async deleteComment(id) {
+  deleteComment = id => {
     if (window.confirm('Are you sure you want to delete this comment?')) {
-      const deleted = await removeComment(id)
-      if (deleted) {
-        this.getComments()
-      } else {
-        console.log('could not delete comment with id: ' + id)
-      }
+      this.props.deleteComment(id, this.props.company.id)
     }
   }
 
@@ -222,7 +217,6 @@ class CompanyDetails extends Component {
                 this.props.company.comments &&
                 this.props.company.comments.map(commentId => {
                   const comment = this.props.comments.data[commentId]
-                  console.log(comment)
                   return this.isCommentBeingEdited(comment) ? (
                     <EditCommentCard
                       key={comment.id}
@@ -273,6 +267,7 @@ CompanyDetails.propTypes = {
   loadComments: PropTypes.func.isRequired,
   comments: PropTypes.object.isRequired,
   addComment: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
 }
 
 export default CompanyDetails

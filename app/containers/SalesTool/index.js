@@ -13,7 +13,11 @@ import {
   addContact,
 } from './store/contacts/actions'
 
-import { loadComments, addComment } from './store/comments/actions'
+import {
+  loadComments,
+  addComment,
+  deleteComment,
+} from './store/comments/actions'
 
 const mapStateToProps = rootState => {
   const currentUser = rootState.getIn(['global', 'user']).toJS()
@@ -40,6 +44,8 @@ const mapDispatchToProps = dispatch => {
     loadContacts: companyId => dispatch(loadContacts(companyId)),
     loadComments: companyId => dispatch(loadComments(companyId)),
     addComment: (text, companyId) => dispatch(addComment(text, companyId)),
+    deleteComment: (commentId, companyId) =>
+      dispatch(deleteComment(commentId, companyId)),
   }
 }
 

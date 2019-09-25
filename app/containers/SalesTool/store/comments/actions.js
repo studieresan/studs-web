@@ -12,11 +12,10 @@ import {
 import {
   fetchComments,
   updateContact as updateContactApi,
-  removeContact,
-  createContact,
+  removeComment,
+  createComment,
 } from 'api'
 import { setComments } from '../companies/actions'
-import { createComment } from '../../../../api'
 
 export const getRequest = () => ({
   type: GET_REQUEST,
@@ -77,15 +76,15 @@ export const updateContact = (contactId, body) => dispatch => {
     .catch(() => dispatch(updateError()))
 }
 
-export const deleteContact = (contactId, companyId) => (dispatch, getState) => {
-  const newContacts = getState()
-    .getIn(['salesTool', 'companies', 'data', companyId, 'contacts'])
-    .filter(id => id !== contactId)
+export const deleteComment = (commentId, companyId) => (dispatch, getState) => {
+  const newComments = getState()
+    .getIn(['salesTool', 'companies', 'data', companyId, 'comments'])
+    .filter(id => id !== commentId)
   dispatch(deleteRequest())
-  removeContact(contactId)
+  removeComment(commentId)
     .then(() => {
-      dispatch(setComments(newContacts, companyId))
-      dispatch(deleteSuccess(contactId))
+      dispatch(setComments(newComments, companyId))
+      dispatch(deleteSuccess(commentId))
     })
     .catch(() => dispatch(deleteError()))
 }

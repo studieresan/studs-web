@@ -550,11 +550,18 @@ export const fetchSaleStatuses = () => {
 export const createCompany = name => {
   const query = `mutation {
     createCompany(name: "${name}") {
-        id,
+      id,
+      name,
+      status {
+        id
+      },
+      responsibleUser {
+        id
+      }
     }
   }`
   return executeGraphQL(query)
-    .then(res => res.data.createCompany.id)
+    .then(res => res.data.createCompany)
     .catch(err => console.error(err))
 }
 

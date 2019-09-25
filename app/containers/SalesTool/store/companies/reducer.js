@@ -8,6 +8,8 @@ import {
   GET_ERROR,
   ERROR,
   LOADING,
+  UPDATE_ERROR,
+  UPDATE_SUCCESS,
 } from '../constants'
 
 // reducer
@@ -21,11 +23,6 @@ const reducer = (state = defaultState, action) => {
       return {
         status: LOADING,
       }
-    case UPDATE_REQUEST:
-      return {
-        ...state,
-        status: UPDATING,
-      }
     case GET_SUCCESS:
       return {
         status: SUCCESS,
@@ -35,6 +32,25 @@ const reducer = (state = defaultState, action) => {
       return {
         status: ERROR,
       }
+    case UPDATE_REQUEST:
+      return {
+        ...state,
+        status: UPDATING,
+      }
+    case UPDATE_SUCCESS:
+      return {
+        status: SUCCESS,
+        data: {
+          ...state.data,
+          [action.payload.id]: action.payload,
+        },
+      }
+    case UPDATE_ERROR: {
+      return {
+        ...state,
+        status: ERROR,
+      }
+    }
     default:
       return state
   }

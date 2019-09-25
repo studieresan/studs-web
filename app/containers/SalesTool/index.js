@@ -1,6 +1,6 @@
 import SalesTool from './SalesTool'
 import { connect } from 'react-redux'
-import { loadCompanies } from './store/companies/actions'
+import { loadCompanies, addCompany } from './store/companies/actions'
 
 const mapStateToProps = (rootState, test) => {
   const companies = rootState.get('salesTool').companies
@@ -12,6 +12,7 @@ const mapStateToProps = (rootState, test) => {
 const mapDispatchToProps = dispatch => {
   return {
     loadCompanies: () => dispatch(loadCompanies()),
+    addCompany: name => dispatch(addCompany(name)),
   }
 }
 

@@ -3,14 +3,9 @@ import { HeaderSortButton } from 'components/HeaderSortButton'
 import Button from 'components/Button'
 import CompanyDetails from './CompanyDetails'
 import PropTypes from 'prop-types'
-import {
-  fetchCompanies,
-  fetchStudsUserNames,
-  fetchSaleStatuses,
-  createCompany,
-} from 'api'
+import { fetchStudsUserNames, fetchSaleStatuses } from 'api'
 import styles from './styles.css'
-import { INITIAL, SUCCESS, hasData } from './store/constants'
+import { hasData, isSuccess, isUpdating, isLoading } from './store/constants'
 
 const MISSING = 'MISSING'
 
@@ -20,7 +15,6 @@ class SalesTool extends Component {
     console.log(props)
     this.state = {
       companyDetailsId: null,
-      companies: [],
       filteredCompanies: [],
       users: {},
       statuses: {},
@@ -49,12 +43,27 @@ class SalesTool extends Component {
     if (newProps.match.params.id !== this.state.companyDetailsId) {
       this.setState({ companyDetailsId: newProps.match.params.id })
     }
+    if (isLoading(this.props.companies) && isSuccess(newProps.companies)) {
+      console.log('FIRST LOAD')
+      this.setState({
+        filteredCompanies: Object.keys(newProps.companies.data),
+      })
+    }
     if (
-      !hasData(this.props.companies.status) &&
-      hasData(newProps.companies.status)
+      hasData(this.props.companies) &&
+      hasData(newProps.companies) &&
+      Object.keys(this.props.companies.data).length !==
+        Object.keys(newProps.companies.data).length
     ) {
-      console.log(newProps.companies)
-      this.setState({ filteredCompanies: Object.keys(newProps.companies.data) })
+      console.log('NEW COMP ADDED')
+      this.setState({
+        showAddNew: false,
+        newCompanyName: '',
+        filterText: '',
+        filterUser: 'Alla',
+        filterStatus: 'Alla',
+        filteredCompanies: Object.keys(newProps.companies.data),
+      })
     }
   }
 
@@ -78,41 +87,38 @@ class SalesTool extends Component {
       })
       .then(statuses => this.setState({ statuses }))
 
-  addNewCompany = () =>
-    createCompany(this.state.newCompanyName).then(() => {
-      this.setState({ showAddNew: false, newCompanyName: '' })
-    })
-  //.then(this.filterResult)
+  addNewCompany = () => {
+    this.props.addCompany(this.state.newCompanyName)
+  }
 
-  filterResult = () => {
+  filterResult = (companies = this.props.companies.data) => {
     this.setState(
       {
-        filteredCompanies: Object.keys(this.props.companies)
+        filteredCompanies: Object.keys(companies)
           .filter(companyId =>
-            this.props.companies.data[companyId].name
+            companies[companyId].name
               .toLowerCase()
               .includes(this.state.filterText.toLowerCase())
           )
           .filter(companyId =>
             this.state.filterStatus === 'Alla'
               ? true
-              : (this.props.companies.data[companyId].status &&
-                  this.props.companies.data[companyId].status.id ===
-                    this.state.filterStatus) ||
-                (!this.props.companies.data[companyId].status &&
+              : (companies[companyId].status &&
+                  companies[companyId].status.id === this.state.filterStatus) ||
+                (!companies[companyId].status &&
                   this.state.filterStatus === MISSING)
           )
           .filter(companyId =>
             this.state.filterUser === 'Alla'
               ? true
-              : (this.props.companies.data[companyId].responsibleUser &&
-                  this.props.companies.data[companyId].responsibleUser.id ===
+              : (companies[companyId].responsibleUser &&
+                  companies[companyId].responsibleUser.id ===
                     this.state.filterUser) ||
-                (!this.props.companies.data[companyId].responsibleUser &&
+                (!companies[companyId].responsibleUser &&
                   this.state.filterUser === MISSING)
           ),
       },
-      this.applySortStatus
+      () => this.applySortStatus(companies)
     )
   }
 
@@ -142,31 +148,27 @@ class SalesTool extends Component {
     }
   }
 
-  applySortStatus = () => {
+  applySortStatus = (companies = this.props.companies.data) => {
     const { property, direction } = this.state.sortStatus
     switch (property) {
       case 'name':
         this.sortByStringProperty(
-          companyId => this.props.companies.data[companyId].name,
+          companyId => companies[companyId].name,
           direction
         )
         break
       case 'responsibleUser':
         this.sortByStringProperty(companyId => {
-          return this.props.companies.data[companyId].responsibleUser
-            ? this.state.users[
-                this.props.companies.data[companyId].responsibleUser.id
-              ]
+          return companies[companyId].responsibleUser
+            ? this.state.users[companies[companyId].responsibleUser.id]
             : null
         }, direction)
         break
       case 'status':
         this.sortByStringProperty(
           companyId =>
-            this.props.companies.data[companyId].status
-              ? this.state.statuses[
-                  this.props.companies.data[companyId].status.id
-                ]
+            companies[companyId].status
+              ? this.state.statuses[companies[companyId].status.id]
               : null,
           direction
         )
@@ -373,6 +375,7 @@ SalesTool.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   loadCompanies: PropTypes.func.isRequired,
+  addCompany: PropTypes.func.isRequired,
   companies: PropTypes.object.isRequired,
 }
 

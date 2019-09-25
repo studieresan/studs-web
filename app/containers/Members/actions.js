@@ -31,6 +31,7 @@ export const getUsers = () => dispatch => {
   const normalize = user => ({
     ...user.profile,
     cv: user.cv,
+    realId: user.id,
     id: `${user.profile.firstName}${user.profile.lastName}`.toLowerCase(),
   })
   fetchUsers()

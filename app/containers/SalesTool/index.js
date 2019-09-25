@@ -5,6 +5,7 @@ import {
   addCompany,
   updateCompany,
 } from './store/companies/actions'
+import { loadStatuses } from './store/statuses/actions'
 
 import {
   loadContacts,
@@ -20,21 +21,32 @@ import {
   updateComment,
 } from './store/comments/actions'
 
+import { getUsers } from '../Members/actions'
+
 const mapStateToProps = rootState => {
   const currentUser = rootState.getIn(['global', 'user']).toJS()
   const companies = rootState.getIn(['salesTool', 'companies'])
   const contacts = rootState.getIn(['salesTool', 'contacts'])
   const comments = rootState.getIn(['salesTool', 'comments'])
+  const statuses = rootState.getIn(['salesTool', 'statuses'])
+  const users = rootState.getIn(['members', 'users']).toJS()
+
+  const userMap = {}
+  users.forEach(u => (userMap[u.realId] = u.firstName + ' ' + u.lastName))
   return {
     companies,
     currentUser,
     contacts,
     comments,
+    statuses,
+    users: userMap,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    getUsers: () => dispatch(getUsers()),
+    loadStatuses: () => dispatch(loadStatuses()),
     loadCompanies: () => dispatch(loadCompanies()),
     addCompany: name => dispatch(addCompany(name)),
     updateCompany: (id, body) => dispatch(updateCompany(id, body)),

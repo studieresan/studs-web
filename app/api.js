@@ -180,10 +180,12 @@ export function updateUserPassword({ password, confirmPassword }) {
 export function fetchUsers() {
   const query = `{
     studsUsers: users(memberType: studs_member) {
+      id,
       profile { ${USER_PROFILE_FIELDS} }
       cv { ${CV_FIELDS} }
     }
     companyUsers: users(memberType: company_member) {
+      id,
       profile { ${USER_PROFILE_FIELDS} }
     }
   }

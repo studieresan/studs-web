@@ -16,7 +16,6 @@ class SalesTool extends Component {
       companyDetailsId: null,
       filteredCompanies: [],
       users: {},
-      statuses: {},
       showAddNew: false,
       newCompanyName: '',
       filterText: '',
@@ -34,7 +33,10 @@ class SalesTool extends Component {
       this.setState({ companyDetailsId: this.props.match.params.id })
     }
     this.props.loadCompanies()
-    Promise.all([this.getStudsUsers(), this.getSaleStatuses()])
+    this.props.loadStatuses()
+    this.props.getUsers()
+
+    Promise.all([this.getStudsUsers()])
     document.title = 'STUDS | Alla företag'
   }
 
@@ -76,15 +78,6 @@ class SalesTool extends Component {
         return usersMap
       })
       .then(users => this.setState({ users }))
-
-  getSaleStatuses = () =>
-    fetchSaleStatuses()
-      .then(allCompanySalesStatuses => {
-        const statusMap = {}
-        allCompanySalesStatuses.forEach(s => (statusMap[s.id] = s.name))
-        return statusMap
-      })
-      .then(statuses => this.setState({ statuses }))
 
   addNewCompany = () => {
     this.props.addCompany(this.state.newCompanyName)
@@ -159,7 +152,7 @@ class SalesTool extends Component {
       case 'responsibleUser':
         this.sortByStringProperty(companyId => {
           return companies[companyId].responsibleUser
-            ? this.state.users[companies[companyId].responsibleUser.id]
+            ? this.props.users[companies[companyId].responsibleUser.id]
             : null
         }, direction)
         break
@@ -167,7 +160,7 @@ class SalesTool extends Component {
         this.sortByStringProperty(
           companyId =>
             companies[companyId].status
-              ? this.state.statuses[companies[companyId].status.id]
+              ? this.props.statuses.data[companies[companyId].status.id]
               : null,
           direction
         )
@@ -214,8 +207,8 @@ class SalesTool extends Component {
           addComment={this.props.addComment}
           deleteComment={this.props.deleteComment}
           updateComment={this.props.updateComment}
-          users={this.state.users}
-          statuses={this.state.statuses}
+          users={this.props.users}
+          statuses={this.props.statuses.data}
           back={() => {
             this.props.history.push({ pathname: '/sales-tool/companies' })
           }}
@@ -255,9 +248,9 @@ class SalesTool extends Component {
             >
               <option value={'Alla'}>Alla</option>
               <option value={MISSING}>{'Saknar status'}</option>
-              {Object.keys(this.state.statuses).map(key => (
+              {Object.keys(this.props.statuses.data).map(key => (
                 <option key={key} value={key}>
-                  {this.state.statuses[key]}
+                  {this.props.statuses.data[key]}
                 </option>
               ))}
             </select>
@@ -276,9 +269,9 @@ class SalesTool extends Component {
             >
               <option value={'Alla'}>Alla</option>
               <option value={MISSING}>{'Ingen ansvarig'}</option>
-              {Object.keys(this.state.users).map(key => (
+              {Object.keys(this.props.users).map(key => (
                 <option key={key} value={key}>
-                  {this.state.users[key]}
+                  {this.props.users[key]}
                 </option>
               ))}
             </select>
@@ -339,10 +332,12 @@ class SalesTool extends Component {
 
   renderCompany(id) {
     const { name, status, responsibleUser } = this.props.companies.data[id]
-    const statusName = status ? this.state.statuses[status.id] : 'Saknar status'
+    const statusName = status
+      ? this.props.statuses.data[status.id]
+      : 'Saknar status'
     const responsibleUserName = responsibleUser
-      ? this.state.users[responsibleUser.id]
-      : '-'
+      ? this.props.users[responsibleUser.id]
+      : 'Ingen ansvarig'
     return (
       <tr key={id}>
         <td
@@ -395,6 +390,10 @@ SalesTool.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,
+  loadStatuses: PropTypes.func.isRequired,
+  statuses: PropTypes.object.isRequired,
+  users: PropTypes.object.isRequired,
+  getUsers: PropTypes.func.isRequired,
   companies: PropTypes.object.isRequired,
   loadCompanies: PropTypes.func.isRequired,
   updateCompany: PropTypes.func.isRequired,

@@ -15,21 +15,24 @@ import { LOADING, INITIAL, UPDATING, SUCCESS, ERROR } from '../constants'
 // reducer
 const defaultState = {
   status: INITIAL,
+  data: {},
 }
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case GET_REQUEST:
       return {
+        ...state,
         status: LOADING,
       }
     case GET_SUCCESS:
       return {
         status: SUCCESS,
-        data: action.payload,
+        data: { ...state.data, ...action.payload },
       }
     case GET_ERROR:
       return {
+        ...state,
         status: ERROR,
       }
     case UPDATE_REQUEST:

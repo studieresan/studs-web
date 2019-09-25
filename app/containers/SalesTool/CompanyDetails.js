@@ -9,7 +9,7 @@ import Button from 'components/Button'
 
 import styles from './styles.css'
 import PropTypes from 'prop-types'
-import { hasData } from './store/constants'
+import { isSuccess } from './store/constants'
 
 const MISSING = 'MISSING'
 
@@ -23,7 +23,7 @@ class CompanyDetails extends Component {
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     document.title = 'STUDS | ' + this.props.company.name
     this.props.loadContacts(this.props.company.id)
     this.props.loadComments(this.props.company.id)
@@ -161,7 +161,7 @@ class CompanyDetails extends Component {
           </div>
           <div className={styles.contact_comment_container}>
             <div className={styles.contact_container}>
-              {hasData(this.props.contacts) ? (
+              {isSuccess(this.props.contacts) ? (
                 this.props.company.contacts &&
                 this.props.company.contacts.map(contactId => {
                   const contactInfo = this.props.contacts.data[contactId]
@@ -205,7 +205,7 @@ class CompanyDetails extends Component {
                 createComment={this.createComment}
                 currentUser={this.props.currentUser}
               />
-              {hasData(this.props.comments) ? (
+              {isSuccess(this.props.comments) ? (
                 this.props.company.comments &&
                 this.props.company.comments.map(commentId => {
                   const comment = this.props.comments.data[commentId]

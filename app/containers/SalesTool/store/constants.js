@@ -9,3 +9,6 @@ export const hasData = state =>
 export const isLoading = state => state.status === LOADING
 export const isUpdating = state => state.status === UPDATING
 export const isSuccess = state => state.status === SUCCESS
+
+// actions
+export const UPDATE_FILTER = 'app/SalesTool/Filter/UPDATE'

@@ -3,7 +3,6 @@ import { HeaderSortButton } from 'components/HeaderSortButton'
 import Button from 'components/Button'
 import CompanyDetails from './CompanyDetails'
 import PropTypes from 'prop-types'
-import { fetchStudsUserNames, fetchSaleStatuses } from 'api'
 import styles from './styles.css'
 import { hasData, isSuccess, isLoading, isUpdating } from './store/constants'
 
@@ -18,7 +17,6 @@ class SalesTool extends Component {
       users: {},
       showAddNew: false,
       newCompanyName: '',
-      filterText: '',
       filterUser: 'Alla',
       filterStatus: 'Alla',
       sortStatus: {
@@ -36,7 +34,6 @@ class SalesTool extends Component {
     this.props.loadStatuses()
     this.props.getUsers()
 
-    Promise.all([this.getStudsUsers()])
     document.title = 'STUDS | Alla företag'
   }
 
@@ -45,10 +42,7 @@ class SalesTool extends Component {
       this.setState({ companyDetailsId: newProps.match.params.id })
     }
     if (isLoading(this.props.companies) && isSuccess(newProps.companies)) {
-      console.log('FIRST LOAD')
-      this.setState({
-        filteredCompanies: Object.keys(newProps.companies.data),
-      })
+      this.filterResult(newProps.companies.data, newProps.filter)
     }
     if (
       hasData(this.props.companies) &&
@@ -56,58 +50,45 @@ class SalesTool extends Component {
       Object.keys(this.props.companies.data).length !==
         Object.keys(newProps.companies.data).length
     ) {
-      console.log('NEW COMP ADDED')
       this.setState({
         showAddNew: false,
         newCompanyName: '',
-        filterText: '',
         filterUser: 'Alla',
         filterStatus: 'Alla',
         filteredCompanies: Object.keys(newProps.companies.data),
       })
     }
+    if (this.props.filter !== newProps.filter) {
+      this.filterResult(newProps.companies.data, newProps.filter)
+    }
   }
 
-  getStudsUsers = () =>
-    fetchStudsUserNames()
-      .then(studsUsers => {
-        const usersMap = {}
-        studsUsers.forEach(
-          u => (usersMap[u.id] = u.profile.firstName + ' ' + u.profile.lastName)
-        )
-        return usersMap
-      })
-      .then(users => this.setState({ users }))
-
-  addNewCompany = () => {
-    this.props.addCompany(this.state.newCompanyName)
-  }
-
-  filterResult = (companies = this.props.companies.data) => {
+  filterResult = (
+    companies = this.props.companies.data,
+    filter = this.props.filter
+  ) => {
     this.setState(
       {
         filteredCompanies: Object.keys(companies)
           .filter(companyId =>
             companies[companyId].name
               .toLowerCase()
-              .includes(this.state.filterText.toLowerCase())
+              .includes(filter.text.toLowerCase())
           )
           .filter(companyId =>
-            this.state.filterStatus === 'Alla'
+            filter.status === 'Alla'
               ? true
               : (companies[companyId].status &&
-                  companies[companyId].status.id === this.state.filterStatus) ||
-                (!companies[companyId].status &&
-                  this.state.filterStatus === MISSING)
+                  companies[companyId].status.id === filter.status) ||
+                (!companies[companyId].status && filter.status === MISSING)
           )
           .filter(companyId =>
-            this.state.filterUser === 'Alla'
+            filter.user === 'Alla'
               ? true
               : (companies[companyId].responsibleUser &&
-                  companies[companyId].responsibleUser.id ===
-                    this.state.filterUser) ||
+                  companies[companyId].responsibleUser.id === filter.user) ||
                 (!companies[companyId].responsibleUser &&
-                  this.state.filterUser === MISSING)
+                  filter.user === MISSING)
           ),
       },
       () => this.applySortStatus(companies)
@@ -225,12 +206,9 @@ class SalesTool extends Component {
             <input
               type='text'
               autoFocus
-              value={this.state.filterText}
+              value={this.props.filter.text}
               onChange={event => {
-                this.setState(
-                  { filterText: event.target.value },
-                  this.filterResult
-                )
+                this.props.updateFilter({ text: event.target.value })
               }}
             />
           </div>
@@ -238,12 +216,9 @@ class SalesTool extends Component {
             <label>Status</label>
             <select
               id='status-select'
-              value={this.state.filterStatus}
+              value={this.props.filter.status}
               onChange={event =>
-                this.setState(
-                  { filterStatus: event.target.value },
-                  this.filterResult
-                )
+                this.props.updateFilter({ status: event.target.value })
               }
             >
               <option value={'Alla'}>Alla</option>
@@ -259,12 +234,9 @@ class SalesTool extends Component {
             <label>Ansvarig</label>
             <select
               id='member-select'
-              value={this.state.filterUser}
+              value={this.props.filter.User}
               onChange={event =>
-                this.setState(
-                  { filterUser: event.target.value },
-                  this.filterResult
-                )
+                this.props.updateFilter({ user: event.target.value })
               }
             >
               <option value={'Alla'}>Alla</option>
@@ -379,7 +351,11 @@ class SalesTool extends Component {
           >
             Avbryt
           </Button>
-          <Button onClick={() => this.addNewCompany()}>Lägg till</Button>
+          <Button
+            onClick={() => this.props.addCompany(this.state.newCompanyName)}
+          >
+            Lägg till
+          </Button>
         </div>
       </div>
     )
@@ -390,6 +366,8 @@ SalesTool.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,
+  filter: PropTypes.object.isRequired,
+  updateFilter: PropTypes.func.isRequired,
   loadStatuses: PropTypes.func.isRequired,
   statuses: PropTypes.object.isRequired,
   users: PropTypes.object.isRequired,

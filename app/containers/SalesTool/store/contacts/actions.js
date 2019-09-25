@@ -5,8 +5,15 @@ import {
   UPDATE_REQUEST,
   UPDATE_SUCCESS,
   UPDATE_ERROR,
+  DELETE_REQUEST,
+  DELETE_SUCCESS,
+  DELETE_ERROR,
 } from './constants'
-import { fetchContacts, updateContact as updateContactApi } from 'api'
+import {
+  fetchContacts,
+  updateContact as updateContactApi,
+  removeContact,
+} from 'api'
 import { setContacts } from '../companies/actions'
 
 export const getRequest = () => ({
@@ -20,6 +27,19 @@ export const getSuccess = contacts => ({
 
 export const getError = () => ({
   type: GET_ERROR,
+})
+
+export const deleteRequest = () => ({
+  type: DELETE_REQUEST,
+})
+
+export const deleteSuccess = contactId => ({
+  type: DELETE_SUCCESS,
+  payload: contactId,
+})
+
+export const deleteError = () => ({
+  type: DELETE_ERROR,
 })
 
 export const updateRequest = () => ({
@@ -53,4 +73,17 @@ export const updateContact = (contactId, body) => dispatch => {
   updateContactApi(contactId, body)
     .then(contact => dispatch(updateSuccess(contact)))
     .catch(() => dispatch(updateError()))
+}
+
+export const deleteContact = (contactId, companyId) => (dispatch, getState) => {
+  const newContacts = getState()
+    .getIn(['salesTool', 'companies', 'data', companyId, 'contacts'])
+    .filter(id => id !== contactId)
+  dispatch(deleteRequest)
+  removeContact(contactId)
+    .then(() => {
+      dispatch(setContacts(newContacts, companyId))
+      dispatch(deleteSuccess(contactId))
+    })
+    .catch(() => dispatch(deleteError()))
 }

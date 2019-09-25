@@ -206,6 +206,7 @@ class SalesTool extends Component {
           currentUser={this.props.currentUser}
           updateCompany={this.props.updateCompany}
           updateContact={this.props.updateContact}
+          deleteContact={this.props.deleteContact}
           loadContacts={this.props.loadContacts}
           users={this.state.users}
           statuses={this.state.statuses}
@@ -392,6 +393,7 @@ SalesTool.propTypes = {
   addCompany: PropTypes.func.isRequired,
   updateCompany: PropTypes.func.isRequired,
   updateContact: PropTypes.func.isRequired,
+  deleteContact: PropTypes.func.isRequired,
   companies: PropTypes.object.isRequired,
   contacts: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,

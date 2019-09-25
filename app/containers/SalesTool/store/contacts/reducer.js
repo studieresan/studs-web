@@ -1,10 +1,13 @@
 import {
   GET_REQUEST,
-  UPDATE_REQUEST,
   GET_SUCCESS,
   GET_ERROR,
+  UPDATE_REQUEST,
   UPDATE_ERROR,
   UPDATE_SUCCESS,
+  DELETE_REQUEST,
+  DELETE_ERROR,
+  DELETE_SUCCESS,
 } from './constants'
 
 import { LOADING, INITIAL, UPDATING, SUCCESS, ERROR } from '../constants'
@@ -30,6 +33,7 @@ const reducer = (state = defaultState, action) => {
         status: ERROR,
       }
     case UPDATE_REQUEST:
+    case DELETE_REQUEST:
       return {
         ...state,
         status: UPDATING,
@@ -42,10 +46,18 @@ const reducer = (state = defaultState, action) => {
           [action.payload.id]: action.payload,
         },
       }
-    case UPDATE_ERROR: {
+    case UPDATE_ERROR:
+    case DELETE_ERROR:
       return {
         ...state,
         status: ERROR,
+      }
+    case DELETE_SUCCESS: {
+      const newData = { ...state.data }
+      delete newData[action.payload]
+      return {
+        status: SUCCESS,
+        data: newData,
       }
     }
     default:

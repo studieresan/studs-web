@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 
 import {
   createContact,
-  removeContact,
-  updateContact,
   fetchComments,
   createComment,
   removeComment,
@@ -115,14 +113,9 @@ class CompanyDetails extends Component {
     createContact(this.props.company.id, body).then(() => this.getContacts())
   }
 
-  async deleteContact(id) {
+  deleteContact(id) {
     if (window.confirm('Are you sure you want to delete this contact?')) {
-      const deleted = await removeContact(id)
-      if (deleted) {
-        this.getContacts()
-      } else {
-        console.log('could not delete comment with id: ' + id)
-      }
+      this.props.deleteContact(id, this.props.company.id)
     }
   }
 
@@ -287,6 +280,7 @@ CompanyDetails.propTypes = {
   back: PropTypes.func.isRequired,
   updateCompany: PropTypes.func.isRequired,
   updateContact: PropTypes.func.isRequired,
+  deleteContact: PropTypes.func.isRequired,
   currentUser: PropTypes.object.isRequired,
   loadContacts: PropTypes.func.isRequired,
 }

@@ -6,3 +6,4 @@ export const UPDATE_SUCCESS = 'app/SalesTool/Company/UPDATE_SUCCESS'
 export const UPDATE_ERROR = 'app/SalesTool/Company/UPDATE_ERROR'
 
 export const SET_CONTACTS = 'app/SalesTool/Company/SET_CONTACTS'
+export const SET_COMMENTS = 'app/SalesTool/Company/SET_COMMENTS'

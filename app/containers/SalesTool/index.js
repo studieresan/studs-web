@@ -13,14 +13,18 @@ import {
   addContact,
 } from './store/contacts/actions'
 
+import { loadComments, addComment } from './store/comments/actions'
+
 const mapStateToProps = rootState => {
   const currentUser = rootState.getIn(['global', 'user']).toJS()
   const companies = rootState.getIn(['salesTool', 'companies'])
   const contacts = rootState.getIn(['salesTool', 'contacts'])
+  const comments = rootState.getIn(['salesTool', 'comments'])
   return {
     companies,
     currentUser,
     contacts,
+    comments,
   }
 }
 
@@ -34,6 +38,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(deleteContact(contactId, companyId)),
     addContact: (body, companyId) => dispatch(addContact(body, companyId)),
     loadContacts: companyId => dispatch(loadContacts(companyId)),
+    loadComments: companyId => dispatch(loadComments(companyId)),
+    addComment: (text, companyId) => dispatch(addComment(text, companyId)),
   }
 }
 

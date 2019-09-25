@@ -636,30 +636,22 @@ export const updateContact = (contactId, contactFields) => {
     .catch(err => console.error(err))
 }
 
-export const createComment = (companyId, text) => {
-  const query = `mutation {
-    createComment(companyId: "${companyId}", text: "${text}") {
-        id
+const COMMNET_FIELDS = `
+  id,
+  text,
+  user {
+    id,
+    profile {
+        picture
     }
-  }`
-  return executeGraphQL(query)
-    .then(res => res.data.createComment.id)
-    .catch(err => console.error(err))
-}
+  },
+  createdAt,
+  edited,`
 
 export const fetchComments = companyId => {
   const query = `{
     comments(companyId: "${companyId}") {
-        id,
-        text,
-        user {
-          id,
-          profile {
-              picture
-          }
-        },
-        createdAt,
-        edited,
+        ${COMMNET_FIELDS}
     }
   }`
   return executeGraphQL(query)
@@ -676,6 +668,21 @@ export const fetchComments = companyId => {
       )
       return comments
     })
+    .catch(err => console.error(err))
+}
+
+export const createComment = (companyId, text) => {
+  const query = `mutation {
+    createComment(companyId: "${companyId}", text: "${text}") {
+        ${COMMNET_FIELDS}
+    }
+  }`
+  return executeGraphQL(query)
+    .then(res => res.data.createComment)
+    .then(c => ({
+      ...c,
+      user: { id: c.user.id, picture: c.user.profile.picture },
+    }))
     .catch(err => console.error(err))
 }
 

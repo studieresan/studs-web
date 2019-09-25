@@ -6,6 +6,7 @@ import {
   UPDATE_SUCCESS,
   UPDATE_ERROR,
   SET_CONTACTS,
+  SET_COMMENTS,
 } from './constants'
 import {
   fetchCompanies,
@@ -42,6 +43,11 @@ export const updateError = () => ({
 export const setContacts = (contacts, companyId) => ({
   type: SET_CONTACTS,
   payload: { contacts, id: companyId },
+})
+
+export const setComments = (comments, companyId) => ({
+  type: SET_COMMENTS,
+  payload: { comments, id: companyId },
 })
 
 // thunks

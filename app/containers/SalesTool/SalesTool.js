@@ -202,13 +202,16 @@ class SalesTool extends Component {
       return hasData(this.props.companies) ? (
         <CompanyDetails
           company={this.props.companies.data[this.state.companyDetailsId]}
-          contacts={this.props.contacts}
           currentUser={this.props.currentUser}
           updateCompany={this.props.updateCompany}
+          contacts={this.props.contacts}
+          loadContacts={this.props.loadContacts}
           updateContact={this.props.updateContact}
           deleteContact={this.props.deleteContact}
           addContact={this.props.addContact}
-          loadContacts={this.props.loadContacts}
+          loadComments={this.props.loadComments}
+          comments={this.props.comments}
+          addComment={this.props.addComment}
           users={this.state.users}
           statuses={this.state.statuses}
           back={() => {
@@ -389,16 +392,19 @@ class SalesTool extends Component {
 SalesTool.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  companies: PropTypes.object.isRequired,
   loadCompanies: PropTypes.func.isRequired,
-  loadContacts: PropTypes.func.isRequired,
-  addCompany: PropTypes.func.isRequired,
   updateCompany: PropTypes.func.isRequired,
+  addCompany: PropTypes.func.isRequired,
+  contacts: PropTypes.object.isRequired,
+  loadContacts: PropTypes.func.isRequired,
   updateContact: PropTypes.func.isRequired,
   deleteContact: PropTypes.func.isRequired,
   addContact: PropTypes.func.isRequired,
-  companies: PropTypes.object.isRequired,
-  contacts: PropTypes.object.isRequired,
-  currentUser: PropTypes.object.isRequired,
+  comments: PropTypes.object.isRequired,
+  loadComments: PropTypes.func.isRequired,
+  addComment: PropTypes.func.isRequired,
 }
 
 export default SalesTool

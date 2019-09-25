@@ -1,12 +1,6 @@
 import React, { Component } from 'react'
 
-import {
-  createContact,
-  fetchComments,
-  createComment,
-  removeComment,
-  updateComment,
-} from 'api'
+import { removeComment, updateComment } from 'api'
 
 import StaticCommentCard from 'components/CompanyCommentCard/StaticCommentCard'
 import CreateContactCard from 'components/CompanyContactCard/CreateContactCard'
@@ -25,7 +19,6 @@ class CompanyDetails extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      contacts: [],
       comments: [],
       commentsBeingEdited: [],
       contactsBeingEdited: [],
@@ -34,27 +27,14 @@ class CompanyDetails extends Component {
   }
 
   componentDidMount = () => {
-    this.getAllInfo()
-    this.props.loadContacts(this.props.company.id)
-  }
-
-  async getAllInfo() {
-    const comments = await fetchComments(this.props.company.id)
-    this.setState({
-      comments,
-    })
     document.title = 'STUDS | ' + this.props.company.name
-  }
-
-  async getComments() {
-    const comments = await fetchComments(this.props.company.id)
-    this.setState({ comments })
+    this.props.loadContacts(this.props.company.id)
+    this.props.loadComments(this.props.company.id)
   }
 
   updateCompany = body => this.props.updateCompany(this.props.company.id, body)
 
-  createComment = text =>
-    createComment(this.props.company.id, text).then(() => this.getComments())
+  createComment = text => this.props.addComment(text, this.props.company.id)
 
   startEditingComment = commentId => {
     if (!this.state.commentsBeingEdited.includes(commentId)) {
@@ -238,10 +218,12 @@ class CompanyDetails extends Component {
                 createComment={this.createComment}
                 currentUser={this.props.currentUser}
               />
-              {this.state.comments
-                .sort((a, b) => b.timestamp - a.timestamp)
-                .map(comment =>
-                  this.isCommentBeingEdited(comment) ? (
+              {hasData(this.props.comments) ? (
+                this.props.company.comments &&
+                this.props.company.comments.map(commentId => {
+                  const comment = this.props.comments.data[commentId]
+                  console.log(comment)
+                  return this.isCommentBeingEdited(comment) ? (
                     <EditCommentCard
                       key={comment.id}
                       comment={comment}
@@ -256,7 +238,10 @@ class CompanyDetails extends Component {
                       deleteComment={() => this.deleteComment(comment.id)}
                     />
                   )
-                )}
+                })
+              ) : (
+                <div>Laddar...</div>
+              )}
             </div>
           </div>
         </div>
@@ -275,16 +260,19 @@ class CompanyDetails extends Component {
 
 CompanyDetails.propTypes = {
   company: PropTypes.object.isRequired,
-  contacts: PropTypes.object.isRequired,
+  currentUser: PropTypes.object.isRequired,
   users: PropTypes.object.isRequired,
   statuses: PropTypes.object.isRequired,
   back: PropTypes.func.isRequired,
   updateCompany: PropTypes.func.isRequired,
+  contacts: PropTypes.object.isRequired,
+  loadContacts: PropTypes.func.isRequired,
+  addContact: PropTypes.func.isRequired,
   updateContact: PropTypes.func.isRequired,
   deleteContact: PropTypes.func.isRequired,
-  addContact: PropTypes.func.isRequired,
-  currentUser: PropTypes.object.isRequired,
-  loadContacts: PropTypes.func.isRequired,
+  loadComments: PropTypes.func.isRequired,
+  comments: PropTypes.object.isRequired,
+  addComment: PropTypes.func.isRequired,
 }
 
 export default CompanyDetails

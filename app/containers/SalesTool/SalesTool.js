@@ -10,6 +10,7 @@ import {
   createCompany,
 } from 'api'
 import styles from './styles.css'
+import { INITIAL, SUCCESS, hasData } from './store/constants'
 
 const MISSING = 'MISSING'
 
@@ -36,15 +37,11 @@ class SalesTool extends Component {
   }
 
   componentDidMount() {
-    this.props.loadCompanies()
     if (this.props.match.params.id) {
       this.setState({ companyDetailsId: this.props.match.params.id })
     }
-    Promise.all([
-      this.getCompanies(),
-      this.getStudsUsers(),
-      this.getSaleStatuses(),
-    ]).then(this.filterResult)
+    this.props.loadCompanies()
+    Promise.all([this.getStudsUsers(), this.getSaleStatuses()])
     document.title = 'STUDS | Alla företag'
   }
 
@@ -52,13 +49,14 @@ class SalesTool extends Component {
     if (newProps.match.params.id !== this.state.companyDetailsId) {
       this.setState({ companyDetailsId: newProps.match.params.id })
     }
-    if (!newProps.match.params.id) {
-      this.getCompanies().then(this.filterResult)
+    if (
+      !hasData(this.props.companies.status) &&
+      hasData(newProps.companies.status)
+    ) {
+      console.log(newProps.companies)
+      this.setState({ filteredCompanies: Object.keys(newProps.companies.data) })
     }
   }
-
-  getCompanies = () =>
-    fetchCompanies().then(companies => this.setState({ companies }))
 
   getStudsUsers = () =>
     fetchStudsUserNames()
@@ -81,35 +79,37 @@ class SalesTool extends Component {
       .then(statuses => this.setState({ statuses }))
 
   addNewCompany = () =>
-    createCompany(this.state.newCompanyName)
-      .then(() => {
-        this.setState({ showAddNew: false, newCompanyName: '' })
-        return this.getCompanies()
-      })
-      .then(this.filterResult)
+    createCompany(this.state.newCompanyName).then(() => {
+      this.setState({ showAddNew: false, newCompanyName: '' })
+    })
+  //.then(this.filterResult)
 
   filterResult = () => {
     this.setState(
       {
-        filteredCompanies: this.state.companies
-          .filter(company =>
-            company.name
+        filteredCompanies: Object.keys(this.props.companies)
+          .filter(companyId =>
+            this.props.companies.data[companyId].name
               .toLowerCase()
               .includes(this.state.filterText.toLowerCase())
           )
-          .filter(company =>
+          .filter(companyId =>
             this.state.filterStatus === 'Alla'
               ? true
-              : (company.status &&
-                  company.status.id === this.state.filterStatus) ||
-                (!company.status && this.state.filterStatus === MISSING)
+              : (this.props.companies.data[companyId].status &&
+                  this.props.companies.data[companyId].status.id ===
+                    this.state.filterStatus) ||
+                (!this.props.companies.data[companyId].status &&
+                  this.state.filterStatus === MISSING)
           )
-          .filter(company =>
+          .filter(companyId =>
             this.state.filterUser === 'Alla'
               ? true
-              : (company.responsibleUser &&
-                  company.responsibleUser.id === this.state.filterUser) ||
-                (!company.responsibleUser && this.state.filterUser === MISSING)
+              : (this.props.companies.data[companyId].responsibleUser &&
+                  this.props.companies.data[companyId].responsibleUser.id ===
+                    this.state.filterUser) ||
+                (!this.props.companies.data[companyId].responsibleUser &&
+                  this.state.filterUser === MISSING)
           ),
       },
       this.applySortStatus
@@ -146,19 +146,28 @@ class SalesTool extends Component {
     const { property, direction } = this.state.sortStatus
     switch (property) {
       case 'name':
-        this.sortByStringProperty(company => company.name, direction)
+        this.sortByStringProperty(
+          companyId => this.props.companies.data[companyId].name,
+          direction
+        )
         break
       case 'responsibleUser':
-        this.sortByStringProperty(company => {
-          return company.responsibleUser
-            ? this.state.users[company.responsibleUser.id]
+        this.sortByStringProperty(companyId => {
+          return this.props.companies.data[companyId].responsibleUser
+            ? this.state.users[
+                this.props.companies.data[companyId].responsibleUser.id
+              ]
             : null
         }, direction)
         break
       case 'status':
         this.sortByStringProperty(
-          company =>
-            company.status ? this.state.statuses[company.status.id] : null,
+          companyId =>
+            this.props.companies.data[companyId].status
+              ? this.state.statuses[
+                  this.props.companies.data[companyId].status.id
+                ]
+              : null,
           direction
         )
         break
@@ -288,8 +297,8 @@ class SalesTool extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.filteredCompanies.map(company =>
-                this.renderCompany(company)
+              {this.state.filteredCompanies.map(companyId =>
+                this.renderCompany(companyId)
               )}
             </tbody>
           </table>
@@ -306,7 +315,8 @@ class SalesTool extends Component {
     )
   }
 
-  renderCompany({ id, name, status, responsibleUser }) {
+  renderCompany(id) {
+    const { name, status, responsibleUser } = this.props.companies.data[id]
     const statusName = status ? this.state.statuses[status.id] : 'Saknar status'
     const responsibleUserName = responsibleUser
       ? this.state.users[responsibleUser.id]
@@ -363,6 +373,7 @@ SalesTool.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   loadCompanies: PropTypes.func.isRequired,
+  companies: PropTypes.object.isRequired,
 }
 
 export default SalesTool

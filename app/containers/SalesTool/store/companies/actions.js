@@ -6,7 +6,11 @@ import {
   UPDATE_SUCCESS,
   UPDATE_ERROR,
 } from '../constants'
-import { fetchCompanies, createCompany } from 'api'
+import {
+  fetchCompanies,
+  createCompany,
+  updateCompany as updateCompanyApi,
+} from 'api'
 // actions
 export const getRequest = () => ({
   type: GET_REQUEST,
@@ -49,6 +53,13 @@ export const loadCompanies = () => dispatch => {
 export const addCompany = name => dispatch => {
   dispatch(updateRequest())
   createCompany(name)
+    .then(company => dispatch(updateSuccess(company)))
+    .catch(() => dispatch(updateError()))
+}
+
+export const updateCompany = (companyId, body) => dispatch => {
+  dispatch(updateRequest())
+  updateCompanyApi(companyId, body)
     .then(company => dispatch(updateSuccess(company)))
     .catch(() => dispatch(updateError()))
 }

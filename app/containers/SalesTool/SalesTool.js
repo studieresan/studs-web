@@ -5,7 +5,7 @@ import CompanyDetails from './CompanyDetails'
 import PropTypes from 'prop-types'
 import { fetchStudsUserNames, fetchSaleStatuses } from 'api'
 import styles from './styles.css'
-import { hasData, isSuccess, isUpdating, isLoading } from './store/constants'
+import { hasData, isSuccess, isLoading } from './store/constants'
 
 const MISSING = 'MISSING'
 
@@ -199,10 +199,14 @@ class SalesTool extends Component {
   }
 
   render() {
-    if (this.state.companyDetailsId) {
+    if (isLoading(this.props.companies)) {
+      return <div>Loading</div>
+    }
+    if (this.state.companyDetailsId && hasData(this.props.companies)) {
       return (
         <CompanyDetails
-          companyId={this.state.companyDetailsId}
+          company={this.props.companies.data[this.state.companyDetailsId]}
+          updateCompany={this.props.updateCompany}
           users={this.state.users}
           statuses={this.state.statuses}
           back={() => {
@@ -376,6 +380,7 @@ SalesTool.propTypes = {
   history: PropTypes.object.isRequired,
   loadCompanies: PropTypes.func.isRequired,
   addCompany: PropTypes.func.isRequired,
+  updateCompany: PropTypes.func.isRequired,
   companies: PropTypes.object.isRequired,
 }
 

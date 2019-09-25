@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 
 import {
-  fetchCompany,
-  updateCompany,
   fetchContacts,
   createContact,
   removeContact,
@@ -31,7 +29,6 @@ class CompanyDetails extends Component {
     super(props)
     this.state = {
       currentUser: null,
-      info: {},
       contacts: [],
       comments: [],
       commentsBeingEdited: [],
@@ -47,38 +44,30 @@ class CompanyDetails extends Component {
 
   async getAllInfo() {
     const currentUser = await fetchUser()
-    const info = await fetchCompany(this.props.companyId)
-    const contacts = await fetchContacts(this.props.companyId)
-    const comments = await fetchComments(this.props.companyId)
+    const contacts = await fetchContacts(this.props.company.id)
+    const comments = await fetchComments(this.props.company.id)
     this.setState({
       currentUser,
-      info,
       contacts,
       comments,
     })
-    document.title = 'STUDS | ' + info.name
-  }
-
-  async getCompanyInfo() {
-    const info = await fetchCompany(this.props.companyId)
-    this.setState({ info })
+    document.title = 'STUDS | ' + this.props.company.name
   }
 
   async getComments() {
-    const comments = await fetchComments(this.props.companyId)
+    const comments = await fetchComments(this.props.company.id)
     this.setState({ comments })
   }
 
   async getContacts() {
-    const contacts = await fetchContacts(this.props.companyId)
+    const contacts = await fetchContacts(this.props.company.id)
     this.setState({ contacts, showCreateContact: false })
   }
 
-  updateCompany = body =>
-    updateCompany(this.props.companyId, body).then(() => this.getCompanyInfo())
+  updateCompany = body => this.props.updateCompany(this.props.company.id, body)
 
   createComment = text =>
-    createComment(this.props.companyId, text).then(() => this.getComments())
+    createComment(this.props.company.id, text).then(() => this.getComments())
 
   startEditingComment = commentId => {
     if (!this.state.commentsBeingEdited.includes(commentId)) {
@@ -134,7 +123,7 @@ class CompanyDetails extends Component {
   }
 
   createContact = body => {
-    createContact(this.props.companyId, body).then(() => this.getContacts())
+    createContact(this.props.company.id, body).then(() => this.getContacts())
   }
 
   async deleteContact(id) {
@@ -171,7 +160,7 @@ class CompanyDetails extends Component {
           >
             <i className='fa fa-arrow-left' />
           </div>
-          <div>{this.state.info.name}</div>
+          <div>{this.props.company.name}</div>
         </div>
         <div className={styles.body}>
           <div className={styles.company_details}>
@@ -186,7 +175,9 @@ class CompanyDetails extends Component {
               <label>Status</label>
               <select
                 value={
-                  this.state.info.status ? this.state.info.status.id : MISSING
+                  this.props.company.status
+                    ? this.props.company.status.id
+                    : MISSING
                 }
                 onChange={event =>
                   this.updateCompany({
@@ -209,8 +200,8 @@ class CompanyDetails extends Component {
               <label>Ansvarig</label>
               <select
                 value={
-                  this.state.info.responsibleUser
-                    ? this.state.info.responsibleUser.id
+                  this.props.company.responsibleUser
+                    ? this.props.company.responsibleUser.id
                     : MISSING
                 }
                 onChange={event =>
@@ -305,10 +296,11 @@ class CompanyDetails extends Component {
 }
 
 CompanyDetails.propTypes = {
-  companyId: PropTypes.string.isRequired,
+  company: PropTypes.object.isRequired,
   users: PropTypes.object.isRequired,
   statuses: PropTypes.object.isRequired,
   back: PropTypes.func.isRequired,
+  updateCompany: PropTypes.func.isRequired,
 }
 
 export default CompanyDetails

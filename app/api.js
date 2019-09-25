@@ -478,17 +478,20 @@ export function fetchPeopleMissingFeedback(eventId) {
   return executeGraphQL(query).then(res => res.data)
 }
 
+const COMPANY_FIELDS = `
+  id,
+  name,
+  status {
+    id
+  },
+  responsibleUser {
+    id
+  }`
+
 export const fetchCompanies = () => {
   const query = `{
       companies {
-        id,
-        name,
-        status {
-          id
-        },
-        responsibleUser {
-          id
-        }
+        ${COMPANY_FIELDS}
       }
     }`
   return executeGraphQL(query)
@@ -550,14 +553,7 @@ export const fetchSaleStatuses = () => {
 export const createCompany = name => {
   const query = `mutation {
     createCompany(name: "${name}") {
-      id,
-      name,
-      status {
-        id
-      },
-      responsibleUser {
-        id
-      }
+      ${COMPANY_FIELDS}
     }
   }`
   return executeGraphQL(query)
@@ -575,11 +571,11 @@ export const updateCompany = (companyId, companyFields) => {
             (companyFields[k] ? '"' + companyFields[k] + '"\n' : null + '\n')
         )}
     }) {
-        id
+        ${COMPANY_FIELDS}
     }
   }`
   return executeGraphQL(query)
-    .then(res => res.data.updateCompany.id)
+    .then(res => res.data.updateCompany)
     .catch(err => console.error(err))
 }
 

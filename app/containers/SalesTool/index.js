@@ -10,6 +10,7 @@ import {
   loadContacts,
   updateContact,
   deleteContact,
+  addContact,
 } from './store/contacts/actions'
 
 const mapStateToProps = rootState => {
@@ -31,6 +32,7 @@ const mapDispatchToProps = dispatch => {
     updateContact: (id, body) => dispatch(updateContact(id, body)),
     deleteContact: (contactId, companyId) =>
       dispatch(deleteContact(contactId, companyId)),
+    addContact: (body, companyId) => dispatch(addContact(body, companyId)),
     loadContacts: companyId => dispatch(loadContacts(companyId)),
   }
 }

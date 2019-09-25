@@ -604,11 +604,11 @@ export const createContact = (companyId, contactFields) => {
           k => k + ': "' + contactFields[k] + '"\n'
         )}
     }) {
-        id
+        ${CONTACT_FIELDS}
     }
   }`
   return executeGraphQL(query)
-    .then(res => res.data.createContact.id)
+    .then(res => res.data.createContact)
     .catch(err => console.error(err))
 }
 

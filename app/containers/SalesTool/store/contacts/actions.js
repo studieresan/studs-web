@@ -13,6 +13,7 @@ import {
   fetchContacts,
   updateContact as updateContactApi,
   removeContact,
+  createContact,
 } from 'api'
 import { setContacts } from '../companies/actions'
 
@@ -79,11 +80,29 @@ export const deleteContact = (contactId, companyId) => (dispatch, getState) => {
   const newContacts = getState()
     .getIn(['salesTool', 'companies', 'data', companyId, 'contacts'])
     .filter(id => id !== contactId)
-  dispatch(deleteRequest)
+  dispatch(deleteRequest())
   removeContact(contactId)
     .then(() => {
       dispatch(setContacts(newContacts, companyId))
       dispatch(deleteSuccess(contactId))
     })
     .catch(() => dispatch(deleteError()))
+}
+
+export const addContact = (body, companyId) => (dispatch, getState) => {
+  const oldContacts =
+    getState().getIn([
+      'salesTool',
+      'companies',
+      'data',
+      companyId,
+      'contacts',
+    ]) || []
+  dispatch(updateRequest())
+  createContact(companyId, body)
+    .then(contact => {
+      dispatch(updateSuccess(contact))
+      dispatch(setContacts(oldContacts.concat(contact.id), companyId))
+    })
+    .catch(() => dispatch(updateError()))
 }

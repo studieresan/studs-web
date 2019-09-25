@@ -59,7 +59,7 @@ const CreateContactCard = ({ contactInfo, saveContact, hideCard }) => {
 }
 
 CreateContactCard.propTypes = {
-  contactInfo: PropTypes.object.isRequired,
+  contactInfo: PropTypes.object,
   saveContact: PropTypes.func.isRequired,
   hideCard: PropTypes.func.isRequired,
 }

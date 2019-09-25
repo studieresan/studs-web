@@ -110,7 +110,8 @@ class CompanyDetails extends Component {
   }
 
   createContact = body => {
-    createContact(this.props.company.id, body).then(() => this.getContacts())
+    this.props.addContact(body, this.props.company.id)
+    this.setState({ showCreateContact: false })
   }
 
   deleteContact(id) {
@@ -281,6 +282,7 @@ CompanyDetails.propTypes = {
   updateCompany: PropTypes.func.isRequired,
   updateContact: PropTypes.func.isRequired,
   deleteContact: PropTypes.func.isRequired,
+  addContact: PropTypes.func.isRequired,
   currentUser: PropTypes.object.isRequired,
   loadContacts: PropTypes.func.isRequired,
 }

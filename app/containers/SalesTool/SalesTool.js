@@ -12,7 +12,6 @@ const MISSING = 'MISSING'
 class SalesTool extends Component {
   constructor(props) {
     super(props)
-    console.log(props)
     this.state = {
       companyDetailsId: null,
       filteredCompanies: [],
@@ -206,6 +205,7 @@ class SalesTool extends Component {
           contacts={this.props.contacts}
           currentUser={this.props.currentUser}
           updateCompany={this.props.updateCompany}
+          updateContact={this.props.updateContact}
           loadContacts={this.props.loadContacts}
           users={this.state.users}
           statuses={this.state.statuses}
@@ -391,6 +391,7 @@ SalesTool.propTypes = {
   loadContacts: PropTypes.func.isRequired,
   addCompany: PropTypes.func.isRequired,
   updateCompany: PropTypes.func.isRequired,
+  updateContact: PropTypes.func.isRequired,
   companies: PropTypes.object.isRequired,
   contacts: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,

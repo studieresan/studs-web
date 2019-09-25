@@ -6,7 +6,7 @@ import {
   UPDATE_SUCCESS,
   UPDATE_ERROR,
 } from './constants'
-import { fetchContacts } from 'api'
+import { fetchContacts, updateContact as updateContactApi } from 'api'
 import { setContacts } from '../companies/actions'
 
 export const getRequest = () => ({
@@ -46,4 +46,11 @@ export const loadContacts = companyId => dispatch => {
       dispatch(getSuccess(contactsStateMap))
     })
     .catch(() => dispatch(getError()))
+}
+
+export const updateContact = (contactId, body) => dispatch => {
+  dispatch(updateRequest())
+  updateContactApi(contactId, body)
+    .then(contact => dispatch(updateSuccess(contact)))
+    .catch(() => dispatch(updateError()))
 }

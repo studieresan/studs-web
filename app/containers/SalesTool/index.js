@@ -6,7 +6,7 @@ import {
   updateCompany,
 } from './store/companies/actions'
 
-import { loadContacts } from './store/contacts/actions'
+import { loadContacts, updateContact } from './store/contacts/actions'
 
 const mapStateToProps = rootState => {
   const currentUser = rootState.getIn(['global', 'user']).toJS()
@@ -24,6 +24,7 @@ const mapDispatchToProps = dispatch => {
     loadCompanies: () => dispatch(loadCompanies()),
     addCompany: name => dispatch(addCompany(name)),
     updateCompany: (id, body) => dispatch(updateCompany(id, body)),
+    updateContact: (id, body) => dispatch(updateContact(id, body)),
     loadContacts: companyId => dispatch(loadContacts(companyId)),
   }
 }

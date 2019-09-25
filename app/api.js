@@ -628,7 +628,7 @@ export const updateContact = (contactId, contactFields) => {
           k => k + ': "' + contactFields[k] + '"\n'
         )}
     }) {
-        id
+        ${CONTACT_FIELDS}
     }
   }`
   return executeGraphQL(query)

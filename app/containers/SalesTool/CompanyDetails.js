@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import {
-  fetchContacts,
   createContact,
   removeContact,
   updateContact,
@@ -18,7 +17,7 @@ import NewCommentCard from 'components/CompanyCommentCard/NewCommentCard'
 import EditCommentCard from 'components/CompanyCommentCard/EditCommentCard'
 import Button from 'components/Button'
 
-import styles from './CompanyDetailsStyles.css'
+import styles from './styles.css'
 import PropTypes from 'prop-types'
 import { hasData } from './store/constants'
 
@@ -127,14 +126,8 @@ class CompanyDetails extends Component {
     }
   }
 
-  async saveContact(id, body) {
-    const updated = await updateContact(id, body)
-    if (updated) {
-      console.log('UPDATED CONTACT')
-      this.getContacts()
-    } else {
-      console.error('failed to update contact with id' + id)
-    }
+  saveContact = (id, body) => {
+    this.props.updateContact(id, body)
     this.cancelEditingContact(id)
   }
 
@@ -152,7 +145,7 @@ class CompanyDetails extends Component {
           </div>
           <div>{this.props.company.name + ' '}</div>
         </div>
-        <div className={styles.body}>
+        <div className={styles.company_details_body}>
           <div className={styles.company_details}>
             <div className={styles.select_input}>
               <label>Status</label>
@@ -293,6 +286,7 @@ CompanyDetails.propTypes = {
   statuses: PropTypes.object.isRequired,
   back: PropTypes.func.isRequired,
   updateCompany: PropTypes.func.isRequired,
+  updateContact: PropTypes.func.isRequired,
   currentUser: PropTypes.object.isRequired,
   loadContacts: PropTypes.func.isRequired,
 }

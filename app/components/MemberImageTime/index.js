@@ -5,7 +5,6 @@ import styles from './styles.css'
 
 const MemberImageTime = ({ picture, createdAt }) => {
   const formattedDate = new Date(createdAt)
-  console.log(formattedDate)
   const prettyDate =
     formattedDate.toLocaleDateString() +
     ' ' +

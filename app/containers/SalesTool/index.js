@@ -7,9 +7,11 @@ import {
 } from './store/companies/actions'
 
 const mapStateToProps = rootState => {
+  const currentUser = rootState.getIn(['global', 'user']).toJS()
   const companies = rootState.getIn(['salesTool', 'companies'])
   return {
     companies,
+    currentUser,
   }
 }
 

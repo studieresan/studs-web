@@ -7,6 +7,7 @@ import styles from './styles.css'
 
 const NewCommentCard = ({ currentUser, createComment }) => {
   const [text, setText] = useState('')
+  console.log(currentUser)
   return (
     <div className={styles.comment_container}>
       <div className={styles.current_user_picture}>

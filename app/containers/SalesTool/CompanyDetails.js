@@ -28,12 +28,10 @@ class CompanyDetails extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentUser: null,
       contacts: [],
       comments: [],
       commentsBeingEdited: [],
       contactsBeingEdited: [],
-      completedUpdating: false,
       showCreateContact: false,
     }
   }
@@ -43,11 +41,9 @@ class CompanyDetails extends Component {
   }
 
   async getAllInfo() {
-    const currentUser = await fetchUser()
     const contacts = await fetchContacts(this.props.company.id)
     const comments = await fetchComments(this.props.company.id)
     this.setState({
-      currentUser,
       contacts,
       comments,
     })
@@ -164,13 +160,6 @@ class CompanyDetails extends Component {
         </div>
         <div className={styles.body}>
           <div className={styles.company_details}>
-            {/* <div className='flex justify-center items-end mr-4'>
-              {this.state.completedUpdating && (
-                <span className='text-2xl text-green-500'>
-                  <i className='fas fa-check' />{' '}
-                </span>
-              )}
-            </div> */}
             <div className={styles.select_input}>
               <label>Status</label>
               <select
@@ -258,7 +247,7 @@ class CompanyDetails extends Component {
             <div className={styles.comments_container}>
               <NewCommentCard
                 createComment={this.createComment}
-                currentUser={this.state.currentUser}
+                currentUser={this.props.currentUser}
               />
               {this.state.comments
                 .sort((a, b) => b.timestamp - a.timestamp)
@@ -301,6 +290,7 @@ CompanyDetails.propTypes = {
   statuses: PropTypes.object.isRequired,
   back: PropTypes.func.isRequired,
   updateCompany: PropTypes.func.isRequired,
+  currentUser: PropTypes.object.isRequired,
 }
 
 export default CompanyDetails

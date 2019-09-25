@@ -11,9 +11,11 @@ import { loadContacts } from './store/contacts/actions'
 const mapStateToProps = rootState => {
   const currentUser = rootState.getIn(['global', 'user']).toJS()
   const companies = rootState.getIn(['salesTool', 'companies'])
+  const contacts = rootState.getIn(['salesTool', 'contacts'])
   return {
     companies,
     currentUser,
+    contacts,
   }
 }
 

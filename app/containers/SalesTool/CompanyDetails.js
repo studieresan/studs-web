@@ -20,6 +20,7 @@ import Button from 'components/Button'
 
 import styles from './CompanyDetailsStyles.css'
 import PropTypes from 'prop-types'
+import { hasData } from './store/constants'
 
 const MISSING = 'MISSING'
 
@@ -41,10 +42,8 @@ class CompanyDetails extends Component {
   }
 
   async getAllInfo() {
-    const contacts = await fetchContacts(this.props.company.id)
     const comments = await fetchComments(this.props.company.id)
     this.setState({
-      contacts,
       comments,
     })
     document.title = 'STUDS | ' + this.props.company.name
@@ -53,11 +52,6 @@ class CompanyDetails extends Component {
   async getComments() {
     const comments = await fetchComments(this.props.company.id)
     this.setState({ comments })
-  }
-
-  async getContacts() {
-    const contacts = await fetchContacts(this.props.company.id)
-    this.setState({ contacts, showCreateContact: false })
   }
 
   updateCompany = body => this.props.updateCompany(this.props.company.id, body)
@@ -213,22 +207,30 @@ class CompanyDetails extends Component {
           </div>
           <div className={styles.contact_comment_container}>
             <div className={styles.contact_container}>
-              {this.state.contacts.map(contactInfo =>
-                this.isContactBeingEdited(contactInfo) ? (
-                  <CreateContactCard
-                    key={contactInfo.id}
-                    contactInfo={contactInfo}
-                    saveContact={body => this.saveContact(contactInfo.id, body)}
-                    hideCard={() => this.cancelEditingContact(contactInfo.id)}
-                  />
-                ) : (
-                  <StaticContactCard
-                    key={contactInfo.id}
-                    contactInfo={contactInfo}
-                    deleteContact={() => this.deleteContact(contactInfo.id)}
-                    startEditingContact={this.startEditingContact}
-                  />
-                )
+              {hasData(this.props.contacts) ? (
+                this.props.company.contacts &&
+                this.props.company.contacts.map(contactId => {
+                  const contactInfo = this.props.contacts.data[contactId]
+                  return this.isContactBeingEdited(contactInfo) ? (
+                    <CreateContactCard
+                      key={contactInfo.id}
+                      contactInfo={contactInfo}
+                      saveContact={body =>
+                        this.saveContact(contactInfo.id, body)
+                      }
+                      hideCard={() => this.cancelEditingContact(contactInfo.id)}
+                    />
+                  ) : (
+                    <StaticContactCard
+                      key={contactInfo.id}
+                      contactInfo={contactInfo}
+                      deleteContact={() => this.deleteContact(contactInfo.id)}
+                      startEditingContact={this.startEditingContact}
+                    />
+                  )
+                })
+              ) : (
+                <div>Laddar...</div>
               )}
               {this.state.showCreateContact ? (
                 <CreateContactCard
@@ -286,6 +288,7 @@ class CompanyDetails extends Component {
 
 CompanyDetails.propTypes = {
   company: PropTypes.object.isRequired,
+  contacts: PropTypes.object.isRequired,
   users: PropTypes.object.isRequired,
   statuses: PropTypes.object.isRequired,
   back: PropTypes.func.isRequired,

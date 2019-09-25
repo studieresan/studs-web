@@ -203,6 +203,7 @@ class SalesTool extends Component {
       return hasData(this.props.companies) ? (
         <CompanyDetails
           company={this.props.companies.data[this.state.companyDetailsId]}
+          contacts={this.props.contacts}
           currentUser={this.props.currentUser}
           updateCompany={this.props.updateCompany}
           loadContacts={this.props.loadContacts}
@@ -391,6 +392,7 @@ SalesTool.propTypes = {
   addCompany: PropTypes.func.isRequired,
   updateCompany: PropTypes.func.isRequired,
   companies: PropTypes.object.isRequired,
+  contacts: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,
 }
 

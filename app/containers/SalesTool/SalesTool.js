@@ -5,7 +5,7 @@ import CompanyDetails from './CompanyDetails'
 import PropTypes from 'prop-types'
 import { fetchStudsUserNames, fetchSaleStatuses } from 'api'
 import styles from './styles.css'
-import { hasData, isSuccess, isLoading } from './store/constants'
+import { hasData, isSuccess, isLoading, isUpdating } from './store/constants'
 
 const MISSING = 'MISSING'
 
@@ -199,21 +199,21 @@ class SalesTool extends Component {
   }
 
   render() {
-    if (isLoading(this.props.companies)) {
-      return <div>Loading</div>
-    }
-    if (this.state.companyDetailsId && hasData(this.props.companies)) {
-      return (
+    if (this.state.companyDetailsId) {
+      return hasData(this.props.companies) ? (
         <CompanyDetails
           company={this.props.companies.data[this.state.companyDetailsId]}
           currentUser={this.props.currentUser}
           updateCompany={this.props.updateCompany}
+          loadContacts={this.props.loadContacts}
           users={this.state.users}
           statuses={this.state.statuses}
           back={() => {
             this.props.history.push({ pathname: '/sales-tool/companies' })
           }}
         />
+      ) : (
+        <div className={styles.content}>Laddar</div>
       )
     }
     return (
@@ -277,7 +277,14 @@ class SalesTool extends Component {
           </div>
         </div>
         <div className={styles.number_of_companies}>
-          Visar <b>{this.state.filteredCompanies.length}</b> företag
+          {isLoading(this.props.companies) ||
+          isUpdating(this.props.companies) ? (
+            <div>Laddar...</div>
+          ) : (
+            <div>
+              Visar <b>{this.state.filteredCompanies.length}</b> företag{' '}
+            </div>
+          )}
         </div>
         <div className={styles.body}>
           <table className={styles.table}>
@@ -380,6 +387,7 @@ SalesTool.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   loadCompanies: PropTypes.func.isRequired,
+  loadContacts: PropTypes.func.isRequired,
   addCompany: PropTypes.func.isRequired,
   updateCompany: PropTypes.func.isRequired,
   companies: PropTypes.object.isRequired,

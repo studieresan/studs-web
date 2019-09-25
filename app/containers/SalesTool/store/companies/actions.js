@@ -5,13 +5,14 @@ import {
   UPDATE_REQUEST,
   UPDATE_SUCCESS,
   UPDATE_ERROR,
-} from '../constants'
+  SET_CONTACTS,
+} from './constants'
 import {
   fetchCompanies,
   createCompany,
   updateCompany as updateCompanyApi,
 } from 'api'
-// actions
+
 export const getRequest = () => ({
   type: GET_REQUEST,
 })
@@ -36,6 +37,11 @@ export const updateSuccess = company => ({
 
 export const updateError = () => ({
   type: UPDATE_ERROR,
+})
+
+export const setContacts = (contacts, companyId) => ({
+  type: SET_CONTACTS,
+  payload: { contacts, id: companyId },
 })
 
 // thunks

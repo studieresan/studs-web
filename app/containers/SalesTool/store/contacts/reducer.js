@@ -5,7 +5,6 @@ import {
   GET_ERROR,
   UPDATE_ERROR,
   UPDATE_SUCCESS,
-  SET_CONTACTS,
 } from './constants'
 
 import { LOADING, INITIAL, UPDATING, SUCCESS, ERROR } from '../constants'
@@ -47,18 +46,6 @@ const reducer = (state = defaultState, action) => {
       return {
         ...state,
         status: ERROR,
-      }
-    }
-    case SET_CONTACTS: {
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          [action.payload.id]: {
-            ...state.data[action.payload.id],
-            contacts: action.payload.contacts,
-          },
-        },
       }
     }
     default:

@@ -6,7 +6,6 @@ import {
   removeContact,
   updateContact,
   fetchComments,
-  fetchUser,
   createComment,
   removeComment,
   updateComment,
@@ -38,6 +37,7 @@ class CompanyDetails extends Component {
 
   componentDidMount = () => {
     this.getAllInfo()
+    this.props.loadContacts(this.props.company.id)
   }
 
   async getAllInfo() {
@@ -156,7 +156,7 @@ class CompanyDetails extends Component {
           >
             <i className='fa fa-arrow-left' />
           </div>
-          <div>{this.props.company.name}</div>
+          <div>{this.props.company.name + ' '}</div>
         </div>
         <div className={styles.body}>
           <div className={styles.company_details}>
@@ -291,6 +291,7 @@ CompanyDetails.propTypes = {
   back: PropTypes.func.isRequired,
   updateCompany: PropTypes.func.isRequired,
   currentUser: PropTypes.object.isRequired,
+  loadContacts: PropTypes.func.isRequired,
 }
 
 export default CompanyDetails

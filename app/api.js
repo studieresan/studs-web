@@ -579,14 +579,17 @@ export const updateCompany = (companyId, companyFields) => {
     .catch(err => console.error(err))
 }
 
+const CONTACT_FIELDS = `
+  id,
+  name,
+  email,
+  phoneNumber,
+  comment,`
+
 export const fetchContacts = companyId => {
   const query = `{
     contacts(companyId: "${companyId}") {
-        id,
-        name,
-        email,
-        phoneNumber,
-        comment,
+        ${CONTACT_FIELDS}
     }
   }`
   return executeGraphQL(query)

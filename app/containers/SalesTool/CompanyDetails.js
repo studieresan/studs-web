@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-import { removeComment, updateComment } from 'api'
-
 import StaticCommentCard from 'components/CompanyCommentCard/StaticCommentCard'
 import CreateContactCard from 'components/CompanyContactCard/CreateContactCard'
 import StaticContactCard from 'components/CompanyContactCard/StaticContactCard'
@@ -19,7 +17,6 @@ class CompanyDetails extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      comments: [],
       commentsBeingEdited: [],
       contactsBeingEdited: [],
       showCreateContact: false,
@@ -52,13 +49,8 @@ class CompanyDetails extends Component {
     }
   }
 
-  async saveComment(id, text) {
-    const updated = await updateComment(id, text)
-    if (updated) {
-      this.getComments()
-    } else {
-      console.log('could not update')
-    }
+  saveComment = (id, text) => {
+    this.props.updateComment(id, text)
     this.cancelEditingComment(id)
   }
 
@@ -268,6 +260,7 @@ CompanyDetails.propTypes = {
   comments: PropTypes.object.isRequired,
   addComment: PropTypes.func.isRequired,
   deleteComment: PropTypes.func.isRequired,
+  updateComment: PropTypes.func.isRequired,
 }
 
 export default CompanyDetails

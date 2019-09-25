@@ -636,7 +636,7 @@ export const updateContact = (contactId, contactFields) => {
     .catch(err => console.error(err))
 }
 
-const COMMNET_FIELDS = `
+const COMMENT_FIELDS = `
   id,
   text,
   user {
@@ -651,7 +651,7 @@ const COMMNET_FIELDS = `
 export const fetchComments = companyId => {
   const query = `{
     comments(companyId: "${companyId}") {
-        ${COMMNET_FIELDS}
+        ${COMMENT_FIELDS}
     }
   }`
   return executeGraphQL(query)
@@ -674,7 +674,7 @@ export const fetchComments = companyId => {
 export const createComment = (companyId, text) => {
   const query = `mutation {
     createComment(companyId: "${companyId}", text: "${text}") {
-        ${COMMNET_FIELDS}
+        ${COMMENT_FIELDS}
     }
   }`
   return executeGraphQL(query)
@@ -698,10 +698,17 @@ export const removeComment = commentId => {
 export const updateComment = (commentId, text) => {
   const query = `mutation {
     updateComment(id: "${commentId}", text: "${text}") {
-      id
+      ${COMMENT_FIELDS}
     }
   }`
   return executeGraphQL(query)
     .then(res => res.data.updateComment)
+    .then(c => {
+      console.log(c)
+      return {
+        ...c,
+        user: { id: c.user.id, picture: c.user.profile.picture },
+      }
+    })
     .catch(err => console.error(err))
 }

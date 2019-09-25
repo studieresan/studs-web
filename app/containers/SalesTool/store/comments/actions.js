@@ -11,7 +11,7 @@ import {
 } from './constants'
 import {
   fetchComments,
-  updateContact as updateContactApi,
+  updateComment as updateCommentApi,
   removeComment,
   createComment,
 } from 'api'
@@ -69,10 +69,10 @@ export const loadComments = companyId => dispatch => {
     .catch(() => dispatch(getError()))
 }
 
-export const updateContact = (contactId, body) => dispatch => {
+export const updateComment = (commentId, text) => dispatch => {
   dispatch(updateRequest())
-  updateContactApi(contactId, body)
-    .then(contact => dispatch(updateSuccess(contact)))
+  updateCommentApi(commentId, text)
+    .then(comment => dispatch(updateSuccess(comment)))
     .catch(() => dispatch(updateError()))
 }
 

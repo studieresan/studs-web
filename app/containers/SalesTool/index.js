@@ -17,6 +17,7 @@ import {
   loadComments,
   addComment,
   deleteComment,
+  updateComment,
 } from './store/comments/actions'
 
 const mapStateToProps = rootState => {
@@ -46,6 +47,7 @@ const mapDispatchToProps = dispatch => {
     addComment: (text, companyId) => dispatch(addComment(text, companyId)),
     deleteComment: (commentId, companyId) =>
       dispatch(deleteComment(commentId, companyId)),
+    updateComment: (id, text) => dispatch(updateComment(id, text)),
   }
 }
 

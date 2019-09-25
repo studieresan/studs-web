@@ -41,7 +41,10 @@ const reducer = (state = defaultState, action) => {
         status: SUCCESS,
         data: {
           ...state.data,
-          [action.payload.id]: action.payload,
+          [action.payload.id]: {
+            ...state.data[action.payload.id],
+            ...action.payload,
+          },
         },
       }
     case UPDATE_ERROR: {

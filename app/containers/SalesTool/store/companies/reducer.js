@@ -2,11 +2,10 @@ import {
   GET_REQUEST,
   UPDATE_REQUEST,
   GET_SUCCESS,
-  GET_ERROR,
-  UPDATE_ERROR,
   UPDATE_SUCCESS,
   SET_CONTACTS,
   SET_COMMENTS,
+  ERROR_ACTION,
 } from './constants'
 
 import { LOADING, INITIAL, UPDATING, SUCCESS, ERROR } from '../constants'
@@ -29,10 +28,11 @@ const reducer = (state = defaultState, action) => {
         status: SUCCESS,
         data: { ...state.data, ...action.payload },
       }
-    case GET_ERROR:
+    case ERROR_ACTION:
       return {
         ...state,
         status: ERROR,
+        error: action.payload,
       }
     case UPDATE_REQUEST:
       return {
@@ -50,12 +50,6 @@ const reducer = (state = defaultState, action) => {
           },
         },
       }
-    case UPDATE_ERROR: {
-      return {
-        ...state,
-        status: ERROR,
-      }
-    }
     case SET_CONTACTS: {
       return {
         ...state,

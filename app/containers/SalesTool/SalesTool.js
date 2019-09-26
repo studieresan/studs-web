@@ -4,7 +4,13 @@ import Button from 'components/Button'
 import CompanyDetails from './CompanyDetails'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import { hasData, isSuccess, isLoading, isUpdating } from './store/constants'
+import {
+  hasData,
+  isSuccess,
+  isLoading,
+  isUpdating,
+  isError,
+} from './store/constants'
 
 const MISSING = 'MISSING'
 
@@ -39,6 +45,7 @@ class SalesTool extends Component {
   }
 
   componentWillReceiveProps(newProps) {
+    this.checkForErrors(this.props, newProps)
     if (isLoading(this.props.companies) && isSuccess(newProps.companies)) {
       // initial load, sort by status
       this.filterResult(newProps.companies.data, newProps.filter)
@@ -65,6 +72,17 @@ class SalesTool extends Component {
       // update filters
       this.filterResult(newProps.companies.data, newProps.filter)
     }
+  }
+
+  checkForErrors = (props, newProps) => {
+    const reduxVariables = ['companies', 'statuses']
+    reduxVariables.forEach(v => {
+      if (!isError(props[v]) && isError(newProps[v])) {
+        alert(
+          'There was an error when ' + newProps[v].error + '\nPlease try again'
+        )
+      }
+    })
   }
 
   filterResult = (companies, filter) => {

@@ -1,13 +1,11 @@
 import {
   GET_REQUEST,
   GET_SUCCESS,
-  GET_ERROR,
   UPDATE_REQUEST,
   UPDATE_SUCCESS,
-  UPDATE_ERROR,
   DELETE_REQUEST,
   DELETE_SUCCESS,
-  DELETE_ERROR,
+  ERROR_ACTION,
 } from './constants'
 import {
   fetchComments,
@@ -26,8 +24,9 @@ export const getSuccess = comments => ({
   payload: comments,
 })
 
-export const getError = () => ({
-  type: GET_ERROR,
+export const error = err => ({
+  type: ERROR_ACTION,
+  payload: err,
 })
 
 export const deleteRequest = () => ({
@@ -39,10 +38,6 @@ export const deleteSuccess = commentId => ({
   payload: commentId,
 })
 
-export const deleteError = () => ({
-  type: DELETE_ERROR,
-})
-
 export const updateRequest = () => ({
   type: UPDATE_REQUEST,
 })
@@ -50,10 +45,6 @@ export const updateRequest = () => ({
 export const updateSuccess = comment => ({
   type: UPDATE_SUCCESS,
   payload: comment,
-})
-
-export const updateError = () => ({
-  type: UPDATE_ERROR,
 })
 
 // thunks
@@ -66,14 +57,14 @@ export const loadComments = companyId => dispatch => {
       dispatch(setComments(Object.keys(commentsStateMap), companyId))
       dispatch(getSuccess(commentsStateMap))
     })
-    .catch(() => dispatch(getError()))
+    .catch(() => dispatch(error('loading comments')))
 }
 
 export const updateComment = (commentId, text) => dispatch => {
   dispatch(updateRequest())
   updateCommentApi(commentId, text)
     .then(comment => dispatch(updateSuccess(comment)))
-    .catch(() => dispatch(updateError()))
+    .catch(() => dispatch(error('updating comment')))
 }
 
 export const deleteComment = (commentId, companyId) => (dispatch, getState) => {
@@ -86,7 +77,7 @@ export const deleteComment = (commentId, companyId) => (dispatch, getState) => {
       dispatch(setComments(newComments, companyId))
       dispatch(deleteSuccess(commentId))
     })
-    .catch(() => dispatch(deleteError()))
+    .catch(() => dispatch(error('deleting comment')))
 }
 
 export const addComment = (text, companyId) => (dispatch, getState) => {
@@ -104,5 +95,5 @@ export const addComment = (text, companyId) => (dispatch, getState) => {
       dispatch(updateSuccess(comment))
       dispatch(setComments([comment.id].concat(oldComments), companyId))
     })
-    .catch(() => dispatch(updateError()))
+    .catch(() => dispatch(error('adding comment')))
 }

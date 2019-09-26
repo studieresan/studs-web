@@ -9,7 +9,7 @@ import Button from 'components/Button'
 
 import styles from './styles.css'
 import PropTypes from 'prop-types'
-import { isSuccess, hasData, isInitial } from './store/constants'
+import { isError, isSuccess, hasData, isInitial } from './store/constants'
 
 const MISSING = 'MISSING'
 
@@ -38,6 +38,7 @@ class CompanyDetails extends Component {
   }
 
   componentWillReceiveProps(newProps) {
+    this.checkForErrors(this.props, newProps)
     if (isSuccess(newProps.companies)) {
       const company = newProps.companies.data[newProps.match.params.id]
       document.title = 'STUDS | ' + company.name
@@ -55,6 +56,17 @@ class CompanyDetails extends Component {
         newProps.loadComments(newProps.match.params.id)
       }
     }
+  }
+
+  checkForErrors = (props, newProps) => {
+    const reduxVariables = ['companies', 'statuses', 'contacts', 'comments']
+    reduxVariables.forEach(v => {
+      if (!isError(props[v]) && isError(newProps[v])) {
+        alert(
+          'There was an error when ' + newProps[v].error + '\nPlease try again'
+        )
+      }
+    })
   }
 
   updateCompany = body =>

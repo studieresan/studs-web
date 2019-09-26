@@ -1,6 +1,6 @@
-import { GET_REQUEST, GET_SUCCESS, GET_ERROR } from './constants'
+import { GET_REQUEST, GET_SUCCESS, ERROR_ACTION } from './constants'
 
-import { LOADING, INITIAL, UPDATING, SUCCESS, ERROR } from '../constants'
+import { LOADING, INITIAL, SUCCESS, ERROR } from '../constants'
 
 // reducer
 const defaultState = {
@@ -20,10 +20,11 @@ const reducer = (state = defaultState, action) => {
         status: SUCCESS,
         data: action.payload,
       }
-    case GET_ERROR:
+    case ERROR_ACTION:
       return {
         ...state,
         status: ERROR,
+        error: action.payload,
       }
     default:
       return state

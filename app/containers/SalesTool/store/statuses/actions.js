@@ -1,4 +1,4 @@
-import { GET_REQUEST, GET_SUCCESS, GET_ERROR } from './constants'
+import { GET_REQUEST, GET_SUCCESS, ERROR_ACTION } from './constants'
 import { fetchSaleStatuses } from 'api'
 
 export const getRequest = () => ({
@@ -10,8 +10,9 @@ export const getSuccess = contacts => ({
   payload: contacts,
 })
 
-export const getError = () => ({
-  type: GET_ERROR,
+export const error = err => ({
+  type: ERROR_ACTION,
+  payload: err,
 })
 
 // thunks
@@ -23,5 +24,5 @@ export const loadStatuses = () => dispatch => {
       statuses.forEach(c => (statusesStateMap[c.id] = c.name))
       dispatch(getSuccess(statusesStateMap))
     })
-    .catch(() => dispatch(getError()))
+    .catch(() => dispatch(error('loading statuses')))
 }

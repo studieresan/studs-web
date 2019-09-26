@@ -1,13 +1,11 @@
 import {
   GET_REQUEST,
   GET_SUCCESS,
-  GET_ERROR,
   UPDATE_REQUEST,
   UPDATE_SUCCESS,
-  UPDATE_ERROR,
   DELETE_REQUEST,
   DELETE_SUCCESS,
-  DELETE_ERROR,
+  ERROR_ACTION,
 } from './constants'
 import {
   fetchContacts,
@@ -26,8 +24,9 @@ export const getSuccess = contacts => ({
   payload: contacts,
 })
 
-export const getError = () => ({
-  type: GET_ERROR,
+export const error = err => ({
+  type: ERROR_ACTION,
+  payload: err,
 })
 
 export const deleteRequest = () => ({
@@ -39,10 +38,6 @@ export const deleteSuccess = contactId => ({
   payload: contactId,
 })
 
-export const deleteError = () => ({
-  type: DELETE_ERROR,
-})
-
 export const updateRequest = () => ({
   type: UPDATE_REQUEST,
 })
@@ -50,10 +45,6 @@ export const updateRequest = () => ({
 export const updateSuccess = contact => ({
   type: UPDATE_SUCCESS,
   payload: contact,
-})
-
-export const updateError = () => ({
-  type: UPDATE_ERROR,
 })
 
 // thunks
@@ -66,9 +57,8 @@ export const loadContacts = companyId => dispatch => {
       dispatch(setContacts(Object.keys(contactsStateMap), companyId))
       dispatch(getSuccess(contactsStateMap))
     })
-    .catch(err => {
-      console.error(err)
-      dispatch(getError())
+    .catch(() => {
+      dispatch(error('loading contacts'))
     })
 }
 
@@ -76,7 +66,9 @@ export const updateContact = (contactId, body) => dispatch => {
   dispatch(updateRequest())
   updateContactApi(contactId, body)
     .then(contact => dispatch(updateSuccess(contact)))
-    .catch(() => dispatch(updateError()))
+    .catch(() => {
+      dispatch(error('updating contacts'))
+    })
 }
 
 export const deleteContact = (contactId, companyId) => (dispatch, getState) => {
@@ -89,7 +81,9 @@ export const deleteContact = (contactId, companyId) => (dispatch, getState) => {
       dispatch(setContacts(newContacts, companyId))
       dispatch(deleteSuccess(contactId))
     })
-    .catch(() => dispatch(deleteError()))
+    .catch(() => {
+      dispatch(error('deleting contacts'))
+    })
 }
 
 export const addContact = (body, companyId) => (dispatch, getState) => {
@@ -107,5 +101,7 @@ export const addContact = (body, companyId) => (dispatch, getState) => {
       dispatch(updateSuccess(contact))
       dispatch(setContacts(oldContacts.concat(contact.id), companyId))
     })
-    .catch(() => dispatch(updateError()))
+    .catch(() => {
+      dispatch(error('adding contacts'))
+    })
 }

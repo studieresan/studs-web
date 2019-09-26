@@ -1,10 +1,9 @@
 import {
   GET_REQUEST,
   GET_SUCCESS,
-  GET_ERROR,
+  ERROR_ACTION,
   UPDATE_REQUEST,
   UPDATE_SUCCESS,
-  UPDATE_ERROR,
   SET_CONTACTS,
   SET_COMMENTS,
 } from './constants'
@@ -24,9 +23,12 @@ export const getSuccess = companies => ({
   payload: companies,
 })
 
-export const getError = () => ({
-  type: GET_ERROR,
-})
+export const error = err => {
+  return {
+    type: ERROR_ACTION,
+    payload: err,
+  }
+}
 
 export const updateRequest = () => ({
   type: UPDATE_REQUEST,
@@ -35,10 +37,6 @@ export const updateRequest = () => ({
 export const updateSuccess = company => ({
   type: UPDATE_SUCCESS,
   payload: company,
-})
-
-export const updateError = () => ({
-  type: UPDATE_ERROR,
 })
 
 export const setContacts = (contacts, companyId) => ({
@@ -60,21 +58,27 @@ export const loadCompanies = () => dispatch => {
       companies.forEach(c => (companyStateMap[c.id] = c))
       dispatch(getSuccess(companyStateMap))
     })
-    .catch(() => dispatch(getError()))
+    .catch(() => {
+      dispatch(error('loading companies'))
+    })
 }
 
 export const addCompany = name => dispatch => {
   dispatch(updateRequest())
   createCompany(name)
     .then(company => dispatch(updateSuccess(company)))
-    .catch(() => dispatch(updateError()))
+    .catch(() => {
+      dispatch(error('adding company'))
+    })
 }
 
 export const updateCompany = (companyId, body) => dispatch => {
   dispatch(updateRequest())
   updateCompanyApi(companyId, body)
     .then(company => dispatch(updateSuccess(company)))
-    .catch(() => dispatch(updateError()))
+    .catch(() => {
+      dispatch(error('updating company'))
+    })
 }
 
 export const loadCompany = id => dispatch => {
@@ -83,5 +87,7 @@ export const loadCompany = id => dispatch => {
     .then(company => {
       dispatch(getSuccess({ [company.id]: company }))
     })
-    .catch(() => dispatch(getError()))
+    .catch(() => {
+      dispatch(error('loading company'))
+    })
 }

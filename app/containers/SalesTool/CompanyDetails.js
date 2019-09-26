@@ -30,13 +30,23 @@ class CompanyDetails extends Component {
     ) {
       this.props.loadCompany(this.props.match.params.id)
     }
-    this.props.loadContacts(this.props.match.params.id)
-    this.props.loadComments(this.props.match.params.id)
+
+    if (hasData(this.props.companies)) {
+      if (!this.props.companies.data[this.props.match.params.id].contacts) {
+        this.props.loadContacts(this.props.match.params.id)
+      }
+      if (!this.props.companies.data[this.props.match.params.id].comments) {
+        this.props.loadComments(this.props.match.params.id)
+      }
+    } else {
+      this.props.loadContacts(this.props.match.params.id)
+      this.props.loadComments(this.props.match.params.id)
+    }
 
     if (!hasData(this.props.statuses)) {
       this.props.loadStatuses()
     }
-    if (Object.keys(this.props.users).length === 0) {
+    if (!Object.keys(this.props.users).length) {
       this.props.getUsers()
     }
   }
@@ -114,13 +124,13 @@ class CompanyDetails extends Component {
   }
 
   render() {
+    let company = null
     if (
-      !hasData(this.props.companies) ||
-      !this.props.companies.data[this.props.match.params.id]
+      hasData(this.props.companies) &&
+      this.props.companies.data[this.props.match.params.id]
     ) {
-      return <div>Laddar...</div>
+      company = this.props.companies.data[this.props.match.params.id]
     }
-    const company = this.props.companies.data[this.props.match.params.id]
     return (
       <div className={styles.content}>
         <div className={styles.header}>
@@ -132,14 +142,14 @@ class CompanyDetails extends Component {
           >
             <i className='fa fa-arrow-left' />
           </div>
-          <div>{company.name + ' '}</div>
+          <div>{company ? company.name : 'Laddar...'}</div>
         </div>
         <div className={styles.company_details_body}>
           <div className={styles.company_details}>
             <div className={styles.select_input}>
               <label>Status</label>
               <select
-                value={company.status ? company.status.id : MISSING}
+                value={company && company.status ? company.status.id : MISSING}
                 onChange={event =>
                   this.updateCompany({
                     status:
@@ -161,7 +171,9 @@ class CompanyDetails extends Component {
               <label>Ansvarig</label>
               <select
                 value={
-                  company.responsibleUser ? company.responsibleUser.id : MISSING
+                  company && company.responsibleUser
+                    ? company.responsibleUser.id
+                    : MISSING
                 }
                 onChange={event =>
                   this.updateCompany({
@@ -184,6 +196,7 @@ class CompanyDetails extends Component {
           <div className={styles.contact_comment_container}>
             <div className={styles.contact_container}>
               {isSuccess(this.props.contacts) ? (
+                company &&
                 company.contacts &&
                 company.contacts.map(contactId => {
                   const contactInfo = this.props.contacts.data[contactId]
@@ -228,6 +241,7 @@ class CompanyDetails extends Component {
                 currentUser={this.props.currentUser}
               />
               {isSuccess(this.props.comments) ? (
+                company &&
                 company.comments &&
                 company.comments.map(commentId => {
                   const comment = this.props.comments.data[commentId]

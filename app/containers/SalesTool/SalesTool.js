@@ -32,7 +32,7 @@ class SalesTool extends Component {
     if (!hasData(this.props.statuses)) {
       this.props.loadStatuses()
     }
-    if (!Object.keys(this.props.users)) {
+    if (!Object.keys(this.props.users).length) {
       this.props.getUsers()
     }
     document.title = 'STUDS | Alla företag'

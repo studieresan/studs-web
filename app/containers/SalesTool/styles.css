@@ -167,6 +167,11 @@
   flex: 1;
 }
 
+.contact_header {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+}
+
 .comments_container {
   flex: 3;
   margin-left: 2rem;

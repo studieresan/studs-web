@@ -206,6 +206,7 @@ class CompanyDetails extends Component {
           </div>
           <div className={styles.contact_comment_container}>
             <div className={styles.contact_container}>
+              <div className={styles.contact_header}>Kontaktuppgifter</div>
               {isSuccess(this.props.contacts) ? (
                 company &&
                 company.contacts &&

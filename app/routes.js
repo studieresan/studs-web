@@ -23,7 +23,7 @@ import EventFeedbackPage from 'containers/EventFeedbackPage'
 import CreateEventFeedback from 'containers/CreateEventFeedback'
 import Application from 'containers/Application'
 import EventFeedbackForm from './components/EventFeedbackForm'
-import SalesTool from 'containers/SalesTool'
+import SalesTool from 'containers/SalesTool/SalesToolContainer'
 import CompanyDetails from 'containers/SalesTool/CompanyDetailsContainer'
 
 class StudsRouter extends Component {

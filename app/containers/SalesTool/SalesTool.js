@@ -24,15 +24,23 @@ class SalesTool extends Component {
   }
 
   componentDidMount() {
-    this.props.loadCompanies()
-    this.props.loadStatuses()
-    this.props.getUsers()
-
+    if (!hasData(this.props.companies)) {
+      this.props.loadCompanies()
+    } else {
+      this.filterResult(this.props.companies.data, this.props.filter)
+    }
+    if (!hasData(this.props.statuses)) {
+      this.props.loadStatuses()
+    }
+    if (!Object.keys(this.props.users)) {
+      this.props.getUsers()
+    }
     document.title = 'STUDS | Alla företag'
   }
 
   componentWillReceiveProps(newProps) {
     if (isLoading(this.props.companies) && isSuccess(newProps.companies)) {
+      // initial load, sort by status
       this.filterResult(newProps.companies.data, newProps.filter)
     }
     if (
@@ -41,6 +49,7 @@ class SalesTool extends Component {
       Object.keys(this.props.companies.data).length !==
         Object.keys(newProps.companies.data).length
     ) {
+      // new company added, remove filters
       this.setState(
         {
           showAddNew: false,
@@ -53,6 +62,7 @@ class SalesTool extends Component {
       )
     }
     if (this.props.filter !== newProps.filter) {
+      // update filters
       this.filterResult(newProps.companies.data, newProps.filter)
     }
   }

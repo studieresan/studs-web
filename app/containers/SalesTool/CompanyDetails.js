@@ -9,7 +9,7 @@ import Button from 'components/Button'
 
 import styles from './styles.css'
 import PropTypes from 'prop-types'
-import { isSuccess, hasData } from './store/constants'
+import { isSuccess, hasData, isInitial } from './store/constants'
 
 const MISSING = 'MISSING'
 
@@ -24,23 +24,8 @@ class CompanyDetails extends Component {
   }
 
   componentDidMount() {
-    if (
-      !hasData(this.props.companies) ||
-      !this.props.companies.data[this.props.match.params.id]
-    ) {
-      this.props.loadCompany(this.props.match.params.id)
-    }
-
-    if (hasData(this.props.companies)) {
-      if (!this.props.companies.data[this.props.match.params.id].contacts) {
-        this.props.loadContacts(this.props.match.params.id)
-      }
-      if (!this.props.companies.data[this.props.match.params.id].comments) {
-        this.props.loadComments(this.props.match.params.id)
-      }
-    } else {
-      this.props.loadContacts(this.props.match.params.id)
-      this.props.loadComments(this.props.match.params.id)
+    if (!isSuccess(this.props.companies)) {
+      this.props.loadCompanies()
     }
 
     if (!hasData(this.props.statuses)) {
@@ -49,12 +34,26 @@ class CompanyDetails extends Component {
     if (!Object.keys(this.props.users).length) {
       this.props.getUsers()
     }
+    this.componentWillReceiveProps(this.props)
   }
 
   componentWillReceiveProps(newProps) {
-    if (hasData(newProps.companies)) {
-      document.title =
-        'STUDS | ' + newProps.companies.data[newProps.match.params.id].name
+    if (isSuccess(newProps.companies)) {
+      const company = newProps.companies.data[newProps.match.params.id]
+      document.title = 'STUDS | ' + company.name
+      if (
+        !company.contacts &&
+        (isInitial(newProps.contacts) || isSuccess(newProps.contacts))
+      ) {
+        newProps.loadContacts(newProps.match.params.id)
+      }
+
+      if (
+        !company.comments &&
+        (isInitial(newProps.comments) || isSuccess(newProps.comments))
+      ) {
+        newProps.loadComments(newProps.match.params.id)
+      }
     }
   }
 
@@ -283,7 +282,7 @@ class CompanyDetails extends Component {
 CompanyDetails.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
-  loadCompany: PropTypes.func.isRequired,
+  loadCompanies: PropTypes.func.isRequired,
   companies: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,
   users: PropTypes.object.isRequired,

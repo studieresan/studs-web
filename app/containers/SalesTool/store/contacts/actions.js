@@ -66,7 +66,10 @@ export const loadContacts = companyId => dispatch => {
       dispatch(setContacts(Object.keys(contactsStateMap), companyId))
       dispatch(getSuccess(contactsStateMap))
     })
-    .catch(() => dispatch(getError()))
+    .catch(err => {
+      console.error(err)
+      dispatch(getError())
+    })
 }
 
 export const updateContact = (contactId, body) => dispatch => {

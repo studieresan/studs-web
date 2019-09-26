@@ -694,7 +694,6 @@ export const updateComment = (commentId, text) => {
   return executeGraphQL(query)
     .then(res => res.data.updateComment)
     .then(c => {
-      console.log(c)
       return {
         ...c,
         user: { id: c.user.id, picture: c.user.profile.picture },

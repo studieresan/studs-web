@@ -14,6 +14,7 @@ import { LOADING, INITIAL, UPDATING, SUCCESS, ERROR } from '../constants'
 // reducer
 const defaultState = {
   status: INITIAL,
+  data: {},
 }
 
 const reducer = (state = defaultState, action) => {

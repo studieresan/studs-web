@@ -12,6 +12,7 @@ import {
   fetchCompanies,
   createCompany,
   updateCompany as updateCompanyApi,
+  fetchCompany,
 } from 'api'
 
 export const getRequest = () => ({
@@ -74,4 +75,13 @@ export const updateCompany = (companyId, body) => dispatch => {
   updateCompanyApi(companyId, body)
     .then(company => dispatch(updateSuccess(company)))
     .catch(() => dispatch(updateError()))
+}
+
+export const loadCompany = id => dispatch => {
+  dispatch(getRequest())
+  fetchCompany(id)
+    .then(company => {
+      dispatch(getSuccess({ [company.id]: company }))
+    })
+    .catch(() => dispatch(getError()))
 }

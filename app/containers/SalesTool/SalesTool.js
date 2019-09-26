@@ -12,7 +12,6 @@ class SalesTool extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      companyDetailsId: null,
       filteredCompanies: [],
       users: {},
       showAddNew: false,
@@ -25,9 +24,6 @@ class SalesTool extends Component {
   }
 
   componentDidMount() {
-    if (this.props.match.params.id) {
-      this.setState({ companyDetailsId: this.props.match.params.id })
-    }
     this.props.loadCompanies()
     this.props.loadStatuses()
     this.props.getUsers()
@@ -36,9 +32,6 @@ class SalesTool extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.match.params.id !== this.state.companyDetailsId) {
-      this.setState({ companyDetailsId: newProps.match.params.id })
-    }
     if (isLoading(this.props.companies) && isSuccess(newProps.companies)) {
       this.filterResult(newProps.companies.data, newProps.filter)
     }
@@ -170,32 +163,6 @@ class SalesTool extends Component {
   }
 
   render() {
-    if (this.state.companyDetailsId) {
-      return hasData(this.props.companies) ? (
-        <CompanyDetails
-          company={this.props.companies.data[this.state.companyDetailsId]}
-          currentUser={this.props.currentUser}
-          updateCompany={this.props.updateCompany}
-          contacts={this.props.contacts}
-          loadContacts={this.props.loadContacts}
-          updateContact={this.props.updateContact}
-          deleteContact={this.props.deleteContact}
-          addContact={this.props.addContact}
-          loadComments={this.props.loadComments}
-          comments={this.props.comments}
-          addComment={this.props.addComment}
-          deleteComment={this.props.deleteComment}
-          updateComment={this.props.updateComment}
-          users={this.props.users}
-          statuses={this.props.statuses.data}
-          back={() => {
-            this.props.history.push({ pathname: '/sales-tool/companies' })
-          }}
-        />
-      ) : (
-        <div className={styles.content}>Laddar</div>
-      )
-    }
     return (
       <div className={styles.content}>
         <div className={styles.filter}>
@@ -363,7 +330,6 @@ class SalesTool extends Component {
 SalesTool.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
-  currentUser: PropTypes.object.isRequired,
   filter: PropTypes.object.isRequired,
   updateFilter: PropTypes.func.isRequired,
   loadStatuses: PropTypes.func.isRequired,
@@ -372,18 +338,7 @@ SalesTool.propTypes = {
   getUsers: PropTypes.func.isRequired,
   companies: PropTypes.object.isRequired,
   loadCompanies: PropTypes.func.isRequired,
-  updateCompany: PropTypes.func.isRequired,
   addCompany: PropTypes.func.isRequired,
-  contacts: PropTypes.object.isRequired,
-  loadContacts: PropTypes.func.isRequired,
-  updateContact: PropTypes.func.isRequired,
-  deleteContact: PropTypes.func.isRequired,
-  addContact: PropTypes.func.isRequired,
-  comments: PropTypes.object.isRequired,
-  loadComments: PropTypes.func.isRequired,
-  addComment: PropTypes.func.isRequired,
-  deleteComment: PropTypes.func.isRequired,
-  updateComment: PropTypes.func.isRequired,
 }
 
 export default SalesTool

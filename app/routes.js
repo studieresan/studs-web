@@ -24,6 +24,7 @@ import CreateEventFeedback from 'containers/CreateEventFeedback'
 import Application from 'containers/Application'
 import EventFeedbackForm from './components/EventFeedbackForm'
 import SalesTool from 'containers/SalesTool'
+import CompanyDetails from 'containers/SalesTool/CompanyDetailsContainer'
 
 class StudsRouter extends Component {
   render() {
@@ -42,8 +43,13 @@ class StudsRouter extends Component {
 
         <AuthenticatedRoute
           exact
-          path='/sales-tool/companies/:id?'
+          path='/sales-tool/companies'
           component={SalesTool}
+        />
+        <AuthenticatedRoute
+          exact
+          path='/sales-tool/companies/:id?'
+          component={CompanyDetails}
         />
         <AuthenticatedRoute exact path='/user' component={User} />
         <AuthenticatedRoute exact path='/resume/edit' component={CvEdit} />

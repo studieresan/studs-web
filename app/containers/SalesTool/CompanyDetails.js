@@ -9,7 +9,7 @@ import Button from 'components/Button'
 
 import styles from './styles.css'
 import PropTypes from 'prop-types'
-import { isSuccess } from './store/constants'
+import { isSuccess, hasData } from './store/constants'
 
 const MISSING = 'MISSING'
 
@@ -24,14 +24,35 @@ class CompanyDetails extends Component {
   }
 
   componentDidMount() {
-    document.title = 'STUDS | ' + this.props.company.name
-    this.props.loadContacts(this.props.company.id)
-    this.props.loadComments(this.props.company.id)
+    if (
+      !hasData(this.props.companies) ||
+      !this.props.companies.data[this.props.match.params.id]
+    ) {
+      this.props.loadCompany(this.props.match.params.id)
+    }
+    this.props.loadContacts(this.props.match.params.id)
+    this.props.loadComments(this.props.match.params.id)
+
+    if (!hasData(this.props.statuses)) {
+      this.props.loadStatuses()
+    }
+    if (Object.keys(this.props.users).length === 0) {
+      this.props.getUsers()
+    }
   }
 
-  updateCompany = body => this.props.updateCompany(this.props.company.id, body)
+  componentWillReceiveProps(newProps) {
+    if (hasData(newProps.companies)) {
+      document.title =
+        'STUDS | ' + newProps.companies.data[newProps.match.params.id].name
+    }
+  }
 
-  createComment = text => this.props.addComment(text, this.props.company.id)
+  updateCompany = body =>
+    this.props.updateCompany(this.props.match.params.id, body)
+
+  createComment = text =>
+    this.props.addComment(text, this.props.match.params.id)
 
   startEditingComment = commentId => {
     if (!this.state.commentsBeingEdited.includes(commentId)) {
@@ -72,18 +93,18 @@ class CompanyDetails extends Component {
 
   deleteComment = id => {
     if (window.confirm('Are you sure you want to delete this comment?')) {
-      this.props.deleteComment(id, this.props.company.id)
+      this.props.deleteComment(id, this.props.match.params.id)
     }
   }
 
   createContact = body => {
-    this.props.addContact(body, this.props.company.id)
+    this.props.addContact(body, this.props.match.params.id)
     this.setState({ showCreateContact: false })
   }
 
   deleteContact(id) {
     if (window.confirm('Are you sure you want to delete this contact?')) {
-      this.props.deleteContact(id, this.props.company.id)
+      this.props.deleteContact(id, this.props.match.params.id)
     }
   }
 
@@ -93,29 +114,32 @@ class CompanyDetails extends Component {
   }
 
   render() {
+    if (
+      !hasData(this.props.companies) ||
+      !this.props.companies.data[this.props.match.params.id]
+    ) {
+      return <div>Laddar...</div>
+    }
+    const company = this.props.companies.data[this.props.match.params.id]
     return (
       <div className={styles.content}>
         <div className={styles.header}>
           <div
             className={styles.back_button}
             onClick={() => {
-              this.props.back()
+              this.props.history.push({ pathname: '/sales-tool/companies' })
             }}
           >
             <i className='fa fa-arrow-left' />
           </div>
-          <div>{this.props.company.name + ' '}</div>
+          <div>{company.name + ' '}</div>
         </div>
         <div className={styles.company_details_body}>
           <div className={styles.company_details}>
             <div className={styles.select_input}>
               <label>Status</label>
               <select
-                value={
-                  this.props.company.status
-                    ? this.props.company.status.id
-                    : MISSING
-                }
+                value={company.status ? company.status.id : MISSING}
                 onChange={event =>
                   this.updateCompany({
                     status:
@@ -126,9 +150,9 @@ class CompanyDetails extends Component {
                 }
               >
                 <option value={MISSING}>{'Saknar status'}</option>
-                {Object.keys(this.props.statuses).map(key => (
+                {Object.keys(this.props.statuses.data).map(key => (
                   <option key={key} value={key}>
-                    {this.props.statuses[key]}
+                    {this.props.statuses.data[key]}
                   </option>
                 ))}
               </select>
@@ -137,9 +161,7 @@ class CompanyDetails extends Component {
               <label>Ansvarig</label>
               <select
                 value={
-                  this.props.company.responsibleUser
-                    ? this.props.company.responsibleUser.id
-                    : MISSING
+                  company.responsibleUser ? company.responsibleUser.id : MISSING
                 }
                 onChange={event =>
                   this.updateCompany({
@@ -162,8 +184,8 @@ class CompanyDetails extends Component {
           <div className={styles.contact_comment_container}>
             <div className={styles.contact_container}>
               {isSuccess(this.props.contacts) ? (
-                this.props.company.contacts &&
-                this.props.company.contacts.map(contactId => {
+                company.contacts &&
+                company.contacts.map(contactId => {
                   const contactInfo = this.props.contacts.data[contactId]
                   return this.isContactBeingEdited(contactInfo) ? (
                     <CreateContactCard
@@ -206,8 +228,8 @@ class CompanyDetails extends Component {
                 currentUser={this.props.currentUser}
               />
               {isSuccess(this.props.comments) ? (
-                this.props.company.comments &&
-                this.props.company.comments.map(commentId => {
+                company.comments &&
+                company.comments.map(commentId => {
                   const comment = this.props.comments.data[commentId]
                   return this.isCommentBeingEdited(comment) ? (
                     <EditCommentCard
@@ -245,11 +267,15 @@ class CompanyDetails extends Component {
 }
 
 CompanyDetails.propTypes = {
-  company: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  loadCompany: PropTypes.func.isRequired,
+  companies: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,
   users: PropTypes.object.isRequired,
+  getUsers: PropTypes.func.isRequired,
   statuses: PropTypes.object.isRequired,
-  back: PropTypes.func.isRequired,
+  loadStatuses: PropTypes.func.isRequired,
   updateCompany: PropTypes.func.isRequired,
   contacts: PropTypes.object.isRequired,
   loadContacts: PropTypes.func.isRequired,

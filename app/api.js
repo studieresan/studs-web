@@ -504,19 +504,7 @@ export const fetchCompanies = () => {
 export const fetchCompany = companyId => {
   const query = `{
     company (companyId: "${companyId}") {
-        id,
-        name,
-        status {
-            id,
-            name,
-        },
-        responsibleUser {
-            id,
-            profile {
-                firstName,
-                lastName
-            }
-        }
+       ${COMPANY_FIELDS}
     }
   }`
   return executeGraphQL(query)

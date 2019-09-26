@@ -180,10 +180,12 @@ export function updateUserPassword({ password, confirmPassword }) {
 export function fetchUsers() {
   const query = `{
     studsUsers: users(memberType: studs_member) {
+      id,
       profile { ${USER_PROFILE_FIELDS} }
       cv { ${CV_FIELDS} }
     }
     companyUsers: users(memberType: company_member) {
+      id,
       profile { ${USER_PROFILE_FIELDS} }
     }
   }
@@ -476,4 +478,226 @@ export function fetchPeopleMissingFeedback(eventId) {
     }
   `
   return executeGraphQL(query).then(res => res.data)
+}
+
+const COMPANY_FIELDS = `
+  id,
+  name,
+  status {
+    id
+  },
+  responsibleUser {
+    id
+  }`
+
+export const fetchCompanies = () => {
+  const query = `{
+      companies {
+        ${COMPANY_FIELDS}
+      }
+    }`
+  return executeGraphQL(query)
+    .then(res => res.data.companies)
+    .catch(err => console.error(err))
+}
+
+export const fetchCompany = companyId => {
+  const query = `{
+    company (companyId: "${companyId}") {
+       ${COMPANY_FIELDS}
+    }
+  }`
+  return executeGraphQL(query)
+    .then(res => res.data.company)
+    .catch(err => console.error(err))
+}
+
+export const fetchStudsUserNames = () => {
+  const query = `{
+      studsUsers: users(memberType: studs_member) {
+        id,
+        profile { 
+          firstName,
+          lastName,
+          picture,
+        }
+      }
+    }`
+  return executeGraphQL(query)
+    .then(res => res.data.studsUsers)
+    .catch(err => console.error(err))
+}
+
+export const fetchSaleStatuses = () => {
+  const query = `{
+    allCompanySalesStatuses {
+        id,
+        name
+    }
+  }`
+  return executeGraphQL(query)
+    .then(res => res.data.allCompanySalesStatuses)
+    .catch(err => console.error(err))
+}
+
+export const createCompany = name => {
+  const query = `mutation {
+    createCompany(name: "${name}") {
+      ${COMPANY_FIELDS}
+    }
+  }`
+  return executeGraphQL(query)
+    .then(res => res.data.createCompany)
+    .catch(err => console.error(err))
+}
+
+export const updateCompany = (companyId, companyFields) => {
+  const query = `mutation {
+    updateCompany(id: "${companyId}", fields: {
+        ${Object.keys(companyFields).map(
+          k =>
+            k +
+            ': ' +
+            (companyFields[k] ? '"' + companyFields[k] + '"\n' : null + '\n')
+        )}
+    }) {
+        ${COMPANY_FIELDS}
+    }
+  }`
+  return executeGraphQL(query)
+    .then(res => res.data.updateCompany)
+    .catch(err => console.error(err))
+}
+
+const CONTACT_FIELDS = `
+  id,
+  name,
+  email,
+  phoneNumber,
+  comment,`
+
+export const fetchContacts = companyId => {
+  const query = `{
+    contacts(companyId: "${companyId}") {
+        ${CONTACT_FIELDS}
+    }
+  }`
+  return executeGraphQL(query)
+    .then(res => res.data.contacts)
+    .catch(err => console.error(err))
+}
+
+export const createContact = (companyId, contactFields) => {
+  const query = `mutation {
+    createContact(companyId: "${companyId}", fields: {
+        ${Object.keys(contactFields).map(
+          k => k + ': "' + contactFields[k] + '"\n'
+        )}
+    }) {
+        ${CONTACT_FIELDS}
+    }
+  }`
+  return executeGraphQL(query)
+    .then(res => res.data.createContact)
+    .catch(err => console.error(err))
+}
+
+export const removeContact = contactId => {
+  const query = `mutation {
+    removeContact(id: "${contactId}")
+  }`
+  return executeGraphQL(query)
+    .then(res => res.data.removeContact)
+    .catch(err => console.error(err))
+}
+
+export const updateContact = (contactId, contactFields) => {
+  const query = `mutation {
+    updateContact(id: "${contactId}", fields: {
+        ${Object.keys(contactFields).map(
+          k => k + ': "' + contactFields[k] + '"\n'
+        )}
+    }) {
+        ${CONTACT_FIELDS}
+    }
+  }`
+  return executeGraphQL(query)
+    .then(res => res.data.updateContact)
+    .catch(err => console.error(err))
+}
+
+const COMMENT_FIELDS = `
+  id,
+  text,
+  user {
+    id,
+    profile {
+        picture
+    }
+  },
+  createdAt,
+  edited,`
+
+export const fetchComments = companyId => {
+  const query = `{
+    comments(companyId: "${companyId}") {
+        ${COMMENT_FIELDS}
+    }
+  }`
+  return executeGraphQL(query)
+    .then(res => res.data.comments)
+    .then(comments =>
+      comments.map(c => ({
+        ...c,
+        user: { id: c.user.id, picture: c.user.profile.picture },
+      }))
+    )
+    .then(comments => {
+      comments.sort((a, b) =>
+        new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1
+      )
+      return comments
+    })
+    .catch(err => console.error(err))
+}
+
+export const createComment = (companyId, text) => {
+  const query = `mutation {
+    createComment(companyId: "${companyId}", text: "${text}") {
+        ${COMMENT_FIELDS}
+    }
+  }`
+  return executeGraphQL(query)
+    .then(res => res.data.createComment)
+    .then(c => ({
+      ...c,
+      user: { id: c.user.id, picture: c.user.profile.picture },
+    }))
+    .catch(err => console.error(err))
+}
+
+export const removeComment = commentId => {
+  const query = `mutation {
+    removeComment(id: "${commentId}")
+  }`
+  return executeGraphQL(query)
+    .then(res => res.data.removeComment)
+    .catch(err => console.error(err))
+}
+
+export const updateComment = (commentId, text) => {
+  const query = `mutation {
+    updateComment(id: "${commentId}", text: "${text}") {
+      ${COMMENT_FIELDS}
+    }
+  }`
+  return executeGraphQL(query)
+    .then(res => res.data.updateComment)
+    .then(c => {
+      return {
+        ...c,
+        user: { id: c.user.id, picture: c.user.profile.picture },
+      }
+    })
+    .catch(err => console.error(err))
 }

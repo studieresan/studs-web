@@ -1,0 +1,7 @@
+export const GET_REQUEST = 'app/SalesTool/Contact/GET_REQUEST'
+export const GET_SUCCESS = 'app/SalesTool/Contact/GET_SUCCESS'
+export const UPDATE_REQUEST = 'app/SalesTool/Contact/UPDATE_REQUEST'
+export const UPDATE_SUCCESS = 'app/SalesTool/Contact/UPDATE_SUCCESS'
+export const DELETE_REQUEST = 'app/SalesTool/Contact/DELETE_REQUEST'
+export const DELETE_SUCCESS = 'app/SalesTool/Contact/DELETE_SUCCESS'
+export const ERROR_ACTION = 'app/SalesTool/Contact/ERROR_ACTION'

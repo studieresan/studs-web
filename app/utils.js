@@ -25,6 +25,10 @@ export const trackEvent = (category, action) => {
   }
 }
 
+export const paddTimeNumber = number => {
+  return number.length < 2 ? '0' + number : number
+}
+
 const isProduction = process.env.NPM_CONFIG_PRODUCTION === 'true'
 
 const isValidElement = elem => elem.name && elem.value

@@ -1,0 +1,183 @@
+.content {
+  text-align: center;
+  padding: 5em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 1rem;
+}
+
+.filter_input {
+  margin-right: 0.5rem;
+}
+
+.filter_input select {
+  height: 50%;
+}
+
+.number_of_companies {
+  margin-bottom: 1rem;
+}
+
+.add_new_container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  padding: 1rem;
+}
+
+.add_new_text_input {
+  width: 100%;
+  text-align: left;
+}
+
+.body {
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.table_head {
+  display: table-header-group;
+  vertical-align: middle;
+  color: black;
+}
+
+.table_head th {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #454d55;
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.table_head th span {
+  margin-left: 10px;
+}
+
+.table tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.company_link {
+  cursor: pointer;
+}
+
+.company_link:hover {
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.content {
+  text-align: center;
+  padding: 5em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  background-color: grey;
+  width: 100%;
+  font-size: 3em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  color: white;
+}
+
+.back_button {
+  position: absolute;
+  top: 10%;
+  left: 0px;
+  color: white;
+  cursor: pointer;
+  font-size: 2rem;
+  margin: 0.5rem;
+  padding-left: 4px;
+  padding-right: 4px;
+  z-index: 10;
+}
+
+.back_button:hover {
+  color: grey;
+  background-color: white;
+  border-radius: 0.8rem;
+}
+
+.company_details_body {
+  background-color: white;
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.company_details {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.select_input {
+  margin-right: 0.5rem;
+  text-align: left;
+}
+
+.contact_comment_container {
+  width: 100%;
+  padding-right: 5%;
+  padding-left: 5%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2rem;
+}
+
+.contact_container {
+  height: 100%;
+  flex: 1;
+}
+
+.contact_header {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+}
+
+.comments_container {
+  flex: 3;
+  margin-left: 2rem;
+}
+
+.small_button {
+  padding: 10px 30px;
+  font-size: 0.7rem;
+}

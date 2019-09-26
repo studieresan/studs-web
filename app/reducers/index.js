@@ -7,6 +7,7 @@ import eventFeedback from 'containers/CreateEventFeedback/reducer'
 import eventFeedbackForm from 'containers/EventDetailPage/reducer'
 import members from 'containers/Members/reducer'
 import user from 'containers/User/reducer'
+import salesTool from 'containers/SalesTool/store/reducer'
 
 export default {
   global,
@@ -18,4 +19,5 @@ export default {
   eventFeedback,
   eventFeedbackForm,
   user,
+  salesTool,
 }

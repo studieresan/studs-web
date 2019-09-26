@@ -29,6 +29,11 @@ function NavLinks({ loggedIn, user }: Props) {
           </Link>
         </li>
         <li>
+          <Link to='/sales-tool/companies'>
+            <FormattedMessage {...messages.salesTool} />
+          </Link>
+        </li>
+        <li>
           <Link to='/trip'>
             <FormattedMessage {...messages.trip} />
           </Link>

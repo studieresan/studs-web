@@ -23,6 +23,8 @@ import EventFeedbackPage from 'containers/EventFeedbackPage'
 import CreateEventFeedback from 'containers/CreateEventFeedback'
 import Application from 'containers/Application'
 import EventFeedbackForm from './components/EventFeedbackForm'
+import SalesTool from 'containers/SalesTool/SalesToolContainer'
+import CompanyDetails from 'containers/SalesTool/CompanyDetailsContainer'
 
 class StudsRouter extends Component {
   render() {
@@ -36,6 +38,18 @@ class StudsRouter extends Component {
         <Route exact path='/password-reset/:token' component={PasswordReset} />
         <Route exact path='/events/public' component={PublicEvents} />
         <Route exact path='/events/2018' component={OldEvents} />
+
+        <AuthenticatedRoute
+          exact
+          path='/sales-tool/companies'
+          component={SalesTool}
+        />
+
+        <AuthenticatedRoute
+          exact
+          path='/sales-tool/companies/:id?'
+          component={CompanyDetails}
+        />
 
         <AuthenticatedRoute exact path='/user' component={User} />
         <AuthenticatedRoute exact path='/resume/edit' component={CvEdit} />

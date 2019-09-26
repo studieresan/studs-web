@@ -56,6 +56,10 @@
     "message": "Om oss"
   },
   {
+    "id": "app.containers.Navbar.salesTool",
+    "message": "Säljverktyg"
+  },
+  {
     "id": "app.containers.Navbar.trip",
     "message": "Resan"
   },

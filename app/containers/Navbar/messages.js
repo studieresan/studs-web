@@ -33,6 +33,10 @@ export default defineMessages({
     id: 'app.containers.Navbar.about',
     defaultMessage: 'About Us',
   },
+  salesTool: {
+    id: 'app.containers.Navbar.salesTool',
+    defaultMessage: 'Sales Tool',
+  },
   apply: {
     id: 'app.containers.Navbar.apply',
     defaultMessage: 'Apply',

@@ -39,18 +39,16 @@ class StudsRouter extends Component {
         <Route exact path='/events/public' component={PublicEvents} />
         <Route exact path='/events/2018' component={OldEvents} />
 
-        <Route exact path='/apply' component={Application} />
-
         <AuthenticatedRoute
           exact
           path='/sales-tool/companies'
           component={SalesTool}
-        />
+      
         <AuthenticatedRoute
           exact
           path='/sales-tool/companies/:id?'
           component={CompanyDetails}
-        />
+
         <AuthenticatedRoute exact path='/user' component={User} />
         <AuthenticatedRoute exact path='/resume/edit' component={CvEdit} />
         <EventRoute exact path='/create-user' component={CreateUser} />

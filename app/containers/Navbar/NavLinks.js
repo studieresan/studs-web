@@ -24,11 +24,6 @@ function NavLinks({ loggedIn, user }: Props) {
           <Link to='/user'>{user.firstName || 'Profile'}</Link>
         </li>
         <li>
-          <Link to='/apply'>
-            <FormattedMessage {...messages.apply} />
-          </Link>
-        </li>
-        <li>
           <Link to='/members'>
             <FormattedMessage {...messages.studsmembers} />
           </Link>
@@ -63,11 +58,6 @@ function NavLinks({ loggedIn, user }: Props) {
   return (
     <div className={styles.navLinks}>
       <ul className={styles.navbarMenu}>
-        <li>
-          <Link to='/apply'>
-            <FormattedMessage {...messages.apply} />
-          </Link>
-        </li>
         <li>
           <Link to='/about'>
             <FormattedMessage {...messages.about} />

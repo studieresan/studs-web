@@ -18,7 +18,7 @@ import Marko from 'static/img/people/marko.jpg'
 import Helena from 'static/img/people/helena.jpg'
 import Carl from 'static/img/people/carl.jpg'
 import MemberImage from 'components/MemberImage'
-import { StudentComponent, ApplyButton } from 'components/Student/index'
+import { StudentComponent } from 'components/Student/index'
 import Button from 'components/Button'
 import { Link } from 'react-router-dom'
 
@@ -39,7 +39,6 @@ class About extends Component {
             <p>
               <FormattedMessage {...messages.intro} />
             </p>
-            <ApplyButton />
           </div>
           <h2>
             <FormattedMessage {...messages.subtitle} />
@@ -137,7 +136,6 @@ class About extends Component {
             </div>
           </div>
         </div>
-        <StudentComponent />
         <Footer />
       </div>
     )

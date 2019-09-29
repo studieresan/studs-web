@@ -22,7 +22,9 @@ export const loadStatuses = () => dispatch => {
     .then(statuses => {
       for (let i = 0; i < statuses.length; ++i) {
         statuses[i]['color'] =
-          'hsl(' + Math.round((i / (statuses.length - 1)) * 100) + ',100%,50%)'
+          'hsl(' +
+          Math.round(100 - (i / (statuses.length - 1)) * 100) +
+          ',100%,50%)'
       }
       const statusesStateMap = {}
       statuses.forEach(c => (statusesStateMap[c.id] = c))

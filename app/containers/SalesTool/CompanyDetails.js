@@ -224,6 +224,7 @@ class CompanyDetails extends Component {
                   return (
                     <CommentCard
                       key={comment.id}
+                      canEdit={this.props.currentUser.id === comment.user.id}
                       comment={comment}
                       userName={this.props.users[comment.user.id]}
                       updateComment={text =>

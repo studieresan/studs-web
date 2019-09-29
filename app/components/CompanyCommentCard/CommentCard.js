@@ -5,7 +5,13 @@ import MemberImageTime from 'components/MemberImageTime'
 
 import styles from './styles.css'
 
-const CommentCard = ({ comment, userName, updateComment, deleteComment }) => {
+const CommentCard = ({
+  comment,
+  canEdit,
+  userName,
+  updateComment,
+  deleteComment,
+}) => {
   const [text, setText] = useState(comment.text)
   const [editing, setEditing] = useState(false)
   return (
@@ -25,37 +31,41 @@ const CommentCard = ({ comment, userName, updateComment, deleteComment }) => {
         ) : (
           <div className={styles.comment_text}>{text}</div>
         )}
-        <div className={styles.card_actions}>
-          <Button
-            color='primary'
-            className={styles.small_button}
-            onClick={() => {
-              if (editing) {
-                updateComment(text)
-                setEditing(false)
-              } else {
-                setEditing(true)
-              }
-            }}
-          >
-            {editing ? 'Save' : 'Edit'}
-          </Button>
-          <Button
-            className={styles.small_button}
-            color={editing ? 'default' : 'danger'}
-            onClick={() => {
-              if (editing) {
-                setEditing(false)
-              } else {
-                if (confirm('Are you sure you want to delete this comment?')) {
-                  deleteComment()
+        {canEdit && (
+          <div className={styles.card_actions}>
+            <Button
+              color='primary'
+              className={styles.small_button}
+              onClick={() => {
+                if (editing) {
+                  updateComment(text)
+                  setEditing(false)
+                } else {
+                  setEditing(true)
                 }
-              }
-            }}
-          >
-            {editing ? 'Cancel' : 'Delete'}
-          </Button>
-        </div>
+              }}
+            >
+              {editing ? 'Save' : 'Edit'}
+            </Button>
+            <Button
+              className={styles.small_button}
+              color={editing ? 'default' : 'danger'}
+              onClick={() => {
+                if (editing) {
+                  setEditing(false)
+                } else {
+                  if (
+                    confirm('Are you sure you want to delete this comment?')
+                  ) {
+                    deleteComment()
+                  }
+                }
+              }}
+            >
+              {editing ? 'Cancel' : 'Delete'}
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   )
@@ -63,6 +73,7 @@ const CommentCard = ({ comment, userName, updateComment, deleteComment }) => {
 
 CommentCard.propTypes = {
   comment: PropTypes.object.isRequired,
+  canEdit: PropTypes.bool.isRequired,
   userName: PropTypes.string.isRequired,
   updateComment: PropTypes.func.isRequired,
   deleteComment: PropTypes.func.isRequired,

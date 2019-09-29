@@ -1,23 +1,24 @@
 .comment_container {
   width: 100%;
   display: flex;
+  margin-bottom: 5%;
 }
 
 .comment_card {
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 5%;
   flex: 1 1;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
+  justify-content: space-between;
 }
 
 .comment_text {
   padding: 1rem;
-  margin-bottom: 0.8rem;
+  text-align: left;
 }
 
 .small_button {
@@ -33,6 +34,6 @@
 }
 
 .comment_input {
-  margin: 1rem;
+  margin: 1rem !important;
   width: auto !important;
 }

@@ -217,6 +217,7 @@ class CompanyDetails extends Component {
                   Add
                 </Button>
               )}
+              <hr className={styles.hr} />
             </div>
             <div className={styles.comments_container}>
               <NewCommentCard

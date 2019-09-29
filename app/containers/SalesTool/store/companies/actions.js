@@ -13,6 +13,7 @@ import {
   updateCompany as updateCompanyApi,
   fetchCompany,
 } from 'api'
+import { hasData } from '../constants'
 
 export const getRequest = () => ({
   type: GET_REQUEST,
@@ -63,9 +64,24 @@ export const loadCompanies = () => dispatch => {
     })
 }
 
-export const addCompany = name => dispatch => {
+export const addCompany = name => (dispatch, getState) => {
+  const statuses = getState().getIn(['salesTool', 'statuses'])
+  if (!hasData(statuses)) {
+    dispatch(error('adding company'))
+    returnget
+  }
+  let highestPrio = { id: null, priority: null }
+  Object.keys(statuses.data).forEach(k => {
+    if (statuses.data[k].priority > highestPrio) {
+      highestPrio = statuses.data[k]
+    }
+  })
+  if (highestPrio.id === null) {
+    dispatch(error('adding company'))
+    return
+  }
   dispatch(updateRequest())
-  createCompany(name)
+  createCompany(name, highestPrio.id)
     .then(company => dispatch(updateSuccess(company)))
     .catch(() => {
       dispatch(error('adding company'))

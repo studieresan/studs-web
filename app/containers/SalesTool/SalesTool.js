@@ -298,6 +298,9 @@ class SalesTool extends Component {
     const statusName = status
       ? this.props.statuses.data[status.id].name
       : 'Saknar status'
+    const statusColor = status
+      ? this.props.statuses.data[status.id].color
+      : 'inherit'
     const responsibleUserName = responsibleUser
       ? this.props.users[responsibleUser.id]
       : 'Ingen ansvarig'
@@ -315,7 +318,15 @@ class SalesTool extends Component {
         >
           {name}
         </td>
-        <td>{statusName}</td>
+        <td>
+          <div
+            style={{
+              background: statusColor,
+            }}
+          >
+            {statusName}
+          </div>
+        </td>
         <td>{responsibleUserName}</td>
       </tr>
     )

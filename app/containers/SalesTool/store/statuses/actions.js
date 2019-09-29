@@ -20,6 +20,10 @@ export const loadStatuses = () => dispatch => {
   dispatch(getRequest())
   fetchSaleStatuses()
     .then(statuses => {
+      for (let i = 0; i < statuses.length; ++i) {
+        statuses[i]['color'] =
+          'hsl(' + Math.round((i / (statuses.length - 1)) * 100) + ',100%,50%)'
+      }
       const statusesStateMap = {}
       statuses.forEach(c => (statusesStateMap[c.id] = c))
       dispatch(getSuccess(statusesStateMap))

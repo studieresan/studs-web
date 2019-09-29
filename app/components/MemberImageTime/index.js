@@ -5,6 +5,7 @@ import styles from './styles.css'
 import placeholder from 'static/img/profile-placeholder.png'
 
 const MemberImageTime = ({ picture, createdAt, name }) => {
+  console.log(createdAt)
   return (
     <div className={styles.container}>
       <MemberImage
@@ -16,7 +17,7 @@ const MemberImageTime = ({ picture, createdAt, name }) => {
       {name ? <div className={styles.name_text}>{name}</div> : null}
       {createdAt ? (
         <div className={styles.small_text}>
-          {new Date(createdAt).toLocaleDateString() +
+          {new Date(createdAt).toLocaleDateString('sv') +
             ' ' +
             new Date(createdAt).toLocaleTimeString([], {
               hour: '2-digit',

@@ -5,7 +5,6 @@ import styles from './styles.css'
 import placeholder from 'static/img/profile-placeholder.png'
 
 const MemberImageTime = ({ picture, createdAt, name }) => {
-  console.log(createdAt)
   return (
     <div className={styles.container}>
       <MemberImage

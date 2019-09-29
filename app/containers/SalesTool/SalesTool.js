@@ -12,8 +12,6 @@ import {
   isError,
 } from './store/constants'
 
-const MISSING = 'MISSING'
-
 class SalesTool extends Component {
   constructor(props) {
     super(props)
@@ -97,17 +95,14 @@ class SalesTool extends Component {
           .filter(companyId =>
             filter.status === 'Alla'
               ? true
-              : (companies[companyId].status &&
-                  companies[companyId].status.id === filter.status) ||
-                (!companies[companyId].status && filter.status === MISSING)
+              : companies[companyId].status &&
+                companies[companyId].status.id === filter.status
           )
           .filter(companyId =>
             filter.user === 'Alla'
               ? true
-              : (companies[companyId].responsibleUser &&
-                  companies[companyId].responsibleUser.id === filter.user) ||
-                (!companies[companyId].responsibleUser &&
-                  filter.user === MISSING)
+              : companies[companyId].responsibleUser &&
+                companies[companyId].responsibleUser.id === filter.user
           ),
       },
       () => this.applySortStatus(companies)
@@ -217,7 +212,6 @@ class SalesTool extends Component {
               }
             >
               <option value={'Alla'}>Alla</option>
-              <option value={MISSING}>{'Saknar status'}</option>
               {Object.keys(this.props.statuses.data).map(key => (
                 <option key={key} value={key}>
                   {this.props.statuses.data[key].name}
@@ -235,7 +229,6 @@ class SalesTool extends Component {
               }
             >
               <option value={'Alla'}>Alla</option>
-              <option value={MISSING}>{'Ingen ansvarig'}</option>
               {Object.keys(this.props.users).map(key => (
                 <option key={key} value={key}>
                   {this.props.users[key]}

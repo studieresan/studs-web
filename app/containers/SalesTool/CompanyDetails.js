@@ -10,8 +10,6 @@ import styles from './styles.css'
 import PropTypes from 'prop-types'
 import { isError, isSuccess, hasData, isInitial } from './store/constants'
 
-const MISSING = 'MISSING'
-
 class CompanyDetails extends Component {
   constructor(props) {
     super(props)
@@ -131,17 +129,15 @@ class CompanyDetails extends Component {
             <div className={styles.select_input}>
               <label>Status</label>
               <select
-                value={company && company.status ? company.status.id : MISSING}
+                value={
+                  company && company.status ? company.status.id : undefined
+                }
                 onChange={event =>
                   this.updateCompany({
-                    status:
-                      event.target.value !== MISSING
-                        ? event.target.value
-                        : null,
+                    status: event.target.value,
                   })
                 }
               >
-                <option value={MISSING}>{'Saknar status'}</option>
                 {Object.keys(this.props.statuses.data).map(key => (
                   <option key={key} value={key}>
                     {this.props.statuses.data[key].name}
@@ -155,18 +151,14 @@ class CompanyDetails extends Component {
                 value={
                   company && company.responsibleUser
                     ? company.responsibleUser.id
-                    : MISSING
+                    : undefined
                 }
                 onChange={event =>
                   this.updateCompany({
-                    responsibleUser:
-                      event.target.value !== MISSING
-                        ? event.target.value
-                        : null,
+                    responsibleUser: event.target.value,
                   })
                 }
               >
-                <option value={MISSING}>{'Ingen ansvarig'}</option>
                 {Object.keys(this.props.users).map(key => (
                   <option key={key} value={key}>
                     {this.props.users[key]}

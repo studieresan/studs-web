@@ -68,7 +68,7 @@ export const addCompany = name => (dispatch, getState) => {
   const statuses = getState().getIn(['salesTool', 'statuses'])
   if (!hasData(statuses)) {
     dispatch(error('adding company'))
-    returnget
+    return
   }
   let highestPrio = { id: null, priority: null }
   Object.keys(statuses.data).forEach(k => {

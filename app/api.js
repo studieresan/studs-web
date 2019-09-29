@@ -532,7 +532,8 @@ export const fetchSaleStatuses = () => {
   const query = `{
     allCompanySalesStatuses {
         id,
-        name
+        name,
+        priority
     }
   }`
   return executeGraphQL(query)

@@ -144,7 +144,7 @@ class CompanyDetails extends Component {
                 <option value={MISSING}>{'Saknar status'}</option>
                 {Object.keys(this.props.statuses.data).map(key => (
                   <option key={key} value={key}>
-                    {this.props.statuses.data[key]}
+                    {this.props.statuses.data[key].name}
                   </option>
                 ))}
               </select>

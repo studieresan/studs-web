@@ -157,13 +157,15 @@ class SalesTool extends Component {
         }, direction)
         break
       case 'status':
-        this.sortByStringProperty(
-          companyId =>
-            companies[companyId].status
-              ? this.props.statuses.data[companies[companyId].status.id]
-              : null,
-          direction
-        )
+        hasData(this.props.statuses) &&
+          this.sortByStringProperty(
+            companyId =>
+              companies[companyId].status
+                ? this.props.statuses.data[companies[companyId].status.id]
+                    .priority
+                : null,
+            direction
+          )
         break
       default:
         throw new RangeError('Wrong sort property')
@@ -218,7 +220,7 @@ class SalesTool extends Component {
               <option value={MISSING}>{'Saknar status'}</option>
               {Object.keys(this.props.statuses.data).map(key => (
                 <option key={key} value={key}>
-                  {this.props.statuses.data[key]}
+                  {this.props.statuses.data[key].name}
                 </option>
               ))}
             </select>
@@ -227,7 +229,7 @@ class SalesTool extends Component {
             <label>Ansvarig</label>
             <select
               id='member-select'
-              value={this.props.filter.User}
+              value={this.props.filter.user}
               onChange={event =>
                 this.props.updateFilter({ user: event.target.value })
               }
@@ -277,9 +279,12 @@ class SalesTool extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.filteredCompanies.map(companyId =>
-                this.renderCompany(companyId)
-              )}
+              {hasData(this.props.companies) &&
+                hasData(this.props.statuses) &&
+                hasData(this.props.statuses) &&
+                this.state.filteredCompanies.map(companyId =>
+                  this.renderCompany(companyId)
+                )}
             </tbody>
           </table>
         </div>
@@ -298,7 +303,7 @@ class SalesTool extends Component {
   renderCompany(id) {
     const { name, status, responsibleUser } = this.props.companies.data[id]
     const statusName = status
-      ? this.props.statuses.data[status.id]
+      ? this.props.statuses.data[status.id].name
       : 'Saknar status'
     const responsibleUserName = responsibleUser
       ? this.props.users[responsibleUser.id]
@@ -359,12 +364,12 @@ SalesTool.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   filter: PropTypes.object.isRequired,
-  updateFilter: PropTypes.func.isRequired,
-  loadStatuses: PropTypes.func.isRequired,
   statuses: PropTypes.object.isRequired,
   users: PropTypes.object.isRequired,
-  getUsers: PropTypes.func.isRequired,
   companies: PropTypes.object.isRequired,
+  updateFilter: PropTypes.func.isRequired,
+  loadStatuses: PropTypes.func.isRequired,
+  getUsers: PropTypes.func.isRequired,
   loadCompanies: PropTypes.func.isRequired,
   addCompany: PropTypes.func.isRequired,
 }

@@ -21,7 +21,7 @@ export const loadStatuses = () => dispatch => {
   fetchSaleStatuses()
     .then(statuses => {
       const statusesStateMap = {}
-      statuses.forEach(c => (statusesStateMap[c.id] = c.name))
+      statuses.forEach(c => (statusesStateMap[c.id] = c))
       dispatch(getSuccess(statusesStateMap))
     })
     .catch(() => dispatch(error('loading statuses')))

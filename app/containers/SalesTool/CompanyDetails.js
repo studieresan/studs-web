@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 
-import StaticCommentCard from 'components/CompanyCommentCard/StaticCommentCard'
 import CreateContactCard from 'components/CompanyContactCard/CreateContactCard'
 import StaticContactCard from 'components/CompanyContactCard/StaticContactCard'
 import NewCommentCard from 'components/CompanyCommentCard/NewCommentCard'
-import EditCommentCard from 'components/CompanyCommentCard/EditCommentCard'
+import CommentCard from 'components/CompanyCommentCard/CommentCard'
 import Button from 'components/Button'
 
 import styles from './styles.css'
@@ -17,7 +16,6 @@ class CompanyDetails extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      commentsBeingEdited: [],
       contactsBeingEdited: [],
       showCreateContact: false,
     }
@@ -75,14 +73,6 @@ class CompanyDetails extends Component {
   createComment = text =>
     this.props.addComment(text, this.props.match.params.id)
 
-  startEditingComment = commentId => {
-    if (!this.state.commentsBeingEdited.includes(commentId)) {
-      this.setState({
-        commentsBeingEdited: [...this.state.commentsBeingEdited, commentId],
-      })
-    }
-  }
-
   startEditingContact = contactId => {
     if (!this.state.contactsBeingEdited.includes(contactId)) {
       this.setState({
@@ -91,31 +81,12 @@ class CompanyDetails extends Component {
     }
   }
 
-  saveComment = (id, text) => {
-    this.props.updateComment(id, text)
-    this.cancelEditingComment(id)
-  }
-
-  cancelEditingComment = id => {
-    this.setState({
-      commentsBeingEdited: this.state.commentsBeingEdited.filter(
-        idInList => idInList !== id
-      ),
-    })
-  }
-
   cancelEditingContact = id => {
     this.setState({
       contactsBeingEdited: this.state.contactsBeingEdited.filter(
         idInList => idInList !== id
       ),
     })
-  }
-
-  deleteComment = id => {
-    if (window.confirm('Are you sure you want to delete this comment?')) {
-      this.props.deleteComment(id, this.props.match.params.id)
-    }
   }
 
   createContact = body => {
@@ -257,19 +228,20 @@ class CompanyDetails extends Component {
                 company.comments &&
                 company.comments.map(commentId => {
                   const comment = this.props.comments.data[commentId]
-                  return this.isCommentBeingEdited(comment) ? (
-                    <EditCommentCard
+                  return (
+                    <CommentCard
                       key={comment.id}
                       comment={comment}
-                      saveComment={(id, text) => this.saveComment(id, text)}
-                      cancelEditingComment={this.cancelEditingComment}
-                    />
-                  ) : (
-                    <StaticCommentCard
-                      key={comment.id}
-                      comment={comment}
-                      startEditingComment={this.startEditingComment}
-                      deleteComment={() => this.deleteComment(comment.id)}
+                      userName={this.props.users[comment.user.id]}
+                      updateComment={text =>
+                        this.props.updateComment(comment.id, text)
+                      }
+                      deleteComment={() =>
+                        this.props.deleteComment(
+                          comment.id,
+                          this.props.match.params.id
+                        )
+                      }
                     />
                   )
                 })
@@ -281,10 +253,6 @@ class CompanyDetails extends Component {
         </div>
       </div>
     )
-  }
-
-  isCommentBeingEdited = comment => {
-    return this.state.commentsBeingEdited.includes(comment.id)
   }
 
   isContactBeingEdited = contact => {

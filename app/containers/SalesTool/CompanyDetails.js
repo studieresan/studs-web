@@ -10,6 +10,8 @@ import styles from './styles.css'
 import PropTypes from 'prop-types'
 import { isError, isSuccess, hasData, isInitial } from './store/constants'
 
+const MISSING = 'MISSING'
+
 class CompanyDetails extends Component {
   constructor(props) {
     super(props)
@@ -151,14 +153,18 @@ class CompanyDetails extends Component {
                 value={
                   company && company.responsibleUser
                     ? company.responsibleUser.id
-                    : undefined
+                    : MISSING
                 }
                 onChange={event =>
                   this.updateCompany({
-                    responsibleUser: event.target.value,
+                    responsibleUser:
+                      event.target.value !== MISSING
+                        ? event.target.value
+                        : null,
                   })
                 }
               >
+                <option value={MISSING}>{'Ingen ansvarig'}</option>
                 {Object.keys(this.props.users).map(key => (
                   <option key={key} value={key}>
                     {this.props.users[key]}

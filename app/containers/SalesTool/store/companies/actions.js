@@ -64,24 +64,9 @@ export const loadCompanies = () => dispatch => {
     })
 }
 
-export const addCompany = name => (dispatch, getState) => {
-  const statuses = getState().getIn(['salesTool', 'statuses'])
-  if (!hasData(statuses)) {
-    dispatch(error('adding company'))
-    return
-  }
-  let highestPrio = { id: null, priority: null }
-  Object.keys(statuses.data).forEach(k => {
-    if (statuses.data[k].priority > highestPrio) {
-      highestPrio = statuses.data[k]
-    }
-  })
-  if (highestPrio.id === null) {
-    dispatch(error('adding company'))
-    return
-  }
+export const addCompany = name => dispatch => {
   dispatch(updateRequest())
-  createCompany(name, highestPrio.id)
+  createCompany(name)
     .then(company => dispatch(updateSuccess(company)))
     .catch(() => {
       dispatch(error('adding company'))

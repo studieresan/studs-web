@@ -541,12 +541,9 @@ export const fetchSaleStatuses = () => {
     .catch(err => console.error(err))
 }
 
-export const createCompany = (name, statusId) => {
+export const createCompany = name => {
   const query = `mutation {
-    createCompany(name: "${name.replace(
-      /"/g,
-      '\\"'
-    )}", statusId: "${statusId}") {
+    createCompany(name: "${name.replace(/"/g, '\\"')}") {
       ${COMPANY_FIELDS}
     }
   }`

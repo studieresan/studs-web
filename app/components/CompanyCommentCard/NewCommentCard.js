@@ -1,22 +1,14 @@
 import React, { useState } from 'react'
-import MemberImage from 'components/MemberImage'
-import Button from 'components/Button'
-
 import PropTypes from 'prop-types'
+import Button from 'components/Button'
+import MemberImageTime from 'components/MemberImageTime'
 import styles from './styles.css'
 
 const NewCommentCard = ({ currentUser, createComment }) => {
   const [text, setText] = useState('')
   return (
     <div className={styles.comment_container}>
-      <div className={styles.current_user_picture}>
-        <MemberImage
-          picture={currentUser ? currentUser.picture : null}
-          size={'90'}
-          square
-          round
-        />
-      </div>
+      <MemberImageTime picture={currentUser.picture} />
       <div className={styles.comment_card}>
         <input
           className={styles.comment_input}

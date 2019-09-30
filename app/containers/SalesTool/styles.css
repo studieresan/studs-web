@@ -158,6 +158,7 @@
   padding-right: 5%;
   padding-left: 5%;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   margin-bottom: 2rem;
 }
@@ -180,4 +181,10 @@
 .small_button {
   padding: 10px 30px;
   font-size: 0.7rem;
+}
+
+.hr {
+  width: 80%;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }

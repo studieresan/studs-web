@@ -12,8 +12,6 @@ import {
   isError,
 } from './store/constants'
 
-const MISSING = 'MISSING'
-
 class SalesTool extends Component {
   constructor(props) {
     super(props)
@@ -97,17 +95,14 @@ class SalesTool extends Component {
           .filter(companyId =>
             filter.status === 'Alla'
               ? true
-              : (companies[companyId].status &&
-                  companies[companyId].status.id === filter.status) ||
-                (!companies[companyId].status && filter.status === MISSING)
+              : companies[companyId].status &&
+                companies[companyId].status.id === filter.status
           )
           .filter(companyId =>
             filter.user === 'Alla'
               ? true
-              : (companies[companyId].responsibleUser &&
-                  companies[companyId].responsibleUser.id === filter.user) ||
-                (!companies[companyId].responsibleUser &&
-                  filter.user === MISSING)
+              : companies[companyId].responsibleUser &&
+                companies[companyId].responsibleUser.id === filter.user
           ),
       },
       () => this.applySortStatus(companies)
@@ -157,13 +152,15 @@ class SalesTool extends Component {
         }, direction)
         break
       case 'status':
-        this.sortByStringProperty(
-          companyId =>
-            companies[companyId].status
-              ? this.props.statuses.data[companies[companyId].status.id]
-              : null,
-          direction
-        )
+        hasData(this.props.statuses) &&
+          this.sortByStringProperty(
+            companyId =>
+              companies[companyId].status
+                ? this.props.statuses.data[companies[companyId].status.id]
+                    .priority
+                : null,
+            direction
+          )
         break
       default:
         throw new RangeError('Wrong sort property')
@@ -215,10 +212,9 @@ class SalesTool extends Component {
               }
             >
               <option value={'Alla'}>Alla</option>
-              <option value={MISSING}>{'Saknar status'}</option>
               {Object.keys(this.props.statuses.data).map(key => (
                 <option key={key} value={key}>
-                  {this.props.statuses.data[key]}
+                  {this.props.statuses.data[key].name}
                 </option>
               ))}
             </select>
@@ -227,13 +223,12 @@ class SalesTool extends Component {
             <label>Ansvarig</label>
             <select
               id='member-select'
-              value={this.props.filter.User}
+              value={this.props.filter.user}
               onChange={event =>
                 this.props.updateFilter({ user: event.target.value })
               }
             >
               <option value={'Alla'}>Alla</option>
-              <option value={MISSING}>{'Ingen ansvarig'}</option>
               {Object.keys(this.props.users).map(key => (
                 <option key={key} value={key}>
                   {this.props.users[key]}
@@ -277,9 +272,12 @@ class SalesTool extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.filteredCompanies.map(companyId =>
-                this.renderCompany(companyId)
-              )}
+              {hasData(this.props.companies) &&
+                hasData(this.props.statuses) &&
+                hasData(this.props.statuses) &&
+                this.state.filteredCompanies.map(companyId =>
+                  this.renderCompany(companyId)
+                )}
             </tbody>
           </table>
         </div>
@@ -298,8 +296,11 @@ class SalesTool extends Component {
   renderCompany(id) {
     const { name, status, responsibleUser } = this.props.companies.data[id]
     const statusName = status
-      ? this.props.statuses.data[status.id]
+      ? this.props.statuses.data[status.id].name
       : 'Saknar status'
+    const statusColor = status
+      ? this.props.statuses.data[status.id].color
+      : 'inherit'
     const responsibleUserName = responsibleUser
       ? this.props.users[responsibleUser.id]
       : 'Ingen ansvarig'
@@ -317,7 +318,15 @@ class SalesTool extends Component {
         >
           {name}
         </td>
-        <td>{statusName}</td>
+        <td>
+          <div
+            style={{
+              background: statusColor,
+            }}
+          >
+            {statusName}
+          </div>
+        </td>
         <td>{responsibleUserName}</td>
       </tr>
     )
@@ -359,12 +368,12 @@ SalesTool.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   filter: PropTypes.object.isRequired,
-  updateFilter: PropTypes.func.isRequired,
-  loadStatuses: PropTypes.func.isRequired,
   statuses: PropTypes.object.isRequired,
   users: PropTypes.object.isRequired,
-  getUsers: PropTypes.func.isRequired,
   companies: PropTypes.object.isRequired,
+  updateFilter: PropTypes.func.isRequired,
+  loadStatuses: PropTypes.func.isRequired,
+  getUsers: PropTypes.func.isRequired,
   loadCompanies: PropTypes.func.isRequired,
   addCompany: PropTypes.func.isRequired,
 }

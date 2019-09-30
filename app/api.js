@@ -532,7 +532,8 @@ export const fetchSaleStatuses = () => {
   const query = `{
     allCompanySalesStatuses {
         id,
-        name
+        name,
+        priority
     }
   }`
   return executeGraphQL(query)
@@ -542,7 +543,7 @@ export const fetchSaleStatuses = () => {
 
 export const createCompany = name => {
   const query = `mutation {
-    createCompany(name: "${name}") {
+    createCompany(name: "${name.replace(/"/g, '\\"')}") {
       ${COMPANY_FIELDS}
     }
   }`
@@ -591,7 +592,7 @@ export const createContact = (companyId, contactFields) => {
   const query = `mutation {
     createContact(companyId: "${companyId}", fields: {
         ${Object.keys(contactFields).map(
-          k => k + ': "' + contactFields[k] + '"\n'
+          k => k + ': "' + contactFields[k].replace(/"/g, '\\"') + '"\n'
         )}
     }) {
         ${CONTACT_FIELDS}
@@ -615,7 +616,7 @@ export const updateContact = (contactId, contactFields) => {
   const query = `mutation {
     updateContact(id: "${contactId}", fields: {
         ${Object.keys(contactFields).map(
-          k => k + ': "' + contactFields[k] + '"\n'
+          k => k + ': "' + contactFields[k].replace(/"/g, '\\"') + '"\n'
         )}
     }) {
         ${CONTACT_FIELDS}
@@ -662,6 +663,7 @@ export const fetchComments = companyId => {
 }
 
 export const createComment = (companyId, text) => {
+  text = text.replace(/"/g, '\\"')
   const query = `mutation {
     createComment(companyId: "${companyId}", text: "${text}") {
         ${COMMENT_FIELDS}
@@ -686,6 +688,7 @@ export const removeComment = commentId => {
 }
 
 export const updateComment = (commentId, text) => {
+  text = text.replace(/"/g, '\\"')
   const query = `mutation {
     updateComment(id: "${commentId}", text: "${text}") {
       ${COMMENT_FIELDS}

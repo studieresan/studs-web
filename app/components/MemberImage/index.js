@@ -7,12 +7,17 @@ function MemberImage({ picture, size, square, round, className }) {
   if (!picture) return null
   const sizes = {
     width: size,
-    height: square ? size : 'auto',
+    height: 'auto',
   }
   const classes = classnames(styles.picture, className, {
     [styles.round]: round,
   })
-  return <img className={classes} src={picture} {...sizes} />
+
+  const style = {
+    background: 'red',
+    maxHeight: square ? size + 'px' : 'auto',
+  }
+  return <img className={classes} src={picture} {...sizes} style={style} />
 }
 
 MemberImage.propTypes = {

@@ -103,6 +103,7 @@
 }
 
 .header {
+  position: relative;
   background-color: grey;
   width: 100%;
   font-size: 3em;
@@ -113,8 +114,8 @@
 
 .back_button {
   position: absolute;
-  top: 10%;
-  left: 0px;
+  top: 0;
+  left: 0;
   color: white;
   cursor: pointer;
   font-size: 2rem;

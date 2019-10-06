@@ -19,12 +19,12 @@ export const HeaderSortButton = ({
           <i className='fas fa-sort' />
         </span>
       )}
-      {sortStatus.property === attribute && sortStatus.direction && (
+      {sortStatus.property === attribute && sortStatus.ascending && (
         <span>
           <i className='fas fa-sort-up' />
         </span>
       )}
-      {sortStatus.property === attribute && !sortStatus.direction && (
+      {sortStatus.property === attribute && !sortStatus.ascending && (
         <span>
           <i className='fas fa-sort-down' />
         </span>

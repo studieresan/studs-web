@@ -113,28 +113,28 @@ class SalesTool extends Component {
   }
 
   setSortStatus = newProperty => {
-    const { property, direction } = this.props.sorting
+    const { property, ascending } = this.props.sorting
     if (property === newProperty) {
       this.props.updateSorting({
         property,
-        direction: !direction,
+        ascending: !ascending,
       })
     } else {
       this.props.updateSorting({
         property: newProperty,
-        direction: false,
+        ascending: false,
       })
     }
   }
 
   applySortStatus = (companies, sorting) => {
-    const { property, direction } = sorting
+    const { property, ascending } = sorting
     switch (property) {
       case 'name':
         this.sortByStringProperty(
           companyId => companies[companyId].name.toLowerCase(),
           companyId => companies[companyId].name.toLowerCase(),
-          direction
+          ascending
         )
         break
       case 'responsibleUser':
@@ -147,7 +147,7 @@ class SalesTool extends Component {
               : null
           },
           companyId => companies[companyId].name.toLowerCase(),
-          direction
+          ascending
         )
         break
       case 'status':
@@ -159,7 +159,7 @@ class SalesTool extends Component {
                     .priority
                 : null,
             companyId => companies[companyId].name.toLowerCase(),
-            !direction
+            !ascending
           )
         break
       default:
@@ -167,7 +167,7 @@ class SalesTool extends Component {
     }
   }
 
-  sortByStringProperty = (getProperty, getSecondary, direction) => {
+  sortByStringProperty = (getProperty, getSecondary, ascending) => {
     const sortedList = this.state.filteredCompanies.sort((a, b) => {
       let x = getProperty(a)
       let y = getProperty(b)
@@ -175,8 +175,8 @@ class SalesTool extends Component {
         x = getSecondary(a)
         y = getSecondary(b)
       }
-      if (x > y || (x === null && y !== null)) return direction ? 1 : -1
-      if (y > x || (y === null && x !== null)) return direction ? -1 : 1
+      if (x > y || (x === null && y !== null)) return ascending ? 1 : -1
+      if (y > x || (y === null && x !== null)) return ascending ? -1 : 1
       return 0
     })
     this.setState({ filteredCompanies: sortedList })

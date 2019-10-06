@@ -25,7 +25,7 @@ const filterReducer = (state = defaultFilterState, action) => {
 
 const defaultSortingState = {
   property: 'status',
-  direction: false,
+  ascending: false,
 }
 
 const sortingReducer = (state = defaultSortingState, action) => {

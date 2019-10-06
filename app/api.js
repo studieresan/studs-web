@@ -501,6 +501,17 @@ export const fetchCompanies = () => {
     .catch(err => console.error(err))
 }
 
+export const fetchSoldCompanies = () => {
+  const query = `{
+    soldCompanies {
+      id
+    }
+  }`
+  return executeGraphQL(query)
+    .then(res => res.data.soldCompanies)
+    .catch(err => console.error(err))
+}
+
 export const fetchCompany = companyId => {
   const query = `{
     company (companyId: "${companyId}") {

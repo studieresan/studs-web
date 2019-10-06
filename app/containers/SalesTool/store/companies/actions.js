@@ -6,14 +6,15 @@ import {
   UPDATE_SUCCESS,
   SET_CONTACTS,
   SET_COMMENTS,
+  SOLD_COMPANIES_SUCCESS,
 } from './constants'
 import {
   fetchCompanies,
+  fetchSoldCompanies,
   createCompany,
   updateCompany as updateCompanyApi,
   fetchCompany,
 } from 'api'
-import { hasData } from '../constants'
 
 export const getRequest = () => ({
   type: GET_REQUEST,
@@ -22,6 +23,11 @@ export const getRequest = () => ({
 export const getSuccess = companies => ({
   type: GET_SUCCESS,
   payload: companies,
+})
+
+export const soldCompaniesSuccess = soldCompanies => ({
+  type: SOLD_COMPANIES_SUCCESS,
+  payload: soldCompanies,
 })
 
 export const error = err => {
@@ -91,4 +97,20 @@ export const loadCompany = id => dispatch => {
     .catch(() => {
       dispatch(error('loading company'))
     })
+}
+
+export const loadSoldCompanies = () => dispatch => {
+  dispatch(getRequest())
+  Promise.all([
+    fetchCompanies().then(companies => {
+      const companyStateMap = {}
+      companies.forEach(c => (companyStateMap[c.id] = c))
+      dispatch(getSuccess(companyStateMap))
+    }),
+    fetchSoldCompanies().then(companies => {
+      dispatch(soldCompaniesSuccess(companies.map(c => c.id)))
+    }),
+  ]).catch(() => {
+    dispatch(error('loading sold companies'))
+  })
 }

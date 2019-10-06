@@ -95,11 +95,11 @@ class EventEdit extends React.Component {
   render() {
     const {
       event,
-      companyUsers,
       events: { saving, saved },
       removePicture,
       removeSurvey,
       companies,
+      soldCompanies,
     } = this.props
 
     const companyOption = company => (
@@ -109,7 +109,7 @@ class EventEdit extends React.Component {
     )
 
     const companiesList = hasData(companies)
-      ? Object.keys(companies.data).map(k => companies.data[k])
+      ? soldCompanies.map(soldCompanyId => companies.data[soldCompanyId])
       : []
 
     const surveyListItem = surveyType => (url, i) => (
@@ -268,6 +268,7 @@ EventEdit.propTypes = {
 
   // redux props
   companies: PropTypes.object.isRequired,
+  soldCompanies: PropTypes.array.isRequired,
 
   update: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
@@ -281,9 +282,16 @@ EventEdit.propTypes = {
 
 const mapStateToProps = rootState => {
   const companies = rootState.getIn(['salesTool', 'companies'])
+  const soldCompanies = rootState.getIn([
+    'salesTool',
+    'companies',
+    'soldCompanies',
+  ])
+
   return {
     ...selectEvents()(rootState),
     companies,
+    soldCompanies,
   }
 }
 

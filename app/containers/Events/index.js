@@ -14,7 +14,7 @@ import EventStaticDetail from 'components/EventStaticDetail'
 import EventEdit from 'components/EventEdit'
 import * as EventActions from './actions'
 import { getUsers } from 'containers/Members/actions'
-import { loadCompanies } from 'containers/SalesTool/store/companies/actions'
+import { loadSoldCompanies } from 'containers/SalesTool/store/companies/actions'
 import { hasEventPermission } from 'users'
 
 const WARNING =
@@ -29,7 +29,7 @@ export class Events extends React.Component {
   componentDidMount() {
     this.props.getEvents()
     this.props.getUsers()
-    this.props.getCompanies()
+    this.props.loadSoldCompanies()
   }
 
   onDeleteEvent = id => {
@@ -146,7 +146,7 @@ export class Events extends React.Component {
 }
 
 Events.propTypes = {
-  getCompanies: PropTypes.func.isRequired,
+  loadSoldCompanies: PropTypes.func.isRequired,
   getEvents: PropTypes.func.isRequired,
   events: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
@@ -167,7 +167,7 @@ const mapStateToProps = selectEvents()
 function mapDispatchToProps(dispatch) {
   return {
     ...bindActionCreators({ ...EventActions, getUsers }, dispatch),
-    getCompanies: () => dispatch(loadCompanies()),
+    loadSoldCompanies: () => dispatch(loadSoldCompanies()),
   }
 }
 

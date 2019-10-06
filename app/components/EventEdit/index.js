@@ -17,6 +17,8 @@ import Button from 'components/Button'
 import EventEditPicture from 'components/EventEditPicture'
 import EventEditSurvey from 'components/EventEditSurvey'
 
+import { hasData } from 'containers/SalesTool/store/constants'
+
 class EventEdit extends React.Component {
   // If this component is rendered before the events have been fetched,
   // for example on initial page load, we can use an empty event object
@@ -53,6 +55,7 @@ class EventEdit extends React.Component {
       } else {
         data[e.target.name] = e.target.value
       }
+      console.log(data)
       this.update(data)
     }
   }
@@ -96,17 +99,18 @@ class EventEdit extends React.Component {
       events: { saving, saved },
       removePicture,
       removeSurvey,
+      companies,
     } = this.props
 
-    const companyOption = companyName => (
-      <option key={companyName} value={companyName || ''}>
-        {companyName}
+    const companyOption = company => (
+      <option key={company.id} value={company.name}>
+        {company.name}
       </option>
     )
 
-    const companies =
-      companyUsers &&
-      sortedUniq(sortBy(companyUsers, ['companyName']).map(u => u.companyName))
+    const companiesList = hasData(companies)
+      ? Object.keys(companies.data).map(k => companies.data[k])
+      : []
 
     const surveyListItem = surveyType => (url, i) => (
       <EventEditSurvey
@@ -169,7 +173,7 @@ class EventEdit extends React.Component {
             <option key='none' disabled>
               Select company
             </option>
-            {companies && companies.map(companyOption)}
+            {companiesList && companiesList.map(companyOption)}
           </select>
         </div>
         <div className={styles.inputLabel}>
@@ -263,6 +267,7 @@ EventEdit.propTypes = {
   event: PropTypes.object,
 
   // redux props
+  companies: PropTypes.object.isRequired,
 
   update: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
@@ -274,7 +279,13 @@ EventEdit.propTypes = {
   events: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = selectEvents()
+const mapStateToProps = rootState => {
+  const companies = rootState.getIn(['salesTool', 'companies'])
+  return {
+    ...selectEvents()(rootState),
+    companies,
+  }
+}
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ ...EventActions }, dispatch)

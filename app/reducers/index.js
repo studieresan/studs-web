@@ -1,6 +1,7 @@
 import global from 'containers/App/reducer'
 import cv from 'containers/CvEdit/reducer'
 import events from 'containers/Events/reducer'
+import oldEvents from 'containers/OldEvents/reducer'
 import language from 'containers/LanguageProvider/reducer'
 import passwordReset from 'containers/PasswordReset/reducer'
 import eventFeedback from 'containers/CreateEventFeedback/reducer'
@@ -14,6 +15,7 @@ export default {
   members,
   cv,
   events,
+  oldEvents,
   language,
   passwordReset,
   eventFeedback,

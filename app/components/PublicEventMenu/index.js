@@ -5,12 +5,18 @@ import { trackEvent } from '../../utils'
 
 import styles from './styles.css'
 
-const PublicEventMenu = ({ title, events }) => {
+const PublicEventMenu = ({ events, oldEvents }) => {
   return (
     <div className={styles.publicEventMenu}>
-      <h2>{title}</h2>
+      <h2>Events</h2>
       <div className={styles.links}>
         {events.map(e => (
+          <PublicEventMenuLink key={e.companyName} company={e.companyName} />
+        ))}
+      </div>
+      <h2>Old Events</h2>
+      <div className={styles.links}>
+        {oldEvents.map(e => (
           <PublicEventMenuLink key={e.companyName} company={e.companyName} />
         ))}
       </div>
@@ -36,12 +42,8 @@ const PublicEventMenuLink = ({ company }) => {
 }
 
 PublicEventMenu.propTypes = {
-  title: PropTypes.string,
   events: PropTypes.array.isRequired,
-}
-
-PublicEventMenu.defaultProps = {
-  title: 'Studs 2019',
+  oldEvents: PropTypes.array.isRequired,
 }
 
 PublicEventMenuLink.propTypes = {

@@ -1,16 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { scrollSpy, Events, animateScroll } from 'react-scroll'
-import * as actions from 'containers/Events/actions'
+import { getOldEvents } from 'containers/OldEvents/actions'
+import { getEvents } from 'containers/Events/actions'
 
 import styles from './styles.css'
 import PublicEvent from 'components/PublicEvent'
 import PublicEventMenu from 'components/PublicEventMenu'
 
-export class PublicEvents extends React.Component {
+class PublicEvents extends React.Component {
   componentDidMount() {
+    this.props.getOldEvents()
     this.props.getEvents()
 
     Events.scrollEvent.register('begin')
@@ -26,13 +27,16 @@ export class PublicEvents extends React.Component {
   }
 
   render() {
-    const { events } = this.props
+    const { oldEvents, events } = this.props
 
     return (
       <div className={styles.publicEvents}>
-        <PublicEventMenu events={events} />
+        <PublicEventMenu events={events} oldEvents={oldEvents} />
         <div className={styles.eventList}>
           {events.map(e => (
+            <PublicEvent key={e.id} {...e} />
+          ))}
+          {oldEvents.map(e => (
             <PublicEvent key={e.id} {...e} />
           ))}
         </div>
@@ -43,6 +47,11 @@ export class PublicEvents extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    oldEvents: state
+      .getIn(['oldEvents', 'items'])
+      .toJS()
+      .filter(e => e.published)
+      .sort((a, b) => a.date - b.date),
     events: state
       .getIn(['events', 'items'])
       .toJS()
@@ -52,10 +61,15 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch)
+  return {
+    getOldEvents: () => dispatch(getOldEvents()),
+    getEvents: () => dispatch(getEvents()),
+  }
 }
 
 PublicEvents.propTypes = {
+  getOldEvents: PropTypes.func.isRequired,
+  oldEvents: PropTypes.array,
   getEvents: PropTypes.func.isRequired,
   events: PropTypes.array,
   match: PropTypes.shape({

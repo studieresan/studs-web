@@ -13,7 +13,6 @@ import {
   updateCompany as updateCompanyApi,
   fetchCompany,
 } from 'api'
-import { hasData } from '../constants'
 
 export const getRequest = () => ({
   type: GET_REQUEST,

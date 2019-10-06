@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { HeaderSortButton } from 'components/HeaderSortButton'
 import Button from 'components/Button'
-import CompanyDetails from './CompanyDetails'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import {
@@ -22,10 +21,6 @@ class SalesTool extends Component {
       users: {},
       showAddNew: false,
       newCompanyName: '',
-      sortStatus: {
-        property: 'status',
-        direction: 'DESC',
-      },
     }
   }
 
@@ -72,6 +67,10 @@ class SalesTool extends Component {
       // update filters
       this.filterResult(newProps.companies.data, newProps.filter)
     }
+
+    if (this.props.sorting !== newProps.sorting) {
+      this.applySortStatus(newProps.companies.data, newProps.sorting)
+    }
   }
 
   checkForErrors = (props, newProps) => {
@@ -109,51 +108,47 @@ class SalesTool extends Component {
                   filter.user === MISSING)
           ),
       },
-      () => this.applySortStatus(companies)
+      () => this.applySortStatus(companies, this.props.sorting)
     )
   }
 
-  setSortStatus = property => {
-    if (this.state.sortStatus.property === property) {
-      switch (this.state.sortStatus.direction) {
-        case 'ASC':
-          this.setState(
-            { sortStatus: { property, direction: 'DESC' } },
-            this.applySortStatus
-          )
-          break
-        case 'DESC':
-          this.setState(
-            { sortStatus: { property, direction: 'ASC' } },
-            this.applySortStatus
-          )
-          break
-        default:
-          throw new RangeError('Wrong sort status direction')
-      }
+  setSortStatus = newProperty => {
+    const { property, direction } = this.props.sorting
+    if (property === newProperty) {
+      this.props.updateSorting({
+        property,
+        direction: !direction,
+      })
     } else {
-      this.setState(
-        { sortStatus: { property, direction: 'ASC' } },
-        this.applySortStatus
-      )
+      this.props.updateSorting({
+        property: newProperty,
+        direction: false,
+      })
     }
   }
 
-  applySortStatus = (companies = this.props.companies.data) => {
-    const { property, direction } = this.state.sortStatus
+  applySortStatus = (companies, sorting) => {
+    const { property, direction } = sorting
     switch (property) {
       case 'name':
         this.sortByStringProperty(
+          companyId => companies[companyId].name.toLowerCase(),
           companyId => companies[companyId].name.toLowerCase(),
           direction
         )
         break
       case 'responsibleUser':
-        this.sortByStringProperty(companyId => {
-          return companies[companyId].responsibleUser
-            ? this.props.users[companies[companyId].responsibleUser.id]
-            : null
-        }, direction)
+        this.sortByStringProperty(
+          companyId => {
+            return companies[companyId].responsibleUser
+              ? this.props.users[
+                  companies[companyId].responsibleUser.id
+                ].toLowerCase()
+              : null
+          },
+          companyId => companies[companyId].name.toLowerCase(),
+          direction
+        )
         break
       case 'status':
         hasData(this.props.statuses) &&
@@ -163,7 +158,8 @@ class SalesTool extends Component {
                 ? this.props.statuses.data[companies[companyId].status.id]
                     .priority
                 : null,
-            direction
+            companyId => companies[companyId].name.toLowerCase(),
+            !direction
           )
         break
       default:
@@ -171,23 +167,18 @@ class SalesTool extends Component {
     }
   }
 
-  sortByStringProperty = (getProperty, direction) => {
-    let sortedList = []
-    if (direction === 'ASC') {
-      sortedList = this.state.filteredCompanies.sort(
-        (a, b) =>
-          (getProperty(a) === null) - (getProperty(b) === null) ||
-          +(getProperty(a) > getProperty(b)) ||
-          -(getProperty(a) < getProperty(b))
-      )
-    } else {
-      sortedList = this.state.filteredCompanies.sort(
-        (a, b) =>
-          (getProperty(b) === null) - (getProperty(a) === null) ||
-          -(getProperty(a) > getProperty(b)) ||
-          +(getProperty(a) < getProperty(b))
-      )
-    }
+  sortByStringProperty = (getProperty, getSecondary, direction) => {
+    const sortedList = this.state.filteredCompanies.sort((a, b) => {
+      let x = getProperty(a)
+      let y = getProperty(b)
+      if (x === null && y === null) {
+        x = getSecondary(a)
+        y = getSecondary(b)
+      }
+      if (x > y || (x === null && y !== null)) return direction ? 1 : -1
+      if (y > x || (y === null && x !== null)) return direction ? -1 : 1
+      return 0
+    })
     this.setState({ filteredCompanies: sortedList })
   }
 
@@ -260,19 +251,19 @@ class SalesTool extends Component {
                   text='Företag'
                   attribute='name'
                   setSortStatus={this.setSortStatus}
-                  sortStatus={this.state.sortStatus}
+                  sortStatus={this.props.sorting}
                 />
                 <HeaderSortButton
                   text='Status'
                   attribute='status'
                   setSortStatus={this.setSortStatus}
-                  sortStatus={this.state.sortStatus}
+                  sortStatus={this.props.sorting}
                 />
                 <HeaderSortButton
                   text='Ansvarig'
                   attribute='responsibleUser'
                   setSortStatus={this.setSortStatus}
-                  sortStatus={this.state.sortStatus}
+                  sortStatus={this.props.sorting}
                 />
               </tr>
             </thead>
@@ -373,10 +364,12 @@ SalesTool.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   filter: PropTypes.object.isRequired,
+  sorting: PropTypes.object.isRequired,
   statuses: PropTypes.object.isRequired,
   users: PropTypes.object.isRequired,
   companies: PropTypes.object.isRequired,
   updateFilter: PropTypes.func.isRequired,
+  updateSorting: PropTypes.func.isRequired,
   loadStatuses: PropTypes.func.isRequired,
   getUsers: PropTypes.func.isRequired,
   loadCompanies: PropTypes.func.isRequired,

@@ -1,4 +1,4 @@
-import { UPDATE_FILTER } from './constants'
+import { UPDATE_FILTER, UPDATE_SORTING } from './constants'
 
 export const updateFilter = newFilter => ({
   type: UPDATE_FILTER,
@@ -6,6 +6,6 @@ export const updateFilter = newFilter => ({
 })
 
 export const updateSorting = newSorting => ({
-  type: UPDATE_FILTER,
+  type: UPDATE_SORTING,
   payload: newSorting,
 })

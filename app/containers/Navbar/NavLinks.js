@@ -66,14 +66,14 @@ function NavLinks({ loggedIn, user }: Props) {
         {user.type !== 'studs_member' && (
           <li>
             <Link to='/events/public'>
-              <FormattedMessage {...messages.pastEvents} />
+              <FormattedMessage {...messages.events} />
             </Link>
           </li>
         )}
         {user.type === 'studs_member' && (
           <li>
             <Link to='/events/'>
-              <FormattedMessage {...messages.pastEvents} />
+              <FormattedMessage {...messages.events} />
             </Link>
           </li>
         )}

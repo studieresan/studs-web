@@ -21,7 +21,6 @@ import PublicEvents from 'containers/PublicEvents'
 import OldEvents from 'containers/OldEvents'
 import EventFeedbackPage from 'containers/EventFeedbackPage'
 import CreateEventFeedback from 'containers/CreateEventFeedback'
-import Application from 'containers/Application'
 import EventFeedbackForm from './components/EventFeedbackForm'
 import SalesTool from 'containers/SalesTool/SalesToolContainer'
 import CompanyDetails from 'containers/SalesTool/CompanyDetailsContainer'
@@ -36,8 +35,8 @@ class StudsRouter extends Component {
         <Route exact path='/user/forgot-password' component={ForgotPassword} />
 
         <Route exact path='/password-reset/:token' component={PasswordReset} />
-        <Route exact path='/events/public' component={PublicEvents} />
-        <Route exact path='/events/2018' component={OldEvents} />
+        <Route exact path='/events/public' component={OldEvents} />
+        {/* <Route exact path='/events/2018' component={OldEvents} /> */}
 
         <AuthenticatedRoute
           exact

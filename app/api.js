@@ -559,7 +559,9 @@ export const updateCompany = (companyId, companyFields) => {
           k =>
             k +
             ': ' +
-            (companyFields[k] ? '"' + companyFields[k] + '"\n' : null + '\n')
+            (companyFields[k]
+              ? '"' + companyFields[k].replace(/"/g, '\\"') + '"\n'
+              : null + '\n')
         )}
     }) {
         ${COMPANY_FIELDS}

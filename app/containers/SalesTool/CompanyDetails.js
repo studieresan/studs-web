@@ -5,6 +5,7 @@ import StaticContactCard from 'components/CompanyContactCard/StaticContactCard'
 import NewCommentCard from 'components/CompanyCommentCard/NewCommentCard'
 import CommentCard from 'components/CompanyCommentCard/CommentCard'
 import Button from 'components/Button'
+import CompanyHeader from 'components/CompanyHeader'
 
 import styles from './styles.css'
 import PropTypes from 'prop-types'
@@ -115,17 +116,13 @@ class CompanyDetails extends Component {
     }
     return (
       <div className={styles.content}>
-        <div className={styles.header}>
-          <div
-            className={styles.back_button}
-            onClick={() => {
-              this.props.history.push({ pathname: '/sales-tool/companies' })
-            }}
-          >
-            <i className='fa fa-arrow-left' />
-          </div>
-          <div>{company ? company.name : 'Laddar...'}</div>
-        </div>
+        <CompanyHeader
+          name={company ? company.name : 'Laddar...'}
+          updateName={newName => this.updateCompany({ name: newName })}
+          back={() =>
+            this.props.history.push({ pathname: '/sales-tool/companies' })
+          }
+        />
         <div className={styles.company_details_body}>
           <div className={styles.company_details}>
             <div className={styles.select_input}>

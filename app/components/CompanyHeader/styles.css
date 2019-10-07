@@ -1,0 +1,65 @@
+.header {
+  position: relative;
+  background-color: grey;
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.header .header_text {
+  font-size: 3rem;
+}
+
+.header .header_icons {
+  font-size: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 0.55rem;
+}
+
+.header .header_icon {
+  padding: 0.2rem;
+  cursor: pointer;
+}
+
+.header_icon:hover {
+  color: grey;
+  background-color: white;
+  border-radius: 0.2rem;
+}
+
+.back_button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: white;
+  cursor: pointer;
+  font-size: 2rem;
+  margin: 0.5rem;
+  padding-left: 4px;
+  padding-right: 4px;
+  z-index: 10;
+}
+
+.back_button:hover {
+  color: grey;
+  background-color: white;
+  border-radius: 0.8rem;
+}
+
+.name_input {
+  width: 30% !important;
+  margin-bottom: 0.55rem !important;
+  color: black;
+}
+
+.primary {
+  color: var(--primary);
+}
+
+.red {
+  color: #dd696d;
+}

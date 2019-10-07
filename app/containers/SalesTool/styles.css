@@ -94,41 +94,11 @@
 }
 
 .content {
-  text-align: center;
   padding: 5em 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.header {
-  position: relative;
-  background-color: grey;
-  width: 100%;
-  font-size: 3em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  color: white;
-}
-
-.back_button {
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: white;
-  cursor: pointer;
-  font-size: 2rem;
-  margin: 0.5rem;
-  padding-left: 4px;
-  padding-right: 4px;
-  z-index: 10;
-}
-
-.back_button:hover {
-  color: grey;
-  background-color: white;
-  border-radius: 0.8rem;
 }
 
 .company_details_body {

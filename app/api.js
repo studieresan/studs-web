@@ -120,6 +120,10 @@ function toGraphQLFields(str) {
   return JSON.stringify(withoutNulls).replace(/"([^"]*)":/g, '$1:')
 }
 
+const wrapInQuotes = stringValue => {
+  return '"' + stringValue.replace(/"/g, '\\"') + '"'
+}
+
 export function updateUser(newFields) {
   const mutation = `mutation {
     updateProfile(fields: ${toGraphQLFields(newFields)}) {
@@ -543,7 +547,7 @@ export const fetchSaleStatuses = () => {
 
 export const createCompany = name => {
   const query = `mutation {
-    createCompany(name: "${name.replace(/"/g, '\\"')}") {
+    createCompany(name: ${wrapInQuotes(name)}) {
       ${COMPANY_FIELDS}
     }
   }`
@@ -559,7 +563,8 @@ export const updateCompany = (companyId, companyFields) => {
           k =>
             k +
             ': ' +
-            (companyFields[k] ? '"' + companyFields[k] + '"\n' : null + '\n')
+            (companyFields[k] ? wrapInQuotes(companyFields[k]) : null) +
+            '\n'
         )}
     }) {
         ${COMPANY_FIELDS}
@@ -592,7 +597,7 @@ export const createContact = (companyId, contactFields) => {
   const query = `mutation {
     createContact(companyId: "${companyId}", fields: {
         ${Object.keys(contactFields).map(
-          k => k + ': "' + contactFields[k].replace(/"/g, '\\"') + '"\n'
+          k => k + ': ' + wrapInQuotes(contactFields[k]) + '\n'
         )}
     }) {
         ${CONTACT_FIELDS}
@@ -616,7 +621,7 @@ export const updateContact = (contactId, contactFields) => {
   const query = `mutation {
     updateContact(id: "${contactId}", fields: {
         ${Object.keys(contactFields).map(
-          k => k + ': "' + contactFields[k].replace(/"/g, '\\"') + '"\n'
+          k => k + ': ' + wrapInQuotes(contactFields[k]) + '\n'
         )}
     }) {
         ${CONTACT_FIELDS}
@@ -663,9 +668,8 @@ export const fetchComments = companyId => {
 }
 
 export const createComment = (companyId, text) => {
-  text = text.replace(/"/g, '\\"')
   const query = `mutation {
-    createComment(companyId: "${companyId}", text: "${text}") {
+    createComment(companyId: "${companyId}", text: ${wrapInQuotes(text)}) {
         ${COMMENT_FIELDS}
     }
   }`
@@ -688,9 +692,8 @@ export const removeComment = commentId => {
 }
 
 export const updateComment = (commentId, text) => {
-  text = text.replace(/"/g, '\\"')
   const query = `mutation {
-    updateComment(id: "${commentId}", text: "${text}") {
+    updateComment(id: "${commentId}", text: ${wrapInQuotes(text)}) {
       ${COMMENT_FIELDS}
     }
   }`

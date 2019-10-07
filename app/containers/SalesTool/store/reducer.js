@@ -3,19 +3,35 @@ import companiesReducer from './companies/reducer'
 import contactsReducer from './contacts/reducer'
 import commentsReducer from './comments/reducer'
 import statusesReducer from './statuses/reducer'
-import { UPDATE_FILTER } from './constants'
+import { UPDATE_FILTER, UPDATE_SORTING } from './constants'
 
-const defaultState = {
+const defaultFilterState = {
   text: '',
   user: 'Alla',
   status: 'Alla',
 }
 
-const filterReducer = (state = defaultState, action) => {
+const filterReducer = (state = defaultFilterState, action) => {
   switch (action.type) {
     case UPDATE_FILTER:
       return {
         ...state,
+        ...action.payload,
+      }
+    default:
+      return state
+  }
+}
+
+const defaultSortingState = {
+  property: 'status',
+  ascending: false,
+}
+
+const sortingReducer = (state = defaultSortingState, action) => {
+  switch (action.type) {
+    case UPDATE_SORTING:
+      return {
         ...action.payload,
       }
     default:
@@ -29,6 +45,7 @@ const reducer = combineReducers({
   comments: commentsReducer,
   statuses: statusesReducer,
   filter: filterReducer,
+  sorting: sortingReducer,
 })
 
 export default reducer

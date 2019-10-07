@@ -14,3 +14,4 @@ export const isError = state => state.status === ERROR
 
 // actions
 export const UPDATE_FILTER = 'app/SalesTool/Filter/UPDATE'
+export const UPDATE_SORTING = 'app/SalesTool/Sorting/UPDATE'

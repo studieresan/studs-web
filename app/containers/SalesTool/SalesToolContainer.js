@@ -23,7 +23,7 @@ import {
 
 import { getUsers } from '../Members/actions'
 
-import { updateFilter } from './store/actions'
+import { updateFilter, updateSorting } from './store/actions'
 
 const mapStateToProps = rootState => {
   const currentUser = rootState.getIn(['global', 'user']).toJS()
@@ -32,6 +32,7 @@ const mapStateToProps = rootState => {
   const comments = rootState.getIn(['salesTool', 'comments'])
   const statuses = rootState.getIn(['salesTool', 'statuses'])
   const filter = rootState.getIn(['salesTool', 'filter'])
+  const sorting = rootState.getIn(['salesTool', 'sorting'])
   const users = rootState.getIn(['members', 'users']).toJS()
 
   const userMap = {}
@@ -43,6 +44,7 @@ const mapStateToProps = rootState => {
     comments,
     statuses,
     filter,
+    sorting,
     users: userMap,
   }
 }
@@ -51,6 +53,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getUsers: () => dispatch(getUsers()),
     updateFilter: newFilter => dispatch(updateFilter(newFilter)),
+    updateSorting: newSorting => dispatch(updateSorting(newSorting)),
     loadStatuses: () => dispatch(loadStatuses()),
     loadCompanies: () => dispatch(loadCompanies()),
     addCompany: name => dispatch(addCompany(name)),

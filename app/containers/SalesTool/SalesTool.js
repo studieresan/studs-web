@@ -182,6 +182,24 @@ class SalesTool extends Component {
     this.setState({ filteredCompanies: sortedList })
   }
 
+  addCompany = name => {
+    if (name.trim()) {
+      const alreadyExists = Object.keys(this.props.companies.data).filter(
+        k => this.props.companies.data[k].name === name
+      ).length
+      if (
+        !alreadyExists ||
+        confirm(
+          'There already exists a company with this name.\nDo you want to add another?'
+        )
+      ) {
+        this.props.addCompany(name.trim())
+      }
+    } else {
+      alert('Why are you adding a company without a name? Stop it!')
+    }
+  }
+
   render() {
     return (
       <div className={styles.content}>
@@ -349,9 +367,7 @@ class SalesTool extends Component {
           >
             Avbryt
           </Button>
-          <Button
-            onClick={() => this.props.addCompany(this.state.newCompanyName)}
-          >
+          <Button onClick={() => this.addCompany(this.state.newCompanyName)}>
             Lägg till
           </Button>
         </div>

@@ -72,6 +72,10 @@ class CompanyDetails extends Component {
     this.props.updateCompany(this.props.match.params.id, body)
 
   createComment = text =>
+    (text ||
+      confirm(
+        'You really want to add an empty comment?\nDo you want to look like a fool?'
+      )) &&
     this.props.addComment(text, this.props.match.params.id)
 
   startEditingContact = contactId => {
@@ -91,7 +95,17 @@ class CompanyDetails extends Component {
   }
 
   createContact = body => {
-    this.props.addContact(body, this.props.match.params.id)
+    const nonEmpty = Object.keys(body).filter(k => body[k]).length
+    if (
+      nonEmpty ||
+      confirm(
+        'How are you going to contact someone without any info at all?\n' +
+          'Are you a magician?\n' +
+          'Press ok if you are a magician and want to do this!'
+      )
+    ) {
+      this.props.addContact(body, this.props.match.params.id)
+    }
     this.setState({ showCreateContact: false })
   }
 
@@ -102,8 +116,16 @@ class CompanyDetails extends Component {
   }
 
   saveContact = (id, body) => {
-    this.props.updateContact(id, body)
-    this.cancelEditingContact(id)
+    const nonEmpty = Object.keys(body).filter(k => body[k]).length
+    if (
+      nonEmpty ||
+      confirm(
+        'Why would you remove all info instead of deleting it?\nAre you sure you want to do this?'
+      )
+    ) {
+      this.props.updateContact(id, body)
+      this.cancelEditingContact(id)
+    }
   }
 
   render() {

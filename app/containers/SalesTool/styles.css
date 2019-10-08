@@ -94,7 +94,7 @@
 }
 
 .content {
-  padding: 5em 0;
+  padding-top: calc(var(--header-height) - 15px);
   display: flex;
   flex-direction: column;
   justify-content: center;

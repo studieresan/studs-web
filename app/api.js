@@ -79,7 +79,6 @@ function executeGraphQLMutation(query) {
 }
 
 const USER_PROFILE_FIELDS = `
-  memberType
   email
   firstName
   lastName
@@ -91,7 +90,6 @@ const USER_PROFILE_FIELDS = `
   linkedIn
   github
   picture
-  companyName
 `
 
 export function fetchUser() {
@@ -183,18 +181,14 @@ export function updateUserPassword({ password, confirmPassword }) {
 
 export function fetchUsers() {
   const query = `{
-    studsUsers: users(memberType: studs_member) {
+    users(userRole: null) {
       id,
       profile { ${USER_PROFILE_FIELDS} }
       cv { ${CV_FIELDS} }
     }
-    companyUsers: users(memberType: company_member) {
-      id,
-      profile { ${USER_PROFILE_FIELDS} }
-    }
   }
   `
-  return executeGraphQL(query).then(res => Promise.resolve(res.data))
+  return executeGraphQL(query).then(res => res.data.users)
 }
 
 const CV_FIELDS = `

@@ -2,7 +2,6 @@ import { fromJS, Map } from 'immutable'
 import {
   GET_MEMBERS_REQUEST,
   GET_MEMBERS_SUCCESS,
-  GET_COMPANY_MEMBERS_SUCCESS,
   GET_MEMBERS_ERROR,
   MEMBER_SELECTED,
 } from './constants'
@@ -23,14 +22,6 @@ function membersReducer(state = initialState, action) {
       return state.merge(
         fromJS({
           users: action.users,
-          fetching: false,
-          error: false,
-        })
-      )
-    case GET_COMPANY_MEMBERS_SUCCESS:
-      return state.merge(
-        fromJS({
-          companyUsers: action.users,
           fetching: false,
           error: false,
         })

@@ -34,12 +34,12 @@ const CompanyHeader = ({ name, updateName, back }) => {
         <div className={styles.header_text}>{name}</div>
       )}
       <div className={styles.header_icons}>
-        {editing ? (
+        {editing && newName.trim() && (
           <i
             className={styles.header_icon + ' fa fa-check ' + styles.primary}
-            onClick={() => updateName(newName)}
+            onClick={() => updateName(newName.trim())}
           />
-        ) : null}
+        )}
         <i
           className={
             styles.header_icon +

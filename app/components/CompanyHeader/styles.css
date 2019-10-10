@@ -18,11 +18,17 @@
   font-size: 1rem;
   margin-left: 1rem;
   margin-bottom: 0.55rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .header .header_icon {
   padding: 0.2rem;
   cursor: pointer;
+}
+
+.header .header_icon:last-child {
+  margin-top: 0.15rem;
 }
 
 .header_icon:hover {

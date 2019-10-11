@@ -87,7 +87,7 @@ export default class EventDetail extends Component {
             <Markdown source={event.privateDescription} />
           </div>
         )}
-        {(event.beforeSurveys.length || event.afterSurveys.length) && (
+        {(!!event.beforeSurveys.length || !!event.afterSurveys.length) && (
           <div>
             <hr />
             <h2>

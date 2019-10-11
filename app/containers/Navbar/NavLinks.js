@@ -33,11 +33,11 @@ function NavLinks({ loggedIn, user }: Props) {
             <FormattedMessage {...messages.salesTool} />
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link to='/trip'>
             <FormattedMessage {...messages.trip} />
           </Link>
-        </li>
+        </li> */}
         <li>
           <Link to='/logout'>
             <FormattedMessage {...messages.logout} />

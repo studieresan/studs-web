@@ -86,7 +86,7 @@ const USER_PROFILE_FIELDS = `
   picture
   allergies
   master
-  position
+  userRole
   linkedIn
   github
   picture

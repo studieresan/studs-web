@@ -4,7 +4,7 @@ import { createUser } from 'api'
 import { connect } from 'react-redux'
 import Button from 'components/Button'
 import styles from './styles.css'
-import { formToObject } from 'utils'
+import { formToObject, prettyUserRole } from 'utils'
 import { loadUserRoles } from 'store/userRoles/actions'
 import { hasData } from 'store/salesTool/constants'
 
@@ -102,7 +102,7 @@ class CreateUser extends React.Component {
                   </option>
                   {Object.keys(this.props.userRoles.data).map(role => (
                     <option value={role} key={role}>
-                      {role}
+                      {prettyUserRole(role)}
                     </option>
                   ))}
                 </select>

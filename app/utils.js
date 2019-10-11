@@ -72,3 +72,16 @@ export function formToObject(formElements) {
 
   return formData
 }
+
+export const prettyUserRole = userRole => {
+  switch (userRole) {
+    case 'project_manager':
+      return 'Project manager'
+    case 'it_group':
+      return 'IT'
+    default: {
+      const pretty = userRole.split('_')[0]
+      return pretty[0].toUpperCase() + pretty.slice(1)
+    }
+  }
+}

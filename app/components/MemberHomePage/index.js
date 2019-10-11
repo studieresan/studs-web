@@ -5,6 +5,7 @@ import styles from './styles.css'
 
 function MemberHomePage({ user }) {
   const { firstName, lastName, position, picture } = user
+  console.log('AOWIJDAOWIJ')
   return (
     <div className={styles.member}>
       <MemberImage picture={picture} size='20rem' />

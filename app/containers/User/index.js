@@ -62,13 +62,11 @@ export class User extends React.Component {
           <h2 className={styles.header}>
             <FormattedMessage {...messages.title} />
           </h2>
-          {user.memberType === 'studs_member' && (
-            <Link to={'/resume/edit'}>
-              <Button full>
-                <FormattedMessage {...messages.editResume} />
-              </Button>
-            </Link>
-          )}
+          <Link to={'/resume/edit'}>
+            <Button full>
+              <FormattedMessage {...messages.editResume} />
+            </Button>
+          </Link>
           <div className='input-label'>
             <FormattedMessage {...messages.firstName} />
           </div>
@@ -104,18 +102,6 @@ export class User extends React.Component {
               onChange={this.handleChange}
               onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
               placeholder='Phone number'
-              maxLength='30'
-            />
-            <div className='input-label'>
-              <FormattedMessage {...messages.position} />
-            </div>
-            <input
-              type='text'
-              name='position'
-              value={user.position}
-              onChange={this.handleChange}
-              onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
-              placeholder='Position'
               maxLength='30'
             />
             <div className='input-label'>

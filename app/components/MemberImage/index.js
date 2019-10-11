@@ -14,7 +14,6 @@ function MemberImage({ picture, size, square, round, className }) {
   })
 
   const style = {
-    background: 'red',
     maxHeight: square ? size + 'px' : 'auto',
   }
   return <img className={classes} src={picture} {...sizes} style={style} />

@@ -1,8 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { createUser } from 'api'
+import { connect } from 'react-redux'
 import Button from 'components/Button'
 import styles from './styles.css'
 import { formToObject } from 'utils'
+import { loadUserRoles } from 'store/userRoles/actions'
 
 class CreateUser extends React.Component {
   constructor(props) {
@@ -16,6 +19,10 @@ class CreateUser extends React.Component {
 
     this.handleMemberChange = this.handleMemberChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentDidMount() {
+    this.props.loadUserRoles()
   }
 
   handleMemberChange(event) {
@@ -148,4 +155,25 @@ class CreateUser extends React.Component {
   }
 }
 
-export default CreateUser
+CreateUser.propTypes = {
+  loadUserRoles: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = rootState => {
+  const userRoles = rootState.getIn(['userRoles'])
+
+  return {
+    userRoles,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    loadUserRoles: () => dispatch(loadUserRoles()),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateUser)

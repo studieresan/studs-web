@@ -600,3 +600,10 @@ export const updateComment = (commentId, text) => {
     })
     .catch(err => console.error(err))
 }
+
+export const fetchUserRoles = () => {
+  const query = `query {
+    userRoles
+  }`
+  return executeGraphQL(query).then(res => res.data.userRoles)
+}

@@ -105,19 +105,6 @@ class CreateUser extends React.Component {
               </div>
             </div>
 
-            {selectedMemberType === 'company_member' && (
-              <label>
-                Company name:
-                <input
-                  type='text'
-                  placeholder='Company name'
-                  name='companyName'
-                  id='companyName'
-                  required
-                />
-              </label>
-            )}
-
             <label>
               Email:
               <input

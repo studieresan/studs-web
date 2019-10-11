@@ -123,7 +123,7 @@ export default class EventEdit extends React.Component {
         <div className={styles.head}>
           <h2>{event.company.id ? event.company.name : 'New Event'}</h2>
           <div>
-            <Link to={`/events/${event.id}`}>
+            <Link to={`/events/${event.id ? event.id : ''}`}>
               <Button color={'danger'}>
                 <FormattedMessage {...messages.cancel} />
               </Button>
@@ -176,25 +176,27 @@ export default class EventEdit extends React.Component {
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.company} />
         </div>
-        <div className={styles.selectContainer}>
-          <select
-            name='company'
-            placeholder='Company'
-            value={event.company.id}
-            onClick={this.handleChange}
-            onChange={this.handleChange}
-          >
-            <option key='none' value={''} disabled>
-              Select company
-            </option>
-            {companiesList &&
-              companiesList.map(company => (
-                <option key={company.id} value={company.id}>
-                  {company.name}
-                </option>
-              ))}
-          </select>
-        </div>
+        {!event.id && (
+          <div className={styles.selectContainer}>
+            <select
+              name='company'
+              placeholder='Company'
+              value={event.company.id}
+              onClick={this.handleChange}
+              onChange={this.handleChange}
+            >
+              <option key='none' value={''} disabled>
+                Select company
+              </option>
+              {companiesList &&
+                companiesList.map(company => (
+                  <option key={company.id} value={company.id}>
+                    {company.name}
+                  </option>
+                ))}
+            </select>
+          </div>
+        )}
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.date} />
         </div>

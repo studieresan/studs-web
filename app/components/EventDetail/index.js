@@ -8,22 +8,15 @@ import { hasEventPermission } from 'users'
 
 import moment from 'moment'
 import styles from './styles.css'
-import IndicatorIcon from 'components/IndicatorIcon'
 import { Link } from 'react-router-dom'
 
 export class EventDetail extends Component {
   render() {
-    const {
-      event,
-      user,
-      onRemoveEvent,
-      preEventFormReplied,
-      postEventFormReplied,
-      onGenerateFeedback,
-    } = this.props
+    const { event, user, loggedIn, onRemoveEvent } = this.props
     if (!event) {
       return null
     }
+    console.log(event)
     let after, before
     if (event.after && event.before) {
       const userList = person => (
@@ -37,14 +30,9 @@ export class EventDetail extends Component {
     return (
       <div className={styles.eventDetail}>
         <div className={styles.head}>
-          <h2>{event.companyName}</h2>
+          <h2>{event.company.name}</h2>
           {hasEventPermission(user) && (
             <div className={styles.buttonRow}>
-              <Link to={`/events/${event.id}/create-event-feedback`}>
-                <Button color='bright' onClick={() => onGenerateFeedback}>
-                  <FormattedMessage {...messages.generateFeedback} />
-                </Button>
-              </Link>
               <Link to={`/events/${event.id}/edit`}>
                 <Button color='bright'>
                   <FormattedMessage {...messages.edit} />
@@ -83,23 +71,6 @@ export class EventDetail extends Component {
               {event.location}
             </a>
           </div>
-          {user && user.type === 'studs_member' && (
-            <div>
-              <h4>
-                <FormattedMessage {...messages.surveys} />
-              </h4>
-              <div>
-                <IndicatorIcon ok={preEventFormReplied} />
-                <Link to={`/events/${event.id}/pre_form`}>Pre Event Form</Link>
-              </div>
-              <div>
-                <IndicatorIcon ok={postEventFormReplied} />
-                <Link to={`/events/${event.id}/post_form`}>
-                  Post Event Form
-                </Link>
-              </div>
-            </div>
-          )}
         </div>
         {event.publicDescription && (
           <div>
@@ -110,7 +81,7 @@ export class EventDetail extends Component {
             <Markdown source={event.publicDescription} />
           </div>
         )}
-        {user.type === 'studs_member' && event.privateDescription && (
+        {loggedIn && event.privateDescription && (
           <div>
             <hr />
             <h2>
@@ -182,8 +153,6 @@ EventDetail.propTypes = {
   id: PropTypes.string.isRequired,
   event: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
   onRemoveEvent: PropTypes.func.isRequired,
-  preEventFormReplied: PropTypes.bool.isRequired,
-  postEventFormReplied: PropTypes.bool.isRequired,
-  onGenerateFeedback: PropTypes.object.isRequired,
 }

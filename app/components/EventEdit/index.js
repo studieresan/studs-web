@@ -110,6 +110,8 @@ export default class EventEdit extends React.Component {
       ? soldCompanies.map(soldCompanyId => companies.data[soldCompanyId])
       : []
 
+    const eventUsers = users.filter(u => u.userRole === 'event_group')
+
     const surveyListItem = surveyType => (url, i) => (
       <EventEditSurvey
         key={url + i}
@@ -165,8 +167,8 @@ export default class EventEdit extends React.Component {
             <option key='none' value={''} disabled>
               Select responsible user
             </option>
-            {users &&
-              users.map(user => (
+            {eventUsers &&
+              eventUsers.map(user => (
                 <option key={user.realId} value={user.realId}>
                   {user.firstName} {user.lastName}
                 </option>

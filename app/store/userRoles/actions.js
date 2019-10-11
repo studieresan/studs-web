@@ -20,7 +20,6 @@ export const loadUserRoles = () => dispatch => {
   dispatch(getRequest())
   fetchUserRoles()
     .then(userRoles => {
-      console.log(userRoles)
       const userRolesStateMap = {}
       userRoles.forEach(c => (userRolesStateMap[c] = c))
       dispatch(getSuccess(userRolesStateMap))

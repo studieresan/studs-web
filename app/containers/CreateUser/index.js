@@ -6,6 +6,7 @@ import Button from 'components/Button'
 import styles from './styles.css'
 import { formToObject } from 'utils'
 import { loadUserRoles } from 'store/userRoles/actions'
+import { hasData } from 'store/salesTool/constants'
 
 class CreateUser extends React.Component {
   constructor(props) {
@@ -18,11 +19,12 @@ class CreateUser extends React.Component {
     }
 
     this.handleMemberChange = this.handleMemberChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount() {
-    this.props.loadUserRoles()
+    if (!hasData(this.props.userRoles)) {
+      this.props.loadUserRoles()
+    }
   }
 
   handleMemberChange(event) {
@@ -31,7 +33,7 @@ class CreateUser extends React.Component {
     })
   }
 
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault()
     const form = event.target
 
@@ -87,28 +89,23 @@ class CreateUser extends React.Component {
 
           <form onSubmit={this.handleSubmit}>
             <div className={styles.formLabel}>
-              Member type:
-              <div className={styles.radioButtonGroup}>
-                <input
-                  type='radio'
-                  name='memberType'
-                  id='studs_member'
-                  value='studs_member'
-                  onChange={this.handleMemberChange}
-                  checked={selectedMemberType === 'studs_member'}
-                />
-                <label htmlFor='studs_member'>Studs member</label>
-                <br />
-
-                <input
-                  type='radio'
-                  name='memberType'
-                  id='company_member'
-                  value='company_member'
-                  onChange={this.handleMemberChange}
-                  checked={selectedMemberType === 'company_member'}
-                />
-                <label htmlFor='company_member'>Company member</label>
+              User role:
+              <div>
+                <select
+                  name='user_role'
+                  id='user_role'
+                  defaultValue=''
+                  required
+                >
+                  <option value={''} key={'empty'} disabled>
+                    Select a user role
+                  </option>
+                  {Object.keys(this.props.userRoles.data).map(role => (
+                    <option value={role} key={role}>
+                      {role}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
 
@@ -156,6 +153,7 @@ class CreateUser extends React.Component {
 }
 
 CreateUser.propTypes = {
+  userRoles: PropTypes.object.isRequired,
   loadUserRoles: PropTypes.func.isRequired,
 }
 

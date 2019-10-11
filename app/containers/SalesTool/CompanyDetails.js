@@ -9,7 +9,12 @@ import CompanyHeader from 'components/CompanyHeader'
 
 import styles from './styles.css'
 import PropTypes from 'prop-types'
-import { isError, isSuccess, hasData, isInitial } from './store/constants'
+import {
+  isError,
+  isSuccess,
+  hasData,
+  isInitial,
+} from 'store/salesTool/constants'
 
 const MISSING = 'MISSING'
 

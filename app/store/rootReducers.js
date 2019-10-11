@@ -1,14 +1,12 @@
 import global from 'containers/App/reducer'
 import cv from 'containers/CvEdit/reducer'
-import events from 'containers/Events/reducer'
-import oldEvents from 'containers/OldEvents/reducer'
+import events from './events/reducer'
+import oldEvents from './oldEvents/reducer'
 import language from 'containers/LanguageProvider/reducer'
 import passwordReset from 'containers/PasswordReset/reducer'
-import eventFeedback from 'containers/CreateEventFeedback/reducer'
-import eventFeedbackForm from 'containers/EventDetailPage/reducer'
 import members from 'containers/Members/reducer'
 import user from 'containers/User/reducer'
-import salesTool from 'containers/SalesTool/store/reducer'
+import salesTool from './salesTool/reducer'
 
 export default {
   global,
@@ -18,8 +16,6 @@ export default {
   oldEvents,
   language,
   passwordReset,
-  eventFeedback,
-  eventFeedbackForm,
   user,
   salesTool,
 }

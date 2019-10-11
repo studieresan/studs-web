@@ -12,8 +12,6 @@ export const REMOVE_REQUEST = 'app/Events/REMOVE_REQUEST'
 export const REMOVE_SUCCESS = 'app/Events/REMOVE_SUCCESS'
 export const REMOVE_ERROR = 'app/Events/REMOVE_ERROR'
 
-export const GET_COMPANIES = 'app/Events/GET_COMPANIES'
-
 export const UPDATE = 'app/Events/UPDATE'
 
 export const ADD_PICTURE = 'app/Events/ADD_PICTURE'

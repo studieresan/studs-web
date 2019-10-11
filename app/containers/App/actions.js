@@ -34,7 +34,6 @@ export function getUserSuccess(user) {
       github: user.github || '',
       master: user.master || '',
       allergies: user.allergies || '',
-      type: user.memberType,
     },
   }
 }

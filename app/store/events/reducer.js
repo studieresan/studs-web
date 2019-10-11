@@ -16,9 +16,6 @@ import {
 
 export function getEmptyEventObject() {
   return {
-    id: '',
-    companyName: '',
-    schedule: '',
     privateDescription: '',
     publicDescription: '',
     date: new Date(),
@@ -27,7 +24,13 @@ export function getEmptyEventObject() {
     location: '',
     pictures: [],
     published: false,
-    responsible: '',
+    company: {
+      id: '',
+      name: '',
+    },
+    responsible: {
+      id: '',
+    },
   }
 }
 
@@ -94,7 +97,7 @@ function eventsReducer(state = initialState, action) {
       )
     case ADD_SURVEY:
       return updateEvent(state, action.id, event =>
-        event.update(action.surveyType, surveys => surveys.push(action.url))
+        event.update(action.surveyType, surveys => surveys.concat(action.url))
       )
     case REMOVE_SURVEY:
       return updateEvent(state, action.id, event =>

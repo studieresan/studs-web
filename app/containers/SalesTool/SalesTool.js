@@ -9,7 +9,7 @@ import {
   isLoading,
   isUpdating,
   isError,
-} from './store/constants'
+} from 'store/salesTool/constants'
 
 const MISSING = 'MISSING'
 

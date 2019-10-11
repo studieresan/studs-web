@@ -253,8 +253,6 @@ export function resetPassword(password, confirmPassword, token) {
 
 const EVENT_FIELDS = `
   id
-  companyName
-  schedule
   privateDescription
   publicDescription
   date
@@ -263,7 +261,8 @@ const EVENT_FIELDS = `
   location
   pictures
   published
-  responsible
+  responsible { id }
+  company { id, name }
 `
 
 export function fetchEvents() {
@@ -274,13 +273,23 @@ export function fetchEvents() {
   }`
   return executeGraphQL(query)
     .then(res => res.data.allEvents)
-    .then(events => events.map(e => ({ ...e, date: new Date(e.date) })))
+    .then(events =>
+      events.map(e => ({
+        ...e,
+        date: new Date(e.date),
+      }))
+    )
 }
 
 export function fetchOldEvents() {
   const query = `query {
     oldEvents {
-      ${EVENT_FIELDS}
+      id
+      companyName
+      publicDescription
+      date
+      pictures
+      published
     }
   }`
   return executeGraphQL(query)
@@ -302,8 +311,16 @@ export function saveEvent(e) {
       .then(res => res.data.updateEvent)
       .then(event => ({ ...event, date: new Date(event.date) }))
   } else {
+    const companyId = event.company.id
+    delete event.company
+    const responsibleUserId = event.responsible.id
+    delete event.responsible
+    event.responsibleUserId = responsibleUserId
+
     const mutation = `mutation {
-      createEvent(fields: ${toGraphQLFields(event)}) {
+      createEvent(companyId: "${companyId}", fields: ${toGraphQLFields(
+      event
+    )}) {
         ${EVENT_FIELDS}
       }
     }
@@ -365,119 +382,6 @@ const uploadFile = (file, signedRequest, url) => {
     .then(() => Promise.resolve(url))
 }
 
-const PRE_EVENT_FIELDS = `
-  interestInRegularWorkBefore,
-  interestInCompanyMotivationBefore,
-  familiarWithCompany,
-  viewOfCompany,
-`
-
-const POST_EVENT_FIELDS = `
-  interestInRegularWork,
-  interestInCompanyMotivation,
-  eventImpact,
-  qualifiedToWork,
-  atmosphereRating,
-  activitiesRating,
-  foodRating,
-  eventFeedback,
-  eventImprovements,
-`
-
-export const fetchEventForms = (userId, eventId) => {
-  const query = `{
-    eventForms(userId: "${userId}", eventId:"${eventId}") {
-      ... on PreEventForm {
-        ${PRE_EVENT_FIELDS}
-      },
-      ... on PostEventForm {
-        ${POST_EVENT_FIELDS}
-      }
-    }
-  }`
-
-  return executeGraphQL(query).then(res => res.data.eventForms)
-}
-
-export const fetchAllEventFormsByEventId = eventId => {
-  const query = `{
-    allEventForms(eventId:"${eventId}") {
-      ... on PreEventForm {
-        ${PRE_EVENT_FIELDS}
-      },
-      ... on PostEventForm {
-        ${POST_EVENT_FIELDS}
-      }
-    }
-  }`
-  return executeGraphQL(query).then(res => res.data.allEventForms)
-}
-
-const CreatePreEventFormOperationName = 'CreatePreEventForm'
-const CreatePostEventFormOperationName = 'CreatePostEventForm'
-
-const CreatePreEventFormQuery = `
-  mutation ${CreatePreEventFormOperationName}
-  ($eventId: String!, $fields: PreEventFormInputType!) {
-    createPreEventForm(eventId: $eventId, fields: $fields) {
-      ${PRE_EVENT_FIELDS}
-    }
-  }
-`
-
-const CreatePostEventFormQuery = `
-  mutation ${CreatePostEventFormOperationName}
-  ($eventId: String!, $fields: PostEventFormInputType!) {
-    createPostEventForm(eventId: $eventId, fields: $fields) {
-      ${POST_EVENT_FIELDS}
-    }
-  }
-`
-
-export const saveEventForm = formdata => {
-  const eventId = formdata.eventId
-  const preEvent = formdata.preEvent === true
-  formdata = omit(formdata, ['eventId', 'preEvent'])
-
-  const mutation = JSON.stringify({
-    query: preEvent ? CreatePreEventFormQuery : CreatePostEventFormQuery,
-    variables: {
-      eventId: eventId,
-      fields: formdata,
-    },
-    operationName: preEvent ? 'CreatePreEventForm' : 'CreatePostEventForm',
-  })
-
-  return executeGraphQLMutation(mutation)
-}
-
-/**
- * Fetch list of people who haven't filled in pre event forms
- * and post event forms for an event
- *
- * @export
- * @param {string} eventId
- */
-export function fetchPeopleMissingFeedback(eventId) {
-  const query = `
-    query {
-      missingPostEventFormUsers(eventId: "${eventId}") {
-        profile {
-          firstName
-          lastName
-        }
-      }
-      missingPreEventFormUsers(eventId: "${eventId}") {
-        profile {
-          firstName
-          lastName
-        }
-      }
-    }
-  `
-  return executeGraphQL(query).then(res => res.data)
-}
-
 const COMPANY_FIELDS = `
   id,
   name,
@@ -518,22 +422,6 @@ export const fetchCompany = companyId => {
   }`
   return executeGraphQL(query)
     .then(res => res.data.company)
-    .catch(err => console.error(err))
-}
-
-export const fetchStudsUserNames = () => {
-  const query = `{
-      studsUsers: users(memberType: studs_member) {
-        id,
-        profile { 
-          firstName,
-          lastName,
-          picture,
-        }
-      }
-    }`
-  return executeGraphQL(query)
-    .then(res => res.data.studsUsers)
     .catch(err => console.error(err))
 }
 

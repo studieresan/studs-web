@@ -51,6 +51,6 @@ export default defineMessages({
   },
   responsible: {
     id: 'app.components.EventEdit.responsible',
-    defaultMessage: 'Responsible',
+    defaultMessage: 'Responsible *',
   },
 })

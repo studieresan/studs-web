@@ -24,7 +24,7 @@ function EventListItem(props) {
               <IndicatorIcon ok={event.afterSurveyReplied} />
             </span>
           )}
-          {event.companyName}
+          {event.company.name}
         </div>
         <div>{dateString}</div>
       </div>

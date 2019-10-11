@@ -1,14 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { getEmptyEventObject } from 'containers/Events/reducer'
-import selectEvents from 'containers/Events/selectors'
-import * as EventActions from 'containers/Events/actions'
+import { getEmptyEventObject } from 'store/events/reducer'
 
 import moment from 'moment'
 import { FormattedMessage } from 'react-intl'
-import { sortedUniq, sortBy } from 'lodash'
 import { uploadImage } from 'api'
 import messages from './messages'
 import styles from './styles.css'
@@ -17,9 +12,9 @@ import Button from 'components/Button'
 import EventEditPicture from 'components/EventEditPicture'
 import EventEditSurvey from 'components/EventEditSurvey'
 
-import { hasData } from 'containers/SalesTool/store/constants'
+import { hasData } from 'store/salesTool/constants'
 
-class EventEdit extends React.Component {
+export default class EventEdit extends React.Component {
   // If this component is rendered before the events have been fetched,
   // for example on initial page load, we can use an empty event object
   // as a placeholder
@@ -43,19 +38,33 @@ class EventEdit extends React.Component {
     const {
       addPicture,
       event: { id },
+      companies,
     } = this.props
-    const data = {}
     if (e.target.type === 'file') {
       uploadImage(e.target.files[0]).then(url => {
         addPicture(url, id)
       })
     } else {
-      if (e.target.name === 'date') {
-        data[e.target.name] = new Date(e.target.value)
-      } else {
-        data[e.target.name] = e.target.value
+      const data = {}
+      switch (e.target.name) {
+        case 'date':
+          data[e.target.name] = new Date(e.target.value)
+          break
+        case 'company':
+          data[e.target.name] = {
+            id: e.target.value,
+            name: e.target.value ? companies.data[e.target.value].name : '',
+          }
+          break
+        case 'responsible':
+          data[e.target.name] = {
+            id: e.target.value,
+          }
+          break
+        default:
+          data[e.target.name] = e.target.value
+          break
       }
-      console.log(data)
       this.update(data)
     }
   }
@@ -70,7 +79,7 @@ class EventEdit extends React.Component {
 
   handleSave = () => {
     const { save, event } = this.props
-    if (event.companyName) {
+    if (event.company.id && event.responsible.id) {
       save(event)
 
       // Change the save button label to "Saved" for a few seconds
@@ -79,11 +88,12 @@ class EventEdit extends React.Component {
         this.setState({ showSavedLabel: false })
       }, 1000)
     } else {
-      alert('You must select a company before saving.')
+      alert('You must select a company and a responsible user before saving.')
     }
   }
 
   addSurvey = (surveyType, value, event) => {
+    console.log(surveyType, value, event)
     this.props.addSurvey(value, surveyType, event.id)
     if (surveyType === 'beforeSurveys') {
       this.setState({ beforeSurvey: '' })
@@ -100,13 +110,8 @@ class EventEdit extends React.Component {
       removeSurvey,
       companies,
       soldCompanies,
+      users,
     } = this.props
-
-    const companyOption = company => (
-      <option key={company.id} value={company.name}>
-        {company.name}
-      </option>
-    )
 
     const companiesList = hasData(companies)
       ? soldCompanies.map(soldCompanyId => companies.data[soldCompanyId])
@@ -127,7 +132,7 @@ class EventEdit extends React.Component {
     return (
       <div className={styles.eventEdit}>
         <div className={styles.head}>
-          <h2>{event.companyName}</h2>
+          <h2>{event.company.id ? event.company.name : 'New Event'}</h2>
           <Button
             onClick={this.handleSave}
             type='submit'
@@ -153,27 +158,45 @@ class EventEdit extends React.Component {
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.responsible} />
         </div>
-        <input
-          name='responsible'
-          placeholder=''
-          value={event.responsible || ''}
-          onChange={this.handleChange}
-        />
+        <div className={styles.selectContainer}>
+          <select
+            name='responsible'
+            placeholder='Responsible user'
+            value={event.responsible.id}
+            onClick={this.handleChange}
+            onChange={this.handleChange}
+          >
+            <option key='none' value={''} disabled>
+              Select responsible user
+            </option>
+            {users &&
+              users.map(user => (
+                <option key={user.realId} value={user.realId}>
+                  {user.firstName} {user.lastName}
+                </option>
+              ))}
+          </select>
+        </div>
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.company} />
         </div>
         <div className={styles.selectContainer}>
           <select
-            name='companyName'
+            name='company'
             placeholder='Company'
-            value={event.companyName || ''}
+            value={event.company.id}
             onClick={this.handleChange}
             onChange={this.handleChange}
           >
-            <option key='none' disabled>
+            <option key='none' value={''} disabled>
               Select company
             </option>
-            {companiesList && companiesList.map(companyOption)}
+            {companiesList &&
+              companiesList.map(company => (
+                <option key={company.id} value={company.id}>
+                  {company.name}
+                </option>
+              ))}
           </select>
         </div>
         <div className={styles.inputLabel}>
@@ -269,37 +292,14 @@ EventEdit.propTypes = {
   // redux props
   companies: PropTypes.object.isRequired,
   soldCompanies: PropTypes.array.isRequired,
+  users: PropTypes.array.isRequired,
+  events: PropTypes.object.isRequired,
 
   update: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
-  companyUsers: PropTypes.array.isRequired,
+
   addPicture: PropTypes.func.isRequired,
   removePicture: PropTypes.func.isRequired,
   addSurvey: PropTypes.func.isRequired,
   removeSurvey: PropTypes.func.isRequired,
-  events: PropTypes.object.isRequired,
 }
-
-const mapStateToProps = rootState => {
-  const companies = rootState.getIn(['salesTool', 'companies'])
-  const soldCompanies = rootState.getIn([
-    'salesTool',
-    'companies',
-    'soldCompanies',
-  ])
-
-  return {
-    ...selectEvents()(rootState),
-    companies,
-    soldCompanies,
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ ...EventActions }, dispatch)
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EventEdit)

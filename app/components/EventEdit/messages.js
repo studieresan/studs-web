@@ -25,10 +25,6 @@ export default defineMessages({
     id: 'app.components.EventEdit.privateDescription',
     defaultMessage: 'Private Description',
   },
-  schedule: {
-    id: 'app.components.EventEdit.schedule',
-    defaultMessage: 'Schedule',
-  },
   location: {
     id: 'app.components.EventEdit.location',
     defaultMessage: 'Location',

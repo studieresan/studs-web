@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { scrollSpy, Events, animateScroll } from 'react-scroll'
-import { getOldEvents } from 'containers/OldEvents/actions'
-import { getEvents } from 'containers/Events/actions'
+import { getOldEvents } from 'store/oldEvents/actions'
+import { getEvents } from 'store/events/actions'
 
 import styles from './styles.css'
 import PublicEvent from 'components/PublicEvent'
@@ -28,6 +28,8 @@ class PublicEvents extends React.Component {
 
   render() {
     const { oldEvents, events } = this.props
+
+    events.forEach(e => (e.companyName = e.company.name))
 
     return (
       <div className={styles.publicEvents}>

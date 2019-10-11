@@ -5,7 +5,7 @@ import { combineReducers } from 'redux-immutable'
 import thunkMiddleware from 'redux-thunk'
 import reducers from 'store/rootReducers'
 
-const devtools = window.devToolsExtension || (() => noop => noop)
+const devtools = window.__REDUX_DEVTOOLS_EXTENSION__ || (() => noop => noop)
 
 export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares

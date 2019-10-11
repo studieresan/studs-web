@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { getEmptyEventObject } from 'store/events/reducer'
 
@@ -93,7 +94,6 @@ export default class EventEdit extends React.Component {
   }
 
   addSurvey = (surveyType, value, event) => {
-    console.log(surveyType, value, event)
     this.props.addSurvey(value, surveyType, event.id)
     if (surveyType === 'beforeSurveys') {
       this.setState({ beforeSurvey: '' })
@@ -133,15 +133,22 @@ export default class EventEdit extends React.Component {
       <div className={styles.eventEdit}>
         <div className={styles.head}>
           <h2>{event.company.id ? event.company.name : 'New Event'}</h2>
-          <Button
-            onClick={this.handleSave}
-            type='submit'
-            color={'default'}
-            disabled={saving || saved}
-            rounded={true}
-          >
-            <FormattedMessage {...saveBtnMessage} />
-          </Button>
+          <div>
+            <Link to={`/events/${event.id}`}>
+              <Button color={'danger'}>
+                <FormattedMessage {...messages.cancel} />
+              </Button>
+            </Link>
+            <Button
+              onClick={this.handleSave}
+              type='submit'
+              color={'default'}
+              disabled={saving || saved}
+              rounded={true}
+            >
+              <FormattedMessage {...saveBtnMessage} />
+            </Button>
+          </div>
         </div>
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.published} />

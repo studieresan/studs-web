@@ -9,7 +9,7 @@ import messages from './messages'
 import styles from './styles.css'
 import MasterDetail from 'components/MasterDetail'
 import EventListItem from 'components/EventListItem'
-import EventDetailPage from 'containers/EventDetailPage'
+import EventDetail from 'components/EventDetail'
 import EventStaticDetail from 'components/EventStaticDetail'
 import EventEdit from 'components/EventEdit'
 import * as EventActions from 'store/events/actions'
@@ -95,6 +95,7 @@ export class Events extends React.Component {
     const {
       events,
       user,
+      users,
       match: { params, path },
     } = this.props
 
@@ -107,9 +108,10 @@ export class Events extends React.Component {
         detail = <EventEdit event={event && event.toJS()} {...this.props} />
       } else {
         detail = event && (
-          <EventDetailPage
+          <EventDetail
             event={event.toJS()}
             user={user}
+            users={users}
             id={params.id}
             onRemoveEvent={this.onDeleteEvent}
           />

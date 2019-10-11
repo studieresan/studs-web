@@ -69,9 +69,9 @@ export const save = event => dispatch => {
       if (!event.id) {
         // creating a new event
         dispatch(createSuccess(data))
-        dispatch(push(`/events/${data.id}`))
       }
       dispatch(saveSuccess(data))
+      dispatch(push(`/events/${data.id}`))
     })
     .catch(err => dispatch(saveError(err)))
 }

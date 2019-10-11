@@ -112,6 +112,10 @@
     "message": "Spara"
   },
   {
+    "id": "app.components.EventEdit.cancel",
+    "message": "Avbryt"
+  },
+  {
     "id": "app.components.EventEdit.saved",
     "message": "Sparad"
   },

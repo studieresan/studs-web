@@ -18,10 +18,6 @@ export default defineMessages({
     id: 'app.components.EventDetail.privateDescription',
     defaultMessage: 'Private Description',
   },
-  feedback: {
-    id: 'app.components.EventDetail.feedback',
-    defaultMessage: 'Feedback',
-  },
   before: {
     id: 'app.components.EventDetail.before',
     defaultMessage: 'Before',
@@ -29,10 +25,6 @@ export default defineMessages({
   after: {
     id: 'app.components.EventDetail.after',
     defaultMessage: 'After',
-  },
-  missing: {
-    id: 'app.components.EventDetail.missing',
-    defaultMessage: 'Missing Surveys',
   },
   date: {
     id: 'app.containers.Events.date',
@@ -49,10 +41,6 @@ export default defineMessages({
   surveys: {
     id: 'app.components.EventDetail.surveys',
     defaultMessage: 'Surveys',
-  },
-  generateFeedback: {
-    id: 'app.components.EventDetail.generateFeedback',
-    defaultMessage: 'Generate Feedback',
   },
   edit: {
     id: 'app.components.EventDetail.edit',

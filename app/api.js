@@ -300,6 +300,12 @@ export function fetchOldEvents() {
 export function saveEvent(e) {
   const event = omit(e, 'id')
   const id = e.id
+  const companyId = event.company.id
+  delete event.company
+  const responsibleUserId = event.responsible.id
+  delete event.responsible
+  event.responsibleUserId = responsibleUserId
+
   if (id) {
     const mutation = `mutation {
       updateEvent(eventId: "${id}", fields: ${toGraphQLFields(event)}) {
@@ -311,12 +317,6 @@ export function saveEvent(e) {
       .then(res => res.data.updateEvent)
       .then(event => ({ ...event, date: new Date(event.date) }))
   } else {
-    const companyId = event.company.id
-    delete event.company
-    const responsibleUserId = event.responsible.id
-    delete event.responsible
-    event.responsibleUserId = responsibleUserId
-
     const mutation = `mutation {
       createEvent(companyId: "${companyId}", fields: ${toGraphQLFields(
       event

@@ -101,7 +101,7 @@ export default class EventDetail extends Component {
                 <ul>
                   {event.beforeSurveys.map((link, idx) => (
                     <li key={link}>
-                      <a href={'//' + link} target='_blank'>
+                      <a href={link} target='_blank'>
                         <FormattedMessage {...messages.survey} /> {idx}
                       </a>
                     </li>
@@ -115,7 +115,7 @@ export default class EventDetail extends Component {
                 <ul>
                   {event.afterSurveys.map((link, idx) => (
                     <li key={link}>
-                      <a href={'//' + link} target='_blank'>
+                      <a href={link} target='_blank'>
                         <FormattedMessage {...messages.survey} /> {idx}
                       </a>
                     </li>

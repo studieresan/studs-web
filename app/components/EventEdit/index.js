@@ -175,11 +175,11 @@ export default class EventEdit extends React.Component {
               ))}
           </select>
         </div>
-        <div className={styles.inputLabel}>
-          <FormattedMessage {...messages.company} />
-        </div>
-        {!event.id && (
-          <div className={styles.selectContainer}>
+        {!event.id && [
+          <div key='newCompLable' className={styles.inputLabel}>
+            <FormattedMessage {...messages.company} />
+          </div>,
+          <div key='newCompSelect' className={styles.selectContainer}>
             <select
               name='company'
               placeholder='Company'
@@ -197,8 +197,8 @@ export default class EventEdit extends React.Component {
                   </option>
                 ))}
             </select>
-          </div>
-        )}
+          </div>,
+        ]}
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.date} />
         </div>

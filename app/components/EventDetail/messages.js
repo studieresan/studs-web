@@ -42,6 +42,10 @@ export default defineMessages({
     id: 'app.components.EventDetail.surveys',
     defaultMessage: 'Surveys',
   },
+  survey: {
+    id: 'app.components.EventDetail.survey',
+    defaultMessage: 'Survey',
+  },
   edit: {
     id: 'app.components.EventDetail.edit',
     defaultMessage: 'Edit',

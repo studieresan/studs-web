@@ -50,38 +50,16 @@
   text-decoration: underline;
 }
 
-.missing {
-  display: flex;
-  font-size: 12px;
+.buttonRow a,
+.buttonRow button {
+  display: inline-block;
 }
 
-.missing > div {
-  flex: 1;
-  padding-right: 20px;
-}
-
-.missingHead {
-  font-weight: bold;
-  margin-bottom: 6px;
-}
-
-.missing ul {
-  margin: 12px 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-.charts {
+.surveys {
   display: flex;
   flex-wrap: wrap;
 }
 
-.charts > * {
-  flex: 50%;
-  min-width: 300px;
-}
-
-.buttonRow a,
-.buttonRow button {
-  display: inline-block;
+.surveys > div {
+  flex: 1;
 }

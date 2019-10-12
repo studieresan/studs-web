@@ -8,6 +8,7 @@ import * as actions from 'containers/Members/actions'
 import MemberImage from 'components/MemberImage'
 import messages from './messages'
 import styles from './styles.css'
+import { prettyUserRole } from 'utils'
 
 class HomePageAbout extends Component {
   constructor(props) {
@@ -44,7 +45,7 @@ class HomePageAbout extends Component {
               values={{ firstName: user.firstName }}
             />
           </h1>
-          <h5>{user.position}</h5>
+          <h5>{prettyUserRole(user.userRole)}</h5>
           <p>
             <FormattedMessage
               {...messages.intro}

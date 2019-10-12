@@ -15,14 +15,9 @@ import Trip from 'containers/Trip'
 import Events from 'containers/Events'
 import About from 'containers/About'
 import NotFoundPage from 'containers/NotFoundPage'
-import EventRoute from 'containers/EventRoute'
+import AdminRoute from 'containers/AdminRoute'
 import AuthenticatedRoute from 'containers/AuthenticatedRoute'
 import PublicEvents from 'containers/PublicEvents'
-import OldEvents from 'containers/OldEvents'
-import EventFeedbackPage from 'containers/EventFeedbackPage'
-import CreateEventFeedback from 'containers/CreateEventFeedback'
-import Application from 'containers/Application'
-import EventFeedbackForm from './components/EventFeedbackForm'
 import SalesTool from 'containers/SalesTool/SalesToolContainer'
 import CompanyDetails from 'containers/SalesTool/CompanyDetailsContainer'
 
@@ -37,7 +32,6 @@ class StudsRouter extends Component {
 
         <Route exact path='/password-reset/:token' component={PasswordReset} />
         <Route exact path='/events/public' component={PublicEvents} />
-        <Route exact path='/events/2018' component={OldEvents} />
 
         <AuthenticatedRoute
           exact
@@ -53,7 +47,7 @@ class StudsRouter extends Component {
 
         <AuthenticatedRoute exact path='/user' component={User} />
         <AuthenticatedRoute exact path='/resume/edit' component={CvEdit} />
-        <EventRoute exact path='/create-user' component={CreateUser} />
+        <AdminRoute exact path='/create-user' component={CreateUser} />
 
         <AuthenticatedRoute exact path='/members' component={Members} />
         <AuthenticatedRoute exact path='/members/:id?' component={Members} />
@@ -62,27 +56,8 @@ class StudsRouter extends Component {
         <AuthenticatedRoute exact path='/events/new' component={Events} />
         <AuthenticatedRoute exact path='/events/:id' component={Events} />
         <AuthenticatedRoute exact path='/events/:id/edit' component={Events} />
-        <AuthenticatedRoute
-          exact
-          path='/events/:id/pre_form'
-          component={EventFeedbackForm}
-        />
-        <AuthenticatedRoute
-          exact
-          path='/events/:id/post_form'
-          component={EventFeedbackForm}
-        />
-        <AuthenticatedRoute
-          path='/events/:id/event-feedback'
-          component={EventFeedbackPage}
-        />
-        <AuthenticatedRoute
-          exact
-          path='/events/:id/create-event-feedback'
-          component={CreateEventFeedback}
-        />
 
-        <Route exact path='/trip' component={Trip} />
+        {/* <Route exact path='/trip' component={Trip} /> */}
         <Route exact path='/about' component={About} />
 
         <Route exact path='*' component={NotFoundPage} />

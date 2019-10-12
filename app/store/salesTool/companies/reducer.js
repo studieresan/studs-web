@@ -6,6 +6,7 @@ import {
   SET_CONTACTS,
   SET_COMMENTS,
   ERROR_ACTION,
+  SOLD_COMPANIES_SUCCESS,
 } from './constants'
 
 import { LOADING, INITIAL, UPDATING, SUCCESS, ERROR } from '../constants'
@@ -14,6 +15,7 @@ import { LOADING, INITIAL, UPDATING, SUCCESS, ERROR } from '../constants'
 const defaultState = {
   status: INITIAL,
   data: {},
+  soldCompanies: [],
 }
 
 const reducer = (state = defaultState, action) => {
@@ -25,6 +27,7 @@ const reducer = (state = defaultState, action) => {
       }
     case GET_SUCCESS:
       return {
+        ...state,
         status: SUCCESS,
         data: { ...state.data, ...action.payload },
       }
@@ -41,6 +44,7 @@ const reducer = (state = defaultState, action) => {
       }
     case UPDATE_SUCCESS:
       return {
+        ...state,
         status: SUCCESS,
         data: {
           ...state.data,
@@ -74,6 +78,11 @@ const reducer = (state = defaultState, action) => {
         },
       }
     }
+    case SOLD_COMPANIES_SUCCESS:
+      return {
+        ...state,
+        soldCompanies: action.payload,
+      }
     default:
       return state
   }

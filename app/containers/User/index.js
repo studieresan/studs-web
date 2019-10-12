@@ -62,13 +62,11 @@ export class User extends React.Component {
           <h2 className={styles.header}>
             <FormattedMessage {...messages.title} />
           </h2>
-          {user.memberType === 'studs_member' && (
-            <Link to={'/resume/edit'}>
-              <Button full>
-                <FormattedMessage {...messages.editResume} />
-              </Button>
-            </Link>
-          )}
+          <Link to={'/resume/edit'}>
+            <Button full>
+              <FormattedMessage {...messages.editResume} />
+            </Button>
+          </Link>
           <div className='input-label'>
             <FormattedMessage {...messages.firstName} />
           </div>
@@ -93,82 +91,68 @@ export class User extends React.Component {
             placeholder='Last name'
             maxLength='30'
           />
-          {user.memberType === 'studs_member' && (
-            <div>
-              <div className='input-label'>
-                <FormattedMessage {...messages.phone} />
-              </div>
-              <input
-                type='text'
-                name='phone'
-                value={user.phone}
-                onChange={this.handleChange}
-                onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
-                placeholder='Phone number'
-                maxLength='30'
-              />
-              <div className='input-label'>
-                <FormattedMessage {...messages.position} />
-              </div>
-              <input
-                type='text'
-                name='position'
-                value={user.position}
-                onChange={this.handleChange}
-                onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
-                placeholder='Position'
-                maxLength='30'
-              />
-              <div className='input-label'>
-                <FormattedMessage {...messages.linkedIn} />
-              </div>
-              <input
-                type='url'
-                name='linkedIn'
-                value={user.linkedIn}
-                onChange={this.handleChange}
-                onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
-                placeholder='LinkedIn URL'
-                maxLength='50'
-              />
-              <div className='input-label'>
-                <FormattedMessage {...messages.github} />
-              </div>
-              <input
-                type='url'
-                name='github'
-                value={user.github}
-                onChange={this.handleChange}
-                onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
-                placeholder='Github URL'
-                maxLength='50'
-              />
-              <div className='input-label'>
-                <FormattedMessage {...messages.master} />
-              </div>
-              <input
-                type='text'
-                name='master'
-                value={user.master}
-                onChange={this.handleChange}
-                onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
-                placeholder='Master'
-                maxLength='30'
-              />
-              <div className='input-label'>
-                <FormattedMessage {...messages.allergies} />
-              </div>
-              <input
-                type='text'
-                name='allergies'
-                value={user.allergies}
-                onChange={this.handleChange}
-                onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
-                placeholder='Allergies'
-                maxLength='30'
-              />
+          <div>
+            <div className='input-label'>
+              <FormattedMessage {...messages.phone} />
             </div>
-          )}
+            <input
+              type='text'
+              name='phone'
+              value={user.phone}
+              onChange={this.handleChange}
+              onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
+              placeholder='Phone number'
+              maxLength='30'
+            />
+            <div className='input-label'>
+              <FormattedMessage {...messages.linkedIn} />
+            </div>
+            <input
+              type='url'
+              name='linkedIn'
+              value={user.linkedIn}
+              onChange={this.handleChange}
+              onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
+              placeholder='LinkedIn URL'
+              maxLength='50'
+            />
+            <div className='input-label'>
+              <FormattedMessage {...messages.github} />
+            </div>
+            <input
+              type='url'
+              name='github'
+              value={user.github}
+              onChange={this.handleChange}
+              onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
+              placeholder='Github URL'
+              maxLength='50'
+            />
+            <div className='input-label'>
+              <FormattedMessage {...messages.master} />
+            </div>
+            <input
+              type='text'
+              name='master'
+              value={user.master}
+              onChange={this.handleChange}
+              onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
+              placeholder='Master'
+              maxLength='30'
+            />
+            <div className='input-label'>
+              <FormattedMessage {...messages.allergies} />
+            </div>
+            <input
+              type='text'
+              name='allergies'
+              value={user.allergies}
+              onChange={this.handleChange}
+              onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
+              placeholder='Allergies'
+              maxLength='30'
+            />
+          </div>
           <div className='input-label'>
             <FormattedMessage {...messages.password} />
           </div>

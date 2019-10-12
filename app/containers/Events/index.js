@@ -2,18 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import selectEvents from './selectors'
+import selectEvents from 'store/events/selectors'
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'react-router-dom'
 import messages from './messages'
 import styles from './styles.css'
 import MasterDetail from 'components/MasterDetail'
 import EventListItem from 'components/EventListItem'
-import EventDetailPage from 'containers/EventDetailPage'
+import EventDetail from 'components/EventDetail'
 import EventStaticDetail from 'components/EventStaticDetail'
 import EventEdit from 'components/EventEdit'
-import * as EventActions from './actions'
+import * as EventActions from 'store/events/actions'
 import { getUsers } from 'containers/Members/actions'
+import { loadSoldCompanies } from 'store/salesTool/companies/actions'
 import { hasEventPermission } from 'users'
 
 const WARNING =
@@ -28,6 +29,7 @@ export class Events extends React.Component {
   componentDidMount() {
     this.props.getEvents()
     this.props.getUsers()
+    this.props.loadSoldCompanies()
   }
 
   onDeleteEvent = id => {
@@ -93,6 +95,7 @@ export class Events extends React.Component {
     const {
       events,
       user,
+      users,
       match: { params, path },
     } = this.props
 
@@ -102,12 +105,13 @@ export class Events extends React.Component {
       const event = events.get('items').find(e => e.get('id') === params.id)
       if (path === '/events/:id/edit') {
         // event will be undefined on initial page load
-        detail = <EventEdit event={event && event.toJS()} />
+        detail = <EventEdit event={event && event.toJS()} {...this.props} />
       } else {
         detail = event && (
-          <EventDetailPage
+          <EventDetail
             event={event.toJS()}
             user={user}
+            users={users}
             id={params.id}
             onRemoveEvent={this.onDeleteEvent}
           />
@@ -116,7 +120,7 @@ export class Events extends React.Component {
       detailSelected = true
     } else if (path === '/events/new') {
       const event = events.get('newEvent').toJS()
-      detail = <EventEdit event={event} />
+      detail = <EventEdit event={event} {...this.props} />
       detailSelected = true
     } else {
       detail = <EventStaticDetail />
@@ -144,25 +148,51 @@ export class Events extends React.Component {
 }
 
 Events.propTypes = {
+  loadSoldCompanies: PropTypes.func.isRequired,
   getEvents: PropTypes.func.isRequired,
+  getUsers: PropTypes.func.isRequired,
+
+  match: PropTypes.object.isRequired,
+
   events: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired,
+  companies: PropTypes.object.isRequired,
+  soldCompanies: PropTypes.array.isRequired,
+  users: PropTypes.array.isRequired,
+
   update: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
-  companyUsers: PropTypes.array.isRequired,
-  getUsers: PropTypes.func.isRequired,
+
   removeEvent: PropTypes.func.isRequired,
+
   addPicture: PropTypes.func.isRequired,
   removePicture: PropTypes.func.isRequired,
   addSurvey: PropTypes.func.isRequired,
   removeSurvey: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = selectEvents()
+const mapStateToProps = rootState => {
+  const companies = rootState.getIn(['salesTool', 'companies'])
+  const soldCompanies = rootState.getIn([
+    'salesTool',
+    'companies',
+    'soldCompanies',
+  ])
+  const users = rootState.getIn(['members', 'users']).toJS()
+
+  return {
+    ...selectEvents()(rootState),
+    companies,
+    soldCompanies,
+    users,
+  }
+}
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ ...EventActions, getUsers }, dispatch)
+  return {
+    ...bindActionCreators({ ...EventActions, getUsers }, dispatch),
+    loadSoldCompanies: () => dispatch(loadSoldCompanies()),
+  }
 }
 
 export default connect(

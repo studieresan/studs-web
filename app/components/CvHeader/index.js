@@ -4,6 +4,7 @@ import MemberImage from 'components/MemberImage'
 import { Linkedin } from 'react-feather'
 import Github from 'react-feather/dist/icons/github'
 import styles from './styles.css'
+import { prettyUserRole } from 'utils'
 
 function CvHeader({ user }) {
   return (
@@ -16,7 +17,7 @@ function CvHeader({ user }) {
               {user.firstName} {user.lastName}
             </b>
           </div>
-          <div>{user.position} @ Studs</div>
+          <div>{prettyUserRole(user.userRole)} @ Studs</div>
           <div>Studying {user.master} @ KTH</div>
           {user.email && (
             <div>

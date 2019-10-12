@@ -1,4 +1,4 @@
-import { saveEvent, fetchEvents, fetchOldEvents, removeEventWithId } from 'api'
+import { saveEvent, fetchEvents, removeEventWithId } from 'api'
 import {
   UPDATE,
   GET_REQUEST,
@@ -62,13 +62,6 @@ export const getEvents = () => dispatch => {
     .catch(err => dispatch(getError(err)))
 }
 
-export const getOldEvents = () => dispatch => {
-  dispatch(getRequest())
-  fetchOldEvents()
-    .then(events => dispatch(getSuccess(events)))
-    .catch(err => dispatch(getError(err)))
-}
-
 export const save = event => dispatch => {
   dispatch(saveRequest())
   saveEvent(event)
@@ -76,9 +69,9 @@ export const save = event => dispatch => {
       if (!event.id) {
         // creating a new event
         dispatch(createSuccess(data))
-        dispatch(push(`/events/${data.id}/edit`))
       }
       dispatch(saveSuccess(data))
+      dispatch(push(`/events/${data.id}`))
     })
     .catch(err => dispatch(saveError(err)))
 }

@@ -79,7 +79,6 @@ function executeGraphQLMutation(query) {
 }
 
 const USER_PROFILE_FIELDS = `
-  memberType
   email
   firstName
   lastName
@@ -87,11 +86,10 @@ const USER_PROFILE_FIELDS = `
   picture
   allergies
   master
-  position
+  userRole
   linkedIn
   github
   picture
-  companyName
 `
 
 export function fetchUser() {
@@ -183,18 +181,14 @@ export function updateUserPassword({ password, confirmPassword }) {
 
 export function fetchUsers() {
   const query = `{
-    studsUsers: users(memberType: studs_member) {
+    users(userRole: null) {
       id,
       profile { ${USER_PROFILE_FIELDS} }
       cv { ${CV_FIELDS} }
     }
-    companyUsers: users(memberType: company_member) {
-      id,
-      profile { ${USER_PROFILE_FIELDS} }
-    }
   }
   `
-  return executeGraphQL(query).then(res => Promise.resolve(res.data))
+  return executeGraphQL(query).then(res => res.data.users)
 }
 
 const CV_FIELDS = `
@@ -259,8 +253,6 @@ export function resetPassword(password, confirmPassword, token) {
 
 const EVENT_FIELDS = `
   id
-  companyName
-  schedule
   privateDescription
   publicDescription
   date
@@ -269,7 +261,8 @@ const EVENT_FIELDS = `
   location
   pictures
   published
-  responsible
+  responsible { id }
+  company { id, name }
 `
 
 export function fetchEvents() {
@@ -280,13 +273,23 @@ export function fetchEvents() {
   }`
   return executeGraphQL(query)
     .then(res => res.data.allEvents)
-    .then(events => events.map(e => ({ ...e, date: new Date(e.date) })))
+    .then(events =>
+      events.map(e => ({
+        ...e,
+        date: new Date(e.date),
+      }))
+    )
 }
 
 export function fetchOldEvents() {
   const query = `query {
     oldEvents {
-      ${EVENT_FIELDS}
+      id
+      companyName
+      publicDescription
+      date
+      pictures
+      published
     }
   }`
   return executeGraphQL(query)
@@ -297,6 +300,12 @@ export function fetchOldEvents() {
 export function saveEvent(e) {
   const event = omit(e, 'id')
   const id = e.id
+  const companyId = event.company.id
+  delete event.company
+  const responsibleUserId = event.responsible.id
+  delete event.responsible
+  event.responsibleUserId = responsibleUserId
+
   if (id) {
     const mutation = `mutation {
       updateEvent(eventId: "${id}", fields: ${toGraphQLFields(event)}) {
@@ -309,7 +318,9 @@ export function saveEvent(e) {
       .then(event => ({ ...event, date: new Date(event.date) }))
   } else {
     const mutation = `mutation {
-      createEvent(fields: ${toGraphQLFields(event)}) {
+      createEvent(companyId: "${companyId}", fields: ${toGraphQLFields(
+      event
+    )}) {
         ${EVENT_FIELDS}
       }
     }
@@ -371,119 +382,6 @@ const uploadFile = (file, signedRequest, url) => {
     .then(() => Promise.resolve(url))
 }
 
-const PRE_EVENT_FIELDS = `
-  interestInRegularWorkBefore,
-  interestInCompanyMotivationBefore,
-  familiarWithCompany,
-  viewOfCompany,
-`
-
-const POST_EVENT_FIELDS = `
-  interestInRegularWork,
-  interestInCompanyMotivation,
-  eventImpact,
-  qualifiedToWork,
-  atmosphereRating,
-  activitiesRating,
-  foodRating,
-  eventFeedback,
-  eventImprovements,
-`
-
-export const fetchEventForms = (userId, eventId) => {
-  const query = `{
-    eventForms(userId: "${userId}", eventId:"${eventId}") {
-      ... on PreEventForm {
-        ${PRE_EVENT_FIELDS}
-      },
-      ... on PostEventForm {
-        ${POST_EVENT_FIELDS}
-      }
-    }
-  }`
-
-  return executeGraphQL(query).then(res => res.data.eventForms)
-}
-
-export const fetchAllEventFormsByEventId = eventId => {
-  const query = `{
-    allEventForms(eventId:"${eventId}") {
-      ... on PreEventForm {
-        ${PRE_EVENT_FIELDS}
-      },
-      ... on PostEventForm {
-        ${POST_EVENT_FIELDS}
-      }
-    }
-  }`
-  return executeGraphQL(query).then(res => res.data.allEventForms)
-}
-
-const CreatePreEventFormOperationName = 'CreatePreEventForm'
-const CreatePostEventFormOperationName = 'CreatePostEventForm'
-
-const CreatePreEventFormQuery = `
-  mutation ${CreatePreEventFormOperationName}
-  ($eventId: String!, $fields: PreEventFormInputType!) {
-    createPreEventForm(eventId: $eventId, fields: $fields) {
-      ${PRE_EVENT_FIELDS}
-    }
-  }
-`
-
-const CreatePostEventFormQuery = `
-  mutation ${CreatePostEventFormOperationName}
-  ($eventId: String!, $fields: PostEventFormInputType!) {
-    createPostEventForm(eventId: $eventId, fields: $fields) {
-      ${POST_EVENT_FIELDS}
-    }
-  }
-`
-
-export const saveEventForm = formdata => {
-  const eventId = formdata.eventId
-  const preEvent = formdata.preEvent === true
-  formdata = omit(formdata, ['eventId', 'preEvent'])
-
-  const mutation = JSON.stringify({
-    query: preEvent ? CreatePreEventFormQuery : CreatePostEventFormQuery,
-    variables: {
-      eventId: eventId,
-      fields: formdata,
-    },
-    operationName: preEvent ? 'CreatePreEventForm' : 'CreatePostEventForm',
-  })
-
-  return executeGraphQLMutation(mutation)
-}
-
-/**
- * Fetch list of people who haven't filled in pre event forms
- * and post event forms for an event
- *
- * @export
- * @param {string} eventId
- */
-export function fetchPeopleMissingFeedback(eventId) {
-  const query = `
-    query {
-      missingPostEventFormUsers(eventId: "${eventId}") {
-        profile {
-          firstName
-          lastName
-        }
-      }
-      missingPreEventFormUsers(eventId: "${eventId}") {
-        profile {
-          firstName
-          lastName
-        }
-      }
-    }
-  `
-  return executeGraphQL(query).then(res => res.data)
-}
-
 const COMPANY_FIELDS = `
   id,
   name,
@@ -505,6 +403,17 @@ export const fetchCompanies = () => {
     .catch(err => console.error(err))
 }
 
+export const fetchSoldCompanies = () => {
+  const query = `{
+    soldCompanies {
+      id
+    }
+  }`
+  return executeGraphQL(query)
+    .then(res => res.data.soldCompanies)
+    .catch(err => console.error(err))
+}
+
 export const fetchCompany = companyId => {
   const query = `{
     company (companyId: "${companyId}") {
@@ -513,22 +422,6 @@ export const fetchCompany = companyId => {
   }`
   return executeGraphQL(query)
     .then(res => res.data.company)
-    .catch(err => console.error(err))
-}
-
-export const fetchStudsUserNames = () => {
-  const query = `{
-      studsUsers: users(memberType: studs_member) {
-        id,
-        profile { 
-          firstName,
-          lastName,
-          picture,
-        }
-      }
-    }`
-  return executeGraphQL(query)
-    .then(res => res.data.studsUsers)
     .catch(err => console.error(err))
 }
 
@@ -706,4 +599,11 @@ export const updateComment = (commentId, text) => {
       }
     })
     .catch(err => console.error(err))
+}
+
+export const fetchUserRoles = () => {
+  const query = `query {
+    userRoles
+  }`
+  return executeGraphQL(query).then(res => res.data.userRoles)
 }

@@ -33,11 +33,11 @@ function NavLinks({ loggedIn, user }: Props) {
             <FormattedMessage {...messages.salesTool} />
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link to='/trip'>
             <FormattedMessage {...messages.trip} />
           </Link>
-        </li>
+        </li> */}
         <li>
           <Link to='/logout'>
             <FormattedMessage {...messages.logout} />
@@ -63,17 +63,17 @@ function NavLinks({ loggedIn, user }: Props) {
             <FormattedMessage {...messages.about} />
           </Link>
         </li>
-        {user.type !== 'studs_member' && (
+        {!loggedIn && (
           <li>
             <Link to='/events/public'>
-              <FormattedMessage {...messages.pastEvents} />
+              <FormattedMessage {...messages.events} />
             </Link>
           </li>
         )}
-        {user.type === 'studs_member' && (
+        {loggedIn && (
           <li>
             <Link to='/events/'>
-              <FormattedMessage {...messages.pastEvents} />
+              <FormattedMessage {...messages.events} />
             </Link>
           </li>
         )}

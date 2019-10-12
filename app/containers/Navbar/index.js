@@ -17,7 +17,6 @@ function Navbar() {
     <Switch>
       <Route exact path='/' render={LightNav} />
       <Route path='/login' render={LightNav} />
-      <Route path='/events/:eventId/event-feedback' render={() => null} />
       <Route component={Nav} />
     </Switch>
   )

@@ -3,11 +3,9 @@ import { fromJS } from 'immutable'
 import { routerMiddleware } from 'react-router-redux'
 import { combineReducers } from 'redux-immutable'
 import thunkMiddleware from 'redux-thunk'
-import reducers from 'reducers'
-import languageProviderReducer from 'containers/LanguageProvider/reducer'
-import globalReducer from 'containers/App/reducer'
+import reducers from 'store/rootReducers'
 
-const devtools = window.devToolsExtension || (() => noop => noop)
+const devtools = window.__REDUX_DEVTOOLS_EXTENSION__ || (() => noop => noop)
 
 export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares
@@ -20,8 +18,6 @@ export default function configureStore(initialState = {}, history) {
   const store = createStore(
     combineReducers({
       router: routerReducer,
-      language: languageProviderReducer,
-      global: globalReducer,
       ...reducers,
     }),
     fromJS(initialState),
@@ -30,8 +26,8 @@ export default function configureStore(initialState = {}, history) {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept('./reducers', () => {
-      const nextRootReducer = require('./reducers/index')
+    module.hot.accept('./store', () => {
+      const nextRootReducer = require('./store/rootReducers')
       store.replaceReducer(nextRootReducer)
     })
   }

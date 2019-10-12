@@ -8,43 +8,25 @@ import { hasEventPermission } from 'users'
 
 import moment from 'moment'
 import styles from './styles.css'
-import IndicatorIcon from 'components/IndicatorIcon'
 import { Link } from 'react-router-dom'
 
-export class EventDetail extends Component {
+export default class EventDetail extends Component {
   render() {
-    const {
-      event,
-      user,
-      onRemoveEvent,
-      preEventFormReplied,
-      postEventFormReplied,
-      onGenerateFeedback,
-    } = this.props
+    const { event, user, users, onRemoveEvent } = this.props
     if (!event) {
       return null
     }
-    let after, before
-    if (event.after && event.before) {
-      const userList = person => (
-        <li key={person.id}>
-          {person.first_name} {person.last_name}
-        </li>
-      )
-      before = event.before.map(userList)
-      after = event.after.map(userList)
-    }
+
+    const responsibleUser = users.find(u => u.realId === event.responsible.id)
+    const responsibleName = responsibleUser
+      ? responsibleUser.firstName + ' ' + responsibleUser.lastName
+      : ''
     return (
       <div className={styles.eventDetail}>
         <div className={styles.head}>
-          <h2>{event.companyName}</h2>
+          <h2>{event.company.name}</h2>
           {hasEventPermission(user) && (
             <div className={styles.buttonRow}>
-              <Link to={`/events/${event.id}/create-event-feedback`}>
-                <Button color='bright' onClick={() => onGenerateFeedback}>
-                  <FormattedMessage {...messages.generateFeedback} />
-                </Button>
-              </Link>
               <Link to={`/events/${event.id}/edit`}>
                 <Button color='bright'>
                   <FormattedMessage {...messages.edit} />
@@ -57,10 +39,12 @@ export class EventDetail extends Component {
           )}
         </div>
         <div className={styles.info}>
-          {event && event.responsible && (
+          {event.responsible && (
             <div>
-              <h4>Responsible</h4>
-              <div>{event.responsible}</div>
+              <h4>
+                <FormattedMessage {...messages.responsible} />
+              </h4>
+              <div>{responsibleName}</div>
             </div>
           )}
           <div>
@@ -76,30 +60,14 @@ export class EventDetail extends Component {
               <FormattedMessage {...messages.location} />
             </h4>
             <a
-              href={`https://www.google.com/maps/search/?api=1&query=
-              + ${encodeURIComponent(event.location)}`}
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                event.location
+              )}`}
               target='_blank'
             >
               {event.location}
             </a>
           </div>
-          {user && user.type === 'studs_member' && (
-            <div>
-              <h4>
-                <FormattedMessage {...messages.surveys} />
-              </h4>
-              <div>
-                <IndicatorIcon ok={preEventFormReplied} />
-                <Link to={`/events/${event.id}/pre_form`}>Pre Event Form</Link>
-              </div>
-              <div>
-                <IndicatorIcon ok={postEventFormReplied} />
-                <Link to={`/events/${event.id}/post_form`}>
-                  Post Event Form
-                </Link>
-              </div>
-            </div>
-          )}
         </div>
         {event.publicDescription && (
           <div>
@@ -110,7 +78,7 @@ export class EventDetail extends Component {
             <Markdown source={event.publicDescription} />
           </div>
         )}
-        {user.type === 'studs_member' && event.privateDescription && (
+        {event.privateDescription && (
           <div>
             <hr />
             <h2>
@@ -119,60 +87,42 @@ export class EventDetail extends Component {
             <Markdown source={event.privateDescription} />
           </div>
         )}
-        {event.formData && event.feedbackText && (
+        {(!!event.beforeSurveys.length || !!event.afterSurveys.length) && (
           <div>
             <hr />
             <h2>
-              <FormattedMessage {...messages.feedback} />
+              <FormattedMessage {...messages.surveys} />
             </h2>
-            <Markdown source={event.feedbackText} />
-          </div>
-        )}
-        {hasEventPermission(user) &&
-        ((before && before.length) || (after && after.length)) ? (
-          <div>
-            <hr />
-            <h2>
-              <FormattedMessage {...messages.missing} />
-            </h2>
-            <div className={styles.missing}>
+            <div className={styles.surveys}>
               <div>
-                {before && before.length ? (
-                  <div>
-                    <div className={styles.missingHead}>Before</div>
-                    {!event.remindedBefore && (
-                      <button
-                        name='before'
-                        onClick={this.handleRemindClick}
-                        className='btn-default'
-                      >
-                        Remind on slack
-                      </button>
-                    )}
-                    <ul>{before}</ul>
-                  </div>
-                ) : null}
+                <h4>
+                  <FormattedMessage {...messages.before} />
+                </h4>
+                {event.beforeSurveys.map(link => (
+                  <li key={link}>
+                    <a href={'//' + link} target='_blank'>
+                      {link}
+                    </a>
+                  </li>
+                ))}
               </div>
               <div>
-                {after && after.length ? (
-                  <div>
-                    <div className={styles.missingHead}>After</div>
-                    {!event.remindedAfter && (
-                      <button
-                        name='after'
-                        onClick={this.handleRemindClick}
-                        className='btn-default'
-                      >
-                        Remind on slack
-                      </button>
-                    )}
-                    <ul>{after}</ul>
-                  </div>
-                ) : null}
+                <h4>
+                  <FormattedMessage {...messages.after} />
+                </h4>
+                <ul>
+                  {event.afterSurveys.map(link => (
+                    <li key={link}>
+                      <a href={'//' + link} target='_blank'>
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
-        ) : null}
+        )}
       </div>
     )
   }
@@ -182,8 +132,6 @@ EventDetail.propTypes = {
   id: PropTypes.string.isRequired,
   event: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
+  users: PropTypes.array.isRequired,
   onRemoveEvent: PropTypes.func.isRequired,
-  preEventFormReplied: PropTypes.bool.isRequired,
-  postEventFormReplied: PropTypes.bool.isRequired,
-  onGenerateFeedback: PropTypes.object.isRequired,
 }

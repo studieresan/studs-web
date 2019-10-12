@@ -5,6 +5,10 @@ export default defineMessages({
     id: 'app.components.EventEdit.save',
     defaultMessage: 'Save',
   },
+  cancel: {
+    id: 'app.components.EventEdit.cancel',
+    defaultMessage: 'Cancel',
+  },
   saved: {
     id: 'app.components.EventEdit.saved',
     defaultMessage: 'Saved',
@@ -24,10 +28,6 @@ export default defineMessages({
   privateDescription: {
     id: 'app.components.EventEdit.privateDescription',
     defaultMessage: 'Private Description',
-  },
-  schedule: {
-    id: 'app.components.EventEdit.schedule',
-    defaultMessage: 'Schedule',
   },
   location: {
     id: 'app.components.EventEdit.location',
@@ -51,6 +51,6 @@ export default defineMessages({
   },
   responsible: {
     id: 'app.components.EventEdit.responsible',
-    defaultMessage: 'Responsible',
+    defaultMessage: 'Responsible *',
   },
 })

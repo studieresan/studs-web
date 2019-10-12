@@ -7,6 +7,7 @@ import styles from './styles.css'
 import CvHeader from '../CvHeader'
 
 function renderItem(item, i) {
+  if (!item) return null
   return (
     <div key={i} className={styles.item}>
       <div className={styles.meta}>

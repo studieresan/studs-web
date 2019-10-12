@@ -112,6 +112,10 @@
     "message": "Spara"
   },
   {
+    "id": "app.components.EventEdit.cancel",
+    "message": "Avbryt"
+  },
+  {
     "id": "app.components.EventEdit.saved",
     "message": "Sparad"
   },
@@ -158,10 +162,6 @@
   {
     "id": "app.components.EventDetail.event",
     "message": "Event"
-  },
-  {
-    "id": "app.components.EventDetail.generateFeedback",
-    "message": "Generera feedback"
   },
   {
     "id": "app.components.EventDetail.edit",

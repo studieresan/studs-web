@@ -4,26 +4,26 @@ import {
   loadCompanies,
   addCompany,
   updateCompany,
-} from './store/companies/actions'
-import { loadStatuses } from './store/statuses/actions'
+} from 'store/salesTool/companies/actions'
+import { loadStatuses } from 'store/salesTool/statuses/actions'
 
 import {
   loadContacts,
   updateContact,
   deleteContact,
   addContact,
-} from './store/contacts/actions'
+} from 'store/salesTool/contacts/actions'
 
 import {
   loadComments,
   addComment,
   deleteComment,
   updateComment,
-} from './store/comments/actions'
+} from 'store/salesTool/comments/actions'
 
 import { getUsers } from '../Members/actions'
 
-import { updateFilter, updateSorting } from './store/actions'
+import { updateFilter, updateSorting } from 'store/salesTool/actions'
 
 const mapStateToProps = rootState => {
   const currentUser = rootState.getIn(['global', 'user']).toJS()
@@ -36,7 +36,9 @@ const mapStateToProps = rootState => {
   const users = rootState.getIn(['members', 'users']).toJS()
 
   const userMap = {}
-  users.forEach(u => (userMap[u.realId] = u.firstName + ' ' + u.lastName))
+  users
+    .filter(u => u.userRole === 'sales_group')
+    .forEach(u => (userMap[u.realId] = u.firstName + ' ' + u.lastName))
   return {
     companies,
     currentUser,

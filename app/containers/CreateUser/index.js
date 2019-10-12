@@ -1,8 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { createUser } from 'api'
+import { connect } from 'react-redux'
 import Button from 'components/Button'
 import styles from './styles.css'
-import { formToObject } from 'utils'
+import { formToObject, prettyUserRole } from 'utils'
+import { loadUserRoles } from 'store/userRoles/actions'
+import { hasData } from 'store/salesTool/constants'
 
 class CreateUser extends React.Component {
   constructor(props) {
@@ -15,7 +19,12 @@ class CreateUser extends React.Component {
     }
 
     this.handleMemberChange = this.handleMemberChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentDidMount() {
+    if (!hasData(this.props.userRoles)) {
+      this.props.loadUserRoles()
+    }
   }
 
   handleMemberChange(event) {
@@ -24,7 +33,7 @@ class CreateUser extends React.Component {
     })
   }
 
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault()
     const form = event.target
 
@@ -80,43 +89,25 @@ class CreateUser extends React.Component {
 
           <form onSubmit={this.handleSubmit}>
             <div className={styles.formLabel}>
-              Member type:
-              <div className={styles.radioButtonGroup}>
-                <input
-                  type='radio'
-                  name='memberType'
-                  id='studs_member'
-                  value='studs_member'
-                  onChange={this.handleMemberChange}
-                  checked={selectedMemberType === 'studs_member'}
-                />
-                <label htmlFor='studs_member'>Studs member</label>
-                <br />
-
-                <input
-                  type='radio'
-                  name='memberType'
-                  id='company_member'
-                  value='company_member'
-                  onChange={this.handleMemberChange}
-                  checked={selectedMemberType === 'company_member'}
-                />
-                <label htmlFor='company_member'>Company member</label>
+              User role:
+              <div>
+                <select
+                  name='user_role'
+                  id='user_role'
+                  defaultValue=''
+                  required
+                >
+                  <option value={''} key={'empty'} disabled>
+                    Select a user role
+                  </option>
+                  {Object.keys(this.props.userRoles.data).map(role => (
+                    <option value={role} key={role}>
+                      {prettyUserRole(role)}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
-
-            {selectedMemberType === 'company_member' && (
-              <label>
-                Company name:
-                <input
-                  type='text'
-                  placeholder='Company name'
-                  name='companyName'
-                  id='companyName'
-                  required
-                />
-              </label>
-            )}
 
             <label>
               Email:
@@ -161,4 +152,26 @@ class CreateUser extends React.Component {
   }
 }
 
-export default CreateUser
+CreateUser.propTypes = {
+  userRoles: PropTypes.object.isRequired,
+  loadUserRoles: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = rootState => {
+  const userRoles = rootState.getIn(['userRoles'])
+
+  return {
+    userRoles,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    loadUserRoles: () => dispatch(loadUserRoles()),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateUser)

@@ -29,12 +29,11 @@ export function getUserSuccess(user) {
       permissions: user.permissions,
       picture: user.picture,
       phone: user.phone || '',
-      position: user.position || '',
+      userRole: user.userRole || '',
       linkedIn: user.linkedIn || '',
       github: user.github || '',
       master: user.master || '',
       allergies: user.allergies || '',
-      type: user.memberType,
     },
   }
 }
@@ -48,7 +47,9 @@ export function getUserError() {
 export const getUser = () => dispatch => {
   dispatch(getUserRequest())
   fetchUser()
-    .then(user => dispatch(getUserSuccess(user)))
+    .then(user => {
+      dispatch(getUserSuccess(user))
+    })
     .catch(err => {
       if (err.status === 403) {
         dispatch(logout())

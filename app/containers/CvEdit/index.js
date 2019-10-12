@@ -207,7 +207,7 @@ export class CvEdit extends React.Component {
     }
     const sections = this.props.content.get('sections').toJS()
     let header = null
-    if (this.props.user) {
+    if (this.props.hasFetchedLoggedInUser) {
       header = <CvHeader user={this.props.user.toJS()} />
     }
     let saveStatus = null
@@ -247,6 +247,7 @@ CvEdit.propTypes = {
   saveErr: PropTypes.bool.isRequired,
   saving: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
+  hasFetchedLoggedInUser: PropTypes.bool.isRequired,
   match: PropTypes.object.isRequired,
   content: PropTypes.object.isRequired,
   addSection: PropTypes.func.isRequired,
@@ -265,6 +266,7 @@ function mapStateToProps(state) {
     content: state.getIn(['cv', 'content']),
     fetchedCv: state.getIn(['cv', 'cv', 'fetchedCv']),
     user: state.getIn(['global', 'user']),
+    hasFetchedLoggedInUser: state.getIn(['global', 'hasFetchedLoggedInUser']),
     saved: state.getIn(['cv', 'saved']),
     saving: state.getIn(['cv', 'saving']),
     saveErr: state.getIn(['cv', 'saveError']),

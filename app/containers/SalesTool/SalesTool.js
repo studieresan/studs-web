@@ -9,7 +9,7 @@ import {
   isLoading,
   isUpdating,
   isError,
-} from './store/constants'
+} from 'store/salesTool/constants'
 
 const MISSING = 'MISSING'
 
@@ -190,7 +190,8 @@ class SalesTool extends Component {
       if (
         !alreadyExists ||
         confirm(
-          'There already exists a company with this name.\nDo you want to add another?'
+          'There already exists a company with this name.\n' +
+            'Do you want to add another?'
         )
       ) {
         this.props.addCompany(name.trim())

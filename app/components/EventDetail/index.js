@@ -95,26 +95,28 @@ export default class EventDetail extends Component {
             </h2>
             <div className={styles.surveys}>
               <div>
-                <h4>
+                <h3>
                   <FormattedMessage {...messages.before} />
-                </h4>
-                {event.beforeSurveys.map(link => (
-                  <li key={link}>
-                    <a href={'//' + link} target='_blank'>
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </div>
-              <div>
-                <h4>
-                  <FormattedMessage {...messages.after} />
-                </h4>
+                </h3>
                 <ul>
-                  {event.afterSurveys.map(link => (
+                  {event.beforeSurveys.map((link, idx) => (
                     <li key={link}>
                       <a href={'//' + link} target='_blank'>
-                        {link}
+                        <FormattedMessage {...messages.survey} /> {idx}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3>
+                  <FormattedMessage {...messages.after} />
+                </h3>
+                <ul>
+                  {event.afterSurveys.map((link, idx) => (
+                    <li key={link}>
+                      <a href={'//' + link} target='_blank'>
+                        <FormattedMessage {...messages.survey} /> {idx}
                       </a>
                     </li>
                   ))}

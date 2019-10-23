@@ -63,8 +63,19 @@ export class User extends React.Component {
             <FormattedMessage {...messages.title} />
           </h2>
           <Link to={'/resume/edit'}>
-            <Button full>
+            <Button className={styles.resumeButton} full>
               <FormattedMessage {...messages.editResume} />
+            </Button>
+          </Link>
+          <Link
+            to={
+              '/members/' +
+              (user.firstName + user.lastName).toLowerCase() +
+              '/print'
+            }
+          >
+            <Button className={styles.resumeButton} full>
+              <FormattedMessage {...messages.printResume} />
             </Button>
           </Link>
           <div className='input-label'>

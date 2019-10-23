@@ -40,7 +40,14 @@ export class Members extends React.Component {
     let detail
     let detailSelected = false
     if (user) {
-      detail = <CV user={user} cv={user.cv} />
+      detail = (
+        <CV
+          user={user}
+          cv={user.cv}
+          print={!!this.props.match.params.print}
+          donePrint={() => this.props.history.push('/members/' + user.id)}
+        />
+      )
       detailSelected = true
     } else {
       detail = <MembersStaticDetail />
@@ -84,6 +91,7 @@ Members.propTypes = {
     })
   ),
   match: PropTypes.object,
+  history: PropTypes.object,
   selectMember: PropTypes.func.isRequired,
   selectedMember: PropTypes.string.isRequired,
 }

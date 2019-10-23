@@ -42,6 +42,15 @@ function renderSection(section) {
   )
 }
 
+const printResume = props => {
+  props.setPrintMode(true)
+  setTimeout(() => {
+    window.print()
+    props.donePrint()
+    props.setPrintMode(false)
+  }, 1000)
+}
+
 function PrintButton(props) {
   if (props.printMode) {
     return null
@@ -51,11 +60,7 @@ function PrintButton(props) {
     <button
       className={styles.printButton}
       onClick={() => {
-        props.setPrintMode(true)
-        setTimeout(() => {
-          window.print()
-          props.setPrintMode(false)
-        }, 1000)
+        printResume(props)
       }}
     >
       Print CV
@@ -68,26 +73,36 @@ PrintButton.propTypes = {
   setPrintMode: PropTypes.func.isRequired,
 }
 
-function Cv(props) {
-  let sections = null
-  if (props.cv) {
-    sections = props.cv.sections.map(section => renderSection(section))
+class Cv extends React.Component {
+  componentDidMount() {
+    if (this.props.print && !this.props.printMode) {
+      printResume(this.props)
+    }
   }
 
-  return (
-    <div className={styles.cv}>
-      <div>
-        <CvHeader user={props.user} />
-        {sections}
-        <PrintButton {...props} />
+  render() {
+    let sections = null
+    if (this.props.cv) {
+      sections = this.props.cv.sections.map(section => renderSection(section))
+    }
+    return (
+      <div className={styles.cv}>
+        <div>
+          <CvHeader user={this.props.user} />
+          {sections}
+          <PrintButton {...this.props} />
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 Cv.propTypes = {
   user: PropTypes.object.isRequired,
   cv: PropTypes.object,
+  print: PropTypes.bool,
+  donePrint: PropTypes.func,
+  printMode: PropTypes.bool.isRequired,
 }
 
 const mapStateToProps = state => {

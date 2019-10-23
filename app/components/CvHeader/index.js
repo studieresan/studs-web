@@ -19,7 +19,12 @@ function CvHeader({ user }) {
           </div>
           <div>{prettyUserRole(user.userRole)} @ Studs</div>
           <div>Studying {user.master} @ KTH</div>
-          {user.email && (
+          {user.resumeEmail && (
+            <div>
+              <a href={`mailto:${user.resumeEmail}`}>{user.resumeEmail}</a>
+            </div>
+          )}
+          {!user.resumeEmail && user.email && (
             <div>
               <a href={`mailto:${user.email}`}>{user.email}</a>
             </div>

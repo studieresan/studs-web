@@ -48,6 +48,7 @@ export class User extends React.Component {
 
   render() {
     const user = this.props.user
+    console.log(user)
 
     return (
       <div className={styles.user}>
@@ -100,6 +101,16 @@ export class User extends React.Component {
             onChange={this.handleChange}
             onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
             placeholder='Last name'
+            maxLength='30'
+          />
+          <div className='input-label'>Email in Resume</div>
+          <input
+            type='text'
+            name='resumeEmail'
+            value={user.resumeEmail}
+            onChange={this.handleChange}
+            onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
+            placeholder='Resume email - Defaults to login email'
             maxLength='30'
           />
           <div>

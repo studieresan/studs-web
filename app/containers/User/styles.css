@@ -5,11 +5,11 @@
   align-items: center;
   flex: 1;
   padding: 5rem 0;
-  background: #F7DDC9;
+  background: #f7ddc9;
 }
 
 .content {
-  background: #FFF;
+  background: #fff;
   width: 90%;
   max-width: 30rem;
   padding: 1rem 3rem 1rem;
@@ -25,4 +25,8 @@
 
 .picture {
   margin: 1rem auto 3rem;
+}
+
+.resumeButton {
+  margin-top: 0;
 }

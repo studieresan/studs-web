@@ -8,13 +8,13 @@ import styles from './styles.css'
 const PublicEventMenu = ({ events, oldEvents }) => {
   return (
     <div className={styles.publicEventMenu}>
-      <h2>Events</h2>
+      <h2>Events 19/20</h2>
       <div className={styles.links}>
         {events.map(e => (
           <PublicEventMenuLink key={e.companyName} company={e.companyName} />
         ))}
       </div>
-      <h2>Old Events</h2>
+      <h2>Previous Events</h2>
       <div className={styles.links}>
         {oldEvents.map(e => (
           <PublicEventMenuLink key={e.companyName} company={e.companyName} />

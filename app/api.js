@@ -82,6 +82,7 @@ const USER_PROFILE_FIELDS = `
   email
   firstName
   lastName
+  resumeEmail
   phone
   picture
   allergies

@@ -53,6 +53,10 @@ export default defineMessages({
     id: 'app.containers.User.editResume',
     defaultMessage: 'Edit Resume',
   },
+  printResume: {
+    id: 'app.containers.User.printResume',
+    defaultMessage: 'Print Resume',
+  },
   save: {
     id: 'app.containers.User.save',
     defaultMessage: 'Save',

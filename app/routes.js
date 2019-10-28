@@ -50,7 +50,11 @@ class StudsRouter extends Component {
         <AdminRoute exact path='/create-user' component={CreateUser} />
 
         <AuthenticatedRoute exact path='/members' component={Members} />
-        <AuthenticatedRoute exact path='/members/:id?' component={Members} />
+        <AuthenticatedRoute
+          exact
+          path='/members/:id?/:print?'
+          component={Members}
+        />
 
         <AuthenticatedRoute exact path='/events' component={Events} />
         <AuthenticatedRoute exact path='/events/new' component={Events} />

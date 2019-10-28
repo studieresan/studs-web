@@ -19,16 +19,21 @@
   }
 }
 
-@media print {
-  @page {
-    margin: 1.8cm;
-  }
-}
-
 html,
 body {
   margin: 0;
   padding: 0;
+}
+
+@media print {
+  @page {
+    size: auto;
+    margin: 0;
+  }
+
+  body {
+    padding: 1.8cm;
+  }
 }
 
 body {

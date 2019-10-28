@@ -111,7 +111,6 @@ export class User extends React.Component {
             onChange={this.handleChange}
             onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
             placeholder='Resume email - Defaults to login email'
-            maxLength='30'
           />
           <div>
             <div className='input-label'>

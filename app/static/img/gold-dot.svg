@@ -11,7 +11,7 @@
 		<g id="dots" transform="translate(140.000000, 154.000000)" sketch:type="MSLayerGroup">
 			<g id="dot" sketch:type="MSShapeGroup">
 				<g>
-					<circle fill="#FFDAAB" cx="2.5" cy="2.5" r="1.5"/>
+					<circle fill="#3a7677" cx="2.5" cy="2.5" r="1.5"/>
 				</g>
 			</g>
 		</g>

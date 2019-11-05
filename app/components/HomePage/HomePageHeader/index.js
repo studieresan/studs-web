@@ -22,7 +22,7 @@ function HomePageHeader() {
         </div>
         <div className={styles.buttons}>
           <Link to='/about'>
-            <Button color='gold'>
+            <Button>
               <FormattedMessage {...messages.intro.learnMore} />
             </Button>
           </Link>

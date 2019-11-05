@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: #1c436a;
+  background: url(static/img_new/home/background.png);
   padding-top: 2.5%;
   padding-bottom: 2.5%;
   color: rgb(255, 255, 255);

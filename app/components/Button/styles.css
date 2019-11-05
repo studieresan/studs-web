@@ -5,19 +5,23 @@
   border-radius: 100px;
   transition: background 0.2s, color 0.2s;
   outline: none;
+  border-style: solid;
+  border-width: medium;
+  box-shadow: 0 5px 10px 0 rgba(61, 142, 198, 0.25);
 }
 
 .default {
-  background: #303b4b;
+  background: var(--primary-dark);
+  background-color: var(--primary-dark);
   color: white;
 }
 
 .default:hover {
-  color: #f7ddc9;
+  color: var(--primary-light);
 }
 
 .primary {
-  box-shadow: 0 5px 10px 0 rgba(61, 142, 198, 0.25);
+  background: var(--primary);
   background-color: var(--primary);
   color: white;
 }

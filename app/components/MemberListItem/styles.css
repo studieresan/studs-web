@@ -9,11 +9,7 @@
 }
 
 /* iPhone-X landscape insets */
-@media only screen
-  and (device-width: 375px)
-  and (device-height: 812px)
-  and (-webkit-device-pixel-ratio: 3)
-  and (orientation: landscape) {
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
   .memberListItem {
     /* stylelint-disable */
     padding-left: constant(safe-area-inset-left);
@@ -34,6 +30,6 @@
 
 .memberListItem:hover,
 .active {
-  background-color: #6D6B6E;
+  background-color: var(--primary-dark);
   color: white;
 }

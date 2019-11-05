@@ -5,7 +5,7 @@
 
 .actions {
   height: 46px;
-  background-color: #38383f; /* navy */
+  background-color: var(--primary-dark);
   padding-left: 10px;
   display: flex;
   justify-content: center;
@@ -43,7 +43,7 @@
   font-size: 12px;
   height: 40px;
   align-items: center;
-  background-color: #f7ddc9;
+  background-color: var(--primary);
 }
 
 .listContainer {

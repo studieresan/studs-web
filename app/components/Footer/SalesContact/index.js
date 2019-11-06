@@ -5,7 +5,7 @@ import Section from 'components/Section'
 import styles from './styles.css'
 import messages from './messages'
 import MemberImage from 'components/MemberImage'
-import Cristian from 'static/img/people/cristian.jpg'
+import Cristian from 'static/img_new/people/cristian.jpg'
 
 const CONTACT_NAME = 'Cristian Osorio Bretti'
 const CONTACT_PHONE_NUMBER = '+46 70-782 65 60'

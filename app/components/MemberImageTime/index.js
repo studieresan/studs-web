@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import MemberImage from 'components/MemberImage'
 import styles from './styles.css'
-import placeholder from 'static/img/profile-placeholder.png'
+import placeholder from 'static/img_new/profile-placeholder.png'
 
 const MemberImageTime = ({ picture, createdAt, name }) => {
   return (

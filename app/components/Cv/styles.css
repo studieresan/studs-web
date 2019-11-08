@@ -48,15 +48,15 @@
 }
 
 .section .sectionInput {
-  font-weight: bold;
-  border: none;
-  font-size: 1.25rem;
-  padding: 0.25rem;
-  border-bottom: 3px solid;
-  align-self: center;
-  justify-self: center;
-  resize: none;
-  flex: 4;
+  font-weight: bold !important;
+  border: none !important;
+  font-size: 1.25rem !important;
+  padding: 0.25rem !important;
+  border-bottom: 3px solid !important;
+  align-self: center !important;
+  justify-self: center !important;
+  resize: none !important;
+  flex: 4 !important;
 }
 
 .section > button {
@@ -223,7 +223,7 @@
   }
 
   .section .sectionInput {
-    flex: 1;
+    flex: 1 !important;
   }
 }
 

@@ -7,8 +7,8 @@ import { UPDATE_FILTER, UPDATE_SORTING } from './constants'
 
 const defaultFilterState = {
   text: '',
-  user: 'Alla',
-  status: 'Alla',
+  user: [],
+  status: [],
 }
 
 const filterReducer = (state = defaultFilterState, action) => {

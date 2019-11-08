@@ -4,7 +4,7 @@
   min-height: 100vh;
 }
 
-.container input,
+.container input:not([type='checkbox']),
 .container select {
   display: block;
   width: 100%;

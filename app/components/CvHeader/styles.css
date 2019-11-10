@@ -21,10 +21,19 @@
 
 .social {
   align-self: flex-start;
+  font-size: 12px;
+}
+
+.social > a {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-top: 4px;
 }
 
 .social svg {
   fill: transparent;
+  margin-left: 4px;
 }
 
 .social svg:hover {

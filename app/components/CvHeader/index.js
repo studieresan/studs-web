@@ -6,6 +6,11 @@ import Github from 'react-feather/dist/icons/github'
 import styles from './styles.css'
 import { prettyUserRole } from 'utils'
 
+const convertToLink = link => {
+  const temp = link.split('https://')
+  return temp.length > 1 ? temp[1] : temp[0]
+}
+
 function CvHeader({ user }) {
   return (
     <div className={styles.header}>
@@ -39,21 +44,23 @@ function CvHeader({ user }) {
       <div className={styles.social}>
         {user.linkedIn && (
           <a
-            href={user.linkedIn}
+            href={'//' + convertToLink(user.linkedIn)}
             target='_blank'
             rel='noopener noreferrer'
             title='LinkedIn'
           >
+            {convertToLink(user.linkedIn)}
             <Linkedin color='#333' size={24} />
           </a>
         )}
         {user.github && (
           <a
-            href={user.github}
+            href={'//' + convertToLink(user.github)}
             target='_blank'
             rel='noopener noreferrer'
             title='Github'
           >
+            {convertToLink(user.github)}
             <Github color='#333' size={24} />
           </a>
         )}

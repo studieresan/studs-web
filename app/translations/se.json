@@ -5,7 +5,7 @@
   },
   {
     "id": "app.containers.About.intro",
-    "message": "Studs är ett årligt projekt på Kungliga Tekniska Högskolans Datateknikprogram som har som mål att skapa en plattform för interaktion mellan snart examinerade studenter och relevanta företag. För studenterna är projektet även en kurs på 15 högskolepoäng som examineras i form av en rapport som sammanfattar projektet i sin helhet. Som avslutning åker hela projektgruppen på en resa som har i syfte att ge medlemmarna möjligheter för både professionellt och kulturellt utbyte."
+    "message": "Studs är ett årligt projekt på Kungliga Tekniska Högskolans program inom Datateknik. Målet är att skapa en plattform för interaktion mellan snart examinerade studenter och potentiella arbetsgivare genom att anordna företagsevent. För studenterna är projektet även en kurs på 15 högskolepoäng, vilken examineras i form av en rapport som sammanfattar projektet i sin helhet. Som avslutning på projektet åker medlemmarna i Studs på en resa i syfte att möjliggöra både professionellt och kulturellt utbyte. "
   },
   {
     "id": "app.components.HomePage.headline",
@@ -17,7 +17,7 @@
   },
   {
     "id": "app.components.HomePage.project.content",
-    "message": "Studs är ett årligt ideellt projekt vid KTH, bedrivet av studenter. Projektet utgörs av 30 utvalda ingenjörsstudenter inom mastersprogram relevanta till datavetenskap. Genom att organisera evenemang tillsammans med företag skapar vi en plattform för att ge studenter och deras potentiella framtida arbetsgivare koncentrerad tid tillsammans."
+    "message": "Studs är ett årligt ideellt projekt på KTH, bedrivet av studenter. Projektet utgörs av 30 utvalda ingenjörsstudenter inom masterprogram relevanta för datavetenskap. Genom att organisera evenemang tillsammans med företag skapar vi möjligheter att ge både studenter och deras potentiella arbetsgivare värdefull tid tillsammans."
   },
   {
     "id": "app.components.HomePage.events.header",
@@ -25,7 +25,7 @@
   },
   {
     "id": "app.components.HomePage.events.content",
-    "message": "Genom året kommer medlemmarna av Studs besöka företag genom evenemang, vanligtvis arrangerade på företagens kontor. För studenterna är det här en möjlighet att få djupare insikter om hur livet på företaget ser ut och om företagets verksamhet. Studs hjälper företagen att skräddarsy evenemangen till deras behov, vilket garanterar att varje evenemang är lika unikt som företaget som arrangerat det."
+    "message": "Under året kommer medlemmarna i Studs att träffa företag under evenemang, vanligtvis arrangerade på företagens kontor. För studenterna är detta en möjlighet att få djupare insikter om hur arbetslivet på företaget ser ut och om företagets verksamhet. Studs hjälper företagen att skräddarsy evenemangen till deras behov, vilket garanterar att varje evenemang är lika unikt som företaget som arrangerat det."
   },
   {
     "id": "app.components.HomePage.trip.header",
@@ -33,7 +33,7 @@
   },
   {
     "id": "app.components.HomePage.trip.content",
-    "message": "Projektet avslutas med en resa till USA, i syfte att ge projektmedlemmarna möjligheter för både kulturellt och professionellt utbyte. USA har en unik position inom teknologin med städer som San Francisco, New York och Seattle som ger upphov till ständig innovation och tillväxt för såväl startups som etablerade aktörer."
+    "message": "Projektet avslutas med en resa, där syftet är att möjliggöra både kulturellt och professionellt utbyte för medlemmarna i Studs. Destinationer för resan tas fram av Studs resegrupp. Målet är att besöka städer med unika arbetsmöjligheter inom teknologi, där det sker ständig innovation och tillväxt för både startups och etablerade aktörer."
   },
   {
     "id": "app.components.HomePage.footer.SalesContent",

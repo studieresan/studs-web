@@ -76,7 +76,7 @@ export function formToObject(formElements) {
 export const prettyUserRole = userRole => {
   switch (userRole) {
     case 'project_manager':
-      return 'Project manager'
+      return 'Project Manager'
     case 'it_group':
       return 'IT'
     default: {

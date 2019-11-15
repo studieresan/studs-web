@@ -39,10 +39,10 @@
 }
 
 .border {
-  background: var(--primary-dark);
-  border-style: solid;
+  background: rgb(25, 150, 181);
+  /* border-style: solid;
   border-width: medium;
-  border-color: white;
+  border-color: white; */
   color: white;
 }
 

@@ -1,6 +1,6 @@
 .header {
   position: relative;
-  background-color: grey;
+  background-color: var(--primary-dark);
   width: 100%;
   padding-top: 1rem;
   padding-bottom: 1rem;

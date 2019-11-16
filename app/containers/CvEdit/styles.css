@@ -1,13 +1,9 @@
 .cvEdit {
-  background: #F7DDC9;
+  background-image: linear-gradient(9deg, var(--primary-dark), var(--primary));
 }
 
 /* iPhone X landscape insets */
-@media only screen
-  and (device-width: 375px)
-  and (device-height: 812px)
-  and (-webkit-device-pixel-ratio: 3)
-  and (orientation: landscape) {
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
   .cvEdit {
     /* stylelint-disable */
     padding-left: constant(safe-area-inset-left);
@@ -23,6 +19,9 @@
 .cvAction {
   cursor: pointer;
   align-self: flex-start;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
 }
 
 .sectionHeader {
@@ -55,7 +54,7 @@
   padding: 10px;
   margin: 10px;
   width: auto !important;
-  background:white;
+  background: white;
   border-radius: 5%;
   opacity: 0.8;
 }

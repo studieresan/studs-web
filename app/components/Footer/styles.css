@@ -21,12 +21,11 @@
 .menu {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   flex: 0;
   min-width: 14rem;
   width: 272px;
   box-sizing: border-box;
-  padding-left: 20px;
 }
 
 .menu p {

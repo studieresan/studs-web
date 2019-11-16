@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import MultiSelect from '@khanacademy/react-multi-select'
 import { HeaderSortButton } from 'components/HeaderSortButton'
 import Button from 'components/Button'
 import PropTypes from 'prop-types'
@@ -94,18 +95,20 @@ class SalesTool extends Component {
               .includes(filter.text.toLowerCase())
           )
           .filter(companyId =>
-            filter.status === 'Alla'
+            !filter.status.length
               ? true
               : companies[companyId].status &&
-                companies[companyId].status.id === filter.status
+                filter.status.includes(companies[companyId].status.id)
           )
           .filter(companyId =>
-            filter.user === 'Alla'
+            !filter.user.length
               ? true
               : (companies[companyId].responsibleUser &&
-                  companies[companyId].responsibleUser.id === filter.user) ||
+                  filter.user.includes(
+                    companies[companyId].responsibleUser.id
+                  )) ||
                 (!companies[companyId].responsibleUser &&
-                  filter.user === MISSING)
+                  filter.user.includes(MISSING))
           ),
       },
       () => this.applySortStatus(companies, this.props.sorting)
@@ -218,38 +221,31 @@ class SalesTool extends Component {
           </div>
           <div className={styles.filter_input}>
             <label>Status</label>
-            <select
-              id='status-select'
-              value={this.props.filter.status}
-              onChange={event =>
-                this.props.updateFilter({ status: event.target.value })
-              }
-            >
-              <option value={'Alla'}>Alla</option>
-              {Object.keys(this.props.statuses.data).map(key => (
-                <option key={key} value={key}>
-                  {this.props.statuses.data[key].name}
-                </option>
-              ))}
-            </select>
+            <MultiSelect
+              options={Object.keys(this.props.statuses.data).map(value => ({
+                value,
+                label: this.props.statuses.data[value].name,
+              }))}
+              selected={this.props.filter.status}
+              onSelectedChanged={selected => {
+                this.props.updateFilter({ status: selected })
+              }}
+            />
           </div>
           <div className={styles.filter_input}>
             <label>Ansvarig</label>
-            <select
-              id='member-select'
-              value={this.props.filter.user}
-              onChange={event =>
-                this.props.updateFilter({ user: event.target.value })
-              }
-            >
-              <option value={'Alla'}>Alla</option>
-              <option value={MISSING}>{'Ingen ansvarig'}</option>
-              {Object.keys(this.props.users).map(key => (
-                <option key={key} value={key}>
-                  {this.props.users[key]}
-                </option>
-              ))}
-            </select>
+            <MultiSelect
+              options={[{ value: MISSING, label: 'Ingen ansvarig' }].concat(
+                Object.keys(this.props.users).map(value => ({
+                  value,
+                  label: this.props.users[value],
+                }))
+              )}
+              selected={this.props.filter.user}
+              onSelectedChanged={selected => {
+                this.props.updateFilter({ user: selected })
+              }}
+            />
           </div>
         </div>
         <div className={styles.number_of_companies}>

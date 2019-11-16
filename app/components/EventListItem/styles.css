@@ -10,6 +10,6 @@
 
 .eventListItem:hover,
 .selected {
-  background-color: #6D6B6E;
+  background-color: var(--primary-dark);
   color: white;
 }

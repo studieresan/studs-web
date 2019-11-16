@@ -30,7 +30,7 @@
 }
 
 .date {
-  color: #A4A2A6;
+  color: #a4a2a6;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -62,7 +62,7 @@
 
 .divider {
   width: 50%;
-  background-image: url(static/img/gold-dot-2.svg);
+  background-image: url(static/img_new/gold-dot-2.svg);
   background-position: center;
   background-repeat: repeat-x;
   background-clip: content-box;

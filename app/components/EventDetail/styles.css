@@ -35,7 +35,7 @@
 .info {
   display: flex;
   flex-wrap: wrap;
-  background-color: #a4a2a6;
+  background-color: var(--primary-dark);
   color: white;
 }
 

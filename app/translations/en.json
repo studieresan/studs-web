@@ -5,7 +5,7 @@
   },
   {
     "id": "app.containers.About.intro",
-    "message": "The KTH Study Trip, or Studs, is an annual project at the Computer Science Program at the Royal Institute of Technology. The project aims to create a platform for interaction betwen soon-to-be graduates and relevant companies. For the students the project is also a 15 credit course that is examined by a report that summarizes the project as a whole. The project ends with a trip that gives the members opportunities for professional as well as cultural exchange."
+    "message": "Studs is an annual project for the Computer Science programme at the Royal Institute of Technology. The goal is to create a platform for interaction between students and their possible employers, by arranging cooperative events.  The project also is a course, earning the students 15 credits. The course is evaluated with a written report, summarizing the entire project. Towards the end of the project, the members of Studs goes on a trip together, with the goal of enabling cultural and professional exchange. "
   },
   {
     "id": "app.components.HomePage.headline",
@@ -17,7 +17,7 @@
   },
   {
     "id": "app.components.HomePage.project.content",
-    "message": "Studs is an annual non-profit project at KTH, driven by students. The project consists of 30 selected engineering students enrolled in a master’s program related to computer science. By organizing events together with companies, we create a platform to give students and their potential future employers focused time together. "
+    "message": "Studs is an annual nonprofit project conducted by students of the Royal Institute of Technology in Stockholm (KTH). The project is run by 30 hand-picked engineering students, all in their master’s degree within the field of computer science. By arranging events together with companies, we provide both the students and their possible employers with valuable time together."
   },
   {
     "id": "app.components.HomePage.events.header",
@@ -25,7 +25,7 @@
   },
   {
     "id": "app.components.HomePage.events.content",
-    "message": "Throughout the year, the Studs members will visit various companies through events, usually arranged at their offices. The students take this opportunity to gain deeper insight into life at the company and its operations. Studs helps these companies tailor the events to their specific needs, guaranteeing that each event is as unique as the company hosting it."
+    "message": "Throughout the year the project members will meet companies for events, typically taking place in the companies’ offices. This is an opportunity for the students to gain insights into the company and its business. Studs’ skilled event group helps the companies to customize the events according to their wishes, which ensures events as unique as the companies behind them. "
   },
   {
     "id": "app.components.HomePage.trip.header",
@@ -33,7 +33,7 @@
   },
   {
     "id": "app.components.HomePage.trip.content",
-    "message": "The project ends with a trip to the United States, in order to give the project members an opportunity for cultural and professional exchange. The US has a unique position in the world of technology with cities such as San Francisco, New York, and Seattle that generate continuous innovation and growth for startups and established players alike."
+    "message": "Towards the end of the project, the members of Studs goes on a trip together. The purpose of the trip is enabling a cultural and professional exchange for the students. The journey is planned by the projects’ travel group with the goal to visit cities with unique tech scenes and opportunities both in startups and more established actors."
   },
   {
     "id": "app.components.HomePage.footer.SalesContent",

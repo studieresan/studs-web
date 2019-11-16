@@ -5,32 +5,49 @@
   border-radius: 100px;
   transition: background 0.2s, color 0.2s;
   outline: none;
+  box-shadow: 0 5px 10px 0 rgba(61, 142, 198, 0.25);
 }
 
 .default {
-  background: #303b4b;
+  background: var(--primary-dark);
   color: white;
 }
 
 .default:hover {
-  color: #f7ddc9;
+  color: var(--primary-light);
 }
 
 .primary {
-  box-shadow: 0 5px 10px 0 rgba(61, 142, 198, 0.25);
-  background-color: var(--primary);
+  background: var(--primary-dark);
   color: white;
 }
 
+.primary:hover {
+  color: var(--primary-light);
+}
+
 .secondary {
-  background: none;
-  padding: 5px;
-  color: var(--primary);
+  background: var(--secondary);
+  padding: 12px;
+  font-size: 12px;
+  color: black;
 }
 
 .full {
   width: 100%;
   margin: 1rem 0;
+}
+
+.border {
+  background: rgb(25, 150, 181);
+  /* border-style: solid;
+  border-width: medium;
+  border-color: white; */
+  color: white;
+}
+
+.border:hover {
+  color: var(--primary-light);
 }
 
 .danger {
@@ -44,13 +61,14 @@
 }
 
 .bright {
-  background: #f7ddc9;
-  color: black;
+  background: var(--primary);
+  border-color: var(--primary-dark);
+  color: var(--primary-dark);
 }
 
 .bright:hover {
-  background: black;
-  color: #f7ddc9;
+  background: var(--primary-light);
+  color: white;
 }
 
 .dark {

@@ -1,9 +1,9 @@
 /* This file contains declarations for global CSS */
 :root {
-  --primary: #1c436a;
-  --primary-dark: #011660;
-  --primary-light: #ecf8fc;
-  --secondary: #ffe8dd;
+  --primary: #8ad0d2;
+  --primary-dark: #3a7677;
+  --primary-light: #b3d4d6;
+  --secondary: #f96c6b;
   --gold: rgb(250, 200, 130);
 
   --heading-font: 'Oswald', sans-serif;
@@ -28,11 +28,11 @@ body {
 @media print {
   @page {
     size: auto;
-    margin-top: 0.8cm;
+    margin: 0.8cm;
   }
 
   body {
-    padding: 1.8cm;
+    padding: 1cm;
   }
 }
 

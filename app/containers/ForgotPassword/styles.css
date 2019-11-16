@@ -5,11 +5,11 @@
   align-items: center;
   flex: 1;
   padding: 5rem 0;
-  background: #F7DDC9;
+  background-image: linear-gradient(9deg, var(--primary-dark), var(--primary));
 }
 
 .content {
-  background: #FFF;
+  background: #fff;
   width: 90%;
   max-width: 30rem;
   padding: 1rem 3rem;

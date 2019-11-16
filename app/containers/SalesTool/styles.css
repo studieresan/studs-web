@@ -18,10 +18,20 @@
 
 .filter_input {
   margin-right: 0.5rem;
+  width: 20%;
 }
 
-.filter_input select {
-  height: 50%;
+.filter_input > div {
+  margin-top: 5px;
+}
+
+.filter_input > div > div > div:first-child {
+  height: unset;
+  padding: 10px;
+}
+
+.filter_input > div > div > div:first-child > span > span {
+  font-size: 12px;
 }
 
 .number_of_companies {

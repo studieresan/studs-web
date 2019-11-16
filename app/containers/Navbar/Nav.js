@@ -2,8 +2,10 @@
 import React from 'react'
 import classNames from 'classnames'
 import styles from './styles.css'
-import LogoInvert from 'static/img/logo/studs20white.png'
-import LogoPng from 'static/img/logo/studs20.png'
+
+import LogoInvert from 'static/img_new/logo/logomark-square-white.png'
+import LogoPng from 'static/img_new/logo/logomark-square-black.png'
+
 import MenuIcon from './icon_menu.svg'
 import BlackMenuIcon from './icon_menu_black.svg'
 import CloseIcon from './icon_close.svg'

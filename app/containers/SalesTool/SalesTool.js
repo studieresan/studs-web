@@ -37,7 +37,6 @@ class SalesTool extends Component {
     if (!Object.keys(this.props.users).length) {
       this.props.getUsers()
     }
-    document.title = 'STUDS | Alla företag'
   }
 
   componentWillReceiveProps(newProps) {
@@ -59,7 +58,7 @@ class SalesTool extends Component {
           newCompanyName: '',
         },
         () => {
-          this.props.updateFilter({ text: '', user: 'Alla', status: 'Alla' })
+          this.props.updateFilter({ text: '', user: [], status: [] })
           this.filterResult(newProps.companies.data, newProps.filter)
         }
       )

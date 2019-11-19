@@ -10,9 +10,15 @@
 
 .background {
   height: 80vh;
-  width: 100%;
+  min-width: max-content;
   position: absolute;
   z-index: -1;
+}
+
+@media (min-width: 1600px) {
+  .background {
+    width: 100%;
+  }
 }
 
 .logoDesktop {

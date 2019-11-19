@@ -23,7 +23,7 @@
 }
 
 .logoDesktop {
-  width: 15em;
+  width: 12em;
   height: auto;
   padding: 1%;
   margin-top: 3%;
@@ -73,7 +73,7 @@
   }
 
   .logoMobile {
-    height: 10vh;
+    height: 14vh;
     padding: 1%;
     margin-top: 1%;
     margin-bottom: 2%;

@@ -45,92 +45,44 @@ class About extends Component {
           </h2>
           <div className={styles.image_row}>
             <div className={styles.member}>
-              <MemberImage
-                className={styles.contactPicture}
-                picture={Carl}
-                size={200}
-                square
-                round
-              />
+              <MemberImage picture={Carl} size={200} square round />
               <h3>Carl Nordling</h3>
               <h5>Head of Travel</h5>
             </div>
             <div className={styles.member}>
-              <MemberImage
-                className={styles.contactPicture}
-                picture={Christine}
-                size={200}
-                square
-                round
-              />
+              <MemberImage picture={Christine} size={200} square round />
               <h3>Christine Rosquist</h3>
               <h5>Head of Events</h5>
             </div>
             <div className={styles.member}>
-              <MemberImage
-                className={styles.contactPicture}
-                picture={Cristian}
-                size={200}
-                square
-                round
-              />
+              <MemberImage picture={Cristian} size={200} square round />
               <h3>Cristian Osorio Bretti</h3>
               <h5>Head of Sales</h5>
             </div>
             <div className={styles.member}>
-              <MemberImage
-                className={styles.contactPicture}
-                picture={Helena}
-                size={200}
-                square
-                round
-              />
+              <MemberImage picture={Helena} size={200} square round />
               <h3>Helena Alinder</h3>
               <h5>Project Manager</h5>
             </div>
           </div>
           <div className={styles.image_row}>
             <div className={styles.member}>
-              <MemberImage
-                className={styles.contactPicture}
-                picture={Josefin}
-                size={200}
-                square
-                round
-              />
+              <MemberImage picture={Josefin} size={200} square round />
               <h3>Josefin Nilsson</h3>
               <h5>Project Manager</h5>
             </div>
             <div className={styles.member}>
-              <MemberImage
-                className={styles.contactPicture}
-                picture={Klara}
-                size={200}
-                square
-                round
-              />
+              <MemberImage picture={Klara} size={200} square round />
               <h3>Klara Eserstam</h3>
               <h5>Head of Finance</h5>
             </div>
             <div className={styles.member}>
-              <MemberImage
-                className={styles.contactPicture}
-                picture={Marko}
-                size={200}
-                square
-                round
-              />
+              <MemberImage picture={Marko} size={200} square round />
               <h3>Marko Lazic</h3>
               <h5>Head of IT</h5>
             </div>
             <div className={styles.member}>
-              <MemberImage
-                className={styles.contactPicture}
-                picture={Samuel}
-                size={200}
-                square
-                round
-              />
+              <MemberImage picture={Samuel} size={200} square round />
               <h3>Samuel Hertzberg</h3>
               <h5>Editor in Chief</h5>
             </div>

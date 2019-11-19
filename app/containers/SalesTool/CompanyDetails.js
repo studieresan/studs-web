@@ -45,7 +45,6 @@ class CompanyDetails extends Component {
     this.checkForErrors(this.props, newProps)
     if (isSuccess(newProps.companies)) {
       const company = newProps.companies.data[newProps.match.params.id]
-      document.title = 'STUDS | ' + company.name
       if (
         !company.contacts &&
         (isInitial(newProps.contacts) || isSuccess(newProps.contacts))

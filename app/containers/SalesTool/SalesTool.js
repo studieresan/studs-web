@@ -258,38 +258,34 @@ class SalesTool extends Component {
           )}
         </div>
         <div className={styles.body}>
-          <table className={styles.table}>
-            <thead className={styles.table_head}>
-              <tr>
-                <HeaderSortButton
-                  text='Företag'
-                  attribute='name'
-                  setSortStatus={this.setSortStatus}
-                  sortStatus={this.props.sorting}
-                />
-                <HeaderSortButton
-                  text='Status'
-                  attribute='status'
-                  setSortStatus={this.setSortStatus}
-                  sortStatus={this.props.sorting}
-                />
-                <HeaderSortButton
-                  text='Ansvarig'
-                  attribute='responsibleUser'
-                  setSortStatus={this.setSortStatus}
-                  sortStatus={this.props.sorting}
-                />
-              </tr>
-            </thead>
-            <tbody>
-              {hasData(this.props.companies) &&
-                hasData(this.props.statuses) &&
-                hasData(this.props.statuses) &&
-                this.state.filteredCompanies.map(companyId =>
-                  this.renderCompany(companyId)
-                )}
-            </tbody>
-          </table>
+          <div className={styles.company_list}>
+            <div className={styles.list_header}>
+              <HeaderSortButton
+                text='Företag'
+                attribute='name'
+                setSortStatus={this.setSortStatus}
+                sortStatus={this.props.sorting}
+              />
+              <HeaderSortButton
+                text='Status'
+                attribute='status'
+                setSortStatus={this.setSortStatus}
+                sortStatus={this.props.sorting}
+              />
+              <HeaderSortButton
+                text='Ansvarig'
+                attribute='responsibleUser'
+                setSortStatus={this.setSortStatus}
+                sortStatus={this.props.sorting}
+              />
+            </div>
+            {hasData(this.props.companies) &&
+              hasData(this.props.statuses) &&
+              hasData(this.props.statuses) &&
+              this.state.filteredCompanies.map(companyId =>
+                this.renderCompany(companyId)
+              )}
+          </div>
         </div>
         {!this.state.showAddNew ? (
           <Button onClick={() => this.setState({ showAddNew: true })}>
@@ -315,8 +311,8 @@ class SalesTool extends Component {
       ? this.props.users[responsibleUser.id]
       : 'Ingen ansvarig'
     return (
-      <tr key={id}>
-        <td
+      <div key={id} className={styles.list_item}>
+        <div
           className={styles.company_link}
           onClick={() => {
             this.props.history.push({ pathname: '/empty' })
@@ -327,8 +323,8 @@ class SalesTool extends Component {
           }}
         >
           {name}
-        </td>
-        <td>
+        </div>
+        <div>
           <div
             style={{
               background: statusColor,
@@ -336,9 +332,9 @@ class SalesTool extends Component {
           >
             {statusName}
           </div>
-        </td>
-        <td>{responsibleUserName}</td>
-      </tr>
+        </div>
+        <div>{responsibleUserName}</div>
+      </div>
     )
   }
   renderAddNewInput = () => {

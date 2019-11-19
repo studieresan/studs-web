@@ -20,6 +20,9 @@ export class Members extends React.Component {
     const { selectMember, selectedMember } = this.props
     return (
       <div className={styles.memberList}>
+        <div className={styles.listHeader}>
+          <div>Members</div>
+        </div>
         {sortedUsers.map(user => (
           <MemberListItem
             key={user.id}

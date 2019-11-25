@@ -1,5 +1,5 @@
 .cv {
-  padding: var(--header-height) 6rem 2rem 6rem;
+  padding: 0 6rem 2rem 6rem;
   display: flex;
   justify-content: center;
   height: 100%;

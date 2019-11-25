@@ -9,24 +9,20 @@ import styles from './styles.css'
 import messages from './messages'
 import Footer from 'components/Footer'
 import MemberImage from 'components/MemberImage'
-import placeholder from 'static/img_new/profile-placeholder.png'
 import { prettyUserRole } from 'utils'
-import { StudentComponent } from 'components/Student/index'
 
-const StudsMemberInfo = user => (
-  <div className={styles.member}>
-    <MemberImage
-      picture={user.picture ? user.picture : placeholder}
-      size={200}
-      square
-      round
-    />
-    <h3>
-      {user.firstName} {user.lastName}
-    </h3>
-    <h5>{prettyUserRole(user.userRole)}</h5>
-  </div>
-)
+const StudsMemberInfo = user => {
+  if (!user.alternativePicture) return null
+  return (
+    <div className={styles.member}>
+      <MemberImage picture={user.alternativePicture} size={200} square round />
+      <h3>
+        {user.firstName} {user.lastName}
+      </h3>
+      <h5>{prettyUserRole(user.userRole)}</h5>
+    </div>
+  )
+}
 
 class About extends Component {
   componentDidMount() {

@@ -91,6 +91,7 @@ const USER_PROFILE_FIELDS = `
   linkedIn
   github
   picture
+  alternativePicture
 `
 
 export function fetchUser() {

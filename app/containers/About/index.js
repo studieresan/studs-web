@@ -49,9 +49,6 @@ class About extends Component {
               <FormattedMessage {...messages.intro} />
             </p>
           </div>
-          <h2>
-            <FormattedMessage {...messages.subtitle} />
-          </h2>
           {!!chunkList.length &&
             chunkList.map((chunk, idx) => (
               <div className={styles.image_row} key={'chunk_' + idx}>

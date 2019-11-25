@@ -56,10 +56,6 @@
     "message": "This is Studs"
   },
   {
-    "id": "app.containers.About.subtitle",
-    "message": "We're the people behind Studs"
-  },
-  {
     "id": "app.components.HomePage.footer.shortPitch",
     "message": "Studs helps your company connect with KTH students"
   },

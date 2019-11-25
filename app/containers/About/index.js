@@ -33,7 +33,7 @@ class About extends Component {
     const { users } = this.props
 
     const chunkList = []
-    const chunk = 4
+    const chunk = 5
     for (let i = 0; i < users.length; i += chunk) {
       chunkList.push(users.slice(i, i + chunk))
     }

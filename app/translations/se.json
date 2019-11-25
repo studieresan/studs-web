@@ -84,10 +84,6 @@
     "message": "Det här är Studs"
   },
   {
-    "id": "app.containers.About.subtitle",
-    "message": "Vi är ledningsgruppen"
-  },
-  {
     "id": "app.components.HomePage.footer.shortPitch",
     "message": "Studs hjälper ditt företag att träffa KTH-studenter"
   },

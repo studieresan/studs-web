@@ -6,17 +6,24 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  overflow: hidden;
 }
 
 .background {
   height: 80vh;
-  width: 100%;
+  min-width: max-content;
   position: absolute;
   z-index: -1;
 }
 
+@media (min-width: 1600px) {
+  .background {
+    width: 100%;
+  }
+}
+
 .logoDesktop {
-  width: 15em;
+  width: 12em;
   height: auto;
   padding: 1%;
   margin-top: 3%;
@@ -66,7 +73,7 @@
   }
 
   .logoMobile {
-    height: 10vh;
+    height: 14vh;
     padding: 1%;
     margin-top: 1%;
     margin-bottom: 2%;

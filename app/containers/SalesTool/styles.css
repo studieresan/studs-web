@@ -60,42 +60,55 @@
   padding-left: 10%;
   padding-right: 10%;
 }
-.table {
-  width: 100%;
+
+@media (max-width: 600px) {
+  .body {
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+  .filter {
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+
+  .filter_input {
+    width: 30%;
+  }
+}
+
+.company_list {
   margin-bottom: 1rem;
 }
 
-.table_head {
-  display: table-header-group;
-  vertical-align: middle;
-  color: black;
-}
-
-.table_head th {
-  color: #fff;
-  background-color: #343a40;
-  border-color: #454d55;
+.list_header {
+  display: flex;
+  background: var(--primary-dark);
+  color: white;
   padding: 0.75rem;
-  vertical-align: top;
-  border-top: 1px solid #dee2e6;
 }
 
-.table_head th span {
-  margin-left: 10px;
+.list_header > div {
+  flex: 1;
 }
 
-.table tbody tr:nth-of-type(odd) {
+.list_item {
+  display: flex;
+}
+
+.list_item > div {
+  flex: 1;
+  padding: 0.75rem;
+}
+
+.company_list > div:nth-of-type(even) {
   background-color: rgba(0, 0, 0, 0.05);
-}
-
-.table td {
-  padding: 0.75rem;
-  vertical-align: top;
-  border-top: 1px solid #dee2e6;
 }
 
 .company_link {
   cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .company_link:hover {
@@ -104,7 +117,7 @@
 }
 
 .content {
-  padding-top: calc(var(--header-height) - 15px);
+  padding-top: var(--header-height);
   display: flex;
   flex-direction: column;
   justify-content: center;

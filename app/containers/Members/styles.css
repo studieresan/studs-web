@@ -1,5 +1,22 @@
+.members {
+  padding-top: var(--header-height);
+}
+
 .memberList {
   height: 100%;
   overflow: auto;
-  padding-top: var(--header-height);
+}
+
+.listHeader {
+  position: sticky;
+  top: 0px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  padding-left: 32px;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+  height: 40px;
+  align-items: center;
+  background-color: var(--primary);
 }

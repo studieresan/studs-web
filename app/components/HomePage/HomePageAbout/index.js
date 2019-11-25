@@ -9,6 +9,7 @@ import MemberImage from 'components/MemberImage'
 import messages from './messages'
 import styles from './styles.css'
 import { prettyUserRole } from 'utils'
+import placeholder from 'static/img_new/profile-placeholder.png'
 
 class HomePageAbout extends Component {
   constructor(props) {
@@ -32,11 +33,16 @@ class HomePageAbout extends Component {
   }
   render() {
     const { user } = this.state
-    if (!user) return null
+    if (!user || !Object.keys(user).length) return null
     return (
       <div className={styles.HomePageAbout}>
         <div className={styles.image}>
-          <MemberImage picture={user.picture} size='10rem' />
+          <MemberImage
+            picture={user.picture ? user.picture : placeholder}
+            size={250}
+            square
+            round
+          />
         </div>
         <div className={styles.information}>
           <h1 className={styles.name}>

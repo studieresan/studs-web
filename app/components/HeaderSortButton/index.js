@@ -8,7 +8,7 @@ export const HeaderSortButton = ({
   sortStatus,
 }) => {
   return (
-    <th
+    <div
       onClick={() => {
         setSortStatus(attribute)
       }}
@@ -29,7 +29,7 @@ export const HeaderSortButton = ({
           <i className='fas fa-sort-down' />
         </span>
       )}
-    </th>
+    </div>
   )
 }
 

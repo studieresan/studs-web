@@ -3,6 +3,7 @@
   align-items: center;
   flex-direction: column;
   background: url(static/img_new/home/background.png);
+  background-size: cover;
   padding-top: 2.5%;
   padding-bottom: 2.5%;
   color: rgb(255, 255, 255);

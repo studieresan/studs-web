@@ -98,5 +98,21 @@
   {
     "id": "app.components.HomePage.intro.about",
     "message": "Welcome to the Study Trip - The platform where companies can interact with soon-to-be graduates from the Computer Science programme at KTH."
+  },
+  {
+    "id": "app.components.HomePage.content.project.title",
+    "message": "The project"
+  },
+  {
+    "id": "app.components.HomePage.content.project.body",
+    "message": "Studs is an annual nonprofit project from KTH, run by students. The project consists of 30 selected engineering students in master programs relevant to computer science.\nBy organizing events together with companies, we create opportunities to give both students and their potential employers valuable time together."
+  },
+  {
+    "id": "app.components.HomePage.content.events.title",
+    "message": "The events"
+  },
+  {
+    "id": "app.components.HomePage.content.events.body",
+    "message": "During the year, Studs members will meet with companies during events, usually arranged at corporate offices.\nFor students, this is an opportunity to gain deeper insights into the working life of the company and about the company's operations.\nStuds help companies tailor events to their needs, which guarantees that each event is as unique as the company that arranged it."
   }
 ]

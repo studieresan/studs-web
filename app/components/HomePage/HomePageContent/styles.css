@@ -1,0 +1,12 @@
+.content {
+  background-image: url(static/img_new/home/background.png);
+  background-size: 100% 80vh;
+  background-repeat: repeat-y;
+}
+
+@media (max-width: 1600px) {
+  .content {
+    background-size: 2376px 1314px;
+    background-position-x: calc(-1 * ((2376px - 100vw) / 2));
+  }
+}

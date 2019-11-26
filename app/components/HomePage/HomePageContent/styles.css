@@ -1,12 +1,38 @@
 .content {
   background-image: url(static/img_new/home/background.png);
-  background-size: 100% 80vh;
-  background-repeat: repeat-y;
+  /* background-size: 100% 80vh; */
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 50px;
 }
 
-@media (max-width: 1600px) {
+/* @media (max-width: 1600px) {
   .content {
     background-size: 2376px 1314px;
     background-position-x: calc(-1 * ((2376px - 100vw) / 2));
   }
+} */
+
+.card {
+  background-color: var(--primary);
+  height: 500px;
+  margin-top: 300px;
+  margin-bottom: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  box-shadow: #00000082 0px 9px 15px 3px;
+  opacity: 0.9;
+  /* box-shadow: rgba(0, 0, 0, 0.58) 0px 5px 25px 3px; */
+}
+
+.card:nth-child(2) {
+  margin-top: 0;
+}
+
+.card:nth-child(odd) {
+  background-color: var(--secondary);
 }

@@ -14,7 +14,7 @@ import SalesContact from 'components/Footer/SalesContact'
 function Footer() {
   return (
     <div>
-      <SalesContact />
+      {/* <SalesContact /> */}
       <div className={styles.footer}>
         <div className={styles.content}>
           <Menu />

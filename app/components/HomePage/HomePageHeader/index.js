@@ -1,17 +1,21 @@
 // @flow
-import React from 'react'
+import React, { useState } from 'react'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import styles from './styles.css'
 import LogoPng from 'static/img_new/logo/logotype-white.png'
-import Background from 'static/img_new/home/background.png'
 import Button from 'components/Button'
 import { Link } from 'react-router-dom'
 
 function HomePageHeader() {
+  const [show, toggle] = useState(true)
+
+  window.onscroll = () => {
+    toggle(window.pageYOffset < 10)
+  }
+
   return (
     <div className={styles.header}>
-      <img className={styles.background} src={Background} />
       <div className={styles.header_content}>
         <img className={styles.logoDesktop} src={LogoPng} />
         <img className={styles.logoMobile} src={LogoPng} />
@@ -28,6 +32,7 @@ function HomePageHeader() {
           </Link>
         </div>
       </div>
+      {show && <div className={styles.down_arrow}>DOWN ARROW</div>}
     </div>
   )
 }

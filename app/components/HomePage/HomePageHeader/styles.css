@@ -1,5 +1,5 @@
 .header {
-  height: 80vh;
+  height: 100vh;
   width: 100%;
   font-size: 18px;
   display: flex;
@@ -9,17 +9,28 @@
   overflow: hidden;
 }
 
-.background {
-  height: 80vh;
-  min-width: max-content;
-  position: absolute;
-  z-index: -1;
+@keyframes jump {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
-@media (min-width: 1600px) {
-  .background {
-    width: 100%;
-  }
+.down_arrow {
+  position: absolute;
+  color: white;
+  text-align: center;
+  animation: jump 1.5s ease-in-out infinite;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .logoDesktop {

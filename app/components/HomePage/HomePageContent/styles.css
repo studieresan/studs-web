@@ -20,12 +20,13 @@
 .card {
   background-color: var(--primary);
   padding: 20px;
-  height: 500px;
+  height: 70vh;
   margin-top: 300px;
   margin-bottom: 50px;
   box-shadow: #00000082 0px 9px 15px 3px;
   opacity: 0.9;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .card:nth-child(2) {
@@ -60,6 +61,62 @@
 .slideshow {
   flex: 1;
   padding: 15px;
+  width: 50%;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.slideshow > div > div > div:nth-child(2) {
+  overflow: hidden;
+}
+.slideshow > div > div > div:nth-child(2) > div {
+  display: flex;
+}
+
+.each_slide > div {
+  background-size: cover;
+  height: 50vh;
+}
+
+.arrow {
+  width: 5%;
+  color: white;
+  text-align: center;
+}
+
+.arrow > div {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.slide {
+  width: 89.5%;
+}
+
+.indicators {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+.dot {
+  background: grey;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin: 10px;
+}
+
+.active_dot {
+  background: white;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin: 10px;
 }
 
 .sales_contact {

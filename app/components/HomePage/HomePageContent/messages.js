@@ -7,8 +7,14 @@ export default defineMessages({
       defaultMessage: '',
     },
     body: {
-      id: 'app.components.HomePage.content.project.body',
-      defaultMessage: '',
+      p1: {
+        id: 'app.components.HomePage.content.project.body.p1',
+        defaultMessage: '',
+      },
+      p2: {
+        id: 'app.components.HomePage.content.project.body.p2',
+        defaultMessage: '',
+      },
     },
   },
   events: {
@@ -17,8 +23,18 @@ export default defineMessages({
       defaultMessage: '',
     },
     body: {
-      id: 'app.components.HomePage.content.events.body',
-      defaultMessage: '',
+      p1: {
+        id: 'app.components.HomePage.content.events.body.p1',
+        defaultMessage: '',
+      },
+      p2: {
+        id: 'app.components.HomePage.content.events.body.p2',
+        defaultMessage: '',
+      },
+      p3: {
+        id: 'app.components.HomePage.content.events.body.p3',
+        defaultMessage: '',
+      },
     },
   },
 })

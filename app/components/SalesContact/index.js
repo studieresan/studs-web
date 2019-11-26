@@ -11,8 +11,8 @@ const CONTACT_NAME = 'Cristian Osorio Bretti'
 const CONTACT_PHONE_NUMBER = '+46 70-782 65 60'
 const CONTACT_EMAIL = 'cristian@studs.se'
 
-const SalesContact = () => (
-  <div className={styles.contact}>
+const SalesContact = ({ className }) => (
+  <div className={styles.contact + ' ' + className}>
     <Section {...messages.contact} />
     <div className={styles.contactInfo}>
       <Image picture={Cristian} round />
@@ -29,6 +29,10 @@ const SalesContact = () => (
     </div>
   </div>
 )
+
+SalesContact.propTypes = {
+  className: PropTypes.string,
+}
 
 const Image = ({ picture }) => (
   <MemberImage

@@ -10,6 +10,7 @@ import messages from './messages'
 import Footer from 'components/Footer'
 import MemberImage from 'components/MemberImage'
 import { prettyUserRole } from 'utils'
+import SalesContact from 'components/SalesContact'
 
 const StudsMemberInfo = user => {
   if (!user.alternativePicture) return null
@@ -56,6 +57,7 @@ class About extends Component {
               </div>
             ))}
         </div>
+        <SalesContact />
         <Footer />
       </div>
     )

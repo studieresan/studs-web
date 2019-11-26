@@ -16,7 +16,6 @@ export class HomePage extends Component {
   render() {
     return (
       <div>
-        {/* <HomePageHeader /> */}
         <HomePageContent />
         <Footer />
       </div>

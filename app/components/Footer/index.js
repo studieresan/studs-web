@@ -9,12 +9,12 @@ import Helena from 'static/img_new/people/helena.jpg'
 import Menu from './Menu'
 import styles from './styles.css'
 import messages from './messages'
-import SalesContact from 'components/Footer/SalesContact'
+import SalesContact from 'components/SalesContact'
 
-function Footer() {
+function Footer({ showSalesContact }) {
   return (
     <div>
-      {/* <SalesContact /> */}
+      {showSalesContact && <SalesContact />}
       <div className={styles.footer}>
         <div className={styles.content}>
           <Menu />
@@ -25,6 +25,10 @@ function Footer() {
       </div>
     </div>
   )
+}
+
+Footer.propTypes = {
+  showSalesContact: PropTypes.bool,
 }
 
 const Social = () => (

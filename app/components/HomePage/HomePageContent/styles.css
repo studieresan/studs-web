@@ -7,7 +7,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding-bottom: 50px;
+  padding-bottom: 40px;
 }
 
 /* @media (max-width: 1600px) {
@@ -19,14 +19,13 @@
 
 .card {
   background-color: var(--primary);
+  padding: 20px;
   height: 500px;
   margin-top: 300px;
   margin-bottom: 50px;
-  margin-left: 50px;
-  margin-right: 50px;
   box-shadow: #00000082 0px 9px 15px 3px;
   opacity: 0.9;
-  /* box-shadow: rgba(0, 0, 0, 0.58) 0px 5px 25px 3px; */
+  display: flex;
 }
 
 .card:nth-child(2) {
@@ -35,4 +34,34 @@
 
 .card:nth-child(odd) {
   background-color: var(--secondary);
+  flex-direction: row-reverse;
+}
+
+.info {
+  flex: 1;
+  padding: 15px;
+}
+
+.paragraph {
+  color: white;
+  font-size: 18px;
+}
+
+.title_container {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.logo {
+  margin-right: 10px;
+}
+
+.slideshow {
+  flex: 1;
+  padding: 15px;
+}
+
+.sales_contact {
+  background: inherit !important;
 }

@@ -1,5 +1,5 @@
 // @flow
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import styles from './styles.css'
@@ -8,11 +8,14 @@ import Button from 'components/Button'
 import { Link } from 'react-router-dom'
 
 function HomePageHeader() {
-  const [show, toggle] = useState(true)
+  const [showArrow, setShowArrow] = useState(true)
 
-  window.onscroll = () => {
-    toggle(window.pageYOffset < 10)
-  }
+  useEffect(
+    (window.onscroll = () => {
+      setShowArrow(window.pageYOffset < 10)
+    }),
+    []
+  )
 
   return (
     <div className={styles.header}>
@@ -32,7 +35,7 @@ function HomePageHeader() {
           </Link>
         </div>
       </div>
-      {show && <div className={styles.down_arrow}>DOWN ARROW</div>}
+      {showArrow && <div className={styles.down_arrow}>DOWN ARROW</div>}
     </div>
   )
 }

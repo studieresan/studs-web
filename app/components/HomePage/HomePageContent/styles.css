@@ -39,7 +39,7 @@
 }
 
 .info {
-  flex: 1;
+  flex: 2;
   padding: 15px;
 }
 
@@ -59,8 +59,8 @@
 }
 
 .slideshow {
-  flex: 1;
-  padding: 15px;
+  flex: 3;
+  /* padding: 15px; */
   width: 50%;
   display: flex;
   position: relative;
@@ -76,22 +76,44 @@
 
 .each_slide > div {
   background-size: cover;
-  height: 50vh;
+  height: 65vh;
 }
 
 .arrow {
-  width: 5%;
-  color: white;
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
   text-align: center;
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  /* TODO: remove */
+  color: white;
+  font-size: 40px;
+  font-weight: 900;
+  transition: all 0.2s ease-in-out;
+}
+
+.arrow:hover {
+  font-size: 60px;
+}
+
+.arrow_right {
+  right: 0;
+}
+
+.arrow_right > div {
+  width: 100%;
+  text-align: right;
 }
 
 .arrow > div {
   padding: 5px;
-  cursor: pointer;
 }
 
 .slide {
-  width: 89.5%;
+  width: 100%;
 }
 
 .indicators {
@@ -104,7 +126,7 @@
 }
 
 .dot {
-  background: grey;
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 50%;
   width: 10px;
   height: 10px;

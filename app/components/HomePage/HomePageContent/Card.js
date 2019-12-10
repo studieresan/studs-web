@@ -44,8 +44,8 @@ const Card = ({ title, body, images }) => {
         </div>
       </div>
       <div className={styles.slideshow}>
-        <div className={styles.arrow}>
-          <div onClick={() => slide.current.goBack()}>{'<'}</div>
+        <div className={styles.arrow} onClick={() => slide.current.goBack()}>
+          <div>{'<'}</div>
         </div>
         <Slide {...properties} className={styles.slide} ref={slide}>
           {images.map(img => (
@@ -54,8 +54,11 @@ const Card = ({ title, body, images }) => {
             </div>
           ))}
         </Slide>
-        <div className={styles.arrow}>
-          <div onClick={() => slide.current.goNext()}>{'>'}</div>
+        <div
+          className={styles.arrow + ' ' + styles.arrow_right}
+          onClick={() => slide.current.goNext()}
+        >
+          <div>{'>'}</div>
         </div>
         <div className={styles.indicators}>
           {images.map((i, k) => (

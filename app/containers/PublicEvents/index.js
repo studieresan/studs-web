@@ -52,13 +52,11 @@ function mapStateToProps(state) {
     oldEvents: state
       .getIn(['oldEvents', 'items'])
       .toJS()
-      .filter(e => e.published)
-      .sort((a, b) => a.date - b.date),
+      .filter(e => e.published),
     events: state
       .getIn(['events', 'items'])
       .toJS()
-      .filter(e => e.published)
-      .sort((a, b) => a.date - b.date),
+      .filter(e => e.published),
   }
 }
 

@@ -19,6 +19,7 @@ const HomePageContent = () => {
           right: 50,
         }}
         onStick={() => console.log('STICK')}
+        onUnStick={() => console.log('UN-STICK')}
       >
         Scroll
       </ScrollSticky>

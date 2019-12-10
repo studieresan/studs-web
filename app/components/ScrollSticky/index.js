@@ -2,15 +2,18 @@ import React, { useState, useEffect, useCallback } from 'react'
 import styles from './styles.css'
 import PropTypes from 'prop-types'
 
-const ScrollSticky = ({ position, children, onStick }) => {
+const ScrollSticky = ({ position, children, onStick, onUnStick }) => {
   const [sticky, setSticky] = useState(false)
 
   const handleScroll = useCallback(
     () => {
-      if (!sticky && window.pageYOffset > position.top) {
+      const scrolledPastTop = window.pageYOffset > position.top
+      if (!sticky && scrolledPastTop) {
         onStick && onStick()
+      } else if (sticky && !scrolledPastTop) {
+        onUnStick && onUnStick()
       }
-      setSticky(window.pageYOffset > position.top)
+      setSticky(scrolledPastTop)
     },
     [sticky]
   )
@@ -39,6 +42,7 @@ ScrollSticky.propTypes = {
   position: PropTypes.object.isRequired,
   children: PropTypes.any,
   onStick: PropTypes.func,
+  onUnStick: PropTypes.func,
 }
 
 export default ScrollSticky

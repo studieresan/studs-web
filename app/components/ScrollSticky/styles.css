@@ -1,0 +1,9 @@
+.sticky_container {
+  position: absolute;
+  top: 100px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0 !important;
+}

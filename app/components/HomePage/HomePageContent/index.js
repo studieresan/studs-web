@@ -18,6 +18,7 @@ const HomePageContent = () => {
           top: 200,
           right: 50,
         }}
+        onStick={() => console.log('STICK')}
       >
         Scroll
       </ScrollSticky>

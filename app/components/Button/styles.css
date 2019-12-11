@@ -38,6 +38,17 @@
   margin: 1rem 0;
 }
 
+.white {
+  /* background: rgb(25, 150, 181); */
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  padding: 6px 18px;
+  font-size: 10px;
+  color: white;
+  text-transform: none;
+}
+
 .border {
   background: rgb(25, 150, 181);
   /* border-style: solid;

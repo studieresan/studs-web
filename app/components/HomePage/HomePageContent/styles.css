@@ -29,7 +29,8 @@
   flex-wrap: wrap;
 }
 
-.card:nth-child(2) {
+.card:nth-child(3) {
+  /* this first card no margin */
   margin-top: 0;
 }
 
@@ -143,4 +144,15 @@
 
 .sales_contact {
   background: inherit !important;
+}
+
+.contact_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact_wrapper > div {
+  overflow: hidden;
+  height: 70px;
 }

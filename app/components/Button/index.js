@@ -53,6 +53,7 @@ Button.propTypes = {
     'danger',
     'gold',
     'border',
+    'white',
   ]),
   full: PropTypes.bool,
   wrapper: PropTypes.bool,

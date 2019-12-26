@@ -6,7 +6,7 @@ import * as actions from '../Members/actions'
 
 import { HomePageHeader, HomePageContent } from 'components/HomePage'
 
-import Footer from 'components/Footer'
+import Footer from 'components/HomeFooter'
 
 export class HomePage extends Component {
   componentDidMount() {

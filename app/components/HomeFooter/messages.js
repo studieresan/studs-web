@@ -21,4 +21,8 @@ export default defineMessages({
     id: 'app.components.HomePage.footer.projectManagerTitle',
     defaultMessage: '',
   },
+  collaborationsTitle: {
+    id: 'app.components.HomePage.footer.collaborationsTitle',
+    defaultMessage: '',
+  },
 })

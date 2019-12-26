@@ -6,6 +6,9 @@ import Github from 'react-feather/dist/icons/github'
 import MemberImage from 'components/MemberImage'
 import Josefin from 'static/img_new/people/josefin.jpg'
 import Helena from 'static/img_new/people/helena.jpg'
+import Spotify from 'static/img_new/company_logos/spotify.png'
+import Trafikverket from 'static/img_new/company_logos/trafikverket.png'
+import Storytel from 'static/img_new/company_logos/storytel.svg'
 import Menu from './Menu'
 import styles from './styles.css'
 import messages from './messages'
@@ -21,6 +24,7 @@ function Footer({ showSalesContact }) {
           <Images />
           <Contact />
         </div>
+        <Collaborations />
         <SubFooter />
       </div>
     </div>
@@ -45,6 +49,19 @@ const Social = () => (
   </div>
 )
 
+const Collaborations = () => (
+  <div className={styles.collaborations}>
+    <h5 className={styles.collaborationsHeader}>
+      <FormattedMessage {...messages.collaborationsTitle} />
+    </h5>
+    <div className={styles.collaborationImages}>
+      <CompanyImage picture={Spotify} />
+      <CompanyImage picture={Trafikverket} />
+      <CompanyImage picture={Storytel} />
+    </div>
+  </div>
+)
+
 const SubFooter = () => (
   <div className={styles.subfooter}>
     <Copyright />
@@ -58,8 +75,8 @@ const Copyright = () => (
 
 const Images = () => (
   <div className={styles.pictures}>
-    <Image picture={Helena} round />
-    <Image picture={Josefin} round />
+    <Image picture={Helena} />
+    <Image picture={Josefin} />
   </div>
 )
 
@@ -83,6 +100,19 @@ const Contact = () => (
     </div>
   </div>
 )
+
+const CompanyImage = ({ picture }) => (
+  <MemberImage
+    className={styles.contactPicture}
+    picture={picture}
+    size={200}
+    square
+  />
+)
+
+CompanyImage.propTypes = {
+  picture: PropTypes.string.isRequired,
+}
 
 const Image = ({ picture }) => (
   <MemberImage

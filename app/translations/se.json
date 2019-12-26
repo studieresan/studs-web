@@ -104,6 +104,10 @@
     "message": "Projektledare"
   },
   {
+    "id": "app.components.HomePage.footer.collaborationsTitle",
+    "message": "Några av våra tidigare samarbeten"
+  },
+  {
     "id": "app.components.EventEdit.save",
     "message": "Spara"
   },

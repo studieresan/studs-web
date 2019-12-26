@@ -76,6 +76,10 @@
     "message": "Project Managers"
   },
   {
+    "id": "app.components.HomePage.footer.collaborationsTitle",
+    "message": "Some of our previous collaborations"
+  },
+  {
     "id": "app.components.HomePage.about.headline",
     "message": "This is {firstName}"
   },

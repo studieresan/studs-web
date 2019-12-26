@@ -6,6 +6,8 @@ import { unregister } from './registerServiceWorker'
 import { initializeThirdParty } from './utils'
 import './index.css'
 
+import './static/fonts/magnat/MagnatHead-SemiBoldItalic.otf'
+
 initializeThirdParty()
 
 const render = Component => {

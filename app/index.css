@@ -87,3 +87,9 @@ a {
   text-decoration: none;
   white-space: nowrap;
 }
+
+@font-face {
+  font-family: 'Magnat';
+  src: local('Magnat'),
+    url(./static/fonts/magnat/MagnatHead-SemiBoldItalic.otf) format('truetype');
+}

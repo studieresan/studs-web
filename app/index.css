@@ -6,9 +6,9 @@
   --secondary: #f96c6b;
   --gold: rgb(250, 200, 130);
 
-  --heading-font: 'Oswald', sans-serif;
-  --subheading-font: 'Oswald', sans-serif;
-  --body-font: 'Roboto', sans-serif;
+  --heading-font: Magnat, 'Oswald', sans-serif;
+  --subheading-font: Magnat, 'Oswald', sans-serif;
+  --body-font: Raleway, 'Roboto', sans-serif;
 
   --header-height: 110px;
 }
@@ -89,7 +89,19 @@ a {
 }
 
 @font-face {
+  font-family: 'MagnatItalic';
+  src: local('MagnatItalic'),
+    url(./static/fonts/magnat/MagnatHead-SemiBoldItalic.otf) format('truetype');
+}
+
+@font-face {
   font-family: 'Magnat';
   src: local('Magnat'),
-    url(./static/fonts/magnat/MagnatHead-SemiBoldItalic.otf) format('truetype');
+    url(./static/fonts/magnat/MagnatHead-SemiBold.otf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: local('Raleway'),
+    url(./static/fonts/Raleway/Raleway-Regular.ttf) format('truetype');
 }

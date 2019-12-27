@@ -7,6 +7,8 @@ import { initializeThirdParty } from './utils'
 import './index.css'
 
 import './static/fonts/magnat/MagnatHead-SemiBoldItalic.otf'
+import './static/fonts/magnat/MagnatHead-SemiBold.otf'
+import './static/fonts/Raleway/Raleway-Regular.ttf'
 
 initializeThirdParty()
 

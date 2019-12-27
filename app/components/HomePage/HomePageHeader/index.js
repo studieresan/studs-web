@@ -27,15 +27,8 @@ function HomePageHeader() {
             <FormattedMessage {...messages.intro.about} />
           </h3>
         </div>
-        <div className={styles.buttons}>
-          <Link to='/about'>
-            <Button color='border'>
-              <FormattedMessage {...messages.intro.learnMore} />
-            </Button>
-          </Link>
-        </div>
       </div>
-      {showArrow && <div className={styles.down_arrow}>DOWN ARROW</div>}
+      {showArrow && <div className={styles.down_arrow}>V</div>}
     </div>
   )
 }

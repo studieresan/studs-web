@@ -57,7 +57,6 @@ class About extends Component {
               </div>
             ))}
         </div>
-        <SalesContact />
         <Footer />
       </div>
     )

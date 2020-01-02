@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import styles from './styles.css'
-import logo from 'static/img_new/logo/logomark-circle-white.png'
 import { Slide } from 'react-slideshow-image'
 
 const Card = ({ title, body, images }) => {
@@ -24,13 +23,6 @@ const Card = ({ title, body, images }) => {
     <div className={styles.card}>
       <div className={styles.info}>
         <div className={styles.title_container}>
-          <img
-            className={styles.logo}
-            src={logo}
-            alt=''
-            width='50'
-            height='50'
-          />
           <h1>
             <FormattedMessage {...title} />
           </h1>

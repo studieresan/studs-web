@@ -55,6 +55,10 @@
   color: white;
 }
 
+.title_container > h1 {
+  font-size: 50px;
+}
+
 .logo {
   margin-right: 10px;
 }
@@ -140,10 +144,6 @@
   width: 10px;
   height: 10px;
   margin: 10px;
-}
-
-.sales_contact {
-  background: inherit !important;
 }
 
 .contact_wrapper {

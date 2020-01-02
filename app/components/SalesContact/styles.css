@@ -1,9 +1,14 @@
 .contact {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
-  background: url(static/img_new/home/background.png);
-  background-size: cover;
+  margin-top: 300px;
+  margin-bottom: 50px;
+  height: 45vh;
+  background-color: var(--secondary);
+  box-shadow: #00000082 0px 9px 15px 3px;
+  opacity: 0.9;
   padding-top: 2.5%;
   padding-bottom: 2.5%;
   color: rgb(255, 255, 255);

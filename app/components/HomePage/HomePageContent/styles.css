@@ -10,12 +10,12 @@
   padding-bottom: 40px;
 }
 
-/* @media (max-width: 1600px) {
-  .content {
-    background-size: 2376px 1314px;
-    background-position-x: calc(-1 * ((2376px - 100vw) / 2));
+@media (max-width: 800px) {
+  .card {
+    height: 130vh !important;
+    flex-direction: column !important;
   }
-} */
+}
 
 .card {
   background-color: var(--primary);
@@ -26,7 +26,8 @@
   box-shadow: #00000082 0px 9px 15px 3px;
   opacity: 0.9;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .card:nth-child(3) {

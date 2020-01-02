@@ -5,7 +5,6 @@
   flex-direction: column;
   margin-top: 300px;
   margin-bottom: 50px;
-  height: 45vh;
   background-color: var(--secondary);
   box-shadow: #00000082 0px 9px 15px 3px;
   opacity: 0.9;

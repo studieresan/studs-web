@@ -12,14 +12,14 @@
 
 @media (max-width: 900px) and (orientation: landscape) {
   .card {
-    height: 145vh !important;
+    /*height: 145vh !important*/
     flex-direction: column !important;
   }
 }
 
 @media (max-width: 900px) and (orientation: portrait) {
   .card {
-    height: 90vh !important;
+    /*height: 90vh !important;*/
     flex-direction: column !important;
   }
 
@@ -40,7 +40,7 @@
 .card {
   background-color: var(--primary);
   padding: 20px;
-  height: 70vh;
+  /*height: 70vh;*/
   margin-top: 300px;
   margin-bottom: 50px;
   box-shadow: #00000082 0px 9px 15px 3px;

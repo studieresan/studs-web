@@ -46,7 +46,7 @@ const HomePageContent = () => {
       <Card
         title={messages.events.title}
         body={messages.events.body}
-        images={[]}
+        images={[cinno, newYork, proj]}
       />
       <SalesContact className={styles.sales_contact} />
     </div>

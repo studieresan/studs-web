@@ -10,10 +10,30 @@
   padding-bottom: 40px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) and (orientation: landscape) {
   .card {
-    height: 130vh !important;
+    height: 145vh !important;
     flex-direction: column !important;
+  }
+}
+
+@media (max-width: 900px) and (orientation: portrait) {
+  .card {
+    height: 90vh !important;
+    flex-direction: column !important;
+  }
+
+  .slideshow {
+    width: 100% !important;
+  }
+
+  .each_slide > div {
+    height: 30vh !important;
+  }
+
+  .arrow {
+    width: 20%;
+    height: 30vh !important;
   }
 }
 

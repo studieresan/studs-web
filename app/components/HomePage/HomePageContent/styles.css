@@ -78,6 +78,17 @@
 
 .title_container > h1 {
   font-size: 50px;
+  position: relative;
+}
+
+.title_container > h1::after {
+  background-color: white;
+  bottom: -5px;
+  content: '';
+  height: 5px;
+  left: 0px;
+  position: absolute;
+  width: 100px;
 }
 
 .logo {

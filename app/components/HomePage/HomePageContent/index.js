@@ -18,10 +18,8 @@ const HomePageContent = () => {
     <div className={styles.content}>
       <HomePageHeader />
       <ScrollSticky
-        position={{
-          top: 200,
-          right: 50,
-        }}
+        percentageFromTop={81}
+        percentageFromRight={2}
         onStick={() => console.log('STICK')}
         onUnStick={() => console.log('UN-STICK')}
       >

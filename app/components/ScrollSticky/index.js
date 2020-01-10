@@ -2,12 +2,19 @@ import React, { useState, useEffect, useCallback } from 'react'
 import styles from './styles.css'
 import PropTypes from 'prop-types'
 
-const ScrollSticky = ({ position, children, onStick, onUnStick }) => {
+const ScrollSticky = ({
+  percentageFromTop,
+  percentageFromRight,
+  children,
+  onStick,
+  onUnStick,
+}) => {
   const [sticky, setSticky] = useState(false)
 
   const handleScroll = useCallback(
     () => {
-      const scrolledPastTop = window.pageYOffset > position.top
+      const scrolledPastTop =
+        window.pageYOffset > (window.innerHeight * percentageFromTop) / 100 - 10 // padding ?
       if (!sticky && scrolledPastTop) {
         onStick && onStick()
       } else if (sticky && !scrolledPastTop) {
@@ -31,7 +38,10 @@ const ScrollSticky = ({ position, children, onStick, onUnStick }) => {
   return (
     <div
       className={styles.sticky_container + ' ' + (sticky && styles.sticky)}
-      style={position}
+      style={{
+        top: percentageFromTop + '%',
+        right: percentageFromRight + '%',
+      }}
     >
       {children}
     </div>
@@ -39,7 +49,8 @@ const ScrollSticky = ({ position, children, onStick, onUnStick }) => {
 }
 
 ScrollSticky.propTypes = {
-  position: PropTypes.object.isRequired,
+  percentageFromTop: PropTypes.number.isRequired,
+  percentageFromRight: PropTypes.number.isRequired,
   children: PropTypes.any,
   onStick: PropTypes.func,
   onUnStick: PropTypes.func,

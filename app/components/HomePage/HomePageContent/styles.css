@@ -64,6 +64,17 @@
 .info {
   flex: 2;
   padding: 0px 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.info_text {
+  flex: 1;
+}
+
+.info_button {
+  display: flex;
+  justify-content: center;
 }
 
 .paragraph {

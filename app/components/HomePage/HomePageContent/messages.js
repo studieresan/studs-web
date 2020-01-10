@@ -16,6 +16,10 @@ export default defineMessages({
         defaultMessage: '',
       },
     },
+    buttonText: {
+      id: 'app.components.HomePage.content.project.buttonText',
+      defaultMessage: '',
+    },
   },
   events: {
     title: {
@@ -35,6 +39,10 @@ export default defineMessages({
         id: 'app.components.HomePage.content.events.body.p3',
         defaultMessage: '',
       },
+    },
+    buttonText: {
+      id: 'app.components.HomePage.content.events.buttonText',
+      defaultMessage: '',
     },
   },
 })

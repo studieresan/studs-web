@@ -3,8 +3,10 @@ import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import styles from './styles.css'
 import { Slide } from 'react-slideshow-image'
+import { Link } from 'react-router-dom'
+import Button from 'components/Button'
 
-const Card = ({ title, body, images }) => {
+const Card = ({ title, body, buttonText, images, to }) => {
   const slide = useRef()
   const [activeIdx, setActiveIdx] = useState(0)
 
@@ -27,12 +29,19 @@ const Card = ({ title, body, images }) => {
             <FormattedMessage {...title} />
           </h1>
         </div>
-        <div className={styles.body}>
+        <div className={styles.info_text}>
           {Object.keys(body).map(k => (
             <h3 key={k} className={styles.paragraph}>
               <FormattedMessage {...body[k]} />
             </h3>
           ))}
+        </div>
+        <div className={styles.info_button}>
+          <Link to={to}>
+            <Button color='homepage'>
+              <FormattedMessage {...buttonText} />
+            </Button>
+          </Link>
         </div>
       </div>
       <div className={styles.slideshow}>
@@ -68,7 +77,9 @@ const Card = ({ title, body, images }) => {
 Card.propTypes = {
   title: PropTypes.object.isRequired,
   body: PropTypes.object.isRequired,
+  buttonText: PropTypes.object.isRequired,
   images: PropTypes.array,
+  to: PropTypes.string.isRequired,
 }
 
 export default Card

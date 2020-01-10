@@ -344,6 +344,10 @@
     "message": "Genom att organisera evenemang tillsammans med företag skapar vi möjligheter att ge både studenter och deras potentiella arbetsgivare värdefull tid tillsammans."
   },
   {
+    "id": "app.components.HomePage.content.project.buttonText",
+    "message": "Om oss"
+  },
+  {
     "id": "app.components.HomePage.content.events.title",
     "message": "Evenemangen"
   },
@@ -358,5 +362,9 @@
   {
     "id": "app.components.HomePage.content.events.body.p3",
     "message": "Studs hjälper företagen att skräddarsy evenemangen till deras behov, vilket garanterar att varje evenemang är lika unikt som företaget som arrangerat det."
+  },
+  {
+    "id": "app.components.HomePage.content.events.buttonText",
+    "message": "Tidigare event"
   }
 ]

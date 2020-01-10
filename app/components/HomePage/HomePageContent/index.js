@@ -45,12 +45,16 @@ const HomePageContent = () => {
       <Card
         title={messages.project.title}
         body={messages.project.body}
+        buttonText={messages.project.buttonText}
         images={[cinno, newYork, proj]}
+        to={'/about'}
       />
       <Card
         title={messages.events.title}
         body={messages.events.body}
+        buttonText={messages.events.buttonText}
         images={[cinno, newYork, proj]}
+        to={'/events/public'}
       />
       <div ref={ref} />
       <SalesContact className={styles.sales_contact} />

@@ -9,30 +9,6 @@
   overflow: hidden;
 }
 
-@keyframes jump {
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-.down_arrow {
-  position: absolute;
-  color: white;
-  text-align: center;
-  animation: jump 1.5s ease-in-out infinite;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
 .logoDesktop {
   flex: 0.5 1 1;
   width: 25%;

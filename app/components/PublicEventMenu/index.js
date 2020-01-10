@@ -7,14 +7,14 @@ import styles from './styles.css'
 
 const PublicEventMenu = ({ events, oldEvents }) => {
   return (
-    <div className={styles.publicEventMenu}>
-      <h2>Events 19/20</h2>
+    <div className={styles.public_event_menu}>
+      <span>Events 19/20</span>
       <div className={styles.links}>
         {events.map(e => (
           <PublicEventMenuLink key={e.companyName} company={e.companyName} />
         ))}
       </div>
-      <h2>Previous Events</h2>
+      <span>Previous Events</span>
       <div className={styles.links}>
         {oldEvents.map(e => (
           <PublicEventMenuLink key={e.companyName} company={e.companyName} />
@@ -26,18 +26,21 @@ const PublicEventMenu = ({ events, oldEvents }) => {
 
 const PublicEventMenuLink = ({ company }) => {
   return (
-    <Link
-      activeClass={styles.active}
-      key={company}
-      to={company}
-      smooth={true}
-      offset={-92}
-      duration={400}
-      spy={true}
-      onClick={trackEvent('Events', `Clicked the ${company} event`)}
-    >
-      {company}
-    </Link>
+    <div>
+      <Link
+        activeClass={styles.active}
+        key={company}
+        to={company}
+        smooth={true}
+        offset={-92}
+        duration={400}
+        spy={true}
+        onClick={trackEvent('Events', `Clicked the ${company} event`)}
+      >
+        <icon>{'>'}</icon>
+        {company}
+      </Link>
+    </div>
   )
 }
 

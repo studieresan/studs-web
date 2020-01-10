@@ -362,5 +362,9 @@
   {
     "id": "app.components.HomePage.content.events.buttonText",
     "message": "Tidigare event"
+  },
+  {
+    "id": "app.containers.PublicEvents.header",
+    "message": "Evenemang"
   }
 ]

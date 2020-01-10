@@ -50,8 +50,6 @@ class Nav extends React.Component<Props, State> {
     const { collapsed } = this.state
     const { loggedIn, user, invert } = this.props
 
-    console.log(invert)
-
     const menuClass = classNames(styles.collapse, {
       [styles.collapsed]: collapsed,
     })

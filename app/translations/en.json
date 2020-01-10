@@ -134,5 +134,9 @@
   {
     "id": "app.components.HomePage.content.events.buttonText",
     "message": "Previous events"
+  },
+  {
+    "id": "app.containers.PublicEvents.header",
+    "message": "Events"
   }
 ]

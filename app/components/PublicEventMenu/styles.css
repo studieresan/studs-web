@@ -1,37 +1,48 @@
-.publicEventMenu {
+.public_event_menu {
   position: sticky;
   top: 0;
   width: 200px;
   height: 100vh;
-  padding-left: 1.5rem;
-  padding-top: 20px;
-  margin-top: calc(var(--header-height) - 20px);
   overflow-y: scroll;
+  background: var(--secondary);
+  color: white;
 }
 
-.publicEventMenu > h2 {
-  font-size: 16px;
+.public_event_menu > span {
+  text-decoration: underline;
+  font-size: 18px;
+  display: block;
+  padding: 0 0 8px 28px;
+  margin-top: 10px;
 }
 
 .links {
   display: flex;
   flex-direction: column;
+  font-size: 14px;
+}
+
+.links > div {
+  padding: 4px 0;
+}
+
+.links icon {
+  padding: 0 10px;
+  visibility: hidden;
 }
 
 .links a {
-  font-size: 14px;
   margin: 0.5rem 0;
   cursor: pointer;
-  color: #000;
+  transition: all 0.1s ease-in-out;
 }
 
-.active {
-  font-weight: 600;
-  color: #dd696d !important;
+.active icon {
+  visibility: visible;
 }
 
-@media (max-width: 1200px) {
-  .publicEventMenu {
+@media (max-width: 900px) {
+  .public_event_menu {
     position: inherit;
     text-align: center;
     padding-left: 0;
@@ -40,12 +51,12 @@
     height: auto;
   }
 
-  .publicEventMenu > h2 {
+  .public_event_menu > span {
     font-size: 28px;
     text-align: center;
   }
 
-  .publicEventMenu a {
+  .public_event_menu a {
     text-align: center;
   }
 }

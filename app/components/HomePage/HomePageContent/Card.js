@@ -70,6 +70,13 @@ const Card = ({ title, body, buttonText, images, to }) => {
           ))}
         </div>
       </div>
+      <div className={styles.mobile_button}>
+        <Link to={to}>
+          <Button color='homepage'>
+            <FormattedMessage {...buttonText} />
+          </Button>
+        </Link>
+      </div>
     </div>
   )
 }

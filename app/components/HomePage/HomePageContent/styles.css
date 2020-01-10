@@ -10,33 +10,6 @@
   padding-bottom: 40px;
 }
 
-@media (max-width: 900px) and (orientation: landscape) {
-  .card {
-    /*height: 145vh !important*/
-    flex-direction: column !important;
-  }
-}
-
-@media (max-width: 900px) and (orientation: portrait) {
-  .card {
-    /*height: 90vh !important;*/
-    flex-direction: column !important;
-  }
-
-  .slideshow {
-    width: 100% !important;
-  }
-
-  .each_slide > div {
-    height: 30vh !important;
-  }
-
-  .arrow {
-    width: 20%;
-    height: 30vh !important;
-  }
-}
-
 .card {
   background-color: var(--primary);
   padding: 20px;
@@ -46,6 +19,8 @@
   opacity: 0.9;
   display: flex;
   justify-content: center;
+  position: relative;
+  flex-wrap: wrap;
 }
 
 .card:nth-child(3) {
@@ -75,6 +50,20 @@
 .info_button {
   display: flex;
   justify-content: center;
+}
+
+.mobile_button {
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  left: 50%;
+  display: none;
+  justify-content: center;
+  margin-bottom: -26px;
+}
+
+.mobile_button button {
+  padding: 6px 40px;
 }
 
 .paragraph {
@@ -144,6 +133,7 @@
   font-size: 40px;
   font-weight: 900;
   transition: all 0.2s ease-in-out;
+  user-select: none;
 }
 
 .arrow:hover {
@@ -198,9 +188,51 @@
   align-items: center;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 400px) {
   .contact_wrapper {
     display: none;
+  }
+
+  .info_button {
+    display: none;
+  }
+
+  .mobile_button {
+    display: flex;
+  }
+
+  .card {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 30px;
+  }
+
+  .slideshow {
+    width: 100% !important;
+  }
+
+  .each_slide > div {
+    height: 30vh !important;
+    width: 100vw;
+  }
+
+  .arrow {
+    width: 20%;
+    height: 30vh !important;
+  }
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .info_button {
+    display: none;
+  }
+
+  .mobile_button {
+    display: flex;
+  }
+
+  .card {
+    padding-bottom: 30px;
   }
 }
 

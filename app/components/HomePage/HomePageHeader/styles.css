@@ -59,12 +59,10 @@
   margin: 1%;
 }
 
-.header_text h3 {
-  font-size: 24px;
-  font-family: var(--body-font);
-}
-
 .header_text {
+  font-size: 56px;
+  font-weight: 700;
+  font-family: var(--body-font);
   flex: 0.5;
   margin-left: 1%;
   text-align: start;

@@ -23,9 +23,7 @@ function HomePageHeader() {
         <img className={styles.logoDesktop} src={LogoPng} />
         <img className={styles.logoMobile} src={LogoPng} />
         <div className={styles.header_text}>
-          <h3>
-            <FormattedMessage {...messages.intro.about} />
-          </h3>
+          <FormattedMessage {...messages.intro.about} />
         </div>
       </div>
       {showArrow && <div className={styles.down_arrow}>V</div>}

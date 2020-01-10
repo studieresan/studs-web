@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, createRef } from 'react'
 import messages from './messages'
 import styles from './styles.css'
 import HomePageHeader from 'components/HomePage/HomePageHeader'
@@ -14,17 +14,23 @@ import cristian from 'static/img_new/people/cristian.jpg'
 import { FormattedMessage } from 'react-intl'
 
 const HomePageContent = () => {
+  const ref = createRef()
+  const [showSalesPic, setshowSalesPic] = useState(true)
+
   return (
     <div className={styles.content}>
       <HomePageHeader />
       <ScrollSticky
         percentageFromTop={81}
         percentageFromRight={2}
-        onStick={() => console.log('STICK')}
-        onUnStick={() => console.log('UN-STICK')}
+        onStick={() => setshowSalesPic(false)}
+        onUnStick={() => setshowSalesPic(true)}
+        onClick={() => {
+          ref.current && ref.current.scrollIntoView({ behavior: 'smooth' })
+        }}
       >
         <div className={styles.contact_wrapper}>
-          <div>
+          <div className={showSalesPic ? null : styles.squish_and_fade}>
             <MemberImage
               className={''}
               picture={cristian}
@@ -46,6 +52,7 @@ const HomePageContent = () => {
         body={messages.events.body}
         images={[cinno, newYork, proj]}
       />
+      <div ref={ref} />
       <SalesContact className={styles.sales_contact} />
     </div>
   )

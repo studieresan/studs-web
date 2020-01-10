@@ -187,4 +187,10 @@
 .contact_wrapper > div {
   overflow: hidden;
   height: 70px;
+  transition: all 0.2s linear;
+}
+
+.squish_and_fade {
+  height: 0 !important;
+  opacity: 0;
 }

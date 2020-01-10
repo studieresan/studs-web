@@ -8,6 +8,7 @@ const ScrollSticky = ({
   children,
   onStick,
   onUnStick,
+  onClick,
 }) => {
   const [sticky, setSticky] = useState(false)
 
@@ -42,6 +43,7 @@ const ScrollSticky = ({
         top: percentageFromTop + '%',
         right: percentageFromRight + '%',
       }}
+      onClick={onClick}
     >
       {children}
     </div>
@@ -54,6 +56,7 @@ ScrollSticky.propTypes = {
   children: PropTypes.any,
   onStick: PropTypes.func,
   onUnStick: PropTypes.func,
+  onClick: PropTypes.func,
 }
 
 export default ScrollSticky

@@ -7,6 +7,8 @@ import MemberImage from 'components/MemberImage'
 import Josefin from 'static/img_new/people/josefin.jpg'
 import Helena from 'static/img_new/people/helena.jpg'
 import Spotify from 'static/img_new/company_logos/spotify.png'
+import Kry from 'static/img_new/company_logos/kry.svg'
+import Cygni from 'static/img_new/company_logos/cygni.png'
 import Trafikverket from 'static/img_new/company_logos/trafikverket.png'
 import Storytel from 'static/img_new/company_logos/storytel.svg'
 import Menu from './Menu'
@@ -58,6 +60,8 @@ const Collaborations = () => (
       <CompanyImage picture={Spotify} />
       <CompanyImage picture={Trafikverket} />
       <CompanyImage picture={Storytel} />
+      <CompanyImage picture={Kry} />
+      <CompanyImage picture={Cygni} />
     </div>
   </div>
 )

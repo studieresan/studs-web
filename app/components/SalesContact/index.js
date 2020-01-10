@@ -13,7 +13,14 @@ const CONTACT_EMAIL = 'cristian@studs.se'
 
 const SalesContact = ({ className }) => (
   <div className={styles.contact + ' ' + className}>
-    <Section {...messages.contact} />
+    <div>
+      <h1>
+        <FormattedMessage {...messages.contact.header} />
+      </h1>
+      <p>
+        <FormattedMessage {...messages.contact.content} />
+      </p>
+    </div>
     <div className={styles.contactInfo}>
       <Image picture={Cristian} round />
       <div>

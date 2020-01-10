@@ -28,7 +28,7 @@ type State = {
 
 class Nav extends React.Component<Props, State> {
   static defaultProps = {
-    invert: false,
+    invert: true,
   }
 
   state = {
@@ -49,6 +49,8 @@ class Nav extends React.Component<Props, State> {
   render() {
     const { collapsed } = this.state
     const { loggedIn, user, invert } = this.props
+
+    console.log(invert)
 
     const menuClass = classNames(styles.collapse, {
       [styles.collapsed]: collapsed,

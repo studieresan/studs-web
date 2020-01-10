@@ -10,13 +10,17 @@ import messages from './messages'
 import Footer from 'components/AboutAndEventFooter'
 import MemberImage from 'components/MemberImage'
 import { prettyUserRole } from 'utils'
-import SalesContact from 'components/SalesContact'
 
 const StudsMemberInfo = user => {
   if (!user.alternativePicture) return null
   return (
-    <div className={styles.member}>
-      <MemberImage picture={user.alternativePicture} size={200} square round />
+    <div key={user.lastName} className={styles.member}>
+      <MemberImage
+        picture={user.alternativePicture}
+        size={Math.max(Math.floor((window.innerWidth * 0.8) / 5) - 40, 100)}
+        square
+        round
+      />
       <h3>
         {user.firstName} {user.lastName}
       </h3>
@@ -32,31 +36,14 @@ class About extends Component {
 
   render() {
     const { users } = this.props
-
-    const chunkList = []
-    const chunk = 5
-    for (let i = 0; i < users.length; i += chunk) {
-      chunkList.push(users.slice(i, i + chunk))
-    }
-
     return (
-      <div className='container'>
-        <div className={styles.about}>
+      <div>
+        <div className={styles.about_title}>
           <h1>
             <FormattedMessage {...messages.header} />
           </h1>
-          <div className={styles.about_text}>
-            <p>
-              <FormattedMessage {...messages.intro} />
-            </p>
-          </div>
-          {!!chunkList.length &&
-            chunkList.map((chunk, idx) => (
-              <div className={styles.image_row} key={'chunk_' + idx}>
-                {chunk.map(u => StudsMemberInfo(u))}
-              </div>
-            ))}
         </div>
+        <div className={styles.about}>{users.map(u => StudsMemberInfo(u))}</div>
         <Footer />
       </div>
     )

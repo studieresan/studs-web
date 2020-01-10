@@ -4,10 +4,6 @@
     "message": "Vad är Studs?"
   },
   {
-    "id": "app.containers.About.intro",
-    "message": "Studs är ett årligt projekt på Kungliga Tekniska Högskolans program inom Datateknik. Målet är att skapa en plattform för interaktion mellan snart examinerade studenter och potentiella arbetsgivare genom att anordna företagsevent. För studenterna är projektet även en kurs på 15 högskolepoäng, vilken examineras i form av en rapport som sammanfattar projektet i sin helhet. Som avslutning på projektet åker medlemmarna i Studs på en resa i syfte att möjliggöra både professionellt och kulturellt utbyte. "
-  },
-  {
     "id": "app.components.HomePage.headline",
     "message": "Om Studs"
   },

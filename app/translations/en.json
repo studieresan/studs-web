@@ -4,10 +4,6 @@
     "message": "What is Studs?"
   },
   {
-    "id": "app.containers.About.intro",
-    "message": "Studs is an annual project for the Computer Science programme at the Royal Institute of Technology. The goal is to create a platform for interaction between students and their possible employers, by arranging cooperative events.  The project also is a course, earning the students 15 credits. The course is evaluated with a written report, summarizing the entire project. Towards the end of the project, the members of Studs goes on a trip together, with the goal of enabling cultural and professional exchange. "
-  },
-  {
     "id": "app.components.HomePage.headline",
     "message": "About Studs"
   },

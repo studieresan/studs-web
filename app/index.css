@@ -10,12 +10,12 @@
   --subheading-font: Magnat, 'Oswald', sans-serif;
   --body-font: Raleway, 'Roboto', sans-serif;
 
-  --header-height: 110px;
+  --header-height: 70px;
 }
 
 @media (max-width: 1024px) {
   :root {
-    --header-height: 90px;
+    --header-height: 70px;
   }
 }
 

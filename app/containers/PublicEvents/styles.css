@@ -50,3 +50,9 @@
     flex-direction: column;
   }
 }
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .events_title {
+    height: 40vh;
+  }
+}

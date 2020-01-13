@@ -6,6 +6,12 @@
   padding: 0 8%;
 }
 
+@media (max-width: 400px) {
+  .publicEvent:first-child {
+    margin-top: -85px;
+  }
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -16,6 +22,9 @@
 .header h1 {
   font-size: 50px;
   padding-left: 30px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .content {

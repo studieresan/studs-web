@@ -25,10 +25,13 @@ const PublicEvent = ({
       >
         <Markdown source={publicDescription} className={styles.description} />
         <div className={styles.padder} />
-        <div className={styles.pictures}>
-          {pictures &&
-            pictures.slice(0, 3).map(pic => <img key={pic} src={pic} />)}
-        </div>
+        {pictures && !!pictures.length && (
+          <div className={styles.pictures}>
+            {pictures.slice(0, 3).map(pic => (
+              <img key={pic + Math.random()} src={pic} />
+            ))}
+          </div>
+        )}
       </div>
       <div className={styles.divider} />
     </div>

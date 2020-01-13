@@ -1,10 +1,6 @@
 import { defineMessages } from 'react-intl'
 
 export default defineMessages({
-  header: {
-    id: 'app.containers.Events.header',
-    defaultMessage: 'This is Events container !',
-  },
   showAll: {
     id: 'app.containers.Events.showAll',
     defaultMessage: 'Show all',
@@ -20,5 +16,9 @@ export default defineMessages({
   date: {
     id: 'app.containers.Events.date',
     defaultMessage: 'Date',
+  },
+  header: {
+    id: 'app.containers.PublicEvents.header',
+    defaultMessage: 'Events',
   },
 })

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-scroll'
 import { trackEvent } from '../../utils'
 import CloseIcon from 'static/img_new/icons/icon_close.svg'
+import { FormattedMessage } from 'react-intl'
+import messages from './messages'
 
 import styles from './styles.css'
 
@@ -19,7 +21,9 @@ const PublicEventMenu = ({ events, oldEvents }) => {
       <div onClick={() => setMenuOpen(false)} className={styles.close}>
         <img src={CloseIcon} />
       </div>
-      <span>Events 19/20</span>
+      <span>
+        <FormattedMessage {...messages.current} />
+      </span>
       <div className={styles.links}>
         {events.map(e => (
           <PublicEventMenuLink
@@ -29,7 +33,9 @@ const PublicEventMenu = ({ events, oldEvents }) => {
           />
         ))}
       </div>
-      <span>Previous Events</span>
+      <span>
+        <FormattedMessage {...messages.previous} />
+      </span>
       <div className={styles.links}>
         {oldEvents.map(e => (
           <PublicEventMenuLink

@@ -138,5 +138,13 @@
   {
     "id": "app.containers.PublicEvents.header",
     "message": "Events"
+  },
+  {
+    "id": "app.components.PublicEvents.menu.current",
+    "message": "Events 19/20"
+  },
+  {
+    "id": "app.components.PublicEvents.menu.previous",
+    "message": "Previous Events"
   }
 ]

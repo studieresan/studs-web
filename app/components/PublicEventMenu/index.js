@@ -28,8 +28,9 @@ const PublicEventMenu = ({ events, oldEvents }) => {
         {events.map(e => (
           <PublicEventMenuLink
             onTouch={() => setMenuOpen(false)}
-            key={e.companyName}
+            key={e.id}
             company={e.companyName}
+            companyId={e.id}
           />
         ))}
       </div>
@@ -40,8 +41,9 @@ const PublicEventMenu = ({ events, oldEvents }) => {
         {oldEvents.map(e => (
           <PublicEventMenuLink
             onTouch={() => setMenuOpen(false)}
-            key={e.companyName}
+            key={e.id}
             company={e.companyName}
+            companyId={e.id}
           />
         ))}
       </div>
@@ -49,13 +51,12 @@ const PublicEventMenu = ({ events, oldEvents }) => {
   )
 }
 
-const PublicEventMenuLink = ({ company, onTouch }) => {
+const PublicEventMenuLink = ({ company, companyId, onTouch }) => {
   return (
     <div>
       <Link
         activeClass={styles.active}
-        key={company}
-        to={company}
+        to={companyId}
         smooth={true}
         offset={-92}
         duration={400}
@@ -79,6 +80,7 @@ PublicEventMenu.propTypes = {
 
 PublicEventMenuLink.propTypes = {
   company: PropTypes.string,
+  companyId: PropTypes.string,
   onTouch: PropTypes.func,
 }
 

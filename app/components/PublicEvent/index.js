@@ -6,13 +6,14 @@ import Markdown from 'react-markdown'
 
 const PublicEvent = ({
   companyName,
+  id,
   date,
   publicDescription,
   pictures,
   index,
 }) => {
   return (
-    <div name={companyName} className={styles.publicEvent}>
+    <div name={id} className={styles.publicEvent}>
       <div className={styles.header}>
         <h1 className={styles.companyName}>{companyName}</h1>
         <h5 className={styles.date}>{moment(date).format('DD MMMM')}</h5>
@@ -40,6 +41,7 @@ const PublicEvent = ({
 
 PublicEvent.propTypes = {
   companyName: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   date: PropTypes.PropTypes.instanceOf(Date).isRequired,
   publicDescription: PropTypes.string,

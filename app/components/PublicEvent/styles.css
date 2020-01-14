@@ -21,7 +21,6 @@
 
 .header h1 {
   font-size: 50px;
-  padding-left: 30px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -71,6 +70,14 @@
 @media (max-width: 400px) {
   .padder {
     display: none;
+  }
+
+  .date {
+    display: none;
+  }
+
+  .header {
+    justify-content: center;
   }
 
   .content {

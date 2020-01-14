@@ -45,4 +45,7 @@ export default defineMessages({
       defaultMessage: '',
     },
   },
+  contact: {
+    id: 'app.components.HomePage.content.contact',
+  },
 })

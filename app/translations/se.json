@@ -364,6 +364,10 @@
     "message": "Tidigare event"
   },
   {
+    "id": "app.components.HomePage.content.contact",
+    "message": "Kontakt oss här!"
+  },
+  {
     "id": "app.containers.PublicEvents.header",
     "message": "Evenemang"
   },

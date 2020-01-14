@@ -39,7 +39,9 @@ const HomePageContent = () => {
               round
             />
           </div>
-          <Button color={'white'}>Contact us here!</Button>
+          <Button color={'white'}>
+            <FormattedMessage {...messages.contact} />
+          </Button>
         </div>
       </ScrollSticky>
       <Card

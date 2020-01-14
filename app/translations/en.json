@@ -136,6 +136,10 @@
     "message": "Previous events"
   },
   {
+    "id": "app.components.HomePage.content.contact",
+    "message": "Contact us here!"
+  },
+  {
     "id": "app.containers.PublicEvents.header",
     "message": "Events"
   },

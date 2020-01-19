@@ -1,13 +1,19 @@
 .content {
-  background-image: url(static/img_new/home/background.png);
-  /* background-size: 100% 80vh; */
+  padding-bottom: 40px;
+}
 
+.content::before {
   /* Create the parallax scrolling effect */
-  background-attachment: fixed;
+  content: '';
+  display: block;
+  position: fixed;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  background-image: url(static/img_new/home/background.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding-bottom: 40px;
 }
 
 .card {

@@ -59,7 +59,7 @@
   visibility: visible;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .public_event_menu {
     text-align: center;
     padding-left: 0;

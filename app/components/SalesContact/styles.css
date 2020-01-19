@@ -68,7 +68,7 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .contactInfo {
     flex-direction: column;
     text-align: center;

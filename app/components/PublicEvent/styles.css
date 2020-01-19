@@ -6,7 +6,7 @@
   padding: 0 8%;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .publicEvent:first-child .header {
     padding-top: 0;
   }
@@ -67,7 +67,7 @@
   text-transform: uppercase;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .padder {
     display: none;
   }

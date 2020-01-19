@@ -12,8 +12,8 @@ const Card = ({ title, body, buttonText, images, to }) => {
   const [touchStart, setTouchStart] = useState(0)
 
   const properties = {
-    duration: 5000,
-    transitionDuration: 500,
+    duration: 4000,
+    transitionDuration: 350,
     infinite: true,
     indicators: false,
     arrows: true,

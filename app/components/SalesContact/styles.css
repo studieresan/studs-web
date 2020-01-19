@@ -17,6 +17,16 @@
   margin: 0 !important;
 }
 
+.contact p {
+  font-size: 18px;
+}
+
+.contact span,
+.contact a,
+.contact b {
+  font-size: inherit;
+}
+
 .contact > div:first-child {
   max-width: 525px;
   text-align: center;
@@ -29,6 +39,7 @@
   align-items: center;
   text-align: left;
   padding: 0 20px;
+  font-size: 18px;
 }
 
 .contactPicture {

@@ -9,6 +9,7 @@ import Button from 'components/Button'
 const Card = ({ title, body, buttonText, images, to }) => {
   const slide = useRef()
   const [activeIdx, setActiveIdx] = useState(0)
+  const [touchStart, setTouchStart] = useState(0)
 
   const properties = {
     duration: 5000,
@@ -45,8 +46,24 @@ const Card = ({ title, body, buttonText, images, to }) => {
         </div>
       </div>
       <div className={styles.slideshow}>
-        <div className={styles.arrow} onClick={() => slide.current.goBack()}>
-          <div>{'<'}</div>
+        <div
+          className={styles.arrow}
+          onClick={() => slide.current.goBack()}
+          onTouchStart={e => {
+            setTouchStart(e.changedTouches[0].clientX)
+          }}
+          onTouchEnd={e => {
+            const diff = touchStart - e.changedTouches[0].clientX
+            if (Math.abs(diff) > 10) {
+              if (diff > 0) {
+                slide.current.goNext()
+              } else {
+                slide.current.goBack()
+              }
+            }
+          }}
+        >
+          <i className='fas fa-chevron-left' />
         </div>
         <Slide {...properties} className={styles.slide} ref={slide}>
           {images.map(img => (
@@ -58,16 +75,33 @@ const Card = ({ title, body, buttonText, images, to }) => {
         <div
           className={styles.arrow + ' ' + styles.arrow_right}
           onClick={() => slide.current.goNext()}
+          onTouchStart={e => {
+            setTouchStart(e.changedTouches[0].clientX)
+          }}
+          onTouchEnd={e => {
+            const diff = touchStart - e.changedTouches[0].clientX
+            if (Math.abs(diff) > 10) {
+              if (diff > 0) {
+                slide.current.goNext()
+              } else {
+                slide.current.goBack()
+              }
+            }
+          }}
         >
-          <div>{'>'}</div>
+          <i className='fas fa-chevron-right' />
         </div>
         <div className={styles.indicators}>
-          {images.map((i, k) => (
-            <div
-              key={k}
-              className={activeIdx === k ? styles.active_dot : styles.dot}
-            />
-          ))}
+          <div className={styles.indicator_filler}>
+            <div className={styles.dot_container}>
+              {images.map((i, k) => (
+                <div
+                  key={k}
+                  className={activeIdx === k ? styles.active_dot : styles.dot}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
       <div className={styles.mobile_button}>

@@ -38,9 +38,13 @@
 
 .info {
   flex: 2;
-  padding: 0px 15px;
+  padding: 0px 45px 0px 10px;
   display: flex;
   flex-direction: column;
+}
+
+.card:nth-child(even) .info {
+  padding: 0px 10px 0px 45px;
 }
 
 .info_text {
@@ -69,6 +73,7 @@
 .paragraph {
   color: white;
   font-size: 18px;
+  font-weight: normal;
 }
 
 .title_container {
@@ -82,6 +87,7 @@
   line-height: 1.3;
   font-size: 50px;
   position: relative;
+  word-break: break-all;
 }
 
 .title_container > h1::after {
@@ -105,6 +111,7 @@
   display: flex;
   position: relative;
   align-items: center;
+  overflow: hidden;
 }
 
 .slideshow > div > div > div:nth-child(2) {
@@ -116,11 +123,17 @@
 
 .each_slide > div {
   background-size: cover;
-  height: 65vh;
+  height: 53vh;
+}
+
+.indicator_filler {
+  height: 53vh;
+  width: 100%;
+  position: relative;
 }
 
 .arrow {
-  width: 20%;
+  width: 49%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -128,36 +141,44 @@
   position: absolute;
   cursor: pointer;
   z-index: 10;
-  /* TODO: remove */
   color: white;
   font-size: 40px;
-  font-weight: 900;
-  transition: all 0.2s ease-in-out;
   user-select: none;
 }
 
-.arrow:hover {
-  font-size: 60px;
+.arrow > i {
+  transition: all 0.2s ease-in-out;
+  padding: 5px;
+}
+
+.arrow:hover i {
+  transform: scale(1.3);
 }
 
 .arrow_right {
   right: 0;
-}
-
-.arrow_right > div {
-  width: 100%;
-  text-align: right;
-}
-
-.arrow > div {
-  padding: 5px;
+  justify-content: flex-end;
 }
 
 .slide {
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
 }
 
 .indicators {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.dot_container {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -205,6 +226,7 @@
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 30px;
+    flex-direction: column !important;
   }
 
   .slideshow {
@@ -217,8 +239,15 @@
   }
 
   .arrow {
-    width: 20%;
     height: 30vh !important;
+  }
+
+  .indicator_filler {
+    height: 30vh;
+  }
+
+  .arrow:hover i {
+    transform: none;
   }
 }
 

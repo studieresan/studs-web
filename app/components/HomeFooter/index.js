@@ -11,6 +11,7 @@ import Kry from 'static/img_new/company_logos/kry.svg'
 import Cygni from 'static/img_new/company_logos/cygni.png'
 import Trafikverket from 'static/img_new/company_logos/trafikverket.png'
 import Storytel from 'static/img_new/company_logos/storytel.svg'
+import Apotea from 'static/img_new/company_logos/apotea.png'
 import Menu from './Menu'
 import styles from './styles.css'
 import messages from './messages'
@@ -62,6 +63,7 @@ const Collaborations = () => (
       <CompanyImage picture={Storytel} />
       <CompanyImage picture={Kry} />
       <CompanyImage picture={Cygni} />
+      <CompanyImage picture={Apotea} />
     </div>
   </div>
 )

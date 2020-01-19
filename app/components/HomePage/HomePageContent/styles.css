@@ -229,6 +229,10 @@
     flex-direction: column !important;
   }
 
+  .info {
+    padding: 0px 10px 0px 10px !important;
+  }
+
   .slideshow {
     width: 100% !important;
   }

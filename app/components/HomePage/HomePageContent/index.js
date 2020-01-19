@@ -21,7 +21,7 @@ const HomePageContent = () => {
     <div className={styles.content}>
       <HomePageHeader />
       <ScrollSticky
-        percentageFromTop={81}
+        percentageFromTop={80}
         percentageFromRight={2}
         onStick={() => setshowSalesPic(false)}
         onUnStick={() => setshowSalesPic(true)}

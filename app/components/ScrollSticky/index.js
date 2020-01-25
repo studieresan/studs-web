@@ -15,7 +15,7 @@ const ScrollSticky = ({
   const handleScroll = useCallback(
     () => {
       const scrolledPastTop =
-        window.pageYOffset > (window.innerHeight * percentageFromTop) / 100 - 10 // padding ?
+        window.pageYOffset > (window.innerHeight * percentageFromTop) / 100 - 10
       if (!sticky && scrolledPastTop) {
         onStick && onStick()
       } else if (sticky && !scrolledPastTop) {

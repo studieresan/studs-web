@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Section from 'components/Section'
 import styles from './styles.css'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'

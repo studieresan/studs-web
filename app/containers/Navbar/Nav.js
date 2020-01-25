@@ -1,7 +1,7 @@
-// @flow
 import React from 'react'
 import classNames from 'classnames'
 import styles from './styles.css'
+import PropTypes from 'prop-types'
 
 import LogoInvert from 'static/img_new/logo/logomark-square-white.png'
 import LogoPng from 'static/img_new/logo/logomark-square-black.png'
@@ -15,18 +15,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import NavLinks from './NavLinks'
 
-type Props = {
-  user: Object,
-  loggedIn: boolean,
-  location: Object,
-  invert?: boolean,
-}
-
-type State = {
-  collapsed: boolean,
-}
-
-class Nav extends React.Component<Props, State> {
+class Nav extends React.Component {
   static defaultProps = {
     invert: true,
   }
@@ -35,7 +24,7 @@ class Nav extends React.Component<Props, State> {
     collapsed: true,
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps) {
     // Close nav menu when navigating
     if (prevProps.location !== this.props.location) {
       this.setState({ collapsed: true })
@@ -88,6 +77,13 @@ class Nav extends React.Component<Props, State> {
       </div>
     )
   }
+}
+
+Nav.propTypes = {
+  user: PropTypes.object,
+  loggedIn: PropTypes.bool,
+  location: PropTypes.object,
+  invert: PropTypes.bool,
 }
 
 function mapStateToProps(state) {

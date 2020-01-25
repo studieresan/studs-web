@@ -36,7 +36,7 @@
 }
 
 .header_text {
-  font-size: 56px;
+  font-size: 300%;
   font-weight: 700;
   font-family: var(--body-font);
   flex: 0.5;
@@ -84,6 +84,8 @@
   .header_text {
     width: 100%;
     text-align: center;
+    padding: 0 20px;
+    font-size: 200%;
   }
 }
 

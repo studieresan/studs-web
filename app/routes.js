@@ -11,7 +11,6 @@ import PasswordReset from 'containers/PasswordReset'
 import User from 'containers/User'
 import CreateUser from 'containers/CreateUser'
 import CvEdit from 'containers/CvEdit'
-import Trip from 'containers/Trip'
 import Events from 'containers/Events'
 import About from 'containers/About'
 import NotFoundPage from 'containers/NotFoundPage'
@@ -61,7 +60,6 @@ class StudsRouter extends Component {
         <AuthenticatedRoute exact path='/events/:id' component={Events} />
         <AuthenticatedRoute exact path='/events/:id/edit' component={Events} />
 
-        {/* <Route exact path='/trip' component={Trip} /> */}
         <Route exact path='/about' component={About} />
 
         <Route exact path='*' component={NotFoundPage} />

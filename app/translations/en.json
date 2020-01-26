@@ -4,10 +4,6 @@
     "message": "What is Studs?"
   },
   {
-    "id": "app.containers.About.intro",
-    "message": "Studs is an annual project for the Computer Science programme at the Royal Institute of Technology. The goal is to create a platform for interaction between students and their possible employers, by arranging cooperative events.  The project also is a course, earning the students 15 credits. The course is evaluated with a written report, summarizing the entire project. Towards the end of the project, the members of Studs goes on a trip together, with the goal of enabling cultural and professional exchange. "
-  },
-  {
     "id": "app.components.HomePage.headline",
     "message": "About Studs"
   },
@@ -76,6 +72,10 @@
     "message": "Project Managers"
   },
   {
+    "id": "app.components.HomePage.footer.collaborationsTitle",
+    "message": "Some of our previous collaborations"
+  },
+  {
     "id": "app.components.HomePage.about.headline",
     "message": "This is {firstName}"
   },
@@ -97,6 +97,58 @@
   },
   {
     "id": "app.components.HomePage.intro.about",
-    "message": "Welcome to the Study Trip - The platform where companies can interact with soon-to-be graduates from the Computer Science programme at KTH."
+    "message": "Connecting Stockholm with KTH’s top tier tech students"
+  },
+  {
+    "id": "app.components.HomePage.content.project.title",
+    "message": "The project"
+  },
+  {
+    "id": "app.components.HomePage.content.project.body.p1",
+    "message": "Studs is an annual nonprofit project from KTH, run by students. The project consists of 30 selected engineering students in master programs relevant to computer science."
+  },
+  {
+    "id": "app.components.HomePage.content.project.body.p2",
+    "message": "By organizing events together with companies, we create opportunities to give both students and their potential employers valuable time together."
+  },
+  {
+    "id": "app.components.HomePage.content.project.buttonText",
+    "message": "About us"
+  },
+  {
+    "id": "app.components.HomePage.content.events.title",
+    "message": "The events"
+  },
+  {
+    "id": "app.components.HomePage.content.events.body.p1",
+    "message": "During the year, Studs members will meet with companies during events, usually arranged at corporate offices."
+  },
+  {
+    "id": "app.components.HomePage.content.events.body.p2",
+    "message": "For students, this is an opportunity to gain deeper insights into the working life of the company and about the company's operations."
+  },
+  {
+    "id": "app.components.HomePage.content.events.body.p3",
+    "message": "Studs help companies tailor events to their needs, which guarantees that each event is as unique as the company that arranged it."
+  },
+  {
+    "id": "app.components.HomePage.content.events.buttonText",
+    "message": "Previous events"
+  },
+  {
+    "id": "app.components.HomePage.content.contact",
+    "message": "Contact us here!"
+  },
+  {
+    "id": "app.containers.PublicEvents.header",
+    "message": "Events"
+  },
+  {
+    "id": "app.components.PublicEvents.menu.current",
+    "message": "Events 19/20"
+  },
+  {
+    "id": "app.components.PublicEvents.menu.previous",
+    "message": "Previous Events"
   }
 ]

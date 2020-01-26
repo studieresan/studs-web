@@ -4,10 +4,6 @@
     "message": "Vad är Studs?"
   },
   {
-    "id": "app.containers.About.intro",
-    "message": "Studs är ett årligt projekt på Kungliga Tekniska Högskolans program inom Datateknik. Målet är att skapa en plattform för interaktion mellan snart examinerade studenter och potentiella arbetsgivare genom att anordna företagsevent. För studenterna är projektet även en kurs på 15 högskolepoäng, vilken examineras i form av en rapport som sammanfattar projektet i sin helhet. Som avslutning på projektet åker medlemmarna i Studs på en resa i syfte att möjliggöra både professionellt och kulturellt utbyte. "
-  },
-  {
     "id": "app.components.HomePage.headline",
     "message": "Om Studs"
   },
@@ -102,6 +98,10 @@
   {
     "id": "app.components.HomePage.footer.projectManagerTitle",
     "message": "Projektledare"
+  },
+  {
+    "id": "app.components.HomePage.footer.collaborationsTitle",
+    "message": "Några av våra tidigare samarbeten"
   },
   {
     "id": "app.components.EventEdit.save",
@@ -325,6 +325,58 @@
   },
   {
     "id": "app.components.HomePage.intro.about",
-    "message": "Välkommen till Studs - Plattformen där företag kan interagera med snart examinerade studenter från Datateknik på KTH."
+    "message": "Connecting Stockholm with KTH’s top tier tech students"
+  },
+  {
+    "id": "app.components.HomePage.content.project.title",
+    "message": "Projektet"
+  },
+  {
+    "id": "app.components.HomePage.content.project.body.p1",
+    "message": "Studs är ett årligt ideellt projekt av KTH, bedrivet av studenter. Projektet utgörs av 30 utvalda ingenjörsstudenter inom masterprogramrelevanta för datavetenskap."
+  },
+  {
+    "id": "app.components.HomePage.content.project.body.p2",
+    "message": "Genom att organisera evenemang tillsammans med företag skapar vi möjligheter att ge både studenter och deras potentiella arbetsgivare värdefull tid tillsammans."
+  },
+  {
+    "id": "app.components.HomePage.content.project.buttonText",
+    "message": "Om oss"
+  },
+  {
+    "id": "app.components.HomePage.content.events.title",
+    "message": "Evenemangen"
+  },
+  {
+    "id": "app.components.HomePage.content.events.body.p1",
+    "message": "Under året kommer medlemmarna i Studs att träffa företag under evenemang, vanligtvis arrangerade på företagens kontor."
+  },
+  {
+    "id": "app.components.HomePage.content.events.body.p2",
+    "message": "För studenterna är detta en möjlighet att få djupare insikter om hur arbetslivet på företaget ser ut och om företagets verksamhet."
+  },
+  {
+    "id": "app.components.HomePage.content.events.body.p3",
+    "message": "Studs hjälper företagen att skräddarsy evenemangen till deras behov, vilket garanterar att varje evenemang är lika unikt som företaget som arrangerat det."
+  },
+  {
+    "id": "app.components.HomePage.content.events.buttonText",
+    "message": "Tidigare event"
+  },
+  {
+    "id": "app.components.HomePage.content.contact",
+    "message": "Kontakt oss här!"
+  },
+  {
+    "id": "app.containers.PublicEvents.header",
+    "message": "Evenemang"
+  },
+  {
+    "id": "app.components.PublicEvents.menu.current",
+    "message": "Evenemang 19/20"
+  },
+  {
+    "id": "app.components.PublicEvents.menu.previous",
+    "message": "Tidigare Evenemang"
   }
 ]

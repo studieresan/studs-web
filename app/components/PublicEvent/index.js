@@ -6,25 +6,33 @@ import Markdown from 'react-markdown'
 
 const PublicEvent = ({
   companyName,
+  id,
   date,
-  adress,
   publicDescription,
   pictures,
+  index,
 }) => {
   return (
-    <div name={companyName} className={styles.publicEvent}>
-      <div className={styles.text}>
-        <div className={styles.info}>
-          <h1 className={styles.companyName}>{companyName}</h1>
-          <h5 className={styles.date}>{moment(date).format('MMMM DD')}</h5>
-          <h5 className={styles.adress}>{adress}</h5>
-        </div>
-        <div className={styles.description}>
-          <Markdown source={publicDescription} />
-        </div>
+    <div name={id} className={styles.publicEvent}>
+      <div className={styles.header}>
+        <h1 className={styles.companyName}>{companyName}</h1>
+        <h5 className={styles.date}>{moment(date).format('DD MMMM')}</h5>
       </div>
-      <div className={styles.pictures}>
-        {pictures && pictures.map(pic => <img key={pic} src={pic} />)}
+      <div
+        className={styles.content}
+        style={{
+          flexDirection: !(index % 2) ? 'row-reverse' : '',
+        }}
+      >
+        <Markdown source={publicDescription} className={styles.description} />
+        <div className={styles.padder} />
+        {pictures && !!pictures.length && (
+          <div className={styles.pictures}>
+            {pictures.slice(0, 3).map(pic => (
+              <img key={pic + Math.random()} src={pic} />
+            ))}
+          </div>
+        )}
       </div>
       <div className={styles.divider} />
     </div>
@@ -33,8 +41,9 @@ const PublicEvent = ({
 
 PublicEvent.propTypes = {
   companyName: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
   date: PropTypes.PropTypes.instanceOf(Date).isRequired,
-  adress: PropTypes.string,
   publicDescription: PropTypes.string,
   pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
 }

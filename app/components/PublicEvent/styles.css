@@ -1,32 +1,64 @@
 .publicEvent {
   display: flex;
-  flex-wrap: wrap;
-  margin: 5rem auto 0;
-  margin-top: 5rem;
+  flex-direction: column;
   line-height: 1.8;
-  flex-direction: column;
   justify-content: center;
-  max-width: 60rem;
-  width: 90%;
+  padding: 0 8%;
 }
 
-.text {
+@media (max-width: 600px) {
+  .publicEvent:first-child .header {
+    padding-top: 0;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0;
+}
+
+.header h1 {
+  font-size: 50px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.content {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-width: 20rem;
+.padder {
+  flex: 0.2;
 }
 
 .description {
   flex: 1;
-  min-width: 20rem;
+  text-align: justify;
+}
+
+.description > p:first-child {
+  margin-top: 0;
+}
+
+.pictures {
+  flex: 1;
+}
+
+.pictures > img:first-child {
+  padding-top: 0;
+}
+
+.pictures img {
+  min-width: 300px;
+  max-width: 100%;
+  height: auto;
+  padding: 1rem 0;
+  object-fit: contain;
 }
 
 .date {
@@ -35,38 +67,20 @@
   text-transform: uppercase;
 }
 
-.adress {
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
+@media (max-width: 600px) {
+  .padder {
+    display: none;
+  }
 
-.pictures {
-  display: flex;
-  margin-top: 2rem;
-  margin-bottom: 5rem;
+  .date {
+    display: none;
+  }
 
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
-}
+  .header {
+    justify-content: center;
+  }
 
-.pictures img {
-  flex: 1;
-  width: 25%;
-  min-width: 300px;
-  max-width: 100%;
-  height: auto;
-  margin: 1rem;
-  object-fit: contain;
-}
-
-.divider {
-  width: 50%;
-  background-image: url(static/img_new/gold-dot-2.svg);
-  background-position: center;
-  background-repeat: repeat-x;
-  background-clip: content-box;
-  height: 10px;
-  margin: 0 auto;
-  transform: scale(2);
+  .content {
+    flex-direction: row-reverse;
+  }
 }

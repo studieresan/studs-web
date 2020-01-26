@@ -38,11 +38,18 @@
   margin: 1rem 0;
 }
 
+.white {
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  padding: 6px 18px;
+  font-size: 10px;
+  color: white;
+  text-transform: none;
+}
+
 .border {
   background: rgb(25, 150, 181);
-  /* border-style: solid;
-  border-width: medium;
-  border-color: white; */
   color: white;
 }
 
@@ -115,4 +122,22 @@
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.homepage {
+  background: white;
+  border-radius: 0;
+  color: var(--secondary);
+  text-transform: none;
+  box-shadow: 1px 7px 8px 0 rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 10px;
+}
+
+.homepage:hover {
+  transform: scale(1.02);
+}
+
+.homepage:active {
+  transform: scale(1);
 }

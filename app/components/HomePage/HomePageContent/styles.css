@@ -259,6 +259,10 @@
   .arrow:hover i {
     transform: none;
   }
+
+  .title_container > h1 {
+    font-size: 13vw;
+  }
 }
 
 @media (max-width: 900px) and (orientation: landscape) {

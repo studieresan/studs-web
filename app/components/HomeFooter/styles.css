@@ -73,6 +73,10 @@
   flex-wrap: wrap;
 }
 
+.companyImage {
+  padding: 10px;
+}
+
 .logoDesktop {
   margin-bottom: 1rem;
   width: 8em;

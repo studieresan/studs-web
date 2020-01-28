@@ -13,15 +13,15 @@ import { prettyUserRole } from 'utils'
 
 const StudsMemberInfo = user => {
   if (!user.alternativePicture) return null
+  const size = Math.max(Math.floor((window.innerWidth * 0.8) / 5) - 40, 100)
   return (
     <div key={user.lastName} className={styles.member}>
-      <MemberImage
-        picture={user.alternativePicture}
-        size={Math.max(Math.floor((window.innerWidth * 0.8) / 5) - 40, 100)}
-        square
-        round
-      />
-      <h3>
+      <MemberImage picture={user.alternativePicture} size={size} square round />
+      <h3
+        style={{
+          width: size,
+        }}
+      >
         {user.firstName} {user.lastName}
       </h3>
       <h5>{prettyUserRole(user.userRole)}</h5>
@@ -43,7 +43,17 @@ class About extends Component {
             <FormattedMessage {...messages.header} />
           </h1>
         </div>
-        <div className={styles.about}>{users.map(u => StudsMemberInfo(u))}</div>
+        <div className={styles.about}>
+          {users.map(u => StudsMemberInfo(u))}
+          {users.map(u => StudsMemberInfo(u))}
+          {users.map(u => StudsMemberInfo(u))}
+          {users.map(u => StudsMemberInfo(u))}
+          {users.map(u => StudsMemberInfo(u))}
+          {users.map(u => StudsMemberInfo(u))}
+          {users.map(u => StudsMemberInfo(u))}
+          {users.map(u => StudsMemberInfo(u))}
+          {users.map(u => StudsMemberInfo(u))}
+        </div>
         <Footer />
       </div>
     )

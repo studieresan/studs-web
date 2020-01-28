@@ -43,17 +43,7 @@ class About extends Component {
             <FormattedMessage {...messages.header} />
           </h1>
         </div>
-        <div className={styles.about}>
-          {users.map(u => StudsMemberInfo(u))}
-          {users.map(u => StudsMemberInfo(u))}
-          {users.map(u => StudsMemberInfo(u))}
-          {users.map(u => StudsMemberInfo(u))}
-          {users.map(u => StudsMemberInfo(u))}
-          {users.map(u => StudsMemberInfo(u))}
-          {users.map(u => StudsMemberInfo(u))}
-          {users.map(u => StudsMemberInfo(u))}
-          {users.map(u => StudsMemberInfo(u))}
-        </div>
+        <div className={styles.about}>{users.map(u => StudsMemberInfo(u))}</div>
         <Footer />
       </div>
     )

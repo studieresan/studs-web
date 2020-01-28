@@ -5,6 +5,7 @@ import { trackEvent } from '../../utils'
 import CloseIcon from 'static/img_new/icons/icon_close.svg'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
+import ScrollSticky from 'components/ScrollSticky'
 
 import styles from './styles.css'
 
@@ -18,9 +19,11 @@ const PublicEventMenu = ({ events, oldEvents }) => {
         styles.public_event_menu + ' ' + (!menuOpen && styles.collapsed)
       }
     >
-      <div onClick={() => setMenuOpen(false)} className={styles.close}>
-        <img src={CloseIcon} />
-      </div>
+      <img
+        onClick={() => setMenuOpen(false)}
+        src={CloseIcon}
+        className={styles.close}
+      />
       <span>
         <FormattedMessage {...messages.current} />
       </span>

@@ -5,13 +5,19 @@ import ContactRequestHeader from 'components/ContactRequestHeader'
 import styles from './styles.css'
 import PropTypes from 'prop-types'
 
+import { isSuccess, hasData } from 'store/salesTool/constants'
+
 class ContactRequest extends Component {
   constructor(props) {
     super(props)
     this.state = {}
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    if (!isSuccess(this.props.contactRequests)) {
+      this.props.loadContactRequests()
+    }
+  }
 
   componentWillReceiveProps(newProps) {}
 
@@ -25,10 +31,6 @@ class ContactRequest extends Component {
   }
 
   render() {
-    const contactsRequests = [
-      { id: '1', email: 'person@företag.com', arrived: 1577875620000 },
-      { id: '2', email: 'person2@företag2.com', arrived: 1580554020000 },
-    ]
     return (
       <div className={styles.content}>
         <ContactRequestHeader
@@ -37,9 +39,11 @@ class ContactRequest extends Component {
           }
         />
         <div className={styles.contacts}>
-          {contactsRequests
-            .sort((a, b) => a.arrived - b.arrived)
-            .map(contact => this.renderContactRequest(contact))}
+          {!hasData(this.props.contactRequests) && 'Loading..'}
+          {hasData(this.props.contactRequests) &&
+            this.props.contactRequests.data
+              .sort((a, b) => a.arrived - b.arrived)
+              .map(contact => this.renderContactRequest(contact))}
         </div>
       </div>
     )
@@ -55,6 +59,8 @@ class ContactRequest extends Component {
 
 ContactRequest.propTypes = {
   history: PropTypes.object.isRequired,
+  loadContactRequests: PropTypes.func.isRequired,
+  contactRequests: PropTypes.object.isRequired,
 }
 
 export default ContactRequest

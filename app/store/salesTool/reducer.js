@@ -3,6 +3,7 @@ import companiesReducer from './companies/reducer'
 import contactsReducer from './contacts/reducer'
 import commentsReducer from './comments/reducer'
 import statusesReducer from './statuses/reducer'
+import contactRequestsReducer from './contactRequests/reducer'
 import { UPDATE_FILTER, UPDATE_SORTING } from './constants'
 
 const defaultFilterState = {
@@ -46,6 +47,7 @@ const reducer = combineReducers({
   statuses: statusesReducer,
   filter: filterReducer,
   sorting: sortingReducer,
+  contactRequests: contactRequestsReducer,
 })
 
 export default reducer

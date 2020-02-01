@@ -26,7 +26,7 @@ class ContactRequest extends Component {
   timestampToDateString = timestamp => {
     return new Date(timestamp)
       .toISOString()
-      .slice(0, 19)
+      .slice(0, 16)
       .replace('T', ' ')
   }
 

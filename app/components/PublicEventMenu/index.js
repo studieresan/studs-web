@@ -5,12 +5,14 @@ import { trackEvent } from '../../utils'
 import CloseIcon from 'static/img_new/icons/icon_close.svg'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
-import ScrollSticky from 'components/ScrollSticky'
-
+import Bowser from 'bowser'
 import styles from './styles.css'
 
 const PublicEventMenu = ({ events, oldEvents }) => {
-  const [menuOpen, setMenuOpen] = useState(true)
+  const browser = Bowser.getParser(window.navigator.userAgent)
+  const [menuOpen, setMenuOpen] = useState(
+    browser.getPlatformType() !== 'mobile'
+  )
 
   return (
     <div

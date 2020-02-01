@@ -3,6 +3,7 @@ import { GET_SUCCESS } from './constants'
 
 const initialState = fromJS({
   items: [],
+  saved: false,
 })
 
 function oldEventsReducer(state = initialState, action) {
@@ -11,6 +12,7 @@ function oldEventsReducer(state = initialState, action) {
       return state.merge(
         Map({
           items: fromJS(action.data),
+          saved: true,
         })
       )
     default:

@@ -206,6 +206,9 @@ class SalesTool extends Component {
   render() {
     return (
       <div className={styles.content}>
+        <div className={styles.sales_tool_title}>
+          <h1>Sales tool</h1>
+        </div>
         <div className={styles.top_buttons}>
           <Button
             onClick={() => {

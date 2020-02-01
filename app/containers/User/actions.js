@@ -57,7 +57,13 @@ export const save = user => (dispatch, getState) => {
     .getIn(['global', 'user'])
     .toJS()
   const localChanges = toPairs(
-    omit(user, ['password', 'confirmPassword', 'permissions', 'id'])
+    omit(user, [
+      'password',
+      'confirmPassword',
+      'permissions',
+      'id',
+      'alternativePicture',
+    ])
   )
   const diff = fromPairs(
     differenceWith(localChanges, toPairs(savedUser), isEqual)

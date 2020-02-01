@@ -1,9 +1,24 @@
-.about {
+.about_title {
   padding-top: var(--header-height);
+  height: 30vh;
+  background-image: url(static/img_new/home/background.png);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: white;
+}
+
+.about {
+  padding: 30px 10%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .members {
@@ -19,21 +34,11 @@
   margin: 5rem auto;
 }
 
-.about_text {
-  width: 50%;
-  text-align: center;
-}
-
-.image_row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  width: 75%;
-  max-width: 90rem;
-}
-
 .member {
-  display: inline;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
 .member img {
@@ -50,8 +55,8 @@
   text-align: center;
 }
 
-@media (max-width: 920px) {
-  .about_text {
-    width: 90%;
+@media (max-width: 900px) and (orientation: landscape) {
+  .about_title {
+    height: 40vh;
   }
 }

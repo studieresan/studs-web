@@ -1,0 +1,91 @@
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 300px;
+  margin-bottom: 50px;
+  background-color: var(--secondary);
+  box-shadow: #00000082 0px 9px 15px 3px;
+  opacity: 0.9;
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+  color: rgb(255, 255, 255);
+}
+
+.contact h1 {
+  margin: 0 !important;
+}
+
+.contact p {
+  font-size: 18px;
+}
+
+.contact span,
+.contact a,
+.contact b {
+  font-size: inherit;
+}
+
+.contact > div:first-child {
+  max-width: 525px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.contactInfo {
+  display: flex;
+  margin: 1%;
+  align-items: center;
+  text-align: left;
+  padding: 0 20px;
+  font-size: 18px;
+}
+
+.contactPicture {
+  margin-right: 30px;
+}
+
+.contactInfo img {
+  outline: none !important;
+}
+
+.contact a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+.contact a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 920px) {
+  .contact {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+  }
+}
+
+@media (max-width: 600px) {
+  .contactInfo {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contactPicture {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 300px) {
+  .contactInfo img {
+    display: none;
+  }
+
+  .contactInfo div {
+    text-align: center;
+  }
+}

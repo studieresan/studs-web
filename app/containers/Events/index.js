@@ -137,6 +137,11 @@ export class Events extends React.Component {
 
     return (
       <div className={styles.events}>
+        <div className={styles.events_title}>
+          <h1>
+            <FormattedMessage {...messages.header} />
+          </h1>
+        </div>
         <MasterDetail
           master={master}
           detail={detail}

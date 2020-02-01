@@ -9,6 +9,8 @@ import MasterDetail from '../../components/MasterDetail'
 import * as actions from './actions'
 import PropTypes from 'prop-types'
 import sortBy from 'lodash/sortBy'
+import { FormattedMessage } from 'react-intl'
+import messages from './messages'
 
 export class Members extends React.Component {
   componentDidMount() {
@@ -58,6 +60,11 @@ export class Members extends React.Component {
 
     return (
       <div className={styles.members}>
+        <div className={styles.members_title}>
+          <h1>
+            <FormattedMessage {...messages.header} />
+          </h1>
+        </div>
         <MasterDetail
           master={this.renderMembersList(users)}
           detail={detail}

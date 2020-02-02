@@ -9,6 +9,7 @@
 .bar_chart_container {
   display: flex;
   height: 100%;
+  width: 100%;
   justify-content: center;
   align-items: flex-end;
 }
@@ -22,5 +23,14 @@
 }
 
 .bar {
-  background-color: blue;
+  background-color: var(--primary);
+}
+
+.bar_amount {
+  padding-bottom: 1em;
+  font-size: 1.2em;
+}
+
+.bar_name {
+  padding-top: 1em;
 }

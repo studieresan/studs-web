@@ -50,6 +50,7 @@ class ContactRequest extends Component {
   renderOverview = (companies, users) => {
     const objectToDisplay = {}
     let totalAmount = 0
+    const widthOfBar = (1 / Object.keys(users).length) * 100
 
     Object.keys(users).forEach(userId => {
       objectToDisplay[userId] = { name: users[userId], amount: 0 }
@@ -65,19 +66,28 @@ class ContactRequest extends Component {
     return (
       <div className={styles.bar_chart_container}>
         {Object.keys(objectToDisplay).map(userId =>
-          this.renderBar({ userId, totalAmount, ...objectToDisplay[userId] })
+          this.renderBar({
+            userId,
+            totalAmount,
+            widthOfBar,
+            ...objectToDisplay[userId],
+          })
         )}
       </div>
     )
   }
 
-  renderBar = ({ userId, totalAmount, amount, name }) => {
+  renderBar = ({ userId, totalAmount, widthOfBar, amount, name }) => {
     const heightInProcent = (amount / totalAmount) * 100 + '%'
     return (
-      <div key={userId} className={styles.bar_container}>
-        <div> {amount} </div>
+      <div
+        key={userId}
+        className={styles.bar_container}
+        style={{ width: widthOfBar + '%' }}
+      >
+        <div className={styles.bar_amount}> {amount} </div>
         <div className={styles.bar} style={{ height: heightInProcent }} />
-        <div> {name} </div>
+        <div className={styles.bar_name}> {name.split(' ')[0]} </div>
       </div>
     )
   }

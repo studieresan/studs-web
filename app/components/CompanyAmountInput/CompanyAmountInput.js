@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 
 const CompanyAmountInput = ({ currentAmount, updateAmount }) => {
+  const [displayAmount, setDisplayAmount] = useState(currentAmount)
   const [amount, setAmount] = useState(currentAmount)
-  const [firstTime, setNotFirstTime] = useState(true)
+  const isFirstTime = useRef(true)
   const debouncedUpdateAmount = useDebounce(amount, 1000)
 
   useEffect(
     () => {
-      if (firstTime) {
+      if (isFirstTime.current) {
         //This is called on-load
-        setNotFirstTime(false)
+        isFirstTime.current = false
       } else {
         updateAmount(debouncedUpdateAmount)
       }
@@ -19,13 +20,23 @@ const CompanyAmountInput = ({ currentAmount, updateAmount }) => {
     [debouncedUpdateAmount] // Only call effect if debounced amount changes
   )
 
+  useEffect(
+    () => {
+      setDisplayAmount(currentAmount)
+    },
+    [currentAmount]
+  )
+
   return (
     <div className={styles.select_input}>
       <label>Belopp</label>
       <input
         type='number'
-        value={amount}
-        onChange={event => setAmount(event.target.value)}
+        value={displayAmount}
+        onChange={event => {
+          setAmount(event.target.value)
+          setDisplayAmount(event.target.value)
+        }}
       />
     </div>
   )

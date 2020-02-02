@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 
-const ContactRequestHeader = ({ back }) => {
+const BackHeader = ({ title, back }) => {
   return (
     <div className={styles.header}>
       <div
@@ -14,13 +14,14 @@ const ContactRequestHeader = ({ back }) => {
         <i className='fa fa-arrow-left' />
       </div>
 
-      <h1>Contact Requests</h1>
+      <h1>{title}</h1>
     </div>
   )
 }
 
-export default ContactRequestHeader
+export default BackHeader
 
-ContactRequestHeader.propTypes = {
+BackHeader.propTypes = {
+  title: PropTypes.string.isRequired,
   back: PropTypes.func.isRequired,
 }

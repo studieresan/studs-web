@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import ContactRequestHeader from 'components/ContactRequestHeader'
+import BackHeader from 'components/BackHeader'
 
 import styles from './styles.css'
 import PropTypes from 'prop-types'
@@ -33,7 +33,8 @@ class ContactRequest extends Component {
   render() {
     return (
       <div className={styles.content}>
-        <ContactRequestHeader
+        <BackHeader
+          title='Contact Requests'
           back={() =>
             this.props.history.push({ pathname: '/sales-tool/companies' })
           }

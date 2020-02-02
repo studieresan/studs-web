@@ -387,6 +387,7 @@ const uploadFile = (file, signedRequest, url) => {
 const COMPANY_FIELDS = `
   id,
   name,
+  amount,
   status {
     id
   },

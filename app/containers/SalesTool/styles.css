@@ -26,6 +26,10 @@
   margin: 10px 0;
 }
 
+.top_buttons button {
+  margin: 0 10px;
+}
+
 .filter {
   display: flex;
   width: 100%;

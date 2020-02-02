@@ -220,6 +220,16 @@ class SalesTool extends Component {
           >
             Kontaktförfrågningar
           </Button>
+          <Button
+            onClick={() => {
+              this.props.history.push({ pathname: '/empty' })
+              this.props.history.replace({
+                pathname: 'sales-tool/overview',
+              })
+            }}
+          >
+            Överblick
+          </Button>
         </div>
         <div className={styles.filter}>
           <div className={styles.filter_input}>

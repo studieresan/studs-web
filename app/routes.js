@@ -20,6 +20,7 @@ import PublicEvents from 'containers/PublicEvents'
 import SalesTool from 'containers/SalesTool/SalesToolContainer'
 import CompanyDetails from 'containers/SalesTool/CompanyDetailsContainer'
 import ContactRequests from 'containers/ContactRequests/ContactRequestsContainer'
+import SalesOverview from 'containers/SalesOverview/SalesOverviewContainer'
 
 class StudsRouter extends Component {
   render() {
@@ -49,6 +50,12 @@ class StudsRouter extends Component {
           exact
           path='/sales-tool/contact-requests'
           component={ContactRequests}
+        />
+
+        <AuthenticatedRoute
+          exact
+          path='/sales-tool/overview'
+          component={SalesOverview}
         />
 
         <AuthenticatedRoute exact path='/user' component={User} />

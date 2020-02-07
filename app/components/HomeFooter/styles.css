@@ -75,6 +75,7 @@
 
 .companyImage {
   padding: 10px;
+  object-fit: contain;
 }
 
 .logoDesktop {

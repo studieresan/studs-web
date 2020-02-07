@@ -109,7 +109,7 @@ const Contact = () => (
 
 const CompanyImage = ({ picture }) => (
   <MemberImage
-    className={styles.contactPicture}
+    className={styles.companyImage}
     picture={picture}
     size={200}
     square

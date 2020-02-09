@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 
 import { isSuccess, hasData } from 'store/salesTool/constants'
 
-class ContactRequest extends Component {
+class SalesOverview extends Component {
   constructor(props) {
     super(props)
     this.state = {}
@@ -48,36 +48,39 @@ class ContactRequest extends Component {
   }
 
   renderOverview = (companies, users) => {
-    const objectToDisplay = {}
+    const soldAmountMember = []
     let totalAmount = 0
     const widthOfBar = (1 / Object.keys(users).length) * 100
 
     Object.keys(users).forEach(userId => {
-      objectToDisplay[userId] = { name: users[userId], amount: 0 }
+      soldAmountMember.push({ userId, name: users[userId], amount: 0 })
     })
 
     Object.keys(companies.data).forEach(companyId => {
       const companyObject = companies.data[companyId]
       const responsibleUserId = companyObject.responsibleUser.id
-      objectToDisplay[responsibleUserId].amount += companyObject.amount
+      soldAmountMember.find(obj => obj.userId === responsibleUserId).amount +=
+        companyObject.amount
       totalAmount += companyObject.amount
     })
 
     return (
       <div className={styles.bar_chart_container}>
-        {Object.keys(objectToDisplay).map(userId =>
-          this.renderBar({
-            userId,
-            totalAmount,
-            widthOfBar,
-            ...objectToDisplay[userId],
-          })
-        )}
+        {soldAmountMember
+          .filter(data => data.amount)
+          .sort((a, b) => b.amount - a.amount)
+          .map(data =>
+            this.renderBar({
+              totalAmount,
+              widthOfBar,
+              ...data,
+            })
+          )}
       </div>
     )
   }
 
-  renderBar = ({ userId, totalAmount, widthOfBar, amount, name }) => {
+  renderBar = ({ totalAmount, widthOfBar, userId, amount, name }) => {
     const heightInProcent = (amount / totalAmount) * 100 + '%'
     return (
       <div
@@ -93,7 +96,7 @@ class ContactRequest extends Component {
   }
 }
 
-ContactRequest.propTypes = {
+SalesOverview.propTypes = {
   history: PropTypes.object.isRequired,
   loadCompanies: PropTypes.func.isRequired,
   companies: PropTypes.object.isRequired,
@@ -101,4 +104,4 @@ ContactRequest.propTypes = {
   getUsers: PropTypes.func.isRequired,
 }
 
-export default ContactRequest
+export default SalesOverview

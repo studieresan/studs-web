@@ -7,6 +7,8 @@ import PropTypes from 'prop-types'
 
 import { isSuccess, hasData } from 'store/salesTool/constants'
 
+import { timestampToDateTimeString } from '../../utils'
+
 class ContactRequest extends Component {
   constructor(props) {
     super(props)
@@ -22,13 +24,6 @@ class ContactRequest extends Component {
   componentWillReceiveProps(newProps) {}
 
   checkForErrors = (props, newProps) => {}
-
-  timestampToDateString = timestamp => {
-    return new Date(timestamp)
-      .toISOString()
-      .slice(0, 16)
-      .replace('T', ' ')
-  }
 
   render() {
     return (
@@ -51,7 +46,7 @@ class ContactRequest extends Component {
 
   renderContactRequest = contact => (
     <div className={styles.contact_container} key={contact.id}>
-      <div>{this.timestampToDateString(contact.arrived)}</div>
+      <div>{timestampToDateTimeString(contact.arrived, 'sv')}</div>
       <div className={styles.contact_email}>{contact.email}</div>
     </div>
   )

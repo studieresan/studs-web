@@ -603,34 +603,15 @@ export const updateComment = (commentId, text) => {
     .catch(err => console.error(err))
 }
 
-//TODO: remove
-const delay = (t, v) => {
-  return new Promise(function(resolve) {
-    setTimeout(resolve.bind(null, v), t)
-  })
-}
-
-//TODO: remove
-Promise.prototype.delay = function(t) {
-  return this.then(function(v) {
-    return delay(t, v)
-  })
-}
-
-//TODO: remove
-const fakeData = {
-  data: {
-    contactRequests: [
-      { id: '1', email: 'person@företag.com', arrived: 1577875620000 },
-      { id: '2', email: 'person2@företag2.com', arrived: 1580554020000 },
-    ],
-  },
-}
-
 export const fetchContactRequests = () => {
-  return Promise.resolve(fakeData)
-    .delay(5000)
-    .then(res => res.data.contactRequests)
+  const query = `{
+    contactRequests {
+      id,
+      email,
+      arrived: createdAt 
+    }
+  }`
+  return executeGraphQL(query).then(res => res.data.contactRequests)
 }
 
 export const fetchUserRoles = () => {

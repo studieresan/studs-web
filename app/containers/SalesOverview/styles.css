@@ -6,9 +6,15 @@
   height: 100vh;
 }
 
+.overview_container {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .bar_chart_container {
   display: flex;
-  height: 100%;
+  flex-grow: 1;
   width: 100%;
   justify-content: center;
   align-items: flex-end;

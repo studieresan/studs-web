@@ -65,17 +65,20 @@ class SalesOverview extends Component {
     })
 
     return (
-      <div className={styles.bar_chart_container}>
-        {soldAmountMember
-          .filter(data => data.amount)
-          .sort((a, b) => b.amount - a.amount)
-          .map(data =>
-            this.renderBar({
-              totalAmount,
-              widthOfBar,
-              ...data,
-            })
-          )}
+      <div className={styles.overview_container}>
+        <h1>Total amount: {this.renderAmount(totalAmount)}</h1>
+        <div className={styles.bar_chart_container}>
+          {soldAmountMember
+            .filter(data => data.amount)
+            .sort((a, b) => b.amount - a.amount)
+            .map(data =>
+              this.renderBar({
+                totalAmount,
+                widthOfBar,
+                ...data,
+              })
+            )}
+        </div>
       </div>
     )
   }
@@ -88,12 +91,14 @@ class SalesOverview extends Component {
         className={styles.bar_container}
         style={{ width: widthOfBar + '%' }}
       >
-        <div className={styles.bar_amount}> {amount} </div>
+        <div className={styles.bar_amount}> {this.renderAmount(amount)} </div>
         <div className={styles.bar} style={{ height: heightInProcent }} />
         <div className={styles.bar_name}> {name.split(' ')[0]} </div>
       </div>
     )
   }
+
+  renderAmount = amount => Number(amount).toLocaleString('sv')
 }
 
 SalesOverview.propTypes = {

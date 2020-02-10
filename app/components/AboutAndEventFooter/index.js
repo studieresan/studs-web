@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
-import { Facebook, Instagram } from 'react-feather'
-import Github from 'react-feather/dist/icons/github'
+import { Facebook, Instagram, Linkedin } from 'react-feather'
 import MemberImage from 'components/MemberImage'
 import Josefin from 'static/img_new/people/josefin.jpg'
 import Helena from 'static/img_new/people/helena.jpg'
@@ -39,8 +38,8 @@ const Social = () => (
     <a href='http://instagram.com/studskth'>
       <Instagram color='#d6249f' size={24} />
     </a>
-    <a href='http://github.com/studieresan'>
-      <Github color='#6cc644' size={24} />
+    <a href='https://www.linkedin.com/company/studs/'>
+      <Linkedin color='#2867B2' size={24} />
     </a>
   </div>
 )

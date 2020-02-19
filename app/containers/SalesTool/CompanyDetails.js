@@ -6,6 +6,7 @@ import NewCommentCard from 'components/CompanyCommentCard/NewCommentCard'
 import CommentCard from 'components/CompanyCommentCard/CommentCard'
 import Button from 'components/Button'
 import CompanyHeader from 'components/CompanyHeader'
+import CompanyAmountInput from 'components/CompanyAmountInput/CompanyAmountInput'
 
 import styles from './styles.css'
 import PropTypes from 'prop-types'
@@ -195,6 +196,14 @@ class CompanyDetails extends Component {
                 ))}
               </select>
             </div>
+            <CompanyAmountInput
+              currentAmount={company && company.amount ? company.amount : 0}
+              updateAmount={newAmount =>
+                this.updateCompany({
+                  amount: newAmount,
+                })
+              }
+            />
           </div>
           <div className={styles.contact_comment_container}>
             <div className={styles.contact_container}>

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import classnames from 'classnames'
+import placeholder from 'static/img_new/profile-placeholder.png'
 
 function MemberImage({ picture, size, square, round, className }) {
   if (!picture) return null
@@ -16,7 +17,19 @@ function MemberImage({ picture, size, square, round, className }) {
   const style = {
     maxHeight: square ? size + 'px' : 'auto',
   }
-  return <img className={classes} src={picture} {...sizes} style={style} />
+
+  const [loaded, setLoaded] = useState(false)
+
+  return (
+    <img
+      className={classes}
+      src={loaded ? picture : placeholder}
+      alt={placeholder}
+      onLoad={() => setLoaded(true)}
+      {...sizes}
+      style={style}
+    />
+  )
 }
 
 MemberImage.propTypes = {

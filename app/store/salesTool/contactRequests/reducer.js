@@ -1,12 +1,6 @@
-import {
-  GET_REQUEST,
-  UPDATE_REQUEST,
-  GET_SUCCESS,
-  UPDATE_SUCCESS,
-  ERROR_ACTION,
-} from './constants'
+import { GET_REQUEST, GET_SUCCESS, ERROR_ACTION } from './constants'
 
-import { LOADING, INITIAL, UPDATING, SUCCESS, ERROR } from '../constants'
+import { LOADING, INITIAL, SUCCESS, ERROR } from '../constants'
 
 // reducer
 const defaultState = {
@@ -32,23 +26,6 @@ const reducer = (state = defaultState, action) => {
         ...state,
         status: ERROR,
         error: action.payload,
-      }
-    case UPDATE_REQUEST:
-      return {
-        ...state,
-        status: UPDATING,
-      }
-    case UPDATE_SUCCESS:
-      return {
-        ...state,
-        status: SUCCESS,
-        data: {
-          ...state.data,
-          [action.payload.id]: {
-            ...state.data[action.payload.id],
-            ...action.payload,
-          },
-        },
       }
 
     default:

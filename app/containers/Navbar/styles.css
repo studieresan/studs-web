@@ -106,7 +106,7 @@
 
 @media (max-width: 800px) {
   .open.navbar {
-    background: var(--primary);
+    background-image: url(static/img_new/home/background.png);
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
     position: fixed;

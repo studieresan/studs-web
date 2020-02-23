@@ -6,20 +6,15 @@
   overflow-y: scroll;
   /* background: var(--secondary);
   color: white; */
-  transition: height 0.05s ease-out;
 }
 
 .close {
   display: none;
-  position: relative;
+  position: sticky;
   justify-content: flex-end;
-}
-
-.close > img {
-  position: absolute;
-  left: 0;
+  left: 15px;
+  top: 15px;
   width: 40px;
-  margin: 15px;
 }
 
 .public_event_menu > span {
@@ -72,6 +67,9 @@
 
   .active {
     color: white;
+  }
+  .public_event_menu > span:first-of-type {
+    margin-top: -25px;
   }
 
   .public_event_menu > span {

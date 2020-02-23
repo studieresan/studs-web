@@ -1,10 +1,4 @@
-import {
-  GET_REQUEST,
-  GET_SUCCESS,
-  ERROR_ACTION,
-  UPDATE_REQUEST,
-  UPDATE_SUCCESS,
-} from './constants'
+import { GET_REQUEST, GET_SUCCESS, ERROR_ACTION } from './constants'
 import { fetchContactRequests } from 'api'
 
 export const getRequest = () => ({
@@ -23,15 +17,6 @@ export const error = err => {
   }
 }
 
-export const updateRequest = () => ({
-  type: UPDATE_REQUEST,
-})
-
-export const updateSuccess = contactRequest => ({
-  type: UPDATE_SUCCESS,
-  payload: contactRequest,
-})
-
 export const loadContactRequests = () => dispatch => {
   dispatch(getRequest())
   fetchContactRequests()
@@ -42,12 +27,3 @@ export const loadContactRequests = () => dispatch => {
       dispatch(error('loading contact requests'))
     })
 }
-
-// export const updateCompany = (companyId, body) => dispatch => {
-//   dispatch(updateRequest())
-//   updateCompanyApi(companyId, body)
-//     .then(company => dispatch(updateSuccess(company)))
-//     .catch(() => {
-//       dispatch(error('updating company'))
-//     })
-// }

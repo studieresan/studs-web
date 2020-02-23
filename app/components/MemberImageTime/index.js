@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import MemberImage from 'components/MemberImage'
 import styles from './styles.css'
 import placeholder from 'static/img_new/profile-placeholder.png'
+import { timestampToDateTimeString } from '../../utils'
 
 const MemberImageTime = ({ picture, createdAt, name }) => {
   return (
@@ -16,12 +17,7 @@ const MemberImageTime = ({ picture, createdAt, name }) => {
       {name ? <div className={styles.name_text}>{name}</div> : null}
       {createdAt ? (
         <div className={styles.small_text}>
-          {new Date(createdAt).toLocaleDateString('sv') +
-            ' ' +
-            new Date(createdAt).toLocaleTimeString([], {
-              hour: '2-digit',
-              minute: '2-digit',
-            })}
+          {timestampToDateTimeString(createdAt, 'sv')}
         </div>
       ) : null}
     </div>

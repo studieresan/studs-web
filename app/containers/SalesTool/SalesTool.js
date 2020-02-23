@@ -209,6 +209,18 @@ class SalesTool extends Component {
         <div className={styles.sales_tool_title}>
           <h1>Sales tool</h1>
         </div>
+        <div className={styles.top_buttons}>
+          <Button
+            onClick={() => {
+              this.props.history.push({ pathname: '/empty' })
+              this.props.history.replace({
+                pathname: 'sales-tool/contact-requests',
+              })
+            }}
+          >
+            Kontaktförfrågningar
+          </Button>
+        </div>
         <div className={styles.filter}>
           <div className={styles.filter_input}>
             <label>Företag</label>

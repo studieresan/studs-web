@@ -87,6 +87,15 @@ export const prettyUserRole = userRole => {
   }
 }
 
+export const timestampToDateTimeString = (timestamp, format) => {
+  const date = new Date(timestamp)
+  return (
+    date.toLocaleDateString(format) +
+    ' ' +
+    date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  )
+}
+
 // Debounche Hook from https://usehooks.com/useDebounce/
 export const useDebounce = (value, delay) => {
   // State and setters for debounced value

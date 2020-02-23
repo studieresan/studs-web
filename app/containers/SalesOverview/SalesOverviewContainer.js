@@ -8,9 +8,7 @@ const mapStateToProps = rootState => {
   const users = rootState.getIn(['members', 'users']).toJS()
 
   const userMap = {}
-  users
-    .filter(u => u.userRole === 'sales_group')
-    .forEach(u => (userMap[u.realId] = u.firstName + ' ' + u.lastName))
+  users.forEach(u => (userMap[u.realId] = u.firstName + ' ' + u.lastName))
 
   return { companies, users: userMap }
 }

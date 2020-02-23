@@ -21,10 +21,6 @@ class ContactRequest extends Component {
     }
   }
 
-  componentWillReceiveProps(newProps) {}
-
-  checkForErrors = (props, newProps) => {}
-
   render() {
     return (
       <div className={styles.content}>

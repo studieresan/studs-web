@@ -129,7 +129,7 @@
   border-radius: 0;
   color: var(--secondary);
   text-transform: none;
-  box-shadow: 1px 7px 8px 0 rgba(0, 0, 0, 0.6);
+  box-shadow: 1px 6px 9px 0 rgba(40, 40, 40, 0.6);
   transition: all 0.2s ease-in-out;
   margin-bottom: 10px;
 }

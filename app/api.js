@@ -387,6 +387,7 @@ const uploadFile = (file, signedRequest, url) => {
 const COMPANY_FIELDS = `
   id,
   name,
+  amount,
   status {
     id
   },
@@ -458,7 +459,11 @@ export const updateCompany = (companyId, companyFields) => {
           k =>
             k +
             ': ' +
-            (companyFields[k] ? wrapInQuotes(companyFields[k]) : null) +
+            (companyFields[k]
+              ? k === 'amount'
+                ? companyFields[k]
+                : wrapInQuotes(companyFields[k])
+              : null) +
             '\n'
         )}
     }) {

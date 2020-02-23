@@ -11,6 +11,7 @@ import { FormattedMessage } from 'react-intl'
 import PublicEvent from 'components/PublicEvent'
 import PublicEventMenu from 'components/PublicEventMenu'
 import Footer from 'components/AboutAndEventFooter'
+import Spinner from 'components/Spinner'
 
 class PublicEvents extends React.Component {
   componentDidMount() {
@@ -30,10 +31,9 @@ class PublicEvents extends React.Component {
   }
 
   render() {
-    const { oldEvents, events } = this.props
+    const { oldEvents, events, saved } = this.props
 
     events.forEach(e => (e.companyName = e.company.name))
-
     return (
       <div>
         <div className={styles.events_title}>
@@ -41,21 +41,28 @@ class PublicEvents extends React.Component {
             <FormattedMessage {...messages.header} />
           </h1>
         </div>
-        <div className={styles.public_events}>
-          <PublicEventMenu events={events} oldEvents={oldEvents} />
-          <div className={styles.event_list}>
-            {events.map((e, idx) => [
-              <PublicEvent key={e.id} {...e} index={idx} />,
-              <div key={e.id + 'div'} className={styles.divider} />,
-            ])}
-            {oldEvents.map((e, idx) => [
-              <PublicEvent key={e.id} {...e} index={idx} />,
-              idx !== oldEvents.length - 1 && (
-                <div key={e.id + 'div'} className={styles.divider} />
-              ),
-            ])}
+        {!saved && <Spinner className={styles.spinner} />}
+        {saved && (
+          <div className={styles.public_events}>
+            <PublicEventMenu
+              events={events}
+              oldEvents={oldEvents}
+              saved={saved}
+            />
+            <div className={styles.event_list}>
+              {events.map((e, idx) => [
+                <PublicEvent key={e.id} {...e} index={idx} />,
+                <div key={e.id + 'div'} className={styles.divider} />,
+              ])}
+              {oldEvents.map((e, idx) => [
+                <PublicEvent key={e.id} {...e} index={idx} />,
+                idx !== oldEvents.length - 1 && (
+                  <div key={e.id + 'div'} className={styles.divider} />
+                ),
+              ])}
+            </div>
           </div>
-        </div>
+        )}
         <Footer />
       </div>
     )
@@ -72,6 +79,8 @@ function mapStateToProps(state) {
       .getIn(['events', 'items'])
       .toJS()
       .filter(e => e.published),
+    saved:
+      state.getIn(['events', 'saved']) || state.getIn(['oldEvents', 'saved']),
   }
 }
 
@@ -87,6 +96,7 @@ PublicEvents.propTypes = {
   oldEvents: PropTypes.array,
   getEvents: PropTypes.func.isRequired,
   events: PropTypes.array,
+  saved: PropTypes.bool,
   match: PropTypes.shape({
     params: PropTypes.shape({
       company: PropTypes.string,

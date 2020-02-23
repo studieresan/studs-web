@@ -45,6 +45,11 @@
   margin-bottom: 30px;
 }
 
+.spinner {
+  padding: 20px;
+  height: 70vh;
+}
+
 @media (max-width: 600px) {
   .public_events {
     flex-direction: column;

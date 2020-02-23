@@ -1,5 +1,5 @@
 .header {
-  height: 98vh;
+  height: 88vh;
   width: 100%;
   font-size: 18px;
   display: flex;
@@ -36,7 +36,7 @@
 }
 
 .header_text {
-  font-size: 300%;
+  font-size: 4.5vw;
   font-weight: 700;
   font-family: var(--body-font);
   flex: 0.5;
@@ -62,8 +62,8 @@
 
   .logoMobile {
     flex: 0.5 1 1;
-    width: auto;
-    height: 25%;
+    width: 70%;
+    height: auto;
     padding: 1%;
     margin-top: 1%;
     margin-bottom: 2%;
@@ -75,6 +75,7 @@
 
   .header_content {
     flex-direction: column;
+    padding-top: var(--header-height);
   }
 
   .header {
@@ -82,10 +83,14 @@
   }
 
   .header_text {
-    width: 100%;
-    text-align: center;
-    padding: 0 20px;
-    font-size: 200%;
+    width: 70%;
+    height: auto;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    flex: 0;
+    font-size: 9.2vw;
+    line-height: 1.1;
   }
 }
 

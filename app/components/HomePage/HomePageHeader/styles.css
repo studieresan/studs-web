@@ -94,6 +94,17 @@
   }
 }
 
+@media (max-width: 400px) {
+  .logoMobile {
+    width: 60%;
+  }
+
+  .header_text {
+    width: 60%;
+    font-size: 7.8vw;
+  }
+}
+
 /* iPhone-X landscape insets */
 @supports (padding: max(0%)) {
   .header {

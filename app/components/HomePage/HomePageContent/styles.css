@@ -19,19 +19,13 @@
 .card {
   background-color: var(--primary);
   padding: 20px;
-  margin-top: 250px;
-  margin-bottom: 50px;
+  margin-bottom: 25vh;
   box-shadow: #00000082 0px 9px 15px 3px;
   opacity: 0.9;
   display: flex;
   justify-content: center;
   position: relative;
   flex-wrap: wrap;
-}
-
-.card:nth-child(3) {
-  /* this first card no margin */
-  margin-top: 0;
 }
 
 .card:nth-child(odd) {

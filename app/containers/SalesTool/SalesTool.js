@@ -203,6 +203,15 @@ class SalesTool extends Component {
     }
   }
 
+  getSalesAmountForFilteredCompanies = () => {
+    return this.state.filteredCompanies
+      .reduce(
+        (acc, currentId) => acc + this.props.companies.data[currentId].amount,
+        0
+      )
+      .toLocaleString('sv')
+  }
+
   render() {
     return (
       <div className={styles.content}>
@@ -268,7 +277,9 @@ class SalesTool extends Component {
             <div>Laddar...</div>
           ) : (
             <div>
-              Visar <b>{this.state.filteredCompanies.length}</b> företag{' '}
+              Visar <b>{this.state.filteredCompanies.length}</b> företag med
+              inkomster på <b>{this.getSalesAmountForFilteredCompanies()}</b>{' '}
+              SEK
             </div>
           )}
         </div>

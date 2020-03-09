@@ -16,7 +16,7 @@ const PublicEvent = ({
     <div name={id} className={styles.publicEvent}>
       <div className={styles.header}>
         <h1 className={styles.companyName}>{companyName}</h1>
-        <h5 className={styles.date}>{moment(date).format('DD MMMM')}</h5>
+        <h5 className={styles.date}>{moment(date).format('DD MMMM YYYY')}</h5>
       </div>
       <div
         className={styles.content}

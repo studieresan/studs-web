@@ -218,7 +218,10 @@ class SalesTool extends Component {
       <div className={styles.content}>
         <div className={styles.sales_tool_title}>
           <h1>Sales tool</h1>
-          <YearPicker />
+          <YearPicker
+            selectedYear={this.props.selectedYear}
+            setStudsYear={year => this.props.setStudsYear(year)}
+          />
         </div>
         <div className={styles.top_buttons}>
           <Button
@@ -410,6 +413,8 @@ SalesTool.propTypes = {
   getUsers: PropTypes.func.isRequired,
   loadCompanies: PropTypes.func.isRequired,
   addCompany: PropTypes.func.isRequired,
+  selectedYear: PropTypes.number.isRequired,
+  setStudsYear: PropTypes.func.isRequired,
 }
 
 export default SalesTool

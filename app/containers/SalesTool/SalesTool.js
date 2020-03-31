@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MultiSelect from '@khanacademy/react-multi-select'
 import { HeaderSortButton } from 'components/HeaderSortButton'
+import { YearPicker } from 'components/YearPicker'
 import Button from 'components/Button'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
@@ -217,6 +218,7 @@ class SalesTool extends Component {
       <div className={styles.content}>
         <div className={styles.sales_tool_title}>
           <h1>Sales tool</h1>
+          <YearPicker />
         </div>
         <div className={styles.top_buttons}>
           <Button

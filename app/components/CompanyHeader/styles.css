@@ -2,16 +2,25 @@
   position: relative;
   color: white;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: var(--header-height);
-  height: 20vh;
+  height: 25vh;
   background-image: url(static/img_new/home/background.png);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
+}
+
+.header .company_header {
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
 }
 
 .header .header_text {
@@ -43,7 +52,6 @@
 
 .back_button {
   position: absolute;
-  top: var(--header-height);
   left: 0;
   color: white;
   cursor: pointer;

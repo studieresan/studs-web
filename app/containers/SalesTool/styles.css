@@ -8,7 +8,7 @@
 
 .sales_tool_title {
   padding-top: var(--header-height);
-  height: 20vh;
+  height: 30vh;
   background-image: url(static/img_new/home/background.png);
   background-attachment: fixed;
   background-position: center;
@@ -17,6 +17,7 @@
   width: 100%;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;

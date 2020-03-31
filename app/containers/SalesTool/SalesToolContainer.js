@@ -5,7 +5,11 @@ import { loadStatuses } from 'store/salesTool/statuses/actions'
 
 import { getUsers } from '../Members/actions'
 
-import { updateFilter, updateSorting } from 'store/salesTool/actions'
+import {
+  updateFilter,
+  updateSorting,
+  setStudsYear,
+} from 'store/salesTool/actions'
 
 const mapStateToProps = rootState => {
   const currentUser = rootState.getIn(['global', 'user']).toJS()
@@ -15,6 +19,7 @@ const mapStateToProps = rootState => {
   const statuses = rootState.getIn(['salesTool', 'statuses'])
   const filter = rootState.getIn(['salesTool', 'filter'])
   const sorting = rootState.getIn(['salesTool', 'sorting'])
+  const year = rootState.getIn(['salesTool', 'year'])
   const users = rootState.getIn(['members', 'users']).toJS()
 
   const userMap = {}
@@ -29,6 +34,7 @@ const mapStateToProps = rootState => {
     statuses,
     filter,
     sorting,
+    selectedYear: year,
     users: userMap,
   }
 }
@@ -41,6 +47,7 @@ const mapDispatchToProps = dispatch => {
     loadStatuses: () => dispatch(loadStatuses()),
     loadCompanies: () => dispatch(loadCompanies()),
     addCompany: name => dispatch(addCompany(name)),
+    setStudsYear: year => dispatch(setStudsYear(year)),
   }
 }
 

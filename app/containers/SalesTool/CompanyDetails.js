@@ -146,6 +146,8 @@ class CompanyDetails extends Component {
         <CompanyHeader
           name={company ? company.name : 'Laddar...'}
           updateName={newName => this.updateCompany({ name: newName })}
+          selectedYear={this.props.selectedYear}
+          setStudsYear={year => this.props.setStudsYear(year)}
           back={() =>
             this.props.history.push({ pathname: '/sales-tool/companies' })
           }
@@ -313,6 +315,8 @@ CompanyDetails.propTypes = {
   addComment: PropTypes.func.isRequired,
   deleteComment: PropTypes.func.isRequired,
   updateComment: PropTypes.func.isRequired,
+  selectedYear: PropTypes.number.isRequired,
+  setStudsYear: PropTypes.func.isRequired,
 }
 
 export default CompanyDetails

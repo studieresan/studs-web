@@ -17,6 +17,8 @@ import {
   updateComment,
 } from 'store/salesTool/comments/actions'
 
+import { setStudsYear } from 'store/salesTool/actions'
+
 import { getUsers } from 'containers/Members/actions'
 
 const mapStateToProps = rootState => {
@@ -25,6 +27,7 @@ const mapStateToProps = rootState => {
   const contacts = rootState.getIn(['salesTool', 'contacts'])
   const comments = rootState.getIn(['salesTool', 'comments'])
   const statuses = rootState.getIn(['salesTool', 'statuses'])
+  const year = rootState.getIn(['salesTool', 'year'])
   const users = rootState.getIn(['members', 'users']).toJS()
 
   const userMap = {}
@@ -38,6 +41,7 @@ const mapStateToProps = rootState => {
     comments,
     statuses,
     users: userMap,
+    selectedYear: year,
   }
 }
 
@@ -57,6 +61,7 @@ const mapDispatchToProps = dispatch => {
     deleteComment: (commentId, companyId) =>
       dispatch(deleteComment(commentId, companyId)),
     updateComment: (id, text) => dispatch(updateComment(id, text)),
+    setStudsYear: year => dispatch(setStudsYear(year)),
   }
 }
 

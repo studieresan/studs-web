@@ -56,7 +56,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(deleteContact(contactId, companyId)),
     addContact: (body, companyId) => dispatch(addContact(body, companyId)),
     loadContacts: companyId => dispatch(loadContacts(companyId)),
-    loadComments: companyId => dispatch(loadComments(companyId)),
+    loadComments: (companyId, studsYear) =>
+      dispatch(loadComments(companyId, studsYear)),
     addComment: (text, companyId) => dispatch(addComment(text, companyId)),
     deleteComment: (commentId, companyId) =>
       dispatch(deleteComment(commentId, companyId)),

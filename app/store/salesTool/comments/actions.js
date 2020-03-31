@@ -48,9 +48,9 @@ export const updateSuccess = comment => ({
 })
 
 // thunks
-export const loadComments = companyId => dispatch => {
+export const loadComments = (companyId, studsYear) => dispatch => {
   dispatch(getRequest())
-  fetchComments(companyId)
+  fetchComments(companyId, studsYear)
     .then(comments => {
       const commentsStateMap = {}
       comments.forEach(c => (commentsStateMap[c.id] = c))

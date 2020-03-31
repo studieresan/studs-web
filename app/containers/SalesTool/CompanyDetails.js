@@ -43,6 +43,8 @@ class CompanyDetails extends Component {
   }
 
   componentWillReceiveProps(newProps) {
+    const newYearSet = newProps.selectedYear !== this.props.selectedYear
+
     this.checkForErrors(this.props, newProps)
     if (isSuccess(newProps.companies)) {
       const company = newProps.companies.data[newProps.match.params.id]
@@ -54,10 +56,11 @@ class CompanyDetails extends Component {
       }
 
       if (
-        !company.comments &&
-        (isInitial(newProps.comments) || isSuccess(newProps.comments))
+        (!company.comments &&
+          (isInitial(newProps.comments) || isSuccess(newProps.comments))) ||
+        newYearSet
       ) {
-        newProps.loadComments(newProps.match.params.id)
+        newProps.loadComments(newProps.match.params.id, newProps.selectedYear)
       }
     }
   }

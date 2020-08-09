@@ -544,9 +544,9 @@ const COMMENT_FIELDS = `
   createdAt,
   edited,`
 
-export const fetchComments = (companyId, studsYear) => {
+export const fetchComments = companyId => {
   const query = `{
-    comments(companyId: "${companyId}", studsYear: ${studsYear}) {
+    comments(companyId: "${companyId}") {
         ${COMMENT_FIELDS}
     }
   }`

@@ -136,6 +136,43 @@ class CompanyDetails extends Component {
     }
   }
 
+  renderComments = commentsIds => {
+    const comments = commentsIds.map(
+      commentId => this.props.comments.data[commentId]
+    )
+    const yearToComments = {} //Hashmap from year to list of comments from that year
+    comments.forEach(comment => {
+      const yearOfComment = comment.studsYear
+      if (yearToComments[yearOfComment]) {
+        yearToComments[yearOfComment].push(comment)
+      } else {
+        yearToComments[yearOfComment] = [comment]
+      }
+    })
+
+    return Object.keys(yearToComments)
+      .sort()
+      .reverse()
+      .map(year => (
+        <div key={year}>
+          <h3>Studs {year}</h3>
+
+          {yearToComments[year].map(comment => (
+            <CommentCard
+              key={comment.id}
+              canEdit={this.props.currentUser.id === comment.user.id}
+              comment={comment}
+              userName={this.props.users[comment.user.id]}
+              updateComment={text => this.props.updateComment(comment.id, text)}
+              deleteComment={() =>
+                this.props.deleteComment(comment.id, this.props.match.params.id)
+              }
+            />
+          ))}
+        </div>
+      ))
+  }
+
   render() {
     let company = null
     if (
@@ -262,26 +299,7 @@ class CompanyDetails extends Component {
               {isSuccess(this.props.comments) ? (
                 company &&
                 company.comments &&
-                company.comments.map(commentId => {
-                  const comment = this.props.comments.data[commentId]
-                  return (
-                    <CommentCard
-                      key={comment.id}
-                      canEdit={this.props.currentUser.id === comment.user.id}
-                      comment={comment}
-                      userName={this.props.users[comment.user.id]}
-                      updateComment={text =>
-                        this.props.updateComment(comment.id, text)
-                      }
-                      deleteComment={() =>
-                        this.props.deleteComment(
-                          comment.id,
-                          this.props.match.params.id
-                        )
-                      }
-                    />
-                  )
-                })
+                this.renderComments(company.comments)
               ) : (
                 <div>Laddar...</div>
               )}

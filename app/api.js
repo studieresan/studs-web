@@ -88,6 +88,7 @@ const USER_PROFILE_FIELDS = `
   allergies
   master
   userRole
+  studsYear
   linkedIn
   github
   picture
@@ -538,7 +539,8 @@ const COMMENT_FIELDS = `
   user {
     id,
     profile {
-        picture
+        picture,
+        studsYear
     }
   },
   createdAt,

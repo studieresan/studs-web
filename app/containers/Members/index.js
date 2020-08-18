@@ -11,6 +11,7 @@ import PropTypes from 'prop-types'
 import sortBy from 'lodash/sortBy'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
+import { Link } from 'react-router-dom'
 
 export class Members extends React.Component {
   componentDidMount() {
@@ -61,9 +62,16 @@ export class Members extends React.Component {
     return (
       <div className={styles.members}>
         <div className={styles.members_title}>
+          <div />
           <h1>
             <FormattedMessage {...messages.header} />
           </h1>
+
+          <div className={styles.add_members_button}>
+            <Link to='/create-user'>
+              <h1>+</h1>
+            </Link>
+          </div>
         </div>
         <MasterDetail
           master={this.renderMembersList(users)}

@@ -1,6 +1,11 @@
 .members {
 }
 
+.add_members_button:hover {
+  opacity: 0.8;
+  transition: 0.5;
+}
+
 .members_title {
   padding-top: var(--header-height);
   height: 20vh;
@@ -11,9 +16,11 @@
   background-size: cover;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   color: white;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 @media print {

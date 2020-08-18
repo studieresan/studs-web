@@ -1,5 +1,25 @@
 [
   {
+    "id": "app.containers.CreateUser.title",
+    "defaultMessage": "Create user"
+  },
+  {
+    "id": "app.containers.CreateUser.role",
+    "defaultMessage": "Role"
+  },
+  {
+    "id": "app.containers.CreateUser.firstName",
+    "defaultMessage": "First name"
+  },
+  {
+    "id": "app.containers.CreateUser.lastName",
+    "defaultMessage": "Last name"
+  },
+  {
+    "id": "app.containers.CreateUser.createButton",
+    "defaultMessage": "Create new user"
+  },
+  {
     "id": "app.components.HomePage.intro.headline",
     "message": "What is Studs?"
   },

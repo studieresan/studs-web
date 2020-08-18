@@ -1,5 +1,25 @@
 [
   {
+    "id": "app.containers.CreateUser.title",
+    "defaultMessage": "Skapa användare"
+  },
+  {
+    "id": "app.containers.CreateUser.role",
+    "defaultMessage": "Roll"
+  },
+  {
+    "id": "app.containers.CreateUser.firstName",
+    "defaultMessage": "Förnamn"
+  },
+  {
+    "id": "app.containers.CreateUser.lastName",
+    "defaultMessage": "Efternamn"
+  },
+  {
+    "id": "app.containers.CreateUser.createButton",
+    "defaultMessage": "Skapa ny användare"
+  },
+  {
     "id": "app.components.HomePage.intro.headline",
     "message": "Vad är Studs?"
   },

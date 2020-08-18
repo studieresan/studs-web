@@ -17,7 +17,9 @@ export default class EventDetail extends Component {
       return null
     }
 
-    const responsibleUser = users.find(u => u.realId === event.responsible.id)
+    const responsibleUser = users.find(
+      u => event.responsible && u.realId === event.responsible.id
+    )
     const responsibleName = responsibleUser
       ? responsibleUser.firstName + ' ' + responsibleUser.lastName
       : ''

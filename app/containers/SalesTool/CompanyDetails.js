@@ -92,7 +92,8 @@ class CompanyDetails extends Component {
   createComment = text =>
     (text ||
       confirm(
-        'You really want to add an empty comment?\nDo you want to look like a fool?'
+        'You really want to add an empty comment?\n' +
+          'Do you want to look like a fool?'
       )) &&
     this.props.addComment(text, this.props.match.params.id)
 
@@ -138,7 +139,8 @@ class CompanyDetails extends Component {
     if (
       nonEmpty ||
       confirm(
-        'Why would you remove all info instead of deleting it?\nAre you sure you want to do this?'
+        'Why would you remove all info instead of deleting it?\n' +
+          'Are you sure you want to do this?'
       )
     ) {
       this.props.updateContact(id, body)

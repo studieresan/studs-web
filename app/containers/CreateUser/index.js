@@ -74,7 +74,7 @@ class CreateUser extends React.Component {
   }
 
   render() {
-    const { errorMsg, successMsg, selectedMemberType } = this.state
+    const { errorMsg, successMsg } = this.state
     const errorIsVisible = errorMsg && errorMsg !== ''
     const successIsVisible = successMsg && successMsg !== '' && !errorIsVisible
 

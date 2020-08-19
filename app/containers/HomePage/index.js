@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../Members/actions'
 
-import { HomePageHeader, HomePageContent } from 'components/HomePage'
+import { HomePageContent } from 'components/HomePage'
 
 import Footer from 'components/HomeFooter'
 

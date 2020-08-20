@@ -5,7 +5,8 @@ import classnames from 'classnames'
 import placeholder from 'static/img/profile-placeholder.png'
 
 function MemberImage({ picture, size, square, round, className }) {
-  if (!picture) return null
+  //If no picture, set picture as placeholder
+  if (!picture) picture = placeholder
   const sizes = {
     width: size,
     height: 'auto',

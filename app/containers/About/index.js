@@ -10,30 +10,13 @@ import messages from './messages'
 import Footer from 'components/AboutAndEventFooter'
 import MemberImage from 'components/MemberImage'
 import { prettyUserRole } from 'utils'
+import placeholder from 'static/img/profile-placeholder.png'
 
 const StudsMemberInfo = user => {
   const size = Math.max(Math.floor((window.innerWidth * 0.8) / 5) - 40, 100)
   return (
     <div key={user.firstName + user.lastName} className={styles.member}>
-      {user.alternativePicture ? (
-        <MemberImage
-          picture={user.alternativePicture}
-          size={size}
-          square
-          round
-        />
-      ) : (
-        <div
-          className={styles.member}
-          style={{
-            width: size,
-            height: size,
-            justifyContent: 'center',
-            border: '0.5px solid grey',
-            borderRadius: size,
-          }}
-        />
-      )}
+      <MemberImage picture={user.alternativePicture} size={size} square round />
       <h3
         style={{
           width: size,

@@ -44,11 +44,7 @@ class PublicEvents extends React.Component {
         {!saved && <Spinner className={styles.spinner} />}
         {saved && (
           <div className={styles.public_events}>
-            <PublicEventMenu
-              events={events}
-              oldEvents={oldEvents}
-              saved={saved}
-            />
+            <PublicEventMenu events={events} oldEvents={oldEvents} />
             <div className={styles.event_list}>
               {events.map((e, idx) => [
                 <PublicEvent key={e.id} {...e} index={idx} />,

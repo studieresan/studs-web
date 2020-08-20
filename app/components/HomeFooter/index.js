@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import { Facebook, Instagram, Linkedin } from 'react-feather'
 import MemberImage from 'components/MemberImage'
-import Josefin from 'static/img/people/leader2.jpg'
-import Helena from 'static/img/people/leader1.jpg'
+import leader1 from 'static/img/people/leader1.jpg'
+import leader2 from 'static/img/people/leader2.jpg'
 import Spotify from 'static/img/company_logos/spotify.png'
 import Kry from 'static/img/company_logos/kry.svg'
 import Cygni from 'static/img/company_logos/cygni.png'
@@ -73,13 +73,13 @@ const SubFooter = () => (
 )
 
 const Copyright = () => (
-  <p className={styles.copyright}>&copy; 2019-2020 Studs</p>
+  <p className={styles.copyright}>&copy; 2020-2021 Studs</p>
 )
 
 const Images = () => (
   <div className={styles.pictures}>
-    <Image picture={Helena} />
-    <Image picture={Josefin} />
+    <Image picture={leader1} />
+    <Image picture={leader2} />
   </div>
 )
 
@@ -91,10 +91,10 @@ const Contact = () => (
           <FormattedMessage {...messages.projectManagerHeader} />
         </h5>
         <p>
-          Helena Alinder <a href='mailto:helena@studs.se'>helena@studs.se</a>
+          Albin Winkelmann <a href='mailto:albin@studs.se'>albin@studs.se</a>
         </p>
         <p>
-          Josefin Nilsson <a href='mailto:josefin@studs.se'>josefin@studs.se</a>
+          Axel Lindeberg <a href='mailto:axel@studs.se'>axel@studs.se</a>
         </p>
         <p>
           <FormattedMessage {...messages.projectManagerTitle} />

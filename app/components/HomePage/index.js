@@ -1,4 +1,4 @@
-import HomePageAbout from './HomePageAboutNotUsed'
+import HomePageAbout from './HomePageAbout'
 import HomePageHeader from './HomePageHeader'
 import HomePageContent from './HomePageContent'
 import HomePagePitch from './HomePagePitch'

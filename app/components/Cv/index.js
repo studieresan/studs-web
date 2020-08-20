@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import * as actions from 'containers/App/actions'
 import styles from './styles.css'
 import CvHeader from '../CvHeader'
-import dot from 'static/img_new/gold-dot.svg'
+import dot from 'static/img/gold-dot.svg'
 
 function renderItem(item, i) {
   if (!item) return null

@@ -87,7 +87,7 @@
 }
 
 .collapsed {
-  content: url(static/img_new/icons/icon_menu_2.svg);
+  content: url(static/img/icons/icon_menu_2.svg);
   width: 60px;
   height: 60px;
   border-radius: 100%;

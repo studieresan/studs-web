@@ -9,7 +9,7 @@ import MemberImage from 'components/MemberImage'
 import messages from './messages'
 import styles from './styles.css'
 import { prettyUserRole } from 'utils'
-import placeholder from 'static/img_new/profile-placeholder.png'
+import placeholder from 'static/img/profile-placeholder.png'
 
 class HomePageAbout extends Component {
   constructor(props) {

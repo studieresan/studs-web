@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { FormattedMessage } from 'react-intl'
-import LogoPng from 'static/img_new/logo/logotype-white.png'
+import LogoPng from 'static/img/logo/logotype-white.png'
 import navigationMessages from 'containers/Navbar/messages'
 import styles from './styles.css'
 

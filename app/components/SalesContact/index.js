@@ -4,7 +4,7 @@ import styles from './styles.css'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import MemberImage from 'components/MemberImage'
-import Cristian from 'static/img_new/people/cristian.jpg'
+import sale from 'static/img/people/sale.jpg'
 
 const CONTACT_NAME = 'Cristian Osorio Bretti'
 const CONTACT_PHONE_NUMBER = '+46 70-782 65 60'
@@ -21,7 +21,7 @@ const SalesContact = ({ className }) => (
       </p>
     </div>
     <div className={styles.contactInfo}>
-      <Image picture={Cristian} round />
+      <Image picture={sale} round />
       <div>
         <b>{CONTACT_NAME}</b>
         <br />

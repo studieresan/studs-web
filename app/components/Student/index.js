@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import styles from './styles.css'
 import Section from 'components/Section'
-import Carl from 'static/img_new/people/carl.jpg'
-import Christine from 'static/img_new/people/christine.jpg'
-import Marko from 'static/img_new/people/marko.jpg'
-import Klara from 'static/img_new/people/klara.jpg'
-import Cristian from 'static/img_new/people/cristian.jpg'
-import Samuel from 'static/img_new/people/samuel.jpg'
+import travel from 'static/img/people/travel.jpg'
+import event from 'static/img/people/event.jpg'
+import it from 'static/img/people/it.jpg'
+import finance from 'static/img/people/finance.jpg'
+import sale from 'static/img/people/sale.jpg'
+import info from 'static/img/people/info.jpg'
 import MemberImage from 'components/MemberImage'
 import PropTypes from 'prop-types'
 import Button from 'components/Button'
@@ -22,7 +22,7 @@ const Image = ({ picture }) => (
   />
 )
 
-export class StudentComponent extends Component {
+export default class StudentComponent extends Component {
   render() {
     return (
       <div className={styles.container}>
@@ -44,7 +44,7 @@ export class StudentComponent extends Component {
           <h2>Ekonomigruppen</h2>
           <div className={styles.group}>
             <div className={styles.leader}>
-              <Image picture={Klara} round />
+              <Image picture={finance} round />
               <h3>Klara Eserstam</h3>
               <h5>klara@studs.se</h5>
             </div>
@@ -65,7 +65,7 @@ export class StudentComponent extends Component {
           <h2>Eventgruppen</h2>
           <div className={styles.group}>
             <div className={styles.leader}>
-              <Image picture={Christine} round />
+              <Image picture={event} round />
               <h3>Christine Rosquist</h3>
               <h5>christine@studs.se</h5>
             </div>
@@ -88,7 +88,7 @@ export class StudentComponent extends Component {
           <h2>Informationsgruppen</h2>
           <div className={styles.group}>
             <div className={styles.leader}>
-              <Image picture={Samuel} round />
+              <Image picture={info} round />
               <h3>Samuel Hertzberg</h3>
               <h5>samuel@studs.se</h5>
             </div>
@@ -113,7 +113,7 @@ export class StudentComponent extends Component {
           <h2>IT-gruppen</h2>
           <div className={styles.group}>
             <div className={styles.leader}>
-              <Image picture={Marko} round />
+              <Image picture={it} round />
               <h3>Marko Lazic</h3>
               <h5>marko@studs.se</h5>
             </div>
@@ -135,7 +135,7 @@ export class StudentComponent extends Component {
           <h2>Resegruppen</h2>
           <div className={styles.group}>
             <div className={styles.leader}>
-              <Image picture={Carl} round />
+              <Image picture={travel} round />
               <h3>Carl Nordling</h3>
               <h5>carl@studs.se</h5>
             </div>
@@ -160,7 +160,7 @@ export class StudentComponent extends Component {
           <h2>Säljgruppen</h2>
           <div className={styles.group}>
             <div className={styles.leader}>
-              <Image picture={Cristian} round />
+              <Image picture={sale} round />
               <h3>Cristian Osorio Bretti</h3>
               <h5>cristian@studs.se</h5>
             </div>

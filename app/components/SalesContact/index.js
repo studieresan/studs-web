@@ -6,9 +6,9 @@ import messages from './messages'
 import MemberImage from 'components/MemberImage'
 import sale from 'static/img/people/sale.jpg'
 
-const CONTACT_NAME = 'Cristian Osorio Bretti'
-const CONTACT_PHONE_NUMBER = '+46 70-782 65 60'
-const CONTACT_EMAIL = 'cristian@studs.se'
+const CONTACT_NAME = 'Andreas Wallström'
+const CONTACT_PHONE_NUMBER = '+46 70-placeholder'
+const CONTACT_EMAIL = 'awallst@kth.se'
 
 const SalesContact = ({ className }) => (
   <div className={styles.contact + ' ' + className}>

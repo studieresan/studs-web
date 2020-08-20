@@ -1,9 +1,25 @@
+.title {
+  padding-top: var(--header-height);
+  height: 30vh;
+  background-image: url(static/img/home/background.png);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 100%;
+}
+
 .container {
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: center;
-  margin: 2%;
+  /* margin: 2%; */
   color: rgb(0, 0, 0);
 }
 
@@ -22,6 +38,10 @@
   width: 50%;
   padding-top: 20px;
   border-bottom: 1px solid var(--gold);
+}
+
+#last_group_container:after {
+  border-bottom: none;
 }
 
 h1 {

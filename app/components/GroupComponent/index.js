@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styles from './styles.css'
+import messages from './messages.js'
 import travel from 'static/img/people/travel.jpg'
 import event from 'static/img/people/event.jpg'
 import it from 'static/img/people/it.jpg'
@@ -8,6 +9,7 @@ import sale from 'static/img/people/sale.jpg'
 import info from 'static/img/people/info.jpg'
 import MemberImage from 'components/MemberImage'
 import PropTypes from 'prop-types'
+import { FormattedMessage } from 'react-intl'
 
 const Image = ({ picture }) => (
   <MemberImage
@@ -23,7 +25,11 @@ export default class GroupComponent extends Component {
   render() {
     return (
       <div className={styles.container}>
-        <h1>Grupperna</h1>
+        <div className={styles.title}>
+          <h1>
+            <FormattedMessage {...messages.header} />
+          </h1>
+        </div>
         <div className={styles.intro}>
           <p>
             Studs består av sex olika grupper med varsitt arbetsområde och
@@ -153,7 +159,10 @@ export default class GroupComponent extends Component {
           </div>
         </div>
 
-        <div className={styles.group_container}>
+        <div
+          className={styles.group_container}
+          id={styles.last_group_container}
+        >
           <h2>Säljgruppen</h2>
           <div className={styles.group}>
             <div className={styles.leader}>

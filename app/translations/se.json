@@ -402,5 +402,9 @@
   {
     "id": "app.components.PublicEvents.menu.previous",
     "message": "Tidigare Evenemang"
+  },
+  {
+    "id": "app.components.GroupComponent.header",
+    "message": "Möt grupperna!"
   }
 ]

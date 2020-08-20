@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styles from './styles.css'
-import Section from 'components/Section'
 import travel from 'static/img/people/travel.jpg'
 import event from 'static/img/people/event.jpg'
 import it from 'static/img/people/it.jpg'
@@ -9,8 +8,6 @@ import sale from 'static/img/people/sale.jpg'
 import info from 'static/img/people/info.jpg'
 import MemberImage from 'components/MemberImage'
 import PropTypes from 'prop-types'
-import Button from 'components/Button'
-import { Link } from 'react-router-dom'
 
 const Image = ({ picture }) => (
   <MemberImage
@@ -22,7 +19,7 @@ const Image = ({ picture }) => (
   />
 )
 
-export default class StudentComponent extends Component {
+export default class GroupComponent extends Component {
   render() {
     return (
       <div className={styles.container}>
@@ -45,8 +42,8 @@ export default class StudentComponent extends Component {
           <div className={styles.group}>
             <div className={styles.leader}>
               <Image picture={finance} round />
-              <h3>Klara Eserstam</h3>
-              <h5>klara@studs.se</h5>
+              <h3>Bella Tapper</h3>
+              <h5>itapper@kth.se</h5>
             </div>
             <div className={styles.info}>
               <p>
@@ -55,7 +52,7 @@ export default class StudentComponent extends Component {
                 den efterföljs. Gruppen sköter även all bokföring och
                 tillgodoser de andra gruppernas ekonomiska behov.
                 <br />
-                Har du funderingar? Kontakta Klara!
+                Har du funderingar? Kontakta Bella!
               </p>
             </div>
           </div>
@@ -66,8 +63,8 @@ export default class StudentComponent extends Component {
           <div className={styles.group}>
             <div className={styles.leader}>
               <Image picture={event} round />
-              <h3>Christine Rosquist</h3>
-              <h5>christine@studs.se</h5>
+              <h3>Lisa Tran</h3>
+              <h5>lisatpriv@gmail.com</h5>
             </div>
             <div className={styles.info}>
               <p>
@@ -78,7 +75,7 @@ export default class StudentComponent extends Component {
                 att visa sina bästa sidor och arbetet är därför kreativt då
                 företagen skiljer sig mycket och kräver olika lösningar.
                 <br />
-                Har du funderingar? Kontakta Christine!
+                Har du funderingar? Kontakta Lisa!
               </p>
             </div>
           </div>
@@ -89,8 +86,8 @@ export default class StudentComponent extends Component {
           <div className={styles.group}>
             <div className={styles.leader}>
               <Image picture={info} round />
-              <h3>Samuel Hertzberg</h3>
-              <h5>samuel@studs.se</h5>
+              <h3>Per Fahlander</h3>
+              <h5>per.fahlander@gmail.com</h5>
             </div>
             <div className={styles.info}>
               <p>
@@ -103,7 +100,7 @@ export default class StudentComponent extends Component {
                 skapar den grafiska profilen och är ansvariga webb-, app- och
                 UX-design. De ansvar också för rapportens layout.
                 <br />
-                Har du funderingar? Kontakta Samuel!
+                Har du funderingar? Kontakta Per!
               </p>
             </div>
           </div>
@@ -114,18 +111,18 @@ export default class StudentComponent extends Component {
           <div className={styles.group}>
             <div className={styles.leader}>
               <Image picture={it} round />
-              <h3>Marko Lazic</h3>
-              <h5>marko@studs.se</h5>
+              <h3>Glenn Olsson</h3>
+              <h5>glenn@studs.se</h5>
             </div>
             <div className={styles.info}>
               <p>
-                IT-gruppen ansvarar för Studs webbsida och de interna
+                IT-gruppen ansvarar för Studs webbsida, backend och de interna
                 mobilapplikationerna som finns för både Android och iOS. Du bör
                 ha ett intresse för programmering och mjukvaruutveckling samt
                 viljan att lära dig nya saker. Det är ett plus om du har
                 tidigare erfarenhet, men det är inget krav.
                 <br />
-                Har du funderingar? Kontakta Marko!
+                Har du funderingar? Kontakta Glenn!
               </p>
             </div>
           </div>
@@ -136,8 +133,8 @@ export default class StudentComponent extends Component {
           <div className={styles.group}>
             <div className={styles.leader}>
               <Image picture={travel} round />
-              <h3>Carl Nordling</h3>
-              <h5>carl@studs.se</h5>
+              <h3>Louise Hellberg</h3>
+              <h5>thebestloj@gmail.com</h5>
             </div>
             <div className={styles.info}>
               <p>
@@ -150,7 +147,7 @@ export default class StudentComponent extends Component {
                 resan, ser till att alla har det bra och hanterar oförutsägbara
                 situationer.
                 <br />
-                Har du funderingar? Kontakta Carl!
+                Har du funderingar? Kontakta Lousie!
               </p>
             </div>
           </div>
@@ -161,8 +158,8 @@ export default class StudentComponent extends Component {
           <div className={styles.group}>
             <div className={styles.leader}>
               <Image picture={sale} round />
-              <h3>Cristian Osorio Bretti</h3>
-              <h5>cristian@studs.se</h5>
+              <h3>Andreas Wallström</h3>
+              <h5>awallst@kth.se</h5>
             </div>
             <div className={styles.info}>
               <p>
@@ -173,7 +170,7 @@ export default class StudentComponent extends Component {
                 grupper, framförallt eventgruppen som tar över när ett event har
                 blivit bokat.
                 <br />
-                Har du funderingar? Kontakta Cristian!
+                Har du funderingar? Kontakta Andreas!
               </p>
             </div>
           </div>

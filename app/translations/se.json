@@ -220,6 +220,10 @@
     "message": "Event"
   },
   {
+    "id": "app.containers.Navbar.groups",
+    "defaultMessage": "Grupperna"
+  },
+  {
     "id": "app.containers.Navbar.pastEvents",
     "message": "Tidigare event"
   },

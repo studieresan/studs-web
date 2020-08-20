@@ -20,7 +20,7 @@ import PublicEvents from 'containers/PublicEvents'
 import SalesTool from 'containers/SalesTool/SalesToolContainer'
 import CompanyDetails from 'containers/SalesTool/CompanyDetailsContainer'
 import ContactRequests from 'containers/ContactRequests/ContactRequestsContainer'
-import StudentComponent from 'components/Student'
+import StudentComponent from 'containers/Group'
 
 class StudsRouter extends Component {
   render() {

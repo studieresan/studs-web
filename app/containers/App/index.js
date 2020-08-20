@@ -10,16 +10,27 @@ import ScrollContainer from 'containers/ScrollContainer'
 import * as actions from './actions'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      loggedIn: this.props.loggedIn,
+    }
+    if (props.loggedIn) {
+      props.getUser()
+    }
+  }
+
   componentDidMount() {
-    if (this.props.loggedIn) {
+    if (this.state.loggedIn) {
       this.props.getUser()
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.loggedIn && !this.props.loggedIn) {
-      this.props.getUser()
+  static getDerivedStateFromProps(props, state) {
+    if (props.loggedIn && !state.loggedIn) {
+      props.getUser()
     }
+    return null
   }
 
   render() {

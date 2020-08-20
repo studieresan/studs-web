@@ -21,16 +21,18 @@ class HomePageAbout extends Component {
   componentDidMount() {
     this.props.getUsers()
   }
-  componentWillReceiveProps(nextProps) {
-    if (this.state.user && this.state.user.firstName) {
-      return
+
+  static getDerivedStateFromProps(props, state) {
+    if (state.user && state.user.firstName) {
+      return null
     }
-    const { users } = nextProps
+    const { users } = props
     const user = users[Math.floor(Math.random() * users.length)]
-    this.setState({
+    return {
       user,
-    })
+    }
   }
+
   render() {
     const { user } = this.state
     if (!user || !Object.keys(user).length) return null

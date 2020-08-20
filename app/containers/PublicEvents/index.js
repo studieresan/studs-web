@@ -10,7 +10,7 @@ import messages from './messages'
 import { FormattedMessage } from 'react-intl'
 import PublicEvent from 'components/PublicEvent'
 import PublicEventMenu from 'components/PublicEventMenu'
-import Footer from 'components/AboutAndEventFooter'
+import Footer from 'components/Footer'
 import Spinner from 'components/Spinner'
 
 class PublicEvents extends React.Component {

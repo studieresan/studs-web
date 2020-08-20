@@ -16,7 +16,6 @@ import messages from './messages'
 import SalesContact from 'components/SalesContact'
 
 function Footer({ showSalesContact, showCollaborators, hasBackground }) {
-  console.log('hasbackground ? ', hasBackground ? 'yes' : 'no')
   return (
     <div>
       {showSalesContact && <SalesContact />}

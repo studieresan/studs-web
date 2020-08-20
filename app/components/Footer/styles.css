@@ -119,7 +119,7 @@
 }
 
 .navigationColorInverted a:hover {
-  color: white;
+  border-bottom: 2px solid white;
 }
 
 .social svg {

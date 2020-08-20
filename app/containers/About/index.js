@@ -7,7 +7,7 @@ import sortBy from 'lodash/sortBy'
 import * as actions from 'containers/Members/actions'
 import styles from './styles.css'
 import messages from './messages'
-import Footer from 'components/AboutAndEventFooter'
+import Footer from 'components/Footer'
 import MemberImage from 'components/MemberImage'
 import { prettyUserRole } from 'utils'
 
@@ -43,7 +43,7 @@ class About extends Component {
           </h1>
         </div>
         <div className={styles.about}>{users.map(u => StudsMemberInfo(u))}</div>
-        <Footer />
+        <Footer hasBackground />
       </div>
     )
   }

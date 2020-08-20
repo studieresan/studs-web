@@ -6,7 +6,7 @@ import * as actions from '../Members/actions'
 
 import { HomePageContent, HomePageAbout } from 'components/HomePage'
 
-import Footer from 'components/HomeFooter'
+import Footer from 'components/Footer'
 
 export class HomePage extends Component {
   render() {
@@ -14,7 +14,7 @@ export class HomePage extends Component {
       <div>
         <HomePageContent />
         <HomePageAbout />
-        <Footer />
+        <Footer showCollaborators hasBackground={false} />
       </div>
     )
   }

@@ -10,12 +10,12 @@ import styles from './styles.css'
 //TODO: When logo exists, replace text of Studs21 with the mobile and desktop
 //logos that are commented out below
 
-const Menu = ({ loggedIn }) => (
+const Menu = ({ loggedIn, hasBackground }) => (
   <div className={styles.menu}>
     <h1
       className={styles.logoDesktop}
       style={{
-        color: 'black',
+        color: hasBackground ? 'white' : 'black',
         textAlign: 'center',
       }}
     >
@@ -23,7 +23,13 @@ const Menu = ({ loggedIn }) => (
     </h1>
     {/* <img src={LogoPng} className={styles.logoDesktop} />
     <img src={LogoPng} className={styles.logoMobile} /> */}
-    <nav className={styles.navigation}>
+    <nav
+      className={
+        styles.navigation +
+        ' ' +
+        (hasBackground ? styles.navigationColorInverted : '')
+      }
+    >
       <MenuItem to='/about'>
         <FormattedMessage {...navigationMessages.about} />
       </MenuItem>
@@ -47,6 +53,7 @@ function mapStateToProps(state) {
 
 Menu.propTypes = {
   loggedIn: PropTypes.bool,
+  hasBackground: PropTypes.bool,
 }
 
 const MenuItem = ({ to, children }) => (

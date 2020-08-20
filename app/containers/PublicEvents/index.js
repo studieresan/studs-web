@@ -63,7 +63,7 @@ class PublicEvents extends React.Component {
             </div>
           </div>
         )}
-        <Footer />
+        <Footer hasBackground />
       </div>
     )
   }

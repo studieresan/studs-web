@@ -15,18 +15,23 @@ import styles from './styles.css'
 import messages from './messages'
 import SalesContact from 'components/SalesContact'
 
-function Footer({ showSalesContact }) {
+function Footer({ showSalesContact, showCollaborators, hasBackground }) {
+  console.log('hasbackground ? ', hasBackground ? 'yes' : 'no')
   return (
     <div>
       {showSalesContact && <SalesContact />}
-      <div className={styles.footer}>
+      <div
+        className={
+          styles.footer + ' ' + (hasBackground ? styles.footerBackground : '')
+        }
+      >
         <div className={styles.content}>
-          <Menu />
+          <Menu hasBackground={hasBackground} />
           <Images />
-          <Contact />
+          <Contact hasBackground={hasBackground} />
         </div>
-        <Collaborations />
-        <SubFooter />
+        {showCollaborators && <Collaborations />}
+        <SubFooter hasBackground={hasBackground} />
       </div>
     </div>
   )
@@ -34,10 +39,16 @@ function Footer({ showSalesContact }) {
 
 Footer.propTypes = {
   showSalesContact: PropTypes.bool,
+  showCollaborators: PropTypes.bool,
+  hasBackground: PropTypes.bool,
 }
 
-const Social = () => (
-  <div className={styles.social}>
+const Social = ({ hasBackground }) => (
+  <div
+    className={
+      styles.social + ' ' + (hasBackground ? styles.socialColorInverted : '')
+    }
+  >
     <a href='http://facebook.com/studskth'>
       <Facebook color='#3b5998' size={24} />
     </a>
@@ -49,6 +60,10 @@ const Social = () => (
     </a>
   </div>
 )
+
+Social.propTypes = {
+  hasBackground: PropTypes.bool,
+}
 
 const Collaborations = () => (
   <div className={styles.collaborations}>
@@ -65,16 +80,32 @@ const Collaborations = () => (
   </div>
 )
 
-const SubFooter = () => (
+const SubFooter = ({ hasBackground }) => (
   <div className={styles.subfooter}>
-    <Copyright />
-    <Social />
+    <Copyright hasBackground={hasBackground} />
+    <Social hasBackground={hasBackground} />
   </div>
 )
 
-const Copyright = () => (
-  <p className={styles.copyright}>&copy; 2020-2021 Studs</p>
+SubFooter.propTypes = {
+  hasBackground: PropTypes.bool,
+}
+
+const Copyright = ({ hasBackground }) => (
+  <p
+    className={
+      styles.copyright +
+      ' ' +
+      (hasBackground ? styles.copyrightColorInverted : '')
+    }
+  >
+    &copy; 2020-2021 Studs
+  </p>
 )
+
+Copyright.propTypes = {
+  hasBackground: PropTypes.bool,
+}
 
 const Images = () => (
   <div className={styles.pictures}>
@@ -83,8 +114,12 @@ const Images = () => (
   </div>
 )
 
-const Contact = () => (
-  <div className={styles.contact}>
+const Contact = ({ hasBackground }) => (
+  <div
+    className={
+      styles.contact + ' ' + (hasBackground ? styles.contactColorInverted : '')
+    }
+  >
     <div className={styles.section}>
       <div className={styles.contactDetails}>
         <h5 className={styles.contactHeader}>
@@ -103,6 +138,10 @@ const Contact = () => (
     </div>
   </div>
 )
+
+Contact.propTypes = {
+  hasBackground: PropTypes.bool,
+}
 
 const CompanyImage = ({ picture }) => (
   <MemberImage

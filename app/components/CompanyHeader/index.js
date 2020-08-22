@@ -2,7 +2,15 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 
-const CompanyHeader = ({ name, updateName, back }) => {
+import { YearPicker } from '../YearPicker'
+
+const CompanyHeader = ({
+  name,
+  updateName,
+  selectedYear,
+  setStudsYear,
+  back,
+}) => {
   const [newName, setNewName] = useState(name)
   const [editing, setEditing] = useState(false)
 
@@ -51,6 +59,10 @@ const CompanyHeader = ({ name, updateName, back }) => {
           />
         </div>
       </div>
+      <YearPicker
+        selectedYear={selectedYear}
+        setStudsYear={year => setStudsYear(year)}
+      />
     </div>
   )
 }
@@ -60,5 +72,7 @@ export default CompanyHeader
 CompanyHeader.propTypes = {
   name: PropTypes.string.isRequired,
   updateName: PropTypes.func.isRequired,
+  selectedYear: PropTypes.number.isRequired,
+  setStudsYear: PropTypes.func.isRequired,
   back: PropTypes.func.isRequired,
 }

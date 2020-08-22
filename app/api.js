@@ -557,7 +557,6 @@ export const fetchComments = companyId => {
     .then(comments =>
       comments.map(c => ({
         ...c,
-        studsYear: c.user.profile.studsYear,
         user: { id: c.user.id, picture: c.user.profile.picture },
       }))
     )

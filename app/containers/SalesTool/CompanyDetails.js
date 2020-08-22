@@ -43,7 +43,7 @@ class CompanyDetails extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    const newYearSet = newProps.selectedYear !== this.props.selectedYear
+    const isNewYearSet = newProps.selectedYear !== this.props.selectedYear
 
     this.checkForErrors(this.props, newProps)
     if (isSuccess(newProps.companies)) {
@@ -58,7 +58,7 @@ class CompanyDetails extends Component {
       if (
         (!company.comments &&
           (isInitial(newProps.comments) || isSuccess(newProps.comments))) ||
-        newYearSet
+        isNewYearSet
       ) {
         newProps.loadComments(newProps.match.params.id, newProps.selectedYear)
       }

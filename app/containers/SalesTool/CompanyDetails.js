@@ -44,15 +44,16 @@ class CompanyDetails extends Component {
 
   componentWillReceiveProps(newProps) {
     const isNewYearSet = newProps.selectedYear !== this.props.selectedYear
+    const companyId = newProps.match.params.id
 
     this.checkForErrors(this.props, newProps)
     if (isSuccess(newProps.companies)) {
-      const company = newProps.companies.data[newProps.match.params.id]
+      const company = newProps.companies.data[companyId]
       if (
         !company.contacts &&
         (isInitial(newProps.contacts) || isSuccess(newProps.contacts))
       ) {
-        newProps.loadContacts(newProps.match.params.id)
+        newProps.loadContacts(companyId)
       }
 
       if (
@@ -60,7 +61,7 @@ class CompanyDetails extends Component {
           (isInitial(newProps.comments) || isSuccess(newProps.comments))) ||
         isNewYearSet
       ) {
-        newProps.loadComments(newProps.match.params.id, newProps.selectedYear)
+        newProps.loadComments(companyId, newProps.selectedYear)
       }
     }
   }

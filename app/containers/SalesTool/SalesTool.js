@@ -28,7 +28,7 @@ class SalesTool extends Component {
 
   componentDidMount() {
     if (!hasData(this.props.companies)) {
-      this.props.loadCompanies()
+      this.props.loadCompanies(this.props.selectedYear)
     } else {
       this.filterResult(this.props.companies.data, this.props.filter)
     }

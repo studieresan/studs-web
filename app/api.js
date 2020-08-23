@@ -396,9 +396,9 @@ const COMPANY_FIELDS = `
     id
   }`
 
-export const fetchCompanies = () => {
+export const fetchCompanies = studsYear => {
   const query = `{
-      companies {
+      companies (studsYear: ${studsYear}){
         ${COMPANY_FIELDS}
       }
     }`

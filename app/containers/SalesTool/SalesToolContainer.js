@@ -45,7 +45,7 @@ const mapDispatchToProps = dispatch => {
     updateFilter: newFilter => dispatch(updateFilter(newFilter)),
     updateSorting: newSorting => dispatch(updateSorting(newSorting)),
     loadStatuses: () => dispatch(loadStatuses()),
-    loadCompanies: () => dispatch(loadCompanies()),
+    loadCompanies: year => dispatch(loadCompanies(year)),
     addCompany: name => dispatch(addCompany(name)),
     setStudsYear: year => dispatch(setStudsYear(year)),
   }

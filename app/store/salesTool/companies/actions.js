@@ -88,9 +88,9 @@ export const updateCompany = (companyId, body) => dispatch => {
     })
 }
 
-export const loadCompany = id => dispatch => {
+export const loadCompany = (id, studsYear) => dispatch => {
   dispatch(getRequest())
-  fetchCompany(id)
+  fetchCompany(id, studsYear)
     .then(company => {
       dispatch(getSuccess({ [company.id]: company }))
     })

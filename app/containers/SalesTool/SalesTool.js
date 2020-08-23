@@ -72,6 +72,10 @@ class SalesTool extends Component {
     if (this.props.sorting !== newProps.sorting) {
       this.applySortStatus(newProps.companies.data, newProps.sorting)
     }
+
+    if (newProps.selectedYear !== this.props.selectedYear) {
+      this.props.loadCompanies(newProps.selectedYear)
+    }
   }
 
   checkForErrors = (props, newProps) => {

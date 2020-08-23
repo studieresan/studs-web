@@ -46,6 +46,7 @@ class CompanyDetails extends Component {
     const isNewYearSet = newProps.selectedYear !== this.props.selectedYear
     const companyId = newProps.match.params.id
 
+    //TODO: Solve this spaghetti mess of checking when to fetch what
     this.checkForErrors(this.props, newProps)
     if (isSuccess(newProps.companies)) {
       const company = newProps.companies.data[companyId]
@@ -62,6 +63,9 @@ class CompanyDetails extends Component {
         isNewYearSet
       ) {
         newProps.loadComments(companyId, newProps.selectedYear)
+      }
+      if (isNewYearSet) {
+        newProps.loadCompany(companyId, newProps.selectedYear)
       }
     }
   }
@@ -302,6 +306,7 @@ CompanyDetails.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   loadCompanies: PropTypes.func.isRequired,
+  loadCompany: PropTypes.func.isRequired,
   companies: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,
   users: PropTypes.object.isRequired,

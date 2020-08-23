@@ -1,6 +1,10 @@
 import CompanyDetails from './CompanyDetails'
 import { connect } from 'react-redux'
-import { updateCompany, loadCompanies } from 'store/salesTool/companies/actions'
+import {
+  updateCompany,
+  loadCompanies,
+  loadCompany,
+} from 'store/salesTool/companies/actions'
 import { loadStatuses } from 'store/salesTool/statuses/actions'
 
 import {
@@ -49,6 +53,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getUsers: () => dispatch(getUsers()),
     loadCompanies: year => dispatch(loadCompanies(year)),
+    loadCompany: (id, year) => dispatch(loadCompany(id, year)),
     loadStatuses: () => dispatch(loadStatuses()),
     updateCompany: (id, body) => dispatch(updateCompany(id, body)),
     updateContact: (id, body) => dispatch(updateContact(id, body)),

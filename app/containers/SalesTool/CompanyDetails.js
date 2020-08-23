@@ -30,7 +30,7 @@ class CompanyDetails extends Component {
 
   componentDidMount() {
     if (!isSuccess(this.props.companies)) {
-      this.props.loadCompanies()
+      this.props.loadCompanies(this.props.selectedYear)
     }
 
     if (!hasData(this.props.statuses)) {

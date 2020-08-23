@@ -48,7 +48,7 @@ const mapStateToProps = rootState => {
 const mapDispatchToProps = dispatch => {
   return {
     getUsers: () => dispatch(getUsers()),
-    loadCompanies: () => dispatch(loadCompanies()),
+    loadCompanies: year => dispatch(loadCompanies(year)),
     loadStatuses: () => dispatch(loadStatuses()),
     updateCompany: (id, body) => dispatch(updateCompany(id, body)),
     updateContact: (id, body) => dispatch(updateContact(id, body)),

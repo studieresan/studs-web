@@ -453,9 +453,9 @@ export const createCompany = name => {
     .catch(err => console.error(err))
 }
 
-export const updateCompany = (companyId, companyFields) => {
+export const updateCompany = (companyId, studsYear, companyFields) => {
   const query = `mutation {
-    updateCompany(id: "${companyId}", fields: {
+    updateCompany(id: "${companyId}", studsYear: ${studsYear}, fields: {
         ${Object.keys(companyFields).map(
           k =>
             k +

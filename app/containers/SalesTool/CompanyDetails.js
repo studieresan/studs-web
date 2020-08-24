@@ -82,7 +82,11 @@ class CompanyDetails extends Component {
   }
 
   updateCompany = body =>
-    this.props.updateCompany(this.props.match.params.id, body)
+    this.props.updateCompany(
+      this.props.match.params.id,
+      this.props.selectedYear,
+      body
+    )
 
   createComment = text =>
     (text ||

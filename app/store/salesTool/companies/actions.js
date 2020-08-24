@@ -79,9 +79,9 @@ export const addCompany = name => dispatch => {
     })
 }
 
-export const updateCompany = (companyId, body) => dispatch => {
+export const updateCompany = (companyId, studsYear, body) => dispatch => {
   dispatch(updateRequest())
-  updateCompanyApi(companyId, body)
+  updateCompanyApi(companyId, studsYear, body)
     .then(company => dispatch(updateSuccess(company)))
     .catch(() => {
       dispatch(error('updating company'))

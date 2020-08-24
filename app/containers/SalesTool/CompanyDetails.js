@@ -71,7 +71,7 @@ class CompanyDetails extends Component {
     }
   }
 
-  static checkForErrors = (props, newProps) => {
+  checkForErrors = (props, newProps) => {
     const reduxVariables = ['companies', 'statuses', 'contacts', 'comments']
     reduxVariables.forEach(v => {
       if (!isError(props[v]) && isError(newProps[v])) {

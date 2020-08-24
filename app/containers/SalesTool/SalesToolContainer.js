@@ -41,7 +41,7 @@ const mapStateToProps = rootState => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUsers: () => dispatch(getUsers()),
+    getUsers: year => dispatch(getUsers(year)),
     updateFilter: newFilter => dispatch(updateFilter(newFilter)),
     updateSorting: newSorting => dispatch(updateSorting(newSorting)),
     loadStatuses: () => dispatch(loadStatuses()),

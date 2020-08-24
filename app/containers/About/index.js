@@ -31,7 +31,7 @@ const StudsMemberInfo = user => {
 
 class About extends Component {
   componentDidMount() {
-    this.props.getUsers()
+    this.props.getUsers(this.props.selectedYear)
   }
 
   render() {
@@ -60,6 +60,7 @@ About.propTypes = {
     })
   ),
   getUsers: PropTypes.func.isRequired,
+  selectedYear: PropTypes.number.isRequired,
 }
 
 About.defaultProps = {
@@ -70,6 +71,7 @@ function mapStateToProps(state) {
   const users = state.getIn(['members', 'users']).toJS()
   return {
     users: sortBy(users, ['firstName']),
+    selectedYear: state.getIn(['salesTool', 'year']),
   }
 }
 

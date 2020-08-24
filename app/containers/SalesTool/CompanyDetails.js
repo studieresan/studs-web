@@ -37,7 +37,7 @@ class CompanyDetails extends Component {
       this.props.loadStatuses()
     }
     if (!Object.keys(this.props.users).length) {
-      this.props.getUsers()
+      this.props.getUsers(this.props.selectedYear)
     }
     this.componentWillReceiveProps(this.props)
   }
@@ -65,6 +65,7 @@ class CompanyDetails extends Component {
         newProps.loadComments(companyId, newProps.selectedYear)
       }
       if (isNewYearSet) {
+        newProps.getUsers(newProps.selectedYear)
         newProps.loadCompany(companyId, newProps.selectedYear)
       }
     }

@@ -36,7 +36,7 @@ class SalesTool extends Component {
       this.props.loadStatuses()
     }
     if (!Object.keys(this.props.users).length) {
-      this.props.getUsers()
+      this.props.getUsers(this.props.selectedYear)
     }
   }
 
@@ -74,6 +74,7 @@ class SalesTool extends Component {
     }
 
     if (newProps.selectedYear !== this.props.selectedYear) {
+      this.props.getUsers(newProps.selectedYear)
       this.props.loadCompanies(newProps.selectedYear)
     }
   }

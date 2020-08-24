@@ -182,9 +182,9 @@ export function updateUserPassword({ password, confirmPassword }) {
   return ftch(BASE_URL + PASSWORD_UPDATE, post)
 }
 
-export function fetchUsers() {
+export function fetchUsers(studsYear) {
   const query = `{
-    users(userRole: null) {
+    users(userRole: null, studsYear: ${studsYear}) {
       id,
       profile { ${USER_PROFILE_FIELDS} }
       cv { ${CV_FIELDS} }

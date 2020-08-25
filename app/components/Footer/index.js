@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import { Facebook, Instagram, Linkedin } from 'react-feather'
 import MemberImage from 'components/MemberImage'
-import leader1 from 'static/img/people/leader1.jpg'
-import leader2 from 'static/img/people/leader2.jpg'
+import { projectManager1, projectManager2 } from 'static/groups/groups.js'
 import Spotify from 'static/img/company_logos/spotify.png'
 import Kry from 'static/img/company_logos/kry.svg'
 import Cygni from 'static/img/company_logos/cygni.png'
@@ -108,8 +107,8 @@ Copyright.propTypes = {
 
 const Images = () => (
   <div className={styles.pictures}>
-    <Image picture={leader1} />
-    <Image picture={leader2} />
+    <Image picture={projectManager1.image} />
+    <Image picture={projectManager2.image} />
   </div>
 )
 
@@ -125,10 +124,16 @@ const Contact = ({ hasBackground }) => (
           <FormattedMessage {...messages.projectManagerHeader} />
         </h5>
         <p>
-          Albin Winkelmann <a href='mailto:albin@studs.se'>albin@studs.se</a>
+          {projectManager1.name}{' '}
+          <a href={'mailto:' + projectManager1.email}>
+            {projectManager1.email}
+          </a>
         </p>
         <p>
-          Axel Lindeberg <a href='mailto:axel@studs.se'>axel@studs.se</a>
+          {projectManager2.name}{' '}
+          <a href={'mailto:' + projectManager2.email}>
+            {projectManager2.email}
+          </a>
         </p>
         <p>
           <FormattedMessage {...messages.projectManagerTitle} />

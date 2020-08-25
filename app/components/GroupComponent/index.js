@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
 import styles from './styles.css'
 import messages from './messages.js'
-import { it, event, finance, info, sales, travel } from 'static/groups.js'
+import {
+  it,
+  event,
+  finance,
+  info,
+  sales,
+  travel,
+} from 'static/groups/groups.js'
 import MemberImage from 'components/MemberImage'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
@@ -44,9 +51,21 @@ export default class GroupComponent extends Component {
           //If it is the last element, don't render the bottom golden border
           const id =
             idx === groups.length - 1 ? styles.last_group_container : ''
+
+          const langID = group.languageID
+          const name = langID + '.name'
+          const description = langID + '.description'
           return (
-            <div key={group.name} className={styles.group_container} id={id}>
-              <h2>{group.name}</h2>
+            <div
+              key={groupResponsible.email}
+              className={styles.group_container}
+              id={id}
+            >
+              <h2>
+                {' '}
+                <FormattedMessage id={name} />{' '}
+              </h2>
+
               <div className={styles.group}>
                 <div className={styles.leader}>
                   <Image picture={groupResponsible.image} round />
@@ -57,9 +76,10 @@ export default class GroupComponent extends Component {
                 </div>
                 <div className={styles.info}>
                   <p>
-                    {group.description}
+                    <FormattedMessage id={description} />
                     <br />
-                    Har du funderingar? Kontakta {groupResponsible.firstName}!
+                    <FormattedMessage {...messages.contactText} />{' '}
+                    {groupResponsible.firstName}!
                   </p>
                 </div>
               </div>

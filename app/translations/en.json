@@ -170,5 +170,53 @@
   {
     "id": "app.components.PublicEvents.menu.previous",
     "message": "Previous Events"
+  },
+  {
+    "id": "static.groups.it.name",
+    "message": "IT group"
+  },
+  {
+    "id": "static.groups.event.name",
+    "message": "Event group"
+  },
+  {
+    "id": "static.groups.finance.name",
+    "message": "Finance group"
+  },
+  {
+    "id": "static.groups.info.name",
+    "message": "Info group"
+  },
+  {
+    "id": "static.groups.sales.name",
+    "message": "Sales group"
+  },
+  {
+    "id": "static.groups.travel.name",
+    "message": "Travel group"
+  },
+  {
+    "id": "static.groups.it.description",
+    "message": "The IT group is responsible for the website of Studs, the backend and the internal mobile applications that exists for both iOS and Android. You should have an interest for programming and software development and the will to learn new things. It is a plus if you have previous experience but it is not mandatory."
+  },
+  {
+    "id": "static.groups.event.description",
+    "message": "The event group is responsible for the planning and completion of all company events and works together with the companies to create events that are relevant, interesting and fun for both the project members and the companies. The group helps the companies to show their best sides and the work is therefor creative as the companies differ a lot and require different solutions."
+  },
+  {
+    "id": "static.groups.finance.description",
+    "message": "The finance group is a small group that works very close to each other and the project managers with creating the budget of the project and makes sure that it is obeyed. The group also handles the bookkeeping and cater for the other groups economic needs."
+  },
+  {
+    "id": "static.groups.info.description",
+    "message": "The information group consists of photographers, editors and two art directors and together they create all the content and the graphic profile that is visible in our different channels and in the report. The photographers takes profile images of the project group and photographs all events and the trip. The editors produces all the text in the social medias and the report. The groups are directors create the graphical profile and is responsible for the webb-, app- and UX-design. They are also responsible for the design of the report."
+  },
+  {
+    "id": "static.groups.sales.description",
+    "message": "The members in the sales group create the first contact with Studs and the companies and sells the events. It is important that you as a member in the sales group is outgoing and social, and does not lose the glow if you get a no. The sales group works closely with multiple other groups, primarily the event group that takes over when an event has been booked."
+  },
+  {
+    "id": "static.groups.travel.description",
+    "message": "The travel group is responsible for all the planning and implementation of the trip which concludes the project, everything from the travel route and flights to coordination of daily activities. The job is both creative and structured as the travel group other than planning and logistics, is also responsible for produce inspiration and destination suggestions. As a member of the travel group you lead the whole project group during the trip, makes sure that everyone has a good time, and handles unpredictable situations."
   }
 ]

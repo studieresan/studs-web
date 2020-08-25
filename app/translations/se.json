@@ -406,5 +406,57 @@
   {
     "id": "app.components.GroupComponent.header",
     "message": "Möt grupperna!"
+  },
+  {
+    "id": "static.groups.it.name",
+    "message": "IT-gruppen"
+  },
+  {
+    "id": "static.groups.event.name",
+    "message": "Eventgruppen"
+  },
+  {
+    "id": "static.groups.finance.name",
+    "message": "Ekonomigruppen"
+  },
+  {
+    "id": "static.groups.info.name",
+    "message": "Infogruppen"
+  },
+  {
+    "id": "static.groups.sales.name",
+    "message": "Säljgruppen"
+  },
+  {
+    "id": "static.groups.travel.name",
+    "message": "Resegruppen"
+  },
+  {
+    "id": "static.groups.it.description",
+    "message": "IT-gruppen ansvarar för Studs webbsida, backend och de interna mobilapplikationerna som finns för både Android och iOS. Du bör ha ett intresse för programmering och mjukvaruutveckling samt viljan att lära dig nya saker. Det är ett plus om du har tidigare erfarenhet, men det är inget krav."
+  },
+  {
+    "id": "static.groups.event.description",
+    "message": "Eventgruppen ansvarar för planerandet och genomförandet av alla företagsevent och arbetar tillsammans med företagen för att skapa evenemang som är relevanta, intressanta och roliga både för projektmedlemmarna och företagen. Gruppen hjälper företagen att visa sina bästa sidor och arbetet är därför kreativt då företagen skiljer sig mycket och kräver olika lösningar."
+  },
+  {
+    "id": "static.groups.finance.description",
+    "message": "Ekonomigruppen är liten grupp som jobbar nära varandra och projektledarna med att skapa projektets budget och se till att den efterföljs. Gruppen sköter även all bokföring och tillgodoser de andra gruppernas ekonomiska behov."
+  },
+  {
+    "id": "static.groups.info.description",
+    "message": "Informationsgruppen består av fotografer, redaktörer och två art directors som tillsammans skapar allt innehåll och den grafiska profil som syns i våra olika kanaler samt i rapporten. Fotograferna tar porträttbilder av projektgruppen samt fotograferar alla event och resan. Redaktörerna producerar all text i sociala medier och rapporten. Gruppens art directors skapar den grafiska profilen och är ansvariga webb-, app- och UX-design. De ansvar också för rapportens layout."
+  },
+  {
+    "id": "static.groups.sales.description",
+    "message": "Medlemmarna i säljgruppen skapar den första kontakten mellan Studs och företag och säljer in event. Det är viktigt att du som medlem i säljgruppen är utåtriktad och social, och inte tappar glöden om du får ett nej. Säljgruppen jobbar nära flera andra grupper, framförallt eventgruppen som tar över när ett event har blivit bokat."
+  },
+  {
+    "id": "static.groups.travel.description",
+    "message": "Resegruppen ansvarar för all planering och genomförandet av resan som avslutar projektet, allt från resrutt och flyg till koordinering av dagsaktiviteter. Arbetet är både kreativt och strukturerat då resegruppen utöver planering och logistik också är ansvarig för att ta fram inspiration och förslag på resmål. Som medlem i resegruppen leder du hela projektgruppen under resan, ser till att alla har det bra och hanterar oförutsägbara situationer."
+  },
+  {
+    "id": "app.components.GroupComponent.contactText",
+    "message": "Har du funderingar? Kontakta"
   }
 ]

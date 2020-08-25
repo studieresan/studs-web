@@ -76,7 +76,7 @@ const travel = {
   responsible: {
     firstName: 'Louise',
     lastName: 'Hellberg',
-    email: 'lousie@studs.se',
+    email: 'louise@studs.se',
     image: travelImage,
   },
   languageID: 'static.groups.travel',

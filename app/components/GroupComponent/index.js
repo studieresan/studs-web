@@ -35,15 +35,7 @@ export default class GroupComponent extends Component {
         </div>
         <div className={styles.intro}>
           <p>
-            Studs består av sex olika grupper med varsitt arbetsområde och
-            varsin ledare, där alla gruppers insats är lika viktiga för att
-            projektet ska lyckas. Mycket av arbetet i Studs sker grupperna
-            emellan och det är därför viktigt att du som gruppmedlem är
-            samarbetsvillig och förstår att vi alla arbetar mot ett gemensamt
-            mål. Studs kommer inte att bara ge dig goda kunskaper inom allt vad
-            projektarbete innebär, utan du kommer också att ha ett otroligt
-            roligt år och knyta värdefulla relationer med näringslivet och inom
-            gruppen!
+            <FormattedMessage {...messages.generalInformation} />
           </p>
         </div>
         {groups.map((group, idx) => {

@@ -458,5 +458,9 @@
   {
     "id": "app.components.GroupComponent.contactText",
     "message": "Har du funderingar? Kontakta"
+  },
+  {
+    "id": "app.components.GroupComponent.generalInformation",
+    "message": "Studs består av sex olika grupper med varsitt arbetsområde och varsin ledare, där alla gruppers insats är lika viktiga för att projektet ska lyckas. Mycket av arbetet i Studs sker grupperna emellan och det är därför viktigt att du som gruppmedlem är samarbetsvillig och förstår att vi alla arbetar mot ett gemensamt mål. Studs kommer inte att bara ge dig goda kunskaper inom allt vad projektarbete innebär, utan du kommer också att ha ett otroligt roligt år och knyta värdefulla relationer med näringslivet och inom gruppen!"
   }
 ]

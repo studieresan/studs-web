@@ -6,7 +6,6 @@ import itImage from 'static/img/people/it.jpg'
 import financeImage from 'static/img/people/finance.jpg'
 import saleImage from 'static/img/people/sale.jpg'
 import infoImage from 'static/img/people/info.jpg'
-import messages from './messages.js'
 
 //Groups and their responsible persons.
 const projectManager1 = {

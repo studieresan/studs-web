@@ -66,7 +66,7 @@ class CompanyDetails extends Component {
       }
       if (isNewYearSet) {
         newProps.getUsers(newProps.selectedYear)
-        newProps.loadCompany(companyId, newProps.selectedYear)
+        newProps.loadCompany(companyId)
       }
     }
   }
@@ -147,12 +147,23 @@ class CompanyDetails extends Component {
   }
 
   render() {
-    let company = null
+    let company,
+      status,
+      responsibleUser,
+      amount = null
     if (
       hasData(this.props.companies) &&
       this.props.companies.data[this.props.match.params.id]
     ) {
       company = this.props.companies.data[this.props.match.params.id]
+      const year = company.years[this.props.selectedYear]
+      if (year) {
+        status = year.status ? year.status.id : undefined
+        responsibleUser = year.responsibleUser
+          ? year.responsibleUser.id
+          : MISSING
+        amount = year.amount
+      }
     }
     return (
       <div className={styles.content}>
@@ -170,9 +181,7 @@ class CompanyDetails extends Component {
             <div className={styles.select_input}>
               <label>Status</label>
               <select
-                value={
-                  company && company.status ? company.status.id : undefined
-                }
+                value={status}
                 onChange={event =>
                   this.updateCompany({
                     status: event.target.value,
@@ -189,11 +198,7 @@ class CompanyDetails extends Component {
             <div className={styles.select_input}>
               <label>Ansvarig</label>
               <select
-                value={
-                  company && company.responsibleUser
-                    ? company.responsibleUser.id
-                    : MISSING
-                }
+                value={responsibleUser}
                 onChange={event =>
                   this.updateCompany({
                     responsibleUser:
@@ -212,7 +217,7 @@ class CompanyDetails extends Component {
               </select>
             </div>
             <CompanyAmountInput
-              currentAmount={company && company.amount ? company.amount : 0}
+              currentAmount={amount ? amount : 0}
               updateAmount={newAmount =>
                 this.updateCompany({
                   amount: newAmount,

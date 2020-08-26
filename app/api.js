@@ -388,17 +388,20 @@ const uploadFile = (file, signedRequest, url) => {
 const COMPANY_FIELDS = `
   id,
   name,
-  amount,
-  status {
-    id
-  },
-  responsibleUser {
-    id
+  years {
+    year,
+    amount,
+    status {
+      id
+    },
+    responsibleUser {
+      id
+    }
   }`
 
-export const fetchCompanies = studsYear => {
+export const fetchCompanies = () => {
   const query = `{
-      companies (studsYear: ${studsYear}){
+      companies {
         ${COMPANY_FIELDS}
       }
     }`

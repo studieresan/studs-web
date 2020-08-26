@@ -57,12 +57,17 @@ export const setComments = (comments, companyId) => ({
 })
 
 // thunks
-export const loadCompanies = studsYear => dispatch => {
+export const loadCompanies = () => dispatch => {
   dispatch(getRequest())
-  fetchCompanies(studsYear)
+  fetchCompanies()
     .then(companies => {
       const companyStateMap = {}
-      companies.forEach(c => (companyStateMap[c.id] = c))
+      companies.forEach(c => {
+        const yearMap = {}
+        c.years.forEach(y => (yearMap[y.year] = y))
+        c.years = yearMap
+        companyStateMap[c.id] = c
+      })
       dispatch(getSuccess(companyStateMap))
     })
     .catch(() => {

@@ -28,7 +28,7 @@ class SalesTool extends Component {
 
   componentDidMount() {
     if (!hasData(this.props.companies)) {
-      this.props.loadCompanies(this.props.selectedYear)
+      this.props.loadCompanies()
     } else {
       this.filterResult(this.props.companies.data, this.props.filter)
     }
@@ -75,7 +75,7 @@ class SalesTool extends Component {
 
     if (newProps.selectedYear !== this.props.selectedYear) {
       this.props.getUsers(newProps.selectedYear)
-      this.props.loadCompanies(newProps.selectedYear)
+      this.props.loadCompanies()
     }
   }
 
@@ -211,10 +211,12 @@ class SalesTool extends Component {
 
   getSalesAmountForFilteredCompanies = () => {
     return this.state.filteredCompanies
-      .reduce(
-        (acc, currentId) => acc + this.props.companies.data[currentId].amount,
-        0
-      )
+      .reduce((acc, currentId) => {
+        const year = this.props.companies.data[currentId].years[
+          this.props.selectedYear
+        ]
+        return year ? acc + year.amount : acc
+      }, 0)
       .toLocaleString('sv')
   }
 
@@ -336,7 +338,13 @@ class SalesTool extends Component {
   }
 
   renderCompany(id) {
-    const { name, status, responsibleUser } = this.props.companies.data[id]
+    const { name, years } = this.props.companies.data[id]
+    let status,
+      responsibleUser = undefined
+    if (years[this.props.selectedYear]) {
+      status = years[this.props.selectedYear].status
+      responsibleUser = years[this.props.selectedYear].responsibleUser
+    }
     const statusName = status
       ? this.props.statuses.data[status.id].name
       : 'Saknar status'

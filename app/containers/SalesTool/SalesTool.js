@@ -99,22 +99,35 @@ class SalesTool extends Component {
               .toLowerCase()
               .includes(filter.text.toLowerCase())
           )
-          .filter(companyId =>
-            !filter.status.length
+          .filter(companyId => {
+            let companyStatus = undefined
+            if (
+              companies[companyId].years &&
+              companies[companyId].years[this.props.selectedYear]
+            ) {
+              companyStatus =
+                companies[companyId].years[this.props.selectedYear].status
+            }
+            return !filter.status.length
               ? true
-              : companies[companyId].status &&
-                filter.status.includes(companies[companyId].status.id)
-          )
-          .filter(companyId =>
-            !filter.user.length
+              : companyStatus && filter.status.includes(companyStatus.id)
+          })
+          .filter(companyId => {
+            let companyResponsible = undefined
+            if (
+              companies[companyId].years &&
+              companies[companyId].years[this.props.selectedYear]
+            ) {
+              companyResponsible =
+                companies[companyId].years[this.props.selectedYear]
+                  .responsibleUser
+            }
+            return !filter.user.length
               ? true
-              : (companies[companyId].responsibleUser &&
-                  filter.user.includes(
-                    companies[companyId].responsibleUser.id
-                  )) ||
-                (!companies[companyId].responsibleUser &&
-                  filter.user.includes(MISSING))
-          ),
+              : (companyResponsible &&
+                  filter.user.includes(companyResponsible.id)) ||
+                  (!companyResponsible && filter.user.includes(MISSING))
+          }),
       },
       () => this.applySortStatus(companies, this.props.sorting)
     )

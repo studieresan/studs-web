@@ -23,6 +23,7 @@ export const defaultUser = {
   password: '',
   confirmPassword: '',
   permissions: [],
+  studsYear: 0,
 }
 
 const initialState = fromJS({

@@ -93,10 +93,13 @@ export const updateCompany = (companyId, studsYear, body) => dispatch => {
     })
 }
 
-export const loadCompany = (id, studsYear) => dispatch => {
+export const loadCompany = id => dispatch => {
   dispatch(getRequest())
-  fetchCompany(id, studsYear)
+  fetchCompany(id)
     .then(company => {
+      const yearMap = {}
+      company.years.forEach(y => (yearMap[y.year] = y))
+      company.years = yearMap
       dispatch(getSuccess({ [company.id]: company }))
     })
     .catch(() => {

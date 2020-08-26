@@ -421,9 +421,9 @@ export const fetchSoldCompanies = () => {
     .catch(err => console.error(err))
 }
 
-export const fetchCompany = (companyId, studsYear) => {
+export const fetchCompany = companyId => {
   const query = `{
-    company (companyId: "${companyId}", studsYear: ${studsYear}) {
+    company (companyId: "${companyId}") {
        ${COMPANY_FIELDS}
     }
   }`

@@ -458,7 +458,7 @@ export const createCompany = name => {
 
 export const updateCompany = (companyId, studsYear, companyFields) => {
   const query = `mutation {
-    updateCompany(id: "${companyId}", studsYear: ${studsYear}, fields: {
+    updateCompany(id: "${companyId}", year: ${studsYear}, fields: {
         ${Object.keys(companyFields).map(
           k =>
             k +

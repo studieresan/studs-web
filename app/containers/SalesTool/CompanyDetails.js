@@ -270,10 +270,12 @@ class CompanyDetails extends Component {
               <hr className={styles.hr} />
             </div>
             <div className={styles.comments_container}>
-              <NewCommentCard
-                createComment={this.createComment}
-                currentUser={this.props.currentUser}
-              />
+              {this.props.selectedYear === this.props.currentUser.studsYear && (
+                <NewCommentCard
+                  createComment={this.createComment}
+                  currentUser={this.props.currentUser}
+                />
+              )}
               {isSuccess(this.props.comments) ? (
                 company &&
                 company.comments &&

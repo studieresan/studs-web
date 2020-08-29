@@ -150,6 +150,9 @@ class SalesTool extends Component {
 
   applySortStatus = (companies, sorting) => {
     const { property, ascending } = sorting
+
+    const year = this.props.selectedYear
+
     switch (property) {
       case 'name':
         this.sortByStringProperty(
@@ -161,11 +164,16 @@ class SalesTool extends Component {
       case 'responsibleUser':
         this.sortByStringProperty(
           companyId => {
-            return companies[companyId].responsibleUser
-              ? this.props.users[
-                  companies[companyId].responsibleUser.id
-                ].toLowerCase()
-              : null
+            const years = companies[companyId].years
+            if (years) {
+              const statusOfYear = years[year]
+              if (!statusOfYear) return null
+              const userID = statusOfYear.responsibleUser.id
+
+              return this.props.users[userID].toLowerCase()
+            } else {
+              return null
+            }
           },
           companyId => companies[companyId].name.toLowerCase(),
           ascending
@@ -174,11 +182,19 @@ class SalesTool extends Component {
       case 'status':
         hasData(this.props.statuses) &&
           this.sortByStringProperty(
-            companyId =>
-              companies[companyId].status
-                ? this.props.statuses.data[companies[companyId].status.id]
-                    .priority
-                : null,
+            companyId => {
+              //-2 is lower than "no" status, means missing status
+              const years = companies[companyId].years
+              if (years) {
+                const statusOfYear = years[year]
+                if (!statusOfYear) return -2
+                const statusID = statusOfYear.status.id
+                if (statusID) return this.props.statuses.data[statusID].priority
+                else return -2
+              } else {
+                return -2
+              }
+            },
             companyId => companies[companyId].name.toLowerCase(),
             !ascending
           )

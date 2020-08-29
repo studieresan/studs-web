@@ -62,7 +62,12 @@ export const loadCompanies = () => dispatch => {
   fetchCompanies()
     .then(companies => {
       const companyStateMap = {}
-      companies.forEach(c => (companyStateMap[c.id] = c))
+      companies.forEach(c => {
+        const yearMap = {}
+        c.years.forEach(y => (yearMap[y.year] = y))
+        c.years = yearMap
+        companyStateMap[c.id] = c
+      })
       dispatch(getSuccess(companyStateMap))
     })
     .catch(() => {
@@ -79,10 +84,15 @@ export const addCompany = name => dispatch => {
     })
 }
 
-export const updateCompany = (companyId, body) => dispatch => {
+export const updateCompany = (companyId, studsYear, body) => dispatch => {
   dispatch(updateRequest())
-  updateCompanyApi(companyId, body)
-    .then(company => dispatch(updateSuccess(company)))
+  updateCompanyApi(companyId, studsYear, body)
+    .then(company => {
+      const yearMap = {}
+      company.years.forEach(y => (yearMap[y.year] = y))
+      company.years = yearMap
+      dispatch(updateSuccess(company))
+    })
     .catch(() => {
       dispatch(error('updating company'))
     })
@@ -92,6 +102,9 @@ export const loadCompany = id => dispatch => {
   dispatch(getRequest())
   fetchCompany(id)
     .then(company => {
+      const yearMap = {}
+      company.years.forEach(y => (yearMap[y.year] = y))
+      company.years = yearMap
       dispatch(getSuccess({ [company.id]: company }))
     })
     .catch(() => {

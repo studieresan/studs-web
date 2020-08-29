@@ -37,27 +37,36 @@ class CompanyDetails extends Component {
       this.props.loadStatuses()
     }
     if (!Object.keys(this.props.users).length) {
-      this.props.getUsers()
+      this.props.getUsers(this.props.selectedYear)
     }
     this.componentWillReceiveProps(this.props)
   }
 
   componentWillReceiveProps(newProps) {
+    const isNewYearSet = newProps.selectedYear !== this.props.selectedYear
+    const companyId = newProps.match.params.id
+
+    //TODO: Solve this spaghetti mess of checking when to fetch what
     this.checkForErrors(this.props, newProps)
     if (isSuccess(newProps.companies)) {
-      const company = newProps.companies.data[newProps.match.params.id]
+      const company = newProps.companies.data[companyId]
       if (
         !company.contacts &&
         (isInitial(newProps.contacts) || isSuccess(newProps.contacts))
       ) {
-        newProps.loadContacts(newProps.match.params.id)
+        newProps.loadContacts(companyId)
       }
 
       if (
-        !company.comments &&
-        (isInitial(newProps.comments) || isSuccess(newProps.comments))
+        (!company.comments &&
+          (isInitial(newProps.comments) || isSuccess(newProps.comments))) ||
+        isNewYearSet
       ) {
-        newProps.loadComments(newProps.match.params.id)
+        newProps.loadComments(companyId, newProps.selectedYear)
+      }
+      if (isNewYearSet) {
+        newProps.getUsers(newProps.selectedYear)
+        newProps.loadCompany(companyId)
       }
     }
   }
@@ -74,7 +83,11 @@ class CompanyDetails extends Component {
   }
 
   updateCompany = body =>
-    this.props.updateCompany(this.props.match.params.id, body)
+    this.props.updateCompany(
+      this.props.match.params.id,
+      this.props.selectedYear,
+      body
+    )
 
   createComment = text =>
     (text ||
@@ -134,18 +147,31 @@ class CompanyDetails extends Component {
   }
 
   render() {
-    let company = null
+    let company,
+      status,
+      responsibleUser,
+      amount = null
     if (
       hasData(this.props.companies) &&
       this.props.companies.data[this.props.match.params.id]
     ) {
       company = this.props.companies.data[this.props.match.params.id]
+      const year = company.years[this.props.selectedYear]
+      if (year) {
+        status = year.status ? year.status.id : undefined
+        responsibleUser = year.responsibleUser
+          ? year.responsibleUser.id
+          : MISSING
+        amount = year.amount
+      }
     }
     return (
       <div className={styles.content}>
         <CompanyHeader
           name={company ? company.name : 'Laddar...'}
           updateName={newName => this.updateCompany({ name: newName })}
+          selectedYear={this.props.selectedYear}
+          setStudsYear={year => this.props.setStudsYear(year)}
           back={() =>
             this.props.history.push({ pathname: '/sales-tool/companies' })
           }
@@ -155,9 +181,7 @@ class CompanyDetails extends Component {
             <div className={styles.select_input}>
               <label>Status</label>
               <select
-                value={
-                  company && company.status ? company.status.id : undefined
-                }
+                value={status}
                 onChange={event =>
                   this.updateCompany({
                     status: event.target.value,
@@ -174,11 +198,7 @@ class CompanyDetails extends Component {
             <div className={styles.select_input}>
               <label>Ansvarig</label>
               <select
-                value={
-                  company && company.responsibleUser
-                    ? company.responsibleUser.id
-                    : MISSING
-                }
+                value={responsibleUser}
                 onChange={event =>
                   this.updateCompany({
                     responsibleUser:
@@ -197,7 +217,7 @@ class CompanyDetails extends Component {
               </select>
             </div>
             <CompanyAmountInput
-              currentAmount={company && company.amount ? company.amount : 0}
+              currentAmount={amount ? amount : 0}
               updateAmount={newAmount =>
                 this.updateCompany({
                   amount: newAmount,
@@ -250,10 +270,12 @@ class CompanyDetails extends Component {
               <hr className={styles.hr} />
             </div>
             <div className={styles.comments_container}>
-              <NewCommentCard
-                createComment={this.createComment}
-                currentUser={this.props.currentUser}
-              />
+              {this.props.selectedYear === this.props.currentUser.studsYear && (
+                <NewCommentCard
+                  createComment={this.createComment}
+                  currentUser={this.props.currentUser}
+                />
+              )}
               {isSuccess(this.props.comments) ? (
                 company &&
                 company.comments &&
@@ -296,6 +318,7 @@ CompanyDetails.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   loadCompanies: PropTypes.func.isRequired,
+  loadCompany: PropTypes.func.isRequired,
   companies: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,
   users: PropTypes.object.isRequired,
@@ -313,6 +336,8 @@ CompanyDetails.propTypes = {
   addComment: PropTypes.func.isRequired,
   deleteComment: PropTypes.func.isRequired,
   updateComment: PropTypes.func.isRequired,
+  selectedYear: PropTypes.number.isRequired,
+  setStudsYear: PropTypes.func.isRequired,
 }
 
 export default CompanyDetails

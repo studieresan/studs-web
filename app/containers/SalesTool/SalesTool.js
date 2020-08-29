@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MultiSelect from '@khanacademy/react-multi-select'
 import { HeaderSortButton } from 'components/HeaderSortButton'
+import { YearPicker } from 'components/YearPicker'
 import Button from 'components/Button'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
@@ -35,7 +36,7 @@ class SalesTool extends Component {
       this.props.loadStatuses()
     }
     if (!Object.keys(this.props.users).length) {
-      this.props.getUsers()
+      this.props.getUsers(this.props.selectedYear)
     }
   }
 
@@ -71,6 +72,11 @@ class SalesTool extends Component {
     if (this.props.sorting !== newProps.sorting) {
       this.applySortStatus(newProps.companies.data, newProps.sorting)
     }
+
+    if (newProps.selectedYear !== this.props.selectedYear) {
+      this.props.getUsers(newProps.selectedYear)
+      this.props.loadCompanies()
+    }
   }
 
   checkForErrors = (props, newProps) => {
@@ -93,22 +99,35 @@ class SalesTool extends Component {
               .toLowerCase()
               .includes(filter.text.toLowerCase())
           )
-          .filter(companyId =>
-            !filter.status.length
+          .filter(companyId => {
+            let companyStatus = undefined
+            if (
+              companies[companyId].years &&
+              companies[companyId].years[this.props.selectedYear]
+            ) {
+              companyStatus =
+                companies[companyId].years[this.props.selectedYear].status
+            }
+            return !filter.status.length
               ? true
-              : companies[companyId].status &&
-                filter.status.includes(companies[companyId].status.id)
-          )
-          .filter(companyId =>
-            !filter.user.length
+              : companyStatus && filter.status.includes(companyStatus.id)
+          })
+          .filter(companyId => {
+            let companyResponsible = undefined
+            if (
+              companies[companyId].years &&
+              companies[companyId].years[this.props.selectedYear]
+            ) {
+              companyResponsible =
+                companies[companyId].years[this.props.selectedYear]
+                  .responsibleUser
+            }
+            return !filter.user.length
               ? true
-              : (companies[companyId].responsibleUser &&
-                  filter.user.includes(
-                    companies[companyId].responsibleUser.id
-                  )) ||
-                (!companies[companyId].responsibleUser &&
-                  filter.user.includes(MISSING))
-          ),
+              : (companyResponsible &&
+                  filter.user.includes(companyResponsible.id)) ||
+                  (!companyResponsible && filter.user.includes(MISSING))
+          }),
       },
       () => this.applySortStatus(companies, this.props.sorting)
     )
@@ -131,6 +150,9 @@ class SalesTool extends Component {
 
   applySortStatus = (companies, sorting) => {
     const { property, ascending } = sorting
+
+    const year = this.props.selectedYear
+
     switch (property) {
       case 'name':
         this.sortByStringProperty(
@@ -142,11 +164,16 @@ class SalesTool extends Component {
       case 'responsibleUser':
         this.sortByStringProperty(
           companyId => {
-            return companies[companyId].responsibleUser
-              ? this.props.users[
-                  companies[companyId].responsibleUser.id
-                ].toLowerCase()
-              : null
+            const years = companies[companyId].years
+            if (years) {
+              const statusOfYear = years[year]
+              if (!statusOfYear) return null
+              const userID = statusOfYear.responsibleUser.id
+
+              return this.props.users[userID].toLowerCase()
+            } else {
+              return null
+            }
           },
           companyId => companies[companyId].name.toLowerCase(),
           ascending
@@ -155,11 +182,19 @@ class SalesTool extends Component {
       case 'status':
         hasData(this.props.statuses) &&
           this.sortByStringProperty(
-            companyId =>
-              companies[companyId].status
-                ? this.props.statuses.data[companies[companyId].status.id]
-                    .priority
-                : null,
+            companyId => {
+              //-2 is lower than "no" status, means missing status
+              const years = companies[companyId].years
+              if (years) {
+                const statusOfYear = years[year]
+                if (!statusOfYear) return -2
+                const statusID = statusOfYear.status.id
+                if (statusID) return this.props.statuses.data[statusID].priority
+                else return -2
+              } else {
+                return -2
+              }
+            },
             companyId => companies[companyId].name.toLowerCase(),
             !ascending
           )
@@ -205,10 +240,12 @@ class SalesTool extends Component {
 
   getSalesAmountForFilteredCompanies = () => {
     return this.state.filteredCompanies
-      .reduce(
-        (acc, currentId) => acc + this.props.companies.data[currentId].amount,
-        0
-      )
+      .reduce((acc, currentId) => {
+        const year = this.props.companies.data[currentId].years[
+          this.props.selectedYear
+        ]
+        return year ? acc + year.amount : acc
+      }, 0)
       .toLocaleString('sv')
   }
 
@@ -217,6 +254,10 @@ class SalesTool extends Component {
       <div className={styles.content}>
         <div className={styles.sales_tool_title}>
           <h1>Sales tool</h1>
+          <YearPicker
+            selectedYear={this.props.selectedYear}
+            setStudsYear={year => this.props.setStudsYear(year)}
+          />
         </div>
         <div className={styles.top_buttons}>
           <Button
@@ -326,7 +367,13 @@ class SalesTool extends Component {
   }
 
   renderCompany(id) {
-    const { name, status, responsibleUser } = this.props.companies.data[id]
+    const { name, years } = this.props.companies.data[id]
+    let status,
+      responsibleUser = undefined
+    if (years[this.props.selectedYear]) {
+      status = years[this.props.selectedYear].status
+      responsibleUser = years[this.props.selectedYear].responsibleUser
+    }
     const statusName = status
       ? this.props.statuses.data[status.id].name
       : 'Saknar status'
@@ -408,6 +455,8 @@ SalesTool.propTypes = {
   getUsers: PropTypes.func.isRequired,
   loadCompanies: PropTypes.func.isRequired,
   addCompany: PropTypes.func.isRequired,
+  selectedYear: PropTypes.number.isRequired,
+  setStudsYear: PropTypes.func.isRequired,
 }
 
 export default SalesTool

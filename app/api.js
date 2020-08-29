@@ -88,6 +88,7 @@ const USER_PROFILE_FIELDS = `
   allergies
   master
   userRole
+  studsYear
   linkedIn
   github
   picture
@@ -181,9 +182,9 @@ export function updateUserPassword({ password, confirmPassword }) {
   return ftch(BASE_URL + PASSWORD_UPDATE, post)
 }
 
-export function fetchUsers() {
+export function fetchUsers(studsYear) {
   const query = `{
-    users(userRole: null) {
+    users(userRole: null, studsYear: ${studsYear}) {
       id,
       profile { ${USER_PROFILE_FIELDS} }
       cv { ${CV_FIELDS} }
@@ -387,12 +388,15 @@ const uploadFile = (file, signedRequest, url) => {
 const COMPANY_FIELDS = `
   id,
   name,
-  amount,
-  status {
-    id
-  },
-  responsibleUser {
-    id
+  years {
+    year,
+    amount,
+    status {
+      id
+    },
+    responsibleUser {
+      id
+    }
   }`
 
 export const fetchCompanies = () => {
@@ -452,9 +456,9 @@ export const createCompany = name => {
     .catch(err => console.error(err))
 }
 
-export const updateCompany = (companyId, companyFields) => {
+export const updateCompany = (companyId, studsYear, companyFields) => {
   const query = `mutation {
-    updateCompany(id: "${companyId}", fields: {
+    updateCompany(id: "${companyId}", year: ${studsYear}, fields: {
         ${Object.keys(companyFields).map(
           k =>
             k +
@@ -538,15 +542,16 @@ const COMMENT_FIELDS = `
   user {
     id,
     profile {
-        picture
+        picture,
+        studsYear
     }
   },
   createdAt,
   edited,`
 
-export const fetchComments = companyId => {
+export const fetchComments = (companyId, studsYear) => {
   const query = `{
-    comments(companyId: "${companyId}") {
+    comments(companyId: "${companyId}", studsYear: ${studsYear}) {
         ${COMMENT_FIELDS}
     }
   }`

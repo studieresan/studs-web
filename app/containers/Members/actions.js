@@ -20,7 +20,7 @@ const getMembersError = () => ({
   type: GET_MEMBERS_ERROR,
 })
 
-export const getUsers = () => dispatch => {
+export const getUsers = studsYear => dispatch => {
   dispatch(getMembersRequest())
   const normalize = user => ({
     ...user.profile,
@@ -28,7 +28,7 @@ export const getUsers = () => dispatch => {
     realId: user.id,
     id: `${user.profile.firstName}${user.profile.lastName}`.toLowerCase(),
   })
-  fetchUsers()
+  fetchUsers(studsYear)
     .then(users => {
       dispatch(getMembersSuccess(users.map(normalize)))
     })

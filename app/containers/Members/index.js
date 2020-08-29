@@ -14,7 +14,7 @@ import messages from './messages'
 
 export class Members extends React.Component {
   componentDidMount() {
-    this.props.getUsers()
+    this.props.getUsers(this.props.selectedYear)
   }
 
   renderMembersList(users) {
@@ -79,6 +79,7 @@ function mapStateToProps(state) {
   return {
     selectedMember: state.getIn(['members', 'selectedMember']),
     users: state.getIn(['members', 'users']).toJS(),
+    selectedYear: state.getIn(['salesTool', 'year']),
   }
 }
 
@@ -104,6 +105,7 @@ Members.propTypes = {
   history: PropTypes.object,
   selectMember: PropTypes.func.isRequired,
   selectedMember: PropTypes.string.isRequired,
+  selectedYear: PropTypes.number.isRequired,
 }
 
 export default connect(

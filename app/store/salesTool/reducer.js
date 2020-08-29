@@ -40,7 +40,7 @@ const sortingReducer = (state = defaultSortingState, action) => {
   }
 }
 
-const studsYearReducer = (state = process.env.STUDS_YEAR, action) => {
+const studsYearReducer = (state = parseInt(process.env.STUDS_YEAR), action) => {
   switch (action.type) {
     case SET_YEAR:
       return action.payload

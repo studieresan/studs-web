@@ -9,7 +9,7 @@ function MemberImage({ picture, size, square, round, className }) {
   if (!picture) picture = placeholder
   const sizes = {
     width: size,
-    height: 'auto',
+    height: square ? size : 'auto',
   }
   const classes = classnames(styles.picture, className, {
     [styles.round]: round,

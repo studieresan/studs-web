@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import styles from './styles.css'
-import Footer from 'components/Footer'
-import { FormattedMessage } from 'react-intl'
-import messages from './messages'
 import { ApplicationComponent } from 'components/Application/index'
 
 class Application extends Component {

@@ -23,7 +23,7 @@ class Login extends Component {
     this.renderError = this.renderError.bind(this)
   }
 
-  static getDerivedStateFromProps(props, state) {
+  static getDerivedStateFromProps(props) {
     if (props.loggedIn) {
       props.push('/')
     }

@@ -2,15 +2,18 @@ import React, { Component } from 'react'
 import Iframe from 'react-iframe'
 import styles from './styles.css'
 
+const FORM_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSdwdlZxUjjX1320FFkCrRHPvlM55eG2cZPwrjO1NajYlDdfLQ/viewform?usp=sf_link'
+
 export class ApplicationComponent extends Component {
+  componentDidMount() {
+    window.location.replace(FORM_URL)
+  }
+
   render() {
     return (
-      <div className={styles.form_wrapper}>
-        <Iframe
-          url='https://docs.google.com/forms/d/e/1FAIpQLSeg5yrJPMYsHWZiAdq-ERhUhDTce8IKP4T7TupvD4U2v9vyZQ/viewform?embedded=true'
-          width='100%'
-          height='100%'
-        />
+      <div>
+        <a href={FORM_URL}>Sök här</a>
       </div>
     )
   }

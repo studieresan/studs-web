@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import Iframe from 'react-iframe'
-import styles from './styles.css'
 
 const FORM_URL =
   'https://docs.google.com/forms/d/e/1FAIpQLSdwdlZxUjjX1320FFkCrRHPvlM55eG2cZPwrjO1NajYlDdfLQ/viewform?usp=sf_link'

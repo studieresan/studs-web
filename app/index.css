@@ -1,9 +1,9 @@
 /* This file contains declarations for global CSS */
 :root {
-  --primary: #bf5c06; /*#8ad0d2;*/
-  --primary-dark: #3a7677;
-  --primary-light: #b3d4d6;
-  --secondary: #8c708a; /*#f96c6b;*/
+  --primary: #bf5c06;
+  --primary-dark: #a63208;
+  --primary-light: #f2c166;
+  --secondary: #8c708a;
   --gold: rgb(250, 200, 130);
 
   --heading-font: Magnat, 'Oswald', sans-serif;

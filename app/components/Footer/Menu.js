@@ -7,22 +7,10 @@ import LogoPng from 'static/img/logo/logotype-black.png'
 import navigationMessages from 'containers/Navbar/messages'
 import styles from './styles.css'
 
-//TODO: When logo exists, replace text of Studs21 with the mobile and desktop
-//logos that are commented out below
-
 const Menu = ({ loggedIn, hasBackground }) => (
   <div className={styles.menu}>
-    <h1
-      className={styles.logoDesktop}
-      style={{
-        color: hasBackground ? 'white' : 'black',
-        textAlign: 'center',
-      }}
-    >
-      Studs 21
-    </h1>
-    {/* <img src={LogoPng} className={styles.logoDesktop} />
-    <img src={LogoPng} className={styles.logoMobile} /> */}
+    <img src={LogoPng} className={styles.logoDesktop} />
+    <img src={LogoPng} className={styles.logoMobile} />
     <nav
       className={
         styles.navigation +

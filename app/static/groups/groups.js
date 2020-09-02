@@ -4,7 +4,7 @@ import travelImage from 'static/img/people/travel.jpg'
 import eventImage from 'static/img/people/event.jpg'
 import itImage from 'static/img/people/it.jpg'
 import financeImage from 'static/img/people/finance.jpg'
-import saleImage from 'static/img/people/sale.jpg'
+import saleImage from 'static/img/people/sales.jpg'
 import infoImage from 'static/img/people/info.jpg'
 
 //Groups and their responsible persons.

@@ -4,7 +4,7 @@ import styles from './styles.css'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import MemberImage from 'components/MemberImage'
-import sale from 'static/img/people/sale.jpg'
+import sale from 'static/img/people/sales.jpg'
 
 const CONTACT_NAME = 'Andreas Wallström'
 const CONTACT_PHONE_NUMBER = '+46 70-placeholder'

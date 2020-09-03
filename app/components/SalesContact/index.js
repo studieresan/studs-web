@@ -7,7 +7,7 @@ import MemberImage from 'components/MemberImage'
 import sale from 'static/img/people/sales.jpg'
 
 const CONTACT_NAME = 'Andreas Wallström'
-const CONTACT_PHONE_NUMBER = '+46 70-placeholder'
+const CONTACT_PHONE_NUMBER = '+46 76-188 04 28'
 const CONTACT_EMAIL = 'awallst@kth.se'
 
 const SalesContact = ({ className }) => (

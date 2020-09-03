@@ -100,15 +100,15 @@ h1 {
 
 @media (max-width: 920px) {
   .container {
-    max-width: 90%;
+    max-width: 100%;
   }
 
   .info {
-    max-width: 90%;
+    max-width: 100%;
   }
 
   .intro {
-    width: 90%;
+    width: 100%;
   }
 
   h1 {

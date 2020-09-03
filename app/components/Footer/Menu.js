@@ -3,14 +3,21 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { FormattedMessage } from 'react-intl'
-import LogoPng from 'static/img/logo/logotype-black.png'
+import LogoBlack from 'static/img/logo/logotype-black.png'
+import LogoWhite from 'static/img/logo/logotype-white.png'
 import navigationMessages from 'containers/Navbar/messages'
 import styles from './styles.css'
 
 const Menu = ({ loggedIn, hasBackground }) => (
   <div className={styles.menu}>
-    <img src={LogoPng} className={styles.logoDesktop} />
-    <img src={LogoPng} className={styles.logoMobile} />
+    <img
+      src={hasBackground ? LogoWhite : LogoBlack}
+      className={styles.logoDesktop}
+    />
+    <img
+      src={hasBackground ? LogoWhite : LogoBlack}
+      className={styles.logoMobile}
+    />
     <nav
       className={
         styles.navigation +

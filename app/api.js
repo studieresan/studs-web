@@ -65,19 +65,6 @@ function executeGraphQL(query) {
   })
 }
 
-function executeGraphQLMutation(query) {
-  const url = `${BASE_URL}${GRAPHQL}`
-  return ftch(url, {
-    method: 'POST',
-    ...credentials(),
-    headers: {
-      ...authorizationHeader(),
-      ...jsonHeader(),
-    },
-    body: query,
-  })
-}
-
 const USER_PROFILE_FIELDS = `
   email
   firstName

@@ -77,6 +77,11 @@ function NavLinks({ loggedIn, user }: Props) {
             </Link>
           </li>
         )}
+        <li>
+          <Link to='/groups/'>
+            <FormattedMessage {...messages.groups} />
+          </Link>
+        </li>
       </ul>
       <ul className={styles.navbarUserMenu}>
         <li>

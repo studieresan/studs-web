@@ -28,6 +28,9 @@ export const getUsers = studsYear => dispatch => {
     realId: user.id,
     id: `${user.profile.firstName}${user.profile.lastName}`.toLowerCase(),
   })
+  if (!studsYear) {
+    studsYear = process.env.STUDS_YEAR
+  }
   fetchUsers(studsYear)
     .then(users => {
       dispatch(getMembersSuccess(users.map(normalize)))

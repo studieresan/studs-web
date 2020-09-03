@@ -21,6 +21,10 @@ export default defineMessages({
     id: 'app.containers.Navbar.events',
     defaultMessage: 'Events',
   },
+  groups: {
+    id: 'app.containers.Navbar.groups',
+    defaultMessage: 'The groups',
+  },
   pastEvents: {
     id: 'app.containers.Navbar.pastEvents',
     defaultMessage: 'Past Events',

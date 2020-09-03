@@ -3,7 +3,7 @@ import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import styles from './styles.css'
-import LogoPng from 'static/img_new/logo/logotype-white.png'
+import LogoPng from 'static/img/logo/logotype-white.png'
 
 function HomePageHeader() {
   return (

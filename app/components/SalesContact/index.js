@@ -4,11 +4,11 @@ import styles from './styles.css'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import MemberImage from 'components/MemberImage'
-import Cristian from 'static/img_new/people/cristian.jpg'
+import sale from 'static/img/people/sales.jpg'
 
-const CONTACT_NAME = 'Cristian Osorio Bretti'
-const CONTACT_PHONE_NUMBER = '+46 70-782 65 60'
-const CONTACT_EMAIL = 'cristian@studs.se'
+const CONTACT_NAME = 'Andreas Wallström'
+const CONTACT_PHONE_NUMBER = '+46 70-placeholder'
+const CONTACT_EMAIL = 'awallst@kth.se'
 
 const SalesContact = ({ className }) => (
   <div className={styles.contact + ' ' + className}>
@@ -21,7 +21,7 @@ const SalesContact = ({ className }) => (
       </p>
     </div>
     <div className={styles.contactInfo}>
-      <Image picture={Cristian} round />
+      <Image picture={sale} round />
       <div>
         <b>{CONTACT_NAME}</b>
         <br />

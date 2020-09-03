@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import classnames from 'classnames'
-import placeholder from 'static/img_new/profile-placeholder.png'
+import placeholder from 'static/img/profile-placeholder.png'
 
 function MemberImage({ picture, size, square, round, className }) {
-  if (!picture) return null
+  //If no picture, set picture as placeholder
+  if (!picture) picture = placeholder
   const sizes = {
     width: size,
-    height: 'auto',
+    height: square ? size : 'auto',
   }
   const classes = classnames(styles.picture, className, {
     [styles.round]: round,

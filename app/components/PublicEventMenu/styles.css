@@ -8,15 +8,6 @@
   color: white; */
 }
 
-.close {
-  display: none;
-  position: sticky;
-  justify-content: flex-end;
-  left: 15px;
-  top: 15px;
-  width: 40px;
-}
-
 .public_event_menu > span {
   text-decoration: underline;
   font-size: 18px;
@@ -84,15 +75,4 @@
   .close {
     display: block;
   }
-}
-
-.collapsed {
-  content: url(static/img_new/icons/icon_menu_2.svg);
-  width: 60px;
-  height: 60px;
-  border-radius: 100%;
-  margin-top: 10px;
-  margin-left: 10px;
-  padding: 12px;
-  top: 10px;
 }

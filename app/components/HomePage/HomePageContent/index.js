@@ -7,13 +7,13 @@ import ScrollSticky from 'components/ScrollSticky'
 import Button from 'components/Button'
 import MemberImage from 'components/MemberImage'
 import Card from './Card'
-import ImageEvent1 from 'static/img_new/home/event1.jpg'
-import ImageEvent2 from 'static/img_new/home/event2.jpg'
-import ImageEvent3 from 'static/img_new/home/event3.jpg'
-import ImageProject1 from 'static/img_new/home/project1.jpg'
-import ImageProject2 from 'static/img_new/home/project2.jpg'
-import ImageProject3 from 'static/img_new/home/project3.jpg'
-import cristian from 'static/img_new/people/cristian.jpg'
+import ImageEvent1 from 'static/img/home/event1.jpg'
+import ImageEvent2 from 'static/img/home/event2.jpg'
+import ImageEvent3 from 'static/img/home/event3.jpg'
+import ImageProject1 from 'static/img/home/project1.jpg'
+import ImageProject2 from 'static/img/home/project2.jpg'
+import ImageProject3 from 'static/img/home/project3.jpg'
+import sale from 'static/img/people/sales.jpg'
 import { FormattedMessage } from 'react-intl'
 
 const HomePageContent = () => {
@@ -34,13 +34,7 @@ const HomePageContent = () => {
       >
         <div className={styles.contact_wrapper}>
           <div className={showSalesPic ? null : styles.squish_and_fade}>
-            <MemberImage
-              className={''}
-              picture={cristian}
-              size={80}
-              square
-              round
-            />
+            <MemberImage className={''} picture={sale} size={80} square round />
           </div>
           <Button color={'white'}>
             <FormattedMessage {...messages.contact} />

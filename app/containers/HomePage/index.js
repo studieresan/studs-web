@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../Members/actions'
 
-import { HomePageHeader, HomePageContent } from 'components/HomePage'
+import { HomePageContent, HomePageAbout } from 'components/HomePage'
 
-import Footer from 'components/HomeFooter'
+import Footer from 'components/Footer'
 
 export class HomePage extends Component {
   render() {
     return (
       <div>
         <HomePageContent />
-        <Footer />
+        <HomePageAbout />
+        <Footer showCollaborators hasBackground={false} />
       </div>
     )
   }

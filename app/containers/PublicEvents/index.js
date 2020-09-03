@@ -10,7 +10,7 @@ import messages from './messages'
 import { FormattedMessage } from 'react-intl'
 import PublicEvent from 'components/PublicEvent'
 import PublicEventMenu from 'components/PublicEventMenu'
-import Footer from 'components/AboutAndEventFooter'
+import Footer from 'components/Footer'
 import Spinner from 'components/Spinner'
 
 class PublicEvents extends React.Component {
@@ -44,11 +44,7 @@ class PublicEvents extends React.Component {
         {!saved && <Spinner className={styles.spinner} />}
         {saved && (
           <div className={styles.public_events}>
-            <PublicEventMenu
-              events={events}
-              oldEvents={oldEvents}
-              saved={saved}
-            />
+            <PublicEventMenu events={events} oldEvents={oldEvents} />
             <div className={styles.event_list}>
               {events.map((e, idx) => [
                 <PublicEvent key={e.id} {...e} index={idx} />,
@@ -63,7 +59,7 @@ class PublicEvents extends React.Component {
             </div>
           </div>
         )}
-        <Footer />
+        <Footer hasBackground />
       </div>
     )
   }

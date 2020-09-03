@@ -20,6 +20,8 @@ import PublicEvents from 'containers/PublicEvents'
 import SalesTool from 'containers/SalesTool/SalesToolContainer'
 import CompanyDetails from 'containers/SalesTool/CompanyDetailsContainer'
 import ContactRequests from 'containers/ContactRequests/ContactRequestsContainer'
+import StudentComponent from 'containers/Group'
+import Application from 'containers/Application'
 
 class StudsRouter extends Component {
   render() {
@@ -32,6 +34,10 @@ class StudsRouter extends Component {
 
         <Route exact path='/password-reset/:token' component={PasswordReset} />
         <Route exact path='/events/public' component={PublicEvents} />
+
+        <Route exact path='/groups' component={StudentComponent} />
+
+        <Route exact path='/apply' component={Application} />
 
         <AuthenticatedRoute
           exact

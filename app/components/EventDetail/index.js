@@ -17,7 +17,9 @@ export default class EventDetail extends Component {
       return null
     }
 
-    const responsibleUser = users.find(u => u.realId === event.responsible.id)
+    const responsibleUser = users.find(
+      u => event.responsible && u.realId === event.responsible.id
+    )
     const responsibleName = responsibleUser
       ? responsibleUser.firstName + ' ' + responsibleUser.lastName
       : ''
@@ -60,9 +62,10 @@ export default class EventDetail extends Component {
               <FormattedMessage {...messages.location} />
             </h4>
             <a
-              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                event.location
-              )}`}
+              href={
+                'https://www.google.com/maps/search/?api=1&query=' +
+                encodeURIComponent(event.location)
+              }
               target='_blank'
             >
               {event.location}

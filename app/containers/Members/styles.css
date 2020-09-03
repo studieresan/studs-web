@@ -1,19 +1,26 @@
 .members {
 }
 
+.add_members_button:hover {
+  opacity: 0.8;
+  transition: 0.5;
+}
+
 .members_title {
   padding-top: var(--header-height);
   height: 20vh;
-  background-image: url(static/img_new/home/background.png);
+  background-image: url(static/img/home/background.png);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   color: white;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 @media print {

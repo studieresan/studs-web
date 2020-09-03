@@ -1,38 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-scroll'
-import { trackEvent } from '../../utils'
-import CloseIcon from 'static/img_new/icons/icon_close.svg'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
-import Bowser from 'bowser'
 import styles from './styles.css'
 
 const PublicEventMenu = ({ events, oldEvents }) => {
-  const browser = Bowser.getParser(window.navigator.userAgent)
-  const [menuOpen, setMenuOpen] = useState(
-    browser.getPlatformType() !== 'mobile'
-  )
-
   return (
-    <div
-      onClick={() => !menuOpen && setMenuOpen(true)}
-      className={
-        styles.public_event_menu + ' ' + (!menuOpen && styles.collapsed)
-      }
-    >
-      <img
-        onClick={() => setMenuOpen(false)}
-        src={CloseIcon}
-        className={styles.close}
-      />
+    <div className={styles.public_event_menu}>
       <span>
         <FormattedMessage {...messages.current} />
       </span>
       <div className={styles.links}>
         {events.map(e => (
           <PublicEventMenuLink
-            onTouch={() => setMenuOpen(false)}
             key={e.id}
             company={e.companyName}
             companyId={e.id}
@@ -45,7 +26,6 @@ const PublicEventMenu = ({ events, oldEvents }) => {
       <div className={styles.links}>
         {oldEvents.map(e => (
           <PublicEventMenuLink
-            onTouch={() => setMenuOpen(false)}
             key={e.id}
             company={e.companyName}
             companyId={e.id}
@@ -56,20 +36,15 @@ const PublicEventMenu = ({ events, oldEvents }) => {
   )
 }
 
-const PublicEventMenuLink = ({ company, companyId, onTouch }) => {
+const PublicEventMenuLink = ({ company, companyId }) => {
   return (
     <div>
       <Link
         activeClass={styles.active}
         to={companyId}
         smooth={true}
-        offset={-92}
         duration={400}
         spy={true}
-        onClick={e => {
-          trackEvent('Events', `Clicked the ${company} event`)
-          e.nativeEvent.sourceCapabilities.firesTouchEvents && onTouch()
-        }}
       >
         <span>{'>'}</span>
         {company}

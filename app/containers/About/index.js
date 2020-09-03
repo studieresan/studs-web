@@ -7,15 +7,14 @@ import sortBy from 'lodash/sortBy'
 import * as actions from 'containers/Members/actions'
 import styles from './styles.css'
 import messages from './messages'
-import Footer from 'components/AboutAndEventFooter'
+import Footer from 'components/Footer'
 import MemberImage from 'components/MemberImage'
 import { prettyUserRole } from 'utils'
 
 const StudsMemberInfo = user => {
-  if (!user.alternativePicture) return null
   const size = Math.max(Math.floor((window.innerWidth * 0.8) / 5) - 40, 100)
   return (
-    <div key={user.lastName} className={styles.member}>
+    <div key={user.firstName + user.lastName} className={styles.member}>
       <MemberImage picture={user.alternativePicture} size={size} square round />
       <h3
         style={{
@@ -44,7 +43,7 @@ class About extends Component {
           </h1>
         </div>
         <div className={styles.about}>{users.map(u => StudsMemberInfo(u))}</div>
-        <Footer />
+        <Footer hasBackground />
       </div>
     )
   }

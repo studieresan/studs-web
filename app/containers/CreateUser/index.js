@@ -4,9 +4,11 @@ import { createUser } from 'api'
 import { connect } from 'react-redux'
 import Button from 'components/Button'
 import styles from './styles.css'
+import messages from './messages'
 import { formToObject, prettyUserRole } from 'utils'
 import { loadUserRoles } from 'store/userRoles/actions'
 import { hasData } from 'store/salesTool/constants'
+import { FormattedMessage } from 'react-intl'
 
 class CreateUser extends React.Component {
   constructor(props) {
@@ -72,14 +74,16 @@ class CreateUser extends React.Component {
   }
 
   render() {
-    const { errorMsg, successMsg, selectedMemberType } = this.state
+    const { errorMsg, successMsg } = this.state
     const errorIsVisible = errorMsg && errorMsg !== ''
     const successIsVisible = successMsg && successMsg !== '' && !errorIsVisible
 
     return (
       <div className={styles.createUser}>
         <div className={styles.content}>
-          <h2>Create user</h2>
+          <h2>
+            <FormattedMessage {...messages.title} />
+          </h2>
 
           {errorIsVisible && <div className={styles.errorMsg}>{errorMsg}</div>}
 
@@ -89,7 +93,7 @@ class CreateUser extends React.Component {
 
           <form onSubmit={this.handleSubmit}>
             <div className={styles.formLabel}>
-              User role:
+              <FormattedMessage {...messages.role} />
               <div>
                 <select
                   name='user_role'
@@ -121,10 +125,10 @@ class CreateUser extends React.Component {
             </label>
 
             <label>
-              First name:
+              <FormattedMessage {...messages.firstName} />
               <input
                 type='text'
-                placeholder='First name'
+                placeholder='Peter'
                 name='firstName'
                 id='firstName'
                 required
@@ -132,10 +136,10 @@ class CreateUser extends React.Component {
             </label>
 
             <label>
-              Last name:
+              <FormattedMessage {...messages.lastName} />
               <input
                 type='text'
-                placeholder='Last name'
+                placeholder='Niklasson'
                 name='lastName'
                 id='lastName'
                 required
@@ -143,7 +147,7 @@ class CreateUser extends React.Component {
             </label>
 
             <Button full type='submit'>
-              Create new user
+              <FormattedMessage {...messages.createButton} />
             </Button>
           </form>
         </div>

@@ -69,13 +69,13 @@
 
 .bright {
   background: var(--primary);
-  border-color: var(--primary-dark);
-  color: var(--primary-dark);
+  border-color: var(--primary-light);
+  color: var(--primary-light);
 }
 
 .bright:hover {
   background: var(--primary-light);
-  color: white;
+  color: var(--primary-dark);
 }
 
 .dark {

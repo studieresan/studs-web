@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styles from './styles.css'
-import { SlackComponent } from 'compontent/Slack/index'
+import { SlackComponent } from 'compontents/Slack/index'
 
 class Slack extends Component {
   render() {

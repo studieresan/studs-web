@@ -22,7 +22,6 @@ import CompanyDetails from 'containers/SalesTool/CompanyDetailsContainer'
 import ContactRequests from 'containers/ContactRequests/ContactRequestsContainer'
 import StudentComponent from 'containers/Group'
 import Application from 'containers/Application'
-import Slack from 'containers/Slack'
 
 class StudsRouter extends Component {
   render() {
@@ -39,7 +38,6 @@ class StudsRouter extends Component {
         <Route exact path='/groups' component={StudentComponent} />
 
         <Route exact path='/apply' component={Application} />
-        <Route exact path='/slack' component={Slack} />
 
         <AuthenticatedRoute
           exact

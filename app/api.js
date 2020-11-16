@@ -81,8 +81,8 @@ export function fetchUser() {
       firstName
       lastName
       year
+      role
       profile {
-        role
         ${USER_PROFILE_FIELDS}
         cv
         picture

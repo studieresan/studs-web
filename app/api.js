@@ -67,27 +67,25 @@ function executeGraphQL(query) {
 
 const USER_PROFILE_FIELDS = `
   email
-  firstName
-  lastName
-  resumeEmail
   phone
-  picture
-  allergies
-  master
-  userRole
-  studsYear
   linkedIn
   github
-  picture
-  alternativePicture
+  master
+  allergies  
 `
 
 export function fetchUser() {
   const query = `{
     user {
       id
+      firstName
+      lastName
+      year
       profile {
+        role
         ${USER_PROFILE_FIELDS}
+        cv
+        picture
       }
       permissions
     }
@@ -173,8 +171,15 @@ export function fetchUsers(studsYear) {
   const query = `{
     users(userRole: null, studsYear: ${studsYear}) {
       id,
-      profile { ${USER_PROFILE_FIELDS} }
-      cv { ${CV_FIELDS} }
+      firstName
+      lastName
+      year
+      profile { 
+        role
+        ${USER_PROFILE_FIELDS}
+        cv { ${CV_FIELDS} }
+        picture
+      }
     }
   }
   `
@@ -193,16 +198,6 @@ const CV_FIELDS = `
     }
   }
 `
-
-export function fetchCv() {
-  const query = `{
-    user {
-      cv { ${CV_FIELDS} }
-    }
-  }
-  `
-  return executeGraphQL(query).then(res => res.data.user.cv)
-}
 
 export function updateCv(id, cv) {
   const mutation = `mutation {
@@ -243,16 +238,18 @@ export function resetPassword(password, confirmPassword, token) {
 
 const EVENT_FIELDS = `
   id
-  privateDescription
-  publicDescription
   date
-  beforeSurveys
-  afterSurveys
+  studsYear
   location
+  publicDescription
+  privateDescription
+  beforeSurvey
+  afterSurvey
   pictures
   published
   responsible { id }
   company { id, name }
+  status
 `
 
 export function fetchEvents() {
@@ -272,19 +269,7 @@ export function fetchEvents() {
 }
 
 export function fetchOldEvents() {
-  const query = `query {
-    oldEvents {
-      id
-      companyName
-      publicDescription
-      date
-      pictures
-      published
-    }
-  }`
-  return executeGraphQL(query)
-    .then(res => res.data.oldEvents)
-    .then(events => events.map(e => ({ ...e, date: new Date(e.date) })))
+  return fetchEvents()
 }
 
 export function saveEvent(e) {
@@ -375,15 +360,9 @@ const uploadFile = (file, signedRequest, url) => {
 const COMPANY_FIELDS = `
   id,
   name,
-  years {
-    year,
-    amount,
-    status {
-      id
-    },
-    responsibleUser {
-      id
-    }
+  companyContacts
+  responsibleUsers
+  events
   }`
 
 export const fetchCompanies = () => {

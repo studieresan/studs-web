@@ -249,7 +249,6 @@ const EVENT_FIELDS = `
   published
   responsible { id }
   company { id, name }
-  status
 `
 
 export function fetchEvents() {

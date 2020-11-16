@@ -254,12 +254,12 @@ const EVENT_FIELDS = `
 
 export function fetchEvents() {
   const query = `query {
-    allEvents {
+    events {
       ${EVENT_FIELDS}
     }
   }`
   return executeGraphQL(query)
-    .then(res => res.data.allEvents)
+    .then(res => res.data.events)
     .then(events =>
       events.map(e => ({
         ...e,

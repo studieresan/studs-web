@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -11,64 +11,48 @@ import styles from './styles.css'
 import { prettyUserRole } from 'utils'
 import placeholder from 'static/img/profile-placeholder.png'
 
-class HomePageAbout extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      user: {},
-    }
-  }
-  componentDidMount() {
-    this.props.getUsers()
-  }
+function HomePageAbout({ users, getUsers }) {
+  const [user, setUser] = useState(null)
+  useEffect(() => getUsers(), [])
+  useEffect(
+    () => {
+      setUser(users[Math.floor(Math.random() * users.length)])
+    },
+    [users]
+  )
 
-  static getDerivedStateFromProps(props, state) {
-    if (state.user && state.user.firstName) {
-      return null
-    }
-    const { users } = props
-    const user = users[Math.floor(Math.random() * users.length)]
-    return {
-      user,
-    }
-  }
-
-  render() {
-    const { user } = this.state
-    if (!user || !Object.keys(user).length) return null
-    return (
-      <div className={styles.HomePageAbout}>
-        <div className={styles.image}>
-          <MemberImage
-            picture={user.picture ? user.picture : placeholder}
-            size={250}
-            square
-            round
-          />
-        </div>
-        <div className={styles.information}>
-          <h1 className={styles.name}>
-            <FormattedMessage
-              {...messages.headline}
-              values={{ firstName: user.firstName }}
-            />
-          </h1>
-          <h5>{prettyUserRole(user.userRole)}</h5>
-          <p>
-            <FormattedMessage
-              {...messages.intro}
-              values={{ firstName: user.firstName }}
-            />
-          </p>
-          <p>
-            <Link className={styles.link} to='/about'>
-              <FormattedMessage {...messages.link} />
-            </Link>
-          </p>
-        </div>
+  return !user || !Object.keys(user).length ? null : (
+    <div className={styles.HomePageAbout}>
+      <div className={styles.image}>
+        <MemberImage
+          picture={user.picture ? user.picture : placeholder}
+          size={250}
+          square
+          round
+        />
       </div>
-    )
-  }
+      <div className={styles.information}>
+        <h1 className={styles.name}>
+          <FormattedMessage
+            {...messages.headline}
+            values={{ firstName: user.firstName }}
+          />
+        </h1>
+        <h5>{prettyUserRole(user.userRole)}</h5>
+        <p>
+          <FormattedMessage
+            {...messages.intro}
+            values={{ firstName: user.firstName }}
+          />
+        </p>
+        <p>
+          <Link className={styles.link} to='/about'>
+            <FormattedMessage {...messages.link} />
+          </Link>
+        </p>
+      </div>
+    </div>
+  )
 }
 
 function mapStateToProps(state) {

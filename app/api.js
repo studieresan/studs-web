@@ -268,10 +268,6 @@ export function fetchEvents() {
     )
 }
 
-export function fetchOldEvents() {
-  return fetchEvents()
-}
-
 export function saveEvent(e) {
   const event = omit(e, 'id')
   const id = e.id

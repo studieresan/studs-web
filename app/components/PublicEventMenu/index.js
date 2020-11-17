@@ -5,9 +5,9 @@ import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import styles from './styles.css'
 
-const PublicEventMenu = ({ events, oldEvents }) => {
+const PublicEventMenu = ({ events }) => {
   return (
-    <div className={styles.public_event_menu}>
+    <aside className={styles.public_event_menu}>
       <span>
         <FormattedMessage {...messages.current} />
       </span>
@@ -20,19 +20,7 @@ const PublicEventMenu = ({ events, oldEvents }) => {
           />
         ))}
       </div>
-      <span>
-        <FormattedMessage {...messages.previous} />
-      </span>
-      <div className={styles.links}>
-        {oldEvents.map(e => (
-          <PublicEventMenuLink
-            key={e.id}
-            company={e.companyName}
-            companyId={e.id}
-          />
-        ))}
-      </div>
-    </div>
+    </aside>
   )
 }
 
@@ -55,7 +43,6 @@ const PublicEventMenuLink = ({ company, companyId }) => {
 
 PublicEventMenu.propTypes = {
   events: PropTypes.array.isRequired,
-  oldEvents: PropTypes.array.isRequired,
 }
 
 PublicEventMenuLink.propTypes = {

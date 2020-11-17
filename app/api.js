@@ -50,6 +50,7 @@ function ftch(...args) {
   return fetch(...args)
     .then(checkStatus)
     .then(parseJSON)
+    .catch(console.error)
 }
 
 function executeGraphQL(query) {
@@ -170,11 +171,11 @@ export function updateUserPassword({ password, confirmPassword }) {
 export function fetchUsers(studsYear) {
   const query = `{
     users(userRole: null, studsYear: ${studsYear}) {
-      id,
+      id
       firstName
       lastName
       year
-      profile { 
+      info { 
         role
         ${USER_PROFILE_FIELDS}
         cv { ${CV_FIELDS} }

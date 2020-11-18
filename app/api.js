@@ -373,7 +373,8 @@ const COMPANY_FIELDS = `
 export const fetchCompanies = () => {
   const query = `{
       companies {
-        ${COMPANY_FIELDS}
+        id
+        name
       }
     }`
   return executeGraphQL(query)
@@ -405,14 +406,25 @@ export const fetchCompany = companyId => {
 
 export const fetchSaleStatuses = () => {
   const query = `{
-    allCompanySalesStatuses {
-        id,
-        name,
-        priority
+    companies {
+      id
+      name
     }
   }`
+  // statuses {
+  //   id
+  //   statusPriority
+  //   statusDescription
+  // }
   return executeGraphQL(query)
-    .then(res => res.data.allCompanySalesStatuses)
+    .then(res => res.data.companies)
+    .then(res =>
+      res.map(company => ({
+        id: company.id,
+        name: company.statuses && company.statuses.statusDescription,
+        priority: company.statuses && company.statuses.statusPriority,
+      }))
+    )
     .catch(err => console.error(err))
 }
 

@@ -28,11 +28,14 @@ function NavLinks({ loggedIn, user }: Props) {
             <FormattedMessage {...messages.studsmembers} />
           </Link>
         </li>
-        <li>
+        {
+          //TODO - fix sales-tool
+        }
+        {/* <li>
           <Link to='/sales-tool/companies'>
             <FormattedMessage {...messages.salesTool} />
           </Link>
-        </li>
+        </li> */}
         {/* <li>
           <Link to='/trip'>
             <FormattedMessage {...messages.trip} />

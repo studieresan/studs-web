@@ -86,6 +86,7 @@ export function fetchUser() {
         ${USER_PROFILE_FIELDS}
         role
         picture
+        permissions
       }
     }
   }
@@ -119,9 +120,7 @@ export function updateUser(newFields) {
     }
   }
   `
-  console.log('mutation', mutation)
   return executeGraphQL(mutation).then(res => {
-    console.log('res', res)
     return res.data.userUpdate
   })
 }
@@ -278,7 +277,7 @@ export function saveEvent(e) {
   const id = e.id
   const companyId = event.company.id
   delete event.company
-  const responsibleUserId = event.responsible.id
+  const responsibleUserId = event.responsible ? event.responsible.id : null
   delete event.responsible
   event.responsibleUserId = responsibleUserId
 

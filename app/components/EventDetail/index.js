@@ -23,6 +23,7 @@ export default class EventDetail extends Component {
     const responsibleName = responsibleUser
       ? responsibleUser.firstName + ' ' + responsibleUser.lastName
       : ''
+
     return (
       <div className={styles.eventDetail}>
         <div className={styles.head}>
@@ -90,40 +91,28 @@ export default class EventDetail extends Component {
             <Markdown source={event.privateDescription} />
           </div>
         )}
-        {(!!event.beforeSurveys.length || !!event.afterSurveys.length) && (
+        {(!!event.beforeSurvey || !!event.afterSurvey) && (
           <div>
             <hr />
             <h2>
-              <FormattedMessage {...messages.surveys} />
+              <FormattedMessage {...messages.survey} />
             </h2>
-            <div className={styles.surveys}>
+            <div className={styles.survey}>
               <div>
                 <h3>
                   <FormattedMessage {...messages.before} />
                 </h3>
-                <ul>
-                  {event.beforeSurveys.map((link, idx) => (
-                    <li key={link}>
-                      <a href={link} target='_blank'>
-                        <FormattedMessage {...messages.survey} /> {idx}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+                <a href={event.beforeSurvey} target='_blank'>
+                  <FormattedMessage {...messages.survey} />
+                </a>
               </div>
               <div>
                 <h3>
                   <FormattedMessage {...messages.after} />
                 </h3>
-                <ul>
-                  {event.afterSurveys.map((link, idx) => (
-                    <li key={link}>
-                      <a href={link} target='_blank'>
-                        <FormattedMessage {...messages.survey} /> {idx}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+                <a href={event.afterSurvey} target='_blank'>
+                  <FormattedMessage {...messages.survey} />
+                </a>
               </div>
             </div>
           </div>

@@ -10,8 +10,7 @@ import {
   REMOVE_ERROR,
   ADD_PICTURE,
   REMOVE_PICTURE,
-  ADD_SURVEY,
-  REMOVE_SURVEY,
+  SET_SURVEY,
 } from './constants'
 
 export function getEmptyEventObject() {
@@ -19,8 +18,8 @@ export function getEmptyEventObject() {
     privateDescription: '',
     publicDescription: '',
     date: new Date(),
-    beforeSurveys: [],
-    afterSurveys: [],
+    beforeSurvey: '',
+    afterSurvey: '',
     location: '',
     pictures: [],
     published: false,
@@ -95,15 +94,9 @@ function eventsReducer(state = initialState, action) {
           pictures.filter((p, index) => index !== action.index)
         )
       )
-    case ADD_SURVEY:
+    case SET_SURVEY:
       return updateEvent(state, action.id, event =>
-        event.update(action.surveyType, surveys => surveys.concat(action.url))
-      )
-    case REMOVE_SURVEY:
-      return updateEvent(state, action.id, event =>
-        event.update(action.surveyType, survey =>
-          survey.filter((p, index) => index !== action.index)
-        )
+        event.update(action.surveyType, () => action.url)
       )
     default:
       return state

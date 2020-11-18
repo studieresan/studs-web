@@ -11,7 +11,6 @@ import styles from './styles.css'
 import Textarea from 'react-textarea-autosize'
 import Button from 'components/Button'
 import EventEditPicture from 'components/EventEditPicture'
-import EventEditSurvey from 'components/EventEditSurvey'
 
 import { hasData } from 'store/salesTool/constants'
 
@@ -79,20 +78,20 @@ export default class EventEdit extends React.Component {
 
   handleSave = () => {
     const { save, event } = this.props
-    if (event.company.id && event.responsible.id) {
+    if (
+      event.responsible &&
+      event.company &&
+      event.company.id &&
+      event.responsible.id
+    ) {
       save(event)
     } else {
       alert('You must select a company and a responsible user before saving.')
     }
   }
 
-  addSurvey = (surveyType, value, event) => {
-    this.props.addSurvey(value, surveyType, event.id)
-    if (surveyType === 'beforeSurveys') {
-      this.setState({ beforeSurvey: '' })
-    } else {
-      this.setState({ afterSurvey: '' })
-    }
+  setSurvey = (surveyType, value, event) => {
+    this.props.setSurvey(value, surveyType, event.id)
   }
 
   render() {
@@ -100,25 +99,13 @@ export default class EventEdit extends React.Component {
       event,
       events: { saving, saved },
       removePicture,
-      removeSurvey,
       companies,
-      soldCompanies,
       users,
     } = this.props
 
-    const companiesList = hasData(companies)
-      ? soldCompanies.map(soldCompanyId => companies.data[soldCompanyId])
-      : []
+    const companiesList = hasData(companies) ? companies : []
 
     const eventUsers = users.filter(u => u.userRole === 'event_group')
-
-    const surveyListItem = surveyType => (url, i) => (
-      <EventEditSurvey
-        key={url + i}
-        url={url}
-        onRemove={() => removeSurvey(i, surveyType, event.id)}
-      />
-    )
 
     return (
       <div className={styles.eventEdit}>
@@ -160,7 +147,7 @@ export default class EventEdit extends React.Component {
           <select
             name='responsible'
             placeholder='Responsible user'
-            value={event.responsible.id}
+            value={event.responsible ? event.responsible.id : null}
             onClick={this.handleChange}
             onChange={this.handleChange}
           >
@@ -238,31 +225,27 @@ export default class EventEdit extends React.Component {
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.beforeSurvey} />
         </div>
-        {event.beforeSurveys &&
-          event.beforeSurveys.map(surveyListItem('beforeSurveys'))}
         <input
-          name='beforeSurveys'
+          name='beforeSurvey'
           placeholder='Enter survey url. Press Enter when done.'
           value={this.state.beforeSurvey}
           onChange={e => this.setState({ beforeSurvey: e.target.value })}
           onKeyPress={e =>
             e.key === 'Enter' &&
-            this.addSurvey(e.target.name, e.target.value, event)
+            this.setSurvey(e.target.name, e.target.value, event)
           }
         />
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.afterSurvey} />
         </div>
-        {event.afterSurveys &&
-          event.afterSurveys.map(surveyListItem('afterSurveys'))}
         <input
-          name='afterSurveys'
+          name='afterSurvey'
           placeholder='Enter survey url. Press Enter when done.'
           value={this.state.afterSurvey}
           onChange={e => this.setState({ afterSurvey: e.target.value })}
           onKeyPress={e =>
             e.key === 'Enter' &&
-            this.addSurvey(e.target.name, e.target.value, event)
+            this.setSurvey(e.target.name, e.target.value, event)
           }
         />
         <div className={styles.inputLabel}>
@@ -300,6 +283,5 @@ EventEdit.propTypes = {
 
   addPicture: PropTypes.func.isRequired,
   removePicture: PropTypes.func.isRequired,
-  addSurvey: PropTypes.func.isRequired,
-  removeSurvey: PropTypes.func.isRequired,
+  setSurvey: PropTypes.func.isRequired,
 }

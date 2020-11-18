@@ -6,20 +6,37 @@ import messages from './messages'
 import styles from './styles.css'
 
 const PublicEventMenu = ({ events }) => {
+  const groupedEvents = events.reduce(
+    (years, event) => ({
+      ...years,
+      [event.studsYear]: [...(years[event.studsYear] || []), event],
+    }),
+    {}
+  )
   return (
     <aside className={styles.public_event_menu}>
-      <span>
-        <FormattedMessage {...messages.current} />
-      </span>
-      <div className={styles.links}>
-        {events.map(e => (
-          <PublicEventMenuLink
-            key={e.id}
-            company={e.companyName}
-            companyId={e.id}
-          />
-        ))}
-      </div>
+      {Object.keys(groupedEvents)
+        .reverse()
+        .map(year => {
+          const events = groupedEvents[year]
+          return (
+            <React.Fragment key={year}>
+              <span>
+                <FormattedMessage {...messages.current} />
+                {year}
+              </span>
+              <div className={styles.links}>
+                {events.map(e => (
+                  <PublicEventMenuLink
+                    key={e.id}
+                    company={e.companyName}
+                    companyId={e.id}
+                  />
+                ))}
+              </div>
+            </React.Fragment>
+          )
+        })}
     </aside>
   )
 }

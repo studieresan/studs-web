@@ -93,8 +93,11 @@ export function fetchUser() {
   return executeGraphQL(query).then(res =>
     Promise.resolve({
       id: res.data.user.id,
-      ...res.data.user.profile,
-      permissions: res.data.user.permissions,
+      firstName: res.data.user.firstName,
+      lastName: res.data.user.lastName,
+      studsYear: res.data.user.studsYear,
+      ...res.data.user.info,
+      permissions: res.data.user.info.permissions,
     })
   )
 }
@@ -111,12 +114,16 @@ const wrapInQuotes = stringValue => {
 
 export function updateUser(newFields) {
   const mutation = `mutation {
-    updateProfile(fields: ${toGraphQLFields(newFields)}) {
+    userUpdate(id: null, info: ${toGraphQLFields(newFields)}) {
       ${USER_PROFILE_FIELDS}
     }
   }
   `
-  return executeGraphQL(mutation).then(res => res.data.updateProfile)
+  console.log('mutation', mutation)
+  return executeGraphQL(mutation).then(res => {
+    console.log('res', res)
+    return res.data.userUpdate
+  })
 }
 
 export function createUser(userInfo) {

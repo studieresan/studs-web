@@ -68,10 +68,9 @@ export const save = user => (dispatch, getState) => {
   const diff = fromPairs(
     differenceWith(localChanges, toPairs(savedUser), isEqual)
   )
-  if (isEmpty(diff)) return
-
-  dispatch(saveRequest())
+  if (isEmpty(diff)) return dispatch(saveRequest())
   updateUser(diff)
+    .then(res => ({ ...user, ...res }))
     .then(user => {
       dispatch(saveSuccess())
       dispatch(getSuccess(user))

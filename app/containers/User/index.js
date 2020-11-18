@@ -48,6 +48,7 @@ export class User extends React.Component {
 
   render() {
     const user = this.props.user
+    console.log(user)
     return (
       <div className={styles.user}>
         <MemberImage

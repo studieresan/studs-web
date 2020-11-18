@@ -81,14 +81,12 @@ export function fetchUser() {
       id
       firstName
       lastName
-      year
-      role
-      profile {
+      studsYear
+      info {
         ${USER_PROFILE_FIELDS}
-        cv
+        role
         picture
       }
-      permissions
     }
   }
   `
@@ -174,7 +172,7 @@ export function fetchUsers(studsYear) {
       id
       firstName
       lastName
-      year
+      studsYear
       info { 
         role
         ${USER_PROFILE_FIELDS}
@@ -354,12 +352,16 @@ const uploadFile = (file, signedRequest, url) => {
 }
 
 const COMPANY_FIELDS = `
-  id,
-  name,
-  companyContacts
-  responsibleUsers
-  events
-  }`
+  id
+  name
+  companyContacts {
+    name
+    email
+    phone
+    comments
+  }
+}
+`
 
 export const fetchCompanies = () => {
   const query = `{

@@ -50,6 +50,7 @@ function ftch(...args) {
   return fetch(...args)
     .then(checkStatus)
     .then(parseJSON)
+    .catch(console.error)
 }
 
 function executeGraphQL(query) {
@@ -67,37 +68,37 @@ function executeGraphQL(query) {
 
 const USER_PROFILE_FIELDS = `
   email
-  firstName
-  lastName
-  resumeEmail
   phone
-  picture
-  allergies
-  master
-  userRole
-  studsYear
   linkedIn
   github
-  picture
-  alternativePicture
+  master
+  allergies  
 `
 
 export function fetchUser() {
   const query = `{
     user {
       id
-      profile {
+      firstName
+      lastName
+      studsYear
+      info {
         ${USER_PROFILE_FIELDS}
+        role
+        picture
+        permissions
       }
-      permissions
     }
   }
   `
   return executeGraphQL(query).then(res =>
     Promise.resolve({
       id: res.data.user.id,
-      ...res.data.user.profile,
-      permissions: res.data.user.permissions,
+      firstName: res.data.user.firstName,
+      lastName: res.data.user.lastName,
+      studsYear: res.data.user.studsYear,
+      ...res.data.user.info,
+      permissions: res.data.user.info.permissions,
     })
   )
 }
@@ -114,12 +115,14 @@ const wrapInQuotes = stringValue => {
 
 export function updateUser(newFields) {
   const mutation = `mutation {
-    updateProfile(fields: ${toGraphQLFields(newFields)}) {
+    userUpdate(id: null, info: ${toGraphQLFields(newFields)}) {
       ${USER_PROFILE_FIELDS}
     }
   }
   `
-  return executeGraphQL(mutation).then(res => res.data.updateProfile)
+  return executeGraphQL(mutation).then(res => {
+    return res.data.userUpdate
+  })
 }
 
 export function createUser(userInfo) {
@@ -172,9 +175,16 @@ export function updateUserPassword({ password, confirmPassword }) {
 export function fetchUsers(studsYear) {
   const query = `{
     users(userRole: null, studsYear: ${studsYear}) {
-      id,
-      profile { ${USER_PROFILE_FIELDS} }
-      cv { ${CV_FIELDS} }
+      id
+      firstName
+      lastName
+      studsYear
+      info { 
+        role
+        ${USER_PROFILE_FIELDS}
+        cv { ${CV_FIELDS} }
+        picture
+      }
     }
   }
   `
@@ -193,16 +203,6 @@ const CV_FIELDS = `
     }
   }
 `
-
-export function fetchCv() {
-  const query = `{
-    user {
-      cv { ${CV_FIELDS} }
-    }
-  }
-  `
-  return executeGraphQL(query).then(res => res.data.user.cv)
-}
 
 export function updateCv(id, cv) {
   const mutation = `mutation {
@@ -243,12 +243,13 @@ export function resetPassword(password, confirmPassword, token) {
 
 const EVENT_FIELDS = `
   id
-  privateDescription
-  publicDescription
   date
-  beforeSurveys
-  afterSurveys
+  studsYear
   location
+  publicDescription
+  privateDescription
+  beforeSurvey
+  afterSurvey
   pictures
   published
   responsible { id }
@@ -257,12 +258,12 @@ const EVENT_FIELDS = `
 
 export function fetchEvents() {
   const query = `query {
-    allEvents {
+    events {
       ${EVENT_FIELDS}
     }
   }`
   return executeGraphQL(query)
-    .then(res => res.data.allEvents)
+    .then(res => res.data.events)
     .then(events =>
       events.map(e => ({
         ...e,
@@ -271,28 +272,12 @@ export function fetchEvents() {
     )
 }
 
-export function fetchOldEvents() {
-  const query = `query {
-    oldEvents {
-      id
-      companyName
-      publicDescription
-      date
-      pictures
-      published
-    }
-  }`
-  return executeGraphQL(query)
-    .then(res => res.data.oldEvents)
-    .then(events => events.map(e => ({ ...e, date: new Date(e.date) })))
-}
-
 export function saveEvent(e) {
   const event = omit(e, 'id')
   const id = e.id
   const companyId = event.company.id
   delete event.company
-  const responsibleUserId = event.responsible.id
+  const responsibleUserId = event.responsible ? event.responsible.id : null
   delete event.responsible
   event.responsibleUserId = responsibleUserId
 
@@ -373,23 +358,22 @@ const uploadFile = (file, signedRequest, url) => {
 }
 
 const COMPANY_FIELDS = `
-  id,
-  name,
-  years {
-    year,
-    amount,
-    status {
-      id
-    },
-    responsibleUser {
-      id
-    }
-  }`
+  id
+  name
+  companyContacts {
+    name
+    email
+    phone
+    comments
+  }
+}
+`
 
 export const fetchCompanies = () => {
   const query = `{
       companies {
-        ${COMPANY_FIELDS}
+        id
+        name
       }
     }`
   return executeGraphQL(query)
@@ -421,14 +405,25 @@ export const fetchCompany = companyId => {
 
 export const fetchSaleStatuses = () => {
   const query = `{
-    allCompanySalesStatuses {
-        id,
-        name,
-        priority
+    companies {
+      id
+      name
     }
   }`
+  // statuses {
+  //   id
+  //   statusPriority
+  //   statusDescription
+  // }
   return executeGraphQL(query)
-    .then(res => res.data.allCompanySalesStatuses)
+    .then(res => res.data.companies)
+    .then(res =>
+      res.map(company => ({
+        id: company.id,
+        name: company.statuses && company.statuses.statusDescription,
+        priority: company.statuses && company.statuses.statusPriority,
+      }))
+    )
     .catch(err => console.error(err))
 }
 

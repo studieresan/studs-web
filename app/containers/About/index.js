@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -14,8 +14,8 @@ import { prettyUserRole } from 'utils'
 const StudsMemberInfo = user => {
   const size = Math.max(Math.floor((window.innerWidth * 0.8) / 5) - 40, 100)
   return (
-    <div key={user.firstName + user.lastName} className={styles.member}>
-      <MemberImage picture={user.alternativePicture} size={size} square round />
+    <div key={user.id} className={styles.member}>
+      <MemberImage picture={user.picture} size={size} square round />
       <h3
         style={{
           width: size,
@@ -28,25 +28,21 @@ const StudsMemberInfo = user => {
   )
 }
 
-class About extends Component {
-  componentDidMount() {
-    this.props.getUsers(this.props.selectedYear)
-  }
-
-  render() {
-    const { users } = this.props
-    return (
-      <div>
-        <div className={styles.about_title}>
-          <h1>
-            <FormattedMessage {...messages.header} />
-          </h1>
-        </div>
-        <div className={styles.about}>{users.map(u => StudsMemberInfo(u))}</div>
-        <Footer hasBackground />
-      </div>
-    )
-  }
+function About({ users, getUsers, selectedYear }) {
+  useEffect(() => {
+    getUsers(selectedYear)
+  }, [])
+  return (
+    <React.Fragment>
+      <header className={styles.about_title}>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
+      </header>
+      <main className={styles.about}>{users.map(u => StudsMemberInfo(u))}</main>
+      <Footer hasBackground />
+    </React.Fragment>
+  )
 }
 
 About.propTypes = {

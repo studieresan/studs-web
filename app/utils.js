@@ -81,8 +81,8 @@ export const prettyUserRole = userRole => {
     case 'it_group':
       return 'IT'
     default: {
-      const pretty = userRole.split('_')[0]
-      return pretty[0].toUpperCase() + pretty.slice(1)
+      const pretty = userRole && userRole.split('_')[0]
+      return pretty && pretty[0].toUpperCase() + pretty.slice(1)
     }
   }
 }

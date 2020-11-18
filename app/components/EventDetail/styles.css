@@ -55,11 +55,11 @@
   display: inline-block;
 }
 
-.surveys {
+.survey {
   display: flex;
   flex-wrap: wrap;
 }
 
-.surveys > div {
+.survey > div {
   flex: 1;
 }

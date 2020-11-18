@@ -13,11 +13,15 @@ const PublicEvent = ({
   index,
 }) => {
   return (
-    <div name={id} className={styles.publicEvent}>
-      <div className={styles.header}>
+    <article name={id} className={styles.publicEvent}>
+      <hgroup className={styles.header}>
         <h1 className={styles.companyName}>{companyName}</h1>
-        <h5 className={styles.date}>{moment(date).format('DD MMMM YYYY')}</h5>
-      </div>
+        <h5 className={styles.date}>
+          <time dateTime={moment(date).format('YYYY-MM-DD')}>
+            {moment(date).format('DD MMMM YYYY')}
+          </time>
+        </h5>
+      </hgroup>
       <div
         className={styles.content}
         style={{
@@ -35,7 +39,7 @@ const PublicEvent = ({
         )}
       </div>
       <div className={styles.divider} />
-    </div>
+    </article>
   )
 }
 

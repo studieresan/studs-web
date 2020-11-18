@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux'
@@ -9,40 +9,26 @@ import Navbar from 'containers/Navbar'
 import ScrollContainer from 'containers/ScrollContainer'
 import * as actions from './actions'
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      loggedIn: this.props.loggedIn,
-    }
-    if (props.loggedIn) {
-      props.getUser()
-    }
-  }
+function App({ children, loggedIn, getUser }) {
+  const [_loggedIn, setLoggedIn] = useState(false)
+  useEffect(
+    () => {
+      if (!_loggedIn && loggedIn) {
+        getUser()
+      }
+      setLoggedIn(loggedIn)
+    },
+    [loggedIn]
+  )
 
-  componentDidMount() {
-    if (this.state.loggedIn) {
-      this.props.getUser()
-    }
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    if (props.loggedIn && !state.loggedIn) {
-      props.getUser()
-    }
-    return null
-  }
-
-  render() {
-    return (
-      <ScrollContainer>
-        <div className={styles.container}>
-          <Navbar />
-          {this.props.children}
-        </div>
-      </ScrollContainer>
-    )
-  }
+  return (
+    <ScrollContainer>
+      <div className={styles.container}>
+        <Navbar />
+        {children}
+      </div>
+    </ScrollContainer>
+  )
 }
 
 App.propTypes = {
@@ -53,8 +39,6 @@ App.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    user: state.getIn(['global', 'user']),
-    fetchingUser: state.getIn(['global', 'fetchingUser']),
     loggedIn: state.getIn(['global', 'loggedIn']),
   }
 }

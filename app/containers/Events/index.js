@@ -172,8 +172,7 @@ Events.propTypes = {
 
   addPicture: PropTypes.func.isRequired,
   removePicture: PropTypes.func.isRequired,
-  addSurvey: PropTypes.func.isRequired,
-  removeSurvey: PropTypes.func.isRequired,
+  setSurvey: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = rootState => {

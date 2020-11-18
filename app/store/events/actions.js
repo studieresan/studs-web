@@ -13,8 +13,7 @@ import {
   REMOVE_ERROR,
   ADD_PICTURE,
   REMOVE_PICTURE,
-  ADD_SURVEY,
-  REMOVE_SURVEY,
+  SET_SURVEY,
 } from './constants'
 import { push } from 'react-router-redux'
 
@@ -30,11 +29,9 @@ export const addPicture = (url, id) => actionType(ADD_PICTURE, { url, id })
 export const removePicture = (index, id) =>
   actionType(REMOVE_PICTURE, { index, id })
 
-export const addSurvey = (url, surveyType, id) =>
-  actionType(ADD_SURVEY, { url, surveyType, id })
-
-export const removeSurvey = (index, surveyType, id) =>
-  actionType(REMOVE_SURVEY, { index, surveyType, id })
+export const setSurvey = (url, surveyType, id) => {
+  return actionType(SET_SURVEY, { url, surveyType, id })
+}
 
 const getRequest = () => actionType(GET_REQUEST)
 const getSuccess = data => actionType(GET_SUCCESS, { data })

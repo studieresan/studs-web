@@ -11,7 +11,6 @@ export const updateSorting = newSorting => ({
 })
 
 export const setStudsYear = year => {
-  console.log(year)
   return {
     type: SET_YEAR,
     payload: year,

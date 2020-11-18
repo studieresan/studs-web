@@ -23,10 +23,13 @@ const getMembersError = () => ({
 export const getUsers = studsYear => dispatch => {
   dispatch(getMembersRequest())
   const normalize = user => ({
-    ...user.profile,
-    cv: user.cv,
+    ...user.info,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    userRole: user.info.role,
+    cv: user.info.cv,
     realId: user.id,
-    id: `${user.profile.firstName}${user.profile.lastName}`.toLowerCase(),
+    id: `${user.firstName}${user.lastName}`.toLowerCase(),
   })
   if (!studsYear) {
     studsYear = process.env.STUDS_YEAR

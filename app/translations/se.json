@@ -397,11 +397,7 @@
   },
   {
     "id": "app.components.PublicEvents.menu.current",
-    "message": "Evenemang 19/20"
-  },
-  {
-    "id": "app.components.PublicEvents.menu.previous",
-    "message": "Tidigare Evenemang"
+    "message": "Evenemang Studs "
   },
   {
     "id": "app.components.GroupComponent.header",

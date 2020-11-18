@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { scrollSpy, Events, animateScroll } from 'react-scroll'
-import { getOldEvents } from 'store/oldEvents/actions'
 import { getEvents } from 'store/events/actions'
 
 import styles from './styles.css'
@@ -15,7 +14,6 @@ import Spinner from 'components/Spinner'
 
 class PublicEvents extends React.Component {
   componentDidMount() {
-    this.props.getOldEvents()
     this.props.getEvents()
 
     Events.scrollEvent.register('begin')
@@ -31,65 +29,53 @@ class PublicEvents extends React.Component {
   }
 
   render() {
-    const { oldEvents, events, saved } = this.props
+    const { events, saved } = this.props
 
     events.forEach(e => (e.companyName = e.company.name))
     return (
-      <div>
-        <div className={styles.events_title}>
+      <React.Fragment>
+        <header className={styles.events_title}>
           <h1>
             <FormattedMessage {...messages.header} />
           </h1>
-        </div>
+        </header>
         {!saved && <Spinner className={styles.spinner} />}
         {saved && (
-          <div className={styles.public_events}>
-            <PublicEventMenu events={events} oldEvents={oldEvents} />
-            <div className={styles.event_list}>
+          <main className={styles.public_events}>
+            <PublicEventMenu events={events} />
+            <section className={styles.event_list}>
               {events.map((e, idx) => [
                 <PublicEvent key={e.id} {...e} index={idx} />,
-                <div key={e.id + 'div'} className={styles.divider} />,
-              ])}
-              {oldEvents.map((e, idx) => [
-                <PublicEvent key={e.id} {...e} index={idx} />,
-                idx !== oldEvents.length - 1 && (
+                idx !== events.length - 1 && (
                   <div key={e.id + 'div'} className={styles.divider} />
                 ),
               ])}
-            </div>
-          </div>
+            </section>
+          </main>
         )}
         <Footer hasBackground />
-      </div>
+      </React.Fragment>
     )
   }
 }
 
 function mapStateToProps(state) {
   return {
-    oldEvents: state
-      .getIn(['oldEvents', 'items'])
-      .toJS()
-      .filter(e => e.published),
     events: state
       .getIn(['events', 'items'])
       .toJS()
       .filter(e => e.published),
-    saved:
-      state.getIn(['events', 'saved']) || state.getIn(['oldEvents', 'saved']),
+    saved: state.getIn(['events', 'saved']),
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getOldEvents: () => dispatch(getOldEvents()),
     getEvents: () => dispatch(getEvents()),
   }
 }
 
 PublicEvents.propTypes = {
-  getOldEvents: PropTypes.func.isRequired,
-  oldEvents: PropTypes.array,
   getEvents: PropTypes.func.isRequired,
   events: PropTypes.array,
   saved: PropTypes.bool,

@@ -21,7 +21,7 @@ import SalesTool from 'containers/SalesTool/SalesToolContainer'
 import CompanyDetails from 'containers/SalesTool/CompanyDetailsContainer'
 import ContactRequests from 'containers/ContactRequests/ContactRequestsContainer'
 import StudentComponent from 'containers/Group'
-import Application from 'containers/Application'
+import Jumpin from 'containers/Jumpin'
 
 class StudsRouter extends Component {
   render() {
@@ -37,7 +37,8 @@ class StudsRouter extends Component {
 
         <Route exact path='/groups' component={StudentComponent} />
 
-        <Route exact path='/apply' component={Application} />
+        <Route exact path='/inhoppare' component={Jumpin} />
+        <Route exact path='/bababa' component={Jumpin} />
 
         {
           //TODO Fix backend and republish sales-tool

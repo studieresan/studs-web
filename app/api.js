@@ -358,24 +358,44 @@ const uploadFile = (file, signedRequest, url) => {
 }
 
 const COMPANY_FIELDS = `
-  id
+id
+name
+companyContacts {
   name
-  companyContacts {
-    name
-    email
-    phone
-    comments
+  email
+  phone
+  comment
+}
+statuses {
+  studsYear
+  responsibleUser {
+    id
+    firstName
+    lastName
+    studsYear
+  }
+  statusDescription
+  statusPriority
+  amount
+  salesComments {
+    text
+    createdAt
+    user {
+      id
+      firstName
+      lastName
+      studsYear
+    }
   }
 }
 `
 
 export const fetchCompanies = () => {
   const query = `{
-      companies {
-        id
-        name
-      }
-    }`
+    companies {
+      ${COMPANY_FIELDS}
+    }
+  }`
   return executeGraphQL(query)
     .then(res => res.data.companies)
     .catch(err => console.error(err))
@@ -383,12 +403,16 @@ export const fetchCompanies = () => {
 
 export const fetchSoldCompanies = () => {
   const query = `{
-    soldCompanies {
+    companies {
       id
+      statuses {
+        statusDescription
+      }
     }
   }`
   return executeGraphQL(query)
-    .then(res => res.data.soldCompanies)
+    .then(res => res.data.companies)
+    .then(companies => companies.filter(company => company.amount > 0))
     .catch(err => console.error(err))
 }
 
@@ -408,6 +432,10 @@ export const fetchSaleStatuses = () => {
     companies {
       id
       name
+      statuses {
+        statusPriority
+        statusDescription
+      }
     }
   }`
   // statuses {
@@ -417,13 +445,26 @@ export const fetchSaleStatuses = () => {
   // }
   return executeGraphQL(query)
     .then(res => res.data.companies)
+    .then(res => {
+      console.log('fetchSaleStatuses', res)
+      return res
+    })
     .then(res =>
-      res.map(company => ({
-        id: company.id,
-        name: company.statuses && company.statuses.statusDescription,
-        priority: company.statuses && company.statuses.statusPriority,
-      }))
+      res.reduce((statuses, company) => {
+        company.statuses.forEach(status =>
+          statuses.push({
+            id: company.id,
+            name: status.statusDescription,
+            priority: status.statusPriority,
+          })
+        )
+        return statuses
+      }, [])
     )
+    .then(res => {
+      console.log('fetchSaleStatuses2', res)
+      return res
+    })
     .catch(err => console.error(err))
 }
 

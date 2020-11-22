@@ -188,8 +188,10 @@ class SalesTool extends Component {
               if (years) {
                 const statusOfYear = years[year]
                 if (!statusOfYear) return -2
-                const statusID = statusOfYear.status.id
-                if (statusID) return this.props.statuses.data[statusID].priority
+                console.log('statusOfYear', statusOfYear)
+                const statusID = statusOfYear.statusPriority
+                console.log('statuses:', this.props.statuses)
+                if (statusID) return statusOfYear.statusPriority
                 else return -2
               } else {
                 return -2

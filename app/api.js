@@ -498,17 +498,25 @@ const CONTACT_FIELDS = `
   id,
   name,
   email,
-  phoneNumber,
+  phone,
   comment,`
 
 export const fetchContacts = companyId => {
   const query = `{
-    contacts(companyId: "${companyId}") {
+    company(companyId: "${companyId}") {
+      companyContacts{
         ${CONTACT_FIELDS}
+      }
     }
   }`
   return executeGraphQL(query)
-    .then(res => res.data.contacts)
+    .then(res => res.data.company.companyContacts)
+    .then(contacts =>
+      contacts.map(contact => ({
+        ...contact,
+        phoneNumber: contact.phone,
+      }))
+    )
     .catch(err => console.error(err))
 }
 

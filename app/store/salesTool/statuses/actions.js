@@ -25,6 +25,7 @@ export const loadStatuses = () => dispatch => {
           'hsl(' + Math.round((i / (statuses.length - 1)) * 100) + ',100%,50%)'
       }
       const statusesStateMap = {}
+      console.log('oldStatuses', statuses)
       statuses.forEach(c => (statusesStateMap[c.id] = c))
       dispatch(getSuccess(statusesStateMap))
     })

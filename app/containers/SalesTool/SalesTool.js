@@ -191,7 +191,8 @@ class SalesTool extends Component {
                 console.log('statusOfYear', statusOfYear)
                 const statusID = statusOfYear.statusPriority
                 console.log('statuses:', this.props.statuses)
-                if (statusID) return statusOfYear.statusPriority
+                if (companyId)
+                  return this.props.statuses.data[companyId].priority
                 else return -2
               } else {
                 return -2
@@ -373,15 +374,14 @@ class SalesTool extends Component {
     let status,
       responsibleUser = undefined
     if (years[this.props.selectedYear]) {
-      status = years[this.props.selectedYear].status
+      status = years[this.props.selectedYear].statusDescription
       responsibleUser = years[this.props.selectedYear].responsibleUser
     }
+    console.log('renderCompany', id, this.props.statuses)
     const statusName = status
-      ? this.props.statuses.data[status.id].name
+      ? this.props.statuses.data[id].name
       : 'Saknar status'
-    const statusColor = status
-      ? this.props.statuses.data[status.id].color
-      : 'inherit'
+    const statusColor = status ? this.props.statuses.data[id].color : 'inherit'
     const responsibleUserName = responsibleUser
       ? this.props.users[responsibleUser.id]
       : 'Ingen ansvarig'

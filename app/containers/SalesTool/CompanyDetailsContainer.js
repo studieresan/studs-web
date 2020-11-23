@@ -32,19 +32,18 @@ const mapStateToProps = rootState => {
   const comments = rootState.getIn(['salesTool', 'comments'])
   const statuses = rootState.getIn(['salesTool', 'statuses'])
   const year = rootState.getIn(['salesTool', 'year'])
-  const users = rootState.getIn(['members', 'users']).toJS()
-
-  const userMap = {}
-  users
+  const users = rootState
+    .getIn(['members', 'users'])
+    .toJS()
     .filter(u => u.userRole === 'sales_group')
-    .forEach(u => (userMap[u.realId] = u.firstName + ' ' + u.lastName))
+
   return {
     companies,
     currentUser,
     contacts,
     comments,
     statuses,
-    users: userMap,
+    users,
     selectedYear: year,
   }
 }

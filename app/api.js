@@ -573,10 +573,11 @@ const COMMENT_FIELDS = `
   },
   createdAt`
 
-export const fetchComments = (companyId, studsYear) => {
+export const fetchComments = (companyId, year) => {
   const query = `{
     company(companyId: "${companyId}") {
       statuses {
+        studsYear
         salesComments {
           ${COMMENT_FIELDS}
         }
@@ -584,11 +585,18 @@ export const fetchComments = (companyId, studsYear) => {
     }
   }`
   return executeGraphQL(query)
-    .then(res => res.data.comments)
+    .then(res => res.data.company.statuses)
+    .then(statuses => statuses.find(({ studsYear }) => studsYear === year))
+    .then(status => status.salesComments)
     .then(comments =>
-      comments.map(c => ({
-        ...c,
-        user: { id: c.user.id, picture: c.user.profile.picture },
+      comments.map(company => ({
+        ...company,
+        user: {
+          id: company.user.id,
+          firstName: company.user.firstName,
+          lastName: company.user.lastName,
+          picture: company.user.info.picture,
+        },
       }))
     )
     .then(comments => {

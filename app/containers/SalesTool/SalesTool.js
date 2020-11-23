@@ -32,9 +32,6 @@ class SalesTool extends Component {
     } else {
       this.filterResult(this.props.companies.data, this.props.filter)
     }
-    if (!hasData(this.props.statuses)) {
-      this.props.loadStatuses()
-    }
     if (!Object.keys(this.props.users).length) {
       this.props.getUsers(this.props.selectedYear)
     }
@@ -100,17 +97,16 @@ class SalesTool extends Component {
               .includes(filter.text.toLowerCase())
           )
           .filter(companyId => {
-            let companyStatus = undefined
-            if (
-              companies[companyId].years &&
-              companies[companyId].years[this.props.selectedYear]
-            ) {
-              companyStatus =
-                companies[companyId].years[this.props.selectedYear].status
-            }
+            const companyStatus =
+              companies[companyId].statuses &&
+              companies[companyId].statuses.find(
+                ({ studsYear }) => studsYear === this.props.selectedYear
+              )
+
             return !filter.status.length
               ? true
-              : companyStatus && filter.status.includes(companyStatus.id)
+              : companyStatus &&
+                  filter.status.includes(companyStatus.statusDescription)
           })
           .filter(companyId => {
             let companyResponsible = undefined
@@ -182,20 +178,19 @@ class SalesTool extends Component {
         )
         break
       case 'status':
-        hasData(this.props.statuses) &&
-          this.sortByStringProperty(
-            companyId => {
-              //-2 is lower than "no" status, means missing status
-              const status =
-                companies[companyId] &&
-                companies[companyId].statuses.find(
-                  ({ studsYear }) => studsYear === this.props.selectedYear
-                )
-              return status ? status.statusPriority || -2 : -2
-            },
-            companyId => companies[companyId].name.toLowerCase(),
-            !ascending
-          )
+        this.sortByStringProperty(
+          companyId => {
+            //-2 is lower than "no" status, means missing status
+            const status =
+              companies[companyId] &&
+              companies[companyId].statuses.find(
+                ({ studsYear }) => studsYear === this.props.selectedYear
+              )
+            return status ? status.statusPriority || -2 : -2
+          },
+          companyId => companies[companyId].name.toLowerCase(),
+          !ascending
+        )
         break
       default:
         throw new RangeError('Wrong sort property')
@@ -284,9 +279,9 @@ class SalesTool extends Component {
           <div className={styles.filter_input}>
             <label>Status</label>
             <MultiSelect
-              options={Object.keys(this.props.statuses.data).map(value => ({
-                value,
-                label: this.props.statuses.data[value].name,
+              options={this.props.statuses.map(statusDescription => ({
+                value: statusDescription ? statusDescription : 'Saknar status',
+                label: statusDescription ? statusDescription : 'Saknar status',
               }))}
               selected={this.props.filter.status}
               onSelectedChanged={selected => {
@@ -345,8 +340,6 @@ class SalesTool extends Component {
               />
             </div>
             {hasData(this.props.companies) &&
-              hasData(this.props.statuses) &&
-              hasData(this.props.statuses) &&
               this.state.filteredCompanies.map(companyId =>
                 this.renderCompany(this.props.companies.data[companyId])
               )}
@@ -370,7 +363,8 @@ class SalesTool extends Component {
     )
 
     const statusName = status ? status.statusDescription : 'Saknar status'
-    const statusColor = status ? this.props.statuses.data[id].color : 'inherit'
+    //TODO - reimplement colors
+    const statusColor = status ? 'pink' : 'inherit'
     const responsibleUserName =
       status && status.responsibleUser
         ? `${status.responsibleUser.firstName} ${
@@ -440,12 +434,11 @@ SalesTool.propTypes = {
   history: PropTypes.object.isRequired,
   filter: PropTypes.object.isRequired,
   sorting: PropTypes.object.isRequired,
-  statuses: PropTypes.object.isRequired,
+  statuses: PropTypes.array.isRequired,
   users: PropTypes.object.isRequired,
   companies: PropTypes.object.isRequired,
   updateFilter: PropTypes.func.isRequired,
   updateSorting: PropTypes.func.isRequired,
-  loadStatuses: PropTypes.func.isRequired,
   getUsers: PropTypes.func.isRequired,
   loadCompanies: PropTypes.func.isRequired,
   addCompany: PropTypes.func.isRequired,

@@ -32,10 +32,6 @@ class CompanyDetails extends Component {
     if (!isSuccess(this.props.companies)) {
       this.props.loadCompanies()
     }
-
-    if (!hasData(this.props.statuses)) {
-      this.props.loadStatuses()
-    }
     if (!this.props.users || !this.props.users.length) {
       this.props.getUsers(this.props.selectedYear)
     }
@@ -190,9 +186,9 @@ class CompanyDetails extends Component {
                   })
                 }
               >
-                {Object.keys(this.props.statuses.data).map(key => (
-                  <option key={key} value={key}>
-                    {this.props.statuses.data[key].name}
+                {this.props.statuses.map(statusDescription => (
+                  <option key={statusDescription} value={statusDescription}>
+                    {statusDescription}
                   </option>
                 ))}
               </select>
@@ -328,7 +324,6 @@ CompanyDetails.propTypes = {
   users: PropTypes.array.isRequired,
   getUsers: PropTypes.func.isRequired,
   statuses: PropTypes.object.isRequired,
-  loadStatuses: PropTypes.func.isRequired,
   updateCompany: PropTypes.func.isRequired,
   contacts: PropTypes.object.isRequired,
   loadContacts: PropTypes.func.isRequired,

@@ -2,7 +2,6 @@ import { combineReducers } from 'redux'
 import companiesReducer from './companies/reducer'
 import contactsReducer from './contacts/reducer'
 import commentsReducer from './comments/reducer'
-import statusesReducer from './statuses/reducer'
 import contactRequestsReducer from './contactRequests/reducer'
 import { UPDATE_FILTER, UPDATE_SORTING, SET_YEAR } from './constants'
 
@@ -53,7 +52,6 @@ const reducer = combineReducers({
   companies: companiesReducer,
   contacts: contactsReducer,
   comments: commentsReducer,
-  statuses: statusesReducer,
   filter: filterReducer,
   sorting: sortingReducer,
   contactRequests: contactRequestsReducer,

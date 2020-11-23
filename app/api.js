@@ -427,39 +427,6 @@ export const fetchCompany = companyId => {
     .catch(err => console.error(err))
 }
 
-export const fetchSaleStatuses = () => {
-  const query = `{
-    companies {
-      id
-      name
-      statuses {
-        statusPriority
-        statusDescription
-      }
-    }
-  }`
-  // statuses {
-  //   id
-  //   statusPriority
-  //   statusDescription
-  // }
-  return executeGraphQL(query)
-    .then(res => res.data.companies)
-    .then(res =>
-      res.reduce((statuses, company) => {
-        company.statuses.forEach(status =>
-          statuses.push({
-            id: company.id,
-            name: status.statusDescription,
-            priority: status.statusPriority,
-          })
-        )
-        return statuses
-      }, [])
-    )
-    .catch(err => console.error(err))
-}
-
 export const createCompany = name => {
   const query = `mutation {
     createCompany(name: ${wrapInQuotes(name)}) {

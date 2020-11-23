@@ -445,10 +445,6 @@ export const fetchSaleStatuses = () => {
   // }
   return executeGraphQL(query)
     .then(res => res.data.companies)
-    .then(res => {
-      console.log('fetchSaleStatuses', res)
-      return res
-    })
     .then(res =>
       res.reduce((statuses, company) => {
         company.statuses.forEach(status =>
@@ -461,10 +457,6 @@ export const fetchSaleStatuses = () => {
         return statuses
       }, [])
     )
-    .then(res => {
-      console.log('fetchSaleStatuses2', res)
-      return res
-    })
     .catch(err => console.error(err))
 }
 

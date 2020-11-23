@@ -169,9 +169,10 @@ class SalesTool extends Component {
               const statusOfYear = years[year]
               if (!statusOfYear) return null
               const userID =
+                statusOfYear.responsibleUser &&
                 statusOfYear.responsibleUser.firstName +
-                statusOfYear.responsibleUser.lastName
-              return userID.toLowerCase()
+                  statusOfYear.responsibleUser.lastName
+              return userID && userID.toLowerCase()
             } else {
               return null
             }
@@ -189,7 +190,6 @@ class SalesTool extends Component {
               if (years) {
                 const statusOfYear = years[year]
                 if (!statusOfYear) return -2
-                const statusID = statusOfYear.statusPriority
                 if (companyId)
                   return this.props.statuses.data[companyId].priority
                 else return -2

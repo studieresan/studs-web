@@ -167,7 +167,6 @@ class CompanyDetails extends Component {
         amount = year.amount
       }
     }
-    console.log(this.props.users)
     return (
       <div className={styles.content}>
         <CompanyHeader

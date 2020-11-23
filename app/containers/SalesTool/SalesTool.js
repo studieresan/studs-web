@@ -254,13 +254,13 @@ class SalesTool extends Component {
   render() {
     return (
       <div className={styles.content}>
-        <div className={styles.sales_tool_title}>
+        <header className={styles.sales_tool_title}>
           <h1>Sales tool</h1>
           <YearPicker
             selectedYear={this.props.selectedYear}
             setStudsYear={year => this.props.setStudsYear(year)}
           />
-        </div>
+        </header>
         <div className={styles.top_buttons}>
           <Button
             onClick={() => {
@@ -352,7 +352,7 @@ class SalesTool extends Component {
               hasData(this.props.statuses) &&
               hasData(this.props.statuses) &&
               this.state.filteredCompanies.map(companyId =>
-                this.renderCompany(companyId)
+                this.renderCompany(this.props.companies.data[companyId])
               )}
           </div>
         </div>
@@ -368,21 +368,19 @@ class SalesTool extends Component {
     )
   }
 
-  renderCompany(id) {
-    const { name, years } = this.props.companies.data[id]
-    let status,
-      responsibleUser = undefined
-    if (years[this.props.selectedYear]) {
-      status = years[this.props.selectedYear].statusDescription
-      responsibleUser = years[this.props.selectedYear].responsibleUser
-    }
-    const statusName = status
-      ? this.props.statuses.data[id].name
-      : 'Saknar status'
+  renderCompany({ id, name, statuses }) {
+    const status = statuses.find(
+      ({ studsYear }) => studsYear === this.props.selectedYear
+    )
+
+    const statusName = status ? status.statusDescription : 'Saknar status'
     const statusColor = status ? this.props.statuses.data[id].color : 'inherit'
-    const responsibleUserName = responsibleUser
-      ? `${responsibleUser.firstName} ${responsibleUser.lastName}`
-      : 'Ingen ansvarig'
+    const responsibleUserName =
+      status && status.responsibleUser
+        ? `${status.responsibleUser.firstName} ${
+            status.responsibleUser.lastName
+          }`
+        : 'Ingen ansvarig'
     return (
       <div key={id} className={styles.list_item}>
         <div

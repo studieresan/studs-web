@@ -556,18 +556,23 @@ const COMMENT_FIELDS = `
   text,
   user {
     id,
-    profile {
+    studsYear
+    firstName
+    lastName
+    info {
         picture,
-        studsYear
     }
   },
-  createdAt,
-  edited,`
+  createdAt`
 
 export const fetchComments = (companyId, studsYear) => {
   const query = `{
-    comments(companyId: "${companyId}", studsYear: ${studsYear}) {
-        ${COMMENT_FIELDS}
+    company(companyId: "${companyId}") {
+      statuses {
+        salesComments {
+          ${COMMENT_FIELDS}
+        }
+      }
     }
   }`
   return executeGraphQL(query)

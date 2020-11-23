@@ -151,8 +151,6 @@ class SalesTool extends Component {
   applySortStatus = (companies, sorting) => {
     const { property, ascending } = sorting
 
-    const year = this.props.selectedYear
-
     switch (property) {
       case 'name':
         this.sortByStringProperty(
@@ -164,14 +162,16 @@ class SalesTool extends Component {
       case 'responsibleUser':
         this.sortByStringProperty(
           companyId => {
-            const years = companies[companyId].years
-            if (years) {
-              const statusOfYear = years[year]
-              if (!statusOfYear) return null
+            const status =
+              companies[companyId] &&
+              companies[companyId].statuses.find(
+                ({ studsYear }) => studsYear === this.props.selectedYear
+              )
+            if (status) {
               const userID =
-                statusOfYear.responsibleUser &&
-                statusOfYear.responsibleUser.firstName +
-                  statusOfYear.responsibleUser.lastName
+                status.responsibleUser &&
+                status.responsibleUser.firstName +
+                  status.responsibleUser.lastName
               return userID && userID.toLowerCase()
             } else {
               return null
@@ -186,16 +186,12 @@ class SalesTool extends Component {
           this.sortByStringProperty(
             companyId => {
               //-2 is lower than "no" status, means missing status
-              const years = companies[companyId].years
-              if (years) {
-                const statusOfYear = years[year]
-                if (!statusOfYear) return -2
-                if (companyId)
-                  return this.props.statuses.data[companyId].priority
-                else return -2
-              } else {
-                return -2
-              }
+              const status =
+                companies[companyId] &&
+                companies[companyId].statuses.find(
+                  ({ studsYear }) => studsYear === this.props.selectedYear
+                )
+              return status ? status.statusPriority || -2 : -2
             },
             companyId => companies[companyId].name.toLowerCase(),
             !ascending

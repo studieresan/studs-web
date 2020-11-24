@@ -361,10 +361,10 @@ class SalesTool extends Component {
     const status = statuses.find(
       ({ studsYear }) => studsYear === this.props.selectedYear
     )
-
     const statusName = status ? status.statusDescription : 'Saknar status'
-    //TODO - reimplement colors
-    const statusColor = status ? 'pink' : 'inherit'
+    const statusColor = status
+      ? `hsl(${(status.statusPriority + 1) * 10}, 100%, 50%)`
+      : 'inherit'
     const responsibleUserName =
       status && status.responsibleUser
         ? `${status.responsibleUser.firstName} ${

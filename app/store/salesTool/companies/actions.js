@@ -62,11 +62,11 @@ export const loadCompanies = () => dispatch => {
   fetchCompanies()
     .then(companies => {
       const companyStateMap = {}
-      companies.forEach(c => {
+      companies.forEach(company => {
         const yearMap = {}
-        c.years.forEach(y => (yearMap[y.year] = y))
-        c.years = yearMap
-        companyStateMap[c.id] = c
+        company.statuses.forEach(status => (yearMap[status.studsYear] = status))
+        company.years = yearMap
+        companyStateMap[company.id] = company
       })
       dispatch(getSuccess(companyStateMap))
     })

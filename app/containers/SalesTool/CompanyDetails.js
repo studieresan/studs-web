@@ -32,11 +32,7 @@ class CompanyDetails extends Component {
     if (!isSuccess(this.props.companies)) {
       this.props.loadCompanies()
     }
-
-    if (!hasData(this.props.statuses)) {
-      this.props.loadStatuses()
-    }
-    if (!Object.keys(this.props.users).length) {
+    if (!this.props.users || !this.props.users.length) {
       this.props.getUsers(this.props.selectedYear)
     }
     this.componentWillReceiveProps(this.props)
@@ -190,9 +186,9 @@ class CompanyDetails extends Component {
                   })
                 }
               >
-                {Object.keys(this.props.statuses.data).map(key => (
-                  <option key={key} value={key}>
-                    {this.props.statuses.data[key].name}
+                {this.props.statuses.map(statusDescription => (
+                  <option key={statusDescription} value={statusDescription}>
+                    {statusDescription}
                   </option>
                 ))}
               </select>
@@ -211,9 +207,9 @@ class CompanyDetails extends Component {
                 }
               >
                 <option value={MISSING}>{'Ingen ansvarig'}</option>
-                {Object.keys(this.props.users).map(key => (
-                  <option key={key} value={key}>
-                    {this.props.users[key]}
+                {this.props.users.map(user => (
+                  <option key={user.id} value={user.id}>
+                    {`${user.firstName} ${user.lastName}`}
                   </option>
                 ))}
               </select>
@@ -288,7 +284,9 @@ class CompanyDetails extends Component {
                       key={comment.id}
                       canEdit={this.props.currentUser.id === comment.user.id}
                       comment={comment}
-                      userName={this.props.users[comment.user.id]}
+                      userName={`${comment.user.firstName} ${
+                        comment.user.lastName
+                      }`}
                       updateComment={text =>
                         this.props.updateComment(comment.id, text)
                       }
@@ -323,10 +321,9 @@ CompanyDetails.propTypes = {
   loadCompany: PropTypes.func.isRequired,
   companies: PropTypes.object.isRequired,
   currentUser: PropTypes.object.isRequired,
-  users: PropTypes.object.isRequired,
+  users: PropTypes.array.isRequired,
   getUsers: PropTypes.func.isRequired,
   statuses: PropTypes.object.isRequired,
-  loadStatuses: PropTypes.func.isRequired,
   updateCompany: PropTypes.func.isRequired,
   contacts: PropTypes.object.isRequired,
   loadContacts: PropTypes.func.isRequired,

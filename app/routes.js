@@ -40,26 +40,23 @@ class StudsRouter extends Component {
         <Route exact path='/inhoppare' component={Jumpin} />
         <Route exact path='/bababa' component={Jumpin} />
 
-        {
-          //TODO Fix backend and republish sales-tool
-        }
-        {/* <AuthenticatedRoute
+        <AuthenticatedRoute
           exact
           path='/sales-tool/companies'
           component={SalesTool}
-        /> */}
+        />
 
-        {/* <AuthenticatedRoute
+        <AuthenticatedRoute
           exact
           path='/sales-tool/companies/:id?'
           component={CompanyDetails}
-        /> */}
+        />
 
-        {/* <AuthenticatedRoute
+        <AuthenticatedRoute
           exact
           path='/sales-tool/contact-requests'
           component={ContactRequests}
-        /> */}
+        />
 
         <AuthenticatedRoute exact path='/user' component={User} />
         <AuthenticatedRoute exact path='/resume/edit' component={CvEdit} />

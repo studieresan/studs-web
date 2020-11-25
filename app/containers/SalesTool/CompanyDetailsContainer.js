@@ -5,7 +5,6 @@ import {
   loadCompanies,
   loadCompany,
 } from 'store/salesTool/companies/actions'
-import { loadStatuses } from 'store/salesTool/statuses/actions'
 
 import {
   loadContacts,
@@ -30,21 +29,25 @@ const mapStateToProps = rootState => {
   const companies = rootState.getIn(['salesTool', 'companies'])
   const contacts = rootState.getIn(['salesTool', 'contacts'])
   const comments = rootState.getIn(['salesTool', 'comments'])
-  const statuses = rootState.getIn(['salesTool', 'statuses'])
   const year = rootState.getIn(['salesTool', 'year'])
-  const users = rootState.getIn(['members', 'users']).toJS()
-
-  const userMap = {}
-  users
+  const users = rootState
+    .getIn(['members', 'users'])
+    .toJS()
     .filter(u => u.userRole === 'sales_group')
-    .forEach(u => (userMap[u.realId] = u.firstName + ' ' + u.lastName))
+  const statuses = [
+    ...new Set(
+      Object.keys(companies.data)
+        .flatMap(keys => companies.data[keys].statuses)
+        .map(status => status.statusDescription)
+    ),
+  ]
   return {
     companies,
     currentUser,
     contacts,
     comments,
     statuses,
-    users: userMap,
+    users,
     selectedYear: year,
   }
 }
@@ -54,7 +57,6 @@ const mapDispatchToProps = dispatch => {
     getUsers: year => dispatch(getUsers(year)),
     loadCompanies: () => dispatch(loadCompanies()),
     loadCompany: id => dispatch(loadCompany(id)),
-    loadStatuses: () => dispatch(loadStatuses()),
     updateCompany: (id, year, body) => dispatch(updateCompany(id, year, body)),
     updateContact: (id, body) => dispatch(updateContact(id, body)),
     deleteContact: (contactId, companyId) =>

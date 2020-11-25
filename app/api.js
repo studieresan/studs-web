@@ -358,24 +358,44 @@ const uploadFile = (file, signedRequest, url) => {
 }
 
 const COMPANY_FIELDS = `
-  id
+id
+name
+companyContacts {
   name
-  companyContacts {
-    name
-    email
-    phone
-    comments
+  email
+  phone
+  comment
+}
+statuses {
+  studsYear
+  responsibleUser {
+    id
+    firstName
+    lastName
+    studsYear
+  }
+  statusDescription
+  statusPriority
+  amount
+  salesComments {
+    text
+    createdAt
+    user {
+      id
+      firstName
+      lastName
+      studsYear
+    }
   }
 }
 `
 
 export const fetchCompanies = () => {
   const query = `{
-      companies {
-        id
-        name
-      }
-    }`
+    companies {
+      ${COMPANY_FIELDS}
+    }
+  }`
   return executeGraphQL(query)
     .then(res => res.data.companies)
     .catch(err => console.error(err))
@@ -383,12 +403,16 @@ export const fetchCompanies = () => {
 
 export const fetchSoldCompanies = () => {
   const query = `{
-    soldCompanies {
+    companies {
       id
+      statuses {
+        statusDescription
+      }
     }
   }`
   return executeGraphQL(query)
-    .then(res => res.data.soldCompanies)
+    .then(res => res.data.companies)
+    .then(companies => companies.filter(company => company.amount > 0))
     .catch(err => console.error(err))
 }
 
@@ -400,30 +424,6 @@ export const fetchCompany = companyId => {
   }`
   return executeGraphQL(query)
     .then(res => res.data.company)
-    .catch(err => console.error(err))
-}
-
-export const fetchSaleStatuses = () => {
-  const query = `{
-    companies {
-      id
-      name
-    }
-  }`
-  // statuses {
-  //   id
-  //   statusPriority
-  //   statusDescription
-  // }
-  return executeGraphQL(query)
-    .then(res => res.data.companies)
-    .then(res =>
-      res.map(company => ({
-        id: company.id,
-        name: company.statuses && company.statuses.statusDescription,
-        priority: company.statuses && company.statuses.statusPriority,
-      }))
-    )
     .catch(err => console.error(err))
 }
 
@@ -465,17 +465,25 @@ const CONTACT_FIELDS = `
   id,
   name,
   email,
-  phoneNumber,
+  phone,
   comment,`
 
 export const fetchContacts = companyId => {
   const query = `{
-    contacts(companyId: "${companyId}") {
+    company(companyId: "${companyId}") {
+      companyContacts{
         ${CONTACT_FIELDS}
+      }
     }
   }`
   return executeGraphQL(query)
-    .then(res => res.data.contacts)
+    .then(res => res.data.company.companyContacts)
+    .then(contacts =>
+      contacts.map(contact => ({
+        ...contact,
+        phoneNumber: contact.phone,
+      }))
+    )
     .catch(err => console.error(err))
 }
 
@@ -523,26 +531,39 @@ const COMMENT_FIELDS = `
   text,
   user {
     id,
-    profile {
+    studsYear
+    firstName
+    lastName
+    info {
         picture,
-        studsYear
     }
   },
-  createdAt,
-  edited,`
+  createdAt`
 
-export const fetchComments = (companyId, studsYear) => {
+export const fetchComments = (companyId, year) => {
   const query = `{
-    comments(companyId: "${companyId}", studsYear: ${studsYear}) {
-        ${COMMENT_FIELDS}
+    company(companyId: "${companyId}") {
+      statuses {
+        studsYear
+        salesComments {
+          ${COMMENT_FIELDS}
+        }
+      }
     }
   }`
   return executeGraphQL(query)
-    .then(res => res.data.comments)
+    .then(res => res.data.company.statuses)
+    .then(statuses => statuses.find(({ studsYear }) => studsYear === year))
+    .then(status => status.salesComments)
     .then(comments =>
-      comments.map(c => ({
-        ...c,
-        user: { id: c.user.id, picture: c.user.profile.picture },
+      comments.map(company => ({
+        ...company,
+        user: {
+          id: company.user.id,
+          firstName: company.user.firstName,
+          lastName: company.user.lastName,
+          picture: company.user.info.picture,
+        },
       }))
     )
     .then(comments => {

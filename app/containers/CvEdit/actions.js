@@ -139,6 +139,6 @@ export const saveCv = id => (dispatch, getState) => {
       updateCv(id, omit(content, 'userId'))
         .then(() => dispatch(saveSuccess()))
         .catch(() => dispatch(saveError()))
-    }, 1000)
+    }, 5000)
   }
 }

@@ -209,12 +209,18 @@ const CV_FIELDS = `
 `
 
 export function updateCv(id, cv) {
-  const mutation = `mutation {
-    updateCV(fields: ${toGraphQLFields(cv)}) {
-      ${CV_FIELDS}
+  const mutation = `
+  mutation {
+    userUpdate(info:{
+      cv: ${toGraphQLFields(cv)} 
+    }) {
+      cv {
+        ${CV_FIELDS}
+      }
     }
   }
   `
+  console.log('Mutation with ', mutation)
   return executeGraphQL(mutation).then(res => res.data.updateCV)
 }
 

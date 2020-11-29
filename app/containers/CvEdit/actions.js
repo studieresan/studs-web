@@ -94,10 +94,14 @@ export const getCv = id => dispatch => {
   console.log('Getting CVS')
   fetchUser()
     .then(user => {
-      console.log('CV', user.info.cv)
-      dispatch(getSuccess(user.info.cv))
+      console.log(user)
+      console.log('CV', user && user.info && user.info.cv)
+      return dispatch(getSuccess(user.info.cv))
     })
-    .catch(() => dispatch(getError()))
+    .catch(err => {
+      console.log('Error with cv', err)
+      return dispatch(getError())
+    })
   // dispatch(getRequest())
   // fetchCv(id)
   //   .then(cv => dispatch(getSuccess(cv)))

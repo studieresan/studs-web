@@ -101,7 +101,7 @@ export function fetchUser() {
       firstName: res.data.user.firstName,
       lastName: res.data.user.lastName,
       studsYear: res.data.user.studsYear,
-      ...res.data.user.info,
+      info: res.data.user.info,
       permissions: res.data.user.info.permissions,
     })
   })

@@ -38,6 +38,7 @@ export class CvEdit extends React.Component {
   }
 
   componentDidMount() {
+    console.log('GETTING CV, ')
     this.props.getCv(this.getId())
   }
 

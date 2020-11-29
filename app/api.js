@@ -87,12 +87,16 @@ export function fetchUser() {
         role
         picture
         permissions
+        cv {
+          ${CV_FIELDS}
+        }
       }
     }
   }
   `
-  return executeGraphQL(query).then(res =>
-    Promise.resolve({
+  return executeGraphQL(query).then(res => {
+    console.log('GOT USER', res)
+    return Promise.resolve({
       id: res.data.user.id,
       firstName: res.data.user.firstName,
       lastName: res.data.user.lastName,
@@ -100,7 +104,7 @@ export function fetchUser() {
       ...res.data.user.info,
       permissions: res.data.user.info.permissions,
     })
-  )
+  })
 }
 
 function toGraphQLFields(str) {

@@ -13,7 +13,7 @@ import {
   SAVE_SUCCESS,
   SAVE_ERROR,
 } from './constants'
-import { fetchCv, updateCv } from '../../api'
+import { fetchCv, fetchUser, updateCv } from '../../api'
 import omit from 'lodash/omit'
 
 export function addSection() {
@@ -91,6 +91,13 @@ export function getError() {
 }
 
 export const getCv = id => dispatch => {
+  console.log('Getting CVS')
+  fetchUser()
+    .then(user => {
+      console.log('CV', user.info.cv)
+      dispatch(getSuccess(user.info.cv))
+    })
+    .catch(() => dispatch(getError()))
   // dispatch(getRequest())
   // fetchCv(id)
   //   .then(cv => dispatch(getSuccess(cv)))

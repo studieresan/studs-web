@@ -202,6 +202,7 @@ export class CvEdit extends React.Component {
   }
   render() {
     if (!this.props.content.get('sections')) {
+      console.log('NO SECTIONS')
       // TODO Show better loading indicator
       return <Loader color='black' />
     }

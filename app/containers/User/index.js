@@ -52,7 +52,7 @@ export class User extends React.Component {
       <div className={styles.user}>
         <MemberImage
           className={styles.picture}
-          picture={user.picture}
+          picture={user.info.picture}
           size={150}
           square
           round

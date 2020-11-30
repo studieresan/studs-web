@@ -46,6 +46,7 @@ export class Members extends React.Component {
     let detail
     let detailSelected = false
     if (user) {
+      console.log('USER OF CV ', user)
       detail = (
         <CV
           user={user}

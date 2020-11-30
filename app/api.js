@@ -87,20 +87,24 @@ export function fetchUser() {
         role
         picture
         permissions
+        cv {
+          ${CV_FIELDS}
+        }
       }
     }
   }
   `
-  return executeGraphQL(query).then(res =>
-    Promise.resolve({
+  return executeGraphQL(query).then(res => {
+    console.log('GOT USER', res)
+    return Promise.resolve({
       id: res.data.user.id,
       firstName: res.data.user.firstName,
       lastName: res.data.user.lastName,
       studsYear: res.data.user.studsYear,
-      ...res.data.user.info,
+      info: res.data.user.info,
       permissions: res.data.user.info.permissions,
     })
-  )
+  })
 }
 
 function toGraphQLFields(str) {
@@ -205,12 +209,18 @@ const CV_FIELDS = `
 `
 
 export function updateCv(id, cv) {
-  const mutation = `mutation {
-    updateCV(fields: ${toGraphQLFields(cv)}) {
-      ${CV_FIELDS}
+  const mutation = `
+  mutation {
+    userUpdate(info:{
+      cv: ${toGraphQLFields(cv)} 
+    }) {
+      cv {
+        ${CV_FIELDS}
+      }
     }
   }
   `
+  console.log('Mutation with ', mutation)
   return executeGraphQL(mutation).then(res => res.data.updateCV)
 }
 

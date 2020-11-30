@@ -99,12 +99,14 @@ class Cv extends React.Component {
     } else {
       console.log('User has no cv')
     }
+    // TODO: uncomment parts below when correct CV can come from overlord
     return (
       <div className={styles.cv}>
         <div>
           <CvHeader user={this.props.user} />
-          {sections}
-          <PrintButton {...this.props} />
+          {/* {sections} */}
+          {/* <PrintButton {...this.props} /> */}
+          <p>CV will show here</p>
         </div>
       </div>
     )

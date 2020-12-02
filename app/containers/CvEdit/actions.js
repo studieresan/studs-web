@@ -13,7 +13,7 @@ import {
   SAVE_SUCCESS,
   SAVE_ERROR,
 } from './constants'
-import { fetchCv, updateCv } from '../../api'
+import { fetchCv, fetchUser, updateCv } from '../../api'
 import omit from 'lodash/omit'
 
 export function addSection() {
@@ -91,6 +91,17 @@ export function getError() {
 }
 
 export const getCv = id => dispatch => {
+  console.log('Getting CVS')
+  fetchUser()
+    .then(user => {
+      console.log(user)
+      console.log('CV', user && user.info && user.info.cv)
+      return dispatch(getSuccess(user.info.cv))
+    })
+    .catch(err => {
+      console.log('Error with cv', err)
+      return dispatch(getError())
+    })
   // dispatch(getRequest())
   // fetchCv(id)
   //   .then(cv => dispatch(getSuccess(cv)))
@@ -128,6 +139,6 @@ export const saveCv = id => (dispatch, getState) => {
       updateCv(id, omit(content, 'userId'))
         .then(() => dispatch(saveSuccess()))
         .catch(() => dispatch(saveError()))
-    }, 1000)
+    }, 5000)
   }
 }

@@ -33,7 +33,7 @@
   },
   {
     "id": "app.components.HomePage.project.content",
-    "message": "Studs is an annual nonprofit project conducted by students of the Royal Institute of Technology in Stockholm (KTH). The project is run by 30 hand-picked engineering students, all in their master’s degree within the field of computer science. By arranging events together with companies, we provide both the students and their possible employers with valuable time together."
+    "message": "Studs is an annual nonprofit project conducted by students of the Royal Institute of Technology in Stockholm (KTH). The project is run by 31 hand-picked engineering students, all in their master’s degree within the field of computer science. By arranging events together with companies, we provide both the students and their possible employers with valuable time together."
   },
   {
     "id": "app.components.HomePage.events.header",
@@ -101,7 +101,7 @@
   },
   {
     "id": "app.components.HomePage.about.intro",
-    "message": "{firstName} is one of 30 students taking part of the Studs project"
+    "message": "{firstName} is one of 31 students taking part of the Studs project"
   },
   {
     "id": "app.components.HomePage.about.link",
@@ -125,7 +125,7 @@
   },
   {
     "id": "app.components.HomePage.content.project.body.p1",
-    "message": "Studs is an annual nonprofit project from KTH, run by students. The project consists of 30 selected engineering students in master programs relevant to computer science."
+    "message": "Studs is an annual nonprofit project from KTH, run by students. The project consists of 31 selected engineering students in master programs relevant to computer science."
   },
   {
     "id": "app.components.HomePage.content.project.body.p2",

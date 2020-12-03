@@ -46,10 +46,10 @@ class MasterDetail extends React.Component {
       )
     } else {
       return (
-        <div className={styles.masterDetail}>
-          <div className={styles.master}>{master}</div>
-          <div className={styles.detail}>{detail}</div>
-        </div>
+        <main className={styles.masterDetail}>
+          <aside className={styles.master}>{master}</aside>
+          <section className={styles.detail}>{detail}</section>
+        </main>
       )
     }
   }

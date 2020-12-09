@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -62,14 +62,14 @@ export class Events extends React.Component {
       .toJS()
       .filter(({ studsYear }) => studsYear === this.state.selectedYear)
     if (params.id) {
-      const event = events.find(e => e.get('id') === params.id)
+      const event = filteredEvents.find(e => e.id === params.id)
       if (path === '/events/:id/edit') {
         // event will be undefined on initial page load
-        detail = <EventEdit event={event && event.toJS()} {...this.props} />
+        detail = <EventEdit event={event} {...this.props} />
       } else {
         detail = event && (
           <EventDetail
-            event={event.toJS()}
+            event={event}
             user={user}
             users={users}
             id={params.id}

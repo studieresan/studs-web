@@ -64,7 +64,7 @@ const EventList = ({ filteredEvents, events, user, params, path }) => {
 }
 
 EventList.propTypes = {
-  events: PropTypes.array.isRequired,
+  events: PropTypes.object.isRequired,
   filteredEvents: PropTypes.array.isRequired,
   user: PropTypes.object.isRequired,
   params: PropTypes.object.isRequired,

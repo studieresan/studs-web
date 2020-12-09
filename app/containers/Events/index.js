@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -19,107 +19,110 @@ const WARNING =
   'Are you sure you wish to delete this event? ' +
   'This action cannot be undone.'
 
-export class Events extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      selected: null,
-      selectedYear: 2020,
-    }
+const Events = ({
+  loadSoldCompanies,
+  getEvents,
+  getUsers,
+  match,
+  events,
+  user,
+  companies,
+  users,
+  removeEvent,
+  ...props
+}) => {
+  const [selectedYear, setSelectedYear] = useState(2020)
 
-    this.handleYearChange = this.handleYearChange.bind(this)
+  useEffect(() => {
+    if (!events || !events.length) getEvents()
+    if (!users || !users.length) getUsers()
+    if (!companies || !companies.length) loadSoldCompanies()
+  }, [])
+
+  const filteredEvents = useMemo(
+    () =>
+      events
+        .get('items')
+        .toJS()
+        .filter(({ studsYear }) => studsYear === selectedYear),
+    [events, selectedYear]
+  )
+
+  const handleYearChange = event => {
+    setSelectedYear(Number(event.target.value))
   }
 
-  componentDidMount() {
-    this.props.getEvents()
-    this.props.getUsers()
-    this.props.loadSoldCompanies()
-  }
-
-  onDeleteEvent = id => {
+  const onDeleteEvent = id => {
     if (confirm(WARNING)) {
-      this.props.removeEvent(id)
+      removeEvent(id)
     }
   }
 
-  handleYearChange(event) {
-    this.setState({ selectedYear: Number(event.target.value) })
-  }
+  const { params, path } = match
+  const master = (
+    <EventList
+      events={events}
+      filteredEvents={filteredEvents}
+      user={user}
+      params={params}
+      path={path}
+    />
+  )
 
-  render() {
-    const {
-      events,
-      user,
-      users,
-      match: { params, path },
-    } = this.props
-
-    let detail
-    let detailSelected = false
-
-    const filteredEvents = events
-      .get('items')
-      .toJS()
-      .filter(({ studsYear }) => studsYear === this.state.selectedYear)
-    if (params.id) {
-      const event = filteredEvents.find(e => e.id === params.id)
-      if (path === '/events/:id/edit') {
-        // event will be undefined on initial page load
-        detail = <EventEdit event={event} {...this.props} />
-      } else {
-        detail = event && (
-          <EventDetail
-            event={event}
-            user={user}
-            users={users}
-            id={params.id}
-            onRemoveEvent={this.onDeleteEvent}
-          />
-        )
-      }
-      detailSelected = true
-    } else if (path === '/events/new') {
-      const event = events.get('newEvent').toJS()
-      detail = <EventEdit event={event} {...this.props} />
-      detailSelected = true
-    } else {
-      detail = <EventStaticDetail />
-    }
-
-    const master = (
-      <EventList
+  const detailSelected = params.hasOwnProperty('id') || path === '/events/new'
+  const event = events
+    .get('items')
+    .toJS()
+    .find(e => e.id === params.id)
+  const detail = (event &&
+    params.id &&
+    (path === '/events/:id/edit' ? (
+      <EventEdit
+        event={event}
+        companies={companies}
+        users={users}
         events={events}
-        filteredEvents={filteredEvents}
-        user={user}
-        params={params}
-        path={path}
+        {...props}
       />
-    )
+    ) : (
+      <EventDetail
+        event={event}
+        user={user}
+        users={users}
+        id={params.id}
+        onRemoveEvent={onDeleteEvent}
+      />
+    ))) ||
+    (path === '/events/new' && (
+      <EventEdit
+        event={events.get('newEvent').toJS()}
+        companies={companies}
+        users={users}
+        events={events}
+        {...props}
+      />
+    )) || <EventStaticDetail />
 
-    return (
-      <div className={styles.events}>
-        <header className={styles.events_title}>
-          <h1>
-            <FormattedMessage {...messages.header} />
-          </h1>
-          <select
-            value={this.state.selectedYear}
-            onChange={this.handleYearChange}
-          >
-            <option value='2021'>2021</option>
-            <option value='2020'>2020</option>
-            <option value='2019'>2019</option>
-            <option value='2018'>2018</option>
-          </select>
-        </header>
-        <MasterDetail
-          master={master}
-          detail={detail}
-          detailSelected={detailSelected}
-        />
-      </div>
-    )
-  }
+  return (
+    <div className={styles.events}>
+      <header className={styles.events_title}>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
+        <select value={selectedYear} onChange={handleYearChange}>
+          <option value='2021'>2021</option>
+          <option value='2020'>2020</option>
+          <option value='2019'>2019</option>
+          <option value='2018'>2018</option>
+        </select>
+      </header>
+      <MasterDetail
+        master={master}
+        detail={detail}
+        detailSelected={detailSelected}
+      />
+    </div>
+  )
 }
 
 Events.propTypes = {

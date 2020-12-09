@@ -11,6 +11,7 @@ import EventList from 'components/EventList'
 import EventDetail from 'components/EventDetail'
 import EventStaticDetail from 'components/EventStaticDetail'
 import EventEdit from 'components/EventEdit'
+import { YearPicker } from 'components/YearPicker'
 import * as EventActions from 'store/events/actions'
 import { getUsers } from 'containers/Members/actions'
 import { loadSoldCompanies } from 'store/salesTool/companies/actions'
@@ -47,10 +48,6 @@ const Events = ({
         .filter(({ studsYear }) => studsYear === selectedYear),
     [events, selectedYear]
   )
-
-  const handleYearChange = event => {
-    setSelectedYear(Number(event.target.value))
-  }
 
   const onDeleteEvent = id => {
     if (confirm(WARNING)) {
@@ -109,12 +106,10 @@ const Events = ({
         <h1>
           <FormattedMessage {...messages.header} />
         </h1>
-        <select value={selectedYear} onChange={handleYearChange}>
-          <option value='2021'>2021</option>
-          <option value='2020'>2020</option>
-          <option value='2019'>2019</option>
-          <option value='2018'>2018</option>
-        </select>
+        <YearPicker
+          selectedYear={selectedYear}
+          setStudsYear={setSelectedYear}
+        />
       </header>
       <MasterDetail
         master={master}

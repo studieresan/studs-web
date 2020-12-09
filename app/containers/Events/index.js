@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -20,8 +20,14 @@ const WARNING =
   'This action cannot be undone.'
 
 export class Events extends React.Component {
-  state = {
-    selected: null,
+  constructor(props) {
+    super(props)
+    this.state = {
+      selected: null,
+      selectedYear: 2020,
+    }
+
+    this.handleYearChange = this.handleYearChange.bind(this)
   }
 
   componentDidMount() {
@@ -36,6 +42,10 @@ export class Events extends React.Component {
     }
   }
 
+  handleYearChange(event) {
+    this.setState({ selectedYear: Number(event.target.value) })
+  }
+
   render() {
     const {
       events,
@@ -46,8 +56,13 @@ export class Events extends React.Component {
 
     let detail
     let detailSelected = false
+
+    const filteredEvents = events
+      .get('items')
+      .toJS()
+      .filter(({ studsYear }) => studsYear === this.state.selectedYear)
     if (params.id) {
-      const event = events.get('items').find(e => e.get('id') === params.id)
+      const event = events.find(e => e.get('id') === params.id)
       if (path === '/events/:id/edit') {
         // event will be undefined on initial page load
         detail = <EventEdit event={event && event.toJS()} {...this.props} />
@@ -72,7 +87,13 @@ export class Events extends React.Component {
     }
 
     const master = (
-      <EventList events={events} user={user} params={params} path={path} />
+      <EventList
+        events={events}
+        filteredEvents={filteredEvents}
+        user={user}
+        params={params}
+        path={path}
+      />
     )
 
     return (
@@ -81,6 +102,15 @@ export class Events extends React.Component {
           <h1>
             <FormattedMessage {...messages.header} />
           </h1>
+          <select
+            value={this.state.selectedYear}
+            onChange={this.handleYearChange}
+          >
+            <option value='2021'>2021</option>
+            <option value='2020'>2020</option>
+            <option value='2019'>2019</option>
+            <option value='2018'>2018</option>
+          </select>
         </header>
         <MasterDetail
           master={master}

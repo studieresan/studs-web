@@ -24,20 +24,19 @@ UserActions.propTypes = {
   user: PropTypes.object.isRequired,
 }
 
-const EventList = ({ events, user, params, path }) => {
+const EventList = ({ filteredEvents, events, user, params, path }) => {
   const eventListItem = (event, isSelected) => (
     <EventListItem
-      key={event.get('id')}
-      event={event.toJS()}
+      key={event.id}
+      event={event}
       user={user}
       isSelected={isSelected}
     />
   )
 
-  const items = events
-    .get('items')
-    .sort((a, b) => a.get('date') - b.get('date'))
-    .map(event => eventListItem(event, event.get('id') === params.id))
+  const items = filteredEvents
+    .sort((a, b) => a.date - b.date)
+    .map(event => eventListItem(event, event.id === params.id))
 
   const newEventListItem =
     events.get('newEvent') &&
@@ -66,6 +65,7 @@ const EventList = ({ events, user, params, path }) => {
 
 EventList.propTypes = {
   events: PropTypes.array.isRequired,
+  filteredEvents: PropTypes.array.isRequired,
   user: PropTypes.object.isRequired,
   params: PropTypes.object.isRequired,
   path: PropTypes.string.isRequired,

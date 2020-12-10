@@ -40,7 +40,7 @@ const EventList = ({ filteredEvents, events, user, params, path }) => {
 
   const newEventListItem =
     events.get('newEvent') &&
-    eventListItem(events.get('newEvent'), path === '/events/new')
+    eventListItem(events.get('newEvent').toJS(), path === '/events/new')
 
   const shouldShowNewEventItem = path === '/events/new'
 

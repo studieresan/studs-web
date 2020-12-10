@@ -234,9 +234,9 @@ class SalesTool extends Component {
   getSalesAmountForFilteredCompanies = () => {
     return this.state.filteredCompanies
       .reduce((acc, currentId) => {
-        const year = this.props.companies.data[currentId].years[
-          this.props.selectedYear
-        ]
+        const year = this.props.companies.data[currentId].statuses.find(
+          ({ studsYear }) => studsYear === this.props.selectedYear
+        )
         return year ? acc + year.amount : acc
       }, 0)
       .toLocaleString('sv')

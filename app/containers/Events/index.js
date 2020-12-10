@@ -35,9 +35,15 @@ const Events = ({
   const [selectedYear, setSelectedYear] = useState(2020)
 
   useEffect(() => {
-    if (!events || !events.length) getEvents()
-    if (!users || !users.length) getUsers()
-    if (!companies || !companies.length) loadSoldCompanies()
+    if (!events || !events.get('items').toJS().length) {
+      getEvents()
+    }
+    if (!users || !Object.keys(users).length) {
+      getUsers()
+    }
+    if (!companies || !Object.keys(companies.data).length) {
+      loadSoldCompanies()
+    }
   }, [])
 
   const filteredEvents = useMemo(

@@ -1,155 +1,129 @@
-import React from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import selectEvents from 'store/events/selectors'
 import { FormattedMessage } from 'react-intl'
-import { Link } from 'react-router-dom'
 import messages from './messages'
 import styles from './styles.css'
 import MasterDetail from 'components/MasterDetail'
-import EventListItem from 'components/EventListItem'
+import EventList from 'components/EventList'
 import EventDetail from 'components/EventDetail'
 import EventStaticDetail from 'components/EventStaticDetail'
 import EventEdit from 'components/EventEdit'
+import { YearPicker } from 'components/YearPicker'
 import * as EventActions from 'store/events/actions'
 import { getUsers } from 'containers/Members/actions'
 import { loadSoldCompanies } from 'store/salesTool/companies/actions'
-import { hasEventPermission } from 'users'
 
 const WARNING =
   'Are you sure you wish to delete this event? ' +
   'This action cannot be undone.'
 
-export class Events extends React.Component {
-  state = {
-    selected: null,
-  }
+const Events = ({
+  loadSoldCompanies,
+  getEvents,
+  getUsers,
+  match,
+  events,
+  user,
+  companies,
+  users,
+  removeEvent,
+  ...props
+}) => {
+  const [selectedYear, setSelectedYear] = useState(2020)
 
-  componentDidMount() {
-    this.props.getEvents()
-    this.props.getUsers()
-    this.props.loadSoldCompanies()
-  }
+  useEffect(() => {
+    if (!events || !events.get('items').toJS().length) {
+      getEvents()
+    }
+    if (!users || !Object.keys(users).length) {
+      getUsers()
+    }
+    if (!companies || !Object.keys(companies.data).length) {
+      loadSoldCompanies()
+    }
+  }, [])
 
-  onDeleteEvent = id => {
+  const filteredEvents = useMemo(
+    () =>
+      events
+        .get('items')
+        .toJS()
+        .filter(({ studsYear }) => studsYear === selectedYear),
+    [events, selectedYear]
+  )
+
+  const onDeleteEvent = id => {
     if (confirm(WARNING)) {
-      this.props.removeEvent(id)
+      removeEvent(id)
     }
   }
 
-  static UserActions({ user }) {
-    if (hasEventPermission(user)) {
-      return (
-        <div className={styles.actions}>
-          <Link to='/events/new'>
-            <FormattedMessage {...messages.create} />
-          </Link>
-        </div>
-      )
-    }
-    return null
-  }
+  const { params, path } = match
+  const master = (
+    <EventList
+      events={events}
+      filteredEvents={filteredEvents}
+      user={user}
+      params={params}
+      path={path}
+    />
+  )
 
-  static EventsList({ events, user, params, path }) {
-    const eventListItem = (event, isSelected) => (
-      <EventListItem
-        key={event.get('id')}
-        event={event.toJS()}
-        user={user}
-        isSelected={isSelected}
-      />
-    )
-
-    const items = events
-      .get('items')
-      .sort((a, b) => a.get('date') - b.get('date'))
-      .map(event => eventListItem(event, event.get('id') === params.id))
-
-    const newEventListItem =
-      events.get('newEvent') &&
-      eventListItem(events.get('newEvent'), path === '/events/new')
-
-    const shouldShowNewEventItem = path === '/events/new'
-
-    return (
-      <div className={styles.listContainer}>
-        <div className={styles.list}>
-          <div className={styles.listHeader}>
-            <div>
-              <FormattedMessage {...messages.company} />
-            </div>
-            <div>
-              <FormattedMessage {...messages.date} />
-            </div>
-          </div>
-          {items}
-          {shouldShowNewEventItem && newEventListItem}
-        </div>
-        <Events.UserActions user={user} />
-      </div>
-    )
-  }
-
-  render() {
-    const {
-      events,
-      user,
-      users,
-      match: { params, path },
-    } = this.props
-
-    let detail
-    let detailSelected = false
-    if (params.id) {
-      const event = events.get('items').find(e => e.get('id') === params.id)
-      if (path === '/events/:id/edit') {
-        // event will be undefined on initial page load
-        detail = <EventEdit event={event && event.toJS()} {...this.props} />
-      } else {
-        detail = event && (
-          <EventDetail
-            event={event.toJS()}
-            user={user}
-            users={users}
-            id={params.id}
-            onRemoveEvent={this.onDeleteEvent}
-          />
-        )
-      }
-      detailSelected = true
-    } else if (path === '/events/new') {
-      const event = events.get('newEvent').toJS()
-      detail = <EventEdit event={event} {...this.props} />
-      detailSelected = true
-    } else {
-      detail = <EventStaticDetail />
-    }
-
-    const master = (
-      <Events.EventsList
+  const detailSelected = params.hasOwnProperty('id') || path === '/events/new'
+  const event = events
+    .get('items')
+    .toJS()
+    .find(e => e.id === params.id)
+  const detail = (event &&
+    params.id &&
+    (path === '/events/:id/edit' ? (
+      <EventEdit
+        event={event}
+        companies={companies}
+        users={users}
         events={events}
-        user={user}
-        params={params}
-        path={path}
+        {...props}
       />
-    )
+    ) : (
+      <EventDetail
+        event={event}
+        user={user}
+        users={users}
+        id={params.id}
+        onRemoveEvent={onDeleteEvent}
+      />
+    ))) ||
+    (path === '/events/new' && (
+      <EventEdit
+        event={events.get('newEvent').toJS()}
+        companies={companies}
+        users={users}
+        events={events}
+        {...props}
+      />
+    )) || <EventStaticDetail />
 
-    return (
-      <div className={styles.events}>
-        <div className={styles.events_title}>
-          <h1>
-            <FormattedMessage {...messages.header} />
-          </h1>
-        </div>
-        <MasterDetail
-          master={master}
-          detail={detail}
-          detailSelected={detailSelected}
+  return (
+    <div className={styles.events}>
+      <header className={styles.events_title}>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
+        <YearPicker
+          selectedYear={selectedYear}
+          setStudsYear={setSelectedYear}
         />
-      </div>
-    )
-  }
+      </header>
+      <MasterDetail
+        master={master}
+        detail={detail}
+        detailSelected={detailSelected}
+      />
+    </div>
+  )
 }
 
 Events.propTypes = {

@@ -103,8 +103,10 @@ export default class EventEdit extends React.Component {
       users,
     } = this.props
 
-    const companiesList = hasData(companies) ? companies : []
-
+    //TODO - filter sold companies
+    const companiesList = hasData(companies)
+      ? Object.values(companies.data)
+      : []
     const eventUsers = users.filter(u => u.userRole === 'event_group')
 
     return (

@@ -29,9 +29,14 @@ const StudsMemberInfo = user => {
 }
 
 function About({ users, getUsers, selectedYear }) {
-  useEffect(() => {
-    getUsers(selectedYear)
-  }, [])
+  useEffect(
+    () => {
+      if (!users || !users.length) {
+        getUsers(selectedYear)
+      }
+    },
+    [selectedYear]
+  )
   return (
     <React.Fragment>
       <header className={styles.about_title}>

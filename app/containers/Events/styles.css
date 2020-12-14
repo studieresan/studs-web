@@ -1,11 +1,11 @@
 .events {
   /* padding-top: var(--header-height); */
-  height: 80vh;
+  height: 70vh;
 }
 
 .events_title {
   padding-top: var(--header-height);
-  height: 20vh;
+  height: 30vh;
   background-image: url(static/img/home/background.png);
   background-attachment: fixed;
   background-position: center;
@@ -13,6 +13,7 @@
   background-size: cover;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
@@ -40,29 +41,4 @@
 
 .actions a:hover {
   color: #90ce9c;
-}
-
-.list {
-  flex: 1;
-  overflow: auto;
-}
-
-.listHeader {
-  position: sticky;
-  top: 0px;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  font-weight: bold;
-  border-bottom: 1px solid #eee;
-  font-size: 12px;
-  height: 40px;
-  align-items: center;
-  background-color: var(--primary);
-}
-
-.listContainer {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
 }

@@ -11,12 +11,12 @@ import Footer from 'components/Footer'
 export class HomePage extends Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Snowfall />
         <HomePageContent />
         <HomePageAbout />
         <Footer showCollaborators hasBackground={false} />
-      </div>
+      </React.Fragment>
     )
   }
 }

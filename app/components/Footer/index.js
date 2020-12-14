@@ -16,7 +16,7 @@ import SalesContact from 'components/SalesContact'
 
 function Footer({ showSalesContact, showCollaborators, hasBackground }) {
   return (
-    <div>
+    <footer>
       {showSalesContact && <SalesContact />}
       <div
         className={
@@ -31,7 +31,7 @@ function Footer({ showSalesContact, showCollaborators, hasBackground }) {
         {showCollaborators && <Collaborations />}
         <SubFooter hasBackground={hasBackground} />
       </div>
-    </div>
+    </footer>
   )
 }
 

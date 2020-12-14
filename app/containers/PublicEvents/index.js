@@ -14,7 +14,9 @@ import Spinner from 'components/Spinner'
 
 class PublicEvents extends React.Component {
   componentDidMount() {
-    this.props.getEvents()
+    if (!this.props.events || !this.props.events.length) {
+      this.props.getEvents()
+    }
 
     Events.scrollEvent.register('begin')
     Events.scrollEvent.register('end')

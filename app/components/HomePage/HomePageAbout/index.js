@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useMemo, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -12,17 +12,17 @@ import { prettyUserRole } from 'utils'
 import placeholder from 'static/img/profile-placeholder.png'
 
 function HomePageAbout({ users, getUsers }) {
-  const [user, setUser] = useState(null)
-  useEffect(() => getUsers(), [])
-  useEffect(
-    () => {
-      setUser(users[Math.floor(Math.random() * users.length)])
-    },
-    [users]
-  )
+  const user = useMemo(() => users[Math.floor(Math.random() * users.length)], [
+    users,
+  ])
+  useEffect(() => {
+    if (!users || !users.length) {
+      getUsers()
+    }
+  }, [])
 
   return !user || !Object.keys(user).length ? null : (
-    <div className={styles.HomePageAbout}>
+    <section className={styles.HomePageAbout}>
       <div className={styles.image}>
         <MemberImage
           picture={user.picture ? user.picture : placeholder}
@@ -51,7 +51,7 @@ function HomePageAbout({ users, getUsers }) {
           </Link>
         </p>
       </div>
-    </div>
+    </section>
   )
 }
 

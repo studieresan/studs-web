@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import styles from './styles.css'
 import Markdown from 'react-markdown'
+import LazyLoad from 'react-lazy-load'
 
 const PublicEvent = ({
   companyName,
@@ -33,7 +34,13 @@ const PublicEvent = ({
         {pictures && !!pictures.length && (
           <div className={styles.pictures}>
             {pictures.slice(0, 3).map(pic => (
-              <img key={pic + Math.random()} src={pic} />
+              <LazyLoad
+                key={pic + Math.random()}
+                offsetVertical={300}
+                debounce={false}
+              >
+                <img src={pic} />
+              </LazyLoad>
             ))}
           </div>
         )}

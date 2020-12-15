@@ -63,7 +63,7 @@ class Nav extends React.Component {
     }
 
     return (
-      <div className={navbarClasses}>
+      <nav className={navbarClasses}>
         <div className={styles.control}>
           <Link to='/'>
             <img className={styles.logoDesktop} src={logoDesktop} />
@@ -74,7 +74,7 @@ class Nav extends React.Component {
         <div className={menuClass}>
           <NavLinks loggedIn={loggedIn} user={user} />
         </div>
-      </div>
+      </nav>
     )
   }
 }

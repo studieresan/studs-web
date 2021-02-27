@@ -285,14 +285,15 @@ export function fetchEvents() {
 export function saveEvent(e) {
   const event = omit(e, 'id')
   const id = e.id
-  event.companyID = event.company.id
+  event.companyId = event.company.id
   delete event.company
   event.responsibleUserId = event.responsible ? event.responsible.id : null
   delete event.responsible
 
   if (id) {
+    delete event.companyId
     const mutation = `mutation {
-      eventUpdate(eventId: "${id}", fields: ${toGraphQLFields(event)}) {
+      eventUpdate(id: "${id}", fields: ${toGraphQLFields(event)}) {
         ${EVENT_FIELDS}
       }
     }

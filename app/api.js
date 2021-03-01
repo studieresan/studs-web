@@ -1,4 +1,4 @@
-import { pickBy, omit } from 'lodash'
+import { pickBy } from 'lodash'
 
 const BASE_URL = process.env.API_BASE_URL || 'http://localhost:5040'
 const GRAPHQL = '/graphql'
@@ -282,9 +282,7 @@ export function fetchEvents() {
     )
 }
 
-export function saveEvent(e) {
-  const event = omit(e, 'id')
-  const id = e.id
+export function saveEvent({ id, ...event }) {
   event.companyId = event.company.id
   delete event.company
   event.responsibleUserId = event.responsible ? event.responsible.id : null

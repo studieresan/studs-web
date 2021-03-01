@@ -22,11 +22,6 @@ export default class EventEdit extends React.Component {
     event: getEmptyEventObject(),
   }
 
-  state = {
-    beforeSurvey: '',
-    afterSurvey: '',
-  }
-
   saveBtnTimer = null
 
   componentWillUnmount() {
@@ -77,7 +72,8 @@ export default class EventEdit extends React.Component {
   }
 
   handleSave = () => {
-    const { save, event } = this.props
+    const { save, event, studsYear } = this.props
+    event.studsYear = studsYear
     if (
       event.responsible &&
       event.company &&
@@ -88,10 +84,6 @@ export default class EventEdit extends React.Component {
     } else {
       alert('You must select a company and a responsible user before saving.')
     }
-  }
-
-  setSurvey = (surveyType, value, event) => {
-    this.props.setSurvey(value, surveyType, event.id)
   }
 
   render() {
@@ -227,28 +219,20 @@ export default class EventEdit extends React.Component {
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.beforeSurvey} />
         </div>
-        <input
+        <Textarea
           name='beforeSurvey'
-          placeholder='Enter survey url. Press Enter when done.'
-          value={this.state.beforeSurvey}
-          onChange={e => this.setState({ beforeSurvey: e.target.value })}
-          onKeyPress={e =>
-            e.key === 'Enter' &&
-            this.setSurvey(e.target.name, e.target.value, event)
-          }
+          placeholder='Enter survey url'
+          value={event.beforeSurvey || ''}
+          onChange={this.handleChange}
         />
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.afterSurvey} />
         </div>
-        <input
+        <Textarea
           name='afterSurvey'
-          placeholder='Enter survey url. Press Enter when done.'
-          value={this.state.afterSurvey}
-          onChange={e => this.setState({ afterSurvey: e.target.value })}
-          onKeyPress={e =>
-            e.key === 'Enter' &&
-            this.setSurvey(e.target.name, e.target.value, event)
-          }
+          placeholder='Enter survey url'
+          value={event.afterSurvey || ''}
+          onChange={this.handleChange}
         />
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.pictures} />
@@ -273,7 +257,7 @@ export default class EventEdit extends React.Component {
 EventEdit.propTypes = {
   /** can be null if we are creating a new event */
   event: PropTypes.object,
-
+  studsYear: PropTypes.number.isRequired,
   // redux props
   companies: PropTypes.object.isRequired,
   soldCompanies: PropTypes.array.isRequired,

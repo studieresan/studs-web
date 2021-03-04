@@ -639,3 +639,7 @@ export const fetchUserRoles = () => {
   }`
   return executeGraphQL(query).then(res => res.data.userRoles)
 }
+
+export const getPDFURL = file => {
+  return `${BASE_URL}${file}`
+}

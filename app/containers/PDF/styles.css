@@ -1,0 +1,15 @@
+.pdf_header {
+  height: var(--header-height);
+  background-image: url(static/img/home/background.png);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.iframe {
+  background: #000;
+  border: none;
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+}

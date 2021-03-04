@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../Members/actions'
-import Snowfall from 'react-snowfall'
 
 import { HomePageContent, HomePageAbout } from 'components/HomePage'
 
@@ -12,7 +11,6 @@ export class HomePage extends Component {
   render() {
     return (
       <React.Fragment>
-        <Snowfall />
         <HomePageContent />
         <HomePageAbout />
         <Footer showCollaborators hasBackground={false} />

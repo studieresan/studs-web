@@ -32,7 +32,7 @@ const Events = ({
   removeEvent,
   ...props
 }) => {
-  const [selectedYear, setSelectedYear] = useState(2020)
+  const [selectedYear, setSelectedYear] = useState(2021)
 
   useEffect(() => {
     if (!events || !events.get('items').toJS().length) {
@@ -85,6 +85,7 @@ const Events = ({
         companies={companies}
         users={users}
         events={events}
+        studsYear={selectedYear}
         {...props}
       />
     ) : (
@@ -102,6 +103,7 @@ const Events = ({
         companies={companies}
         users={users}
         events={events}
+        studsYear={selectedYear}
         {...props}
       />
     )) || <EventStaticDetail />

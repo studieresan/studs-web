@@ -1,4 +1,4 @@
-import { pickBy, omit } from 'lodash'
+import { pickBy } from 'lodash'
 
 const BASE_URL = process.env.API_BASE_URL || 'http://localhost:5040'
 const GRAPHQL = '/graphql'
@@ -282,36 +282,32 @@ export function fetchEvents() {
     )
 }
 
-export function saveEvent(e) {
-  const event = omit(e, 'id')
-  const id = e.id
-  const companyId = event.company.id
+export function saveEvent({ id, ...event }) {
+  event.companyId = event.company.id
   delete event.company
-  const responsibleUserId = event.responsible ? event.responsible.id : null
+  event.responsibleUserId = event.responsible ? event.responsible.id : null
   delete event.responsible
-  event.responsibleUserId = responsibleUserId
 
   if (id) {
+    delete event.companyId
     const mutation = `mutation {
-      updateEvent(eventId: "${id}", fields: ${toGraphQLFields(event)}) {
+      eventUpdate(id: "${id}", fields: ${toGraphQLFields(event)}) {
         ${EVENT_FIELDS}
       }
     }
     `
     return executeGraphQL(mutation)
-      .then(res => res.data.updateEvent)
+      .then(res => res.data.eventUpdate)
       .then(event => ({ ...event, date: new Date(event.date) }))
   } else {
     const mutation = `mutation {
-      createEvent(companyId: "${companyId}", fields: ${toGraphQLFields(
-      event
-    )}) {
+      eventCreate(fields: ${toGraphQLFields(event)}) {
         ${EVENT_FIELDS}
       }
     }
     `
     return executeGraphQL(mutation)
-      .then(res => res.data.createEvent)
+      .then(res => res.data.eventCreate)
       .then(event => ({ ...event, date: new Date(event.date) }))
   }
 }
@@ -319,10 +315,10 @@ export function saveEvent(e) {
 export function removeEventWithId(id) {
   if (id) {
     const mutation = `mutation {
-      removeEvent(eventId: "${id}")
+      eventDelete(id: "${id}")
     }
     `
-    return executeGraphQL(mutation).then(res => res.data.updateEvent)
+    return executeGraphQL(mutation).then(res => res.data.eventDelete)
   }
 }
 

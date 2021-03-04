@@ -164,11 +164,11 @@ class SalesTool extends Component {
                 ({ studsYear }) => studsYear === this.props.selectedYear
               )
             if (status) {
-              const userID =
+              const userId =
                 status.responsibleUser &&
                 status.responsibleUser.firstName +
                   status.responsibleUser.lastName
-              return userID && userID.toLowerCase()
+              return userId && userId.toLowerCase()
             } else {
               return null
             }

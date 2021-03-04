@@ -23,6 +23,7 @@ import ContactRequests from 'containers/ContactRequests/ContactRequestsContainer
 import StudentComponent from 'containers/Group'
 import Jumpin from 'containers/Jumpin'
 import PrivacyPolicy from './containers/PrivacyPolicy'
+import PDF from './containers/PDF'
 
 class StudsRouter extends Component {
   render() {
@@ -42,6 +43,11 @@ class StudsRouter extends Component {
         <Route exact path='/bababa' component={Jumpin} />
 
         <Route exact path='/privacy' component={PrivacyPolicy} />
+        <Route
+          exact
+          path={['/brochure.pdf', '/brochure_eng.pdf']}
+          component={PDF}
+        />
 
         <AuthenticatedRoute
           exact

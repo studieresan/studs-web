@@ -35,9 +35,11 @@ export default class EventEdit extends React.Component {
       companies,
     } = this.props
     if (e.target.type === 'file') {
-      uploadImage(e.target.files[0]).then(url => {
-        addPicture(url, id)
-      })
+      Object.values(e.target.files).forEach(file =>
+        uploadImage(file).then(url => {
+          addPicture(url, id)
+        })
+      )
     } else {
       const data = {}
       switch (e.target.name) {
@@ -74,6 +76,7 @@ export default class EventEdit extends React.Component {
   handleSave = () => {
     const { save, event, studsYear } = this.props
     event.studsYear = studsYear
+    this.update({ studsYear: studsYear }, event.id)
     if (
       event.responsible &&
       event.company &&
@@ -248,7 +251,12 @@ export default class EventEdit extends React.Component {
               </div>
             ))}
         </div>
-        <input type='file' name='picture' onChange={this.handleChange} />
+        <input
+          type='file'
+          name='picture'
+          onChange={this.handleChange}
+          multiple
+        />
       </div>
     )
   }

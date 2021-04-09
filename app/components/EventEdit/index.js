@@ -140,7 +140,7 @@ export default class EventEdit extends React.Component {
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.responsible} />
         </div>
-        <div className={styles.selectContainer}>
+        <div>
           <select
             name='responsible'
             placeholder='Responsible user'
@@ -163,7 +163,7 @@ export default class EventEdit extends React.Component {
           <div key='newCompLable' className={styles.inputLabel}>
             <FormattedMessage {...messages.company} />
           </div>,
-          <div key='newCompSelect' className={styles.selectContainer}>
+          <div key='newCompSelect'>
             <select
               name='company'
               placeholder='Company'

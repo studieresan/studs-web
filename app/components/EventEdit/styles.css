@@ -49,13 +49,8 @@
   outline: none;
 }
 
-.selectContainer {
-  border: 1px solid black;
-  padding: 5px;
+.eventEdit select {
   width: fit-content;
-}
-
-.selectContainer select {
   font-family: var(--body-font);
 }
 

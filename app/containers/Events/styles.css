@@ -1,8 +1,3 @@
-.events {
-  /* padding-top: var(--header-height); */
-  height: 70vh;
-}
-
 .events_title {
   padding-top: var(--header-height);
   height: 30vh;
@@ -27,10 +22,6 @@
   justify-content: center;
   align-items: center;
   font-size: 12px;
-}
-
-.events a {
-  text-decoration: none;
 }
 
 .actions a {

@@ -106,7 +106,7 @@ export default class EventEdit extends React.Component {
 
     return (
       <div className={styles.eventEdit}>
-        <div className={styles.head}>
+        <header className={styles.head}>
           <h2>{event.company.id ? event.company.name : 'New Event'}</h2>
           <div>
             <Link to={`/events/${event.id ? event.id : ''}`}>
@@ -124,7 +124,7 @@ export default class EventEdit extends React.Component {
               <FormattedMessage {...messages.save} />
             </Button>
           </div>
-        </div>
+        </header>
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.published} />
           <input
@@ -139,8 +139,6 @@ export default class EventEdit extends React.Component {
         </div>
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.responsible} />
-        </div>
-        <div>
           <select
             name='responsible'
             placeholder='Responsible user'
@@ -159,11 +157,9 @@ export default class EventEdit extends React.Component {
               ))}
           </select>
         </div>
-        {!event.id && [
-          <div key='newCompLable' className={styles.inputLabel}>
+        {!event.id && (
+          <div className={styles.inputLabel}>
             <FormattedMessage {...messages.company} />
-          </div>,
-          <div key='newCompSelect'>
             <select
               name='company'
               placeholder='Company'
@@ -181,82 +177,82 @@ export default class EventEdit extends React.Component {
                   </option>
                 ))}
             </select>
-          </div>,
-        ]}
+          </div>
+        )}
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.date} />
+          <input
+            name='date'
+            type='datetime-local'
+            value={moment(event.date).format('YYYY-MM-DDTHH:mm')}
+            onChange={this.handleChange}
+          />
         </div>
-        <input
-          name='date'
-          type='datetime-local'
-          value={moment(event.date).format('YYYY-MM-DDTHH:mm')}
-          onChange={this.handleChange}
-        />
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.location} />
+          <input
+            name='location'
+            placeholder='location'
+            value={event.location || ''}
+            onChange={this.handleChange}
+          />
         </div>
-        <input
-          name='location'
-          placeholder='location'
-          value={event.location || ''}
-          onChange={this.handleChange}
-        />
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.publicDescription} />
+          <Textarea
+            name='publicDescription'
+            placeholder='Public Description'
+            onChange={this.handleChange}
+            value={event.publicDescription || ''}
+          />
         </div>
-        <Textarea
-          name='publicDescription'
-          placeholder='Public Description'
-          onChange={this.handleChange}
-          value={event.publicDescription || ''}
-        />
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.privateDescription} />
+          <Textarea
+            name='privateDescription'
+            placeholder='Private text'
+            onChange={this.handleChange}
+            value={event.privateDescription || ''}
+          />
         </div>
-        <Textarea
-          name='privateDescription'
-          placeholder='Private text'
-          onChange={this.handleChange}
-          value={event.privateDescription || ''}
-        />
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.beforeSurvey} />
+          <Textarea
+            name='beforeSurvey'
+            placeholder='Enter survey url'
+            value={event.beforeSurvey || ''}
+            onChange={this.handleChange}
+          />
         </div>
-        <Textarea
-          name='beforeSurvey'
-          placeholder='Enter survey url'
-          value={event.beforeSurvey || ''}
-          onChange={this.handleChange}
-        />
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.afterSurvey} />
+          <Textarea
+            name='afterSurvey'
+            placeholder='Enter survey url'
+            value={event.afterSurvey || ''}
+            onChange={this.handleChange}
+          />
         </div>
-        <Textarea
-          name='afterSurvey'
-          placeholder='Enter survey url'
-          value={event.afterSurvey || ''}
-          onChange={this.handleChange}
-        />
         <div className={styles.inputLabel}>
           <FormattedMessage {...messages.pictures} />
+          <div className={styles.eventPictures}>
+            {event.pictures &&
+              event.pictures.map((url, i) => (
+                <div className={styles.eventPicture} key={url + i}>
+                  <EventEditPicture
+                    url={url}
+                    onRemove={() => removePicture(i, event.id)}
+                  />
+                </div>
+              ))}
+          </div>
+          <input
+            type='file'
+            name='picture'
+            onChange={this.handleChange}
+            multiple
+          />
         </div>
-        <div className={styles.eventPictures}>
-          {event.pictures &&
-            event.pictures.map((url, i) => (
-              <div className={styles.eventPicture} key={url + i}>
-                <EventEditPicture
-                  url={url}
-                  onRemove={() => removePicture(i, event.id)}
-                />
-              </div>
-            ))}
-        </div>
-        <input
-          type='file'
-          name='picture'
-          onChange={this.handleChange}
-          multiple
-        />
       </div>
     )
   }

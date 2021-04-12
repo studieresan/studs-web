@@ -109,7 +109,7 @@ const Events = ({
     )) || <EventStaticDetail />
 
   return (
-    <div className={styles.events}>
+    <React.Fragment>
       <header className={styles.events_title}>
         <h1>
           <FormattedMessage {...messages.header} />
@@ -124,7 +124,7 @@ const Events = ({
         detail={detail}
         detailSelected={detailSelected}
       />
-    </div>
+    </React.Fragment>
   )
 }
 

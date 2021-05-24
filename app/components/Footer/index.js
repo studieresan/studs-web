@@ -108,7 +108,8 @@ Copyright.propTypes = {
 const Images = () => (
   <div className={styles.pictures}>
     <Image picture={projectManager1.image} />
-    <Image picture={projectManager2.image} />
+    {/** Uncomment when 2 managers */}
+    {/*<Image picture={projectManager2.image} />*/}
   </div>
 )
 
@@ -129,12 +130,13 @@ const Contact = ({ hasBackground }) => (
             {projectManager1.email}
           </a>
         </p>
-        <p>
+        {/** Uncomment when 2 managers */}
+        {/* <p> 
           {projectManager2.name}{' '}
           <a href={'mailto:' + projectManager2.email}>
             {projectManager2.email}
           </a>
-        </p>
+        </p> */}
         <p>
           <FormattedMessage {...messages.projectManagerTitle} />
         </p>

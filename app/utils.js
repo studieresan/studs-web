@@ -78,6 +78,8 @@ export const prettyUserRole = userRole => {
   switch (userRole) {
     case 'project_manager':
       return 'Project Manager'
+    case 'ex_project_manager':
+      return 'Ex Project manager'
     case 'it_group':
       return 'IT'
     default: {

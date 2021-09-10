@@ -1,5 +1,7 @@
 # Studs web
 
+HEJEHHEJ
+
 > The frontend for Studs (https://studieresan.se/) :hearts:
 
 This repository contains the source code for the main Studs website

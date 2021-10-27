@@ -32,7 +32,7 @@ const Events = ({
   removeEvent,
   ...props
 }) => {
-  const [selectedYear, setSelectedYear] = useState(2021)
+  const [selectedYear, setSelectedYear] = useState(2022)
 
   useEffect(() => {
     if (!events || !events.get('items').toJS().length) {

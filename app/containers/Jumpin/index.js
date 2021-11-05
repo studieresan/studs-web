@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styles from './styles.css'
 
 const FORM_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLSeo8MkVw6fHzW_EB2rBfD1MyXzOqxYvKjQSXmX8at0LLiQ_9w/viewform'
+  'https://docs.google.com/forms/d/e/1FAIpQLSfgTjrfi860_8aMh_6n8kiumcG42CWJ-lv8K4EXwPYM6YFpfg/viewform'
 
 class Jumpin extends Component {
   componentDidMount() {

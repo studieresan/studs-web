@@ -5,7 +5,7 @@ import { Facebook, Instagram, Linkedin } from 'react-feather'
 import MemberImage from 'components/MemberImage'
 import { projectManager1, projectManager2 } from 'static/groups/groups.js'
 import Spotify from 'static/img/company_logos/spotify.png'
-import Kry from 'static/img/company_logos/kry.svg'
+import Kry from 'static/img/company_logos/kry.png'
 import Cygni from 'static/img/company_logos/cygni.png'
 import Trafikverket from 'static/img/company_logos/trafikverket.png'
 import Storytel from 'static/img/company_logos/storytel.svg'
@@ -97,7 +97,7 @@ const Copyright = ({ hasBackground }) => (
       (hasBackground ? styles.copyrightColorInverted : '')
     }
   >
-    &copy; 2020-2021 Studs
+    &copy; 2021-2022 Studs
   </p>
 )
 

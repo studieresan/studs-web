@@ -4,7 +4,7 @@ import styles from './styles.css'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import MemberImage from 'components/MemberImage'
-import sale from 'static/img/people/studs2022/sales.jpg'
+import sale from 'static/img/people/studs2022/julia.jpg'
 
 const CONTACT_NAME = 'Julia Byström'
 const CONTACT_PHONE_NUMBER = '+46 76-167 61 80'

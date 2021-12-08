@@ -13,7 +13,7 @@ import ImageEvent3 from 'static/img/home/event3.jpg'
 import ImageProject1 from 'static/img/home/project1.jpg'
 import ImageProject2 from 'static/img/home/project2.jpg'
 import ImageProject3 from 'static/img/home/project3.jpg'
-import sale from 'static/img/people/studs2022/sales.jpg'
+import sale from 'static/img/people/studs2022/julia.jpg'
 import { FormattedMessage } from 'react-intl'
 
 const HomePageContent = () => {

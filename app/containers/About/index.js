@@ -10,20 +10,26 @@ import messages from './messages'
 import Footer from 'components/Footer'
 import MemberImage from 'components/MemberImage'
 import { prettyUserRole } from 'utils'
+import { Facebook, Instagram, Linkedin } from 'react-feather'
 
 const StudsMemberInfo = user => {
   const size = Math.max(Math.floor((window.innerWidth * 0.8) / 5) - 40, 100)
   return (
     <div key={user.id} className={styles.member}>
       <MemberImage picture={user.picture} size={size} square round />
-      <h3
-        style={{
-          width: size,
-        }}
-      >
+      <h3>
         {user.firstName} {user.lastName}
       </h3>
       <h5>{prettyUserRole(user.userRole)}</h5>
+      <a
+        href={
+          user.linkedIn
+            ? user.linkedIn
+            : 'https://www.linkedin.com/company/studs/'
+        }
+      >
+        <Linkedin color='#2867B2' size={20} />
+      </a>
     </div>
   )
 }

@@ -24,11 +24,15 @@ export class User extends React.Component {
   }
 
   handleChange(event) {
-    const user = {}
+    const user = this.props.user
     if (event.target.type === 'file') {
       user[event.target.name] = event.target.files[0]
     } else {
-      user[event.target.name] = event.target.value
+      if (user && event.target.name in user.info) {
+        user.info[event.target.name] = event.target.value
+      } else {
+        user[event.target.name] = event.target.value
+      }
     }
 
     this.props.update(user)
@@ -83,9 +87,10 @@ export class User extends React.Component {
           <input
             type='text'
             name='firstName'
-            value={user.firstName}
-            onChange={this.handleChange}
-            onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
+            readOnly
+            value={user.firstName ? user.firstName : ''}
+            //onChange={this.handleChange}
+            //onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
             placeholder='First name'
           />
           <div className='input-label'>
@@ -94,9 +99,10 @@ export class User extends React.Component {
           <input
             type='text'
             name='lastName'
-            value={user.lastName}
-            onChange={this.handleChange}
-            onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
+            value={user.lastName ? user.lastName : ''}
+            readOnly
+            //onChange={this.handleChange}
+            //onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
             placeholder='Last name'
           />
           <div className='input-label'>Email in Resume</div>
@@ -115,7 +121,7 @@ export class User extends React.Component {
             <input
               type='text'
               name='phone'
-              value={user.phone}
+              value={user.info.phone ? user.info.phone : ''}
               onChange={this.handleChange}
               onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
               placeholder='Phone number'
@@ -126,7 +132,7 @@ export class User extends React.Component {
             <input
               type='url'
               name='linkedIn'
-              value={user.linkedIn}
+              value={user.info.linkedIn ? user.info.linkedIn : ''}
               onChange={this.handleChange}
               onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
               placeholder='LinkedIn URL'
@@ -137,7 +143,7 @@ export class User extends React.Component {
             <input
               type='url'
               name='github'
-              value={user.github}
+              value={user.info.github ? user.info.github : ''}
               onChange={this.handleChange}
               onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
               placeholder='Github URL'
@@ -148,7 +154,7 @@ export class User extends React.Component {
             <input
               type='text'
               name='master'
-              value={user.master}
+              value={user.info.master ? user.info.master : ''}
               onChange={this.handleChange}
               onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
               placeholder='Master'
@@ -159,7 +165,7 @@ export class User extends React.Component {
             <input
               type='text'
               name='allergies'
-              value={user.allergies}
+              value={user.info.allergies ? user.info.allergies : ''}
               onChange={this.handleChange}
               onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
               placeholder='Allergies'

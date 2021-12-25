@@ -23,18 +23,10 @@ export function getUserSuccess(user) {
     type: GET_USER_SUCCESS,
     user: {
       id: user.id,
-      email: user.email,
       firstName: user.firstName,
       lastName: user.lastName,
-      permissions: user.permissions,
-      picture: user.picture,
-      phone: user.phone || '',
-      userRole: user.userRole || '',
-      linkedIn: user.linkedIn || '',
-      github: user.github || '',
-      master: user.master || '',
-      allergies: user.allergies || '',
       studsYear: user.studsYear || '',
+      info: user.info,
     },
   }
 }

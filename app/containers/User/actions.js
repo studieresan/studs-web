@@ -57,21 +57,19 @@ export const save = user => (dispatch, getState) => {
     .getIn(['global', 'user'])
     .toJS()
   const localChanges = toPairs(
-    omit(user, [
+    omit(user.info, [
       'password',
       'confirmPassword',
       'permissions',
-      'id',
       'alternativePicture',
     ])
   )
   const diff = fromPairs(
-    differenceWith(localChanges, toPairs(savedUser), isEqual)
+    differenceWith(localChanges, toPairs(savedUser.info), isEqual)
   )
   if (isEmpty(diff)) return dispatch(saveRequest())
   updateUser(diff)
-    .then(res => ({ ...user, ...res }))
-    .then(user => {
+    .then(res => {
       dispatch(saveSuccess())
       dispatch(getSuccess(user))
       // Update the user globally

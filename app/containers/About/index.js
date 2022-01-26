@@ -4,36 +4,42 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { FormattedMessage } from 'react-intl'
 import sortBy from 'lodash/sortBy'
-import * as actions from 'containers/Members/actions'
+import { getUsers } from '../Members/actions'
+import { setStudsYear } from '../../store/salesTool/actions'
 import styles from './styles.css'
 import messages from './messages'
 import Footer from 'components/Footer'
 import MemberImage from 'components/MemberImage'
 import { prettyUserRole } from 'utils'
+import { Facebook, Instagram, Linkedin } from 'react-feather'
+import { YearPicker } from '../../components/YearPicker'
 
 const StudsMemberInfo = user => {
   const size = Math.max(Math.floor((window.innerWidth * 0.8) / 5) - 40, 100)
   return (
     <div key={user.id} className={styles.member}>
       <MemberImage picture={user.picture} size={size} square round />
-      <h3
-        style={{
-          width: size,
-        }}
-      >
+      <h3>
         {user.firstName} {user.lastName}
       </h3>
       <h5>{prettyUserRole(user.userRole)}</h5>
+      <a
+        href={
+          user.linkedIn
+            ? user.linkedIn
+            : 'https://www.linkedin.com/company/studs/'
+        }
+      >
+        <Linkedin color='#2867B2' size={20} />
+      </a>
     </div>
   )
 }
 
-function About({ users, getUsers, selectedYear }) {
+function About({ users, getUsers, selectedYear, setStudsYear }) {
   useEffect(
     () => {
-      if (!users || !users.length) {
-        getUsers(selectedYear)
-      }
+      getUsers(selectedYear)
     },
     [selectedYear]
   )
@@ -43,6 +49,10 @@ function About({ users, getUsers, selectedYear }) {
         <h1>
           <FormattedMessage {...messages.header} />
         </h1>
+        <YearPicker
+          setStudsYear={year => setStudsYear(year)}
+          selectedYear={selectedYear}
+        />
       </header>
       <main className={styles.about}>{users.map(u => StudsMemberInfo(u))}</main>
       <Footer hasBackground />
@@ -61,6 +71,7 @@ About.propTypes = {
   ),
   getUsers: PropTypes.func.isRequired,
   selectedYear: PropTypes.number.isRequired,
+  setStudsYear: PropTypes.func.isRequired,
 }
 
 About.defaultProps = {
@@ -76,7 +87,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch)
+  return {
+    getUsers: year => dispatch(getUsers(year)),
+    setStudsYear: year => dispatch(setStudsYear(year)),
+  }
 }
 
 export default connect(

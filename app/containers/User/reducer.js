@@ -14,16 +14,9 @@ import {
 export const defaultUser = {
   firstName: '',
   lastName: '',
-  phone: '',
-  position: '',
-  linkedIn: '',
-  github: '',
-  master: '',
-  allergies: '',
-  password: '',
-  confirmPassword: '',
-  permissions: [],
+  info: {},
   studsYear: 0,
+  confirmPassword: '',
 }
 
 const initialState = fromJS({

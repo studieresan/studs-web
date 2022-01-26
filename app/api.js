@@ -87,9 +87,6 @@ export function fetchUser() {
         role
         picture
         permissions
-        cv {
-          ${CV_FIELDS}
-        }
       }
     }
   }
@@ -122,8 +119,7 @@ export function updateUser(newFields) {
     userUpdate(id: null, info: ${toGraphQLFields(newFields)}) {
       ${USER_PROFILE_FIELDS}
     }
-  }
-  `
+  } `
   return executeGraphQL(mutation).then(res => {
     return res.data.userUpdate
   })

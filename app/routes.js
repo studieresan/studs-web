@@ -24,6 +24,7 @@ import StudentComponent from 'containers/Group'
 import Jumpin from 'containers/Jumpin'
 import PrivacyPolicy from './containers/PrivacyPolicy'
 import PDF from './containers/PDF'
+import Blog from './containers/Blog'
 
 class StudsRouter extends Component {
   render() {
@@ -36,8 +37,10 @@ class StudsRouter extends Component {
 
         <Route exact path='/password-reset/:token' component={PasswordReset} />
         <Route exact path='/events/public' component={PublicEvents} />
-
         <Route exact path='/groups' component={StudentComponent} />
+        <Route exact path='/blog/new' component={Blog} />
+        <Route exact path='/blog/edit/:id' component={Blog} />
+        <Route exact path='/blog' component={Blog} />
 
         <Route exact path='/inhoppare' component={Jumpin} />
         <Route exact path='/bababa' component={Jumpin} />

@@ -1,0 +1,36 @@
+.list {
+  flex: 1;
+  overflow: auto;
+}
+
+.listHeader {
+  position: sticky;
+  top: 0px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+  font-size: 12px;
+  height: 40px;
+  align-items: center;
+  background-color: var(--primary);
+}
+
+.listContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.actions {
+  padding: 10px;
+  margin: 10px;
+  background-color: var(--primary);
+  color: #eee;
+  width: fit-content;
+  border-radius: 20px;
+}
+.actions:hover {
+  opacity: 0.85;
+}

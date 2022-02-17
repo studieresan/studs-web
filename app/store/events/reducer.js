@@ -85,9 +85,12 @@ function eventsReducer(state = initialState, action) {
     case REMOVE_ERROR:
       return state.set('removeError', true).set('removing', false)
     case ADD_PICTURE:
-      return updateEvent(state, action.id, event =>
-        event.update('pictures', pictures => pictures.push(action.url))
-      )
+      return updateEvent(state, action.id, event => {
+        return event.update('pictures', pictures => {
+          pictures = fromJS(pictures)
+          return pictures.push(action.url)
+        })
+      })
     case REMOVE_PICTURE:
       return updateEvent(state, action.id, event =>
         event.update('pictures', pictures =>

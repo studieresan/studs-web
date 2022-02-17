@@ -222,5 +222,21 @@
   {
     "id": "app.containers.Navbar.blog",
     "message": "Blog"
+  },
+  {
+    "id": "app.components.BlogCreate.title",
+    "message": "Title"
+  },
+  {
+    "id": "app.components.BlogCreate.description",
+    "message": "Description"
+  },
+  {
+    "id": "app.components.BlogCreate.save",
+    "message": "Save"
+  },
+  {
+    "id": "app.components.BlogCreate.cancel",
+    "message": "Cancel"
   }
 ]

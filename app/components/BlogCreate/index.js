@@ -8,7 +8,18 @@ import { Link } from 'react-router-dom'
 import { hasEventPermission } from 'users'
 
 const BlogCreate = ({ user }) => {
-  return <div />
+  return (
+    <div className={styles.container}>
+      <div className={styles.inputLabel}>
+        <FormattedMessage {...messages.title} />
+        <input name='title' type='text' />
+      </div>
+      <div className={styles.inputLabel}>
+        <FormattedMessage {...messages.description} />
+        <textarea name='description' type='text' />
+      </div>
+    </div>
+  )
 }
 
 BlogCreate.propTypes = {

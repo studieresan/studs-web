@@ -466,5 +466,21 @@
   {
     "id": "app.containers.Navbar.blog",
     "message": "Blogg"
+  },
+  {
+    "id": "app.components.BlogCreate.title",
+    "message": "Titel"
+  },
+  {
+    "id": "app.components.BlogCreate.description",
+    "message": "Beskrivning"
+  },
+  {
+    "id": "app.components.BlogCreate.save",
+    "message": "Spara"
+  },
+  {
+    "id": "app.components.BlogCreate.cancel",
+    "message": "Avbryt"
   }
 ]

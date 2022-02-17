@@ -17,7 +17,7 @@ export class Blog extends Component {
 
   render() {
     const { params, path } = this.props.match
-    if (path === '/blog/new') {
+    if (path === '/blog') {
       return (
         <React.Fragment>
           <div className={styles.title}>

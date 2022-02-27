@@ -5,6 +5,7 @@
 }
 
 .container input:not([type='checkbox']),
+.container textarea,
 .container select {
   display: block;
   width: 100%;

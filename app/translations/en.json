@@ -214,5 +214,29 @@
   {
     "id": "static.groups.travel.description",
     "message": "The travel group is responsible for all the planning and implementation of the trip which concludes the project, everything from the travel route and flights to coordination of daily activities. The job is both creative and structured as the travel group other than planning and logistics, is also responsible for produce inspiration and destination suggestions. As a member of the travel group you lead the whole project group during the trip, makes sure that everyone has a good time, and handles unpredictable situations."
+  },
+  {
+    "id": "app.containers.Blog.title",
+    "message": "Travel Blog"
+  },
+  {
+    "id": "app.containers.Navbar.blog",
+    "message": "Blog"
+  },
+  {
+    "id": "app.components.BlogCreate.title",
+    "message": "Title"
+  },
+  {
+    "id": "app.components.BlogCreate.description",
+    "message": "Description"
+  },
+  {
+    "id": "app.components.BlogCreate.save",
+    "message": "Save"
+  },
+  {
+    "id": "app.components.BlogCreate.cancel",
+    "message": "Cancel"
   }
 ]

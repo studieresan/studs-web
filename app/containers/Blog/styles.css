@@ -1,0 +1,16 @@
+.title {
+  padding-top: var(--header-height);
+  height: 30vh;
+  background-image: url(static/img/home/background.png);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 100%;
+}

@@ -45,4 +45,8 @@ export default defineMessages({
     id: 'app.containers.Navbar.apply',
     defaultMessage: 'Apply',
   },
+  blog: {
+    id: 'app.containers.Navbar.blog',
+    defaultMessage: 'Blog',
+  },
 })

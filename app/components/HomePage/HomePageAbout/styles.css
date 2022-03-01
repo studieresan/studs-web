@@ -31,7 +31,7 @@
 }
 
 .link {
-  color: rgb(112, 55, 31);
+  color: var(--primary-dark);
 }
 
 .link:hover {

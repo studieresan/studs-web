@@ -639,3 +639,39 @@ export const fetchUserRoles = () => {
 export const getPDFURL = file => {
   return `${BASE_URL}${file}`
 }
+
+const BLOG_FIELDS = `
+id
+title
+description
+pictures
+author {
+  firstName
+}
+date
+`
+
+export const createBlogPost = obj => {
+  const temp = {
+    title: 'temp',
+    description: 'temp',
+    author: '5fd8fa1ff4a12100178b7cdb',
+    date: new Date(),
+  }
+  const mutation = `mutation {
+    blogCreate(fields: ${toGraphQLFields(temp)}) {
+      ${BLOG_FIELDS}
+    }
+  }
+  `
+  return executeGraphQL(mutation).then(res => res.data)
+}
+
+export function getBlogPosts() {
+  const query = `query {
+    blogPosts {
+      ${BLOG_FIELDS}
+    }
+  }`
+  return executeGraphQL(query).then(res => res.data.blogPosts)
+}

@@ -26,7 +26,10 @@ export class Blog extends Component {
               <FormattedMessage {...messages.title} />
             </h1>
           </div>
-          <BlogCreate user={this.props.user} />
+          <BlogCreate
+            user={this.props.user}
+            saveNewPost={post => this.props.saveNewPost(post)}
+          />
         </React.Fragment>
       )
     } else if (path === '/blog') {
@@ -70,6 +73,7 @@ function mapStateToProps(state) {
 Blog.propTypes = {
   // mapDispatchToProps
   getPosts: PropTypes.func.isRequired,
+  saveNewPost: PropTypes.func.isRequired,
   // Mapstatetoprops
   posts: PropTypes.array.isRequired,
   user: PropTypes.object.isRequired,

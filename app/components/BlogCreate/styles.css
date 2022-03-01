@@ -14,3 +14,7 @@ textarea {
   height: auto;
   min-height: 10em;
 }
+
+.buttonsContainer {
+  display: flex;
+}

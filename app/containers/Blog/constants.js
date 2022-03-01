@@ -1,2 +1,3 @@
 export const GET_POSTS_REQUEST_SUCCESS = 'app/Blog/GET_REQUEST_SUCCESS'
 export const GET_POSTS_REQUEST_FAIL = 'app/Blog/GET_REQUEST_FAIL'
+export const SAVE_NEW_POST = 'app/Blog/SAVE_NEW_POST'

@@ -1,5 +1,9 @@
 import { fromJS, Map } from 'immutable'
-import { GET_POSTS_REQUEST_SUCCESS, GET_POSTS_REQUEST_FAIL } from './constants'
+import {
+  GET_POSTS_REQUEST_SUCCESS,
+  GET_POSTS_REQUEST_FAIL,
+  SAVE_NEW_POST,
+} from './constants'
 
 const initialState = fromJS({
   posts: [],
@@ -18,6 +22,8 @@ function blogReducer(state = initialState, action) {
           posts: action.posts,
         })
       )
+    case SAVE_NEW_POST:
+      return state.update('posts', posts => posts.push(action.post))
     default:
       return state
   }

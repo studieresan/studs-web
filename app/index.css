@@ -47,7 +47,7 @@ body {
 }
 
 h1 {
-  line-height: 1;
+  line-height: 1.5;
 }
 
 p,
@@ -109,7 +109,7 @@ a {
 @font-face {
   font-family: 'Gayathri';
   src: local('Gayathri'),
-    url(./static/fonts/Gayathri/Gayathri-Bold.ttf) format('truetype');
+    url(./static/fonts/Gayathri/Gayathri-Regular.ttf) format('truetype');
 }
 
 @font-face {

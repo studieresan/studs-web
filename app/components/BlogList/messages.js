@@ -7,7 +7,7 @@ export default defineMessages({
   },
   create: {
     id: 'app.containers.Events.create',
-    defaultMessage: 'Create',
+    defaultMessage: 'test',
   },
   company: {
     id: 'app.containers.Events.company',

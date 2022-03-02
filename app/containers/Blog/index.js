@@ -2,13 +2,52 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from './actions'
-import PropTypes from 'prop-types'
+import PropTypes, { number } from 'prop-types'
 import styles from './styles.css'
 import messages from './messages'
 import BlogList from '../../components/BlogList'
 import BlogCreate from '../../components/BlogCreate'
+import artinImg from '../../static/img/people/studs2022/artin.jpg'
+import emelieImg from '../../static/img/people/studs2022/emelie.jpg'
+import evaImg from '../../static/img/people/studs2022/eva.jpg'
 
 import { FormattedMessage } from 'react-intl'
+
+const blogposts = [
+  {
+    id: 'id1',
+    title: 'title1',
+    description: 'description1',
+    date: '2022-01-01',
+    studsYear: 2022,
+    author: 'Philip',
+    frontPicture: artinImg,
+    pictures: [artinImg, artinImg],
+    published: true,
+  },
+  {
+    id: 'id2',
+    title: 'title2',
+    description: 'description2',
+    date: '2022-01-02',
+    studsYear: 2022,
+    author: 'Artin',
+    frontPicture: emelieImg,
+    pictures: [emelieImg, emelieImg],
+    published: true,
+  },
+  {
+    id: 'id3',
+    title: 'title2',
+    description: 'description2',
+    date: '2022-01-02',
+    studsYear: 2022,
+    author: 'Artin',
+    frontPicture: evaImg,
+    pictures: [emelieImg, emelieImg],
+    published: true,
+  },
+]
 
 export class Blog extends Component {
   componentDidMount() {
@@ -26,7 +65,7 @@ export class Blog extends Component {
               <FormattedMessage {...messages.title} />
             </h1>
           </div>
-          <BlogCreate user={this.props.user} />
+          <BlogList user={this.props.user} posts={blogposts} />
         </React.Fragment>
       )
     } else if (path === '/blog') {

@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import { Link } from 'react-router-dom'
 import { hasEventPermission } from 'users'
+import BlogPost from './blog'
 
 // Använd för att kolla om vi ska ha en knapp där eller inte (bara för users med permission)
 function UserActions({ user }) {
@@ -27,22 +28,24 @@ UserActions.propTypes = {
 const BlogList = ({ user, posts }) => {
   return (
     <div className={styles.listContainer}>
-      <div className={styles.list}>
-        <div className={styles.listHeader}>
-          <div>
-            <FormattedMessage {...messages.company} />
-          </div>
-          <div>
-            <FormattedMessage {...messages.date} />
-          </div>
+      <div className={styles.listHeader}>
+        <div>
+          <FormattedMessage {...messages.company} />
+        </div>
+
+        <div>
+          <FormattedMessage {...messages.date} />
         </div>
       </div>
-      {posts.length !== 0 ? posts : []}
-      {/* Exempel bara på huur userACtions kan användas typ*/}
-      <UserActions user={user} />
+
+      <BlogPost posts={posts} />
     </div>
   )
 }
+
+// {posts.length !== 0 ? posts : []}
+//       {/* Exempel bara på huur userACtions kan användas typ*/}
+//       <UserActions user={user} />
 
 BlogList.propTypes = {
   posts: PropTypes.array.isRequired,

@@ -1,9 +1,5 @@
-.list {
-  flex: 1;
-  overflow: auto;
-}
-
 .listHeader {
+  width: 100%;
   position: sticky;
   top: 0px;
   display: flex;
@@ -18,9 +14,8 @@
 }
 
 .listContainer {
-  height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .actions {
@@ -33,4 +28,9 @@
 }
 .actions:hover {
   opacity: 0.85;
+}
+
+.post {
+  width: 200px;
+  height: 200px;
 }

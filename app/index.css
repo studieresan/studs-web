@@ -1,14 +1,14 @@
 /* This file contains declarations for global CSS */
 :root {
-  --primary: #bf5c06;
-  --primary-dark: #a63208;
+  --primary: #6ecbd2;
+  --primary-dark: #0f4143;
   --primary-light: #f2c166;
-  --secondary: #8c708a;
+  --secondary: #469598;
   --gold: rgb(250, 200, 130);
 
-  --heading-font: Magnat, 'Oswald', sans-serif;
-  --subheading-font: Magnat, 'Oswald', sans-serif;
-  --body-font: Raleway, 'Roboto', sans-serif;
+  --heading-font: Gayathri, 'Oswald', sans-serif;
+  --subheading-font: Gayathri, 'Oswald', sans-serif;
+  --body-font: Roboto, 'Roboto', sans-serif;
 
   --header-height: 70px;
 }
@@ -47,7 +47,7 @@ body {
 }
 
 h1 {
-  line-height: 1;
+  line-height: 1.5;
 }
 
 p,
@@ -104,4 +104,16 @@ a {
   font-family: 'Raleway';
   src: local('Raleway'),
     url(./static/fonts/Raleway/Raleway-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Gayathri';
+  src: local('Gayathri'),
+    url(./static/fonts/Gayathri/Gayathri-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'),
+    url(./static/fonts/Roboto/Roboto-Light.ttf) format('truetype');
 }

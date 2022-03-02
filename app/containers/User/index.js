@@ -191,7 +191,7 @@ export class User extends React.Component {
             onKeyPress={e => e.key === 'Enter' && this.handleSubmit()}
             onChange={this.handleChange}
           />
-          <Button full wrapper color='bright' onClick={this.handleSubmit}>
+          <Button full wrapper onClick={this.handleSubmit}>
             <FormattedMessage {...messages.save} />
           </Button>
           {this.props.saved && ( // TODO translate

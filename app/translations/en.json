@@ -238,5 +238,17 @@
   {
     "id": "app.components.BlogCreate.cancel",
     "message": "Cancel"
+  },
+  {
+    "id": "app.components.BlogCreate.author",
+    "message": "Author"
+  },
+  {
+    "id": "app.components.BlogCreate.pictures",
+    "message": "Pictures"
+  },
+  {
+    "id": "app.components.BlogCreate.frontPicture",
+    "message": "Front Picture"
   }
 ]

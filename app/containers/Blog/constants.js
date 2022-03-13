@@ -1,3 +1,8 @@
 export const GET_POSTS_REQUEST_SUCCESS = 'app/Blog/GET_REQUEST_SUCCESS'
 export const GET_POSTS_REQUEST_FAIL = 'app/Blog/GET_REQUEST_FAIL'
 export const SAVE_NEW_POST = 'app/Blog/SAVE_NEW_POST'
+export const EDIT_POST_FIELD = 'app/Blog/EDIT_POST_FIELD'
+export const SAVE_POST_BY_ID = 'app/Blog/SAVE_POST_BY_ID'
+export const REMOVE_PICTURE = 'app/Blog/REMOVE_PICTURE'
+export const ADD_PICTURE = 'app/Blog/ADD_PICTURE'
+export const REMOVE_FRONT_PICTURE = 'app/Blog/REMOVE_FRONT_PICTURE'

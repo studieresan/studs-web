@@ -44,6 +44,7 @@ const initialState = fromJS({
 
 const updateEvent = (state, id, body) => {
   let s = state
+  console.log(body)
   if (id) {
     const index = state.get('items').findIndex(event => event.get('id') === id)
     s = state.updateIn(['items', index], body)

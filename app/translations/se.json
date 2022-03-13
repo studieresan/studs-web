@@ -482,5 +482,17 @@
   {
     "id": "app.components.BlogCreate.cancel",
     "message": "Avbryt"
+  },
+  {
+    "id": "app.components.BlogCreate.author",
+    "message": "Författare"
+  },
+  {
+    "id": "app.components.BlogCreate.pictures",
+    "message": "Bilder"
+  },
+  {
+    "id": "app.components.BlogCreate.frontPicture",
+    "message": "Framsida Bild"
   }
 ]

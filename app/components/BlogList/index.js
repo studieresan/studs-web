@@ -37,7 +37,7 @@ const BlogList = ({ user, posts }) => {
           </div>
         </div>
       </div>
-      {posts.length !== 0 ? posts : []}
+      {posts.length !== 0 ? JSON.stringify(posts) : []}
       {/* Exempel bara på huur userACtions kan användas typ*/}
       <UserActions user={user} />
     </div>

@@ -7,17 +7,29 @@ import styles from './styles.css'
 import messages from './messages'
 import BlogList from '../../components/BlogList'
 import BlogCreate from '../../components/BlogCreate'
-
 import { FormattedMessage } from 'react-intl'
+import { getUsers } from '../Members/actions'
+import { setStudsYear } from '../../store/salesTool/actions'
 
 export class Blog extends Component {
   componentDidMount() {
+    console.log(this.props.users)
+    if (!this.props.users || !this.props.users.length) {
+      this.props.getUsers()
+    }
     this.props.getPosts()
   }
 
-  render() {
+  setCurrentPost(id) {
     const { params, path } = this.props.match
-    if (path === '/blog') {
+    const post = this.props.posts.find(e => e.id === id)
+    this.props.editPost(post)
+  }
+
+  render() {
+    console.log(this.props.posts)
+    const { params, path } = this.props.match
+    if (path === '/blog/edit/:id' || path === '/blog/new') {
       return (
         <React.Fragment>
           <div className={styles.title}>
@@ -28,7 +40,15 @@ export class Blog extends Component {
           </div>
           <BlogCreate
             user={this.props.user}
-            saveNewPost={post => this.props.saveNewPost(post)}
+            savePost={() => this.props.savePost(this.props.post)}
+            post={this.props.post}
+            editPost={edit => this.props.editPost(edit)}
+            users={this.props.users}
+            addPicture={url => this.props.addPicture(url)}
+            removePicture={index => this.props.removePicture(index)}
+            removeFrontPicture={() => this.props.removeFrontPicture()}
+            setCurrentPost={id => this.setCurrentPost(id)}
+            match={this.props.match}
           />
         </React.Fragment>
       )
@@ -59,24 +79,33 @@ export class Blog extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actions, dispatch)
+  return bindActionCreators({ ...actions, getUsers }, dispatch)
 }
 function mapStateToProps(state) {
   return {
-    user: state.getIn(['user', 'user']),
+    user: state.getIn(['global', 'user']),
+    users: state.getIn(['members', 'users']).toJS(),
     fetching: state.getIn(['blog', 'fetching']),
     fetchFail: state.getIn(['blog', 'fetchFail']),
     posts: state.getIn(['blog', 'posts']).toJS(),
+    post: state.getIn(['blog', 'post']),
   }
 }
 
 Blog.propTypes = {
   // mapDispatchToProps
   getPosts: PropTypes.func.isRequired,
-  saveNewPost: PropTypes.func.isRequired,
+  savePost: PropTypes.func.isRequired,
+  editPost: PropTypes.func.isRequired,
+  getUsers: PropTypes.func.isRequired,
+  addPicture: PropTypes.func.isRequired,
+  removePicture: PropTypes.func.isRequired,
+  removeFrontPicture: PropTypes.func.isRequired,
   // Mapstatetoprops
+  post: PropTypes.object.isRequired,
   posts: PropTypes.array.isRequired,
   user: PropTypes.object.isRequired,
+  users: PropTypes.array.isRequired,
   fetching: PropTypes.bool.isRequired,
   fetchFail: PropTypes.bool.isRequired,
   // Inbyggt (används för path och params)

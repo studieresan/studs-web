@@ -17,4 +17,16 @@ export default defineMessages({
     id: 'app.components.BlogCreate.cancel',
     defaultMessage: 'Cancel',
   },
+  author: {
+    id: 'app.components.BlogCreate.author',
+    defaultMessage: 'Author',
+  },
+  pictures: {
+    id: 'app.components.BlogCreate.pictures',
+    defaultMessage: 'Picture',
+  },
+  frontPicture: {
+    id: 'app.components.BlogCreate.frontPicture',
+    defaultMessage: 'Front Picture',
+  },
 })

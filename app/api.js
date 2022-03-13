@@ -1,4 +1,5 @@
 import { pickBy } from 'lodash'
+import moment from 'moment'
 
 const BASE_URL = process.env.API_BASE_URL || 'http://localhost:5040'
 const GRAPHQL = '/graphql'
@@ -645,21 +646,19 @@ id
 title
 description
 pictures
+frontPicture
 author {
+  id
   firstName
+  lastName
 }
 date
 `
 
-export const createBlogPost = obj => {
-  const temp = {
-    title: 'temp',
-    description: 'temp',
-    author: '5fd8fa1ff4a12100178b7cdb',
-    date: new Date(),
-  }
+export const createBlogPost = post => {
+  post['date'] = moment(new Date()).format('YYYY-MM-DDTHH:mm')
   const mutation = `mutation {
-    blogCreate(fields: ${toGraphQLFields(temp)}) {
+    blogCreate(fields: ${toGraphQLFields(post)}) {
       ${BLOG_FIELDS}
     }
   }
@@ -673,5 +672,26 @@ export function getBlogPosts() {
       ${BLOG_FIELDS}
     }
   }`
-  return executeGraphQL(query).then(res => res.data.blogPosts)
+  return executeGraphQL(query).then(res =>
+    res.data.blogPosts.map(p => {
+      p.author = p.author.id
+      return p
+    })
+  )
+}
+
+export const updateBlogPost = (id, post) => {
+  const query = `mutation {
+    blogPostUpdate(id: "${id}", fields: ${toGraphQLFields(post)}) {
+      ${BLOG_FIELDS}
+    }
+  }
+  `
+  return executeGraphQL(query)
+    .then(res => res.data.blogPostUpdate)
+    .then(post => {
+      console.log(post)
+      post.author = post.author.id
+      return post
+    })
 }

@@ -46,11 +46,7 @@ class StudsRouter extends Component {
         <Route exact path='/bababa' component={Jumpin} />
 
         <Route exact path='/privacy' component={PrivacyPolicy} />
-        <Route
-          exact
-          path={['/brochure.pdf', '/brochure_eng.pdf']}
-          component={PDF}
-        />
+        <Route exact path={'/brochure.pdf'} component={PDF} />
 
         <AuthenticatedRoute
           exact

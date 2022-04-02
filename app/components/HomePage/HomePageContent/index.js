@@ -20,16 +20,36 @@ const HomePageContent = () => {
   const ref = createRef()
   const [showSalesPic, setshowSalesPic] = useState(true)
 
+  const refProject = createRef()
+  const refEvents = createRef()
+
+  const handleRef = ref => {
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <div className={styles.content}>
-      <HomePageHeader />
-      <ScrollSticky
+      <HomePageHeader
+        scrollToProject={() => {
+          handleRef(refProject)
+        }}
+        scrollToEvent={() => {
+          handleRef(refEvents)
+        }}
+        scrollToContact={() => {
+          handleRef(ref)
+        }}
+      />
+      {/* Removed this in the current design but might be useful for future designs */}
+      {/* <ScrollSticky
         percentageFromTop={73}
         percentageFromRight={2}
         onStick={() => setshowSalesPic(false)}
         onUnStick={() => setshowSalesPic(true)}
         onClick={() => {
-          ref.current && ref.current.scrollIntoView({ behavior: 'smooth' })
+          handleRef(ref)
         }}
       >
         <div className={styles.contact_wrapper}>
@@ -40,8 +60,9 @@ const HomePageContent = () => {
             <FormattedMessage {...messages.contact} />
           </Button>
         </div>
-      </ScrollSticky>
+      </ScrollSticky> */}
       <Card
+        ref={refProject}
         title={messages.project.title}
         body={messages.project.body}
         buttonText={messages.project.buttonText}
@@ -49,6 +70,7 @@ const HomePageContent = () => {
         to={'/about'}
       />
       <Card
+        ref={refEvents}
         title={messages.events.title}
         body={messages.events.body}
         buttonText={messages.events.buttonText}

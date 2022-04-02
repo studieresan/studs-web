@@ -20,7 +20,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--primary-dark);
 }
 
 .top_buttons {

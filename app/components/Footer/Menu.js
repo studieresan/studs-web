@@ -11,11 +11,11 @@ import styles from './styles.css'
 const Menu = ({ loggedIn, hasBackground }) => (
   <div className={styles.menu}>
     <img
-      src={hasBackground ? LogoWhite : LogoBlack}
+      src={hasBackground ? LogoBlack : LogoBlack}
       className={styles.logoDesktop}
     />
     <img
-      src={hasBackground ? LogoWhite : LogoBlack}
+      src={hasBackground ? LogoBlack : LogoBlack}
       className={styles.logoMobile}
     />
     <nav

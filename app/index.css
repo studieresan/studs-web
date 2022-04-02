@@ -1,11 +1,10 @@
 /* This file contains declarations for global CSS */
 :root {
-  --primary: #6ecbd2;
+  --primary: #9ed6b5;
   --primary-dark: #0f4143;
   --primary-light: #f2c166;
-  --secondary: #469598;
+  --secondary: rgb(151, 201, 183);
   --gold: rgb(250, 200, 130);
-
   --heading-font: Gayathri, 'Oswald', sans-serif;
   --subheading-font: Gayathri, 'Oswald', sans-serif;
   --body-font: Roboto, 'Roboto', sans-serif;

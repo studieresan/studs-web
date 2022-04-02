@@ -105,7 +105,7 @@
   },
   {
     "id": "app.components.HomePage.about.link",
-    "message": "Get to know the rest of us"
+    "message": "All of Studs"
   },
   {
     "id": "app.components.HomePage.intro.application",
@@ -117,7 +117,7 @@
   },
   {
     "id": "app.components.HomePage.intro.about",
-    "message": "Connecting Stockholm with KTH’s top tier tech students"
+    "message": "Connecting Stockholm with KTH’s <code>top tier</code> tech students"
   },
   {
     "id": "app.components.HomePage.content.project.title",

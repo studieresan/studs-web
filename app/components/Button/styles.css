@@ -127,7 +127,7 @@
 .homepage {
   background: white;
   border-radius: 0;
-  color: var(--secondary);
+  color: var(--primary-dark);
   text-transform: none;
   box-shadow: 1px 6px 9px 0 rgba(40, 40, 40, 0.6);
   transition: all 0.2s ease-in-out;

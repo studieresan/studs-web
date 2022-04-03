@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import { FormattedMessage } from 'react-intl'
@@ -6,6 +6,7 @@ import messages from './messages'
 import { Link } from 'react-router-dom'
 import { hasEventPermission } from 'users'
 import BlogPost from './blog'
+import SearchBar from './searchbar'
 
 // Använd för att kolla om vi ska ha en knapp där eller inte (bara för users med permission)
 function UserActions({ user }) {
@@ -21,24 +22,20 @@ function UserActions({ user }) {
   return null
 }
 
-UserActions.propTypes = {
-  user: PropTypes.object.isRequired,
-}
-
 const BlogList = ({ user, posts }) => {
+  const [query, setQuery] = useState('')
+  const [selectValue, setSelect] = useState(0)
+
   return (
     <div className={styles.listContainer}>
-      <div className={styles.listHeader}>
-        <div>
-          <FormattedMessage {...messages.company} />
-        </div>
+      <SearchBar
+        setQuery={setQuery}
+        query={query}
+        selectValue={selectValue}
+        setSelect={setSelect}
+      />
 
-        <div>
-          <FormattedMessage {...messages.date} />
-        </div>
-      </div>
-
-      <BlogPost posts={posts} />
+      <BlogPost posts={posts} query={query} selectValue={selectValue} />
     </div>
   )
 }
@@ -46,6 +43,10 @@ const BlogList = ({ user, posts }) => {
 // {posts.length !== 0 ? posts : []}
 //       {/* Exempel bara på huur userACtions kan användas typ*/}
 //       <UserActions user={user} />
+
+UserActions.propTypes = {
+  user: PropTypes.object.isRequired,
+}
 
 BlogList.propTypes = {
   posts: PropTypes.array.isRequired,

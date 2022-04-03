@@ -1,21 +1,12 @@
-.listHeader {
-  width: 100%;
-  position: sticky;
-  top: 0px;
+.headerContainer {
   display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  font-weight: bold;
-  border-bottom: 1px solid #eee;
-  font-size: 12px;
-  height: 40px;
-  align-items: center;
-  background-color: var(--primary);
+  width: 100%;
 }
 
 .listContainer {
   display: flex;
   flex-wrap: wrap;
+  gap: 20px;
 }
 
 .actions {
@@ -33,4 +24,23 @@
 .post {
   width: 200px;
   height: 200px;
+}
+
+.title {
+  width: 200px;
+  height: 30px;
+}
+
+.postContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.postContainer:hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.search {
+  width: 40px;
 }

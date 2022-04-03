@@ -2,14 +2,87 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from './actions'
-import PropTypes from 'prop-types'
+import PropTypes, { number } from 'prop-types'
 import styles from './styles.css'
 import messages from './messages'
 import BlogList from '../../components/BlogList'
 import BlogCreate from '../../components/BlogCreate'
+import artinImg from '../../static/img/people/studs2022/artin.jpg'
+import emelieImg from '../../static/img/people/studs2022/eva.jpg'
+import evaImg from '../../static/img/people/studs2022/melvin.jpg'
+
 import { FormattedMessage } from 'react-intl'
 import { getUsers } from '../Members/actions'
 import { setStudsYear } from '../../store/salesTool/actions'
+
+const blogposts = [
+  {
+    id: 'id1',
+    title: 'singapore amazing bar group friend',
+    description: 'description1',
+    date: '2022-01-01',
+    studsYear: 2022,
+    author: 'Philip',
+    frontPicture: artinImg,
+    pictures: [artinImg, artinImg],
+    published: true,
+  },
+  {
+    id: 'id2',
+    title: 'title2',
+    description: 'description2',
+    date: '2022-01-02',
+    studsYear: 2022,
+    author: 'Artin',
+    frontPicture: emelieImg,
+    pictures: [emelieImg, emelieImg],
+    published: true,
+  },
+  {
+    id: 'id3',
+    title: 'title3',
+    description: 'description2',
+    date: '2022-01-02',
+    studsYear: 2022,
+    author: 'Artin',
+    frontPicture: evaImg,
+    pictures: [emelieImg, emelieImg],
+    published: true,
+  },
+  {
+    id: 'id4',
+    title: 'title4',
+    description: 'description2',
+    date: '2022-01-02',
+    studsYear: 2022,
+    author: 'Artin',
+    frontPicture: artinImg,
+    pictures: [emelieImg, emelieImg],
+    published: true,
+  },
+  {
+    id: 'id5',
+    title: 'title5',
+    description: 'description2',
+    date: '2022-01-02',
+    studsYear: 2022,
+    author: 'Artin',
+    frontPicture: artinImg,
+    pictures: [emelieImg, emelieImg],
+    published: true,
+  },
+  {
+    id: 'id6',
+    title: '2021',
+    description: 'description2',
+    date: '2022-01-02',
+    studsYear: 2021,
+    author: 'Artin',
+    frontPicture: artinImg,
+    pictures: [emelieImg, emelieImg],
+    published: true,
+  },
+]
 
 export class Blog extends Component {
   componentDidMount() {

@@ -97,7 +97,18 @@
 }
 
 @media (max-width: 600px) {
-  .logoDesktop {
+  .textColor {
+    text-align: center;
+  }
+  .imageContainer {
+    display: none;
+  }
+
+  .buttonContainer {
+    display: none;
+  }
+
+  .pointerContainer {
     display: none;
   }
 
@@ -117,7 +128,7 @@
   .header_content {
     flex-direction: column;
     padding-top: var(--header-height);
-    justify-content: space-between;
+    justify-content: center;
   }
 
   .header {

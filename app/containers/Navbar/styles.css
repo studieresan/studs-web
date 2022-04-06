@@ -7,13 +7,13 @@
   width: 100%;
   padding: 0px 15px;
   z-index: 1;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.1);
   transition: 300ms all;
   height: var(--header-height);
 }
 
 .invert {
-  color: rgb(255, 255, 255);
+  color: var(--primary-dark);
 }
 
 /* iPhone-X landscape insets */
@@ -29,7 +29,7 @@
 }
 
 .logoDesktop {
-  width: 3em;
+  width: 7em;
 }
 
 .logoMobile {
@@ -115,7 +115,7 @@
 
   .navbar {
     display: block;
-    padding-top: 10px;
+    padding-top: 20px;
   }
 
   .control {
@@ -180,6 +180,10 @@
   .logoMobile {
     width: 3em;
     display: block;
+  }
+
+  .navbar {
+    padding-top: 10px;
   }
 }
 

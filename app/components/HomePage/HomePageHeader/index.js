@@ -8,7 +8,11 @@ import frontPic from './frontpic.png'
 import Button from './../../Button'
 import PropTypes from 'prop-types'
 
-function HomePageHeader({ scrollToProject, scrollToEvent, scrollToContact }) {
+export function HomePageHeader({
+  scrollToProject,
+  scrollToEvent,
+  scrollToContact,
+}) {
   /*
     Använder inte formatted message för "Connecting..."" Eftersom det inte gick att få till highlighten. Det ska gå men lyckades inte
   

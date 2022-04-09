@@ -173,7 +173,7 @@
 .contactHeader {
   margin: 1rem auto 0.5rem;
   height: 33px;
-  font-family: Chivo;
+  font-family: var(--subheading-font);
   font-size: 28px;
 }
 

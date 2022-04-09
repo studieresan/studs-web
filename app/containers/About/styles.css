@@ -55,6 +55,12 @@
   text-align: center;
 }
 
+.intro {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
 @media (max-width: 900px) and (orientation: landscape) {
   .about_title {
     height: 40vh;

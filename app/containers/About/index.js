@@ -54,6 +54,11 @@ function About({ users, getUsers, selectedYear, setStudsYear }) {
           selectedYear={selectedYear}
         />
       </header>
+      <div className={styles.intro}>
+        <p>
+          <FormattedMessage {...messages.generalInformation} />
+        </p>
+      </div>
       <main className={styles.about}>{users.map(u => StudsMemberInfo(u))}</main>
       <Footer hasBackground />
     </React.Fragment>

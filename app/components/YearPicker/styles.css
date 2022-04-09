@@ -1,4 +1,5 @@
 .year_picker {
+  min-width: 100px;
   width: 10% !important;
   color: black;
 }

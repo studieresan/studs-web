@@ -10,7 +10,7 @@ import messages from './messages'
 import styles from './styles.css'
 import { prettyUserRole } from 'utils'
 import placeholder from 'static/img/profile-placeholder.png'
-
+import Button from '../../Button'
 function HomePageAbout({ users, getUsers }) {
   const user = useMemo(() => users[Math.floor(Math.random() * users.length)], [
     users,
@@ -38,18 +38,17 @@ function HomePageAbout({ users, getUsers }) {
             values={{ firstName: user.firstName }}
           />
         </h1>
-        <h5>{prettyUserRole(user.userRole)}</h5>
         <p>
           <FormattedMessage
             {...messages.intro}
             values={{ firstName: user.firstName }}
           />
         </p>
-        <p>
-          <Link className={styles.link} to='/about'>
+        <Link className={styles.link} to='/about'>
+          <Button color='homepage'>
             <FormattedMessage {...messages.link} />
-          </Link>
-        </p>
+          </Button>
+        </Link>
       </div>
     </section>
   )

@@ -5,19 +5,14 @@ import { Link } from 'react-router-dom'
 import { FormattedMessage } from 'react-intl'
 import LogoBlack from 'static/img/logo/logotype-black.png'
 import LogoWhite from 'static/img/logo/logotype-white.png'
+import logo from 'static/img/logo/studs-transparent-1000px.png'
 import navigationMessages from 'containers/Navbar/messages'
 import styles from './styles.css'
 
 const Menu = ({ loggedIn, hasBackground }) => (
   <div className={styles.menu}>
-    <img
-      src={hasBackground ? LogoWhite : LogoBlack}
-      className={styles.logoDesktop}
-    />
-    <img
-      src={hasBackground ? LogoWhite : LogoBlack}
-      className={styles.logoMobile}
-    />
+    <img src={logo} className={styles.logoDesktop} />
+    <img src={logo} className={styles.logoMobile} />
     <nav
       className={
         styles.navigation +

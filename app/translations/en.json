@@ -105,7 +105,7 @@
   },
   {
     "id": "app.components.HomePage.about.link",
-    "message": "Get to know the rest of us"
+    "message": "All of Studs"
   },
   {
     "id": "app.components.HomePage.intro.application",
@@ -117,7 +117,7 @@
   },
   {
     "id": "app.components.HomePage.intro.about",
-    "message": "Connecting Stockholm with KTH’s top tier tech students"
+    "message": "Connecting Stockholm with KTH’s <code>top tier</code> tech students"
   },
   {
     "id": "app.components.HomePage.content.project.title",
@@ -214,5 +214,9 @@
   {
     "id": "static.groups.travel.description",
     "message": "The travel group is responsible for all the planning and implementation of the trip which concludes the project, everything from the travel route and flights to coordination of daily activities. The job is both creative and structured as the travel group other than planning and logistics, is also responsible for produce inspiration and destination suggestions. As a member of the travel group you lead the whole project group during the trip, makes sure that everyone has a good time, and handles unpredictable situations."
+  },
+  {
+    "id": "app.containers.About.generalInformation",
+    "message": "The Studs project is an annual nonprofit project from KTH with a goal to provide students who pursue a master’s degree related to Computer Science a chance to network with IT-companies. By organizing events together with companies, Studs creates opportunities to give both students and their potential employers valuable time together. During these events, students will gain deeper insights into the working life of the company and about the company’s operations. Studs consists of 30 selected students each year. You can see the members of Studs for recent years down below. "
   }
 ]

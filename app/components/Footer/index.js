@@ -108,7 +108,7 @@ Copyright.propTypes = {
 const Images = () => (
   <div className={styles.pictures}>
     <Image picture={projectManager1.image} />
-    {<Image picture={projectManager2.image} />}
+    <Image picture={projectManager2.image} />
   </div>
 )
 

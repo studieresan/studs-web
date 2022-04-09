@@ -66,3 +66,9 @@
     height: 40vh;
   }
 }
+
+@media (max-width: 900px) {
+  .intro {
+    width: 90%;
+  }
+}

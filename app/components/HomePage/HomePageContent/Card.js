@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl'
 import styles from './styles.css'
 import { Slide } from 'react-slideshow-image'
 import { Link } from 'react-router-dom'
-import Button from 'components/Button'
+import Button from '../../../components/Button'
 
 const Card = React.forwardRef(
   ({ title, body, buttonText, images, to }, ref) => {

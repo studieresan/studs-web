@@ -1,18 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { getEmptyEventObject } from 'store/events/reducer'
+import { getEmptyEventObject } from '../../store/events/reducer'
 
 import moment from 'moment'
 import { FormattedMessage } from 'react-intl'
-import { uploadImage } from 'api'
+import { uploadImage } from '../../api'
 import messages from './messages'
 import styles from './styles.css'
 import Textarea from 'react-textarea-autosize'
-import Button from 'components/Button'
-import EventEditPicture from 'components/EventEditPicture'
+import Button from '../../components/Button'
+import EventEditPicture from '../../components/EventEditPicture'
 
-import { hasData } from 'store/salesTool/constants'
+import { hasData } from '../../store/salesTool/constants'
 
 export default class EventEdit extends React.Component {
   // If this component is rendered before the events have been fetched,

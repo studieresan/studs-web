@@ -4,25 +4,25 @@ import {
   updateCompany,
   loadCompanies,
   loadCompany,
-} from 'store/salesTool/companies/actions'
+} from '../../store/salesTool/companies/actions'
 
 import {
   loadContacts,
   updateContact,
   deleteContact,
   addContact,
-} from 'store/salesTool/contacts/actions'
+} from '../../store/salesTool/contacts/actions'
 
 import {
   loadComments,
   addComment,
   deleteComment,
   updateComment,
-} from 'store/salesTool/comments/actions'
+} from '../../store/salesTool/comments/actions'
 
-import { setStudsYear } from 'store/salesTool/actions'
+import { setStudsYear } from '../../store/salesTool/actions'
 
-import { getUsers } from 'containers/Members/actions'
+import { getUsers } from '../../containers/Members/actions'
 
 const mapStateToProps = rootState => {
   const currentUser = rootState.getIn(['global', 'user']).toJS()

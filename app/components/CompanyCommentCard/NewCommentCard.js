@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import Button from 'components/Button'
-import MemberImageTime from 'components/MemberImageTime'
+import Button from '../../components/Button'
+import MemberImageTime from '../../components/MemberImageTime'
 import styles from './styles.css'
 
 const NewCommentCard = ({ currentUser, createComment }) => {

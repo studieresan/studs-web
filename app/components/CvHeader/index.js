@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import MemberImage from 'components/MemberImage'
+import MemberImage from '../../components/MemberImage'
 import { Linkedin } from 'react-feather'
 import Github from 'react-feather/dist/icons/github'
 import styles from './styles.css'
-import { prettyUserRole } from 'utils'
+import { prettyUserRole } from '../../utils'
 
 const convertToLink = link => {
   const temp = link.split('https://')

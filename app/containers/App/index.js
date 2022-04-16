@@ -5,8 +5,8 @@ import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 
 import styles from './styles.css'
-import Navbar from 'containers/Navbar'
-import ScrollContainer from 'containers/ScrollContainer'
+import Navbar from '../../containers/Navbar'
+import ScrollContainer from '../../containers/ScrollContainer'
 import * as actions from './actions'
 
 function App({ children, loggedIn, getUser }) {

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 
-import { useDebounce } from 'utils'
+import { useDebounce } from '../../utils'
 
 const CompanyAmountInput = ({ currentAmount, updateAmount }) => {
   const [displayAmount, setDisplayAmount] = useState(currentAmount)

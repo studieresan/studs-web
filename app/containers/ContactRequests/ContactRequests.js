@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
-import ContactRequestHeader from 'components/ContactRequestHeader'
+import ContactRequestHeader from '../../components/ContactRequestHeader'
 
 import styles from './styles.css'
 import PropTypes from 'prop-types'
 
-import { isSuccess, hasData } from 'store/salesTool/constants'
+import { isSuccess, hasData } from '../../store/salesTool/constants'
 
 import { timestampToDateTimeString } from '../../utils'
 

@@ -8,8 +8,8 @@ import {
   SET_NAVBAR_BACKGROUND,
   SET_PRINT_MODE,
 } from './constants'
-import { fetchUser, loginUser } from 'api'
-import { setLoggedOut, setLoggedIn } from 'auth'
+import { fetchUser, loginUser } from '../../api'
+import { setLoggedOut, setLoggedIn } from '../../auth'
 import { push } from 'react-router-redux'
 
 export function getUserRequest() {

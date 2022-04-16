@@ -3,12 +3,16 @@ import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import styles from './styles.css'
-import LogoPng from 'static/img/logo/logotype-white.png'
+import LogoPng from '../../../static/img/logo/studs-transparent-1000px.png'
 import frontPic from './frontpic.png'
 import Button from './../../Button'
 import PropTypes from 'prop-types'
 
-function HomePageHeader({ scrollToProject, scrollToEvent, scrollToContact }) {
+export function HomePageHeader({
+  scrollToProject,
+  scrollToEvent,
+  scrollToContact,
+}) {
   /*
     Använder inte formatted message för "Connecting..."" Eftersom det inte gick att få till highlighten. Det ska gå men lyckades inte
   
@@ -28,7 +32,7 @@ function HomePageHeader({ scrollToProject, scrollToEvent, scrollToContact }) {
               Work with us
             </Button>
           </div>
-          <div>
+          <div className={styles.pointerContainer}>
             <span
               onClick={() => scrollToProject()}
               className={styles.pointerToProject}

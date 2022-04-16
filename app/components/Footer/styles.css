@@ -9,7 +9,7 @@
 }
 
 .footerBackground {
-  background: url(static/img/home/background.png);
+  background: url(../../static/img/home/background.png);
   background-size: cover;
 }
 
@@ -85,7 +85,7 @@
 
 .logoDesktop {
   margin-bottom: 1rem;
-  width: 8em;
+  width: 14em;
 }
 
 .logoMobile {
@@ -173,7 +173,7 @@
 .contactHeader {
   margin: 1rem auto 0.5rem;
   height: 33px;
-  font-family: Chivo;
+  font-family: var(--subheading-font);
   font-size: 28px;
 }
 

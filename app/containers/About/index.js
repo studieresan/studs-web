@@ -8,9 +8,9 @@ import { getUsers } from '../Members/actions'
 import { setStudsYear } from '../../store/salesTool/actions'
 import styles from './styles.css'
 import messages from './messages'
-import Footer from 'components/Footer'
-import MemberImage from 'components/MemberImage'
-import { prettyUserRole } from 'utils'
+import Footer from '../../components/Footer'
+import MemberImage from '../../components/MemberImage'
+import { prettyUserRole } from '../../utils'
 import { Facebook, Instagram, Linkedin } from 'react-feather'
 import { YearPicker } from '../../components/YearPicker'
 
@@ -54,6 +54,11 @@ function About({ users, getUsers, selectedYear, setStudsYear }) {
           selectedYear={selectedYear}
         />
       </header>
+      <div className={styles.intro}>
+        <p>
+          <FormattedMessage {...messages.generalInformation} />
+        </p>
+      </div>
       <main className={styles.about}>{users.map(u => StudsMemberInfo(u))}</main>
       <Footer hasBackground />
     </React.Fragment>

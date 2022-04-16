@@ -5,4 +5,8 @@ export default defineMessages({
     id: 'app.containers.About.header',
     defaultMessage: '',
   },
+  generalInformation: {
+    id: 'app.containers.About.generalInformation',
+    defaultMessage: '',
+  },
 })

@@ -2,14 +2,11 @@ import React from 'react'
 import classNames from 'classnames'
 import styles from './styles.css'
 import PropTypes from 'prop-types'
-
-import LogoInvert from 'static/img/logo/logomark-square-white.png'
-import LogoPng from 'static/img/logo/logomark-square-black.png'
-
-import MenuIcon from 'static/img/icons/icon_menu.svg'
-import BlackMenuIcon from 'static/img/icons/icon_menu_black.svg'
-import CloseIcon from 'static/img/icons/icon_close.svg'
-import BlackCloseIcon from 'static/img/icons/icon_close_black.svg'
+import studsLogoPng from '../../static/img/logo/studs-transparent-1000px.png'
+import sLogoPng from '../../static/img/logo/s-transparent-1000px.png'
+import BlackMenuIcon from '../../static/img/icons/icon_menu_black.svg'
+import CloseIcon from '../../static/img/icons/icon_close.svg'
+import BlackCloseIcon from '../../static/img/icons/icon_close_black.svg'
 
 import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -53,13 +50,13 @@ class Nav extends React.Component {
     })
 
     // if mobile view we use png-logo to avoid gradient being destroyed
-    const logoDesktop = useInvertColors ? LogoInvert : LogoPng
-    const logoMobile = useInvertColors ? LogoInvert : LogoPng
+    const logoDesktop = studsLogoPng
+    const logoMobile = sLogoPng
     let menuIcon
     if (collapsed) {
-      menuIcon = useInvertColors ? MenuIcon : BlackMenuIcon
+      menuIcon = BlackMenuIcon
     } else {
-      menuIcon = useInvertColors ? CloseIcon : BlackCloseIcon
+      menuIcon = BlackCloseIcon
     }
 
     return (
@@ -69,7 +66,7 @@ class Nav extends React.Component {
             <img className={styles.logoDesktop} src={logoDesktop} />
             <img className={styles.logoMobile} src={logoMobile} />
           </Link>
-          <img src={menuIcon} height={24} onClick={this.handleMenuClick} />
+          <img src={menuIcon} height={32} onClick={this.handleMenuClick} />
         </div>
         <div className={menuClass}>
           <NavLinks loggedIn={loggedIn} user={user} />

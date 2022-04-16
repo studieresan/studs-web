@@ -2,15 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { scrollSpy, Events, animateScroll } from 'react-scroll'
-import { getEvents } from 'store/events/actions'
+import { getEvents } from '../../store/events/actions'
 
 import styles from './styles.css'
 import messages from './messages'
 import { FormattedMessage } from 'react-intl'
-import PublicEvent from 'components/PublicEvent'
-import PublicEventMenu from 'components/PublicEventMenu'
-import Footer from 'components/Footer'
-import Spinner from 'components/Spinner'
+import PublicEvent from '../../components/PublicEvent'
+import PublicEventMenu from '../../components/PublicEventMenu'
+import Footer from '../../components/Footer'
+import Spinner from '../../components/Spinner'
 
 class PublicEvents extends React.Component {
   componentDidMount() {

@@ -9,7 +9,7 @@
 }
 
 .footerBackground {
-  background: url(static/img/home/background.png);
+  background: url(../../static/img/home/background.png);
   background-size: cover;
 }
 

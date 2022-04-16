@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as actions from 'containers/App/actions'
+import * as actions from '../../containers/App/actions'
 import styles from './styles.css'
 import CvHeader from '../CvHeader'
-import dot from 'static/img/gold-dot.svg'
+import dot from '../../static/img/gold-dot.svg'
 
 function renderItem(item, i) {
   if (!item) return null

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import Waypoint from 'react-waypoint'
-import * as actions from 'containers/App/actions'
+import * as actions from '../../containers/App/actions'
 
 class NavbarWaypoint extends Component {
   constructor(props) {

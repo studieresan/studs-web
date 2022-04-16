@@ -12,7 +12,7 @@ import {
   updateComment as updateCommentApi,
   removeComment,
   createComment,
-} from 'api'
+} from '../../../api'
 import { setComments } from '../companies/actions'
 
 export const getRequest = () => ({

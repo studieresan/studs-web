@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { FormattedMessage } from 'react-intl'
-import Button from 'components/Button'
+import Button from '../../components/Button'
 import messages from './messages'
 import styles from './styles.css'
-import { requestPasswordReset } from 'api'
+import { requestPasswordReset } from '../../api'
 import { push } from 'react-router-redux'
 
 class ForgotPassword extends React.Component {

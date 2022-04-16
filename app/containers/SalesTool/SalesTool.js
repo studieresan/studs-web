@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import MultiSelect from '@khanacademy/react-multi-select'
-import { HeaderSortButton } from 'components/HeaderSortButton'
-import { YearPicker } from 'components/YearPicker'
-import Button from 'components/Button'
+import { HeaderSortButton } from '../../components/HeaderSortButton'
+import { YearPicker } from '../../components/YearPicker'
+import Button from '../../components/Button'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import {
@@ -11,7 +11,7 @@ import {
   isLoading,
   isUpdating,
   isError,
-} from 'store/salesTool/constants'
+} from '../../store/salesTool/constants'
 
 const MISSING = 'MISSING'
 

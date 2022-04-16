@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-import CreateContactCard from 'components/CompanyContactCard/CreateContactCard'
-import StaticContactCard from 'components/CompanyContactCard/StaticContactCard'
-import NewCommentCard from 'components/CompanyCommentCard/NewCommentCard'
-import CommentCard from 'components/CompanyCommentCard/CommentCard'
-import Button from 'components/Button'
-import CompanyHeader from 'components/CompanyHeader'
-import CompanyAmountInput from 'components/CompanyAmountInput/CompanyAmountInput'
+import CreateContactCard from '../../components/CompanyContactCard/CreateContactCard'
+import StaticContactCard from '../../components/CompanyContactCard/StaticContactCard'
+import NewCommentCard from '../../components/CompanyCommentCard/NewCommentCard'
+import CommentCard from '../../components/CompanyCommentCard/CommentCard'
+import Button from '../../components/Button'
+import CompanyHeader from '../../components/CompanyHeader'
+import CompanyAmountInput from '../../components/CompanyAmountInput/CompanyAmountInput'
 
 import styles from './styles.css'
 import PropTypes from 'prop-types'
@@ -15,7 +15,7 @@ import {
   isSuccess,
   hasData,
   isInitial,
-} from 'store/salesTool/constants'
+} from '../../store/salesTool/constants'
 
 const MISSING = 'MISSING'
 

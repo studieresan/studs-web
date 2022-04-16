@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { createUser } from 'api'
+import { createUser } from '../../api'
 import { connect } from 'react-redux'
-import Button from 'components/Button'
+import Button from '../../components/Button'
 import styles from './styles.css'
 import messages from './messages'
-import { formToObject, prettyUserRole } from 'utils'
-import { loadUserRoles } from 'store/userRoles/actions'
-import { hasData } from 'store/salesTool/constants'
+import { formToObject, prettyUserRole } from '../../utils'
+import { loadUserRoles } from '../../store/userRoles/actions'
+import { hasData } from '../../store/salesTool/constants'
 import { FormattedMessage } from 'react-intl'
 
 class CreateUser extends React.Component {

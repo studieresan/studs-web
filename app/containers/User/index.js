@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom'
 import messages from './messages'
 import * as actions from './actions'
 import styles from './styles.css'
-import Button from 'components/Button'
-import MemberImage from 'components/MemberImage'
+import Button from '../../components/Button'
+import MemberImage from '../../components/MemberImage'
 
 export class User extends React.Component {
   constructor(props) {

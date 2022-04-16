@@ -3,7 +3,7 @@ import { fromJS } from 'immutable'
 import { routerMiddleware } from 'react-router-redux'
 import { combineReducers } from 'redux-immutable'
 import thunkMiddleware from 'redux-thunk'
-import reducers from 'store/rootReducers'
+import reducers from './store/rootReducers'
 
 const devtools = window.__REDUX_DEVTOOLS_EXTENSION__ || (() => noop => noop)
 

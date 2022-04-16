@@ -1,4 +1,4 @@
-import { saveEvent, fetchEvents, removeEventWithId } from 'api'
+import { saveEvent, fetchEvents, removeEventWithId } from '../../api'
 import {
   UPDATE,
   GET_REQUEST,

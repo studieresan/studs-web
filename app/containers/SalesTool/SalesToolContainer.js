@@ -1,6 +1,9 @@
 import SalesTool from './SalesTool'
 import { connect } from 'react-redux'
-import { loadCompanies, addCompany } from 'store/salesTool/companies/actions'
+import {
+  loadCompanies,
+  addCompany,
+} from '../../store/salesTool/companies/actions'
 
 import { getUsers } from '../Members/actions'
 
@@ -8,7 +11,7 @@ import {
   updateFilter,
   updateSorting,
   setStudsYear,
-} from 'store/salesTool/actions'
+} from '../../store/salesTool/actions'
 
 const mapStateToProps = rootState => {
   const currentUser = rootState.getIn(['global', 'user']).toJS()

@@ -1,11 +1,11 @@
-import leader1 from 'static/img/people/studs2022/melvin.jpg'
-import leader2 from 'static/img/people/studs2022/isabel.jpg'
-import travelImage from 'static/img/people/studs2022/vilma.jpg'
-import eventImage from 'static/img/people/studs2022/emelie.jpg'
-import itImage from 'static/img/people/studs2022/artin.jpg'
-import financeImage from 'static/img/people/studs2022/simon.jpg'
-import saleImage from 'static/img/people/studs2022/julia.jpg'
-import infoImage from 'static/img/people/studs2022/eva.jpg'
+import leader1 from '../../static/img/people/studs2022/melvin.jpg'
+import leader2 from '../../static/img/people/studs2022/isabel.jpg'
+import travelImage from '../../static/img/people/studs2022/vilma.jpg'
+import eventImage from '../../static/img/people/studs2022/emelie.jpg'
+import itImage from '../../static/img/people/studs2022/artin.jpg'
+import financeImage from '../../static/img/people/studs2022/simon.jpg'
+import saleImage from '../../static/img/people/studs2022/julia.jpg'
+import infoImage from '../../static/img/people/studs2022/eva.jpg'
 
 //Groups and their responsible persons.
 const projectManager1 = {

@@ -12,7 +12,7 @@ import {
   updateContact as updateContactApi,
   removeContact,
   createContact,
-} from 'api'
+} from '../../../api'
 import { setContacts } from '../companies/actions'
 
 export const getRequest = () => ({

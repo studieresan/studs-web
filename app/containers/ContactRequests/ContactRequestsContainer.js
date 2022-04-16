@@ -1,6 +1,6 @@
 import ContactRequest from './ContactRequests'
 import { connect } from 'react-redux'
-import { loadContactRequests } from 'store/salesTool/contactRequests/actions'
+import { loadContactRequests } from '../../store/salesTool/contactRequests/actions'
 
 const mapStateToProps = rootState => {
   const contactRequests = rootState.getIn(['salesTool', 'contactRequests'])

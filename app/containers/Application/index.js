@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styles from './styles.css'
-import { ApplicationComponent } from 'components/Application/index'
+import { ApplicationComponent } from '../../components/Application/index'
 
 class Application extends Component {
   render() {

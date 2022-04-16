@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import MemberImage from 'components/MemberImage'
+import MemberImage from '../../components/MemberImage'
 import styles from './styles.css'
-import { prettyUserRole } from 'utils'
+import { prettyUserRole } from '../../utils'
 
 function MemberHomePage({ user }) {
   const { firstName, lastName, userRole, picture } = user

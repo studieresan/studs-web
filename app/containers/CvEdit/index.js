@@ -6,7 +6,7 @@ import * as actions from './actions'
 import TextArea from 'react-textarea-autosize'
 import CvHeader from '../../components/CvHeader'
 import { ChevronDown, ChevronUp, X, Plus, Loader } from 'react-feather'
-import Button from 'components/Button'
+import Button from '../../components/Button'
 
 const styles = {}
 import cvStyles from '../../components/Cv/styles.css'

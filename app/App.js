@@ -3,13 +3,13 @@ import 'sanitize.css/sanitize.css'
 
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import App from 'containers/App'
+import App from './containers/App'
 import StudsRouter from './routes'
 import configureStore from './store'
 
 import { createBrowserHistory } from 'history'
 import { ConnectedRouter } from 'react-router-redux'
-import LanguageProvider from 'containers/LanguageProvider'
+import LanguageProvider from './containers/LanguageProvider'
 
 import { translationMessages } from './i18n'
 import { trackPageView } from './utils'

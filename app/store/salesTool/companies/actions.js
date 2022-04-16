@@ -14,7 +14,7 @@ import {
   createCompany,
   updateCompany as updateCompanyApi,
   fetchCompany,
-} from 'api'
+} from '../../../api'
 
 export const getRequest = () => ({
   type: GET_REQUEST,

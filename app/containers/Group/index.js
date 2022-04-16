@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import GroupComponent from 'components/GroupComponent'
-import Footer from 'components/Footer'
+import GroupComponent from '../../components/GroupComponent'
+import Footer from '../../components/Footer'
 
 export default class Group extends Component {
   render() {

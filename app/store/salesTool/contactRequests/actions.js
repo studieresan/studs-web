@@ -1,5 +1,5 @@
 import { GET_REQUEST, GET_SUCCESS, ERROR_ACTION } from './constants'
-import { fetchContactRequests } from 'api'
+import { fetchContactRequests } from '../../../api'
 
 export const getRequest = () => ({
   type: GET_REQUEST,

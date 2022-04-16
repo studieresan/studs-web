@@ -8,8 +8,8 @@ import {
   info,
   sales,
   travel,
-} from 'static/groups/groups.js'
-import MemberImage from 'components/MemberImage'
+} from '../../static/groups/groups.js'
+import MemberImage from '../../components/MemberImage'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 

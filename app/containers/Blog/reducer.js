@@ -8,6 +8,7 @@ import {
   REMOVE_PICTURE,
   REMOVE_FRONT_PICTURE,
   SAVE_POST_BY_ID,
+  REMOVED_POST_SUCCESSFULLY,
 } from './constants'
 
 const getEmptyPost = () => {
@@ -65,6 +66,12 @@ function blogReducer(state = initialState, action) {
       )
     case REMOVE_FRONT_PICTURE:
       return state.update('post', post => post.set('frontPicture', ''))
+
+    case REMOVED_POST_SUCCESSFULLY:
+      return state.update('posts', posts =>
+        posts.filter((item, index) => item.id !== action.id)
+      )
+
     default:
       return state
   }

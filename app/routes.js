@@ -41,6 +41,7 @@ class StudsRouter extends Component {
         <Route exact path='/blog/new' component={Blog} />
         <Route exact path='/blog/edit/:id' component={Blog} />
         <Route exact path='/blog' component={Blog} />
+        <Route exact path='/blog/view/:id' component={Blog} />
 
         <Route exact path='/inhoppare' component={Jumpin} />
         <Route exact path='/bababa' component={Jumpin} />

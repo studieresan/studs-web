@@ -1,0 +1,33 @@
+.container {
+  align-self: center;
+  width: 70%;
+  height: 100%;
+}
+
+.imageContainer img {
+  min-width: 300px;
+  max-width: 100%;
+  height: auto;
+  padding: 1rem 0;
+  object-fit: contain;
+}
+
+.gobackButton {
+  position: fixed;
+  left: 4%;
+  color: var(--primary-dark);
+  cursor: pointer;
+  font-size: 2rem;
+  margin: 0.5rem;
+  padding-left: 4px;
+  padding-right: 4px;
+  z-index: 10;
+}
+
+.title {
+  margin-top: 10px;
+}
+
+.description {
+  text-align: center;
+}

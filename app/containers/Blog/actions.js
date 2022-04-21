@@ -7,8 +7,15 @@ import {
   REMOVE_PICTURE,
   REMOVE_FRONT_PICTURE,
   SAVE_POST_BY_ID,
+  REMOVE_POST_FAILED,
+  REMOVED_POST_SUCCESSFULLY,
 } from './constants'
-import { createBlogPost, getBlogPosts, updateBlogPost } from '../../api'
+import {
+  createBlogPost,
+  getBlogPosts,
+  updateBlogPost,
+  deleteBlogpost,
+} from '../../api'
 
 const getPostsSuccess = posts => ({
   type: GET_POSTS_REQUEST_SUCCESS,
@@ -27,27 +34,38 @@ const saveSuccess = post => ({
 const removeProp = prop => ({ [prop]: _, ...rest }) => ({ ...rest })
 
 export const getPosts = () => dispatch => {
-  getBlogPosts().then(posts => {
-    // TODO: Kolla om det blev successfull
-    dispatch(getPostsSuccess(posts))
-  })
+  getBlogPosts()
+    .then(posts => {
+      dispatch(getPostsSuccess(posts))
+    })
+    .catch(e => {
+      dispatch(getPostsError())
+    })
 }
 
 export const savePost = obj => dispatch => {
   const post = obj.toJS()
   if (post.id === '') {
-    createBlogPost(post).then(post => {
-      dispatch(saveSuccess(post))
-    })
+    createBlogPost(post)
+      .then(post => {
+        dispatch(saveSuccess(post))
+      })
+      .catch(e => {
+        // todo
+      })
   } else {
     const { id, ...postWithoutId } = post
-    updateBlogPost(id, postWithoutId).then(post => {
-      dispatch({
-        type: SAVE_POST_BY_ID,
-        id,
-        post,
+    updateBlogPost(id, postWithoutId)
+      .then(post => {
+        dispatch({
+          type: SAVE_POST_BY_ID,
+          id,
+          post,
+        })
       })
-    })
+      .catch(e => {
+        // todo
+      })
   }
 }
 
@@ -75,5 +93,19 @@ export const removePicture = index => dispatch => {
 export const removeFrontPicture = () => dispatch => {
   dispatch({
     type: REMOVE_FRONT_PICTURE,
+  })
+}
+
+export const removePost = id => dispatch => {
+  deleteBlogpost(id).then(res => {
+    console.log(res)
+    if (res)
+      dispatch({
+        type: REMOVED_POST_SUCCESSFULLY,
+      })
+    else
+      dispatch({
+        type: REMOVE_POST_FAILED,
+      })
   })
 }

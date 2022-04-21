@@ -9,6 +9,7 @@ import { hasEventPermission } from 'users'
 import Button from 'components/Button'
 import EventEditPicture from 'components/EventEditPicture'
 import { uploadImage } from 'api'
+import { removePost } from '../../containers/Blog/actions'
 
 const BlogCreate = ({
   user,
@@ -21,6 +22,7 @@ const BlogCreate = ({
   removeFrontPicture,
   match,
   setCurrentPost,
+  removePost,
 }) => {
   const picturesFileUpload = useRef()
   const frontPictureFileUpload = useRef()
@@ -28,7 +30,10 @@ const BlogCreate = ({
 
   useEffect(() => {
     const { params, path } = match
-    if (params.hasOwnProperty('id') && post.title === '') {
+    if (
+      params.hasOwnProperty('id') &&
+      (post.title === '' || post.id !== params.id)
+    ) {
       setCurrentPost(params.id)
     }
   })
@@ -142,6 +147,9 @@ const BlogCreate = ({
           <Button onClick={savePost}>
             <FormattedMessage {...messages.save} />
           </Button>
+          {post.id !== '' && (
+            <Button onClick={() => removePost(post.id)}>delete</Button>
+          )}
         </div>
         <Link to='/blog'>
           <Button>
@@ -163,6 +171,7 @@ BlogCreate.propTypes = {
   removePicture: PropTypes.func.isRequired,
   removeFrontPicture: PropTypes.func.isRequired,
   setCurrentPost: PropTypes.func.isRequired,
+  removePost: PropTypes.func.isRequired,
 
   match: PropTypes.object.isRequired,
 }

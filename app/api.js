@@ -690,8 +690,15 @@ export const updateBlogPost = (id, post) => {
   return executeGraphQL(query)
     .then(res => res.data.blogPostUpdate)
     .then(post => {
-      console.log(post)
       post.author = post.author.id
       return post
     })
+}
+
+export const deleteBlogpost = id => {
+  const query = `mutation {
+    blogPostDelete(id: "${id}")
+  }`
+
+  return executeGraphQL(query)
 }

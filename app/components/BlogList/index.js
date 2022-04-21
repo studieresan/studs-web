@@ -27,7 +27,7 @@ const BlogList = ({ user, posts }) => {
   const [selectValue, setSelect] = useState(0)
 
   return (
-    <div className={styles.listContainer}>
+    <div className={styles.searchContainer}>
       <SearchBar
         setQuery={setQuery}
         query={query}

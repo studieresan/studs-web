@@ -42,15 +42,13 @@ const BlogPost = ({ posts, query, selectValue }) => {
         .map(post => {
           return (
             <div key={post.id} id={post.id} className={styles.postsContainer}>
-              <div
-                onClick={() => {
-                  console.log('click')
-                }}
-                className={styles.postContainer}
-              >
-                <img src={post.frontPicture} className={styles.post} />
-                <p className={styles.title}>{post.title}</p>
-              </div>
+              <h2 className={styles.title}>{post.title} </h2>
+              <img src={post.frontPicture} className={styles.image} />
+              <Link to={'/blog/new'}>
+                <button type='button' className={styles.buton}>
+                  READ MORE
+                </button>
+              </Link>
             </div>
           )
         })}

@@ -10,6 +10,17 @@ import Button from 'components/Button'
 import EventEditPicture from 'components/EventEditPicture'
 import { uploadImage } from 'api'
 
+const parseTemplate = post => {
+  const text = post.description
+  const template = text.split(new RegExp(/\s*\\(image-[0-9])\s*/, 'g'))
+  console.log(template)
+  if (template.length > 1) {
+    const obj = template[1]
+    console.log(post.pictures[parseInt(obj.charAt(obj.length - 1))])
+  }
+  return template
+}
+
 const BlogCreate = ({ post, match, setCurrentPost }) => {
   useEffect(() => {
     const { params, path } = match
@@ -21,19 +32,33 @@ const BlogCreate = ({ post, match, setCurrentPost }) => {
     }
   })
   post = post.toJS()
-
+  const template = parseTemplate(post)
   return (
     <div className={styles.container}>
       <Link className={styles.gobackButton} to={'/blog'}>
         <i className='fa fa-arrow-left' />
       </Link>
       <h1 className={styles.title}>{post.title}</h1>
-      <p className={styles.description}>{post.description}</p>
+
+      {template.length > 0 &&
+        template.map((obj, index) => {
+          if (obj.includes('image-')) {
+            return (
+              <img
+                key={index}
+                src={post.pictures[parseInt(obj.charAt(obj.length - 1))]}
+              />
+            )
+          } else {
+            return <p className={styles.description}>{obj}</p>
+          }
+        })}
+      {/*  <p className={styles.description}>{post.description}</p>
       <div className={styles.imageContainer}>
         {post.pictures.map((url, index) => {
           return <img key={index} src={url} />
         })}
-      </div>
+      </div> */}
     </div>
   )
 }

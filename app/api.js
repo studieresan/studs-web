@@ -651,12 +651,15 @@ author {
   id
   firstName
   lastName
+  info {
+    picture
+  }
 }
 date
 `
 
 export const createBlogPost = post => {
-  post['date'] = moment(new Date()).format('YYYY-MM-DDTHH:mm')
+  post['date'] = moment(new Date()).format('YYYY-MM-DD')
   const mutation = `mutation {
     blogCreate(fields: ${toGraphQLFields(post)}) {
       ${BLOG_FIELDS}
@@ -672,12 +675,17 @@ export function getBlogPosts() {
       ${BLOG_FIELDS}
     }
   }`
-  return executeGraphQL(query).then(res =>
-    res.data.blogPosts.map(p => {
+  return executeGraphQL(query).then(res => {
+    console.log(res)
+    return res.data.blogPosts.map(p => {
+      p.authorInfo = {
+        name: p.author.firstName + ' ' + p.author.lastName,
+        profilePicture: p.author.info.picture,
+      }
       p.author = p.author.id
       return p
     })
-  )
+  })
 }
 
 export const updateBlogPost = (id, post) => {

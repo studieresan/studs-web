@@ -45,6 +45,9 @@ export const getPosts = () => dispatch => {
 
 export const savePost = obj => dispatch => {
   const post = obj.toJS()
+  if (post.author) {
+    delete post.authorInfo
+  }
   if (post.id === '') {
     createBlogPost(post)
       .then(post => {

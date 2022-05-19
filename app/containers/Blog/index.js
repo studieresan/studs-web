@@ -68,11 +68,7 @@ export class Blog extends Component {
     } else if (path === '/blog/view/:id') {
       return (
         <React.Fragment>
-          <div className={styles.title}>
-            <h1>
-              <FormattedMessage {...messages.title} />
-            </h1>
-          </div>
+          <div className={styles.viewNoTitle} />
           <BlowView
             post={this.props.post}
             setCurrentPost={id => this.setCurrentPost(id)}

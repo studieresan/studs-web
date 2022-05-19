@@ -14,3 +14,11 @@
   color: var(--primary-dark);
   width: 100%;
 }
+.viewNoTitle {
+  background-image: url(static/img/home/background.png);
+  height: var(--header-height);
+  background-attachment: fixed;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+}

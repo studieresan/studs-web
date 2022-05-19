@@ -1,12 +1,19 @@
 .container {
   align-self: center;
-  width: 70%;
+  width: 50%;
   height: 100%;
 }
 
 .imageContainer img {
-  min-width: 300px;
-  max-width: 100%;
+  width: 70%;
+  height: auto;
+  padding: 1rem 0;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+}
+.container img {
+  width: 100%;
   height: auto;
   padding: 1rem 0;
   object-fit: contain;
@@ -36,4 +43,10 @@
 
 .description {
   text-align: center;
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    width: 80%;
+  }
 }

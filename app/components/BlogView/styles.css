@@ -10,6 +10,12 @@
   height: auto;
   padding: 1rem 0;
   object-fit: contain;
+  display: block;
+  margin: auto;
+}
+
+.imageContainer {
+  display: block;
 }
 
 .gobackButton {

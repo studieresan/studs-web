@@ -32,7 +32,7 @@
 .image {
   float: left;
   width: 315px;
-  height: 180px;
+  height: 315px;
   object-fit: cover;
 }
 
@@ -49,6 +49,10 @@
 .postsContainer {
   display: flex;
   flex-direction: column;
+  padding: 10px 10px 20px 10px;
+  border: 1px solid #bfbfbf;
+  background-color: rgba(246, 246, 246, 0.759);
+  box-shadow: 10px 10px 5px #aaaaaa;
 }
 
 .postContainer:hover {

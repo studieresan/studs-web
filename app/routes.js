@@ -38,8 +38,8 @@ class StudsRouter extends Component {
         <Route exact path='/password-reset/:token' component={PasswordReset} />
         <Route exact path='/events/public' component={PublicEvents} />
         <Route exact path='/groups' component={StudentComponent} />
-        <Route exact path='/blog/new' component={Blog} />
-        <Route exact path='/blog/edit/:id' component={Blog} />
+        <AuthenticatedRoute exact path='/blog/new' component={Blog} />
+        <AuthenticatedRoute exact path='/blog/edit/:id' component={Blog} />
         <Route exact path='/blog' component={Blog} />
         <Route exact path='/blog/view/:id' component={Blog} />
 

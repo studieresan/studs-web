@@ -5,10 +5,23 @@ import styles from './styles.css'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import { Link } from 'react-router-dom'
-import { hasEventPermission } from 'users'
 import Button from 'components/Button'
 import EventEditPicture from 'components/EventEditPicture'
 import { uploadImage } from 'api'
+import { hasEventPermission } from '../../users'
+
+const userActions = (user, post) => {
+  if (hasEventPermission(user.toJS())) {
+    return (
+      <Link to={'/blog/edit/' + post.id}>
+        <Button className={styles.edit}>
+          <FormattedMessage {...messages.edit} />
+        </Button>
+      </Link>
+    )
+  }
+  return null
+}
 
 const parseTemplate = post => {
   const text = post.description
@@ -21,7 +34,7 @@ const parseTemplate = post => {
   return template
 }
 
-const BlogCreate = ({ post, match, setCurrentPost }) => {
+const BlogCreate = ({ post, match, setCurrentPost, user }) => {
   useEffect(() => {
     const { params, path } = match
     if (
@@ -38,6 +51,7 @@ const BlogCreate = ({ post, match, setCurrentPost }) => {
       <Link className={styles.gobackButton} to={'/blog'}>
         <i className='fa fa-arrow-left' />
       </Link>
+      {userActions(user, post)}
       <h1 className={styles.title}>{post.title}</h1>
 
       {template.length > 0 &&
@@ -67,6 +81,7 @@ BlogCreate.propTypes = {
   setCurrentPost: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 }
 
 export default BlogCreate

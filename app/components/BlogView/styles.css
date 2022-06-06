@@ -37,6 +37,12 @@
   z-index: 10;
 }
 
+.edit {
+  position: fixed;
+  right: 4%;
+  margin: 0.5rem;
+}
+
 .title {
   margin-top: 10px;
 }

@@ -11,6 +11,21 @@ import BlowView from '../../components/BlogView'
 import { FormattedMessage } from 'react-intl'
 import { getUsers } from '../Members/actions'
 import { setStudsYear } from '../../store/salesTool/actions'
+import Button from 'components/Button'
+import { Link } from 'react-router-dom'
+
+import { hasEventPermission } from '../../users'
+
+const userActions = user => {
+  if (hasEventPermission(user.toJS())) {
+    return (
+      <Link to={'/blog/new'}>
+        <Button className={styles.edit}>Create</Button>
+      </Link>
+    )
+  }
+  return null
+}
 
 export class Blog extends Component {
   componentDidMount() {
@@ -28,7 +43,6 @@ export class Blog extends Component {
   }
 
   render() {
-    console.log(this.props.posts)
     const { params, path } = this.props.match
     if (path === '/blog/edit/:id' || path === '/blog/new') {
       return (
@@ -62,21 +76,21 @@ export class Blog extends Component {
               <FormattedMessage {...messages.title} />
             </h1>
           </div>
+          <div className={styles.userActions}>
+            {userActions(this.props.user)}
+          </div>
           <BlogList user={this.props.user} posts={this.props.posts} />
         </React.Fragment>
       )
     } else if (path === '/blog/view/:id') {
       return (
         <React.Fragment>
-          <div className={styles.title}>
-            <h1>
-              <FormattedMessage {...messages.title} />
-            </h1>
-          </div>
+          <div className={styles.viewNoTitle} />
           <BlowView
             post={this.props.post}
             setCurrentPost={id => this.setCurrentPost(id)}
             match={this.props.match}
+            user={this.props.user}
           />
         </React.Fragment>
       )

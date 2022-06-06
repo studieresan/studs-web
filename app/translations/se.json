@@ -498,5 +498,9 @@
   {
     "id": "app.containers.About.generalInformation",
     "message": "Projektet Studs är ett årligt ideellt projekt från KTH med målet att ge studenter som läser en masterexamen relaterat till datavetenskap en chans att nätverka med IT-företag. Genom att arrangera evenemang tillsammans med företag skapar Studs möjligheter att ge både studenter och deras potentiella arbetsgivare värdefull tid tillsammans. Under dessa evenemang kommer studenterna att få djupare insikter i företagets arbetsliv och om företagets verksamhet. Studs utgörs av ungefär 30 utvalda studenter varje år. Du kan se medlemmarna i Studs för de senaste åren nedan."
+  },
+  {
+    "id": "app.components.BlogView.edit",
+    "message": "Ändra"
   }
 ]

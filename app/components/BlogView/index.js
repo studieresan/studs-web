@@ -5,12 +5,36 @@ import styles from './styles.css'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import { Link } from 'react-router-dom'
-import { hasEventPermission } from 'users'
 import Button from 'components/Button'
 import EventEditPicture from 'components/EventEditPicture'
 import { uploadImage } from 'api'
+import { hasEventPermission } from '../../users'
 
-const BlogCreate = ({ post, match, setCurrentPost }) => {
+const userActions = (user, post) => {
+  if (hasEventPermission(user.toJS())) {
+    return (
+      <Link to={'/blog/edit/' + post.id}>
+        <Button className={styles.edit}>
+          <FormattedMessage {...messages.edit} />
+        </Button>
+      </Link>
+    )
+  }
+  return null
+}
+
+const parseTemplate = post => {
+  const text = post.description
+  const template = text.split(new RegExp(/\s*\\(image-[0-9])\s*/, 'g'))
+  console.log(template)
+  if (template.length > 1) {
+    const obj = template[1]
+    console.log(post.pictures[parseInt(obj.charAt(obj.length - 1))])
+  }
+  return template
+}
+
+const BlogCreate = ({ post, match, setCurrentPost, user }) => {
   useEffect(() => {
     const { params, path } = match
     if (
@@ -21,19 +45,34 @@ const BlogCreate = ({ post, match, setCurrentPost }) => {
     }
   })
   post = post.toJS()
-
+  const template = parseTemplate(post)
   return (
     <div className={styles.container}>
       <Link className={styles.gobackButton} to={'/blog'}>
         <i className='fa fa-arrow-left' />
       </Link>
+      {userActions(user, post)}
       <h1 className={styles.title}>{post.title}</h1>
-      <p className={styles.description}>{post.description}</p>
+
+      {template.length > 0 &&
+        template.map((obj, index) => {
+          if (obj.includes('image-')) {
+            return (
+              <img
+                key={index}
+                src={post.pictures[parseInt(obj.charAt(obj.length - 1))]}
+              />
+            )
+          } else {
+            return <p className={styles.description}>{obj}</p>
+          }
+        })}
+      {/*  <p className={styles.description}>{post.description}</p>
       <div className={styles.imageContainer}>
         {post.pictures.map((url, index) => {
           return <img key={index} src={url} />
         })}
-      </div>
+      </div> */}
     </div>
   )
 }
@@ -42,6 +81,7 @@ BlogCreate.propTypes = {
   setCurrentPost: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 }
 
 export default BlogCreate

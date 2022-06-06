@@ -11,21 +11,29 @@ const BlogPost = ({ posts, query, selectValue }) => {
     <div className={styles.listContainer}>
       {posts
         .filter(post => {
+          //console.log(post)
+
+          //for filter
+          const studsYear = parseInt(post.date.substring(0, 4))
+
+          console.log(selectVal, studsYear)
+
           // default, no query, no select year selected
           if (query === '' && selectVal === 0) {
             return post
           }
           // year selected, no query
           else if (selectVal !== 0 && query === '') {
-            if (post.studsYear === selectVal) {
+            if (studsYear === selectVal) {
               return post
             }
           }
           // year selected with query
           else if (
-            selectVal === post.studsYear &&
+            selectVal === studsYear &&
             post.title.toLowerCase().includes(query.toLowerCase())
           ) {
+            console.log('here1')
             return post
           }
 
@@ -41,15 +49,29 @@ const BlogPost = ({ posts, query, selectValue }) => {
         })
         .map(post => {
           return (
-            <div key={post.id} id={post.id} className={styles.postsContainer}>
-              <h2 className={styles.title}>{post.title} </h2>
+            <Link
+              to={'/blog/view/' + post.id}
+              key={post.id}
+              className={styles.postsContainer}
+            >
               <img src={post.frontPicture} className={styles.image} />
-              <Link to={'/blog/view/' + post.id}>
-                <button type='button' className={styles.buton}>
-                  READ MORE
-                </button>
-              </Link>
-            </div>
+              <h2 className={styles.title}>{post.title} </h2>
+              <div className={styles.smallBox}>
+                <div className={styles.profileContainer}>
+                  <img
+                    src={post.frontPicture}
+                    className={styles.profilePicture}
+                  />
+                </div>
+
+                <div className={styles.authorDate}>
+                  <h2 className={styles.author}>Philip Song</h2>
+                  <div className={styles.date}>
+                    {post.date.substring(0, 10)}
+                  </div>
+                </div>
+              </div>
+            </Link>
           )
         })}
     </div>

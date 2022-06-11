@@ -92,12 +92,11 @@ class Cv extends React.Component {
   render() {
     let sections = null
     if (this.props.user.cv) {
-      console.log('USER HAS CV', this.props.user)
       sections = this.props.user.cv.sections.map(section =>
         renderSection(section)
       )
     } else {
-      console.log('User has no cv')
+      console.log('')
     }
     // TODO: uncomment parts below when correct CV can come from overlord
     return (

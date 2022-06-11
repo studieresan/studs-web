@@ -45,7 +45,6 @@ class CreateUser extends React.Component {
     })
 
     const formData = formToObject(form.elements)
-    console.log(formData)
     createUser(formData)
       .then(res => {
         form.reset()

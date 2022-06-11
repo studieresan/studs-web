@@ -101,7 +101,6 @@ export const removeFrontPicture = () => dispatch => {
 
 export const removePost = id => dispatch => {
   deleteBlogpost(id).then(res => {
-    console.log(res)
     if (res)
       dispatch({
         type: REMOVED_POST_SUCCESSFULLY,

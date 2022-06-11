@@ -47,7 +47,6 @@ function blogReducer(state = initialState, action) {
       const index = state
         .get('posts')
         .findIndex(post => post.get('id') === action.id)
-      console.log(index)
       return state.updateIn(['posts', index], post =>
         post.merge(fromJS(action.post))
       )

@@ -96,6 +96,7 @@ class Cv extends React.Component {
         renderSection(section)
       )
     } else {
+      console.log('')
     }
     // TODO: uncomment parts below when correct CV can come from overlord
     return (

@@ -93,7 +93,6 @@ export function fetchUser() {
   }
   `
   return executeGraphQL(query).then(res => {
-    console.log('GOT USER', res)
     return Promise.resolve({
       id: res.data.user.id,
       firstName: res.data.user.firstName,
@@ -217,7 +216,6 @@ export function updateCv(id, cv) {
     }
   }
   `
-  console.log('Mutation with ', mutation)
   return executeGraphQL(mutation).then(res => res.data.updateCV)
 }
 
@@ -676,7 +674,6 @@ export function getBlogPosts() {
     }
   }`
   return executeGraphQL(query).then(res => {
-    console.log(res)
     return res.data.blogPosts.map(p => {
       p.authorInfo = {
         name: p.author.firstName + ' ' + p.author.lastName,

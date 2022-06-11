@@ -29,7 +29,6 @@ const userActions = user => {
 
 export class Blog extends Component {
   componentDidMount() {
-    console.log(this.props.users)
     if (!this.props.users || !this.props.users.length) {
       this.props.getUsers()
     }

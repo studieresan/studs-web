@@ -11,12 +11,8 @@ const BlogPost = ({ posts, query, selectValue }) => {
     <div className={styles.listContainer}>
       {posts
         .filter(post => {
-          //console.log(post)
-
           //for filter
           const studsYear = parseInt(post.date.substring(0, 4))
-
-          console.log(selectVal, studsYear)
 
           // default, no query, no select year selected
           if (query === '' && selectVal === 0) {
@@ -33,7 +29,6 @@ const BlogPost = ({ posts, query, selectValue }) => {
             selectVal === studsYear &&
             post.title.toLowerCase().includes(query.toLowerCase())
           ) {
-            console.log('here1')
             return post
           }
 

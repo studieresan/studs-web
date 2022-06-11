@@ -13,7 +13,6 @@ const MemberListItem = ({ user, selectMember, active }) => {
     <div
       className={style}
       onClick={() => {
-        console.log('SELECT ', user.firstName)
         trackEvent('Cvs', `Selected ${user.firstName} ${user.lastName} CV`)
         selectMember(user)
       }}

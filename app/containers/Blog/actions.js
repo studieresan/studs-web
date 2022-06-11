@@ -17,6 +17,8 @@ import {
   deleteBlogpost,
 } from '../../api'
 
+import { push } from 'react-router-redux'
+
 const getPostsSuccess = posts => ({
   type: GET_POSTS_REQUEST_SUCCESS,
   posts,
@@ -52,6 +54,7 @@ export const savePost = obj => dispatch => {
     createBlogPost(post)
       .then(post => {
         dispatch(saveSuccess(post))
+        dispatch(push('/blog'))
       })
       .catch(e => {
         // todo
@@ -65,6 +68,7 @@ export const savePost = obj => dispatch => {
           id,
           post,
         })
+        dispatch(push('/blog'))
       })
       .catch(e => {
         // todo
@@ -110,4 +114,5 @@ export const removePost = id => dispatch => {
         type: REMOVE_POST_FAILED,
       })
   })
+  dispatch(push('/blog'))
 }

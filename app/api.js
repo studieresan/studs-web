@@ -1,4 +1,5 @@
 import { pickBy } from 'lodash'
+import moment from 'moment'
 
 const BASE_URL = process.env.API_BASE_URL || 'http://localhost:5040'
 const GRAPHQL = '/graphql'
@@ -638,4 +639,74 @@ export const fetchUserRoles = () => {
 
 export const getPDFURL = file => {
   return `${BASE_URL}${file}`
+}
+
+const BLOG_FIELDS = `
+id
+title
+description
+pictures
+frontPicture
+author {
+  id
+  firstName
+  lastName
+  info {
+    picture
+  }
+}
+date
+`
+
+export const createBlogPost = post => {
+  post['date'] = moment(new Date()).format('YYYY-MM-DD')
+  const mutation = `mutation {
+    blogCreate(fields: ${toGraphQLFields(post)}) {
+      ${BLOG_FIELDS}
+    }
+  }
+  `
+  return executeGraphQL(mutation).then(res => res.data)
+}
+
+export function getBlogPosts() {
+  const query = `query {
+    blogPosts {
+      ${BLOG_FIELDS}
+    }
+  }`
+  return executeGraphQL(query).then(res => {
+    console.log(res)
+    return res.data.blogPosts.map(p => {
+      p.authorInfo = {
+        name: p.author.firstName + ' ' + p.author.lastName,
+        profilePicture: p.author.info.picture,
+      }
+      p.author = p.author.id
+      return p
+    })
+  })
+}
+
+export const updateBlogPost = (id, post) => {
+  const query = `mutation {
+    blogPostUpdate(id: "${id}", fields: ${toGraphQLFields(post)}) {
+      ${BLOG_FIELDS}
+    }
+  }
+  `
+  return executeGraphQL(query)
+    .then(res => res.data.blogPostUpdate)
+    .then(post => {
+      post.author = post.author.id
+      return post
+    })
+}
+
+export const deleteBlogpost = id => {
+  const query = `mutation {
+    blogPostDelete(id: "${id}")
+  }`
+
+  return executeGraphQL(query)
 }

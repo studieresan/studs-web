@@ -24,6 +24,7 @@ import StudentComponent from './containers/Group'
 import Jumpin from './containers/Jumpin'
 import PrivacyPolicy from './containers/PrivacyPolicy'
 import PDF from './containers/PDF'
+import Blog from './containers/Blog'
 
 class StudsRouter extends Component {
   render() {
@@ -36,18 +37,17 @@ class StudsRouter extends Component {
 
         <Route exact path='/password-reset/:token' component={PasswordReset} />
         <Route exact path='/events/public' component={PublicEvents} />
-
         <Route exact path='/groups' component={StudentComponent} />
+        <AuthenticatedRoute exact path='/blog/new' component={Blog} />
+        <AuthenticatedRoute exact path='/blog/edit/:id' component={Blog} />
+        <Route exact path='/blog' component={Blog} />
+        <Route exact path='/blog/view/:id' component={Blog} />
 
         <Route exact path='/inhoppare' component={Jumpin} />
         <Route exact path='/bababa' component={Jumpin} />
 
         <Route exact path='/privacy' component={PrivacyPolicy} />
-        <Route
-          exact
-          path={['/brochure.pdf', '/brochure_eng.pdf']}
-          component={PDF}
-        />
+        <Route exact path={'/brochure.pdf'} component={PDF} />
 
         <AuthenticatedRoute
           exact

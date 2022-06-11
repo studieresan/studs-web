@@ -1,0 +1,58 @@
+.container {
+  align-self: center;
+  width: 50%;
+  height: 100%;
+}
+
+.imageContainer img {
+  width: 70%;
+  height: auto;
+  padding: 1rem 0;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+}
+.container img {
+  width: 100%;
+  height: auto;
+  padding: 1rem 0;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+}
+
+.imageContainer {
+  display: block;
+}
+
+.gobackButton {
+  position: fixed;
+  left: 4%;
+  color: var(--primary-dark);
+  cursor: pointer;
+  font-size: 2rem;
+  margin: 0.5rem;
+  padding-left: 4px;
+  padding-right: 4px;
+  z-index: 10;
+}
+
+.edit {
+  position: fixed;
+  right: 4%;
+  margin: 0.5rem;
+}
+
+.title {
+  margin-top: 10px;
+}
+
+.description {
+  text-align: center;
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    width: 80%;
+  }
+}

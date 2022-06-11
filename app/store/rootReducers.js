@@ -7,6 +7,7 @@ import members from '../containers/Members/reducer'
 import user from '../containers/User/reducer'
 import salesTool from './salesTool/reducer'
 import userRoles from './userRoles/reducer'
+import blog from 'containers/Blog/reducer'
 
 export default {
   global,
@@ -18,4 +19,5 @@ export default {
   user,
   salesTool,
   userRoles,
+  blog,
 }

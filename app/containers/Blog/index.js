@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from './actions'
-import PropTypes, { number } from 'prop-types'
+import PropTypes, { func, number } from 'prop-types'
 import styles from './styles.css'
 import messages from './messages'
 import BlogList from '../../components/BlogList'
@@ -13,14 +13,16 @@ import { getUsers } from '../Members/actions'
 import { setStudsYear } from '../../store/salesTool/actions'
 import Button from 'components/Button'
 import { Link } from 'react-router-dom'
-
+import getEmptyPost from './reducer'
 import { hasEventPermission } from '../../users'
 
-const userActions = user => {
+const userActions = (user, clearPostFields) => {
   if (hasEventPermission(user.toJS())) {
     return (
       <Link to={'/blog/new'}>
-        <Button className={styles.edit}>Create</Button>
+        <Button onClick={() => clearPostFields()} className={styles.edit}>
+          Create
+        </Button>
       </Link>
     )
   }
@@ -76,7 +78,7 @@ export class Blog extends Component {
             </h1>
           </div>
           <div className={styles.userActions}>
-            {userActions(this.props.user)}
+            {userActions(this.props.user, this.props.clearPostFields)}
           </div>
           <BlogList user={this.props.user} posts={this.props.posts} />
         </React.Fragment>
@@ -132,6 +134,7 @@ Blog.propTypes = {
   addPicture: PropTypes.func.isRequired,
   removePicture: PropTypes.func.isRequired,
   removeFrontPicture: PropTypes.func.isRequired,
+  clearPostFields: PropTypes.func.isRequired,
   // Mapstatetoprops
   post: PropTypes.object.isRequired,
   posts: PropTypes.array.isRequired,

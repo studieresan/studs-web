@@ -54,13 +54,15 @@ const BlogPost = ({ posts, query, selectValue }) => {
               <div className={styles.smallBox}>
                 <div className={styles.profileContainer}>
                   <img
-                    src={post.authorInfo.profilePicture}
+                    src={post.author.info.picture}
                     className={styles.profilePicture}
                   />
                 </div>
 
                 <div className={styles.authorDate}>
-                  <h2 className={styles.author}>{post.authorInfo.name}</h2>
+                  <h2 className={styles.author}>
+                    {post.author.firstName + ' ' + post.author.lastName}
+                  </h2>
                   <div className={styles.date}>
                     {post.date.substring(0, 10)}
                   </div>

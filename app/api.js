@@ -674,14 +674,7 @@ export function getBlogPosts() {
     }
   }`
   return executeGraphQL(query).then(res => {
-    return res.data.blogPosts.map(p => {
-      p.authorInfo = {
-        name: p.author.firstName + ' ' + p.author.lastName,
-        profilePicture: p.author.info.picture,
-      }
-      p.author = p.author.id
-      return p
-    })
+    return res.data.blogPosts
   })
 }
 
@@ -692,12 +685,7 @@ export const updateBlogPost = (id, post) => {
     }
   }
   `
-  return executeGraphQL(query)
-    .then(res => res.data.blogPostUpdate)
-    .then(post => {
-      post.author = post.author.id
-      return post
-    })
+  return executeGraphQL(query).then(res => res.data.blogPostUpdate)
 }
 
 export const deleteBlogpost = id => {

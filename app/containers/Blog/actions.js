@@ -9,6 +9,7 @@ import {
   SAVE_POST_BY_ID,
   REMOVE_POST_FAILED,
   REMOVED_POST_SUCCESSFULLY,
+  CLEAR_POST_FIELDS,
 } from './constants'
 import {
   createBlogPost,
@@ -47,13 +48,14 @@ export const getPosts = () => dispatch => {
 
 export const savePost = obj => dispatch => {
   const post = obj.toJS()
-  if (post.author) {
-    delete post.authorInfo
+  if (post.author && post.author.id) {
+    post.author = post.author.id
   }
   if (post.id === '') {
     createBlogPost(post)
-      .then(post => {
-        dispatch(saveSuccess(post))
+      .then(savedpost => {
+        // Comes back with blogcreate field for some reason
+        dispatch(saveSuccess(savedpost.blogCreate))
         dispatch(push('/blog'))
       })
       .catch(e => {
@@ -115,4 +117,8 @@ export const removePost = id => dispatch => {
       })
   })
   dispatch(push('/blog'))
+}
+
+export const clearPostFields = () => dispatch => {
+  dispatch({ type: CLEAR_POST_FIELDS })
 }

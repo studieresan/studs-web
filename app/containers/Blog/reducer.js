@@ -9,6 +9,7 @@ import {
   REMOVE_FRONT_PICTURE,
   SAVE_POST_BY_ID,
   REMOVED_POST_SUCCESSFULLY,
+  CLEAR_POST_FIELDS,
 } from './constants'
 
 const getEmptyPost = () => {
@@ -70,7 +71,8 @@ function blogReducer(state = initialState, action) {
       return state.update('posts', posts =>
         posts.filter((item, index) => item.id !== action.id)
       )
-
+    case CLEAR_POST_FIELDS:
+      return state.set('post', getEmptyPost())
     default:
       return state
   }

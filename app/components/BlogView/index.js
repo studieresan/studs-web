@@ -62,7 +62,11 @@ const BlogCreate = ({ post, match, setCurrentPost, user }) => {
               />
             )
           } else {
-            return <p className={styles.description}>{obj}</p>
+            return (
+              <p key={index} className={styles.description}>
+                {obj}
+              </p>
+            )
           }
         })}
       {/*  <p className={styles.description}>{post.description}</p>

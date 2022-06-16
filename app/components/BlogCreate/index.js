@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { Component, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import EventListItem from 'components/EventListItem'
 import styles from './styles.css'
@@ -71,7 +71,7 @@ const BlogCreate = ({
         <select
           name='author'
           placeholder='Author'
-          value={post.author}
+          value={post.author.id}
           onClick={handleChange}
           onChange={handleChange}
         >

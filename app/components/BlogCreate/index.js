@@ -130,6 +130,7 @@ const BlogCreate = ({
           {post.pictures &&
             post.pictures.map((url, i) => (
               <div className={styles.blogPicture} key={url + i}>
+                <div>{'image-' + i}</div>
                 <EventEditPicture url={url} onRemove={() => removePicture(i)} />
               </div>
             ))}

@@ -58,7 +58,7 @@ const BlogCreate = ({ post, match, setCurrentPost, user }) => {
             return (
               <img
                 key={index}
-                src={post.pictures[parseInt(obj.charAt(obj.length - 1))]}
+                src={post.pictures[parseInt(obj.substring(6))]}
               />
             )
           } else {

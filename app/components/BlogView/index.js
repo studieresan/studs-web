@@ -25,7 +25,7 @@ const userActions = (user, post) => {
 
 const parseTemplate = post => {
   const text = post.description
-  const template = text.split(new RegExp(/\s*\\(image-[0-9])\s*/, 'g'))
+  const template = text.split(new RegExp(/\s*\\(image-[0-9]+)\s*/, 'g'))
   if (template.length > 1) {
     const obj = template[1]
   }

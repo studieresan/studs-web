@@ -26,19 +26,20 @@ const getEmptyPost = () => {
 }
 const initialState = fromJS({
   posts: [],
-  fetching: true,
+  loading: true,
   fetchFail: false,
   post: getEmptyPost(),
 })
 
 function blogReducer(state = initialState, action) {
   switch (action.type) {
+    // To do (not used)
     case GET_POSTS_REQUEST_FAIL:
       return state.set('fetchFail', true)
     case GET_POSTS_REQUEST_SUCCESS:
       return state.merge(
         fromJS({
-          fetching: false,
+          loading: false,
           posts: action.posts,
         })
       )

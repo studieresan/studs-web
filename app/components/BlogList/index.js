@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { hasEventPermission } from 'users'
 import BlogPost from './blog'
 import SearchBar from './searchbar'
+import Spinner from '../Spinner'
 
 // Använd för att kolla om vi ska ha en knapp där eller inte (bara för users med permission)
 function UserActions({ user }) {
@@ -22,7 +23,7 @@ function UserActions({ user }) {
   return null
 }
 
-const BlogList = ({ user, posts }) => {
+const BlogList = ({ user, posts, loading }) => {
   const [query, setQuery] = useState('')
   const [selectValue, setSelect] = useState(0)
 
@@ -37,7 +38,11 @@ const BlogList = ({ user, posts }) => {
         />
       </div>
       <div>
-        <BlogPost posts={posts} query={query} selectValue={selectValue} />
+        {!loading ? (
+          <BlogPost posts={posts} query={query} selectValue={selectValue} />
+        ) : (
+          <Spinner> </Spinner>
+        )}
       </div>
     </div>
   )
@@ -54,6 +59,7 @@ UserActions.propTypes = {
 BlogList.propTypes = {
   posts: PropTypes.array.isRequired,
   user: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
 }
 
 export default BlogList

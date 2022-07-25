@@ -80,7 +80,11 @@ export class Blog extends Component {
           <div className={styles.userActions}>
             {userActions(this.props.user, this.props.clearPostFields)}
           </div>
-          <BlogList user={this.props.user} posts={this.props.posts} />
+          <BlogList
+            loading={this.props.loading}
+            user={this.props.user}
+            posts={this.props.posts}
+          />
         </React.Fragment>
       )
     } else if (path === '/blog/view/:id') {
@@ -117,7 +121,7 @@ function mapStateToProps(state) {
   return {
     user: state.getIn(['global', 'user']),
     users: state.getIn(['members', 'users']).toJS(),
-    fetching: state.getIn(['blog', 'fetching']),
+    loading: state.getIn(['blog', 'loading']),
     fetchFail: state.getIn(['blog', 'fetchFail']),
     posts: state.getIn(['blog', 'posts']).toJS(),
     post: state.getIn(['blog', 'post']),
@@ -140,7 +144,7 @@ Blog.propTypes = {
   posts: PropTypes.array.isRequired,
   user: PropTypes.object.isRequired,
   users: PropTypes.array.isRequired,
-  fetching: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
   fetchFail: PropTypes.bool.isRequired,
   // Inbyggt (används för path och params)
   match: PropTypes.object.isRequired,

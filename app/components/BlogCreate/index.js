@@ -26,19 +26,30 @@ const BlogCreate = ({
 }) => {
   const picturesFileUpload = useRef()
   const frontPictureFileUpload = useRef()
+  const textareaRef = useRef()
+
   post = post.toJS()
 
-  useEffect(() => {
-    const { params, path } = match
-    if (
-      params.hasOwnProperty('id') &&
-      (post.title === '' || post.id !== params.id)
-    ) {
-      setCurrentPost(params.id)
-    }
-  })
+  useEffect(
+    () => {
+      const { params, path } = match
+      if (
+        params.hasOwnProperty('id') &&
+        (post.title === '' || post.id !== params.id)
+      ) {
+        setCurrentPost(params.id)
+      }
+
+      textareaRef.current.style.height = 'auto'
+      textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px'
+    },
+    [post]
+  )
 
   const handleChange = e => {
+    textareaRef.current.style.height = 'auto'
+    textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px'
+
     const data = {}
     switch (e.target.name) {
       case 'pictures':
@@ -98,6 +109,7 @@ const BlogCreate = ({
       <div className={styles.inputLabel}>
         <FormattedMessage {...messages.description} />
         <textarea
+          ref={textareaRef}
           name='description'
           type='text'
           value={post.description}

@@ -97,7 +97,7 @@ const Copyright = ({ hasBackground }) => (
       (hasBackground ? styles.copyrightColorInverted : '')
     }
   >
-    &copy; 2021-2022 Studs
+    &copy; 2021-2023 Studs
   </p>
 )
 

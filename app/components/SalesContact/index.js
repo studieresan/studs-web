@@ -4,11 +4,12 @@ import styles from './styles.css'
 import { FormattedMessage } from 'react-intl'
 import messages from './messages'
 import MemberImage from '../../components/MemberImage'
-import sale from '../../static/img/people/studs2022/julia.jpg'
+//import sale from '../../static/img/people/studs2022/julia.jpg'
+import sale from '../../static/img/profile-placeholder.png'
 
-const CONTACT_NAME = 'Julia Byström'
-const CONTACT_PHONE_NUMBER = '+46 76-167 61 80'
-const CONTACT_EMAIL = 'julia@studs.se'
+const CONTACT_NAME = 'Tobias Vinsa'
+const CONTACT_PHONE_NUMBER = '+46 76-162 82 20'
+const CONTACT_EMAIL = 'tobias-v@studs.se'
 
 const SalesContact = ({ className }) => (
   <div className={styles.contact + ' ' + className}>

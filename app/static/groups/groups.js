@@ -1,22 +1,31 @@
-import leader1 from '../../static/img/people/studs2022/melvin.jpg'
+/*import leader1 from '../../static/img/people/studs2022/melvin.jpg'
 import leader2 from '../../static/img/people/studs2022/isabel.jpg'
 import travelImage from '../../static/img/people/studs2022/vilma.jpg'
 import eventImage from '../../static/img/people/studs2022/emelie.jpg'
 import itImage from '../../static/img/people/studs2022/artin.jpg'
 import financeImage from '../../static/img/people/studs2022/simon.jpg'
 import saleImage from '../../static/img/people/studs2022/julia.jpg'
-import infoImage from '../../static/img/people/studs2022/eva.jpg'
+import infoImage from '../../static/img/people/studs2022/eva.jpg'*/
+
+import leader1 from '../../static/img/profile-placeholder.png'
+const leader2 = leader1
+const travelImage = leader1
+const eventImage = leader1
+const itImage = leader1
+const financeImage = leader1
+const saleImage = leader1
+const infoImage = leader1
 
 //Groups and their responsible persons.
 const projectManager1 = {
-  name: 'Melvin Lundkvist',
-  email: 'melvin@studs.se',
+  name: 'Marcus Nordstedt',
+  email: 'marcus@studs.se',
   image: leader1,
 }
 
 const projectManager2 = {
-  name: 'Isabel Redtzer',
-  email: 'isabel@studs.se',
+  name: 'Daniel Grünler',
+  email: 'daniel-g@studs.se',
   image: leader2,
 }
 
@@ -24,9 +33,9 @@ const projectManager2 = {
 //in the language json files
 const it = {
   responsible: {
-    firstName: 'Artin',
-    lastName: 'Mirzaian',
-    email: 'artin@studs.se',
+    firstName: 'Gustav',
+    lastName: 'Ekner',
+    email: 'gustav@studs.se',
     image: itImage,
   },
   languageID: 'static.groups.it',
@@ -34,9 +43,9 @@ const it = {
 
 const event = {
   responsible: {
-    firstName: 'Emelie',
-    lastName: 'Lindborg',
-    email: 'emelie@studs.se',
+    firstName: 'Hanna',
+    lastName: 'Peters',
+    email: 'hanna@studs.se',
     image: eventImage,
   },
   languageID: 'static.groups.event',
@@ -44,9 +53,9 @@ const event = {
 
 const finance = {
   responsible: {
-    firstName: 'Simon',
-    lastName: 'Osnes',
-    email: 'simon@studs.se',
+    firstName: 'William',
+    lastName: 'Nilsson',
+    email: 'william@studs.se',
     image: financeImage,
   },
   languageID: 'static.groups.finance',
@@ -54,9 +63,9 @@ const finance = {
 
 const info = {
   responsible: {
-    firstName: 'Eva',
-    lastName: 'Despinoy',
-    email: 'eva@studs.se',
+    firstName: 'Tania',
+    lastName: 'Sayyah',
+    email: 'tania@studs.se',
     image: infoImage,
   },
   languageID: 'static.groups.info',
@@ -64,9 +73,9 @@ const info = {
 
 const sales = {
   responsible: {
-    firstName: 'Julia',
-    lastName: 'Byström',
-    email: 'julia@studs.se',
+    firstName: 'Tobias',
+    lastName: 'Vinsa',
+    email: 'tobias-v@studs.se',
     image: saleImage,
   },
   languageID: 'static.groups.sales',
@@ -74,9 +83,9 @@ const sales = {
 
 const travel = {
   responsible: {
-    firstName: 'Vilma',
-    lastName: 'Javala',
-    email: 'vilma@studs.se',
+    firstName: 'Emmy',
+    lastName: 'Yin',
+    email: 'emmy@studs.se',
     image: travelImage,
   },
   languageID: 'static.groups.travel',

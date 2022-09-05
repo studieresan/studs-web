@@ -53,7 +53,7 @@
   },
   {
     "id": "app.components.HomePage.footer.SalesContent",
-    "message": "Om ni är intresserade av att ha ett event med oss, eller om ni är nyfikna och vill veta mer, kontakta Julia."
+    "message": "Om ni är intresserade av att ha ett event med oss, eller om ni är nyfikna och vill veta mer, kontakta Tobias."
   },
   {
     "id": "app.components.HomePage.footer.phone",
@@ -429,27 +429,27 @@
   },
   {
     "id": "static.groups.it.description",
-    "message": "IT-gruppen ansvarar för Studs webbsida, backend och de interna mobilapplikationerna som finns för både Android och iOS. Du bör ha ett intresse för programmering och mjukvaruutveckling samt viljan att lära dig nya saker. Det är ett plus om du har tidigare erfarenhet, men det är inget krav."
+    "message": "IT-gruppen är en liten grupp som ansvarar för Studs webbsida, backend och de interna mobilapplikationerna som finns för både Android och iOS. Du bör ha ett intresse för programmering och/eller webbdesign samt viljan att lära dig nya saker. Det är ett plus om du har tidigare erfarenhet, men det är inget krav. Kontinuerlig arbetsbelastning under hösten och våren."
   },
   {
     "id": "static.groups.event.description",
-    "message": "Eventgruppen ansvarar för planerandet och genomförandet av alla företagsevent och arbetar tillsammans med företagen för att skapa evenemang som är relevanta, intressanta och roliga både för projektmedlemmarna och företagen. Gruppen hjälper företagen att visa sina bästa sidor och arbetet är därför kreativt då företagen skiljer sig mycket och kräver olika lösningar."
+    "message": "Eventgruppen ansvarar för planerandet och genomförandet av alla företagsevent och arbetar tillsammans med företagen för att skapa evenemang som är relevanta, intressanta och roliga både för projektmedlemmarna och företagen. Gruppen hjälper företagen att anpassa eventen efter deras önskemål och genomföra så bra event som möjligt. Arbetet är därmed kreativt då företagen skiljer sig mycket och kräver olika lösningar. Att vara med i eventgruppen innebär en kontinuerlig arbetsbelastning under hösten och våren."
   },
   {
     "id": "static.groups.finance.description",
-    "message": "Ekonomigruppen är liten grupp som jobbar nära varandra och projektledarna med att skapa projektets budget och se till att den efterföljs. Gruppen sköter även all bokföring och tillgodoser de andra gruppernas ekonomiska behov."
+    "message": "Ekonomigruppen är en liten grupp som jobbar nära varandra och projektledarna med att skapa projektets budget och se till att den efterföljs. Gruppen är även ansvarig för att tillgodose de andra gruppernas ekonomiska behov. Nytt för i år är att gruppen inte kommer behöva hantera någon bokföring eftersom den kommer skötas externt. Kontinuerlig arbetsbelastning under året men mest arbete under hösten samt vid resan."
   },
   {
     "id": "static.groups.info.description",
-    "message": "Informationsgruppen består av två fotografer, två redaktörer och två art directors som tillsammans skapar allt innehåll och den grafiska profil som syns i våra olika kanaler samt i rapporten. Fotograferna tar porträttbilder av projektgruppen samt fotograferar alla event och resan. Redaktörerna producerar all text i sociala medier och rapporten. Gruppens art directors skapar den grafiska profilen och är ansvariga webb-, app- och UX-design. De ansvar också för rapportens layout."
+    "message": "Infogruppen ansvarar för att skapa allt innehåll, den grafiska profilen som kommer synas i våra olika kanaler och rapporten. Gruppen består av två fotografer, två redaktörer och två art directors. Fotograferna tar porträttbilder av projektgruppen samt fotograferar alla event och resan. Redaktörerna producerar all text i sociala medier och rapporten. Art directors skapar den grafiska profilen och är ansvariga för webb-, app- och UX-design. De ansvar också för rapportens layout. Kontinuerlig arbetsbelastning under hösten och våren."
   },
   {
     "id": "static.groups.sales.description",
-    "message": "Medlemmarna i säljgruppen skapar den första kontakten mellan Studs och företag och säljer in event. Det är viktigt att du som medlem i säljgruppen är utåtriktad och social, och inte tappar glöden om du får ett nej. Säljgruppen jobbar nära flera andra grupper, framförallt eventgruppen som tar över när ett event har blivit bokat."
+    "message": "Medlemmarna i säljgruppen skapar den första kontakten mellan Studs och företag och säljer in event. Det är viktigt att du som medlem i säljgruppen är utåtriktad och social, och inte tappar glöden om du får ett nej. Säljgruppen jobbar nära flera andra grupper, framförallt eventgruppen som tar över när ett event har blivit bokat. Hög belastning under hösten och en bit in under våren."
   },
   {
     "id": "static.groups.travel.description",
-    "message": "Resegruppen ansvarar för all planering och genomförandet av resan som avslutar projektet, allt från resrutt och flyg till koordinering av dagsaktiviteter. Arbetet är både kreativt och strukturerat då resegruppen utöver planering och logistik också är ansvarig för att ta fram inspiration och förslag på resmål. Som medlem i resegruppen leder du hela projektgruppen under resan, ser till att alla har det bra och hanterar oförutsägbara situationer."
+    "message": "Resegruppen ansvarar för all planering och genomförandet av resan som avslutar projektet, allt från resrutt och flyg till koordinering av dagsaktiviteter. Utöver planering och logistik så jobbar vi även med att ta fram inspiration och förslag på resmål. Som medlem i resegruppen leder du hela projektgruppen under resan, ser till att alla har det bra och hanterar oförutsägbara situationer. Kontinuerlig arbetsbelastning under hela året men mest intensivt under hösten och själva resan."
   },
   {
     "id": "app.components.GroupComponent.contactText",

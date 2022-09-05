@@ -49,6 +49,23 @@ class StudsRouter extends Component {
         <Route exact path='/privacy' component={PrivacyPolicy} />
         <Route exact path={'/brochure.pdf'} component={PDF} />
 
+        <Route
+          exact
+          path='/sok'
+          render={() => {
+            window.location.href =
+              'https://docs.google.com/forms/d/e/1FAIpQLSfzIu_aqglfO2jJCQKt0sYmq0bsfwW5uvR958ThsrqMnU-C2Q/viewform?usp=sf_link'
+          }}
+        />
+        <Route
+          exact
+          path='/sök'
+          render={() => {
+            window.location.href =
+              'https://docs.google.com/forms/d/e/1FAIpQLSfzIu_aqglfO2jJCQKt0sYmq0bsfwW5uvR958ThsrqMnU-C2Q/viewform?usp=sf_link'
+          }}
+        />
+
         <AuthenticatedRoute
           exact
           path='/sales-tool/companies'

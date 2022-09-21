@@ -4,11 +4,13 @@ import { FormattedMessage } from 'react-intl'
 import { Facebook, Instagram, Linkedin } from 'react-feather'
 import MemberImage from '../../components/MemberImage'
 import { projectManager1, projectManager2 } from '../../static/groups/groups.js'
-import Spotify from '../../static/img/company_logos/spotify.png'
-import Kry from '../../static/img/company_logos/kry.png'
-import Cygni from '../../static/img/company_logos/cygni.png'
-import Trafikverket from '../../static/img/company_logos/trafikverket.png'
-import Storytel from '../../static/img/company_logos/storytel.svg'
+
+import Fra from '../../static/img/company_logos/fra.png'
+import GoldmanSachs from '../../static/img/company_logos/goldman_sachs.png'
+import Karma from '../../static/img/company_logos/karma.png'
+import Scania from '../../static/img/company_logos/scania.png'
+import Storykit from '../../static/img/company_logos/storykit.png'
+
 import Menu from './Menu'
 import styles from './styles.css'
 import messages from './messages'
@@ -69,11 +71,11 @@ const Collaborations = () => (
       <FormattedMessage {...messages.collaborationsTitle} />
     </h5>
     <div className={styles.collaborationImages}>
-      <CompanyImage picture={Spotify} />
-      <CompanyImage picture={Trafikverket} />
-      <CompanyImage picture={Storytel} />
-      <CompanyImage picture={Kry} />
-      <CompanyImage picture={Cygni} />
+      <CompanyImage picture={Storykit} />
+      <CompanyImage picture={GoldmanSachs} />
+      <CompanyImage picture={Karma} />
+      <CompanyImage picture={Scania} />
+      <CompanyImage picture={Fra} />
     </div>
   </div>
 )
@@ -154,7 +156,7 @@ const CompanyImage = ({ picture }) => (
     className={styles.companyImage}
     picture={picture}
     size={200}
-    square
+    height={140}
   />
 )
 

@@ -4,12 +4,18 @@ import styles from './styles.css'
 import classnames from 'classnames'
 import placeholder from '../../static/img/profile-placeholder.png'
 
-function MemberImage({ picture, size, square, round, className }) {
+function MemberImage({ picture, size, square, round, className, height }) {
   //If no picture, set picture as placeholder
   if (!picture) picture = placeholder
+
+  if (height === false) {
+    if (square) height = size
+    else height = 'auto'
+  }
+
   const sizes = {
     width: size,
-    height: square ? size : 'auto',
+    height: height,
   }
   const classes = classnames(styles.picture, className, {
     [styles.round]: round,
@@ -39,6 +45,7 @@ MemberImage.propTypes = {
   square: PropTypes.bool,
   round: PropTypes.bool,
   className: PropTypes.string,
+  height: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
 }
 
 MemberImage.defaultProps = {
@@ -46,6 +53,7 @@ MemberImage.defaultProps = {
   square: false,
   round: false,
   className: '',
+  height: false,
 }
 
 export default MemberImage

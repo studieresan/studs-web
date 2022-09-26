@@ -120,6 +120,10 @@
     "message": "Connecting Stockholm with KTH’s <code>top tier</code> tech students"
   },
   {
+    "id": "app.components.HomePage.intro.apply",
+    "message": "Apply!"
+  },
+  {
     "id": "app.components.HomePage.content.project.title",
     "message": "The project"
   },

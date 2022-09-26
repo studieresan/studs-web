@@ -1,3 +1,16 @@
+.applyBox {
+  position: absolute;
+  width: 400px;
+  height: 300px;
+  left: calc(50% - 150px);
+  top: 300px;
+  background-image: url(./star.png);
+  background-size: contain;
+  font-size: 80px;
+  text-align: center;
+  padding-top: 80px;
+}
+
 .header {
   height: 88vh;
   width: 100%;
@@ -133,6 +146,7 @@
 
   .header {
     font-size: 16px;
+    margin-top: 20px;
   }
 
   .header_text {
@@ -144,6 +158,15 @@
     flex: 0;
     font-size: 9.2vw;
     line-height: 1.1;
+  }
+
+  .applyBox {
+    width: 200px;
+    height: 200px;
+    left: calc(50% - 100px);
+    top: 50px;
+    font-size: 40px;
+    padding-top: 45px;
   }
 }
 

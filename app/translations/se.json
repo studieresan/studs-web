@@ -352,6 +352,10 @@
     "message": "Connecting Stockholm with KTH’s top tier tech students"
   },
   {
+    "id": "app.components.HomePage.intro.apply",
+    "message": "Sök!"
+  },
+  {
     "id": "app.components.HomePage.content.project.title",
     "message": "Projektet"
   },

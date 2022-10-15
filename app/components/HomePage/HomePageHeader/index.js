@@ -23,11 +23,6 @@ export function HomePageHeader({
       <div className={styles.header_content}>
         <img className={styles.logoMobile} src={LogoPng} />
         <div className={styles.header_text}>
-          <div className={styles.applyBox}>
-            <a href='/sok'>
-              <FormattedMessage {...messages.intro.apply} />
-            </a>
-          </div>
           <div className={styles.textColor}>
             Connecting Stockholm with KTH’s{' '}
             <span className={styles.halfHighLight}>top tier</span> tech students

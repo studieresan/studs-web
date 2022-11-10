@@ -1,10 +1,10 @@
 # This forces deploy previews to use the state-url
 [context.deploy-preview.environment]
-	API_BASE_URL = "http://api.studs.se"
+	API_BASE_URL = "https://api.studs.se"
 	SIGNUP_TOKEN = "qwerty"
   
 [context.branch-deploy.environment]
-	API_BASE_URL = "http://api.studs.se"
+	API_BASE_URL = "https://api.studs.se"
 	SIGNUP_TOKEN = "qwerty"
   
 [context.production.environment]

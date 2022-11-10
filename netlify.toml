@@ -1,10 +1,10 @@
 # This forces deploy previews to use the state-url
 [context.deploy-preview.environment]
-	API_BASE_URL = "https://studs-overlord-stage.herokuapp.com"
+	API_BASE_URL = "159.223.6.60"
 	SIGNUP_TOKEN = "qwerty"
   
 [context.branch-deploy.environment]
-	API_BASE_URL = "https://studs-overlord-stage.herokuapp.com"
+	API_BASE_URL = "159.223.6.60"
 	SIGNUP_TOKEN = "qwerty"
   
 [context.production.environment]

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Switch, Route } from 'react-router-dom'
+import HomePageStyledComponents from './containers/HomePageStyledComponents/App'
 import HomePage from './containers/HomePage'
 import Members from './containers/Members'
 import Logout from './containers/Logout'
@@ -30,7 +31,7 @@ class StudsRouter extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path='/' component={HomePage} />
+        <Route exact path='/' component={HomePageStyledComponents} />
         <Route exact path='/logout' component={Logout} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/user/forgot-password' component={ForgotPassword} />

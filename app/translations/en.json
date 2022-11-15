@@ -1,5 +1,25 @@
 [
   {
+    "id": "app.components.HomePageStyledComponent.content.whatis.title",
+    "defaultMessage": "What is STUDS?"
+  },
+  {
+    "id": "app.components.HomePageStyledComponent.content.whatis.body.p1",
+    "defaultMessage": "Studs is an annual nonprofit project from KTH, run by students. The project consists of 31 selected engineering students in master programs relevant to computer science."
+  },
+  {
+    "id": "app.components.HomePageStyledComponent.content.whatis.body.p2",
+    "defaultMessage": "By organizing events together with companies, we create opportunities to give both students and their potential employers valuable time together."
+  },
+  {
+    "id": "app.components.HomePageStyledComponent.content.createEv.title",
+    "defaultMessage": "Create events with us!"
+  },
+  {
+    "id": "app.components.HomePageStyledComponent.content.createEv.body.p1",
+    "defaultMessage": "Studs helps companies tailor events to their needs, which guarantees that each event is as unique as the company that arranged it."
+  },
+  {
     "id": "app.containers.CreateUser.title",
     "defaultMessage": "Create user"
   },

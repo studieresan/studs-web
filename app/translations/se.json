@@ -1,5 +1,25 @@
 [
   {
+    "id": "app.components.HomePageStyledComponent.content.whatis.title",
+    "defaultMessage": "Vad är STUDS?"
+  },
+  {
+    "id": "app.components.HomePageStyledComponent.content.whatis.body.p1",
+    "defaultMessage": "Studs är ett årligt ideellt projekt av KTH, bedrivet av studenter. Projektet utgörs av 31 utvalda ingenjörsstudenter inom masterprogram relevanta för datavetenskap."
+  },
+  {
+    "id": "app.components.HomePageStyledComponent.content.whatis.body.p2",
+    "defaultMessage": "Genom att organisera evenemang tillsammans med företag skapar vi möjligheter att ge både studenter och deras potentiella arbetsgivare värdefull tid tillsammans."
+  },
+  {
+    "id": "app.components.HomePageStyledComponent.content.createEv.title",
+    "defaultMessage": "Skapa events med oss"
+  },
+  {
+    "id": "app.components.HomePageStyledComponent.content.createEv.body.p1",
+    "defaultMessage": "Studs hjälper företagen att skräddarsy evenemangen till deras behov, vilket garanterar att varje evenemang är lika unikt som företaget som arrangerat det."
+  },
+  {
     "id": "app.containers.CreateUser.title",
     "defaultMessage": "Skapa användare"
   },

@@ -7,7 +7,7 @@
   width: 100%;
   padding: 0px 15px;
   z-index: 1;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8);
   transition: 300ms all;
   height: var(--header-height);
 }

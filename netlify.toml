@@ -8,4 +8,4 @@
 	SIGNUP_TOKEN = "qwerty"
   
 [context.production.environment]
-  API_BASE_URL = "https://studs-overlord.herokuapp.com"
+  API_BASE_URL = "https://api.studs.se"

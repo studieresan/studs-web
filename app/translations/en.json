@@ -101,7 +101,7 @@
   },
   {
     "id": "app.components.HomePage.about.intro",
-    "message": "{firstName} is one of 31 students taking part of the Studs project"
+    "message": "{firstName} is one of 28 students taking part of the Studs project"
   },
   {
     "id": "app.components.HomePage.about.link",

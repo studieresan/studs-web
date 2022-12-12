@@ -23,15 +23,13 @@ const StudsMemberInfo = user => {
         {user.firstName} {user.lastName}
       </h3>
       <h5>{prettyUserRole(user.userRole)}</h5>
-      <a
-        href={
-          user.linkedIn
-            ? user.linkedIn
-            : 'https://www.linkedin.com/company/studs/'
-        }
-      >
-        <Linkedin color='#2867B2' size={20} />
-      </a>
+      {user.linkedIn ? (
+        <a href={user.linkedIn}>
+          <Linkedin color='#2867B2' size={20} />
+        </a>
+      ) : (
+        ''
+      )}
     </div>
   )
 }

@@ -253,7 +253,7 @@
   },
   {
     "id": "app.containers.About.generalInformation",
-    "message": "The Studs project is an annual nonprofit project from KTH with a goal to provide students who pursue a master’s degree related to Computer Science a chance to network with IT-companies. By organizing events together with companies, Studs creates opportunities to give both students and their potential employers valuable time together. During these events, students will gain deeper insights into the working life of the company and about the company’s operations. Studs consists of 30 selected students each year. You can see the members of Studs for recent years down below. "
+    "message": "The Studs project is an annual nonprofit project from KTH with a goal to provide students who pursue a master’s degree related to Computer Science a chance to network with IT-companies. By organizing events together with companies, Studs creates opportunities to give both students and their potential employers valuable time together. During these events, students will gain deeper insights into the working life of the company and about the company’s operations. Studs consists of around 30 selected students each year. You can see the members of Studs for recent years down below. "
   },
   {
     "id": "app.components.BlogView.edit",

@@ -23,6 +23,7 @@ function MemberImage({ picture, size, square, round, className, height }) {
 
   const style = {
     maxHeight: square ? size + 'px' : 'auto',
+    backgroundColor: 'rgba(0, 0, 0, 0)',
   }
 
   const [loaded, setLoaded] = useState(false)

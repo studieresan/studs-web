@@ -1,20 +1,20 @@
-/*import leader1 from '../../static/img/people/studs2022/melvin.jpg'
-import leader2 from '../../static/img/people/studs2022/isabel.jpg'
-import travelImage from '../../static/img/people/studs2022/vilma.jpg'
-import eventImage from '../../static/img/people/studs2022/emelie.jpg'
-import itImage from '../../static/img/people/studs2022/artin.jpg'
-import financeImage from '../../static/img/people/studs2022/simon.jpg'
-import saleImage from '../../static/img/people/studs2022/julia.jpg'
-import infoImage from '../../static/img/people/studs2022/eva.jpg'*/
+import leader1 from '../../static/img/people/studs2023/marcus.png'
+import leader2 from '../../static/img/people/studs2023/daniel.png'
+import travelImage from '../../static/img/people/studs2023/emmy.png'
+import eventImage from '../../static/img/people/studs2023/hanna.png'
+import itImage from '../../static/img/people/studs2023/gustav-e.png'
+import financeImage from '../../static/img/people/studs2023/william-n.png'
+import saleImage from '../../static/img/people/studs2023/tobias.png'
+import infoImage from '../../static/img/people/studs2023/tania.png'
 
-import leader1 from '../../static/img/profile-placeholder.png'
+/*import leader1 from '../../static/img/profile-placeholder.png'
 const leader2 = leader1
 const travelImage = leader1
 const eventImage = leader1
 const itImage = leader1
 const financeImage = leader1
 const saleImage = leader1
-const infoImage = leader1
+const infoImage = leader1*/
 
 //Groups and their responsible persons.
 const projectManager1 = {

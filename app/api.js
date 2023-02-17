@@ -430,7 +430,7 @@ export const fetchCompany = companyId => {
 
 export const createCompany = name => {
   const query = `mutation {
-    createCompany(name: ${wrapInQuotes(name)}) {
+    companyCreate(name: ${wrapInQuotes(name)}) {
       ${COMPANY_FIELDS}
     }
   }`

@@ -43,7 +43,6 @@ class StudsRouter extends Component {
         <Route exact path='/blog' component={Blog} />
         <Route exact path='/blog/view/:id' component={Blog} />
 
-        <Route exact path='/inhoppare' component={Jumpin} />
         <Route exact path='/bababa' component={Jumpin} />
 
         <Route exact path='/privacy' component={PrivacyPolicy} />
@@ -51,18 +50,17 @@ class StudsRouter extends Component {
 
         <Route
           exact
-          path='/sok'
+          path='/inhoppare'
           render={() => {
-            window.location.href =
-              'https://docs.google.com/forms/d/e/1FAIpQLSfzIu_aqglfO2jJCQKt0sYmq0bsfwW5uvR958ThsrqMnU-C2Q/viewform?usp=sf_link'
+            window.location.href = '/inhoppare.html'
           }}
         />
+
         <Route
           exact
-          path='/sök'
+          path='/substitute'
           render={() => {
-            window.location.href =
-              'https://docs.google.com/forms/d/e/1FAIpQLSfzIu_aqglfO2jJCQKt0sYmq0bsfwW5uvR958ThsrqMnU-C2Q/viewform?usp=sf_link'
+            window.location.href = '/inhoppare.html'
           }}
         />
 
